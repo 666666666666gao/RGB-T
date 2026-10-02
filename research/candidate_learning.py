@@ -121,6 +121,10 @@ class FrozenCandidateExtractor(nn.Module):
 
     @torch.no_grad()
     def forward(self, batch):
+        return self.extract_with_output(batch)[0]
+
+    @torch.no_grad()
+    def extract_with_output(self, batch):
         z, d, x = batch['z'], batch['d'], batch['x']
         zm, dm = batch['z_feat_mask'], batch['d_feat_mask']
         zv, zi = self.base._z_feat(z, zm)
@@ -169,7 +173,7 @@ class FrozenCandidateExtractor(nn.Module):
         evidence = torch.cat((selected_raw.unsqueeze(-1), ranked.gather(1, indices).unsqueeze(-1),
                               torch.stack(sims, dim=-1), selected_boxes), dim=-1)
         return {'features': features, 'evidence': evidence, 'raw_score': selected_raw,
-                'boxes': selected_boxes, 'valid': valid}
+                'boxes': selected_boxes, 'valid': valid}, output
 
 
 class CandidateQualityHead(nn.Module):

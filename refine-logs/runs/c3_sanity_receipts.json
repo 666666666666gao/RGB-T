@@ -1,0 +1,270 @@
+{
+  "train_teacher": {
+    "config": {
+      "root": "/data/wangwj/dataset/LasHeR",
+      "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+      "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+      "partition": "train",
+      "pretrained": "pretrained_models/gola_b224.bin",
+      "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+      "output": "/data/gb/outputs/c3_rollout_train_sanity_seed42",
+      "clips": 2,
+      "batch_clips": 2,
+      "min_history": 1,
+      "max_history": 8,
+      "horizon": 2,
+      "pollution_weight": 0.1,
+      "seed": 42,
+      "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+      "jobs": [
+        {
+          "sequence": "AQmanfromdarktrees",
+          "query_frame": 7
+        },
+        {
+          "sequence": "midtallboycoming",
+          "query_frame": 4
+        }
+      ],
+      "eligible_sequences": 881,
+      "C1_epoch": 3,
+      "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+      "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+      "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+      "pollution_proxy": "localization-based, not full distractor identity annotations",
+      "decision_features_saved_before_future_decode": true,
+      "future_action_batch_maximum": 10,
+      "amp_dtype": "float16"
+    },
+    "completion": {
+      "completed": true,
+      "clips": 2,
+      "valid_candidate_actions": 8,
+      "partition": "train",
+      "elapsed_seconds": 1.3306671669706702,
+      "peak_cuda_mib": 875.96728515625,
+      "official_tracking_accuracy": false,
+      "decision_input_contains_future": false
+    }
+  },
+  "validation_teacher": {
+    "config": {
+      "root": "/data/wangwj/dataset/LasHeR",
+      "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+      "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+      "partition": "validation",
+      "pretrained": "pretrained_models/gola_b224.bin",
+      "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+      "output": "/data/gb/outputs/c3_rollout_val_sanity_seed42",
+      "clips": 2,
+      "batch_clips": 2,
+      "min_history": 1,
+      "max_history": 8,
+      "horizon": 2,
+      "pollution_weight": 0.1,
+      "seed": 42,
+      "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+      "jobs": [
+        {
+          "sequence": "womanongrass",
+          "query_frame": 4
+        },
+        {
+          "sequence": "unbrellainbike",
+          "query_frame": 3
+        }
+      ],
+      "eligible_sequences": 98,
+      "C1_epoch": 3,
+      "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+      "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+      "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+      "pollution_proxy": "localization-based, not full distractor identity annotations",
+      "decision_features_saved_before_future_decode": true,
+      "future_action_batch_maximum": 10,
+      "amp_dtype": "float16"
+    },
+    "completion": {
+      "completed": true,
+      "clips": 2,
+      "valid_candidate_actions": 9,
+      "partition": "validation",
+      "elapsed_seconds": 1.0975589179433882,
+      "peak_cuda_mib": 924.50439453125,
+      "official_tracking_accuracy": false,
+      "decision_input_contains_future": false
+    }
+  },
+  "training": {
+    "config": {
+      "train": "/data/gb/outputs/c3_rollout_train_sanity_seed42",
+      "validation": "/data/gb/outputs/c3_rollout_val_sanity_seed42",
+      "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+      "output": "/data/gb/outputs/c3_utility_sanity_seed42",
+      "epochs": 2,
+      "batch_size": 32,
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "rank_weight": 1.0,
+      "rank_gap": 0.1,
+      "seed": 42,
+      "module": "C3_short_rollout_utility",
+      "scope": "cached counterfactual TRAIN/held-out utility, not benchmark tracking",
+      "train_sequence_count": 2,
+      "validation_sequence_count": 2,
+      "train_clips": 2,
+      "validation_clips": 2,
+      "teacher_training_config": {
+        "root": "/data/wangwj/dataset/LasHeR",
+        "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+        "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+        "partition": "train",
+        "pretrained": "pretrained_models/gola_b224.bin",
+        "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "output": "/data/gb/outputs/c3_rollout_train_sanity_seed42",
+        "clips": 2,
+        "batch_clips": 2,
+        "min_history": 1,
+        "max_history": 8,
+        "horizon": 2,
+        "pollution_weight": 0.1,
+        "seed": 42,
+        "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+        "jobs": [
+          {
+            "sequence": "AQmanfromdarktrees",
+            "query_frame": 7
+          },
+          {
+            "sequence": "midtallboycoming",
+            "query_frame": 4
+          }
+        ],
+        "eligible_sequences": 881,
+        "C1_epoch": 3,
+        "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+        "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+        "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+        "pollution_proxy": "localization-based, not full distractor identity annotations",
+        "decision_features_saved_before_future_decode": true,
+        "future_action_batch_maximum": 10,
+        "amp_dtype": "float16"
+      },
+      "teacher_validation_config": {
+        "root": "/data/wangwj/dataset/LasHeR",
+        "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+        "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+        "partition": "validation",
+        "pretrained": "pretrained_models/gola_b224.bin",
+        "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "output": "/data/gb/outputs/c3_rollout_val_sanity_seed42",
+        "clips": 2,
+        "batch_clips": 2,
+        "min_history": 1,
+        "max_history": 8,
+        "horizon": 2,
+        "pollution_weight": 0.1,
+        "seed": 42,
+        "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+        "jobs": [
+          {
+            "sequence": "womanongrass",
+            "query_frame": 4
+          },
+          {
+            "sequence": "unbrellainbike",
+            "query_frame": 3
+          }
+        ],
+        "eligible_sequences": 98,
+        "C1_epoch": 3,
+        "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+        "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+        "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+        "pollution_proxy": "localization-based, not full distractor identity annotations",
+        "decision_features_saved_before_future_decode": true,
+        "future_action_batch_maximum": 10,
+        "amp_dtype": "float16"
+      },
+      "base_trainable_parameters": 0,
+      "new_trainable_parameters": 119041,
+      "selection_for_utility_evaluation": "masked maximum predicted future utility",
+      "checkpoint_selection": "minimum validation mean regret; official test is excluded"
+    },
+    "completion": {
+      "completed": true,
+      "optimizer_steps": 2,
+      "epochs": 2,
+      "new_parameters_changed": true,
+      "base_trainable_parameters": 0,
+      "best_validation_mean_regret": 0.010089278221130371,
+      "last_validation": {
+        "clips": 2,
+        "valid_actions": 9,
+        "utility_mse": 0.34066537022590637,
+        "selected_mean_utility": 0.8411669731140137,
+        "c1_mean_utility": 0.8411669731140137,
+        "oracle_mean_utility": 0.851256251335144,
+        "mean_regret": 0.010089278221130371,
+        "mean_gain_against_c1": 0.0,
+        "better_than_c1_clips": 0,
+        "worse_than_c1_clips": 0,
+        "reselected_clips": 0,
+        "selected_current_iou": 0.876145601272583
+      },
+      "elapsed_seconds": 0.21183097129687667,
+      "peak_cuda_mib": 67.4208984375,
+      "official_tracking_accuracy": false
+    },
+    "metrics": [
+      {
+        "epoch": 0,
+        "train_loss": null,
+        "clips": 2,
+        "valid_actions": 9,
+        "utility_mse": 0.35087671875953674,
+        "selected_mean_utility": 0.8411669731140137,
+        "c1_mean_utility": 0.8411669731140137,
+        "oracle_mean_utility": 0.851256251335144,
+        "mean_regret": 0.010089278221130371,
+        "mean_gain_against_c1": 0.0,
+        "better_than_c1_clips": 0,
+        "worse_than_c1_clips": 0,
+        "reselected_clips": 0,
+        "selected_current_iou": 0.876145601272583
+      },
+      {
+        "epoch": 1,
+        "train_loss": 0.5185627937316895,
+        "clips": 2,
+        "valid_actions": 9,
+        "utility_mse": 0.3459380865097046,
+        "selected_mean_utility": 0.8411669731140137,
+        "c1_mean_utility": 0.8411669731140137,
+        "oracle_mean_utility": 0.851256251335144,
+        "mean_regret": 0.010089278221130371,
+        "mean_gain_against_c1": 0.0,
+        "better_than_c1_clips": 0,
+        "worse_than_c1_clips": 0,
+        "reselected_clips": 0,
+        "selected_current_iou": 0.876145601272583
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.5160566568374634,
+        "clips": 2,
+        "valid_actions": 9,
+        "utility_mse": 0.34066537022590637,
+        "selected_mean_utility": 0.8411669731140137,
+        "c1_mean_utility": 0.8411669731140137,
+        "oracle_mean_utility": 0.851256251335144,
+        "mean_regret": 0.010089278221130371,
+        "mean_gain_against_c1": 0.0,
+        "better_than_c1_clips": 0,
+        "worse_than_c1_clips": 0,
+        "reselected_clips": 0,
+        "selected_current_iou": 0.876145601272583
+      }
+    ]
+  }
+}

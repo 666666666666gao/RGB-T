@@ -1,0 +1,9 @@
+{
+  "launched_utc": "2026-10-02T15:02:34.107408+00:00",
+  "session": "c2_probe_sanity_20261002",
+  "command": "cd /data/gb/GOLA && env LD_LIBRARY_PATH=/data/gb/envs/gola/lib PYTHONPATH=/data/gb/GOLA TORCH_HOME=/data/gb/cache/torch XDG_CACHE_HOME=/data/gb/cache TMPDIR=/data/gb/cache/tmp CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=2 OMP_NUM_THREADS=4 CUBLAS_WORKSPACE_CONFIG=:4096:8 /data/gb/envs/gola/bin/python -u -m research.probe_recovery --output /data/gb/outputs/c2_probe_sanity_seed42 --sequences 2 --max-frames 128 --branches 3 --window 5 --switch-patience 2 > /data/gb/outputs/c2_probe_sanity_seed42/stdout.log 2>&1",
+  "gpu": 2,
+  "expected_sequences": 2,
+  "maximum_frames_per_sequence": 128,
+  "scope": "C2 causal functionality with C1/box-only controls on LasHeR TRAIN held-out, no newparametertraining/no officialmetrics"
+}

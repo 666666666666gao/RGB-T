@@ -16,10 +16,10 @@
 
 | Run | 优先级 | 配置 | 完成条件 | 当前状态 |
 |---|---|---|---|---|
-| C1-sanity | MUST | 1 epoch × 8 steps；val 2 steps；batch 4，workers 2 | 真实数据训练、权重正确加载、仅新参数变化、JSON/CSV/checkpoint 生成 | 代码待独立审查 |
-| C1-initial | MUST | 3 epochs × 512 steps；val 32 steps；batch 8 | 观察 held-out 候选质量、恢复机会、错误切换；结果可为负 | sanity 后部署 |
+| C1-sanity | MUST | 1 epoch × 8 steps；val 2 steps；batch 4，workers 2 | 真实数据训练、权重正确加载、仅新参数变化、JSON/CSV/checkpoint 生成 | PASS |
+| C1-initial | MUST | 3 epochs × 512 steps；val 32 steps；batch 8 | 观察 held-out 候选质量、恢复机会、错误切换；结果可为负 | COMPLETED；详见唯一HANDOFF |
 
-尚未实测速度；C1 sanity 预计数分钟，initial 预计 0.5–2 小时、单 RTX3090。获得实测吞吐后修正 ETA；不宣称准确训练时长。每 180–300 秒按预计进度检查一次，不反复扫描数据目录。
+C1实际initial约7分钟，原0.5–2小时估计偏长。每180–300秒或接近实测预计结束时检查，不反复扫描数据目录。
 
 ## 后续完整实现（未部署）
 
@@ -39,6 +39,24 @@ C1初始3epochs已完成；256固定开发验证crop上IoU .744937→.750184，8
 
 - Online smoke：LasHeR test与RGBT234各首2序列、每序列前64帧，分别baseline/C1；检查输出有限、帧数、首框、文件格式、真实模板更新，**截断结果只用于功能检查**。
 - 完整评测：4个独立任务，LasHeR baseline/C1、RGBT234 baseline/C1，分别使用GPU0/1/2/3。只做现有两核心数据集。estimated 1–3 hours，取得在线smoke吞吐后修正；不把并行HDD成本忽略。
-- 每个结果目录分开，保存每帧输出与包含读图/裁剪/推理/模板更新的延迟，最终统一调用 unchanged `evaluation.py` 对真实GT输出官方PR/NPR/SR或MPR/MSR。
+- 每个结果目录分开，保存每帧输出与包含读图/裁剪/推理/模板更新的延迟，最终调用 `evaluation.py` 的原rgbt指标函数。RGBT234需显式读取实际数据标注：包GT与实际3文件不同，已修正来源，公式未变。
 - 全部推理默认float16，匹配原GOLA inference配置；C1训练bf16的差异写入config；对照两种方法推理dtype相同。
 - 部署前对此新增online入口做独立代码审查；先完整smoke通过再启动4个完整任务。C1仍不代表完整A/B/C2/C3。
+
+## 当前C2原型功能验证（23:00准备）
+
+RGBT234实际GT全量C1结果基本持平（MPR+.038151/MSR+.001297百分点），LasHeR仍在原进程运行；不依据官方test选新参数。继续原方案的有限分支/状态修复实现，先在LasHeR train-held-out验证。
+
+- 代码 `research/bounded_recovery.py`、`research/probe_recovery.py`。完整pretrained和C1 epoch3冻结；本阶段没有新增可训练参数，也不声称C3后续收益监督已经完成。
+- P=3，W=5（含出生帧），每分支独立search缓存/在线template/mask、近期boxes/scores、待提交模板；首帧锚点永不覆盖。新fork从父分支已提交模板起步，不继承当帧赢家的新更新。
+- 所有分支仅消费当前已到帧；C1质量分数5帧均值作临时路径价值，挑战分支持续2帧高于主分支才切换。切换使用该分支自身search/template/pending；未选分支窗口到期丢弃，旧主分支降级时重新获得5帧窗口。当前无B运动预测，保留的box历史服务后续B/C3。
+- matched box-only对照使用相同选择规则，但切换时沿用原主分支template/mask/pending；因此后续路径可以分歧，不能宣称两者每个切换动作完全相同。
+- sanity固定内部validation排序前2序列 `10rightblackboy`、`1boygo`，每序列前128帧，顺序运行C1/C2/box-only；计时受缓存顺序影响不作加速结论。GT仅首框输入tracker，其余外层事后诊断。
+- 验收：真实前向、输出形状/有限值、anchor不变、分支/各deque不越界、按有效GT排除初始化的IoU；记录实际switch/commit。若无switch，不宣称已用真实运行验证状态切换。保存当前主分支和各分支框，按同帧GT统计有益/有害切换；报告相对C1逐帧得益/损害及分母，不能把帧计数叫恢复事件。
+- 先独立review通过，再GPU2 sanity；预计2–6分钟，180–300秒检查，失败读原日志，不自动改方法重跑。sanity后才决定是否扩至16内部序列512帧诊断、或优先接C3价值监督。两官方测试已运行的任务不修改/重启。
+
+## 23:50 C3 教师/价值头首轮（内部开发，不能代替完整评测）
+
+C2 的16序列内部诊断出现负结果；下一步按原C3机制监督未来价值。保持原LasHeR train内881/98分区，只用该分区生成预测历史；官方test/RGBT234不输入训练或选权重。首轮sanity train/val各2clip，history1..8、H2、batch-clips2；通过后初始train128/val64，history1..256、H3、batch-clips8（最多40未来动作共享主干batch）。冻结完整GOLA和C1，未来图像/GT仅用于同一固定C1延续策略的训练标签，查询时输入在读取未来前复制保存。标签 mean future IoU-.1*wrong-write fraction，wrong-write为raw>.84且GTIoU<.2，仅定位污染代理。C3头接768features+10evidence+9history/motion，C1 projection初始化，训练batch32、20epochs、AdamW1e-4/wd1e-4、seed42，按内部val mean regret选择；记录改善与恶化clips、MSE、oracle/regret、真实参数变化/显存。缓存样本数小，首轮仅功能/学习诊断，不宣称完整训练或论文增益。真实batch32前后向容量测试峰2975.94MiB，对比batch8峰1015.98MiB；单次含warmup，不据此声称加速。
+
+新增完整评测要求：只做LasHeR245seq/220703frames和RGBT234234seq/116649frames；两种完整baseline/C1都要PR/NPR/SR或MPR/MSR、所有属性/序列、全曲线、p50/p90/p95/p99/FPS、全失败/恢复事件及paired收益/损害，输出JSON/CSV；候选Recall/误拒恢复/更新污染代理需补时间线，不能用缺失值假充完成；尚未实现A/B不产生虚构预算/校准曲线。

@@ -1,0 +1,25 @@
+{
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "pretrained": "pretrained_models/gola_b224.bin",
+  "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "output": "/data/gb/outputs/c2_probe_sanity_seed42",
+  "sequences": 2,
+  "max_frames": 128,
+  "branches": 3,
+  "window": 5,
+  "switch_patience": 2,
+  "seed": 42,
+  "scope": "C2 bounded-path functionality / train-held-out online diagnostic, not official test",
+  "sequences_selected": [
+    "10rightblackboy",
+    "1boygo"
+  ],
+  "amp_dtype": "float16",
+  "head_epoch": 3,
+  "gt_input": "first-frame bbox only; later labels used after tracking for diagnostics",
+  "scorer": "frozen C1 quality head; C3 utility supervision not implemented",
+  "initialization_and_timing_excluded_from_latency": true,
+  "timing_order": "C1 then C2 then box-only; cache order prevents reliable speed comparison"
+}

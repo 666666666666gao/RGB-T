@@ -1,7 +1,7 @@
 """Strictly online GOLA/C1 inference without constructing dataset metadata.
 
 Only the first GT row initializes a tracker. Later GT is accessed exclusively
-by the unchanged official evaluation.py after predictions have been saved.
+by offline evaluators after predictions/candidate timelines have been saved.
 """
 import argparse
 import json
@@ -43,11 +43,12 @@ def arguments():
     p.add_argument('--limit-sequences', type=int, default=0, help='0 means all sequences; positive values are smoke ONLY')
     p.add_argument('--max-frames', type=int, default=0, help='0 means all frames; positive values are smoke ONLY')
     p.add_argument('--amp-dtype', choices=['float16', 'bfloat16'], default='float16')
+    p.add_argument('--record-mechanisms', action='store_true', help='Save every candidate and template write for full offline GT diagnostics.')
     return p.parse_args()
 
 
 @torch.inference_mode()
-def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtype):
+def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtype, timeline=None):
     assert len(paths_v) == len(paths_i)
     normalization = get_dataset_norm_stats_transform('mm', inplace=True)
     template_size, search_size = np.array((112, 112)), np.array((224, 224))
@@ -79,13 +80,19 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
                  'z_feat_mask': z_mask, 'd_feat_mask': d_mask}
         with torch.autocast('cuda', dtype=amp_dtype):
             if head is None:
-                output = extractor.base(**batch)
+                if timeline is None:
+                    output = extractor.base(**batch)
+                else:
+                    candidates, output = extractor.extract_with_output(batch)
+                    choice = 0
+                    predicted_quality = candidates['raw_score'][0]
                 result = post_process(output)
                 crop_box = result['box'][0].double().cpu().numpy()
                 confidence = float(result['confidence'][0])
             else:
                 candidates = extractor(batch)
                 logits = head(candidates).float()
+                predicted_quality = logits.sigmoid()[0]
                 scores = selection_scores(logits, candidates, extractor.window_penalty)
                 choice = int(scores.masked_fill(~candidates['valid'], -torch.inf).argmax(1)[0])
                 crop_box = candidates['boxes'][0, choice].double().cpu().numpy() * 224.
@@ -106,6 +113,19 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
             updates += 1
         torch.cuda.synchronize(device)
         latencies.append(time.perf_counter() - started)
+        if timeline is not None:
+            candidate_boxes = candidates['boxes'][0].double().cpu().numpy() * 224.
+            candidate_boxes = apply_siamfc_cropping_to_boxes(candidate_boxes, reverse_siamfc_cropping_params(x_params))
+            for candidate_box in candidate_boxes:
+                bbox_clip_to_image_boundary_(candidate_box, size)
+            # Baseline postprocessing scales in float32; record its actual box.
+            candidate_boxes[choice] = box.copy()
+            timeline.append({'boxes_xyxy': candidate_boxes.copy(),
+                             'evidence': candidates['evidence'][0].float().cpu().numpy().copy(),
+                             'valid': candidates['valid'][0].cpu().numpy().copy(),
+                             'predicted_quality': predicted_quality.float().cpu().numpy().copy(),
+                             'choice': np.array(choice, dtype=np.int64),
+                             'template_updated': np.array(confidence > .84)})
     updater.delete(0)
     updater.stop()
     post_process.stop()
@@ -153,6 +173,8 @@ def main():
                            'head_epoch': checkpoint['epoch'] if head is not None else None,
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
+    torch.cuda.reset_peak_memory_stats(device)
+    full_started = time.perf_counter()
     records, all_latency = [], []
     with (out / 'progress.jsonl').open('w') as progress:
         for index, sequence in enumerate(sequences, 1):
@@ -166,9 +188,14 @@ def main():
             init_box[2:] += init_box[:2]
             if args.max_frames:
                 visible, infrared = visible[:args.max_frames], infrared[:args.max_frames]
-            predictions, latencies, updates, switches = track_sequence(visible, infrared, init_box, extractor, head, device, dtype)
+            timeline = [] if args.record_mechanisms else None
+            predictions, latencies, updates, switches = track_sequence(visible, infrared, init_box, extractor, head, device, dtype, timeline)
             np.savetxt(out / f'{sequence.name}.txt', predictions, delimiter='\t', fmt='%.3f')
             np.save(out / f'{sequence.name}_latency.npy', latencies)
+            if timeline is not None:
+                assert len(timeline) == len(predictions) - 1
+                np.savez_compressed(out / f'{sequence.name}_candidates.npz',
+                                    **{key: np.stack([row[key] for row in timeline]) for key in timeline[0]})
             all_latency.extend(latencies.tolist())
             record = {'sequence': sequence.name, 'sequence_index': index, 'sequences': len(sequences),
                       'frames': len(predictions), 'elapsed_seconds': float(latencies.sum()),
@@ -183,6 +210,10 @@ def main():
                'latency_p50_ms': float(np.percentile(latency, 50) * 1000),
                'latency_p95_ms': float(np.percentile(latency, 95) * 1000),
                'timing_excludes_first_frame_initialization': True,
+               'peak_cuda_allocated_mib': torch.cuda.max_memory_allocated(device) / 2**20,
+               'peak_cuda_reserved_mib': torch.cuda.max_memory_reserved(device) / 2**20,
+               'wall_seconds_including_initialization_and_diagnostic_serialization': time.perf_counter() - full_started,
+               'candidate_timeline_recorded': args.record_mechanisms,
                'records': records, 'official_accuracy': 'not computed here; run evaluation.py against actual GT'}
     (out / 'inference_completion.json').write_text(json.dumps(receipt, indent=2))
     print('COMPLETED', json.dumps({k: v for k, v in receipt.items() if k != 'records'}), flush=True)

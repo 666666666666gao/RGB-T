@@ -3,11 +3,17 @@
 This repository extends the official GOLA implementation (upstream commit
 `339c737cda6a24be667b6e5abdc721e8d6046f05`). The current addition is **C1
 candidate quality/ranking training**, with the complete pretrained GOLA-B frozen.
-The proposed bounded memory, multi-future motion, and online state recovery are
-not implemented yet. Full RGBT234 evaluation is complete: C1 changes MPR by
+The C2 bounded recovery prototype is implemented, but its first internal
+validation result is negative and matches the box-only control. C3 future-utility
+collection/training passed the small runtime checks; its initial teacher
+collection is running. Learned A compression and B multi-future prediction
+remain pending. Full RGBT234 evaluation is complete: C1 changes MPR by
 +0.038 percentage points and MSR by +0.0013 percentage points against our
 pretrained baseline using the actual dataset annotations. This first run has
 essentially unchanged overall accuracy; LasHeR evaluation is still running.
+Full reports include every sequence and attribute, all native curves, latency
+percentiles and localization failure/recovery events. Candidate/update timelines
+are being added; absent measurements are explicitly marked pending.
 
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
