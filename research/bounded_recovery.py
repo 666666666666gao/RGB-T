@@ -90,7 +90,7 @@ class BoundedRecoveryTracker:
             logits = self.head(candidates).float()
             scores = selection_scores(logits, candidates, self.extractor.window_penalty)
         choices = scores.masked_fill(~candidates['valid'], -torch.inf).argmax(1).tolist()
-        crop_boxes = candidates['boxes'].double().cpu().numpy() * 224.
+        crop_boxes = (candidates['boxes'] * 224.).double().cpu().numpy()
         size = np.array((image.shape[-1], image.shape[-2]))
         observations = []
         for index, params in enumerate(parameters):

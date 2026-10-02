@@ -8,16 +8,17 @@ validation result is negative and matches the box-only control. C3 future-utilit
 collection/training completed its initial 128/64-clip experiment; the final
 epoch worsened validation utility, and the best internal checkpoint is epoch 8.
 Learned A compression and B multi-future prediction remain pending.
-Both full core evaluations are complete. On LasHeR C1 changes PR/NPR/SR by
+Initial v1 full core evaluations are complete. On LasHeR v1 C1 changes PR/NPR/SR by
 +1.2611/+1.0496/+0.9135 percentage points against our pretrained baseline.
 On RGBT234 C1 changes MPR by
 +0.038 percentage points and MSR by +0.0013 percentage points against our
 pretrained baseline using the actual dataset annotations. This first run has
 essentially unchanged overall accuracy on RGBT234. All sequences and frames
-were evaluated. RGBT234 candidate/update diagnostics are complete and match
-every original trajectory; LasHeR candidate/update recording is still running.
+were evaluated. Both v1 candidate/update audits are complete and match
+every original trajectory. Corrected v2 RGBT234 is also complete: MPR
+91.817009%, MSR 69.234047%; corrected v2 LasHeR remains running.
 Full reports include every sequence and attribute, all native curves, latency
-percentiles and localization failure/recovery events. RGBT234 additionally includes
+percentiles and localization failure/recovery events. Both datasets additionally include
 candidate recall, reselection harms/rescues, template-write localization proxies,
 quality calibration and peak memory. Absent measurements are explicitly pending.
 Paired sequence bootstrap intervals for all five standard metric differences
@@ -36,8 +37,15 @@ not a completed A/B/C state-recovery system.
 These initial v1 results are retained while corrected full v2 evaluations are
 prepared: a train-held-out zero-head control exposed an autoregressive difference
 from float32/double box-scaling order. C1 decoding now uses the original baseline's
-operation order; weights and hyperparameters are unchanged. The handoff records
-the control, corrected-run status and version boundaries.
+operation order; weights and hyperparameters are unchanged. Six complete internal
+validation videos (1401 frames) now have exactly equal raw zero-head trajectories.
+The corrected [RGBT234 complete report](refine-logs/runs/rgbt234_v2_complete_report.json)
+contains all native scores, attributes, curves, event records and candidate/update
+measurements. V2 confidence intervals are pending both full corrected reports.
+Expanded C3 teacher collection (512 TRAIN / 256 internal validation clips) is
+running with real batch32 on GPUs 0/1; GPU3 utility training is queued after
+completed samples. These are internal utility experiments, not C3 benchmark scores.
+The handoff records the control, corrected-run status and version boundaries.
 
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`

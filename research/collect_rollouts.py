@@ -60,7 +60,7 @@ def observe_actions(items, extractor, head):
         logits = head(candidates).float()
         scores = selection_scores(logits, candidates, extractor.window_penalty)
     choices = scores.masked_fill(~candidates['valid'], -torch.inf).argmax(1).tolist()
-    crop_boxes = candidates['boxes'].double().cpu().numpy() * 224.
+    crop_boxes = (candidates['boxes'] * 224.).double().cpu().numpy()
     observations = []
     for index, ((_, _, image), transform) in enumerate(zip(items, params)):
         boxes = apply_siamfc_cropping_to_boxes(crop_boxes[index], reverse_siamfc_cropping_params(transform))
@@ -187,7 +187,8 @@ def main():
                            'pollution_proxy': 'localization-based, not full distractor identity annotations',
                            'decision_features_saved_before_future_decode': True,
                            'future_action_batch_maximum': args.batch_clips * settings['candidates'],
-                           'amp_dtype': 'float16'}
+                           'amp_dtype': 'float16',
+                           'candidate_box_scaling': 'float32_multiply_then_double'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     rows, started = [], time.perf_counter()
     for start in range(0, len(jobs), args.batch_clips):

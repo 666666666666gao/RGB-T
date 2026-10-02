@@ -1,0 +1,37 @@
+{
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "partition": "validation",
+  "pretrained": "pretrained_models/gola_b224.bin",
+  "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "output": "/data/gb/outputs/c3_rollout_v2_sanity_val",
+  "clips": 2,
+  "batch_clips": 2,
+  "min_history": 1,
+  "max_history": 8,
+  "horizon": 3,
+  "pollution_weight": 0.1,
+  "seed": 42,
+  "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+  "jobs": [
+    {
+      "sequence": "womanongrass",
+      "query_frame": 4
+    },
+    {
+      "sequence": "unbrellainbike",
+      "query_frame": 3
+    }
+  ],
+  "eligible_sequences": 98,
+  "C1_epoch": 3,
+  "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+  "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+  "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+  "pollution_proxy": "localization-based, not full distractor identity annotations",
+  "decision_features_saved_before_future_decode": true,
+  "future_action_batch_maximum": 10,
+  "amp_dtype": "float16",
+  "candidate_box_scaling": "float32_multiply_then_double"
+}

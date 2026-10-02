@@ -1,0 +1,141 @@
+{
+  "dataset": "lasher",
+  "actual_data_root": "/data/wangwj/dataset/LasHeR/testingset",
+  "scope": "all-frame candidate and template-write diagnostics; reference/source trajectory consistency verified",
+  "protocol": {
+    "recall": "any valid spatial candidate IoU>=.5",
+    "failure": "IoU<.2",
+    "reselection": "same current search/identity state, candidate0 is original Hann winner",
+    "initialization_excluded": true,
+    "template_pollution": "localization proxy; no distractor semantic identity labels",
+    "calibration": "predicted candidate quality vs actual IoU; original raw confidence is a proxy",
+    "rates": "frame/action weighted; all numerators and denominators saved",
+    "speed": "instrumented baseline includes additional candidate extraction; use original full report for comparison"
+  },
+  "variants": {
+    "c1": {
+      "counters": {
+        "tracking_frames": 220458,
+        "valid_tracking_frames": 219925,
+        "valid_candidate_actions": 1031714,
+        "candidate_count_sum": 1034304,
+        "chosen_failed_frames": 49664,
+        "recalled_frames": 163009,
+        "original_failed_frames": 49499,
+        "original_correct_frames": 154841,
+        "correct_candidate_available_when_original_failed": 7915,
+        "current_frame_reselection_rescues": 477,
+        "current_frame_reselection_harms": 582,
+        "mis_rejected_correct_candidate_frames": 8021,
+        "alternative_selections": 2118,
+        "template_updates": 85441,
+        "valid_gt_template_updates": 85420,
+        "wrong_template_updates_localization_proxy": 7814,
+        "known_active_template_source_frames": 219914,
+        "wrong_active_template_source_frames_localization_proxy": 19502,
+        "candidate_quality_squared_error_sum": 25602.506128560737,
+        "failure_events": 768
+      },
+      "rates": {
+        "candidate_recall_at_k": 0.7412026827327498,
+        "candidate_recall_given_original_failure": 0.15990222024687367,
+        "current_frame_reselection_rescue_rate": 0.060265319014529375,
+        "current_frame_reselection_harm_rate": 0.003758694402645294,
+        "mis_rejected_correct_candidate_rate_given_chosen_failure": 0.16150531572164947,
+        "wrong_template_update_rate_localization_proxy": 0.09147740575977523,
+        "wrong_active_template_source_rate_localization_proxy": 0.088680120410706,
+        "candidate_quality_mse": 0.0248155071352727
+      },
+      "quality_calibration_bins": [
+        {
+          "bin": 0,
+          "count": 786220,
+          "prediction_sum": 4421.226530224085,
+          "actual_iou_sum": 9506.226328419476,
+          "mean_predicted_quality": 0.0056233961616647815,
+          "mean_actual_iou": 0.012091051268626436
+        },
+        {
+          "bin": 1,
+          "count": 19373,
+          "prediction_sum": 2851.260425016284,
+          "actual_iou_sum": 2254.2381892683834,
+          "mean_predicted_quality": 0.1471770208546061,
+          "mean_actual_iou": 0.11635978884366817
+        },
+        {
+          "bin": 2,
+          "count": 15801,
+          "prediction_sum": 3940.2487797290087,
+          "actual_iou_sum": 2742.8206974553395,
+          "mean_predicted_quality": 0.24936705143528945,
+          "mean_actual_iou": 0.17358526026551102
+        },
+        {
+          "bin": 3,
+          "count": 15123,
+          "prediction_sum": 5286.841943234205,
+          "actual_iou_sum": 3804.6518406933233,
+          "mean_predicted_quality": 0.34958949568433545,
+          "mean_actual_iou": 0.2515804959791922
+        },
+        {
+          "bin": 4,
+          "count": 15399,
+          "prediction_sum": 6937.351238459349,
+          "actual_iou_sum": 5018.749045372429,
+          "mean_predicted_quality": 0.4505066068224787,
+          "mean_actual_iou": 0.3259139583981056
+        },
+        {
+          "bin": 5,
+          "count": 16899,
+          "prediction_sum": 9318.005574584007,
+          "actual_iou_sum": 7022.603048245647,
+          "mean_predicted_quality": 0.551393903460797,
+          "mean_actual_iou": 0.41556323144834884
+        },
+        {
+          "bin": 6,
+          "count": 22230,
+          "prediction_sum": 14519.397776126862,
+          "actual_iou_sum": 11691.692860750909,
+          "mean_predicted_quality": 0.6531442994209115,
+          "mean_actual_iou": 0.5259420989991412
+        },
+        {
+          "bin": 7,
+          "count": 38569,
+          "prediction_sum": 29151.415515363216,
+          "actual_iou_sum": 24335.414092349143,
+          "mean_predicted_quality": 0.755825028270456,
+          "mean_actual_iou": 0.6309578701119848
+        },
+        {
+          "bin": 8,
+          "count": 71274,
+          "prediction_sum": 61170.13022106886,
+          "actual_iou_sum": 51285.673976907485,
+          "mean_predicted_quality": 0.858239052404367,
+          "mean_actual_iou": 0.7195565560640274
+        },
+        {
+          "bin": 9,
+          "count": 30826,
+          "prediction_sum": 28267.817790448666,
+          "actual_iou_sum": 23878.457789073913,
+          "mean_predicted_quality": 0.9170121906977443,
+          "mean_actual_iou": 0.7746207029479631
+        }
+      ],
+      "quality_calibration_ece": 0.03343287725291047,
+      "inference_peak_cuda_allocated_mib": 439.50146484375,
+      "inference_peak_cuda_reserved_mib": 490.0,
+      "trajectory_reference": "/data/gb/outputs/online_core/lasher_c1/predictions",
+      "trajectory_reference_is_separate_run": true,
+      "exact_original_trajectory_match_all_sequences": true,
+      "exact_reference_trajectory_match_all_sequences": true,
+      "instrumented_wall_seconds": 6969.804636711255
+    }
+  }
+}
