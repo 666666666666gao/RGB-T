@@ -25,15 +25,12 @@ class LasHeR_Seed(BaseSeed):
     def construct(self, constructor: MultiModalObjectTrackingDatasetConstructor):
         # Implement the dataset construction logic here
         if self.data_split[0] == 'train':
-            root_path = os.path.join(self.root_path, 'trainingset')
-            with open('{}trainingsetList.txt'.format(self.root_path)) as f:
-                sequence_names = f.read().splitlines()
+            root_path = self.get_path_from_config('LasHeR_TRAIN_PATH')
         elif self.data_split[0] == 'test':
-            root_path = os.path.join(self.root_path, 'testingset')
-            with open('{}testingsetList.txt'.format(self.root_path)) as f:
-                sequence_names = f.read().splitlines()
+            root_path = self.get_path_from_config('LasHeR_TEST_PATH')
         else:
             raise NotImplementedError('Incorrect data split')
+        sequence_names = sorted(entry.name for entry in os.scandir(root_path) if entry.is_dir())
 
         # Set the total number of sequences (Optional, for progress bar)
         constructor.set_total_number_of_sequences(len(sequence_names))

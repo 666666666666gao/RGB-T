@@ -22,8 +22,7 @@ class RGBT234_Seed(BaseSeed):
 
     def construct(self, constructor: MultiModalObjectTrackingDatasetConstructor):
         # Implement the dataset construction logic here
-        with open('{}list.txt'.format(self.root_path)) as f:
-            sequence_names = f.read().splitlines()
+        sequence_names = sorted(entry.name for entry in os.scandir(self.root_path) if entry.is_dir())
 
         # Set the total number of sequences (Optional, for progress bar)
         constructor.set_total_number_of_sequences(len(sequence_names))
@@ -37,7 +36,7 @@ class RGBT234_Seed(BaseSeed):
 
                 sequence_path = os.path.join(self.root_path, sequence_name)
                 # groundtruth.txt: the path of the bounding boxes file
-                boxes_path = os.path.join(sequence_path, 'init.txt')
+                boxes_path = os.path.join(sequence_path, 'visible.txt')
                 frames_path_v = os.path.join(sequence_path, 'visible')
                 frames_path_i = os.path.join(sequence_path, 'infrared')
 

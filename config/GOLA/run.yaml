@@ -239,11 +239,17 @@ data:
               file_name: "TrackingNet-test"
               bbox_rasterize: true
         - match:
-            name_regex: ".*"
+            name: "LasHeR"
           handlers:
             - type: "one_pass_evaluation_compatible"
             - type: "external/PyTracking"
-              file_name: "results"
+              file_name: "LasHeR-results"
+        - match:
+            name: "RGBT234"
+          handlers:
+            - type: "one_pass_evaluation_compatible"
+            - type: "external/PyTracking"
+              file_name: "RGBT234-results"
 
 runner:
   train:

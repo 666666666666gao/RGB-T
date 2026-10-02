@@ -1,3 +1,20 @@
+# RGB-T research on pretrained GOLA
+
+This repository extends the official GOLA implementation (upstream commit
+`339c737cda6a24be667b6e5abdc721e8d6046f05`). The current addition is **C1
+candidate quality/ranking training**, with the complete pretrained GOLA-B frozen.
+The proposed bounded memory, multi-future motion, and online state recovery are
+not implemented yet. No new official tracking accuracy is reported yet.
+
+- [Detailed experiment handoff](docs/HANDOFF_20261002.md)
+- [Experiment plan](refine-logs/EXPERIMENT_PLAN.md) and [tracker](refine-logs/EXPERIMENT_TRACKER.md)
+- Sanity: `bash scripts/run_c1_sanity.sh`
+- Initial training after sanity passes: `bash scripts/run_c1_initial.sh`
+- Current datasets: LasHeR and RGBT234. VTUAV is deferred.
+
+The original paper/code description below is retained for attribution. Its
+reported results are the authors' baseline results, not results of our additions.
+
 # [AAAI2026] Group Orthogonal Low-Rank Adaptation for RGB-T Tracking
 
 Official implementation of [Group Orthogonal Low-Rank Adaptation for RGB-T Tracking](https://arxiv.org/abs/2512.05359). (AAAI 2026)
