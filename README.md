@@ -10,6 +10,8 @@ not implemented yet. No new official tracking accuracy is reported yet.
 - [Experiment plan](refine-logs/EXPERIMENT_PLAN.md) and [tracker](refine-logs/EXPERIMENT_TRACKER.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
 - Initial training after sanity passes: `bash scripts/run_c1_initial.sh`
+- Strict online inference: `bash scripts/run_online.sh --dataset lasher --root /path/to/testingset --variant c1 --output /path/to/results`.
+- [Completed initial training results](refine-logs/EXPERIMENT_RESULTS.md): candidate-level diagnostics only; official online accuracy is still pending.
 - Current datasets: LasHeR and RGBT234. VTUAV is deferred.
 
 The original paper/code description below is retained for attribution. Its

@@ -14,5 +14,6 @@
 | C2/C3/A/B | NOT IMPLEMENTED | 固定分支、状态恢复、rollout、判别压缩、多未来尚待实现 |
 | 官方测试与主结果 | PENDING | LasHeR test、RGBT234；VTUAV deferred |
 | GitHub上传 | DONE INITIAL PUSH | 补全upstream历史后d6f1544成功push；后续完整结果/文档待追加提交 |
-| Online C1/baseline smoke | CODE REVIEW PENDING | LasHeR/RGBT234各2序列×64frames，截断仅功能检查 |
+| Online代码审查 | PASS | independent same-family provisional；修正训练/推理dtype、attention、计时记录 |
+| Online C1/baseline smoke | RUNNING | 21:31:05开始，LasHeR/RGBT234各2序列×64frames，截断仅功能检查 |
 | Online核心数据集完整评测 | PENDING | 独立入口避免test元数据索引；四任务，随后官方指标 |
