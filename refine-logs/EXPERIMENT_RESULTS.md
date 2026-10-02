@@ -14,3 +14,7 @@ C1 initial完成3×512steps、batch8，共12288训练采样，固定256样本验
 best.pth选择epoch3（只用train内held-out）。新参数117889实际更新，base无梯度，峰值张量显存1049.50MiB，三个训练epoch实测148.57/137.94/134.26秒。正向候选差异仅0.005247平均IoU，恢复事件分母8很小，不足以证明稳定收益。进入严格在线smoke/两核心数据集评测。此阶段仍不含在线分支/状态恢复/A/B，不能作为正式PR/SR。
 
 历史baseline eval和原版baseline训练未完成推理/训练。作者公开预测校准不是本项目新结果。详细配置、失败、路径和状态见 `docs/HANDOFF_20261002.md`。
+
+四个严格在线smoke通过（LasHeR/RGBT234 × baseline/C1，各2序列前64帧）。首框与真实GT一致，128行有限框、126项计时正确。不计算截断正式精度，不把顺序smoke缓存差异解释为加速。
+
+2026-10-02 21:43:11启动4个完整任务，GPU0/1为LasHeR baseline/C1，GPU2/3为RGBT234 baseline/C1，现处于在线推理阶段，未获得正式PR/SR。预测全完成后各job自动调用原evaluation.py。C2/C3/A/B未实现。

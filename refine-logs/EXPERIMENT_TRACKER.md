@@ -15,5 +15,5 @@
 | 官方测试与主结果 | PENDING | LasHeR test、RGBT234；VTUAV deferred |
 | GitHub上传 | DONE INITIAL PUSH | 补全upstream历史后d6f1544成功push；后续完整结果/文档待追加提交 |
 | Online代码审查 | PASS | independent same-family provisional；修正训练/推理dtype、attention、计时记录 |
-| Online C1/baseline smoke | RUNNING | 21:31:05开始，LasHeR/RGBT234各2序列×64frames，截断仅功能检查 |
-| Online核心数据集完整评测 | PENDING | 独立入口避免test元数据索引；四任务，随后官方指标 |
+| Online C1/baseline smoke | PASS | 四个128帧检查；首框/数量/有限值/延迟核验PASS，截断仅功能检查 |
+| Online核心数据集完整评测 | RUNNING | 21:43:11启动四tmux任务GPU0/1/2/3；245+234序列各baseline/C1；随后自动官方指标 |
