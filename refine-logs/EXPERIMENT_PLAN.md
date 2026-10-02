@@ -30,3 +30,15 @@
 5. LasHeR test 与 RGBT234 严格在线评测完整 pretrained GOLA 和增强模型，使用官方 PR/NPR/SR、MPR/MSR，包含速度与高分位延迟。C1 crop IoU 指标不等于正式跟踪结果。
 
 主结果未完成前不启动扩展基线、消融网格或扩展数据集。
+
+## 当前下一步：C1 的严格在线效果验证
+
+C1初始3epochs已完成；256固定开发验证crop上IoU .744937→.750184，8可重新选对机会中4成功，同时227原本正确样本中2变错。该小样本正向变化支持接入在线检查，不构成正式跟踪增益证明。
+
+新增 `research/evaluate_online.py`，复用官方裁剪函数、SimpleProvider（area4/minsize10）、SimpleTemplateUpdater（.84/area2）、postprocessor（Hann .45），完整预训练模型、首次GT初始化。只读取第一行标注，当前预测驱动下一帧裁剪与在线模板；过去输出不改写。与旧eager框架相比直接按目录读图，避免重建全部图像header索引。C1改变候选选择，保留选中候选的原GOLA置信度作模板更新门控，不引入C2状态修复。
+
+- Online smoke：LasHeR test与RGBT234各首2序列、每序列前64帧，分别baseline/C1；检查输出有限、帧数、首框、文件格式、真实模板更新，**截断结果只用于功能检查**。
+- 完整评测：4个独立任务，LasHeR baseline/C1、RGBT234 baseline/C1，分别使用GPU0/1/2/3。只做现有两核心数据集。estimated 1–3 hours，取得在线smoke吞吐后修正；不把并行HDD成本忽略。
+- 每个结果目录分开，保存每帧输出与包含读图/裁剪/推理/模板更新的延迟，最终统一调用 unchanged `evaluation.py` 对真实GT输出官方PR/NPR/SR或MPR/MSR。
+- 全部推理默认float16，匹配原GOLA inference配置；C1训练bf16的差异写入config；对照两种方法推理dtype相同。
+- 部署前对此新增online入口做独立代码审查；先完整smoke通过再启动4个完整任务。C1仍不代表完整A/B/C2/C3。
