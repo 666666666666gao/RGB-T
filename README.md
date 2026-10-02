@@ -5,12 +5,16 @@ This repository extends the official GOLA implementation (upstream commit
 candidate quality/ranking training**, with the complete pretrained GOLA-B frozen.
 The C2 bounded recovery prototype is implemented, but its first internal
 validation result is negative and matches the box-only control. C3 future-utility
-collection/training passed the small runtime checks; its initial teacher
-collection is running. Learned A compression and B multi-future prediction
-remain pending. Full RGBT234 evaluation is complete: C1 changes MPR by
+collection/training completed its initial 128/64-clip experiment; the final
+epoch worsened validation utility, and the best internal checkpoint is epoch 8.
+Learned A compression and B multi-future prediction remain pending.
+Both full core evaluations are complete. On LasHeR C1 changes PR/NPR/SR by
++1.2611/+1.0496/+0.9135 percentage points against our pretrained baseline.
+On RGBT234 C1 changes MPR by
 +0.038 percentage points and MSR by +0.0013 percentage points against our
 pretrained baseline using the actual dataset annotations. This first run has
-essentially unchanged overall accuracy; LasHeR evaluation is still running.
+essentially unchanged overall accuracy on RGBT234. All sequences and frames
+were evaluated; candidate/update mechanism recording is still running.
 Full reports include every sequence and attribute, all native curves, latency
 percentiles and localization failure/recovery events. Candidate/update timelines
 are being added; absent measurements are explicitly marked pending.
