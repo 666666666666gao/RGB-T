@@ -60,3 +60,7 @@ RGBT234实际GT全量C1结果基本持平（MPR+.038151/MSR+.001297百分点）�
 C2 的16序列内部诊断出现负结果；下一步按原C3机制监督未来价值。保持原LasHeR train内881/98分区，只用该分区生成预测历史；官方test/RGBT234不输入训练或选权重。首轮sanity train/val各2clip，history1..8、H2、batch-clips2；通过后初始train128/val64，history1..256、H3、batch-clips8（最多40未来动作共享主干batch）。冻结完整GOLA和C1，未来图像/GT仅用于同一固定C1延续策略的训练标签，查询时输入在读取未来前复制保存。标签 mean future IoU-.1*wrong-write fraction，wrong-write为raw>.84且GTIoU<.2，仅定位污染代理。C3头接768features+10evidence+9history/motion，C1 projection初始化，训练batch32、20epochs、AdamW1e-4/wd1e-4、seed42，按内部val mean regret选择；记录改善与恶化clips、MSE、oracle/regret、真实参数变化/显存。缓存样本数小，首轮仅功能/学习诊断，不宣称完整训练或论文增益。真实batch32前后向容量测试峰2975.94MiB，对比batch8峰1015.98MiB；单次含warmup，不据此声称加速。
 
 新增完整评测要求：只做LasHeR245seq/220703frames和RGBT234234seq/116649frames；两种完整baseline/C1都要PR/NPR/SR或MPR/MSR、所有属性/序列、全曲线、p50/p90/p95/p99/FPS、全失败/恢复事件及paired收益/损害，输出JSON/CSV；候选Recall/误拒恢复/更新污染代理需补时间线，不能用缺失值假充完成；尚未实现A/B不产生虚构预算/校准曲线。
+
+## 未训练C1完整轨迹归因检查
+
+实验源目前baseline postprocessor乘224为float32，C1 candidate boxes先转double再乘224；定位头明确reg_mlp输出转float32后sigmoid，确实是不同的浮点计算路径。未训练C1残差层初始化全0，原计划仅证明Hann赢家保持；需要确认整个在线轨迹/模板更新是否等价。对原LasHeR train-heldout按排序前6个序列做完整长度控制（offset0/3各3seq，GPU2/3在RGBT完整candidate工作完成后可用）。相同完整pretrained GOLA、相同firstGT、相同float16和搜索/更新规则，分别headNone与零残差新头；后续GT不读取，不算PR/SR。存所有rawXYWH、3decimal轨迹差、最大差、模板更新次数、改选次数，报告是否为精确初始控制，不把这6视频当官方数据集分数。若实际不等价，先展示代码与真实证据再修复，不擅自把已公布C1成绩全部归于学习。

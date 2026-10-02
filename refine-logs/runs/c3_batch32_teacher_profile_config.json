@@ -1,0 +1,156 @@
+{
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "partition": "train",
+  "pretrained": "pretrained_models/gola_b224.bin",
+  "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "output": "/data/gb/outputs/c3_rollout_batch32_profile_seed42",
+  "clips": 32,
+  "batch_clips": 32,
+  "min_history": 1,
+  "max_history": 8,
+  "horizon": 3,
+  "pollution_weight": 0.1,
+  "seed": 42,
+  "source": "LasHeR TRAIN sequences only, original disjoint C1 split",
+  "jobs": [
+    {
+      "sequence": "AQmanfromdarktrees",
+      "query_frame": 7
+    },
+    {
+      "sequence": "midtallboycoming",
+      "query_frame": 4
+    },
+    {
+      "sequence": "easy_runninggirls",
+      "query_frame": 7
+    },
+    {
+      "sequence": "AQblkgirlbike",
+      "query_frame": 6
+    },
+    {
+      "sequence": "blackbagbike",
+      "query_frame": 1
+    },
+    {
+      "sequence": "large2-gai",
+      "query_frame": 8
+    },
+    {
+      "sequence": "rainblackcarcome",
+      "query_frame": 7
+    },
+    {
+      "sequence": "oldwoman",
+      "query_frame": 7
+    },
+    {
+      "sequence": "greenleftbackblack",
+      "query_frame": 2
+    },
+    {
+      "sequence": "runninggreenboyafterwhite",
+      "query_frame": 4
+    },
+    {
+      "sequence": "girlumbrella",
+      "query_frame": 3
+    },
+    {
+      "sequence": "biked",
+      "query_frame": 8
+    },
+    {
+      "sequence": "rightblkgirlrunning",
+      "query_frame": 6
+    },
+    {
+      "sequence": "carstart2east",
+      "query_frame": 7
+    },
+    {
+      "sequence": "left_first_0109",
+      "query_frame": 4
+    },
+    {
+      "sequence": "foamboardatlefthand",
+      "query_frame": 2
+    },
+    {
+      "sequence": "AQraincarturn2",
+      "query_frame": 5
+    },
+    {
+      "sequence": "two_1227",
+      "query_frame": 1
+    },
+    {
+      "sequence": "swan2_0109",
+      "query_frame": 7
+    },
+    {
+      "sequence": "blueboy85",
+      "query_frame": 6
+    },
+    {
+      "sequence": "bigbus",
+      "query_frame": 7
+    },
+    {
+      "sequence": "mototurnleft",
+      "query_frame": 3
+    },
+    {
+      "sequence": "5runthree",
+      "query_frame": 8
+    },
+    {
+      "sequence": "fatmancome",
+      "query_frame": 8
+    },
+    {
+      "sequence": "motocoming",
+      "query_frame": 7
+    },
+    {
+      "sequence": "redumbrellagirlcome",
+      "query_frame": 2
+    },
+    {
+      "sequence": "boyunderleftbar",
+      "query_frame": 4
+    },
+    {
+      "sequence": "girlthroughtrees",
+      "query_frame": 1
+    },
+    {
+      "sequence": "left_leader",
+      "query_frame": 2
+    },
+    {
+      "sequence": "redbackpackgirl",
+      "query_frame": 6
+    },
+    {
+      "sequence": "whiteboyback",
+      "query_frame": 6
+    },
+    {
+      "sequence": "boywalkinginsnow3",
+      "query_frame": 8
+    }
+  ],
+  "eligible_sequences": 881,
+  "C1_epoch": 3,
+  "history": "C2 predicted prefix; GT only initializes first-frame identity and supplies labels",
+  "future_policy": "identical frozen C1 continuation for all initial candidate choices",
+  "utility": "mean next H IoU - lambda * fraction of template writes with IoU<.2 over current+H",
+  "pollution_proxy": "localization-based, not full distractor identity annotations",
+  "decision_features_saved_before_future_decode": true,
+  "future_action_batch_maximum": 160,
+  "amp_dtype": "float16"
+}
