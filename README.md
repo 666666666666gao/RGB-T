@@ -14,10 +14,30 @@ On RGBT234 C1 changes MPR by
 +0.038 percentage points and MSR by +0.0013 percentage points against our
 pretrained baseline using the actual dataset annotations. This first run has
 essentially unchanged overall accuracy on RGBT234. All sequences and frames
-were evaluated; candidate/update mechanism recording is still running.
+were evaluated. RGBT234 candidate/update diagnostics are complete and match
+every original trajectory; LasHeR candidate/update recording is still running.
 Full reports include every sequence and attribute, all native curves, latency
-percentiles and localization failure/recovery events. Candidate/update timelines
-are being added; absent measurements are explicitly marked pending.
+percentiles and localization failure/recovery events. RGBT234 additionally includes
+candidate recall, reselection harms/rescues, template-write localization proxies,
+quality calibration and peak memory. Absent measurements are explicitly pending.
+Paired sequence bootstrap intervals for all five standard metric differences
+include zero; this run does not establish a statistically stable improvement.
+
+| Dataset / variant | PR or MPR (%) | NPR (%) | SR or MSR (%) |
+|---|---:|---:|---:|
+| LasHeR / pretrained baseline | 76.598449 | 73.101973 | 61.037425 |
+| LasHeR / C1 | 77.859584 | 74.151571 | 61.950954 |
+| RGBT234 / pretrained baseline | 91.778858 | — | 69.232593 |
+| RGBT234 / C1 | 91.817009 | — | 69.233890 |
+
+Machine-readable full results: [LasHeR](refine-logs/runs/lasher_full_report.json)
+and [RGBT234](refine-logs/runs/rgbt234_full_report.json). These are C1 results,
+not a completed A/B/C state-recovery system.
+These initial v1 results are retained while corrected full v2 evaluations are
+prepared: a train-held-out zero-head control exposed an autoregressive difference
+from float32/double box-scaling order. C1 decoding now uses the original baseline's
+operation order; weights and hyperparameters are unchanged. The handoff records
+the control, corrected-run status and version boundaries.
 
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`

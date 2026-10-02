@@ -1,6 +1,7 @@
 """All-frame candidate/update diagnostics against actual benchmark GT.
 
-The recorded trajectories must exactly match the original full evaluation.
+Recorded trajectories must match the supplied reference. A same-run reference
+checks source consistency, not independent inference equivalence.
 Candidate quality and wrong template writes are localization measurements;
 these datasets do not label every distractor's semantic identity.
 """
@@ -19,7 +20,7 @@ def arguments():
     p.add_argument('--data-root', required=True)
     p.add_argument('--variants', nargs='+', required=True)
     p.add_argument('--runs', nargs='+', required=True, help='Instrumented full inference folders')
-    p.add_argument('--reference-runs', nargs='+', required=True, help='Original full inference folders')
+    p.add_argument('--reference-runs', nargs='+', required=True, help='Full inference reference folders; same-run references check source consistency only')
     p.add_argument('--output', required=True)
     return p.parse_args()
 
@@ -121,7 +122,7 @@ def main():
     assert len(set(args.variants)) == len(args.variants)
     expected_sequences, expected_frames = EXPECTED[args.dataset]
     report = {'dataset': args.dataset, 'actual_data_root': args.data_root,
-              'scope': 'all-frame candidate and template-write diagnostics; exact original trajectories verified',
+              'scope': 'all-frame candidate and template-write diagnostics; reference/source trajectory consistency verified',
               'protocol': {'recall': 'any valid spatial candidate IoU>=.5', 'failure': 'IoU<.2',
                            'reselection': 'same current search/identity state, candidate0 is original Hann winner',
                            'initialization_excluded': True,
@@ -178,7 +179,10 @@ def main():
                                        'quality_calibration_bins': bins, 'quality_calibration_ece': calibration_error,
                                        'inference_peak_cuda_allocated_mib': receipt['peak_cuda_allocated_mib'],
                                        'inference_peak_cuda_reserved_mib': receipt['peak_cuda_reserved_mib'],
-                                       'exact_original_trajectory_match_all_sequences': True,
+                                       'trajectory_reference': str(original),
+                                       'trajectory_reference_is_separate_run': root.resolve() != original.resolve(),
+                                       'exact_original_trajectory_match_all_sequences': root.resolve() != original.resolve(),
+                                       'exact_reference_trajectory_match_all_sequences': True,
                                        'instrumented_wall_seconds': receipt['wall_seconds_including_initialization_and_diagnostic_serialization']}
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)

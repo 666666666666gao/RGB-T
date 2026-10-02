@@ -95,7 +95,8 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
                 predicted_quality = logits.sigmoid()[0]
                 scores = selection_scores(logits, candidates, extractor.window_penalty)
                 choice = int(scores.masked_fill(~candidates['valid'], -torch.inf).argmax(1)[0])
-                crop_box = candidates['boxes'][0, choice].double().cpu().numpy() * 224.
+                # Match the original postprocessor: scale float32 before double.
+                crop_box = (candidates['boxes'][0, choice] * 224.).double().cpu().numpy()
                 # Preserve the original confidence definition and update threshold.
                 confidence = float(candidates['raw_score'][0, choice])
                 alternative_selections += int(choice != 0)
@@ -168,6 +169,7 @@ def main():
                            'gpu': torch.cuda.get_device_name(device),
                            'head_training_amp_dtype': 'bfloat16' if head is not None else None,
                            'backbone_attention': 'none',
+                           'candidate_box_scaling': 'float32_multiply_then_double',
                            'timing_excludes_first_frame_initialization': True,
                            'smoke_only': bool(args.limit_sequences or args.max_frames),
                            'head_epoch': checkpoint['epoch'] if head is not None else None,

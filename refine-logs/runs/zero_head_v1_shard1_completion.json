@@ -1,0 +1,51 @@
+{
+  "completed": true,
+  "scope": "Measure exact untrained-C1 trajectory equivalence on train-held-out videos.\n\nThis control uses complete selected videos, not official benchmark scores.\nGT only initializes frame 0. Later labels are never passed to the tracker\nor used for decisions.\n",
+  "args": {
+    "output": "/data/gb/outputs/zero_head_control_shard1",
+    "sequence_offset": 3,
+    "sequences": 3,
+    "root": "/data/wangwj/dataset/LasHeR",
+    "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+    "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+    "pretrained": "pretrained_models/gola_b224.bin"
+  },
+  "sequences": 3,
+  "frames": 706,
+  "records": [
+    {
+      "sequence": "2outdark",
+      "frames": 122,
+      "baseline_updates": 19,
+      "zero_head_updates": 19,
+      "zero_head_alternative_selections": 0,
+      "maximum_coordinate_difference_pixels": 7.25899406006647e-06,
+      "rounded_three_decimal_different_frames": 1,
+      "raw_coordinates_identical": false
+    },
+    {
+      "sequence": "2rdtribike",
+      "frames": 135,
+      "baseline_updates": 134,
+      "zero_head_updates": 134,
+      "zero_head_alternative_selections": 0,
+      "maximum_coordinate_difference_pixels": 3.0413915737881325e-05,
+      "rounded_three_decimal_different_frames": 0,
+      "raw_coordinates_identical": false
+    },
+    {
+      "sequence": "3whitemen",
+      "frames": 449,
+      "baseline_updates": 0,
+      "zero_head_updates": 0,
+      "zero_head_alternative_selections": 0,
+      "maximum_coordinate_difference_pixels": 1.0831015060830396e-05,
+      "rounded_three_decimal_different_frames": 5,
+      "raw_coordinates_identical": false
+    }
+  ],
+  "head_last_layer_zero": true,
+  "pretrained_base_frozen": true,
+  "official_benchmark_accuracy": false,
+  "all_three_decimal_trajectories_identical": false
+}
