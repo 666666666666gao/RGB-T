@@ -1,0 +1,66 @@
+{
+  "method": "paired bootstrap of per-sequence metric differences; equal sequence weights,5000resamples,seed42",
+  "scope": "one fixed checkpoint; not repeated training-seed uncertainty",
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "metrics": {
+        "PR": {
+          "mean_delta_percentage_points": 1.2611345892365613,
+          "percentile_95_interval_percentage_points": [
+            -0.027608913327310185,
+            2.58518328720922
+          ],
+          "improved_sequences": 60,
+          "worsened_sequences": 57,
+          "tied_sequences": 128
+        },
+        "NPR": {
+          "mean_delta_percentage_points": 1.0495976126437805,
+          "percentile_95_interval_percentage_points": [
+            -0.1617260925105132,
+            2.2752253701681946
+          ],
+          "improved_sequences": 57,
+          "worsened_sequences": 59,
+          "tied_sequences": 129
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.9135282221707146,
+          "percentile_95_interval_percentage_points": [
+            -0.08499862143702086,
+            1.9158100340173116
+          ],
+          "improved_sequences": 63,
+          "worsened_sequences": 59,
+          "tied_sequences": 123
+        }
+      }
+    },
+    "rgbt234": {
+      "sequences": 234,
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.038151322440447076,
+          "percentile_95_interval_percentage_points": [
+            -0.9179808614901381,
+            1.0473053557465997
+          ],
+          "improved_sequences": 34,
+          "worsened_sequences": 29,
+          "tied_sequences": 171
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.0012967141192901763,
+          "percentile_95_interval_percentage_points": [
+            -0.6728156950863895,
+            0.7115322266731781
+          ],
+          "improved_sequences": 37,
+          "worsened_sequences": 37,
+          "tied_sequences": 160
+        }
+      }
+    }
+  }
+}
