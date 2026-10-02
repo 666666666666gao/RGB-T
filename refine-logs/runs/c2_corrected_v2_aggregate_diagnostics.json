@@ -1,0 +1,70 @@
+{
+  "completed": true,
+  "sequences": 16,
+  "frames": 4060,
+  "official_tracking_accuracy": false,
+  "variants": {
+    "c1": {
+      "iou_sum": 2869.6022868217146,
+      "valid_frames": 4041,
+      "failed_frames": 399,
+      "switches": 0,
+      "mean_iou": 0.710121823019479
+    },
+    "c2": {
+      "iou_sum": 2847.420282506882,
+      "valid_frames": 4041,
+      "failed_frames": 452,
+      "switches": 26,
+      "mean_iou": 0.7046325866139277
+    },
+    "box_only": {
+      "iou_sum": 2848.586872921112,
+      "valid_frames": 4041,
+      "failed_frames": 451,
+      "switches": 26,
+      "mean_iou": 0.7049212751598891
+    }
+  },
+  "paired_diagnostics": {
+    "c2": {
+      "c1_failed_frames": 399,
+      "c1_correct_frames": 3479,
+      "c1_failed_but_variant_correct_frames": 66,
+      "c1_correct_but_variant_failed_frames": 67,
+      "valid_switch_events": 25,
+      "harmful_switch_events": 1,
+      "beneficial_switch_events": 5,
+      "max_branches": 3,
+      "max_pending_per_branch": 4
+    },
+    "box_only": {
+      "c1_failed_frames": 399,
+      "c1_correct_frames": 3479,
+      "c1_failed_but_variant_correct_frames": 67,
+      "c1_correct_but_variant_failed_frames": 67,
+      "valid_switch_events": 25,
+      "harmful_switch_events": 1,
+      "beneficial_switch_events": 5,
+      "max_branches": 3,
+      "max_pending_per_branch": 4
+    }
+  },
+  "peak_cuda_mib": 573.34521484375,
+  "c2_vs_box_only_trajectory_differences": [
+    {
+      "sequence": "Aboydownbike",
+      "raw_box_difference_frames": 83,
+      "max_abs_box_difference_px": 89.58288557173591,
+      "c2_mean_iou": 0.672267039382499,
+      "box_only_mean_iou": 0.674552141060409
+    },
+    {
+      "sequence": "ab_motocometurn",
+      "raw_box_difference_frames": 3,
+      "max_abs_box_difference_px": 1.0275397576424439,
+      "c2_mean_iou": 0.8051582195594149,
+      "box_only_mean_iou": 0.8051516925166629
+    }
+  ]
+}
