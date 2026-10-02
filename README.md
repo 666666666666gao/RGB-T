@@ -1,51 +1,56 @@
 # RGB-T research on pretrained GOLA
 
-This repository extends the official GOLA implementation (upstream commit
-`339c737cda6a24be667b6e5abdc721e8d6046f05`). The current addition is **C1
-candidate quality/ranking training**, with the complete pretrained GOLA-B frozen.
-The C2 bounded recovery prototype is implemented, but its first internal
-validation result is negative and matches the box-only control. C3 future-utility
-collection/training completed its initial 128/64-clip experiment; the final
-epoch worsened validation utility, and the best internal checkpoint is epoch 8.
-Learned A compression and B multi-future prediction remain pending.
-Initial v1 full core evaluations are complete. On LasHeR v1 C1 changes PR/NPR/SR by
-+1.2611/+1.0496/+0.9135 percentage points against our pretrained baseline.
-On RGBT234 C1 changes MPR by
-+0.038 percentage points and MSR by +0.0013 percentage points against our
-pretrained baseline using the actual dataset annotations. This first run has
-essentially unchanged overall accuracy on RGBT234. All sequences and frames
-were evaluated. Both v1 candidate/update audits are complete and match
-every original trajectory. Corrected v2 RGBT234 is also complete: MPR
-91.817009%, MSR 69.234047%; corrected v2 LasHeR remains running.
-Full reports include every sequence and attribute, all native curves, latency
-percentiles and localization failure/recovery events. Both datasets additionally include
-candidate recall, reselection harms/rescues, template-write localization proxies,
-quality calibration and peak memory. Absent measurements are explicitly pending.
-Paired sequence bootstrap intervals for all five standard metric differences
-include zero; this run does not establish a statistically stable improvement.
+This repository extends official GOLA commit `339c737cda6a24be667b6e5abdc721e8d6046f05`.
+Complete pretrained GOLA-B remains frozen; C1 learns candidate quality and ranking.
+Both requested benchmarks have now been evaluated in full with corrected C1
+coordinate decoding, actual dataset annotations and unchanged epoch-3 weights.
+LasHeR covers 245 sequences / 220703 frames; RGBT234 covers 234 / 116649.
 
 | Dataset / variant | PR or MPR (%) | NPR (%) | SR or MSR (%) |
 |---|---:|---:|---:|
 | LasHeR / pretrained baseline | 76.598449 | 73.101973 | 61.037425 |
-| LasHeR / C1 | 77.859584 | 74.151571 | 61.950954 |
-| RGBT234 / pretrained baseline | 91.778858 | — | 69.232593 |
-| RGBT234 / C1 | 91.817009 | — | 69.233890 |
+| LasHeR / C1 v2 | 77.860973 | 74.154518 | 61.951314 |
+| RGBT234 / pretrained baseline | 91.778858 | N/A | 69.232593 |
+| RGBT234 / C1 v2 | 91.817009 | N/A | 69.234047 |
 
-Machine-readable full results: [LasHeR](refine-logs/runs/lasher_full_report.json)
-and [RGBT234](refine-logs/runs/rgbt234_full_report.json). These are C1 results,
-not a completed A/B/C state-recovery system.
-These initial v1 results are retained while corrected full v2 evaluations are
-prepared: a train-held-out zero-head control exposed an autoregressive difference
-from float32/double box-scaling order. C1 decoding now uses the original baseline's
-operation order; weights and hyperparameters are unchanged. Six complete internal
-validation videos (1401 frames) now have exactly equal raw zero-head trajectories.
-The corrected [RGBT234 complete report](refine-logs/runs/rgbt234_v2_complete_report.json)
-contains all native scores, attributes, curves, event records and candidate/update
-measurements. V2 confidence intervals are pending both full corrected reports.
-Expanded C3 teacher collection (512 TRAIN / 256 internal validation clips) is
-running with real batch32 on GPUs 0/1; GPU3 utility training is queued after
-completed samples. These are internal utility experiments, not C3 benchmark scores.
-The handoff records the control, corrected-run status and version boundaries.
+LasHeR differences are +1.2625/+1.0525/+0.9139 percentage points;
+RGBT234 is essentially tied (+0.0382/+0.0015). All five individual 95% paired
+sequence bootstrap intervals include zero (5000 shared resamples, seed42,
+fixed checkpoints); this run does not establish stable improvement.
+[Complete intervals and sequence win/loss counts](refine-logs/runs/paired_sequence_bootstrap_v2.json).
+
+Complete [LasHeR report](refine-logs/runs/lasher_v2_complete_report.json) and
+[RGBT234 report](refine-logs/runs/rgbt234_v2_complete_report.json) include all
+19/12 attributes, every sequence, native curves, failure/recovery event records,
+paired frame harms/rescues, candidate recall and rejection counts, template-write
+localization proxies, ten calibration bins, latency percentiles and peak memory.
+CSV and PNG artifacts use the same dataset_v2 prefix in `refine-logs/runs`.
+LasHeR same-frame C1 reselection rescues477 and harms584; RGBT234 rescues239
+and harms99. Localization proxies are not complete distractor identity labels.
+Timing includes decode/crop/forward/selection/update, excludes initialization;
+different concurrent HDD loads prevent a fair acceleration claim.
+[Actual parameter counts](refine-logs/runs/model_parameter_counts.json): frozen
+base88093445, C1 added117889 (0.1338%), C3 cached utility head119041.
+
+Corrected C2 internal validation is negative: 16 TRAIN-held-out sequences,
+4041 valid frames; C1 meanIoU0.710122 versus C2 0.704633 and box-only0.704921.
+Expanded C3 training completed512 TRAIN /256 internal validation clips,
+320 optimizer steps/20epochs, actual new-parameter updates and frozen base.
+Best validation checkpoint is **epoch0**, strictly reloaded with identical metrics;
+epoch1 ties it, later training does not improve it. Last epoch utility0.759240
+is slightly below C1 0.759345 despite reduced prediction MSE.
+[All epochs](refine-logs/runs/c3_expanded_v2_metrics.csv),
+[reload verification](refine-logs/runs/c3_expanded_v2_reload_verification.json).
+Teacher generation and cached optimization cost are separately reported.
+These internal C2/C3 results are not official online tracking PR/SR.
+
+Learned A compression, B multi-future prediction and the complete online
+A/B/C recovery system remain pending. Existing v1 artifacts and initial C3
+negative results are retained as history. Six full internal zero-head control
+videos (1401 frames) had exactly equal raw trajectories after the minimal
+float32 box-scaling correction; this limited control is not a full benchmark
+zero-head equivalence claim. One detailed handoff contains current results,
+protocols, negative findings, code reviews, dataset paths and remaining work.
 
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
@@ -77,7 +82,7 @@ Official implementation of [Group Orthogonal Low-Rank Adaptation for RGB-T Track
 **[Nov. 08, 2025]**
 * Our GOLA has been accepted by AAAI 2026.
 
-## Performance
+## Upstream reported performance (not this run)
 <table style="text-align: center;">
   <tr>
     <th rowspan="2">Variant</th>

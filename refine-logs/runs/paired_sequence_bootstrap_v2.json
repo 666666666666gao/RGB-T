@@ -1,0 +1,83 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/full_reports_v2/lasher/full_report.json",
+      "/data/gb/outputs/full_reports_v2/rgbt234/full_report.json"
+    ],
+    "output": "/data/gb/outputs/full_reports_v2/paired_sequence_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "baseline",
+        "c1"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 1.0525446537779923,
+          "percentile_95_interval_percentage_points": [
+            -0.1591725811345465,
+            2.278174925519201
+          ],
+          "improved_sequences": 57,
+          "worsened_sequences": 58,
+          "tied_sequences": 130
+        },
+        "PR": {
+          "mean_delta_percentage_points": 1.262523755312353,
+          "percentile_95_interval_percentage_points": [
+            -0.025316007975817845,
+            2.5901339498527447
+          ],
+          "improved_sequences": 60,
+          "worsened_sequences": 56,
+          "tied_sequences": 129
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.9138883316758358,
+          "percentile_95_interval_percentage_points": [
+            -0.08512236632626759,
+            1.9155684129498642
+          ],
+          "improved_sequences": 63,
+          "worsened_sequences": 58,
+          "tied_sequences": 124
+        }
+      }
+    },
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "baseline",
+        "c1"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.038151322440447076,
+          "percentile_95_interval_percentage_points": [
+            -0.9477167708330926,
+            1.016690027116567
+          ],
+          "improved_sequences": 34,
+          "worsened_sequences": 29,
+          "tied_sequences": 171
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.0014541636728080207,
+          "percentile_95_interval_percentage_points": [
+            -0.6960244025054474,
+            0.6743284008749421
+          ],
+          "improved_sequences": 37,
+          "worsened_sequences": 35,
+          "tied_sequences": 162
+        }
+      }
+    }
+  }
+}
