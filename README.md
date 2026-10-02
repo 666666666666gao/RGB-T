@@ -4,14 +4,16 @@ This repository extends the official GOLA implementation (upstream commit
 `339c737cda6a24be667b6e5abdc721e8d6046f05`). The current addition is **C1
 candidate quality/ranking training**, with the complete pretrained GOLA-B frozen.
 The proposed bounded memory, multi-future motion, and online state recovery are
-not implemented yet. No new official tracking accuracy is reported yet.
+not implemented yet. Full RGBT234 evaluation is complete: C1 changes MPR by
++0.038 percentage points and MSR by +0.0013 percentage points against our
+pretrained baseline using the actual dataset annotations. This first run has
+essentially unchanged overall accuracy; LasHeR evaluation is still running.
 
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
-- [Experiment plan](refine-logs/EXPERIMENT_PLAN.md) and [tracker](refine-logs/EXPERIMENT_TRACKER.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
 - Initial training after sanity passes: `bash scripts/run_c1_initial.sh`
 - Strict online inference: `bash scripts/run_online.sh --dataset lasher --root /path/to/testingset --variant c1 --output /path/to/results`.
-- [Completed initial training results](refine-logs/EXPERIMENT_RESULTS.md): candidate-level diagnostics only; official online accuracy is still pending.
+- Initial training results, current jobs, known issues and next steps are all recorded in the single handoff document above.
 - Current datasets: LasHeR and RGBT234. VTUAV is deferred.
 
 The original paper/code description below is retained for attribution. Its

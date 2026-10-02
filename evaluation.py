@@ -6,6 +6,7 @@ import argparse
 import time
 from prettytable import PrettyTable
 from rgbt import LasHeR, RGBT234, RGBT210, GTOT
+from rgbt.dataset.basedataset import initial_gt_file
 
 
 class DefaultEvaluation:
@@ -28,6 +29,7 @@ class DefaultEvaluation:
     def run(self):
         start_time = time.time()
         print('Evaluating...')
+        print(f'Ground truth: {self.evaluator.gt_path}')
         self.print_metrics()
         if self.curve:
             print('Plotting curve...')
@@ -71,9 +73,14 @@ class LasHeREvaluation(DefaultEvaluation):
 
 
 class RGBT234Evaluation(DefaultEvaluation):
-    def __init__(self, tracker_names: list, result_paths: list, plot_curve=False, plot_radar=False):
+    def __init__(self, tracker_names: list, result_paths: list, plot_curve=False, plot_radar=False,
+                 gt_path='/data/zhouy/DATASET/RGB-T234'):
         super(RGBT234Evaluation, self).__init__(tracker_names, result_paths, plot_curve, plot_radar)
         self.evaluator = RGBT234()
+        # Keep the packaged attribute groups; load boxes from the actual dataset.
+        self.evaluator.seqs_gt = initial_gt_file(
+            gt_path, self.evaluator.seqs_name, 'visible.txt', 'infrared.txt', self.evaluator.bbox_transfun)
+        self.evaluator.gt_path = gt_path
 
         for tracker_name, result_path in zip(tracker_names, result_paths):
             self.evaluator(tracker_name, result_path)
@@ -163,13 +170,16 @@ if __name__ == '__main__':
     parser.add_argument('--result_paths', type=str, help='Result paths (separated by comma)', nargs='+')
     parser.add_argument('--plot_curve', action='store_true', help='Plot metrics')
     parser.add_argument('--plot_radar', action='store_true', help='Plot metrics')
+    parser.add_argument('--rgbt234_gt_path', type=str, default='/data/zhouy/DATASET/RGB-T234',
+                        help='RGBT234 annotation root containing sequence visible.txt and infrared.txt')
 
     args = parser.parse_args()
 
     if args.dataset == 'lasher':
         LasHeREvaluation(args.tracker_names, args.result_paths, args.plot_curve, args.plot_radar).run()
     elif args.dataset == 'rgbt234':
-        RGBT234Evaluation(args.tracker_names, args.result_paths, args.plot_curve, args.plot_radar).run()
+        RGBT234Evaluation(args.tracker_names, args.result_paths, args.plot_curve, args.plot_radar,
+                          gt_path=args.rgbt234_gt_path).run()
     elif args.dataset == 'rgbt210':
         RGBT210Evaluation(args.tracker_names, args.result_paths, args.plot_curve, args.plot_radar).run()
     elif args.dataset == 'gtot':
