@@ -34,14 +34,17 @@ base88093445, C1 added117889 (0.1338%), C3 cached utility head119041.
 
 Corrected C2 internal validation is negative: 16 TRAIN-held-out sequences,
 4041 valid frames; C1 meanIoU0.710122 versus C2 0.704633 and box-only0.704921.
-Expanded C3 training completed512 TRAIN /256 internal validation clips,
-320 optimizer steps/20epochs, actual new-parameter updates and frozen base.
-Best validation checkpoint is **epoch0**, strictly reloaded with identical metrics;
-epoch1 ties it, later training does not improve it. Last epoch utility0.759240
-is slightly below C1 0.759345 despite reduced prediction MSE.
-[All epochs](refine-logs/runs/c3_expanded_v2_metrics.csv),
-[reload verification](refine-logs/runs/c3_expanded_v2_reload_verification.json).
-Teacher generation and cached optimization cost are separately reported.
+C3 v3 preserves C1 Hann selection at zero residual; all512 TRAIN/256 internal
+validation choices match C1 exactly. Its 20epochs/320 optimizer steps completed,
+with actual new-parameter updates and frozen base. Best remains **epoch0**;
+epoch1-5 tie, later epochs do not improve it. Strict reload reproduces every
+validation metric exactly. Initial utility0.759345 equals C1; last utility0.759062
+is worse, with0 improved/1 worsened/1 reselected clip despite reduced MSE.
+[All v3 epochs](refine-logs/runs/c3_hann_v3_metrics.csv),
+[reload and whole-data control](refine-logs/runs/c3_hann_v3_reload_verification.json).
+Previous v2 results are retained; their epoch0 gain used a different initial
+pure-quality policy and cannot be attributed to training. Teacher generation
+and cached optimization cost are separately reported.
 These internal C2/C3 results are not official online tracking PR/SR.
 
 Learned A compression, B multi-future prediction and the complete online

@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from .branch_utility import BranchUtilityHead, utility_objective
+from .branch_utility import BranchUtilityHead, utility_objective, utility_selection_scores
 
 
 def arguments():
@@ -58,7 +58,8 @@ def evaluate(head, data):
     head.eval()
     prediction = predict(head, data)
     valid, target = data['valid'], data['utility'].float()
-    selected = prediction.masked_fill(~valid, -torch.inf).argmax(1)
+    scores = utility_selection_scores(prediction, data['evidence'].float())
+    selected = scores.masked_fill(~valid, -torch.inf).argmax(1)
     quality = target.gather(1, selected.unsqueeze(1)).squeeze(1)
     c1 = target.gather(1, data['original_choice'].long().unsqueeze(1)).squeeze(1)
     oracle = target.masked_fill(~valid, -torch.inf).max(1).values
@@ -96,6 +97,11 @@ def main():
     head = BranchUtilityHead(checkpoint['args']['hidden']).to(device)
     head.projection.load_state_dict({k[len('projection.'):]: v for k, v in checkpoint['head'].items()
                                     if k.startswith('projection.')}, strict=True)
+    with torch.no_grad():
+        for data in (train, validation):
+            scores = utility_selection_scores(predict(head, data), data['evidence'].float())
+            choices = scores.masked_fill(~data['valid'], -torch.inf).argmax(1)
+            assert torch.equal(choices, data['original_choice'].long()), 'Zero-residual policy differs from C1'
     initial = {key: value.detach().clone() for key, value in head.state_dict().items()}
     optimizer = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     out = Path(args.output)
@@ -107,7 +113,10 @@ def main():
                            'teacher_training_config': train_config, 'teacher_validation_config': val_config,
                            'base_trainable_parameters': 0,
                            'new_trainable_parameters': sum(p.numel() for p in head.parameters()),
-                           'selection_for_utility_evaluation': 'masked maximum predicted future utility',
+                           'selection_for_utility_evaluation': 'C1 Hann policy with learned utility correction',
+                           'window_penalty': .45,
+                           'initial_selection_matches_c1_all_clips': True,
+                           'ranking_loss_uses_selection_scores': True,
                            'checkpoint_selection': 'minimum validation mean regret; official test is excluded'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     torch.save({key: value.cpu() for key, value in initial.items()}, out / 'initial_head.pth')
@@ -117,6 +126,7 @@ def main():
     def save_checkpoint(epoch, metrics):
         torch.save({'module': config['module'], 'head': head.state_dict(),
                     'optimizer': optimizer.state_dict(), 'epoch': epoch,
+                    'selection_policy': config['selection_for_utility_evaluation'],
                     'args': vars(args), 'hidden': checkpoint['args']['hidden'],
                     'validation': metrics, 'teacher_training_config': train_config}, out / 'best.pth')
     save_checkpoint(0, metrics)
@@ -128,8 +138,10 @@ def main():
             order = torch.randperm(len(train['valid']), device=device)
             for indices in order.split(args.batch_size):
                 batch = {key: value[indices] for key, value in train.items()}
-                loss = utility_objective(predict(head, batch), batch['utility'].float(),
-                                         batch['valid'], args.rank_weight, args.rank_gap)
+                prediction = predict(head, batch)
+                scores = utility_selection_scores(prediction, batch['evidence'].float())
+                loss = utility_objective(prediction, batch['utility'].float(),
+                                         batch['valid'], scores, args.rank_weight, args.rank_gap)
                 assert torch.isfinite(loss)
                 optimizer.zero_grad(set_to_none=True)
                 loss.backward()

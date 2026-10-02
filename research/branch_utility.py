@@ -31,9 +31,14 @@ class BranchUtilityHead(nn.Module):
         return c1_quality + residual
 
 
-def utility_objective(prediction, target, valid, rank_weight=1., rank_gap=.1):
+def utility_selection_scores(prediction, evidence):
+    # Match C1's .45 Hann policy when the utility residual is zero.
+    return evidence[..., 1] + (prediction - evidence[..., 0]) * (1 - .45)
+
+
+def utility_objective(prediction, target, valid, rank_scores, rank_weight=1., rank_gap=.1):
     regression = F.mse_loss(prediction[valid], target[valid])
     difference = target.unsqueeze(2) - target.unsqueeze(1)
     pair = valid.unsqueeze(2) & valid.unsqueeze(1) & (difference > rank_gap)
-    ranking = F.softplus(-(prediction.unsqueeze(2) - prediction.unsqueeze(1))) * difference.clamp(min=0)
+    ranking = F.softplus(-(rank_scores.unsqueeze(2) - rank_scores.unsqueeze(1))) * difference.clamp(min=0)
     return regression + rank_weight * (ranking * pair).sum() / pair.sum().clamp(min=1)
