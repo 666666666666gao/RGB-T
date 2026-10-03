@@ -85,9 +85,9 @@ intervals for ABC-minus-baseline also include zero. The+2pp goal remains unmet.
 Fewer failed frames do not override worse native sequence-weighted metrics.
 Only MB improves both native attribute metrics; declines remain in the report.
 
-GPU0/2 continue the original full LasHeR jobs. GPU1/3 now run full GOLA/C1
-controls on the same original98 TRAIN-held-out videos as the existing ABC
-comparison. Candidate diagnostics next distinguish dense-grid, peak and TopK
+GPU0/2 continue the original full LasHeR jobs. Full GOLA/C1 controls on the
+original98 TRAIN-held-out videos are complete; GPU1/3 now run full TRAIN/validation
+budgeted visual-search diagnostics after successful GPU sanity checks. Candidate diagnostics next distinguish dense-grid, peak and TopK
 losses, followed by budget-matched actual extra visual search and safe writes.
 A two-query replay with smaller batches drifted184px from cached boxes; this
 negative [subset receipt](refine-logs/runs/abc_dense_probe/subset_m0.json) is kept.
@@ -95,6 +95,22 @@ Replaying the full original32-context group restored exact features/boxes/counts
 on both queries, but all examined local candidate policies still had oracleIoU0.
 [Original-group GPU receipt](refine-logs/runs/abc_dense_probe/original_group_m0.json).
 This is a limited TRAIN diagnostic, not a tracking improvement or full replay audit.
+Full original98 internal controls are now closed: sequence-weighted meanIoU is
+GOLA0.743278507, C1 0.739440162, ABC initial0.737194672,
+ABC trained0.739523905, box-only0.738778578. ABC-minus-GOLA is-0.375460pp
+(95% CI [-1.015390,0.283188]); ABC-minus-C1 is only+0.008374pp
+([-0.949888,1.217303]). These are **internal localization diagnostics, not PR/SR**.
+[Five-run complete report](refine-logs/runs/abc_internal_controls/full_internal_controls.json),
+[all490 sequence rows](refine-logs/runs/abc_internal_controls/per_sequence.csv),
+[actual completion marker](refine-logs/runs/abc_internal_controls/internal_controls_completed.txt).
+Four budget-search sanity queries reproduce cached original candidates exactly,
+but no examined Top5 policy recalls a correct box. Both internal-validation queries
+have correct dense-grid boxes lost before local-peak selection; one TRAIN query
+gains a correct dense box after widening, but still no Top5 candidate.
+[Actual TRAIN GPU sanity](refine-logs/runs/abc_budgeted_search/m0_train.json),
+[actual validation GPU sanity](refine-logs/runs/abc_budgeted_search/m0_validation.json).
+The full151 TRAIN/25 validation diagnostics are running; failure-selected recall
+upper bounds are not deployed accuracy or harmful-intervention measurements.
 A TRAIN-only search audit found189 failed sampled queries,151 without a correct
 candidate. Of88 missing-candidate queries whose target center was outside the
 native crop, the top-probability motion crop covered0; all three motion crops

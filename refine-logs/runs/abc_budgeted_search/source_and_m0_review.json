@@ -1,0 +1,44 @@
+{
+  "reviewer_executed_GPU": false,
+  "CPU_mock": {
+    "non_diagnosed_query_GT_reads": 0,
+    "query_GT_after_all_forwards": true,
+    "union_budget_maximum": 10,
+    "three_motion_budget_maximum": 20,
+    "original_d_predicted_prefix": true,
+    "inverse_transform_clip_iou_independently_recomputed": true,
+    "protected_anchor_z_and_d": true,
+    "future_images": 0,
+    "diagnosed_queries": 2,
+    "extra_crops": 12,
+    "contexts": 32
+  },
+  "actual_checkpoint_CPU_motion": {
+    "epoch": 30,
+    "no_GT_label_fields": true,
+    "uses_query_step_zero_center": true,
+    "past_field_count": 8,
+    "finite_shape": [
+      2,
+      3,
+      4
+    ]
+  },
+  "reviewer": "/root/abc_temporal_review",
+  "actual_blocker": "NumPy float oracle propagated np.bool_ and np.int64 into summary; JSON serialization failed on original wins/ties",
+  "final_witness": {
+    "threshold_point_five_mode_selection_area_sum_counts_pass": true,
+    "rows_and_summary_allow_nan_false_JSON_pass": true,
+    "exit_code": 0,
+    "twelve_crops_two_queries_units_correct": true
+  },
+  "source_sha256": "9f1524d2212f1536ecf0dbd604ea21f0d6bb3b1561a846bf7213ba2b8e27aabc",
+  "minimal_fix": "original_oracle = float(overlaps[policies[\"hann5\"]].max()); no generic serialization layer or try/except",
+  "parent_actual_GPU_M0": {
+    "technical_pass_not_tracking_gain": true,
+    "train": "refine-logs/runs/abc_budgeted_search/m0_train.json",
+    "validation": "refine-logs/runs/abc_budgeted_search/m0_validation.json",
+    "all_four_queries_cache_exact": true
+  },
+  "scope": "continued limited SOURCE+CPU/mock review; same-family provisional, not fresh independent-family review"
+}
