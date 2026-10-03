@@ -440,11 +440,15 @@ and descriptive paired uncertainty: `refine-logs/runs/recoverability_fit_complet
 Best gains are confined to128held-out queries, no paused writes, only0/1/1/1
 newly recalled queries. Online integration and all-five native+2 remain unmet.
 
-19:05 online milestone: fixed-size incremental ROI identity memory and frozen
-motion state, original-only search decisions, at most one actual extra crop,
-and query-only safe-write actions are integrated. Real zero-init M0 passed on
-2 held-out videos/128frames: unrounded trajectories and each choice/raw-score/
-write decision exactly match C1. Source/CPU/real-M0 receipts are in
-`refine-logs/runs/recoverability_online_m0/`. Four best-only independent models
-are running all98 internal videos; a240-second queue collects full diagnostics.
-These runs are not completed native scores and all-five +2 remains unmet.
+20:17 online result: all four independent seeds finished all98 internal videos
+(49,418 frames). Sequence mean IoU is0.724021/0.726136/0.728697/0.728351,
+below complete GOLA-B0.743279 and C1 0.739440. Real extra searches reintroduced
+154/261/340/338 correct candidates, but selected only23/15/16/20 of those.
+Full negative results, paired uncertainty and mechanism measurements are in
+`refine-logs/runs/recoverability_online_complete/`. Real zero-init M0 passed
+on both datasets (256 total frames/134 writes), with unrounded C1 parity.
+Locked seed42 native LasHeR/RGBT234 evaluations and full98 no-search/original-write
+controls started on four GPUs at20:13:34. Native five metrics/attributes/curves/
+paired CI remain pending; all-five +2 remains unmet. Each independent training
+run retains only best.pth;22 obsolete/redundant weights (23,081,212 bytes) were
+removed, preserving pretrained baselines and frozen motion-source weights.

@@ -12,13 +12,14 @@ from .collect_core_metrics import EXPECTED, failure_events, localization_quality
 
 
 def summarize(timeline, prediction, gt, dataset):
+    timeline = {key: timeline[key] for key in timeline.files}
     n = len(prediction) - 1
     boxes = xywh(timeline['boxes_xyxy']).reshape(n, 35, 4)
     valid = timeline['valid'].reshape(n, 35)
     choice, keep = timeline['choice'], timeline['original_choice']
     assert boxes.shape == (n, 35, 4) and valid[:, :5].any(1).all()
     assert valid[np.arange(n), choice].all() and (valid.sum(1) <= 10).all()
-    assert all(np.isfinite(timeline[key]).all() for key in timeline.files)
+    assert all(np.isfinite(value).all() for value in timeline.values())
     assert np.allclose(boxes[np.arange(n), choice], prediction[1:], atol=.000501, rtol=0)
     quality = []
     for candidate in range(35):
