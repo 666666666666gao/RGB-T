@@ -1,0 +1,45 @@
+{
+  "result": "PASS_AFTER_FIX",
+  "reviewer": "/root/recoverability_model_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "scope": "fresh direct source + CPU in-memory warm-2027 checks; no reviewer deployment/GPU jobs",
+  "resolved_blocker": "off-class soft mass no longer fills normalized non-target/unknown slots; positive commits per sensor, paired template regular action needs both sensors verified",
+  "checks": [
+    "407/901/670 input dimensions",
+    "real q6/q952 H1024 forward/loss/backward, finite A/B/C gradients, C1 frozen",
+    "q1 left padding memory unchanged",
+    "extra-region mutation leaves search outputs exact",
+    "label mutation leaves all forward outputs exact",
+    "bias1 target probability .5761169; nonzero C1 choice preserved",
+    "at most one extra region; search may retain original result",
+    "untrusted sensor pauses paired template write",
+    "trainer deduplicates and checks train/validation split",
+    "all triggered extra searches cost .01 even if original kept",
+    "only best.pth saved after strict utility improvement; strict reload",
+    "sequential M0 launcher stops if first command fails"
+  ],
+  "source_sha256": {
+    "trainer": "81a07fe3cdca890a74a507f25a2817c0a2b318e7c8da7350a51aac0084856b28",
+    "m0_launcher": "71353645d9641ec522e6cc39665aa0fe2e4ca9918a7946cc0f0d861e5a35a4af",
+    "modules": "657a6116756772e2f7bcc792ad8a3688d5074415b8c80f2101ee1f12e4fc2105"
+  },
+  "pending": [
+    "actual GPU M0",
+    "actual capacity acceptance",
+    "learned decision utility",
+    "online integration/complete native benchmark"
+  ],
+  "full_launcher_review": {
+    "effort": "max",
+    "executed_by_reviewer": false,
+    "acceptance_status": "provisional",
+    "result": "PASS_SOURCE_ONLY",
+    "review_independence": "same-family",
+    "reviewer": "/root/recoverability_model_review",
+    "model": "gpt-6-astra",
+    "sha256": "ff2a646e9ab004679cafc6e85c9c7823f514651f16e5842ddf94058358a831cc"
+  }
+}

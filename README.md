@@ -417,3 +417,18 @@ training or new formal metric is claimed yet. Fifteen obsolete/duplicate weights
 were removed; each completed experiment retains its selected validation-best
 checkpoint, with all metrics/logs/predictions preserved. The one handoff contains
 the full record: `docs/HANDOFF_20261002.md`. Main all-five +2 goal remains unmet.
+
+2026-10-03 17:54 update: all four collectors completed. The pooled TRAIN data
+contains 767 unique sequence/query pairs from 519 sequences; the 128 held-out
+queries come from 76 disjoint sequences. Actual full-prefix, finite-array and
+action-mask audits are in `refine-logs/runs/recoverability_cache_full/`.
+New ROI memory, original-only causal search ranking and relative action/risk
+learning are implemented in `research/recoverability_modules.py` and
+`research/train_recoverability.py`. Fresh same-family source/CPU review passed
+after fixing off-class memory writes. Real two-query training and full1024
+history batch64 capacity training passed; batch128 capacity passed (4153.949MiB). Four independent model seeds42-45 started on GPUs0-3 at17:57:42 with batch128 and30epochs; all four had49 actual updates at18:01. Results in `refine-logs/runs/recoverability_fit_live/` are explicitly partial snapshots, not completed model acceptance.
+The trainer saves only `best.pth`, selected by held-out actual rollout utility
+minus .01 for every triggered extra search. Every epoch metric is retained.
+These are bootstrap frozen-C1 state/continuation experiments, not completed
+online integration or improved official benchmark accuracy. Four more obsolete
+sanity checkpoints were removed, followed by the three new completed M0/capacity checkpoints once full runs had real updates and best files; all metrics and logs remain available.

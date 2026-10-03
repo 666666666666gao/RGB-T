@@ -120,6 +120,20 @@ Completed TRAIN visual audit has151 sampled missing-candidate queries/147 unique
 
 Next required data milestone is `research.collect_recoverability`: uniform TRAIN/held-out sequence/query sampling, frozen fullGOLA+C1 predicted prefixes to max1024, all prefix observations retained; current original5 plus six protected-anchor extra regions with up-to5 dense-raw candidates each. Extra proposals and original policy are executed before query GT. Add separate area-pooled RGB/TIR candidate descriptors without changing original C1 inputs. Learnable A/B/C inputs and GT labels remain separate. Save actual per-region candidates, current quality/presence and future3-step same-parent regular-write/query-paused-write action outcomes; pause leaves confidence, position and provider behavior unchanged and later ordinary updates remain enabled. Future images are first decoded after every query input is copied. One extra region is the eventual online budget; six alternatives executed here are teacher data and cost must be disclosed.
 
+17:54 closure: this data milestone is COMPLETE, 768 sampled TRAIN rows / 767
+unique sequence-query pairs from 519 sequences, 128 unique held-out queries
+from 76 disjoint sequences. All arrays finite, complete causal prefixes and
+regular/pause masks verified. Six-region oracle improvements are diagnostics.
+Upgraded A/B/C source and fresh same-family CPU review passed; real M0 confirms
+finite gradients and changed parameters for all three modules, frozen C1,
+strict best-checkpoint reload, and zero-init C1 action parity. Batch64 H1024
+capacity passed; batch128 also passed (4153.949MiB). Four independent
+model seeds42-45 started17:57:42 on the same pooled data after capacity acceptance, batch128/30epochs; all had49 actual updates18:01. Keep only
+validation-utility-best.pth for each independent run; preserve all epoch records.
+Use one-extra-region budget and charge search even when no location switch.
+The cache still uses frozen-C1 prefixes/continuations; collect the upgraded
+method's own long/failure states later before claiming on-policy recovery.
+
 Source review then realM0: TRAIN/validation two clips with maxprefix8; capacity M0 sixteen clips/maxprefix8, future forward microbatch64. Check frozen weights, ROI pooling, original C1 inputs unchanged, private state, finite arrays, action masks, every future label and actual GPU memory/time. Only after gates pass, launch train256 seeds42/43/44 plus held-out128 seed100042 on four available RTX3090. Default prefix batch16/future microbatch64/maxprefix1024, original881/98 split, outputs estimated under20GiB and >2TiB free. Use measured M0 progress to estimate completion; no official dataset tuning. This collection does not itself train upgraded modules or prove tracking improvement. New model training follows actual cache completion and source/M0 gates.
 
 Checkpoint retention per explicit user instruction: after validation and audits finish, retain only each completed experiment's metric-best checkpoint. ABC retains pre-test full98-selected epoch30 (`last.pth`); C1 retains epoch3 `best.pth`; obsolete epoch/initial duplicates are removed, with metrics/logs/predictions retained. Temporary candidates needed for an outstanding checkpoint comparison are pruned once that comparison is complete. Never delete upstream pretrained weights or inputs of live jobs.
