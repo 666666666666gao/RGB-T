@@ -432,3 +432,10 @@ minus .01 for every triggered extra search. Every epoch metric is retained.
 These are bootstrap frozen-C1 state/continuation experiments, not completed
 online integration or improved official benchmark accuracy. Four more obsolete
 sanity checkpoints were removed, followed by the three new completed M0/capacity checkpoints once full runs had real updates and best files; all metrics and logs remain available.
+
+18:12 closure: all four independent training runs completed30epochs/180updates,
+frozenC1 and strict best reload passed. Retained best epochs7/6/4/6 only.
+Complete cache-training receipts/31epoch records/512selected-action CSV rows
+and descriptive paired uncertainty: `refine-logs/runs/recoverability_fit_complete/`.
+Best gains are confined to128held-out queries, no paused writes, only0/1/1/1
+newly recalled queries. Online integration and all-five native+2 remain unmet.
