@@ -1,0 +1,30 @@
+{
+  "status": "PREPARED_SOURCE_REVIEW_AND_REAL4M0_REQUIRED_BEFORE_FRESH_FULL",
+  "observed_cst": "2026-10-04T03:49:36.2452399+08:00",
+  "hypothesis": "Existing all-action SmoothL1 and >.05 pair ranking dilute writable same-candidate pause supervision. Real cached VAL oracle_c1/selector_own predicts gap~.04 while all47/51 learned pauses have teacher gap<=.03. Calibrate final pause-versus-regular score gap conditionally, preserving beneficial pauses.",
+  "principal_training_factor": "Add coefficient1 SmoothL1(beta=.01) of final scores[pause]-scores[regular] versus same candidate action_utility[pause]-action_utility[regular], averaged only over legal writable pairs.",
+  "controls": "reference/calibrated x exactserial C1/own prefix; all four use action verification consistently, oracle search supervision, existing pairwise C ranking, same seeds/orders/data/lr; no change to memory gates, architecture, motion/search budgets, pretrained frozen GOLA/C1, risk coefficient or .03 threshold.",
+  "batch_size": 512,
+  "epochs": 60,
+  "optimizer_updates_expected": 120,
+  "train_queries": 902,
+  "validation_queries": 128,
+  "seed": 42,
+  "gpu_assignment": {
+    "GPU0": "reference_c1",
+    "GPU1": "calibrated_c1",
+    "GPU2": "reference_own",
+    "GPU3": "calibrated_own"
+  },
+  "capacity": "Actual GPU1 B512 M0 passed peak23921/24576MiB; new all4 M0 mandatory, especially GPU0 with actual349MiB foreign process. No artificial memory allocations, preemption or thermal/power control.",
+  "initialization": "Fresh pretrained C1 projection and zero residuals for every fit; all choices match C1 initially in chosen action mode. Never reuse M0 weights for full.",
+  "review": "Independent experiment-bridge source/CPU/default13loss equivalence to bd2940e; new loss invalid/no-pair gradients, beneficial and false pause signs, cost cancellation, causal labels only; trainer/search/eval flag consistency and runner/full-report paths.",
+  "sanity": "All4 actualoneepoch/twooptimizerupdates,902/128data/order identical, finite grads A/B/C all changed/frozenC1/strictreload, mode-specific loss recorded. Inspectall4 beforemanual freshfull; no auto full from M0.",
+  "checkpoint_selection": "Cached utility selects per-run best only, then original full98/49418 continuous metric compares models before any formal benchmark. One best overall model is sufficient; initialization best not learned gain.",
+  "comparison": "New reference/calibrated within each prefix has identical B51260epoch/120update exposure. Old B25660epoch/240update models are historical references, not a pure loss comparison.",
+  "datasets": "Only LasHeR TRAIN and existing98internalheldout; RGBT234 official later locked final model. No new dataset/no formal-test tuning.",
+  "future_supervision": "Frozen C1 3-step continuation still teacher; paired calibration cannot itself remove deployed-state distribution mismatch.",
+  "native_accuracy_claim": false,
+  "single_human_handoff": "docs/HANDOFF_20261002.md",
+  "joint_matched_comparison": "After all four fresh B512 full98/report markers complete, reuse collect_recoverability_metrics on both calibrated runs versus both concurrent reference runs plus GOLA/C1, with5000 paired sequence bootstrap. Pure loss effect judged calibrated_c1-vs-reference_c1 and calibrated_own-vs-reference_own only. Per-run historical B256 reports are not this matched comparison."
+}

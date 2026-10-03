@@ -1,0 +1,178 @@
+{
+  "status": "ALL_FOUR_REAL_B512_M0_PASS_BEFORE_FRESH_FULL",
+  "observed_cst": "2026-10-04T04:08:59.501939",
+  "source_sha256": {
+    "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "research/train_recoverability.py": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713",
+    "scripts/check_recoverability_write_pair_loss.py": "3e45fbe1caade12fde36d74378da78ad24ebe2473b85c44bcebf03bc7edf0790",
+    "scripts/run_recoverability_write_pair.sh": "f44eeca3c338f63dcaadd253cdbba07de0ffcc4b420e77207f84f81a0e039393"
+  },
+  "arms": {
+    "reference_c1": {
+      "gpu": 0,
+      "epochs": 1,
+      "optimizer_steps": 2,
+      "best_epoch": 0,
+      "train_clips": 902,
+      "validation_clips": 128,
+      "ABC_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1": true,
+      "strict_reload": true,
+      "peak_allocated_mib": 17723.140625,
+      "last_loss_parts": {
+        "advantage": 0.06987279653549194,
+        "action_ranking": 0.03175625205039978,
+        "harm": 1.9038926362991333,
+        "quality": 0.8495806455612183,
+        "query_write_risk": 0.05383141338825226,
+        "future": 0.14006488025188446,
+        "memory_gate": 1.3640892505645752,
+        "margin_preservation": 0.0009149066754616797,
+        "identity_margin": 0.18264241516590118,
+        "search_value": 0.024114012718200684,
+        "search_success": 0.6922710537910461,
+        "candidate_absence": 0.7787984609603882,
+        "search_ranking": 1.7886067628860474
+      },
+      "source_config": "/data/gb/outputs/recoverability_write_pair_reference_c1_b512_m0_20261004/config.json"
+    },
+    "calibrated_c1": {
+      "gpu": 1,
+      "epochs": 1,
+      "optimizer_steps": 2,
+      "best_epoch": 0,
+      "train_clips": 902,
+      "validation_clips": 128,
+      "ABC_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1": true,
+      "strict_reload": true,
+      "peak_allocated_mib": 17723.140625,
+      "last_loss_parts": {
+        "advantage": 0.06987442076206207,
+        "action_ranking": 0.031772252172231674,
+        "harm": 1.9038920402526855,
+        "quality": 0.8495806455612183,
+        "query_write_risk": 0.05383141338825226,
+        "future": 0.14006488025188446,
+        "memory_gate": 1.3640892505645752,
+        "margin_preservation": 0.0009149066754616797,
+        "identity_margin": 0.18264241516590118,
+        "search_value": 0.024114012718200684,
+        "search_success": 0.6922710537910461,
+        "candidate_absence": 0.7787984609603882,
+        "search_ranking": 1.7886067628860474,
+        "query_write_advantage": 0.00898761861026287
+      },
+      "source_config": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b512_m0_20261004/config.json"
+    },
+    "reference_own": {
+      "gpu": 2,
+      "epochs": 1,
+      "optimizer_steps": 2,
+      "best_epoch": 0,
+      "train_clips": 902,
+      "validation_clips": 128,
+      "ABC_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1": true,
+      "strict_reload": true,
+      "peak_allocated_mib": 17723.140625,
+      "last_loss_parts": {
+        "advantage": 0.0739268884062767,
+        "action_ranking": 0.03168587014079094,
+        "harm": 2.0345301628112793,
+        "quality": 0.8722696900367737,
+        "query_write_risk": 0.052279550582170486,
+        "future": 0.1346675008535385,
+        "memory_gate": 1.3487470149993896,
+        "margin_preservation": 0.0009198659099638462,
+        "identity_margin": 0.18233956396579742,
+        "search_value": 0.02391764149069786,
+        "search_success": 0.6921948194503784,
+        "candidate_absence": 0.6712028384208679,
+        "search_ranking": 1.7898497581481934
+      },
+      "source_config": "/data/gb/outputs/recoverability_write_pair_reference_own_b512_m0_20261004/config.json"
+    },
+    "calibrated_own": {
+      "gpu": 3,
+      "epochs": 1,
+      "optimizer_steps": 2,
+      "best_epoch": 0,
+      "train_clips": 902,
+      "validation_clips": 128,
+      "ABC_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1": true,
+      "strict_reload": true,
+      "peak_allocated_mib": 17723.140625,
+      "last_loss_parts": {
+        "advantage": 0.07392719388008118,
+        "action_ranking": 0.03170959651470184,
+        "harm": 2.034529447555542,
+        "quality": 0.8722696900367737,
+        "query_write_risk": 0.052279550582170486,
+        "future": 0.1346675008535385,
+        "memory_gate": 1.3487470149993896,
+        "margin_preservation": 0.0009198659099638462,
+        "identity_margin": 0.18233956396579742,
+        "search_value": 0.02391764149069786,
+        "search_success": 0.6921948194503784,
+        "candidate_absence": 0.6712028384208679,
+        "search_ranking": 1.7898497581481934,
+        "query_write_advantage": 0.008721692487597466
+      },
+      "source_config": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b512_m0_20261004/config.json"
+    }
+  },
+  "same_train_query_order_all4": true,
+  "same_validation_job_order_all4": true,
+  "gpu_peak_nvidia_smi_mib": {
+    "0": 21178,
+    "1": 23921,
+    "2": 23921,
+    "3": 23921
+  },
+  "monitor_stopped_owned_pid": 2597337,
+  "deleted_temporary_M0_weights": [
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_reference_c1_b512_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "41456a1de96fce37429f4354da0e50f1cd0a3266c6b23b02713d89476677cc45"
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b512_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "03a6f272d19e45c970bf90b2540e7a6feff12f65c90d13d98e5b3143b3bb819e"
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b512_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "2feda15c6db8804a65f6b9e9f30614142dd3385842b4e5c9fa2cd95ca1a1298a"
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b512_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "28b2c883221a9e2d3c3e8007372f649c8eba8aa10e889347c2a8b42d5db9da5b"
+    }
+  ],
+  "deleted_bytes": 6931664,
+  "cumulative_owned_cleanup_files": 40,
+  "cumulative_owned_cleanup_bytes": 51807796,
+  "fresh_full_weights_inherit_M0": false,
+  "native_accuracy": false
+}

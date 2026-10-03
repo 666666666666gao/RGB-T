@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_type": "experiment-bridge RESCUE_ON_FAILURE second opinion and exact B384 runner source gate",
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T04:41:04.9357790+08:00",
+  "scope": "Read actual terminal B512 logs, current production trainer/model source, previous real B384 capacity receipt, new B384 runner and rescue plan. Check exact source delta and Bash syntax. No model forward/backward, optimizer, GPU diagnostic workload, production edit, process signal or relaunch by reviewer.",
+  "reviewed_files": [
+    {
+      "path": "scripts/run_recoverability_write_pair_b384.sh",
+      "sha256": "e02e8451e467c29baddb51c1399eb839a04fc52910cb6adfccf9c5dd5d9c3dfc"
+    },
+    {
+      "path": "refine-logs/runs/recoverability_write_pair/rescue_b384_plan.json",
+      "sha256": "c41305208492817b2e42feeaefe35608132ff3d0e38e775cf0e88de78988a6da"
+    },
+    {
+      "path": "scripts/run_recoverability_write_pair.sh",
+      "sha256": "f44eeca3c338f63dcaadd253cdbba07de0ffcc4b420e77207f84f81a0e039393",
+      "status": "unchanged B512 historical runner"
+    },
+    {
+      "path": "research/recoverability_modules.py",
+      "sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+      "status": "unchanged production source; remote SHA verified"
+    },
+    {
+      "path": "research/train_recoverability.py",
+      "sha256": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713",
+      "status": "unchanged production source; remote SHA verified"
+    }
+  ],
+  "actual_terminal_evidence": {
+    "independent_observation": "Reviewer directly read all three original stdout logs on SSH host 2027. All contain TRAIN epoch2/step2/optimizer_steps4 and completed VALIDATION epoch2, followed by a terminal OutOfMemoryError before the first epoch3 TRAIN update. The same observed failure affects a reference arm without the new calibration loss.",
+    "logical_device_note": "run_temporal.sh sets CUDA_VISIBLE_DEVICES to the selected physical card. GPU 0 in each traceback is the process-local logical device, not evidence that all three jobs used physical GPU0.",
+    "logs": [
+      {
+        "arm": "calibrated_c1",
+        "physical_gpu": 1,
+        "path": "/data/gb/setup/recoverability_write_pair_calibrated_c1_b512_full_20261004.log",
+        "sha256": "a88a8e7f1e2e12396c0ef34bf2eba2ec667f58c73dbf4b1996c74a063f29a33e",
+        "completed_epochs": 2,
+        "completed_optimizer_updates": 4,
+        "failure_epoch": 3,
+        "failure_step": 1,
+        "free_mib_at_failure": 5.94
+      },
+      {
+        "arm": "reference_own",
+        "physical_gpu": 2,
+        "path": "/data/gb/setup/recoverability_write_pair_reference_own_b512_full_20261004.log",
+        "sha256": "a5b3fd5e2cec2c38265038e5096d66e1bd0ff516408f980163c134afdc428adf",
+        "completed_epochs": 2,
+        "completed_optimizer_updates": 4,
+        "failure_epoch": 3,
+        "failure_step": 1,
+        "free_mib_at_failure": 5.94
+      },
+      {
+        "arm": "calibrated_own",
+        "physical_gpu": 3,
+        "path": "/data/gb/setup/recoverability_write_pair_calibrated_own_b512_full_20261004.log",
+        "sha256": "f29d4a5eaf2713fe1905a65b91e99969a89c8c635fd93f7ca29d1fcd1b05313c",
+        "completed_epochs": 2,
+        "completed_optimizer_updates": 4,
+        "failure_epoch": 3,
+        "failure_step": 1,
+        "free_mib_at_failure": 6.0
+      }
+    ],
+    "common_oom": {
+      "requested_mib": 2.0,
+      "device_capacity_gib": 23.68,
+      "process_memory_including_non_pytorch_gib": 23.66,
+      "pytorch_allocated_gib": 15.46,
+      "pytorch_reserved_but_unallocated_gib": 7.84,
+      "max_allocated_first_epoch_mib": 17723.140625,
+      "max_allocated_second_epoch_mib": 17726.01513671875
+    },
+    "trace": "train_recoverability.py:204 output=forward(model,batch) -> recoverability_modules.py:144 memory.history -> line74 history gate -> line45 self.gate -> torch.nn.Linear F.linear. This is the next training forward, not evaluate(), loss computation, backward, optimizer or checkpoint serialization.",
+    "diagnosis": "The large reserved-but-unallocated amount and low device free memory strongly support allocator/layout pressure. The logs do not include inactive-split statistics or a memory snapshot, so a particular fragmentation pattern is not proven. The near-stable allocated peak across the first two epochs does not establish an accumulating tensor leak.",
+    "m0_gap": "The original real one-epoch/two-update M0 ended before the repeated train-tail/validation/full-batch transitions that preceded this failure. Its earlier PASS remains a valid one-epoch witness but did not prove sustained B512 capacity."
+  },
+  "trainer_tensor_lifetime_inspection": {
+    "status": "NO_EVIDENCE_SUPPORTING_A_LIFETIME_PATCH",
+    "evaluation": "evaluate() is decorated with torch.no_grad. In normal training validation it returns a dict of Python numbers; local per-batch output/result tensors do not get appended to the outer epoch records. The failure stack is after validation returned, inside training.",
+    "logging_and_records": "objective parts are float(value.detach()), training row loss and gradient norms are Python numbers, and epoch metrics appended to records are numbers. No output or differentiable loss tensor is accumulated in records or JSON logging.",
+    "bounded_overlap": "Outer batch/output/loss names do retain the immediately previous iteration until their next assignments, and previous parameter grads are cleared after the next forward. This can create bounded transient overlap. It is not evidence of an epoch-growing reference chain: backward uses the default retain_graph=False, there is no accumulation list of graphs, and the previous batch is replaced before the next forward.",
+    "history_loop": "memory.history intentionally unrolls the fixed history length and retains gate logits within one forward for the existing training objective. That per-forward graph is required by the current model and is unchanged. Altering history detach/gradient behavior would change the method.",
+    "recommendation": "Do not add del/empty_cache/try-except or change backward placement, history gradients or evaluation cadence for this rescue. The present evidence supports a capacity recipe adjustment without a model/lifecycle patch. This is an evidence limit, not proof that every transient allocation is optimal."
+  },
+  "options_assessed": {
+    "recommended": "Explicit fresh matched B384 experiment on all four arms, with 3-epoch M0 and unchanged allocator/model/trainer.",
+    "b384_actual_capacity": {
+      "receipt": "/data/gb/outputs/recoverability_pairwise_selector_own_b384_capacity_m0_20261004/completion.json",
+      "directly_read_by_reviewer": true,
+      "completed": true,
+      "epochs": 1,
+      "optimizer_updates": 3,
+      "peak_allocated_mib": 14192.51708984375,
+      "ABC_modules_changed": true,
+      "frozen_c1_gradients_absent": true,
+      "strict_reload_metrics_equal": true,
+      "reduction_vs_previous_b512_peak_mib": 3530.62353515625,
+      "limitation": "This is a previous selector/identity capacity probe, not the new oracle/action/calibrated three-epoch gate. Its lower measured active peak supports B384 as a practical choice but does not guarantee every new 60-epoch run will fit."
+    },
+    "b512_expandable_segments": {
+      "assessment": "A technically relevant alternative because the real sequence of batch sizes is 512,390 and validation128 and the OOM reports substantial reserved-but-unallocated memory. However, changing allocator policy would still require fresh matched all-arm repeated-epoch validation; no such successful run exists here. It is not needed alongside the chosen B384 rescue.",
+      "official_pytorch_2_5_1_documentation": "https://raw.githubusercontent.com/pytorch/pytorch/v2.5.1/docs/source/notes/cuda.rst",
+      "documentation_basis": "The official 2.5.1 CUDA notes describe expandable_segments as experimental and intended to improve handling of changing allocation sizes. This supports plausibility, not guaranteed success for the current workload.",
+      "selected_for_this_rescue": false
+    },
+    "why_b384": "The operator explicitly chose a deliberate matched recipe adjustment. Prior real B384 active allocation is about 3.45 GiB below B512, providing measured headroom without changing the numerical loss, model, allocator or training lifecycle. The resulting optimizer-budget difference is made explicit rather than hidden."
+  },
+  "exact_new_runner_review": {
+    "status": "PASS",
+    "comparison": "Reviewer checked that the entire new runner text equals the original after exactly four substitutions: M0 epochs=1 to epochs=3; run root b512 to b384; --batch-size 512 to 384; report label b512 to b384. No other text changes.",
+    "bash_syntax": "Actual bash -n PASS on a private SSH2027 source copy, whose SHA exactly matches the local reviewed file. The runner was not executed by the reviewer.",
+    "full_recipe": {
+      "arms": [
+        "reference_c1",
+        "calibrated_c1",
+        "reference_own",
+        "calibrated_own"
+      ],
+      "batch_size": 384,
+      "train_batch_sizes_per_epoch": [
+        384,
+        384,
+        134
+      ],
+      "epochs": 60,
+      "optimizer_updates": 180,
+      "train_queries": 902,
+      "validation_queries": 128,
+      "seed": 42,
+      "example_exposures": 54120,
+      "search_supervision": "oracle",
+      "action_ranking": "pairwise",
+      "write_verification": "action"
+    },
+    "m0_recipe": {
+      "epochs": 3,
+      "optimizer_updates": 9
+    },
+    "m0_evidence_target": "All four actual three-epoch runs must complete through the previously failing epoch3, including the repeated small-tail/validation/full-batch transitions, finite training, A/B/C gradients and updates, frozen C1, strict best reload and identical query order. This is a stronger observed-failure regression gate, not a guarantee of full60 completion.",
+    "matched_comparison": "Within each new B384 prefix pair only --write-pair-calibration differs. Both arms use the same seed/data/order/batch/full180-update optimizer exposure and selection policy. Do not combine the surviving B512120-update reference with a B384 calibrated arm or use old B256240-update fits as loss-only controls.",
+    "fresh_full": "All four B384 full fits must start fresh after all four M0 receipts pass. The runner never loads M0 weights and does not automatically transition M0 to full. Its unique B384 run roots reject overwriting prior outputs.",
+    "reporting": "Inherited full98 GT evaluator, existing completion markers and historical baseline/C1/action-verification inputs are unchanged. After all four new B384 full reports finish, the planned joint collector must compare calibrated versus reference at B384 within each prefix. Historical B512/B256 runs remain separate context.",
+    "prior_failure_preservation": "Preserve all three B512 terminal OOM logs and receipts plus the stopped/finished status of the owned reference_c1 B512 run. Do not label those four B512 full experiments completed. Any process release is performed only by the main agent against its verified owned PID; reviewer sent no signals."
+  },
+  "gate_conclusion": "PASS for the exact reviewed B384 runner and explicit rescue plan. The main agent may perform its already-authorized owned-process transition and launch the four real three-epoch M0 runs. Fresh full remains contingent on all four actual M0 passes and separate manual launch. No runtime success or tracking gain is certified by this review.",
+  "reviewer_actions": {
+    "production_source_edits": 0,
+    "neural_forward": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "gpu_workloads": 0,
+    "process_signals": 0,
+    "production_launches": 0,
+    "allocator_settings_applied": 0,
+    "artifact_written": "refine-logs/runs/recoverability_write_pair/rescue_source_review.json",
+    "private_syntax_copy": "/data/gb/setup/run_recoverability_write_pair_b384_review.sh"
+  },
+  "later_parent_runtime_update": {
+    "attribution": "Main-agent message, not reviewer runtime validation",
+    "reference_b512": "Training completed60epochs/120updates before verified owned evaluator PID2640830 was terminated2026-10-04T04:38:24+08:00; partialfull98 incomplete and historical artifacts preserved",
+    "b384": "Main agent reports all4fresh3epochM0 launched2026-10-04T04:38:25+08:00 after explicit sourcePASS; completion remains unverified by reviewer"
+  }
+}

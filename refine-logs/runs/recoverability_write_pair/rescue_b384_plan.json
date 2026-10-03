@@ -1,0 +1,27 @@
+{
+  "status": "RESCUE_PREPARED_REVIEW_REQUIRED_THEN_REAL_4ARM_3EPOCH_M0",
+  "observed_cst": "2026-10-04T04:18:50.4647536+08:00",
+  "actual_failure": "B512 all4 one-epoch M0 passed; full calibrated_c1/reference_own/calibrated_own completed 2epochs/4updates then terminal CUDA OOM in epoch3 first forward/history gate Linear. reference_c1 remains running historical B512.",
+  "primary_artifact": "/data/gb/setup/recoverability_write_pair_<arm>_b512_full_20261004.log",
+  "error": "allocate2MiB; ~6MiB device free; allocated15.46GiB; reserved-unallocated7.84GiB. Supports allocator/layout capacity pressure, exact fragmentation not proven without memory snapshot.",
+  "deliberate_rescue": "Fresh matched all4 B384, not automatic fallback. OldB512 failed/interrupted logs retained and not counted completed. No allocator env, empty_cache, try/except, architecture or lifecycle changes.",
+  "minimal_diff": "New separate runner only replaces512->384 in batch/name/labels, and M0 epochs1->3. Reviewed model/trainer unchanged. Live old runner untouched.",
+  "batch_size": 384,
+  "sanity_epochs": 3,
+  "sanity_updates_expected": 9,
+  "full_epochs": 60,
+  "full_updates_expected": 180,
+  "train_queries": 902,
+  "validation_queries": 128,
+  "gpu_assignment": {
+    "GPU1": "calibrated_c1",
+    "GPU3": "calibrated_own",
+    "GPU0": "reference_c1",
+    "GPU2": "reference_own"
+  },
+  "gate": "Independent rescue source review; preserve old artifacts, terminate only own B512 reference if still live to freeGPU0; all4 actual3epoch/9update M0 finite/gradschanged/frozenC1/strictreload pass and matched queryorders; then manual freshfull.",
+  "comparison": "Only new B384 calibrated/reference sameprefix purelosscomparison; old B512120step and B256240step controls historical.",
+  "checkpoint_retention": "best.pth only for each real full; temporaryM0 and terminalunusedB512 weights removed only after evidence copied; protect pretrained/C1/frozenmotion/livecontrols.",
+  "scope": "LasHeR TRAIN existing98 heldout; no new dataset/formaltest selection. Bestone model enough, allnative5+2goal stillACTIVE_UNMET.",
+  "runner": "scripts/run_recoverability_write_pair_b384.sh"
+}

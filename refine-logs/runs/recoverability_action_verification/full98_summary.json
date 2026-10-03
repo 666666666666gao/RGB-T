@@ -1,0 +1,930 @@
+{
+  "status": "COMPLETE_THREE_FIXED_WEIGHT_ACTION_VERIFICATION_FULL98_NEGATIVE_VS_GOLA",
+  "observed_cst": "2026-10-04T03:52:37.7054845+08:00",
+  "native_accuracy": false,
+  "sequences": 98,
+  "frames": 49418,
+  "baseline_sequence_mean_iou": 0.7432785069707898,
+  "c1_sequence_mean_iou": 0.7394401616015396,
+  "arms": {
+    "selector_own": {
+      "sequence_mean_iou": 0.7228923471797567,
+      "frame_mean_iou": 0.6515496549053998,
+      "failure_events": 251,
+      "recovery_rate": 0.9322709163346613,
+      "median_recovery_delay_frames": 12.0,
+      "rates": {
+        "local_recall": 0.8178254422846465,
+        "budget_recall": 0.8214612150386935,
+        "missing_candidate_reintroduction_rate": 0.019957631843014828,
+        "wrong_template_write_rate": 0.043985419198055896,
+        "misintervention_rate_on_correct_same_state_c1": 0.005837543519803146
+      },
+      "counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "candidate_evaluations": 239604,
+        "local_candidate_recalled_frames": 40264,
+        "budget_candidate_recalled_frames": 40443,
+        "local_missing_frames": 8969,
+        "missing_correct_candidates_reintroduced": 179,
+        "reintroduced_candidates_selected_correctly": 22,
+        "c1_same_state_failed_frames": 7966,
+        "c1_same_state_correct_frames": 38201,
+        "selected_failed_frames": 8005,
+        "changed_candidate_indices": 1379,
+        "valid_changed_candidate_indices": 1375,
+        "same_state_rescues": 196,
+        "same_state_harms": 223,
+        "same_state_iou_improvements": 411,
+        "same_state_iou_degradations": 508,
+        "requested_extra_searches": 2466,
+        "extra_visual_forwards": 2466,
+        "searches_without_new_correct_candidate": 2271,
+        "requested_extra_area_sum_pixels_squared": 2561134019.7862906,
+        "template_updates": 4115,
+        "known_template_updates": 4115,
+        "wrong_template_updates_localization_proxy": 181,
+        "paused_query_writes": 10320,
+        "known_paused_query_writes": 10318,
+        "wrong_query_writes_prevented_localization_proxy": 438,
+        "correct_query_writes_prevented": 9848,
+        "known_active_template_frames": 49233,
+        "wrong_active_template_frames_localization_proxy": 2494,
+        "memory_rgb_target_write_known_mass": 2332.418006181717,
+        "memory_rgb_target_write_wrong_mass": 102.38935548067093,
+        "memory_rgb_target_read_known_mass": 49232.999946878714,
+        "memory_rgb_target_read_wrong_mass": 2466.9736070198946,
+        "memory_tir_target_write_known_mass": 2318.810659825802,
+        "memory_tir_target_write_wrong_mass": 102.03737759590149,
+        "memory_tir_target_read_known_mass": 49232.9999848885,
+        "memory_tir_target_read_wrong_mass": 2341.7078372802434,
+        "candidate_quality_squared_error_sum": 6272.91517715982,
+        "known_candidate_evaluations": 239096
+      },
+      "paired": {
+        "action_verify_selector_own_vs_pairwise_selector_own_b256": {
+          "mean_iou_delta_percentage_points": 0.0,
+          "paired_sequence_95_ci": [
+            0.0,
+            0.0
+          ],
+          "improved_sequences": 0,
+          "worsened_sequences": 0,
+          "tied_sequences": 98,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_selector_own_vs_c1": {
+          "mean_iou_delta_percentage_points": -1.6547814421782805,
+          "paired_sequence_95_ci": [
+            -4.120576548684515,
+            0.7748501880263116
+          ],
+          "improved_sequences": 41,
+          "worsened_sequences": 55,
+          "tied_sequences": 2,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_selector_own_vs_baseline": {
+          "mean_iou_delta_percentage_points": -2.03861597910329,
+          "paired_sequence_95_ci": [
+            -4.500376781181558,
+            0.34143658409783967
+          ],
+          "improved_sequences": 39,
+          "worsened_sequences": 57,
+          "tied_sequences": 2,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        }
+      },
+      "efficiency": {
+        "instrumented_tracking_fps": 27.820346792879672,
+        "latency_p50_ms": 35.28135549277067,
+        "latency_p95_ms": 52.89960210211533,
+        "peak_cuda_allocated_mib": 447.4345703125,
+        "peak_cuda_reserved_mib": 488.0
+      },
+      "memory_target_localization_provenance": {
+        "rgb_target_write_wrong_mass_fraction": 0.04389837293714232,
+        "rgb_target_read_wrong_mass_fraction": 0.05010813092197719,
+        "tir_target_write_wrong_mass_fraction": 0.04400418687206093,
+        "tir_target_read_wrong_mass_fraction": 0.04756378522533674
+      },
+      "motion": {
+        "lasher": {
+          "valid_joint_trajectories": 49021,
+          "joint_nll_per_step_sum": -17084.164068992217,
+          "oracle_best_mode_normalized_ade_sum": 30488.67075177118,
+          "max_probability_mode_normalized_ade_sum": 36069.14666664907,
+          "joint_nll_per_step": -0.34850704940723803,
+          "oracle_best_mode_normalized_ade": 0.6219512199214863,
+          "max_probability_mode_normalized_ade": 0.7357896955722867,
+          "steps": [
+            {
+              "valid_forecasts": 49233,
+              "nll_sum": -35182.115246244764,
+              "max_probability_mode_center_error_sum": 31439.95923669934,
+              "union_center_band_covered": 45944,
+              "sum_mode_region_area_sum": 1573277.3331772406,
+              "step": 1,
+              "coordinate_pit_histograms": [
+                [
+                  4637,
+                  5513,
+                  3473,
+                  4118,
+                  5008,
+                  5306,
+                  4560,
+                  3933,
+                  4858,
+                  7640
+                ],
+                [
+                  7248,
+                  3023,
+                  3053,
+                  3874,
+                  5548,
+                  6861,
+                  5666,
+                  3900,
+                  3418,
+                  6634
+                ],
+                [
+                  8308,
+                  3327,
+                  3541,
+                  3948,
+                  4684,
+                  5460,
+                  5202,
+                  4899,
+                  4564,
+                  5300
+                ],
+                [
+                  9038,
+                  3740,
+                  3547,
+                  3878,
+                  4859,
+                  5463,
+                  4687,
+                  4177,
+                  3917,
+                  5926
+                ]
+              ],
+              "nll": -0.7146043354303976,
+              "max_probability_mode_center_error": 0.63859523564884,
+              "sum_mode_region_area": 31.95574783533891,
+              "union_center_band_coverage": 0.9331952145918389
+            },
+            {
+              "valid_forecasts": 49135,
+              "nll_sum": 7665.490725869656,
+              "max_probability_mode_center_error_sum": 35971.29591545366,
+              "union_center_band_covered": 45527,
+              "sum_mode_region_area_sum": 1631562.5136960866,
+              "step": 2,
+              "coordinate_pit_histograms": [
+                [
+                  5405,
+                  5841,
+                  3815,
+                  4393,
+                  5089,
+                  4898,
+                  3838,
+                  3470,
+                  4366,
+                  7812
+                ],
+                [
+                  8495,
+                  3683,
+                  3448,
+                  4131,
+                  5132,
+                  5373,
+                  4305,
+                  3324,
+                  3337,
+                  7886
+                ],
+                [
+                  8456,
+                  3657,
+                  3726,
+                  4162,
+                  4764,
+                  5183,
+                  4997,
+                  4548,
+                  4274,
+                  5368
+                ],
+                [
+                  9295,
+                  3973,
+                  3736,
+                  4077,
+                  4847,
+                  5184,
+                  4443,
+                  3890,
+                  3658,
+                  6031
+                ]
+              ],
+              "nll": 0.1560087661721717,
+              "max_probability_mode_center_error": 0.7320910942394151,
+              "sum_mode_region_area": 33.205709040319256,
+              "union_center_band_coverage": 0.9265696550320546
+            },
+            {
+              "valid_forecasts": 49037,
+              "nll_sum": 49571.71448428981,
+              "max_probability_mode_center_error_sum": 41192.031795433126,
+              "union_center_band_covered": 45321,
+              "sum_mode_region_area_sum": 1807563.7346475376,
+              "step": 3,
+              "coordinate_pit_histograms": [
+                [
+                  6018,
+                  4924,
+                  3679,
+                  4283,
+                  5615,
+                  5241,
+                  3986,
+                  3309,
+                  4136,
+                  7621
+                ],
+                [
+                  9124,
+                  3939,
+                  3513,
+                  3938,
+                  4725,
+                  4837,
+                  3881,
+                  3162,
+                  3413,
+                  8474
+                ],
+                [
+                  8633,
+                  3807,
+                  4031,
+                  4342,
+                  4974,
+                  5139,
+                  4872,
+                  4211,
+                  3948,
+                  5080
+                ],
+                [
+                  9079,
+                  3764,
+                  3553,
+                  3952,
+                  4662,
+                  5181,
+                  4691,
+                  4025,
+                  3734,
+                  6395
+                ]
+              ],
+              "nll": 1.0109043066315193,
+              "max_probability_mode_center_error": 0.8400194097402599,
+              "sum_mode_region_area": 36.861221825306146,
+              "union_center_band_coverage": 0.9242204865713645
+            }
+          ]
+        }
+      }
+    },
+    "oracle_c1": {
+      "sequence_mean_iou": 0.7178908448136683,
+      "frame_mean_iou": 0.6577328683865384,
+      "failure_events": 255,
+      "recovery_rate": 0.9372549019607843,
+      "median_recovery_delay_frames": 11.0,
+      "rates": {
+        "local_recall": 0.821258099242378,
+        "budget_recall": 0.8249954298945829,
+        "missing_candidate_reintroduction_rate": 0.02090909090909091,
+        "wrong_template_write_rate": 0.05151717239079693,
+        "misintervention_rate_on_correct_same_state_c1": 0.004455150620353822
+      },
+      "counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "candidate_evaluations": 240048,
+        "local_candidate_recalled_frames": 40433,
+        "budget_candidate_recalled_frames": 40617,
+        "local_missing_frames": 8800,
+        "missing_correct_candidates_reintroduced": 184,
+        "reintroduced_candidates_selected_correctly": 15,
+        "c1_same_state_failed_frames": 7517,
+        "c1_same_state_correct_frames": 38607,
+        "selected_failed_frames": 7553,
+        "changed_candidate_indices": 1129,
+        "valid_changed_candidate_indices": 1124,
+        "same_state_rescues": 149,
+        "same_state_harms": 172,
+        "same_state_iou_improvements": 295,
+        "same_state_iou_degradations": 341,
+        "requested_extra_searches": 2754,
+        "extra_visual_forwards": 2754,
+        "searches_without_new_correct_candidate": 2557,
+        "requested_extra_area_sum_pixels_squared": 2219226009.7457633,
+        "template_updates": 5998,
+        "known_template_updates": 5998,
+        "wrong_template_updates_localization_proxy": 309,
+        "paused_query_writes": 9287,
+        "known_paused_query_writes": 9286,
+        "wrong_query_writes_prevented_localization_proxy": 356,
+        "correct_query_writes_prevented": 8895,
+        "known_active_template_frames": 49233,
+        "wrong_active_template_frames_localization_proxy": 2312,
+        "memory_rgb_target_write_known_mass": 3425.3352217674255,
+        "memory_rgb_target_write_wrong_mass": 176.32000207901,
+        "memory_rgb_target_read_known_mass": 49232.999995929305,
+        "memory_rgb_target_read_wrong_mass": 2262.987599242221,
+        "memory_tir_target_write_known_mass": 3415.1280641555786,
+        "memory_tir_target_write_wrong_mass": 175.98856312036514,
+        "memory_tir_target_read_known_mass": 49233.00013232401,
+        "memory_tir_target_read_wrong_mass": 2077.1004741102824,
+        "candidate_quality_squared_error_sum": 5345.195438293425,
+        "known_candidate_evaluations": 239556
+      },
+      "paired": {
+        "action_verify_oracle_c1_vs_baseline": {
+          "mean_iou_delta_percentage_points": -2.538766215712138,
+          "paired_sequence_95_ci": [
+            -5.2086759482981435,
+            0.09626040374161171
+          ],
+          "improved_sequences": 39,
+          "worsened_sequences": 56,
+          "tied_sequences": 3,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_oracle_c1_vs_pairwise_oracle_c1_b256": {
+          "mean_iou_delta_percentage_points": 0.0,
+          "paired_sequence_95_ci": [
+            0.0,
+            0.0
+          ],
+          "improved_sequences": 0,
+          "worsened_sequences": 0,
+          "tied_sequences": 98,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_oracle_c1_vs_c1": {
+          "mean_iou_delta_percentage_points": -2.1549316787871278,
+          "paired_sequence_95_ci": [
+            -4.842584152667374,
+            0.5315534170729368
+          ],
+          "improved_sequences": 38,
+          "worsened_sequences": 57,
+          "tied_sequences": 3,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        }
+      },
+      "efficiency": {
+        "instrumented_tracking_fps": 27.77402187593385,
+        "latency_p50_ms": 35.28655436821282,
+        "latency_p95_ms": 54.44451642688363,
+        "peak_cuda_allocated_mib": 447.4345703125,
+        "peak_cuda_reserved_mib": 488.0
+      },
+      "memory_target_localization_provenance": {
+        "rgb_target_write_wrong_mass_fraction": 0.0514752544389017,
+        "rgb_target_read_wrong_mass_fraction": 0.04596485283101436,
+        "tir_target_write_wrong_mass_fraction": 0.051532053795435025,
+        "tir_target_read_wrong_mass_fraction": 0.042189191569224696
+      },
+      "motion": {
+        "lasher": {
+          "valid_joint_trajectories": 49021,
+          "joint_nll_per_step_sum": -2157.055607427322,
+          "oracle_best_mode_normalized_ade_sum": 30404.899838191177,
+          "max_probability_mode_normalized_ade_sum": 35682.032358291326,
+          "joint_nll_per_step": -0.04400268471527145,
+          "oracle_best_mode_normalized_ade": 0.6202423418165924,
+          "max_probability_mode_normalized_ade": 0.7278927879539652,
+          "steps": [
+            {
+              "valid_forecasts": 49233,
+              "nll_sum": -22134.33283130882,
+              "max_probability_mode_center_error_sum": 31171.558394152133,
+              "union_center_band_covered": 45731,
+              "sum_mode_region_area_sum": 1559124.3315475804,
+              "step": 1,
+              "coordinate_pit_histograms": [
+                [
+                  4019,
+                  5568,
+                  3582,
+                  4136,
+                  5029,
+                  5423,
+                  4619,
+                  3941,
+                  4863,
+                  7888
+                ],
+                [
+                  7145,
+                  2999,
+                  3084,
+                  4006,
+                  5702,
+                  6716,
+                  5721,
+                  3856,
+                  3435,
+                  6547
+                ],
+                [
+                  8122,
+                  3388,
+                  3641,
+                  4076,
+                  4722,
+                  5353,
+                  5107,
+                  4814,
+                  4494,
+                  5516
+                ],
+                [
+                  8878,
+                  3740,
+                  3627,
+                  4183,
+                  4910,
+                  5407,
+                  4662,
+                  3967,
+                  3645,
+                  6209
+                ]
+              ],
+              "nll": -0.4495832638943152,
+              "max_probability_mode_center_error": 0.6331435905622679,
+              "sum_mode_region_area": 31.66827801571264,
+              "union_center_band_coverage": 0.9288688481303191
+            },
+            {
+              "valid_forecasts": 49135,
+              "nll_sum": 20922.660230518057,
+              "max_probability_mode_center_error_sum": 35535.20425800862,
+              "union_center_band_covered": 45361,
+              "sum_mode_region_area_sum": 1616880.034047613,
+              "step": 2,
+              "coordinate_pit_histograms": [
+                [
+                  4801,
+                  5838,
+                  3983,
+                  4406,
+                  5245,
+                  4890,
+                  3936,
+                  3430,
+                  4337,
+                  8085
+                ],
+                [
+                  8374,
+                  3731,
+                  3466,
+                  4145,
+                  5212,
+                  5345,
+                  4306,
+                  3419,
+                  3335,
+                  7766
+                ],
+                [
+                  8317,
+                  3653,
+                  3881,
+                  4265,
+                  4717,
+                  5168,
+                  4859,
+                  4470,
+                  4229,
+                  5576
+                ],
+                [
+                  9149,
+                  4003,
+                  3821,
+                  4276,
+                  4892,
+                  5167,
+                  4385,
+                  3629,
+                  3490,
+                  6313
+                ]
+              ],
+              "nll": 0.4258198886846048,
+              "max_probability_mode_center_error": 0.7232157170654039,
+              "sum_mode_region_area": 32.906889875803664,
+              "union_center_band_coverage": 0.9231912078966114
+            },
+            {
+              "valid_forecasts": 49037,
+              "nll_sum": 65710.30518728212,
+              "max_probability_mode_center_error_sum": 40679.06132086116,
+              "union_center_band_covered": 45184,
+              "sum_mode_region_area_sum": 1791175.1193495234,
+              "step": 3,
+              "coordinate_pit_histograms": [
+                [
+                  5476,
+                  4871,
+                  3752,
+                  4408,
+                  5656,
+                  5384,
+                  3950,
+                  3337,
+                  4094,
+                  7910
+                ],
+                [
+                  9042,
+                  3865,
+                  3582,
+                  3975,
+                  4848,
+                  4871,
+                  3857,
+                  3136,
+                  3494,
+                  8322
+                ],
+                [
+                  8486,
+                  3822,
+                  4149,
+                  4454,
+                  4987,
+                  5024,
+                  4768,
+                  4189,
+                  3922,
+                  5236
+                ],
+                [
+                  8922,
+                  3806,
+                  3629,
+                  4138,
+                  4681,
+                  5223,
+                  4565,
+                  3843,
+                  3532,
+                  6689
+                ]
+              ],
+              "nll": 1.3400147885735694,
+              "max_probability_mode_center_error": 0.829558523581401,
+              "sum_mode_region_area": 36.52701265064183,
+              "union_center_band_coverage": 0.9214266778147113
+            }
+          ]
+        }
+      }
+    },
+    "oracle_own": {
+      "sequence_mean_iou": 0.7231646814958769,
+      "frame_mean_iou": 0.6508207990149764,
+      "failure_events": 216,
+      "recovery_rate": 0.9259259259259259,
+      "median_recovery_delay_frames": 12.0,
+      "rates": {
+        "local_recall": 0.8137428147787054,
+        "budget_recall": 0.8160786464363333,
+        "missing_candidate_reintroduction_rate": 0.012540894220283533,
+        "wrong_template_write_rate": 0.07991730953461403,
+        "misintervention_rate_on_correct_same_state_c1": 0.0023409347957600146
+      },
+      "counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "candidate_evaluations": 240852,
+        "local_candidate_recalled_frames": 40063,
+        "budget_candidate_recalled_frames": 40178,
+        "local_missing_frames": 9170,
+        "missing_correct_candidates_reintroduced": 115,
+        "reintroduced_candidates_selected_correctly": 14,
+        "c1_same_state_failed_frames": 8036,
+        "c1_same_state_correct_frames": 38019,
+        "selected_failed_frames": 8053,
+        "changed_candidate_indices": 957,
+        "valid_changed_candidate_indices": 954,
+        "same_state_rescues": 91,
+        "same_state_harms": 89,
+        "same_state_iou_improvements": 292,
+        "same_state_iou_degradations": 354,
+        "requested_extra_searches": 2920,
+        "extra_visual_forwards": 2911,
+        "searches_without_new_correct_candidate": 2775,
+        "requested_extra_area_sum_pixels_squared": 2479274539.6420255,
+        "template_updates": 19834,
+        "known_template_updates": 19833,
+        "wrong_template_updates_localization_proxy": 1585,
+        "paused_query_writes": 53,
+        "known_paused_query_writes": 50,
+        "wrong_query_writes_prevented_localization_proxy": 12,
+        "correct_query_writes_prevented": 38,
+        "known_active_template_frames": 49232,
+        "wrong_active_template_frames_localization_proxy": 4497,
+        "memory_rgb_target_write_known_mass": 2608.5244303941727,
+        "memory_rgb_target_write_wrong_mass": 36.82670545578003,
+        "memory_rgb_target_read_known_mass": 49233.00003441056,
+        "memory_rgb_target_read_wrong_mass": 706.1340701031115,
+        "memory_tir_target_write_known_mass": 3.021574378013611,
+        "memory_tir_target_write_wrong_mass": 0.0,
+        "memory_tir_target_read_known_mass": 49233.000002101195,
+        "memory_tir_target_read_wrong_mass": 0.0,
+        "candidate_quality_squared_error_sum": 8148.469040332817,
+        "known_candidate_evaluations": 240323
+      },
+      "paired": {
+        "action_verify_oracle_own_vs_pairwise_oracle_own_b256": {
+          "mean_iou_delta_percentage_points": 2.076276463785491,
+          "paired_sequence_95_ci": [
+            -0.13322253833532072,
+            4.1185007335771875
+          ],
+          "improved_sequences": 63,
+          "worsened_sequences": 27,
+          "tied_sequences": 8,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_oracle_own_vs_baseline": {
+          "mean_iou_delta_percentage_points": -2.01138254749128,
+          "paired_sequence_95_ci": [
+            -4.2511186273494515,
+            -0.2219864403764571
+          ],
+          "improved_sequences": 23,
+          "worsened_sequences": 25,
+          "tied_sequences": 50,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        },
+        "action_verify_oracle_own_vs_c1": {
+          "mean_iou_delta_percentage_points": -1.6275480105662705,
+          "paired_sequence_95_ci": [
+            -3.8905730769171076,
+            0.20637056338733548
+          ],
+          "improved_sequences": 25,
+          "worsened_sequences": 25,
+          "tied_sequences": 48,
+          "bootstrap_resamples": 5000,
+          "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+        }
+      },
+      "efficiency": {
+        "instrumented_tracking_fps": 26.136297410977555,
+        "latency_p50_ms": 37.93128300458193,
+        "latency_p95_ms": 55.009958706796155,
+        "peak_cuda_allocated_mib": 447.4345703125,
+        "peak_cuda_reserved_mib": 488.0
+      },
+      "memory_target_localization_provenance": {
+        "rgb_target_write_wrong_mass_fraction": 0.014117830382065913,
+        "rgb_target_read_wrong_mass_fraction": 0.014342698385423827,
+        "tir_target_write_wrong_mass_fraction": 0.0,
+        "tir_target_read_wrong_mass_fraction": 0.0
+      },
+      "motion": {
+        "lasher": {
+          "valid_joint_trajectories": 49021,
+          "joint_nll_per_step_sum": -39305.47121066353,
+          "oracle_best_mode_normalized_ade_sum": 25667.006530250128,
+          "max_probability_mode_normalized_ade_sum": 31600.82143066521,
+          "joint_nll_per_step": -0.8018088413264423,
+          "oracle_best_mode_normalized_ade": 0.5235920632025076,
+          "max_probability_mode_normalized_ade": 0.6446384494536058,
+          "steps": [
+            {
+              "valid_forecasts": 49233,
+              "nll_sum": -49096.41393317951,
+              "max_probability_mode_center_error_sum": 28194.719885600025,
+              "union_center_band_covered": 46310,
+              "sum_mode_region_area_sum": 1556331.579298215,
+              "step": 1,
+              "coordinate_pit_histograms": [
+                [
+                  4317,
+                  5759,
+                  3826,
+                  4270,
+                  5072,
+                  5355,
+                  4500,
+                  3770,
+                  4709,
+                  7603
+                ],
+                [
+                  6498,
+                  3144,
+                  3298,
+                  4110,
+                  5712,
+                  7071,
+                  5681,
+                  3985,
+                  3344,
+                  6382
+                ],
+                [
+                  8996,
+                  3591,
+                  3718,
+                  4003,
+                  4603,
+                  5228,
+                  5075,
+                  4766,
+                  4388,
+                  4865
+                ],
+                [
+                  9761,
+                  3981,
+                  3770,
+                  4299,
+                  4935,
+                  5254,
+                  4545,
+                  3829,
+                  3564,
+                  5295
+                ]
+              ],
+              "nll": -0.9972257212272156,
+              "max_probability_mode_center_error": 0.5726792981455533,
+              "sum_mode_region_area": 31.61155280600847,
+              "union_center_band_coverage": 0.9406292527369854
+            },
+            {
+              "valid_forecasts": 49135,
+              "nll_sum": -14529.469757238565,
+              "max_probability_mode_center_error_sum": 31492.612518111284,
+              "union_center_band_covered": 46017,
+              "sum_mode_region_area_sum": 1613949.5034018166,
+              "step": 2,
+              "coordinate_pit_histograms": [
+                [
+                  5064,
+                  6019,
+                  4056,
+                  4599,
+                  5267,
+                  4977,
+                  3727,
+                  3365,
+                  4305,
+                  7696
+                ],
+                [
+                  7696,
+                  3841,
+                  3623,
+                  4353,
+                  5357,
+                  5598,
+                  4443,
+                  3324,
+                  3411,
+                  7475
+                ],
+                [
+                  9187,
+                  3829,
+                  3958,
+                  4147,
+                  4577,
+                  4987,
+                  4961,
+                  4404,
+                  4153,
+                  4932
+                ],
+                [
+                  10025,
+                  4293,
+                  3857,
+                  4387,
+                  4990,
+                  4962,
+                  4254,
+                  3587,
+                  3297,
+                  5483
+                ]
+              ],
+              "nll": -0.29570509325813704,
+              "max_probability_mode_center_error": 0.6409405213821366,
+              "sum_mode_region_area": 32.847247448902344,
+              "union_center_band_coverage": 0.9365421797089651
+            },
+            {
+              "valid_forecasts": 49037,
+              "nll_sum": 17642.248393502097,
+              "max_probability_mode_center_error_sum": 35389.57410415908,
+              "union_center_band_covered": 45828,
+              "sum_mode_region_area_sum": 1787891.3073477803,
+              "step": 3,
+              "coordinate_pit_histograms": [
+                [
+                  5693,
+                  4944,
+                  3794,
+                  4570,
+                  5839,
+                  5418,
+                  3863,
+                  3272,
+                  4031,
+                  7540
+                ],
+                [
+                  8348,
+                  3909,
+                  3683,
+                  4218,
+                  5165,
+                  5002,
+                  4019,
+                  3189,
+                  3569,
+                  7918
+                ],
+                [
+                  9372,
+                  3961,
+                  4177,
+                  4324,
+                  4839,
+                  4963,
+                  4703,
+                  4190,
+                  3877,
+                  4631
+                ],
+                [
+                  9767,
+                  4011,
+                  3778,
+                  4232,
+                  4775,
+                  5044,
+                  4493,
+                  3727,
+                  3363,
+                  5847
+                ]
+              ],
+              "nll": 0.35977421933442294,
+              "max_probability_mode_center_error": 0.7216912556673345,
+              "sum_mode_region_area": 36.46004664534495,
+              "union_center_band_coverage": 0.9345596182474458
+            }
+          ]
+        }
+      }
+    }
+  },
+  "finding": "oracle_c1/selector_own paired98 means and all mechanism counts exactly equal identity controls; only oracle_own improves2.076276pp vsidentity butCI includes0 and remainsGOLA-2.011383ppCI entirelynegative. Score-driven pauses still preventcorrectwrites; removing independentveto alone does not establish benefit."
+}

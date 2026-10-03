@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "PAIRWISE_FOUR_FULL98_CLOSED_NEGATIVE_ACTION_WRITE_CONTROL_THREE_FULL98_LIVE",
+      "status": "WRITE_PAIR_FOUR_MATCHED_B384_FULL_TRAINING_LIVE_AFTER_ALL4_M0; ACTION_THREE_FULL98_CLOSED_NEGATIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -47,7 +47,7 @@
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
       "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
-      "active_controls": "Fixed weights pairwise oracle_c1 ep9, oracle_own ep48, selector_own ep15: action verification vs identity after actual independent CPU gate, all3 GPU M0 and first-arm C1 bitwise video parity. All3 full98 started03:08:10. selector_c1 ep0 duplicate excluded.",
+      "active_controls": "Threefixedweight actionverification original98/49418 allcomplete; oracle_c1/selector_own exactlysameidentity, oracle_own.723164681 stillGOLA-2.011383ppCI[-4.251119,-.221986]. Currentfreshreference/calibrated x c1/ownB384 all4traininglive.",
       "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
       "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
       "search_supervision_change": "Completed sourcePASS+fourM0+allfourB256full training and98videoreports. Selector target selectedinitialization twice, continuousoracle trainedmodels belowGOLA. No benefit established; pairwise competition supervision now independentnextfactor, architecture/inference unchanged.",
@@ -55,7 +55,278 @@
       "current_b256_results": "All4actual60epochs240updates/full98COMPLETE. OracleC1best42 .691787711/GOLA-5.149080ppCI[-8.229599,-2.122421]; oracleownbest46 .708548595/GOLA-3.472991ppCI[-6.287623,-.919647]. SelectorC1/ownbest0 both.739440162 EXACTC1/GOLA-.383835ppCI[-1.295319,.404423]; initialization not learnedgain. Native formal goals unmet.",
       "prepared_ranking_factor": "Pairwise four60ep/240update fits and original98/49418 full reports COMPLETE. SeqIoU oracle_c1.717890845, selector_c1.739440162 exactC1, oracle_own.702401917, selector_own.722892347; all below full GOLA. No native accuracy success.",
       "current_pairwise_results": "refine-logs/runs/recoverability_pairwise/full98_summary.json; original full98 same fixed protocol all4 markers complete, paired5000, all negative versus GOLA",
-      "write_decision_audit": "Old-reference8 CPU diagnoses complete; initial lowraw denominator bug fixed+old evidence retained. Newfixed-output6 comparisons complete, oracle_c1/selector_own samechoices, oracle_own pauses decline while teacherutility slightly drops; await actual fullvideo causal effect."
+      "write_decision_audit": "Read-only old8 andfixed6 diagnostics complete. VAL47/51 learnedpauses allcorrectcurrent, teachermaxgap.017622 below.03 whilepredictionmean.041005/.047132. Newconditionalwritepair finalgap supervised; frozenC1 futureteacher remains.",
+      "current_write_pair_training": {
+        "status": "ACTUAL_ALL4_MATCHED_FRESH_B384_FULL_TRAINING_LIVE",
+        "observed_cst": "2026-10-04T04:44:54.836571+08:00",
+        "launch_cst": "2026-10-04T04:42:23+08:00",
+        "batch_size": 384,
+        "epochs": 60,
+        "expected_optimizer_steps": 180,
+        "native_accuracy": false,
+        "source_review": "PASS independent same-family provisional",
+        "sanity_gate": "all4 actual3epoch9updates PASS; ephemeral best0 removed/not reused",
+        "arms": {
+          "reference_c1": {
+            "physical_gpu": 0,
+            "root": "/data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004",
+            "actual_process": "2664829       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004",
+            "last_train": {
+              "epoch": 7,
+              "step": 1,
+              "optimizer_steps": 19,
+              "loss": 1.7004015445709229,
+              "parts": {
+                "advantage": 0.055161550641059875,
+                "action_ranking": 0.00742039131000638,
+                "harm": 1.8666236400604248,
+                "quality": 0.8331921696662903,
+                "query_write_risk": 0.052803415805101395,
+                "future": 0.1424989551305771,
+                "memory_gate": 1.3653812408447266,
+                "margin_preservation": 0.0030336682684719563,
+                "identity_margin": 0.15757153928279877,
+                "search_value": 0.02136664278805256,
+                "search_success": 0.6498689651489258,
+                "candidate_absence": 0.7695533037185669,
+                "search_ranking": 1.7370017766952515
+              },
+              "module_gradient_norms": {
+                "A": 0.08505488932132721,
+                "B": 1.071043610572815,
+                "C": 0.9750622510910034
+              },
+              "elapsed_seconds": 131.1723146578297,
+              "peak_cuda_mib": 14194.94091796875
+            },
+            "last_completed_validation": {
+              "epoch": 6,
+              "clips": 128,
+              "loss": 1.6528031826019287,
+              "valid_actions": 4772,
+              "current": 0.7303729057312012,
+              "c1_current": 0.730903148651123,
+              "utility_before_search_cost": 0.7279382944107056,
+              "utility": 0.7270007133483887,
+              "c1_utility": 0.7292657494544983,
+              "pause": 21,
+              "search_triggered": 12,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 13,
+              "original_recall": 113,
+              "budget_recall": 114,
+              "missing_candidate_found": 1,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": -0.000530242919921875,
+              "utility_gain_against_c1": -0.002265036106109619
+            },
+            "fit_complete": false,
+            "job_complete": false,
+            "active_weight": "/data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004/best.pth"
+          },
+          "calibrated_c1": {
+            "physical_gpu": 1,
+            "root": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004",
+            "actual_process": "2664834       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004",
+            "last_train": {
+              "epoch": 7,
+              "step": 1,
+              "optimizer_steps": 19,
+              "loss": 1.709420084953308,
+              "parts": {
+                "advantage": 0.05521100386977196,
+                "action_ranking": 0.007424929179251194,
+                "harm": 1.8672090768814087,
+                "quality": 0.8333144187927246,
+                "query_write_risk": 0.05285189300775528,
+                "future": 0.14248451590538025,
+                "memory_gate": 1.3653799295425415,
+                "margin_preservation": 0.0030334345065057278,
+                "identity_margin": 0.1575707197189331,
+                "search_value": 0.02136632241308689,
+                "search_success": 0.6498659253120422,
+                "candidate_absence": 0.7695502042770386,
+                "search_ranking": 1.7370024919509888,
+                "query_write_advantage": 0.008821261115372181
+              },
+              "module_gradient_norms": {
+                "A": 0.08500751852989197,
+                "B": 1.071112036705017,
+                "C": 0.930774450302124
+              },
+              "elapsed_seconds": 130.99023591401055,
+              "peak_cuda_mib": 14194.94091796875
+            },
+            "last_completed_validation": {
+              "epoch": 6,
+              "clips": 128,
+              "loss": 1.661293387413025,
+              "valid_actions": 4772,
+              "current": 0.7303729057312012,
+              "c1_current": 0.730903148651123,
+              "utility_before_search_cost": 0.7278330326080322,
+              "utility": 0.7268955707550049,
+              "c1_utility": 0.7292657494544983,
+              "pause": 0,
+              "search_triggered": 12,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 13,
+              "original_recall": 113,
+              "budget_recall": 114,
+              "missing_candidate_found": 1,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": -0.000530242919921875,
+              "utility_gain_against_c1": -0.002370178699493408
+            },
+            "fit_complete": false,
+            "job_complete": false,
+            "active_weight": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004/best.pth"
+          },
+          "reference_own": {
+            "physical_gpu": 2,
+            "root": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
+            "actual_process": "2664839       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
+            "last_train": {
+              "epoch": 7,
+              "step": 1,
+              "optimizer_steps": 19,
+              "loss": 1.7041678428649902,
+              "parts": {
+                "advantage": 0.05794505402445793,
+                "action_ranking": 0.007302587851881981,
+                "harm": 1.985780119895935,
+                "quality": 0.8485369086265564,
+                "query_write_risk": 0.051457926630973816,
+                "future": 0.13757874071598053,
+                "memory_gate": 1.3552403450012207,
+                "margin_preservation": 0.0030824460554867983,
+                "identity_margin": 0.1580958366394043,
+                "search_value": 0.019986992701888084,
+                "search_success": 0.646781325340271,
+                "candidate_absence": 0.680134654045105,
+                "search_ranking": 1.7254643440246582
+              },
+              "module_gradient_norms": {
+                "A": 0.07878926396369934,
+                "B": 1.179762363433838,
+                "C": 1.0300893783569336
+              },
+              "elapsed_seconds": 132.05336345592514,
+              "peak_cuda_mib": 14194.94091796875
+            },
+            "last_completed_validation": {
+              "epoch": 6,
+              "clips": 128,
+              "loss": 1.6530909538269043,
+              "valid_actions": 4772,
+              "current": 0.7303729057312012,
+              "c1_current": 0.730903148651123,
+              "utility_before_search_cost": 0.7279382944107056,
+              "utility": 0.7270007133483887,
+              "c1_utility": 0.7292657494544983,
+              "pause": 21,
+              "search_triggered": 12,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 13,
+              "original_recall": 113,
+              "budget_recall": 114,
+              "missing_candidate_found": 1,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": -0.000530242919921875,
+              "utility_gain_against_c1": -0.002265036106109619
+            },
+            "fit_complete": false,
+            "job_complete": false,
+            "active_weight": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+          },
+          "calibrated_own": {
+            "physical_gpu": 3,
+            "root": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004",
+            "actual_process": "2664845       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004",
+            "last_train": {
+              "epoch": 7,
+              "step": 1,
+              "optimizer_steps": 19,
+              "loss": 1.7128242254257202,
+              "parts": {
+                "advantage": 0.05794106796383858,
+                "action_ranking": 0.007260628044605255,
+                "harm": 1.9860994815826416,
+                "quality": 0.8486353158950806,
+                "query_write_risk": 0.05148792639374733,
+                "future": 0.13756416738033295,
+                "memory_gate": 1.355238914489746,
+                "margin_preservation": 0.003080107970163226,
+                "identity_margin": 0.15811480581760406,
+                "search_value": 0.01998685486614704,
+                "search_success": 0.6467768549919128,
+                "candidate_absence": 0.6801313161849976,
+                "search_ranking": 1.725464105606079,
+                "query_write_advantage": 0.008618034422397614
+              },
+              "module_gradient_norms": {
+                "A": 0.0787336677312851,
+                "B": 1.1799049377441406,
+                "C": 0.9886059761047363
+              },
+              "elapsed_seconds": 131.07776949135587,
+              "peak_cuda_mib": 14194.94091796875
+            },
+            "last_completed_validation": {
+              "epoch": 6,
+              "clips": 128,
+              "loss": 1.6614562273025513,
+              "valid_actions": 4772,
+              "current": 0.7303729057312012,
+              "c1_current": 0.730903148651123,
+              "utility_before_search_cost": 0.7278330326080322,
+              "utility": 0.7268955707550049,
+              "c1_utility": 0.7292657494544983,
+              "pause": 0,
+              "search_triggered": 12,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 13,
+              "original_recall": 113,
+              "budget_recall": 114,
+              "missing_candidate_found": 1,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": -0.000530242919921875,
+              "utility_gain_against_c1": -0.002370178699493408
+            },
+            "fit_complete": false,
+            "job_complete": false,
+            "active_weight": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004/best.pth"
+          }
+        },
+        "actual_gpu": [
+          "0, 21610 MiB, 24576 MiB, 100 %",
+          "1, 21281 MiB, 24576 MiB, 100 %",
+          "2, 21281 MiB, 24576 MiB, 100 %",
+          "3, 21281 MiB, 24576 MiB, 100 %"
+        ],
+        "next_check_cst": "2026-10-04T04:52:00+08:00",
+        "poll_seconds": 240,
+        "estimated_fit_end_cst": "2026-10-04T04:56:00--05:02:00+08:00",
+        "estimated_full98_reports_end_cst": "2026-10-04T05:25:00--05:40:00+08:00",
+        "next_action": "observe same4 handles near fit end; do not restart from read-only observer failure; each runner auto full98actualGT/5000report after ownfit; onceall4reportdone, do jointmatched sameprefixcalibrated-vs-reference and GOLA/C1 comparison"
+      },
+      "actual_b512_failure": "FouroneepochM0passed; threefull terminalOOMepoch3firstforward after2epochs4updates, allocated15.46GiB reservedunused7.84GiB; referenceC1fit60/120complete butpartialfull98 intentionallystoppedPID2640830. Failurelogsretained andweightsremovedafterevidence. No lifetimemodification/allocator/fallback; independentrescuePASSexplicitfreshmatchedB384."
     },
     {
       "id": "S3_freeze_then_confirm",
@@ -119,7 +390,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Three full98 action controls LIVE after allM0/parityPASS; automatically report internal actualGT after inference. No next full training or native evaluation queued.",
+    "queued_successor": "Each newB384 fit automatically original98fullvideo actualGTreport/5000paired after ownbeststrictreload; afterall4reports jointmatched newreference/calibrated comparisons mandatory. No nativefinaltestqueued.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -132,26 +403,40 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "action_verify oracle_c1 full98 PID2500295",
-      "GPU1": "B384/B512 real capacity M0 completed; logs copied, temporary weights deleted; available for next useful work",
-      "GPU2": "action_verify oracle_own full98 PID2500301",
-      "GPU3": "action_verify selector_own full98 PID2500310"
+      "GPU0": "reference_c1 B38460ep180steps freshfit",
+      "GPU1": "calibrated_c1 B38460ep180steps freshfit",
+      "GPU2": "reference_own B38460ep180steps freshfit",
+      "GPU3": "calibrated_own B38460ep180steps freshfit"
     },
     "gpu_memory_request": {
-      "status": "REAL_GPU1_BATCH384_AND512_CAPACITY_PASS",
-      "policy": "Increase effective training batches; B512 feasible for measured cached trainer on GPU1, evaluate larger batches for the next new fit. Completed B256 comparisons unchanged; preserve serial causal tracking.",
-      "batch384_peak_allocated_mib": 14192.51708984375,
-      "batch512_peak_allocated_mib": 17723.140625,
-      "batch512_observed_nvidia_smi_peak_mib": 23921,
+      "status": "B384_ALL4_3EPOCH9UPDATE_M0_PASS_THEN_REAL_FULL_ALL4_LIVE",
+      "policy": "B512multi-epoch failed3arms despiteoneepochcapacityPASS; explicitmatchedfreshB384 all4. Realbatchmemory notpadding; serialcausalvideotracking preserved.",
+      "batch_size": 384,
+      "sanity_epochs": 3,
+      "sanity_optimizer_steps": 9,
+      "allfour_m0_pass": true,
+      "actual_allocated_peak_mib": 14194.94091796875,
+      "actual_nvidia_peak_mib_by_gpu": {
+        "GPU3": 21281,
+        "GPU2": 21281,
+        "GPU0": 21610,
+        "GPU1": 21281
+      },
       "card_total_mib": 24576,
-      "batch512_capacity_epochs": 1,
-      "batch512_capacity_optimizer_steps": 2,
-      "all_four_full512_completed": false,
+      "full_epochs": 60,
+      "full_updates": 180,
+      "allfour_full_completed": false,
       "allocation_padding": false,
       "temperature_power_constraints_enabled": false,
-      "receipt": "refine-logs/runs/recoverability_capacity_b512/capacity_summary.json"
+      "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
     },
-    "next_check_cst": "2026-10-04T03:33:00+08:00"
+    "next_check_cst": "2026-10-04T04:52:00+08:00",
+    "checkpoint_cleanup_total": {
+      "files": 48,
+      "bytes": 65671124,
+      "receipt": "refine-logs/runs/recoverability_write_pair/write_pair_b384_m0_and_failed_b512_cleanup_20261004.json",
+      "active_inputs_preserved": true
+    }
   },
   "model_selection": {
     "policy": "One best seed/checkpoint",
@@ -161,5 +446,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T03:17:03.2556901+08:00"
+  "updated_cst": "2026-10-04T04:47:35.0767278+08:00"
 }

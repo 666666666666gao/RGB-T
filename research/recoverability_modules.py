@@ -219,7 +219,7 @@ def action_utility(data):
 
 
 @torch.no_grad()
-def search_supervision_targets(output, data, mode='oracle', threshold=.03):
+def search_supervision_targets(output, data, mode='oracle', threshold=.03, write_verification='identity'):
     """Gross search gain; deployment charges .01 once per extra visual forward.
 
     Selector targets compare the same detached selector with and without each
@@ -242,14 +242,14 @@ def search_supervision_targets(output, data, mode='oracle', threshold=.03):
     forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
     forced['region_success_logits'] = torch.zeros_like(output['region_success_logits'])
     forced['absence_logit'] = torch.full_like(output['absence_logit'], 20)
-    local = select_actions(forced, data, threshold)
+    local = select_actions(forced, data, threshold, write_verification)
     assert not local['search_triggered'].any() and (local['region'] == 0).all()
     reference = utility.flatten(1)[rows, local['flat_action']]
     gains, successes = [], []
     for region in range(1, 7):
         forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
         forced['region_advantage'][:, region - 1] = 1
-        chosen = select_actions(forced, data, threshold)
+        chosen = select_actions(forced, data, threshold, write_verification)
         assert chosen['search_triggered'].all() and (chosen['searched_region'] == region).all()
         assert ((chosen['region'] == 0) | (chosen['region'] == region)).all()
         selected = utility.flatten(1)[rows, chosen['flat_action']]
@@ -279,7 +279,17 @@ def ranking_supervision_loss(scores, utility, action_valid, reference, mode='ref
     return (F.relu(.03 - predicted_gap) * weight).sum() / weight.sum().clamp(min=1)
 
 
-def objective(model, output, data, search_supervision='oracle', threshold=.03, action_ranking='reference'):
+def write_pair_supervision_loss(scores, utility, action_valid):
+    """Calibrate net pause-versus-write scores only where both actions exist."""
+    predicted = scores[..., 1] - scores[..., 0]
+    target = utility[..., 1] - utility[..., 0]
+    paired = action_valid[..., 1]
+    error = F.smooth_l1_loss(predicted, target, reduction='none', beta=.01)
+    return (error * paired).sum() / paired.sum().clamp(min=1)
+
+
+def objective(model, output, data, search_supervision='oracle', threshold=.03, action_ranking='reference',
+              write_pair_calibration=False, write_verification='identity'):
     batch = len(data['valid'])
     valid, action_valid = data['valid'], data['action_valid']
     current = data['current_iou'].float()
@@ -320,7 +330,8 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
     preservation = ((student_gap - teacher_gap).square() * pairs).sum() / pairs.sum().clamp(min=1)
     identity = (F.relu(.2 - student_gap) * pairs).sum() / pairs.sum().clamp(min=1)
 
-    region_gain, region_success = search_supervision_targets(output, data, search_supervision, threshold)
+    region_gain, region_success = search_supervision_targets(output, data, search_supervision, threshold,
+                                                           write_verification)
     region_value_loss = F.smooth_l1_loss(output['region_advantage'], region_gain)
     search_success_loss = F.binary_cross_entropy_with_logits(output['region_success_logits'], region_success)
     absence = (current[:, 0].masked_fill(~valid[:, 0], -1).max(-1).values < .5).float()
@@ -338,4 +349,8 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
         'memory_gate': gate_loss, 'margin_preservation': preservation, 'identity_margin': identity,
         'search_value': region_value_loss, 'search_success': search_success_loss,
         'candidate_absence': absence_loss, 'search_ranking': search_rank}.items()}
+    if write_pair_calibration:
+        write_pair_loss = write_pair_supervision_loss(output['scores'], utility, action_valid)
+        loss = loss + write_pair_loss
+        parts['query_write_advantage'] = float(write_pair_loss.detach())
     return loss, parts

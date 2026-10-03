@@ -1,0 +1,85 @@
+{
+  "status": "ACTUAL_EXISTING_CACHE_EVIDENCE_FOR_CONDITIONAL_WRITE_PAIR_TARGET",
+  "observed_cst": "2026-10-04T03:52:37.8056234+08:00",
+  "rows": [
+    {
+      "arm": "oracle_c1",
+      "partition": "train",
+      "queries": 274,
+      "learned_writable_pause_same_candidate": 42,
+      "current_correct": 32,
+      "predicted_pause_gap_mean": 0.03976293333939144,
+      "teacher_pause_gap_mean": 0.0065516576703105655,
+      "teacher_pause_gap_max": 0.05000000074505806,
+      "teacher_pause_gap_gt_003": 1,
+      "teacher_pause_gap_gt_005": 1,
+      "queries_with_changed_location_excluded": 0
+    },
+    {
+      "arm": "oracle_c1",
+      "partition": "validation",
+      "queries": 128,
+      "learned_writable_pause_same_candidate": 47,
+      "current_correct": 47,
+      "predicted_pause_gap_mean": 0.04100504719672051,
+      "teacher_pause_gap_mean": 0.000857431837852965,
+      "teacher_pause_gap_max": 0.01762211322784424,
+      "teacher_pause_gap_gt_003": 0,
+      "teacher_pause_gap_gt_005": 0,
+      "queries_with_changed_location_excluded": 0
+    },
+    {
+      "arm": "oracle_own",
+      "partition": "train",
+      "queries": 274,
+      "learned_writable_pause_same_candidate": 0,
+      "current_correct": 0,
+      "predicted_pause_gap_mean": null,
+      "teacher_pause_gap_mean": null,
+      "teacher_pause_gap_max": null,
+      "teacher_pause_gap_gt_003": 0,
+      "teacher_pause_gap_gt_005": 0,
+      "queries_with_changed_location_excluded": 0
+    },
+    {
+      "arm": "oracle_own",
+      "partition": "validation",
+      "queries": 128,
+      "learned_writable_pause_same_candidate": 1,
+      "current_correct": 1,
+      "predicted_pause_gap_mean": 0.03761459141969681,
+      "teacher_pause_gap_mean": -0.0021300315856933594,
+      "teacher_pause_gap_max": -0.0021300315856933594,
+      "teacher_pause_gap_gt_003": 0,
+      "teacher_pause_gap_gt_005": 0,
+      "queries_with_changed_location_excluded": 0
+    },
+    {
+      "arm": "selector_own",
+      "partition": "train",
+      "queries": 274,
+      "learned_writable_pause_same_candidate": 50,
+      "current_correct": 44,
+      "predicted_pause_gap_mean": 0.043372594304382804,
+      "teacher_pause_gap_mean": 0.003364182338118553,
+      "teacher_pause_gap_max": 0.05000000074505806,
+      "teacher_pause_gap_gt_003": 1,
+      "teacher_pause_gap_gt_005": 1,
+      "queries_with_changed_location_excluded": 0
+    },
+    {
+      "arm": "selector_own",
+      "partition": "validation",
+      "queries": 128,
+      "learned_writable_pause_same_candidate": 51,
+      "current_correct": 51,
+      "predicted_pause_gap_mean": 0.047131806831149495,
+      "teacher_pause_gap_mean": 0.0007462408028396906,
+      "teacher_pause_gap_max": 0.01762211322784424,
+      "teacher_pause_gap_gt_003": 0,
+      "teacher_pause_gap_gt_005": 0,
+      "queries_with_changed_location_excluded": 0
+    }
+  ],
+  "scope": "Read already completed causal CPU cached outputs; only matched identity/action candidate positions, no additional NN/optimization. GT teacher utility after action selection. Predictor gaps include risk/harm; samecandidate region cost cancels. Teacher is frozenC1 short rollout, not actual action policy long continuation."
+}

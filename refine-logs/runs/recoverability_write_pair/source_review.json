@@ -1,0 +1,594 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "reviewer_fork_turns": "none",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_type": "Fresh experiment-bridge source and independent deterministic CPU gate",
+  "baseline_commit": "bd2940eca885194dc5a3cc726530887530a08328",
+  "reviewed_at_cst": "2026-10-04T04:06:15.6046020+08:00",
+  "scope": "Only the two production training source modifications, new CPU witness, new four-arm runner, complete plan, existing cache/marker/report inputs, historical compatibility and budget attribution. No model construction, neural forward/backward, optimizer, GPU run or production deployment by this reviewer.",
+  "files": [
+    {
+      "path": "research/recoverability_modules.py",
+      "sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158"
+    },
+    {
+      "path": "research/train_recoverability.py",
+      "sha256": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713"
+    },
+    {
+      "path": "scripts/check_recoverability_write_pair_loss.py",
+      "sha256": "3e45fbe1caade12fde36d74378da78ad24ebe2473b85c44bcebf03bc7edf0790"
+    },
+    {
+      "path": "scripts/run_recoverability_write_pair.sh",
+      "sha256": "f44eeca3c338f63dcaadd253cdbba07de0ffcc4b420e77207f84f81a0e039393"
+    },
+    {
+      "path": "refine-logs/runs/recoverability_write_pair/plan.json",
+      "sha256": "a6251433e860429a5bad752d296f8fe6f2150a0fae935d3ea16023c6c8b5272d",
+      "snapshot_note": "Reviewed after joint_matched_comparison was added, before subsequent operational status changes. Production source hashes above are independently checked against private SSH2027 source bytes."
+    }
+  ],
+  "loss_and_causality": {
+    "status": "PASS",
+    "source": "research/recoverability_modules.py:282",
+    "definition": "Mean SmoothL1(beta=0.01) of final scores[...,pause]-scores[...,regular] against action_utility[...,pause]-action_utility[...,regular], only on action_valid[...,pause]. The objective adds this term with coefficient 1 only when write_pair_calibration is true.",
+    "legal_pairs": "Existing load_data assertions establish regular validity equals candidate validity, and pause validity equals candidate validity AND raw_score>0.84. All six actual caches satisfy this exactly. Thus using pause validity alone is sufficient; it implies both actions exist. No extra defensive branch is needed.",
+    "target": "The same-candidate current-IoU term cancels. Remaining target is 0.3 times the pause-minus-regular mean three-step future IoU, minus 0.1 times the corresponding wrong-update fraction difference. Targets still come from frozen-C1 continuation labels.",
+    "score_reference_and_cost": "Using final scores includes the existing differential harm and query-write-risk penalties. The common raw-advantage reference, keep query-risk reference and same-region 0.01 extra-search charge cancel in the within-candidate difference. Common score and utility shifts are independently verified to numerical tolerance 1e-7.",
+    "gradient_behavior": "Independent finite differences lower the loss when lowering a false pause score or raising its regular score; the direction reverses for a beneficial pause. Invalid-action perturbations have no effect, an empty writable mask gives finite zero, and the correctly calibrated gap has zero loss. The separately inspected main-agent CPU score-tensor backward witness confirms the corresponding autograd signs and zero invalid gradients.",
+    "gt_boundary": "DECISION_FIELDS and trainer.forward are unchanged. Current/future IoU, wrong-update labels, action_valid labels and history IoU do not enter the neural decision dictionary. select_actions is AST-identical to the baseline and changing GT label tensors leaves every selected-output field unchanged in the independent CPU fixture. Selector-supervision GT utility is read only after detached action choices; oracle supervision is confined to loss labels.",
+    "denominator": "The new term averages over legal writable candidates, without the existing greater-than-0.05 pairwise-ranking cutoff. Empty-mask clamp only prevents a zero denominator, using the existing loss convention.",
+    "unchanged_other_losses": "All 13 pre-existing loss component values remain unchanged for fixed inputs/outputs when the new term is enabled; only the additional term and hence shared-parameter gradients/optimization trajectory change."
+  },
+  "default_and_historical_compatibility": {
+    "status": "PASS",
+    "production_training_files_changed": [
+      "research/recoverability_modules.py",
+      "research/train_recoverability.py"
+    ],
+    "unchanged_by_ast": [
+      "InstanceMemory",
+      "RecoverabilityModules",
+      "select_actions",
+      "action_utility",
+      "ranking_supervision_loss",
+      "train_recoverability.load_data",
+      "train_recoverability.forward",
+      "train_recoverability.main.save"
+    ],
+    "default_flags": {
+      "write_pair_calibration": false,
+      "write_verification": "identity"
+    },
+    "regression": "Six actual caches, all 1444 rows, both oracle/selector supervision and both reference/pairwise ranking: 24 cases. With fixed synthetic finite output tensors, both implicit defaults and explicit False/identity yield bitwise-equal total and all 13 reported components versus bd2940e. Enabling calibration adds exactly the coefficient-1 new loss and preserves all 13 old component values.",
+    "old_scripts": "Existing historical runners are unchanged and omit the new flags, so the previous identity/default-calibration behavior and positional call signatures remain compatible. No fallback or compatibility wrapper was added. The new runner has its own explicit GPU MODE PREFIX STAGE argument order.",
+    "model_and_checkpoint_schema": "Both model classes and nested save function are AST-identical to bd2940e. There are no new parameters, tensor shapes or model state_dict keys. The existing checkpoint top-level structure is unchanged; the two CLI values are stored as additive args/config metadata through vars(args). Existing checkpoint consumers continue to load the same strict model schema."
+  },
+  "mode_plumbing": {
+    "status": "PASS",
+    "trainer_paths": "write_verification is passed to the initial C1-parity selection, evaluate selection, both search-teacher selector call sites, training objective, initial validation, every epoch validation and final strict-best reload validation. write_pair_calibration is consistently supplied to training and every validation objective.",
+    "selector_teacher_cpu": "An identity-denied fixture makes the two modes choose different regular/pause actions and produce different teacher gains. The reviewer observed all seven selector invocations (local plus six forced-extra decisions) receiving the requested identity or action mode. GT changes leave deployment choices unchanged.",
+    "selection_metadata": "config.json and checkpoint args record both flags through vars(args). Best checkpoint selection remains strict improvement of held-out selected utility minus 0.01 per triggered search, including when search keeps the original candidate. The full runner supplies --write-verification action to online evaluation, matching all four new training arms.",
+    "oracle_mode": "The requested four-arm experiment uses oracle search supervision. The new verification flag therefore changes no oracle teacher targets, while still defining the actual validation and deployed selector consistently.",
+    "initialization_and_freezing": "Seed42 fresh pretrained C1 initialization, zero residual initial behavior, original fresh optimizer and frozen-C1 parameter exclusion are unchanged. New loss evaluation consumes no RNG and introduces no model forward or optimizer call. C1 parity, A/B/C update and reload checks must be observed in actual M0."
+  },
+  "runner_and_plan": {
+    "status": "PASS",
+    "arguments": [
+      "physical_gpu",
+      "reference|calibrated",
+      "c1|own",
+      "m0|full"
+    ],
+    "arms": [
+      "reference_c1",
+      "calibrated_c1",
+      "reference_own",
+      "calibrated_own"
+    ],
+    "gpu_assignment": {
+      "0": "reference_c1",
+      "1": "calibrated_c1",
+      "2": "reference_own",
+      "3": "calibrated_own"
+    },
+    "common_recipe": {
+      "batch_size": 512,
+      "epochs_full": 60,
+      "optimizer_updates_full": 120,
+      "epochs_m0": 1,
+      "optimizer_updates_m0": 2,
+      "train_queries": 902,
+      "validation_queries": 128,
+      "seed": 42,
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "threshold": 0.03,
+      "search_supervision": "oracle",
+      "action_ranking": "pairwise",
+      "write_verification": "action",
+      "prefer_last_prefix": true
+    },
+    "data_and_order": "All three existing seed42/43/44 frozen-C1 TRAIN roots are used, followed by either the serial matched-C1 274-row prefix root or the own-policy 274-row prefix root. Existing prefer-last deduplication gives 902 query rows in exactly the same sequence/query order for both prefixes. Both use the same 128-row own-policy validation cache. Actual selected TRAIN and VAL sequence sets are disjoint.",
+    "matched_factor": "Within a prefix, reference/calibrated differ only in --write-pair-calibration and output identity. Batch, epochs, updates, seed, data/order, optimizer settings, action verification, oracle search targets, pairwise action ranking, model, threshold, risk coefficient, frozen C1 and search budget match.",
+    "fresh_initialization": "Full mode starts a new training invocation and never loads M0 or historical best weights. The output root must not exist. Only the best.pth path belonging to that full run is used for continuous evaluation.",
+    "m0_transition": "M0 sets epochs=1 and exits after successful training/completion markers. The full evaluation/report branch is guarded by stage==full. There is no automatic M0-to-full transition. Main agent must inspect all four real M0 receipts before separately invoking fresh full.",
+    "actual_input_markers": "Both existing action_verify_oracle_{c1,own} full job markers and all three prefix/validation completion markers were read and found complete. All four report reference prediction sets (GOLA, C1 and both old action-verification arms) have complete 98-sequence/49418-frame receipts, exact split membership, matching dataset/root and no per-run frame/sequence truncation.",
+    "completion_markers": "set -euo pipefail preserves failure exit. training_completed.txt follows successful trainer return; full job_completed.txt follows successful full98 evaluation and collect_recoverability_metrics report; M0 job_completed.txt follows training only. A marker is stage-specific and is not itself evidence that the separate all-four-M0 gate passed.",
+    "evaluation_metric": "The unchanged collector loads dataset GT and compares each saved prediction against that GT. It validates exact 98 split membership and full sequence lengths, records the internal/development scope, and produces 5000 fixed-checkpoint paired-sequence bootstrap intervals. Other models supply comparisons, not ground-truth labels.",
+    "per_run_historical_reports": "Per-run full report references are GOLA, C1 and the corresponding completed B256 action_verify_oracle prefix run. Those reports provide historical context, not the pure calibration effect.",
+    "joint_matched_comparison": "The reviewed plan now explicitly requires all four new B512 full98/report markers, then a joint existing-collector report for both calibrated runs versus both new B512 reference runs plus GOLA/C1. Only calibrated_c1-vs-reference_c1 and calibrated_own-vs-reference_own support a same-prefix loss comparison. This is required before a pure-loss outcome claim; it does not block M0.",
+    "historical_budget": "Actual old pairwise-oracle fit configs/receipts are B256, 60 epochs, 902 TRAIN/128 VAL, 240 optimizer updates. New B512 fits retain 60 passes over the same number of examples but use 120 updates and action-mode validation. They cannot be labeled a loss-only comparison with old B256 fits.",
+    "resource_gate": "No GPU/capacity acceptance is supplied by this source review. All four new B512 M0 runs must prove capacity and trainability, including GPU0 with its existing foreign allocation; no preemption, hardware setting or artificial memory allocation is introduced by these files."
+  },
+  "existing_main_agent_gradient_witness": {
+    "path": "refine-logs/runs/recoverability_write_pair/cpu_loss_witness.json",
+    "sha256": "1ff4c5526cdfd09ef77da4391ffaba7a2de5df491d73837d56aa614aab6d894b",
+    "status": "PASS",
+    "device": "cpu",
+    "visual_forwards": 0,
+    "optimizer_updates": 0,
+    "old_pairwise_loss_on_false_pause": 0.0,
+    "write_pair_loss_on_false_pause": 0.03400000184774399,
+    "attribution": "Existing receipt and source were inspected. Its score-tensor autograd backward was executed by the main agent, not this reviewer. It is a CPU loss witness, not real GPU M0. Independent reviewer checks use finite differences and no backward."
+  },
+  "independent_cpu_evidence": {
+    "receipt_remote": "/data/gb/setup/write_pair_independent_cpu_review_20261004.json",
+    "receipt_local_private": "C:/Users/gb/.codex_tmp/gola_setup_20261002/write_pair_independent_cpu_review_20261004.json",
+    "receipt_sha256": "453f95ffe7e17b67effa0dd28354f8a0719a860e09dcf55912fb6031cf642910",
+    "script_local_private": "C:/Users/gb/.codex_tmp/gola_setup_20261002/write_pair_independent_cpu_review.py",
+    "execution": "Reviewer authored and directly executed on SSH host alias 2027 using the warm /data/gb/envs/gola/bin/python, LD_LIBRARY_PATH=/data/gb/envs/gola/lib, CUDA_VISIBLE_DEVICES empty. AST extraction executes only pure objective/selection functions; model classes are parsed and compared, never instantiated. Fixed output tensors are synthetic; labels/masks/query metadata are from actual caches.",
+    "status": "PASS",
+    "legacy_cases": 24,
+    "actual_cache_rows": 1444,
+    "nn_constructions": 0,
+    "neural_forwards": 0,
+    "backward_calls": 0,
+    "optimizer_updates": 0,
+    "gpu_runs": 0,
+    "cuda_initialized": false,
+    "complete_result": {
+      "status": "PASS",
+      "checked_utc": "2026-10-04T04:01:02.241803+08:00",
+      "baseline_commit": "bd2940eca885194dc5a3cc726530887530a08328",
+      "source_sha256": {
+        "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+        "research/train_recoverability.py": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713",
+        "scripts/check_recoverability_write_pair_loss.py": "3e45fbe1caade12fde36d74378da78ad24ebe2473b85c44bcebf03bc7edf0790",
+        "scripts/run_recoverability_write_pair.sh": "f44eeca3c338f63dcaadd253cdbba07de0ffcc4b420e77207f84f81a0e039393"
+      },
+      "unchanged_ast": [
+        "InstanceMemory",
+        "RecoverabilityModules",
+        "select_actions",
+        "action_utility",
+        "ranking_supervision_loss",
+        "trainer.load_data",
+        "trainer.forward",
+        "trainer.save"
+      ],
+      "syntax_python_and_bash_pass": true,
+      "cache_metadata": {
+        "/data/gb/outputs/recoverability_train_s42_20261003": {
+          "clips": 256,
+          "partition": "train",
+          "prefix_policy": "frozen full GOLA/C1 peaks, actual predicted history through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 540
+        },
+        "/data/gb/outputs/recoverability_train_s43_20261003": {
+          "clips": 256,
+          "partition": "train",
+          "prefix_policy": "frozen full GOLA/C1 peaks, actual predicted history through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 587
+        },
+        "/data/gb/outputs/recoverability_train_s44_20261003": {
+          "clips": 256,
+          "partition": "train",
+          "prefix_policy": "frozen full GOLA/C1 peaks, actual predicted history through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 596
+        },
+        "/data/gb/outputs/recoverability_paired_c1_prefix_20261003": {
+          "clips": 274,
+          "partition": "train",
+          "prefix_policy": "frozen full GOLA/C1 peaks, actual predicted history through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 272
+        },
+        "/data/gb/outputs/recoverability_own_policy_train_20261003": {
+          "clips": 274,
+          "partition": "train",
+          "prefix_policy": "frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 295
+        },
+        "/data/gb/outputs/recoverability_own_policy_validation_20261003": {
+          "clips": 128,
+          "partition": "validation",
+          "prefix_policy": "frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1",
+          "future_policy": "same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained",
+          "future_horizon": 3,
+          "writable_pairs": 328
+        }
+      },
+      "legacy_regression_cases": [
+        {
+          "root": "/data/gb/outputs/recoverability_train_s42_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s42_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s42_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s42_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s43_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s43_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s43_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s43_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s44_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s44_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s44_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_s44_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 256,
+          "chunks": 8,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 274,
+          "chunks": 9,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "reference",
+          "actual_rows": 128,
+          "chunks": 4,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+          "search_supervision": "oracle",
+          "action_ranking": "pairwise",
+          "actual_rows": 128,
+          "chunks": 4,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "reference",
+          "actual_rows": 128,
+          "chunks": 4,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+          "search_supervision": "selector",
+          "action_ranking": "pairwise",
+          "actual_rows": 128,
+          "chunks": 4,
+          "all_13_parts_and_total_bitwise_equal": true,
+          "calibrated_adds_exactly_one_coefficient1_loss": true
+        }
+      ],
+      "independent_finite_difference": {
+        "old_pairwise_loss": 0.0,
+        "false_pause_loss": 0.03400000184774399,
+        "raises_regular_and_lowers_false_pause": true,
+        "raises_beneficial_pause": true,
+        "invalid_action_perturbation_no_effect": true,
+        "no_write_finite_zero_and_no_perturbation_effect": true,
+        "calibrated_gap_zero_loss": true,
+        "common_score_and_utility_offsets_cancel_within_1e_minus_7": true
+      },
+      "selector_mode_targets": {
+        "identity": {
+          "gain": [
+            [
+              0.33000001311302185,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "success": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "action": {
+          "gain": [
+            [
+              -0.0899999737739563,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "success": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      },
+      "all_seven_teacher_calls_receive_requested_mode": true,
+      "gt_label_changes_do_not_change_selection": true,
+      "matched_queries": {
+        "train": 902,
+        "validation": 128,
+        "c1_own_sequence_query_order_equal": true,
+        "train_validation_sequences_disjoint": true,
+        "expected_m0_updates": 2,
+        "expected_full_updates": 120
+      },
+      "existing_markers": {
+        "/data/gb/outputs/recoverability_paired_c1_prefix_20261003/job_completed.txt": "2026-10-04T00:04:45+08:00",
+        "/data/gb/outputs/recoverability_own_policy_train_20261003/job_completed.txt": "2026-10-03T21:28:49+08:00",
+        "/data/gb/outputs/recoverability_own_policy_validation_20261003/job_completed.txt": "2026-10-03T21:02:50+08:00",
+        "/data/gb/outputs/recoverability_action_verify_oracle_c1_full_20261004/job_completed.txt": "2026-10-04T03:38:26+08:00",
+        "/data/gb/outputs/recoverability_action_verify_oracle_own_full_20261004/job_completed.txt": "2026-10-04T03:40:18+08:00"
+      },
+      "full_report_references": {
+        "baseline": {
+          "folder": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions",
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418
+        },
+        "c1": {
+          "folder": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions",
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418
+        },
+        "action_verify_oracle_c1": {
+          "folder": "/data/gb/outputs/recoverability_action_verify_oracle_c1_full_20261004/predictions",
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "report_completed": true
+        },
+        "action_verify_oracle_own": {
+          "folder": "/data/gb/outputs/recoverability_action_verify_oracle_own_full_20261004/predictions",
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "report_completed": true
+        }
+      },
+      "historical_fit_budget": {
+        "c1": {
+          "batch_size": 256,
+          "epochs": 60,
+          "updates": 240,
+          "train_queries": 902,
+          "validation_queries": 128
+        },
+        "own": {
+          "batch_size": 256,
+          "epochs": 60,
+          "updates": 240,
+          "train_queries": 902,
+          "validation_queries": 128
+        }
+      },
+      "reviewer_execution": {
+        "nn_constructions": 0,
+        "nn_forward": 0,
+        "backward": 0,
+        "optimizer_updates": 0,
+        "gpu_runs": 0,
+        "cuda_initialized": false,
+        "production_source_changes": 0
+      }
+    },
+    "script_sha256": "2ab80087fa2020a86d122627e5cc413e81926c87989dd7fbea2dc5adc1e34e71"
+  },
+  "interpretation_limits": [
+    "PASS permits source deployment and the planned actual M0 checks; it does not replace all-four-M0, free-capacity, frozen-C1, A/B/C-update or strict-reload evidence, and does not authorize an automatic full launch.",
+    "No tracking improvement is established by CPU loss calibration, cached utility or a reduced pause count. A beneficial pause remains a valid learning target; no forced-write policy is introduced.",
+    "Pause-minus-regular score calibration does not guarantee a candidate will be chosen: the unchanged keep-plus-0.03 threshold and competition from other available candidates still apply.",
+    "Frozen-C1 three-step future labels remain the teacher even for own-policy prefixes. This loss does not remove deployed-policy future-distribution mismatch.",
+    "If best_epoch is zero, the retained checkpoint is initialization and must not be described as learned improvement merely because the training loop updated A/B/C later.",
+    "The new joint B512 comparison is required for a pure loss effect. Full98 is internal development evidence; neither official native accuracy nor training-seed uncertainty is established here."
+  ],
+  "reviewer_actions": {
+    "production_source_edits": 0,
+    "production_deployment_or_training_launches": 0,
+    "process_signals": 0,
+    "weight_changes_or_deletions": 0,
+    "hardware_controls": 0,
+    "human_markdown_files_created": 0,
+    "review_artifact": "refine-logs/runs/recoverability_write_pair/source_review.json",
+    "private_review_artifacts": "AST/CPU harness, baseline source-text input JSON and raw CPU receipt only; no source/model/data modifications.",
+    "tooling_incidents": "The initial SSH2027 alias failed; the correct existing alias 2027 worked. Local E:/Scripts/python.exe lacked pyvenv.cfg while preparing reviewer inputs, so PowerShell serialized the exact baseline source and source hashes. An initial remote check therefore exited for missing reviewer input JSON before any substantive test; after supplying that input, the same review harness passed. These are reviewer setup failures, not experiment source failures."
+  }
+}
