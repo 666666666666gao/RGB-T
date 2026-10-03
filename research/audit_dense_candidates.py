@@ -75,6 +75,7 @@ def audit_batch(jobs, dataset, extractor, head, device):
     search_rows = {}
     if 'motion_proposals' in jobs[0]:
         search_crops, search_params, search_contexts = [], [], []
+        empty_searches = []
         directions = np.asarray(((1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)))
         for index, (job, context, image) in enumerate(zip(jobs, contexts, images)):
             if not job['diagnose']:
@@ -89,9 +90,16 @@ def audit_batch(jobs, dataset, extractor, head, device):
             for policy, search_box, factor in policies:
                 provider = SiamFCCroppingParameterSimpleProvider(factor, 10.)
                 provider.initialize(search_box)
+                requested_transform = provider.get(context['tracker'].search_size)
                 crop, _, transform = apply_siamfc_cropping(image, context['tracker'].search_size,
-                                                          provider.get(context['tracker'].search_size),
+                                                          requested_transform,
                                                           'bilinear', False, context['tracker'].image_mean)
+                requested_area = float(np.prod(224. / requested_transform[0]))
+                if not np.isfinite(transform).all():
+                    # Real TRAIN witness: an off-image motion crop is padding only;
+                    # no valid inverse mapping exists, so it creates no candidates.
+                    empty_searches.append((index, policy, factor, requested_area))
+                    continue
                 search_crops.append(context['tracker'].normalization(crop / 255.))
                 search_params.append(transform)
                 search_contexts.append((index, policy, factor))
@@ -108,6 +116,8 @@ def audit_batch(jobs, dataset, extractor, head, device):
         torch.cuda.synchronize(device)
         search_seconds = time.perf_counter() - visual_started
         search_boxes = (search_output['boxes'].flatten(1, 2).float() * 224.).double().cpu().numpy()
+        search_raw = search_output['score_map'].float().sigmoid().flatten(1)
+        search_ranked = search_raw * (1 - extractor.window_penalty) + extractor.window * extractor.window_penalty
         for search_index, (index, policy, factor) in enumerate(search_contexts):
             transform = search_params[search_index]
             image = images[index]
@@ -119,6 +129,10 @@ def audit_batch(jobs, dataset, extractor, head, device):
             overlap = np.asarray([iou(box, gt) for box in boxes])
             extra_boxes = search_candidates['boxes'][search_index, search_candidates['valid'][search_index]]
             dense_boxes = search_output['boxes'].flatten(1, 2)[search_index].float()
+            winner = int(search_ranked[search_index].argmax())
+            all_positions = torch.ones_like(search_raw[search_index], dtype=torch.bool)
+            dense_hann5 = select_peaks(dense_boxes, all_positions, search_ranked[search_index], winner, 5, extractor.nms_iou)
+            dense_raw5 = select_peaks(dense_boxes, all_positions, search_raw[search_index], winner, 5, extractor.nms_iou)
             extra_indices = []
             for candidate in extra_boxes:
                 matches = torch.where((dense_boxes == candidate).all(-1))[0]
@@ -128,13 +142,31 @@ def audit_batch(jobs, dataset, extractor, head, device):
             center = apply_siamfc_cropping_to_boxes(gt, transform).reshape(2, 2).mean(0)
             extra_best_score = float(search_scores[search_index, extra_choice])
             search_rows.setdefault(index, {})[policy] = {
+                'usable_image_crop': True,
                 'extra_candidate_count': len(extra_indices), 'extra_top5_oracle_iou': float(overlap[extra_indices].max()),
                 'extra_dense256_oracle_iou': float(overlap.max()),
+                'extra_dense_hann5_oracle_iou': float(overlap[dense_hann5].max()),
+                'extra_dense_raw5_oracle_iou': float(overlap[dense_raw5].max()),
+                'extra_dense_hann5_count': len(dense_hann5), 'extra_dense_raw5_count': len(dense_raw5),
                 'extra_c1_selected_iou': float(overlap[extra_indices[extra_choice]]),
                 'extra_selected_score': extra_best_score,
                 'target_center_inside_actual_adjusted_crop': bool(((center >= 0) & (center <= 224)).all()),
                 'actual_crop_area_pixels': float(np.prod(224. / transform[0])),
                 'visual_input_size': [224, 224], 'extra_visual_forwards_per_query': 1,
+                'extra_template_source': 'protected first-frame anchor for both z and d', 'area_factor': factor,
+                'all_six_alternatives_batched_visual_seconds': search_seconds,
+                'all_six_alternatives_batched_crop_count': len(search_contexts),
+                'all_six_alternatives_batched_query_count': len({i for i, _, _ in search_contexts})}
+        for index, policy, factor, requested_area in empty_searches:
+            search_rows.setdefault(index, {})[policy] = {
+                'usable_image_crop': False, 'reason': 'empty image extent; adjusted crop has no finite inverse',
+                'extra_candidate_count': 0, 'extra_top5_oracle_iou': 0., 'extra_dense256_oracle_iou': 0.,
+                'extra_dense_hann5_oracle_iou': 0., 'extra_dense_raw5_oracle_iou': 0.,
+                'extra_dense_hann5_count': 0, 'extra_dense_raw5_count': 0,
+                'extra_c1_selected_iou': 0., 'extra_selected_score': None,
+                'target_center_inside_actual_adjusted_crop': False,
+                'actual_crop_area_pixels': None, 'requested_crop_area_pixels': requested_area,
+                'visual_input_size': [224, 224], 'extra_visual_forwards_per_query': 0,
                 'extra_template_source': 'protected first-frame anchor for both z and d', 'area_factor': factor,
                 'all_six_alternatives_batched_visual_seconds': search_seconds,
                 'all_six_alternatives_batched_crop_count': len(search_contexts),
@@ -147,7 +179,9 @@ def audit_batch(jobs, dataset, extractor, head, device):
         winner = int(ranked[index].argmax())
         policies = {'hann5': select_peaks(normalized, peaks[index], ranked[index], winner, 5, extractor.nms_iou),
                     'raw5': select_peaks(normalized, peaks[index], raw[index], winner, 5, extractor.nms_iou),
-                    'hann16': select_peaks(normalized, peaks[index], ranked[index], winner, 16, extractor.nms_iou)}
+                    'hann16': select_peaks(normalized, peaks[index], ranked[index], winner, 16, extractor.nms_iou),
+                    'dense_hann5': select_peaks(normalized, torch.ones_like(peaks[index]), ranked[index], winner, 5, extractor.nms_iou),
+                    'dense_raw5': select_peaks(normalized, torch.ones_like(peaks[index]), raw[index], winner, 5, extractor.nms_iou)}
         assert len(policies['hann5']) == int(candidates['valid'][index].sum())
         assert torch.equal(normalized[policies['hann5']], candidates['boxes'][index, candidates['valid'][index]])
         slots = policies['hann5'] + [0] * (5 - len(policies['hann5']))
@@ -172,6 +206,10 @@ def audit_batch(jobs, dataset, extractor, head, device):
                     'local_peak_oracle_iou': float(overlaps[peaks[index].cpu().numpy()].max()),
                     'raw5_oracle_iou': float(overlaps[policies['raw5']].max()),
                     'hann16_oracle_iou': float(overlaps[policies['hann16']].max()),
+                    'dense_hann5_oracle_iou': float(overlaps[policies['dense_hann5']].max()),
+                    'dense_raw5_oracle_iou': float(overlaps[policies['dense_raw5']].max()),
+                    'dense_hann5_candidate_count': len(policies['dense_hann5']),
+                    'dense_raw5_candidate_count': len(policies['dense_raw5']),
                     'raw5_candidate_count': len(policies['raw5']), 'hann16_candidate_count': len(policies['hann16']),
                     'replayed_valid_candidates': len(policies['hann5']), 'cache_valid_candidates': int(job['valid'].sum()),
                     'cache_selected_iou': job['cached_iou'],
@@ -185,8 +223,10 @@ def audit_batch(jobs, dataset, extractor, head, device):
             for policy in row['extra_search'].values():
                 policy['union_original5_plus_extra5_oracle_iou'] = max(original_oracle, policy['extra_top5_oracle_iou'])
                 policy['union_candidate_count'] = len(policies['hann5']) + policy['extra_candidate_count']
+                for dense_policy in ('dense_hann5', 'dense_raw5'):
+                    policy[f'union_original5_plus_{dense_policy}_oracle_iou'] = max(original_oracle, policy[f'extra_{dense_policy}_oracle_iou'])
                 policy['union_score_selected_iou'] = (policy['extra_c1_selected_iou']
-                                                      if policy['extra_selected_score'] > float(scores[index, choices[index]])
+                                                      if policy['usable_image_crop'] and policy['extra_selected_score'] > float(scores[index, choices[index]])
                                                       else float(overlaps[selected]))
         rows.append(row)
     return rows
@@ -283,6 +323,7 @@ def main():
                 'precision': 'original float16 forward and float32-multiply-before-double decoding; actual adjusted crop',
                 'comparison': 'same causal search; hann5/raw5 equal proposal budget; hann16/dense256 are larger-budget diagnostic upper bounds',
                 'raw5': 'preserves original Hann winner, ranks remaining spatial peaks by raw score with original NMS',
+                'dense_hann5_and_dense_raw5': 'same five-proposal budget and original Hann winner, spacing and NMS; rank all256 positions instead of local peaks; no extra visual forward or GT-conditioned proposal',
                 'cache_replay': 'full original batch groups and order preserve causal batch shapes; fixed five slots, valid counts and actual feature/box/choice differences are recorded',
                 'scope': 'read-only TRAIN/validation GPU replay, no optimizer, no deployed ABC tracker change'}
     if motion_model is not None:
@@ -290,6 +331,8 @@ def main():
                                     'each alternative adds one 224x224 visual crop and up to5 candidates to unchanged original5; '
                                     'all three motion modes together cost four regions/up to20 proposals; '
                                     'factor8 crop has larger physical area, not equal-area; six alternatives are offline batched, not deployed FPS; '
+                                    'padding-only crops with no finite adjusted inverse are explicitly unexecuted, generate zero candidates, '
+                                    'and retain requested area while actual area is undefined; executed crop counts reflect this; '
                                     'query GT is only a post-forward recall label; failure-selected sample cannot measure harms on original correct frames')
     (output / 'config.json').write_text(json.dumps(vars(args) | {'protocol': protocol, 'pretrained_load': extractor.load_receipt}, indent=2))
     started, rows = time.perf_counter(), []
@@ -309,17 +352,24 @@ def main():
         'replayed_missing_candidate': sum(r['replayed_missing_candidate'] for r in rows),
         'target_center_inside_actual_adjusted_original_crop': sum(r['target_center_inside_actual_adjusted_crop'] for r in rows),
         'local_correct_candidate_query_counts': {policy: sum(r[policy + '_oracle_iou'] >= .5 for r in rows)
-                                                for policy in ('replayed_original5', 'dense256', 'local_peak', 'raw5', 'hann16')}}
+                                                for policy in ('replayed_original5', 'dense256', 'local_peak', 'raw5', 'hann16', 'dense_hann5', 'dense_raw5')}}
     if motion_model is not None:
         report['summary']['extra_search'] = {
-            policy: {'queries': len(rows), 'extra_visual_forwards_per_query': 1,
+            policy: {'queries': len(rows), 'requested_extra_visual_crops': len(rows),
+                     'executed_extra_visual_crops': sum(r['extra_search'][policy]['extra_visual_forwards_per_query'] for r in rows),
+                     'extra_visual_forwards_per_query': float(np.mean([r['extra_search'][policy]['extra_visual_forwards_per_query'] for r in rows])),
                      'maximum_original_plus_extra_candidates': 10,
                      'union_correct_candidate_queries': sum(r['extra_search'][policy]['union_original5_plus_extra5_oracle_iou'] >= .5 for r in rows),
                      'extra_correct_dense_queries': sum(r['extra_search'][policy]['extra_dense256_oracle_iou'] >= .5 for r in rows),
+                     'union_correct_dense_hann5_queries': sum(r['extra_search'][policy]['union_original5_plus_dense_hann5_oracle_iou'] >= .5 for r in rows),
+                     'union_correct_dense_raw5_queries': sum(r['extra_search'][policy]['union_original5_plus_dense_raw5_oracle_iou'] >= .5 for r in rows),
                      'target_center_inside_extra_crop_queries': sum(r['extra_search'][policy]['target_center_inside_actual_adjusted_crop'] for r in rows),
                      'union_score_selection_correct_queries': sum(r['extra_search'][policy]['union_score_selected_iou'] >= .5 for r in rows),
                      'mean_original_plus_extra_crop_area_pixels': float(np.mean([
-                         r['original_actual_crop_area_pixels'] + r['extra_search'][policy]['actual_crop_area_pixels'] for r in rows]))}
+                         r['original_actual_crop_area_pixels'] + r['extra_search'][policy]['actual_crop_area_pixels']
+                         for r in rows if r['extra_search'][policy]['usable_image_crop']]))
+                         if any(r['extra_search'][policy]['usable_image_crop'] for r in rows) else None,
+                     'queries_with_defined_actual_crop_area': sum(r['extra_search'][policy]['usable_image_crop'] for r in rows)}
             for policy in rows[0]['extra_search']}
         report['summary']['top_probability_motion_union_correct_queries'] = sum(
             r['extra_search'][f"anchor_motion_{r['motion_top_probability_mode']}"]['union_original5_plus_extra5_oracle_iou'] >= .5 for r in rows)

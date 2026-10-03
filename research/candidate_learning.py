@@ -97,9 +97,10 @@ class CandidateTrainingData(torch.utils.data.Dataset):
 
 
 class FrozenCandidateExtractor(nn.Module):
-    def __init__(self, checkpoint, candidates=5, window_penalty=.45, nms_iou=.7):
+    def __init__(self, checkpoint, candidates=5, window_penalty=.45, nms_iou=.7, proposal_policy='peaks'):
         super().__init__()
         assert candidates >= 2
+        assert proposal_policy in ('peaks', 'dense_hann5', 'dense_raw5')
         backbone = build_dino_v2_backbone('ViT-B/14', load_pretrained=True, acc='none')
         self.base = GOLABaseline_DINOv2(backbone, (8, 8), (16, 16))
         result = self.base.load_state_dict_from_file(checkpoint)
@@ -112,6 +113,7 @@ class FrozenCandidateExtractor(nn.Module):
         self.base.requires_grad_(False)
         self.base.eval()
         self.candidates, self.window_penalty, self.nms_iou = candidates, window_penalty, nms_iou
+        self.proposal_policy = proposal_policy
         window = torch.outer(torch.hann_window(16, periodic=False), torch.hann_window(16, periodic=False))
         self.register_buffer('window', window.flatten())
 
@@ -138,10 +140,13 @@ class FrozenCandidateExtractor(nn.Module):
         indices = torch.zeros((x.shape[0], self.candidates), dtype=torch.long, device=x.device)
         valid = torch.zeros_like(indices, dtype=torch.bool)
         peaks = output['score_map'] == F.max_pool2d(output['score_map'].unsqueeze(1), 3, 1, 1).squeeze(1)
+        if self.proposal_policy != 'peaks':
+            peaks = torch.ones_like(peaks, dtype=torch.bool)
+        proposal_scores = raw if self.proposal_policy == 'dense_raw5' else ranked
         for b in range(x.shape[0]):
-            # Always retain the original winner, then spatially distinct local peaks.
+            # Always retain the original Hann winner; dense controls only relax peaks.
             winner = int(ranked[b].argmax())
-            order = ranked[b].masked_fill(~peaks[b].flatten(), -torch.inf).argsort(descending=True)
+            order = proposal_scores[b].masked_fill(~peaks[b].flatten(), -torch.inf).argsort(descending=True)
             selected = [winner]
             for candidate in order.tolist():
                 if not bool(peaks[b].flatten()[candidate]):

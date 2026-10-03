@@ -47,6 +47,8 @@ def arguments():
     p.add_argument('--validation-split', help='Original TRAIN-held-out split; internal diagnostics only.')
     p.add_argument('--pause-after-correction', type=int, default=0,
                    help='C1 write control: pause this many frames including each non-Hann selection; 0 preserves original updates.')
+    p.add_argument('--candidate-policy', choices=['peaks', 'dense_hann5', 'dense_raw5'], default='peaks',
+                   help='C1 candidate-completion control: same five slots/Hann winner/spacing/NMS and frozen scorer; no extra visual crop.')
     return p.parse_args()
 
 
@@ -147,6 +149,7 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
 def main():
     args = arguments()
     assert args.pause_after_correction >= 0 and (args.pause_after_correction == 0 or args.variant == 'c1')
+    assert args.variant == 'c1' or args.candidate_policy == 'peaks'
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -165,7 +168,8 @@ def main():
         head = head.to(device).eval().requires_grad_(False)
         settings = checkpoint['args']
         assert settings['window_penalty'] == .45, 'Evaluation preserves the original GOLA window'
-        extractor = FrozenCandidateExtractor(args.pretrained, settings['candidates'], .45, settings['nms_iou']).to(device)
+        extractor = FrozenCandidateExtractor(args.pretrained, settings['candidates'], .45, settings['nms_iou'],
+                                             proposal_policy=args.candidate_policy).to(device)
     else:
         extractor = FrozenCandidateExtractor(args.pretrained).to(device)
     dtype = getattr(torch, args.amp_dtype)

@@ -62,7 +62,7 @@ provenance/forecast diagnostics passed source review and GPU correspondence.
 Sampling uses full causal prefixes and batch32. Full98TRAIN-held-out videos
 (49418frames each) compare initial, trained last and trained box-only online;
 checkpoint selection uses sequence-weighted IoU before official tests. All98 videos are complete: initial .737194672342, trained last .739523904518, last box-only .738778577820. Epoch30 was locked before official testing; these are internal localization diagnostics, not PR/SR or a baseline improvement.
-The full ABC and matched box-only evaluations use both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full RGBT234 ABC results are now complete and negative; LasHeR native ABC scores are now 76.757374 PR / 73.319447 NPR / 61.060039 SR, only +0.158925/+0.217474/+0.022614pp over local GOLA. Its complete mechanism/state/uncertainty report markers remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
+The full ABC and matched box-only evaluations use both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full RGBT234 ABC results are now complete and negative; LasHeR native ABC scores are now 76.757374 PR / 73.319447 NPR / 61.060039 SR, only +0.158925/+0.217474/+0.022614pp over local GOLA. All full evaluation/state-comparison/complete-core markers are now present; both core benchmarks are complete. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal
 float32 box-scaling correction; this limited control is not a full benchmark
@@ -368,7 +368,34 @@ This is GT-selected offline diagnosis, not tracking efficacy or harm evidence.
 [Actual25-query visual audit](refine-logs/runs/abc_budgeted_search/validation_full.json).
 The C1 three-frame post-correction write pause passed fresh-context CPU review
 and genuine1935-frame GPU M0: pause0 exactly matches old predictions/candidate
-fields; pause3 actually withholds one high-confidence write. All98 full-video
-pause3 controls are running; safety and efficacy are not established.
+fields; pause3 actually withholds one high-confidence write. All98 full-video pause3 controls are complete: +0.000011860pp over C1, zero rescues/harms, one withheld correct write; efficacy is not established.
 [Source review](refine-logs/runs/abc_pause_write_source_review.json),
 [actual GPU parity/write proof](refine-logs/runs/abc_pause_write_m0_review.json).
+Full ABC evaluation is closed for both core benchmarks. All five +2pp checks
+are false; all paired95% intervals include zero. ABC point estimates also
+remain below existing C1 on all five metrics. State repair is worse than
+box-only on all three LasHeR native scores. Both positive and negative
+attributes, failure/write/forecast/cost diagnostics remain in the reports.
+[Complete actual two-core report](refine-logs/runs/abc_complete_core/complete_core_report.json),
+[five native acceptance checks](refine-logs/runs/abc_complete_core/acceptance.csv),
+[1437 sequence rows](refine-logs/runs/abc_complete_core/per_sequence.csv),
+[93 attribute rows](refine-logs/runs/abc_complete_core/attributes.csv),
+[actual completion marker](refine-logs/runs/abc_complete_core/complete_core_report_completed.txt).
+The151-query TRAIN extra-search audit terminated at strict JSON serialization:
+one actual off-image motion crop has an undefined adjusted inverse, while all
+GT/cache inputs and its padding pixels are finite. Its full report is not
+complete. The exact cause and minimal empty-region handling are being verified
+before a new bad-case GPU probe and full rerun.
+The complete98 C1 pause3 run withholds one correct high-score write and yields
+only+0.000011860pp sequence IoU over C1 (95%CI[0,0.000035580]), zero rescues
+or harms. It does not establish effective safe writing.
+[Full write-control report](refine-logs/runs/abc_pause_write_full/paused_updates_report.json).
+At the same maximum five proposals, dense Hann/raw proposals recover4/3 of25
+missing validation queries vs0 original peaks, without extra visual forwards.
+[Actual25-query dense control](refine-logs/runs/abc_budgeted_search/validation_dense5_full.json).
+The exact TRAIN empty-region bug passed real32-context GPU M0; three sampling
+caches are now replaying on GPU0/1/2. These are not independent training seeds.
+The frozen-C1 full98 dense Hann online control is running on GPU3; dense raw
+waits for GPU0's existing diagnostic success. Both passed fresh-context CPU
+review and genuine1935-frame-per-policy M0, with exact default parity. Their
+full online efficacy/harm results remain pending; the five+2pp goal is unmet.

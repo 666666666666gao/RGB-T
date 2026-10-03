@@ -1,0 +1,37 @@
+{
+  "gate": "PASS_SOURCE_AND_FOCUSED_CPU_FOR_GENUINE_GPU_LIMIT2_ONLY",
+  "source_sha256": "c15a38e8166ca3f14b86c823b1c754ff94d3c18c7ebdbb10a3150cdd9d3841fa",
+  "baseline_commit": "899d052",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer": "/root/dense_completion_review",
+  "reviewer_executed_GPU": false,
+  "score_order_expected": {
+    "peak_hann5": [
+      119,
+      85,
+      15,
+      240,
+      255
+    ],
+    "dense_hann5": [
+      119,
+      35,
+      85,
+      15,
+      240
+    ],
+    "dense_raw5": [
+      119,
+      35,
+      15,
+      240,
+      255
+    ]
+  },
+  "nonpeak_correct_recovered_at_same_K5": true,
+  "original_Hann_winner_NMS_spacing_and_threshold_preserved": true,
+  "no_GT_inputs_in_select_peaks": true,
+  "source_review": "Additive offline audit only; all visual forwards unchanged; no new model/optimizer call; actual audit_batch mock still pending.",
+  "cost_bound": "Dense selection adds CPU/GPU postprocessing, zero visual crops/forwards; each dense list <=5; original5 plus one extra dense5 <=10; original plus all three motion regions <=20."
+}

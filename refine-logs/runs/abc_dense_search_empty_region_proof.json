@@ -1,0 +1,86 @@
+{
+  "GPU_executed": false,
+  "actual_cache_row_witness": {
+    "cache": "/data/gb/outputs/abc_temporal_train_s43_20261003",
+    "cache_row": 47,
+    "sequence": "ab_pingpongball3",
+    "query_frame": 41,
+    "policy": "anchor_motion_0",
+    "image_size": [
+      960,
+      576
+    ],
+    "reference_box": [
+      15.580704689025879,
+      327.112548828125,
+      65.01396942138672,
+      369.70440673828125
+    ],
+    "search_box": [
+      -130.00642062572024,
+      345.04872108638483,
+      -80.5731558933594,
+      387.6405789965411
+    ],
+    "requested_transform": [
+      [
+        1.2172692172162416,
+        1.2172692172162416
+      ],
+      [
+        240.16601813555386,
+        -333.9400653873296
+      ]
+    ],
+    "adjusted_transform_repr": "[[nan, 1.2108107805252075], [nan, -331.76214599609375]]",
+    "crop_pixels_finite": true,
+    "query_GT_finite": true,
+    "query_GT_positive": true
+  },
+  "GT": [
+    441.0,
+    350.0,
+    470.0,
+    373.0
+  ],
+  "requested_crop_area_pixels": 33862.79157765452,
+  "finite_input_boxes": [
+    [
+      0.0,
+      0.0,
+      224.0,
+      224.0
+    ],
+    [
+      84.0,
+      84.0,
+      140.0,
+      140.0
+    ]
+  ],
+  "decoded_boxes_repr": "[[nan, 274.0, nan, 459.00000190734863], [nan, 343.37500071525574, nan, 389.6250011920929]]",
+  "policy_fields_repr": {
+    "extra_candidate_count": "2",
+    "extra_top5_oracle_iou": "nan",
+    "extra_dense256_oracle_iou": "nan",
+    "extra_c1_selected_iou": "nan",
+    "extra_selected_score": "0.75",
+    "target_center_inside_actual_adjusted_crop": "False",
+    "actual_crop_area_pixels": "nan"
+  },
+  "nonfinite_fields": [
+    "extra_top5_oracle_iou",
+    "extra_dense256_oracle_iou",
+    "extra_c1_selected_iou",
+    "actual_crop_area_pixels"
+  ],
+  "first_nonfinite_field_in_report_insertion_order": "extra_top5_oracle_iou",
+  "finite_extra_selected_score_is_sufficient_to_reproduce_failure": true,
+  "strict_JSON_ValueError_reproduced": "Out of range float values are not JSON compliant",
+  "causal_statement": "Actual frozen motion proposal produces a fully off-image horizontal crop. Pixel-aligned crop has zero horizontal input/output extent, causing 0/0 adjusted scale. Finite dense boxes become NaN after inverse transform; overlap and area fields then fail strict JSON. This witness is independent of GPU visual output values.",
+  "suggested_scope": "Represent this evidenced empty extra-region attempt explicitly (zero usable proposals, unavailable adjusted-area metric); preserve finite requested geometry for cost reporting. Do not use a blanket NaN replacement or change/clamp the motion proposal silently. Keep original C1 tracker behavior unchanged.",
+  "full_rerun_gate": "BLOCKED_PENDING_EXPLICIT_EMPTY_REGION_HANDLING_AND_WITNESS_CHECK",
+  "dense_change_gate": "SOURCE_AND_CPU_MOCK_PASS_FOR_LIMIT2_ONLY; existing empty-region problem affects inherited extra-search path too",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional"
+}

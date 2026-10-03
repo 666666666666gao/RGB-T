@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-10-03T07:53:01.943799+00:00",
+  "status": "PASS_SOURCE_AND_CPU_REVIEW",
+  "reviewer": "/root/candidate_policy_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "scope": [
+    "candidate_learning.py",
+    "evaluate_online.py",
+    "compare_candidate_policies.py",
+    "scripts/run_candidate_policy_full.sh (with existing run_temporal.sh invocation)"
+  ],
+  "deployed_source_matches_reviewed_snapshots": true,
+  "blocking_issues": [],
+  "nonblocking_code_issues": [],
+  "correctness_conclusion": "The minimal candidate-policy diff implements the fixed frozen-C1 controls: original Hann winner in slot0; all256 ranking by Hann or raw only after removing the local-peak filter; at most five slots; unchanged spacing>=2/NMS<0.7; unchanged C1 features and selection score; no extra visual forward. Default peaks and pause0 preserve previous numerical behavior in CPU fixtures and the tracking-function AST is unchanged. The full98 collector correctly measures both causal trajectory harms/rescues and per-state candidate/write localization proxies against actual GT.",
+  "checks": {
+    "inference": "/data/gb/setup/candidate_policy_review_20261003/source_cpu_gate.json",
+    "collector": "/data/gb/setup/candidate_policy_review_20261003/collector_cpu_gate.json",
+    "locked_actual_controls": "/data/gb/setup/candidate_policy_review_20261003/actual_control_receipts.json",
+    "collector_independent_paired_recount": {
+      "baseline": {
+        "reference_correct_frames": 38976,
+        "reference_failed_frames": 7048,
+        "reference_correct_frames_harmed": 1743,
+        "reference_failed_frames_rescued": 531,
+        "paired_known_frames": 49233,
+        "harm_rate": 0.0447198275862069,
+        "rescue_rate": 0.0753405221339387,
+        "ci": [
+          -1.6501930271730387,
+          0.09604900776581105
+        ]
+      },
+      "c1": {
+        "reference_correct_frames": 37763,
+        "reference_failed_frames": 8151,
+        "reference_correct_frames_harmed": 147,
+        "reference_failed_frames_rescued": 54,
+        "paired_known_frames": 49233,
+        "harm_rate": 0.0038926992029234965,
+        "rescue_rate": 0.006624953993375046,
+        "ci": [
+          -0.5734118236206596,
+          -0.11092080361740952
+        ]
+      }
+    },
+    "collector_fixture_changes": {
+      "rescues": 54,
+      "harms": 147,
+      "frames": 49418,
+      "unknown_GT_tracking_frames": 87
+    },
+    "collector_rows": {
+      "CSV_rows": 294,
+      "unique_variant_sequences": 294,
+      "frames_per_variant": 49418,
+      "marker_present": true
+    },
+    "full_run_wrapper": "/data/gb/setup/candidate_policy_review_20261003/wrapper_source_gate.json"
+  },
+  "test_harness_correction": {
+    "initial_log_retained": "/data/gb/setup/candidate_policy_review_20261003/collector_cpu_gate_initial.log",
+    "initial_harness_retained": "/data/gb/setup/candidate_policy_review_20261003/collector_cpu_gate_initial.py",
+    "reason": "The first harness imposed an unjustified 1e-4 IoU tolerance between full-precision timeline boxes and 3-decimal saved predictions. Corrected only the test to the production selected-coordinate tolerance of 0.000501; production source was not changed."
+  },
+  "gpu_or_optimizer_used_by_reviewer": false,
+  "production_source_edited_by_reviewer": false,
+  "limitations": [
+    "This source/CPU review is not genuine GPU M0 or efficacy evidence. Full98 execution still depends on the separate real1935-frame default-parity/dense M0 and the fixed launch config.",
+    "Synthetic dense collector artifacts are review fixtures only. They must not be reported as candidate-policy inference or latency results.",
+    "The new policy changes subsequent causal state. Paired trajectory effects are distinct from same-state candidate reselection counters.",
+    "Candidate correctness, harms and template contamination are localization proxies, not semantic identity labels.",
+    "5000 paired sequence bootstrap intervals condition on fixed weights and are not training-seed uncertainty.",
+    "Completion requires candidate_policy_completed.txt plus the JSON and 294-row CSV; an injected CSV failure correctly leaves no marker even if JSON exists."
+  ],
+  "full_wrapper_review": {
+    "status": "PASS_SHELL_SOURCE_SYNTAX_AND_REAL_ARGPARSE_ONLY",
+    "shell_launch_executed": false,
+    "GPU_or_model_executed": false,
+    "deployed_script_matches_snapshot": true,
+    "bash_n_both_scripts": true,
+    "fail_fast_source": "set -euo pipefail makes the collector contingent on successful inference.",
+    "gpu_mapping": "physical card argument maps to CUDA_VISIBLE_DEVICES in the inference child, whose default device is cuda:0.",
+    "defaults_verified": "both policies: full98 held-out split/no limits, fixed epoch3 head path, frozen baseline pretrained path, seed42, float16, pause0, complete candidate timeline, exact original control folders.",
+    "caller_gate": "The wrapper is deliberately a minimal launcher. Parent must verify genuine1935-frame GPU M0 before invoking it; this reviewer has not started it."
+  }
+}

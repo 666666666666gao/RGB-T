@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/abc_full_v1/lasher_abc_box_only/report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/abc_full_v1/lasher_abc_box_only/report/paired_sequence_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "baseline",
+        "abc_box_only"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 0.3956528021532014,
+          "percentile_95_interval_percentage_points": [
+            -0.9607560611377115,
+            1.674406383725436
+          ],
+          "improved_sequences": 81,
+          "worsened_sequences": 80,
+          "tied_sequences": 84
+        },
+        "PR": {
+          "mean_delta_percentage_points": 0.3649447502896056,
+          "percentile_95_interval_percentage_points": [
+            -1.073608248612594,
+            1.7827014578332783
+          ],
+          "improved_sequences": 70,
+          "worsened_sequences": 82,
+          "tied_sequences": 93
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.17620009951679078,
+          "percentile_95_interval_percentage_points": [
+            -0.9324064231239712,
+            1.2326818375717838
+          ],
+          "improved_sequences": 92,
+          "worsened_sequences": 89,
+          "tied_sequences": 64
+        }
+      }
+    }
+  }
+}

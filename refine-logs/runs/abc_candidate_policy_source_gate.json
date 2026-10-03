@@ -1,0 +1,97 @@
+{
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer": "/root/candidate_policy_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "kind": "SOURCE_AND_CPU_MOCK_WITH_REAL_C1_HEAD",
+  "gpu_or_optimizer_used": false,
+  "real_visual_model_executed": false,
+  "checks": {
+    "default_peaks_exact_original": {
+      "candidate_fields": [
+        "features",
+        "evidence",
+        "raw_score",
+        "boxes",
+        "valid",
+        "modality_features",
+        "anchor_features"
+      ],
+      "outputs_equal": true,
+      "base_calls_equal": true
+    },
+    "candidate_geometry_features_and_calls": {
+      "selected_indices": {
+        "peaks": [
+          119,
+          85,
+          15,
+          240,
+          255
+        ],
+        "dense_hann5": [
+          119,
+          35,
+          85,
+          15,
+          240
+        ],
+        "dense_raw5": [
+          119,
+          35,
+          15,
+          240,
+          255
+        ]
+      },
+      "per_policy_calls": {
+        "peaks": {
+          "_z_feat": 1,
+          "_d_feat": 1,
+          "_x_feat": 1,
+          "_fusion": 1,
+          "head": 1,
+          "patch_embed": 6
+        },
+        "dense_hann5": {
+          "_z_feat": 1,
+          "_d_feat": 1,
+          "_x_feat": 1,
+          "_fusion": 1,
+          "head": 1,
+          "patch_embed": 6
+        },
+        "dense_raw5": {
+          "_z_feat": 1,
+          "_d_feat": 1,
+          "_x_feat": 1,
+          "_fusion": 1,
+          "head": 1,
+          "patch_embed": 6
+        }
+      },
+      "all_source_outputs_identical": true,
+      "valid_mask_and_invalid_slots": true,
+      "modality_and_anchor_gathers": true,
+      "Hann_winner_spacing_NMS_preserved": true,
+      "checkpoint_epoch": 3,
+      "head_parameters_unchanged": true,
+      "selection_score_formula_exact": true,
+      "input_mutation": false
+    },
+    "pause0_tracking_parity": "PASS: tracking function AST unchanged; CPU baseline/C1 with and without timeline reproduce all boxes, original candidate fields, writes, masks, memory, and calls exactly",
+    "cli_defaults_and_baseline_guard": {
+      "candidate_default": "peaks",
+      "pause_default": 0,
+      "baseline_dense_rejected_before_cuda_or_output": [
+        "dense_hann5",
+        "dense_raw5"
+      ]
+    },
+    "actual_main_dispatch_and_first_GT_only": "PASS: baseline and all three C1 policies; later malformed GT is ignored; baseline constructor has no experimental policy; heads frozen/eval; pause0"
+  },
+  "source_snapshots_match_deployed": true,
+  "status": "PASS_SOURCE_AND_CPU_FOR_REAL_1935_FRAME_M0_ONLY",
+  "remaining_gate": "Actual 1935-frame GPU default parity/dense M0 is not run by reviewer. Full98 collector fixture remains pending; no efficacy claim."
+}

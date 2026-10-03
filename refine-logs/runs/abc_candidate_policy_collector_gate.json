@@ -1,0 +1,116 @@
+{
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer": "/root/candidate_policy_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "kind": "CPU_FULL_REAL_LENGTH_FIXTURE",
+  "gpu_or_optimizer_used": false,
+  "synthetic_dense_outputs_are_not_real_inference": true,
+  "checks": {
+    "same_trajectory": "PASS: exact unchanged C1 localization/mechanisms/calibration with zero delta/CI/harm/rescue",
+    "locked_real_controls_exact": {
+      "baseline": {
+        "frames": 49418,
+        "valid_tracking_frames": 49233,
+        "sequence_mean_iou": 0.7432785069707898,
+        "frame_mean_iou": 0.6671272582460237
+      },
+      "c1": {
+        "frames": 49418,
+        "valid_tracking_frames": 49233,
+        "sequence_mean_iou": 0.7394401616015396,
+        "frame_mean_iou": 0.6485879665086087
+      }
+    },
+    "completion_rows": {
+      "CSV_rows": 294,
+      "unique_variant_sequences": 294,
+      "frames_per_variant": 49418,
+      "marker_present": true
+    },
+    "independent_all_mechanisms_and_calibration": {
+      "counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "valid_candidate_actions": 226114,
+        "candidate_count_sum": 226542,
+        "chosen_failed_frames": 8244,
+        "recalled_frames": 39868,
+        "original_failed_frames": 8208,
+        "original_correct_frames": 37714,
+        "correct_candidate_available_when_original_failed": 2069,
+        "current_frame_reselection_rescues": 76,
+        "current_frame_reselection_harms": 122,
+        "mis_rejected_correct_candidate_frames": 2116,
+        "alternative_selections": 313,
+        "template_updates": 20599,
+        "valid_gt_template_updates": 20598,
+        "wrong_template_updates_localization_proxy": 1997,
+        "known_active_template_source_frames": 49232,
+        "wrong_active_template_source_frames_localization_proxy": 4700,
+        "candidate_quality_squared_error_sum": 5223.141914622225
+      },
+      "calibration_count": 226114,
+      "all10_bin_counts_equal": true,
+      "all10_bin_sums_equal_with_float_sum_tolerance": true
+    },
+    "independent_paired_recount_5000_resamples": {
+      "baseline": {
+        "reference_correct_frames": 38976,
+        "reference_failed_frames": 7048,
+        "reference_correct_frames_harmed": 1743,
+        "reference_failed_frames_rescued": 531,
+        "paired_known_frames": 49233,
+        "harm_rate": 0.0447198275862069,
+        "rescue_rate": 0.0753405221339387,
+        "ci": [
+          -1.6501930271730387,
+          0.09604900776581105
+        ]
+      },
+      "c1": {
+        "reference_correct_frames": 37763,
+        "reference_failed_frames": 8151,
+        "reference_correct_frames_harmed": 147,
+        "reference_failed_frames_rescued": 54,
+        "paired_known_frames": 49233,
+        "harm_rate": 0.0038926992029234965,
+        "rescue_rate": 0.006624953993375046,
+        "ci": [
+          -0.5734118236206596,
+          -0.11092080361740952
+        ]
+      }
+    },
+    "fixture_changes": {
+      "rescues": 54,
+      "harms": 147,
+      "frames": 49418,
+      "unknown_GT_tracking_frames": 87
+    },
+    "unknown_and_init": "PASS: init excluded; unknown write invalidates future source attribution until known write; unknown interrupts failure confirmation",
+    "raw_policy_collection_contract": "PASS: distinct dense_raw5 label/config and same zero-change fixture metrics",
+    "incomplete_or_mismatched_runs_rejected": {
+      "missing_completion_receipt": "FileNotFoundError",
+      "receipt_completed": "AssertionError",
+      "receipt_sequences": "AssertionError",
+      "receipt_frames": "AssertionError",
+      "receipt_candidate_timeline_recorded": "AssertionError",
+      "config_candidate_policy": "AssertionError",
+      "config_pause_after_correction": "AssertionError",
+      "config_head_epoch": "AssertionError",
+      "config_max_frames": "AssertionError",
+      "permission_missing": "KeyError",
+      "permission_dtype": "AssertionError",
+      "permission_blocked": "AssertionError"
+    },
+    "marker_after_json_and_csv": "PASS: injected CSV failure leaves JSON but no completion marker; consumers must require the marker"
+  },
+  "status": "PASS_FULL98_COLLECTOR_CPU_FIXTURE",
+  "limitations": [
+    "Synthetic dense fixtures are not online GPU evidence or efficacy results.",
+    "5000 sequence bootstrap reflects fixed trained weights; it is not training-seed uncertainty.",
+    "Harms, failures, candidate quality and template contamination use localization proxies, not semantic identity labels."
+  ]
+}

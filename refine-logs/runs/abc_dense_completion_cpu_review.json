@@ -1,0 +1,163 @@
+{
+  "gate": "PASS_SOURCE_AND_CPU_MOCK_FOR_GENUINE_GPU_LIMIT2_ONLY",
+  "source_sha256": "c15a38e8166ca3f14b86c823b1c754ff94d3c18c7ebdbb10a3150cdd9d3841fa",
+  "baseline_commit": "899d052",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer": "/root/dense_completion_review",
+  "reviewer_executed_GPU": false,
+  "score_order_expected": {
+    "peak_hann5": [
+      119,
+      85,
+      15,
+      240,
+      255
+    ],
+    "dense_hann5": [
+      119,
+      35,
+      85,
+      15,
+      240
+    ],
+    "dense_raw5": [
+      119,
+      35,
+      15,
+      240,
+      255
+    ]
+  },
+  "nonpeak_correct_recovered_at_same_K5": true,
+  "original_Hann_winner_NMS_spacing_and_threshold_preserved": true,
+  "no_GT_inputs_in_select_peaks": true,
+  "source_review": "No blocking change-specific defect found. Real audit_batch and source summary executed; actual FrozenCandidateExtractor extraction logic ran against a fixed fake backbone output, with CPU-only tracker/image mocks.",
+  "cost_bound": "Dense selection adds CPU/GPU postprocessing, zero visual crops/forwards; each dense list <=5; original5 plus one extra dense5 <=10; original plus all three motion regions <=20.",
+  "actual_audit_batch_exercised": true,
+  "actual_candidate_extractor_selection_and_schema_exercised": true,
+  "actual_summary_source_exercised": true,
+  "baseline_899d052_all_existing_row_summary_event_fields_equal": true,
+  "default_without_motion_and_six_region_motion_paths_passed": true,
+  "original_32_contexts_two_causal_prefix_steps_two_diagnosed_queries": true,
+  "all_six_extra_searches_forwarded_before_first_query_GT": true,
+  "query_GT_perturbation_keeps_every_dense_proposal_index_unchanged": true,
+  "unselected_contexts_have_zero_query_GT_reads": true,
+  "same_crop_area_and_K5_for_dense_peak_comparison": true,
+  "actual_crop_transform_decode_clip_IoU_independently_recomputed": true,
+  "widened_actual_area_is_measured_and_larger_than_local": true,
+  "strict_JSON_true_Python_scalars_no_nan": true,
+  "new_original_summary": {
+    "queries": 2,
+    "cache_exact_features_boxes_valid_counts_and_choice": 2,
+    "replayed_missing_candidate": 2,
+    "target_center_inside_actual_adjusted_original_crop": 2,
+    "local_correct_candidate_query_counts": {
+      "replayed_original5": 0,
+      "dense256": 2,
+      "local_peak": 0,
+      "raw5": 0,
+      "hann16": 0,
+      "dense_hann5": 2,
+      "dense_raw5": 2
+    }
+  },
+  "new_extra_summary": {
+    "queries": 2,
+    "cache_exact_features_boxes_valid_counts_and_choice": 2,
+    "replayed_missing_candidate": 2,
+    "target_center_inside_actual_adjusted_original_crop": 2,
+    "local_correct_candidate_query_counts": {
+      "replayed_original5": 0,
+      "dense256": 2,
+      "local_peak": 0,
+      "raw5": 0,
+      "hann16": 0,
+      "dense_hann5": 2,
+      "dense_raw5": 2
+    },
+    "extra_search": {
+      "anchor_local": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 2,
+        "union_correct_dense_hann5_queries": 2,
+        "union_correct_dense_raw5_queries": 2,
+        "target_center_inside_extra_crop_queries": 2,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 51520.0
+      },
+      "anchor_widened": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 0,
+        "union_correct_dense_hann5_queries": 0,
+        "union_correct_dense_raw5_queries": 0,
+        "target_center_inside_extra_crop_queries": 2,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 128801.0
+      },
+      "anchor_fixed_offset": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 0,
+        "union_correct_dense_hann5_queries": 0,
+        "union_correct_dense_raw5_queries": 0,
+        "target_center_inside_extra_crop_queries": 0,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 51681.0
+      },
+      "anchor_motion_0": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 2,
+        "union_correct_dense_hann5_queries": 2,
+        "union_correct_dense_raw5_queries": 2,
+        "target_center_inside_extra_crop_queries": 2,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 51520.0
+      },
+      "anchor_motion_1": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 0,
+        "union_correct_dense_hann5_queries": 0,
+        "union_correct_dense_raw5_queries": 0,
+        "target_center_inside_extra_crop_queries": 2,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 51520.0
+      },
+      "anchor_motion_2": {
+        "queries": 2,
+        "extra_visual_forwards_per_query": 1,
+        "maximum_original_plus_extra_candidates": 10,
+        "union_correct_candidate_queries": 0,
+        "extra_correct_dense_queries": 0,
+        "union_correct_dense_hann5_queries": 0,
+        "union_correct_dense_raw5_queries": 0,
+        "target_center_inside_extra_crop_queries": 2,
+        "union_score_selection_correct_queries": 0,
+        "mean_original_plus_extra_crop_area_pixels": 51520.0
+      }
+    },
+    "top_probability_motion_union_correct_queries": 0,
+    "any_three_motion_union_correct_queries": 0
+  },
+  "limitations": [
+    "CPU mocked visual/prefix outputs do not establish GPU cache identity, actual-checkpoint behavior, tracking gain, latency, or full-sample usefulness.",
+    "Dense proposals are offline oracles; C1 selection and union_score_selection fields still refer to original peak candidates.",
+    "union_candidate_count is the preexisting original5-plus-extra-peak5 count; dense counts are separately exposed as extra_dense_hann5_count/extra_dense_raw5_count. Actual dense union count can be computed as replayed_valid_candidates plus that count, with upper bound 10.",
+    "Each dense set has budget at most 5, not guaranteed count 5 under spacing/NMS. Extra-region dense sets are calculated after query GT is read, but have no GT data dependency and remained identical under GT perturbation.",
+    "Six alternatives are independently compared. Total diagnostic visual crop work is 1+6 regions per diagnosed query; each deployable one-extra comparison is 1+1 regions. Batched wall time is not deployed FPS."
+  ]
+}
