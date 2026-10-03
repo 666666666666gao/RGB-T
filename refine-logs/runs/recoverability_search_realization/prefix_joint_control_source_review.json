@@ -1,0 +1,62 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_and_cpu_launch_contract_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_files": [
+    "scripts/run_recoverability_prefix_joint_control.sh",
+    "scripts/run_recoverability_prefix_search_control.sh",
+    "scripts/run_temporal.sh",
+    "research/evaluate_recoverability.py",
+    "research/recoverability_tracker.py",
+    "research/collect_recoverability_metrics.py"
+  ],
+  "planned_gpu_argument": 0,
+  "checks": {
+    "bash_syntax": "PASS",
+    "isolated_evaluator_argument_parser": "PASS; executed only the evaluator argparse function, without importing or running a model.",
+    "actual_configuration_comparison": "All evaluator argument fields match the actual completed own42 inference_config.json except disable_search false to true, unsafe_writes false to true, and the isolated output path. Seed42, full pretrained/C1/motion inputs, learned policy, split and sequence/frame limits are identical.",
+    "checkpoint": "The script requires own42 job_completed.txt and reads the same own42 best.pth using the existing strict evaluator load. Actual training completion and inference configuration both identify epoch25; the checkpoint exists.",
+    "joint_flag_semantics": "Disabling search suppresses executed extra crops/visual forwards and requires selection from the original region. Unsafe writes overrides the selected pause to false, so the selected candidate's raw score greater than .84 controls its template write. The two Boolean settings affect their existing independent control points; there is no new model branch or threshold.",
+    "retained_policy": "Learned candidate scoring, selector verification masks, search/motion prediction computation and verified identity-memory updates remain active. Raw template writes are not removal of every verification gate.",
+    "full_split_and_references": "The unchanged full98 evaluator and CPU GT collector use the original TRAIN-validation split, baseline, C1 and the same own42 run. Actual metadata confirms all three references cover the exact98 sequences and49,418 frames with matching dataset/root/split.",
+    "output_isolation": "New output is /data/gb/outputs/recoverability_prefix_own_s42_no_search_raw_write_20261004, with a unique report label prefix_own_s42_no_search_raw_write. Existing own42, single-factor controls, matched C1 controls and input weights are not modified.",
+    "completion_semantics": "set -euo pipefail stops on evaluator or report failure. job_completed.txt is emitted only after the full evaluation and CPU report both succeed.",
+    "cpu_reporting": "CUDA_VISIBLE_DEVICES is empty for collect_recoverability_metrics, which checks complete sequence inventories, prediction lengths and full split settings.",
+    "execution_scope": "No training, optimizer, architecture/loss edit, weight deletion, process signal or thermal/power-control operation is introduced. run_temporal maps the supplied physical GPU0 to evaluator cuda:0."
+  },
+  "actual_metadata_at_review": {
+    "own42_job_completed": true,
+    "own42_checkpoint_exists": true,
+    "own42_best_epoch": 25,
+    "own42_inference_epoch": 25,
+    "evaluation_seed": 42,
+    "zero_init": false,
+    "disable_search": true,
+    "unsafe_writes": true,
+    "new_output_root_exists": false,
+    "prior_unsafe_write_control_completed": true,
+    "references": [
+      {"label": "baseline", "completed": true, "sequences": 98, "frames": 49418},
+      {"label": "c1", "completed": true, "sequences": 98, "frames": 49418},
+      {"label": "prefix_own_s42", "completed": true, "sequences": 98, "frames": 49418}
+    ]
+  },
+  "launch_order": "The required own42 completion gate is already satisfied. Source acceptance permits the planned launch with argument0.",
+  "interpretation_limits": [
+    "This supplies the search-disabled/raw-template-write corner of the fixed-checkpoint 2x2 control. Its script reports baseline/C1/full-policy comparisons; interaction estimation requires the completed results from all four corners.",
+    "Later trajectories and memory states may diverge through the intervention; the comparison is full-video policy behavior, not a same-state decomposition.",
+    "These internal98 diagnostics do not select a final model or establish official-test performance. No matched training control is changed.",
+    "Actual control completion and tracking outcomes remain pending."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "gpu_jobs_launched": 0,
+    "optimizer_updates": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0
+  }
+}

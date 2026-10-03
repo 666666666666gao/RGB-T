@@ -1,7 +1,7 @@
 {
   "version": "2026-10-03_closed_loop_recovery_best_model",
   "status": "ACTIVE_UNMET",
-  "authority": "Latest user: choose one best seed/checkpoint, use four GPUs, prefer75C/250W; administrator hardware setup explicitly deferred by answer 那先不管吧",
+  "authority": "Latest user: choose one best seed/checkpoint, use all four GPUs for useful work, increase useful batch memory; explicit latest correction 不管功率和温度了 disables both power and temperature controls.",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
   "execution_objective": "以完整预训练 GOLA-B 和已有 C1 为固定起点，仅在 LasHeR、RGBT234 上，围绕候选找回、跨区域选择与可信状态提交改进闭环跟踪。先解决缓存验证收益无法转化为连续视频收益的问题，再用模型自身状态训练、选择器可实现的搜索收益、候选关联和风险干预降低持续漂移与误干预。固定验证协议及训练、记忆、搜索预算；按内部验证的完整视频主指标选择一个最佳 seed/checkpoint；该模型超过完整 GOLA-B 并具备必要机制证据后，即可冻结并开展完整论文实验，不要求多个 seed 同时超过。最终验收为两个核心数据集五项原生指标均比同条件完整 GOLA-B 高至少 2 个百分点，且完整报告性能、机制、不确定性和实际推理成本。",
@@ -24,20 +24,20 @@
   "stages": [
     {
       "id": "S0_close_existing_evidence",
-      "status": "in_progress",
-      "work": "RGBT234 locked native all234/116649 reports COMPLETE_NEGATIVE with actual21:44:31 marker after report-only metadata repair. LasHeR245 live; full no-search/unsafe-write controls complete. Preserve all primary receipts and negative results.",
+      "status": "closed_negative",
+      "work": "Locked original recoverability seed42 epoch7 formal evaluation complete on LasHeR245/220703 and RGBT234234/116649. Las PR/NPR/SR76.049166/72.849489/60.680028, RGB MPR/MSR90.960249/68.832481. All five point estimates below full GOLA and C1; complete native attributes/curves/5000paired intervals and mechanism reports retained. S0 closed; performance goal unmet.",
       "acceptance": "All sequences, native metrics, attributes, curves, paired comparisons and actual completion markers are present. Training completion and cached gains do not establish baseline improvement."
     },
     {
       "id": "S1_own_policy_distribution_control",
-      "status": "four_jobs_resumed_with_user_optin_software_thermal_power_pacing",
-      "work": "Latestuser defers administrator hardware setup; allthreepaused experimentalPIDs actuallyreceivedCONT23:14:46 fromtheirretainedstates, G0formalcontinued. Softmonitor exactownedwhitelistlivePID2065281, --allow-uncapped-resume --resume-temp72; STOP>=74C/245W, CONTcool<=72C/220W without250hardwarecap onlyviaexplicituserflag. Actualallcaps350, sample301.26W provesinstant250notguaranteed. Fourtasks advancepaced; pairedactualvectors/equal-seedC1/full98 reports remainpending. Goal remains onebestfixedmodel acrossbothdatasets five+2unmet.",
+      "status": "paired_vector_audit_complete_c1_fits_complete_full_video_pending",
+      "work": "Own42/43 full98 negative .710787459/.713020262; GOLA .743278507. Exact pairedserialC1 cache274 actual CPU finite/mask/causal/protocol/split auditPASS, identical full902queryorder all4fitconfigs; no future decision inputs. C1corresponding42/43 fits each30epochs240updates nowCOMPLETE best22/20, full98live. Compare continuous results before attribution, frozenC1 futurecontinuation limitation remains.",
       "current_limit": "The implemented collector uses learned-policy prefixes but future action rollouts still use frozen C1. This is a prefix-distribution ablation, not a completed own-policy future-continuation correction.",
       "acceptance": "Execution consistency and causal/parent-state M0 pass before matched training; exact same queries/order, initialization, losses and update count in both arms; real A/B/C updates and frozen-base checks pass. Report cached decisions and full continuous-video performance against GOLA-B/C1. Diagnose any remaining negative continuous performance before extending unchanged-cache training."
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "planned_after_S1",
+      "status": "read_only_diagnostic_complete_interventions_pending_S1",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -45,7 +45,11 @@
         "Separate candidate identity correctness from RGB/TIR evidence reliability; test controlled single-modality degradation rather than interpreting duplicated IoU labels as modality reliability.",
         "Train intervention advantage and harm on the current policy's states, and align selection, template/memory submission and motion state decisions. Reintroduce state restoration only if it beats box-only and pause-update controls."
       ],
-      "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE."
+      "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
+      "diagnostic": "Own42epoch25 CPU cached-state diagnostic: TRAIN274/1641nonempty query-region pairs, oracle-beneficial413 with354selector-nonpositive, missing-correct127pairs with3correct selections spanning2/47unique queries. VAL128/768pairs,94beneficial84nonpositive,17missing-correctpairs0selected. All81TRAIN C1-keep raw-write regular actions denied by verification (72correct9wrong); all70VAL denied (69correct1wrong). These are eligibility counts and frozen-C1 future labels, not deployed recovery rates. CPU natural choices128 equal saved GPU128. Same-weight full98 template-write/pause control actually launchedGPU0 after formalclosure; selector/memory verification remains active.",
+      "active_controls": "Same own42epoch25 full98 unsafe-template-writeGPU0 and no-extra-searchGPU2; fixed selection and memory gates retained, no new architecture or trainingloss. Do not interpret partial controls as final performance.",
+      "write_control_completed": "Same-own42 rawtemplatewrite full98 seqIoU.725831009: +1.504355pp vs gatedfull withCI[-.511888,3.381141], still -1.744750pp vsGOLA CI[-3.853158,-.159353]. Thus gateoverblocking is real but insufficient to explain all degradation. No-search and matched C1full trajectories pending.",
+      "factorial_control": "Complete diagnostic2x2: full(gatedwrite+extra-search) and rawwrite+search complete; no-search+gatedwriteGPU2 live; no-search+rawwriteGPU0 actuallylaunched00:33 afterPASS sourcegate. Sameown42epoch25/seed42/full98, selectorandidentitymemoryverification unchanged. Not paper eight-module ablation or new performancecandidate."
     },
     {
       "id": "S3_freeze_then_confirm",
@@ -109,23 +113,36 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "GPU1 c1seed42 reviewed pipeline queued22:39:42; waitactualpairedcollector successmarker at240s, noGPUallocationwhilewaiting; actualpaired-vectoraudit before interpretingeffect",
+    "queued_successor": "Matched C1seed42GPU1 and seed43GPU3 launched after pairedcomplete; own43 is an optional matched control, no multiseed acceptance requirement",
     "thermal_power_constraints": {
-      "resume_power_max": 220,
-      "temperature_requested_max_celsius": 75,
-      "pause_at_power": 245,
-      "resume_requires_hardware_power_limit_max": null,
-      "hardware_limit_setting": "DEFERRED by latestuser; directsettingswerepermissiondenied; actual all350W unchanged",
-      "monitor_pid": 2065281,
-      "resume_temperature_max": 72,
-      "pause_at_temperature": 74,
-      "power_requested_max_watts": 250,
-      "scope": "Only UID-owned exact whitelisted experiment commands; foreign processes excluded",
-      "priority": "Continue experiments as latestuser directed while retaining thermal/power software throttling; hardware hard caps deferred",
-      "monitor_session": "gpu_thermal_guard_soft_20261003",
-      "monitor_interval_seconds": 2,
-      "latest_state": "Actual3CONTmatched23:14:46, experimentalPIDstates/RNG/optimizerpreserved; monitorpacing4tasks. Hardwarecaps350 remain; instantaneouspower>250 observed and disclosed; userdefersadminsetup",
-      "allow_uncapped_resume": true
+      "authority": "不管功率和温度了",
+      "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
+      "enabled": false,
+      "software_temperature_power_throttling_active": false,
+      "experiments_restarted": false,
+      "hardware_settings_changed": false,
+      "stopped_monitor_pid": 2128097,
+      "historical_receipt": "refine-logs/runs/recoverability_search_realization/user_disable_thermal_power_control.json",
+      "resumed_collector_pid": 1977211
+    },
+    "gpu_assignment_current": {
+      "GPU1": "C1prefix42 fitCOMPLETE best22; full98live",
+      "GPU2": "own42epoch25 no-extra-search full98 after completed B256capacity",
+      "GPU0": "own42epoch25 no-extra-search plus raw-template-write joint full98 control LIVE from00:33:00",
+      "GPU3": "C1prefix43 fitCOMPLETE best20; full98live"
+    },
+    "gpu_memory_request": {
+      "status": "capacity_complete_actual4updates_frozenchecksPASS_ownweightdeleted",
+      "changes_current_matched_controls": false,
+      "capacity_epochs": 1,
+      "capacity_queries": 902,
+      "queued_capacity_batch_size": 256,
+      "capacity_gpu": 2,
+      "capacity_updates": 4,
+      "policy": "Increase effective training/collection batches, without artificial allocations or altering currently matched controls",
+      "peak_allocated_mib": 10645.29443359375,
+      "observed_total_gpu_memory_mib": 16685,
+      "interpretation": "Allocated peak and observed total/reserved memory are distinct; not a performance gain. Current matched controls unchanged."
     }
   },
   "model_selection": {
@@ -135,5 +152,6 @@
     "other_seeds_required_to_improve": false,
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
-  }
+  },
+  "updated_cst": "2026-10-04T00:34:00+08:00"
 }

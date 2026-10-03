@@ -12,10 +12,12 @@ def main():
     root = Path('/data/gb/outputs')
     old_roots = [root / f'recoverability_train_s{seed}_20261003' for seed in (42, 43, 44)]
     own_roots = [root / f'recoverability_own_policy_{part}_20261003' for part in ('train', 'validation')]
-    configs = [json.loads((p / 'config.json').read_text()) for p in old_roots + own_roots]
+    paired_root = root / 'recoverability_paired_c1_prefix_20261003'
+    paths = old_roots + own_roots + [paired_root]
+    configs = [json.loads((p / 'config.json').read_text()) for p in paths]
     split = json.loads(Path(configs[0]['split']).read_text())
     records = []
-    for path, config in zip(old_roots + own_roots, configs):
+    for path, config in zip(paths, configs):
         receipt = json.loads((path / 'completion.json').read_text())
         assert receipt['completed'] and not receipt['decision_input_contains_future']
         for key in ('split', 'root', 'cache', 'head', 'pretrained', 'motion_run', 'max_prefix',
@@ -51,6 +53,26 @@ def main():
     own = {(j['sequence'], j['query_frame']) for j in configs[3]['jobs']}
     val = {(j['sequence'], j['query_frame']) for j in configs[4]['jobs']}
     assert not {q[0] for q in old | own} & {q[0] for q in val}
+    assert configs[5]['partition'] == 'train' and configs[5]['serial_c1_prefix']
+    assert configs[5]['jobs'] == configs[3]['jobs']
+    paired = {(j['sequence'], j['query_frame']) for j in configs[5]['jobs']}
+    assert paired == own
+    ordered = []
+    for end in (3, 5):
+        preferred = {(j['sequence'], j['query_frame']): None
+                     for c in configs[:3] + [configs[end]] for j in c['jobs']}
+        ordered.append(list(preferred))
+    assert ordered[0] == ordered[1] and len(ordered[0]) == 902
+    for arm in ('own', 'c1'):
+        for seed in (42, 43):
+            fit = json.loads((root / f'recoverability_prefix_{arm}_s{seed}_20261003' / 'config.json').read_text())
+            assert [tuple(j[:2]) for j in fit['train_jobs']] == ordered[0]
+            assert fit['batch_size'] == 128 and fit['epochs'] == 30 and fit['seed'] == seed
+    with np.load(own_roots[0] / 'samples.npz') as left, np.load(paired_root / 'samples.npz') as right:
+        assert np.array_equal(left['history_frames'], right['history_frames'])
+        assert np.array_equal(left['history_valid'], right['history_valid'])
+        differences = {key: int(np.count_nonzero(left[key] != right[key]))
+                       for key in DECISION_FIELDS + LABEL_FIELDS}
     output = {'completed': True, 'neural_forwards': 0, 'optimization_updates': 0,
               'records': records, 'original_queries': len(old), 'own_queries': len(own),
               'paired_existing_queries': len(old & own), 'new_query_times': len(own - old),
@@ -58,10 +80,13 @@ def main():
               'planned_epochs': 30, 'planned_batch_size': 128,
               'planned_updates_each': 30 * ((len(old | own) + 127) // 128),
               'future_continuation': 'frozen C1; only prefix policy changes',
-              'validation_same_queries': len(val)}
+              'validation_same_queries': len(val),
+              'paired_cache_completed_and_audited': True,
+              'actual_all_four_fit_query_orders_match': True,
+              'own_vs_c1_different_values': differences}
     path = root / 'recoverability_own_policy_audit_20261003'
     path.mkdir(exist_ok=True)
-    (path / 'cache_audit.json').write_text(json.dumps(output, indent=2, allow_nan=False))
+    (path / 'paired_cache_audit.json').write_text(json.dumps(output, indent=2, allow_nan=False))
     print(json.dumps({k: v for k, v in output.items() if k != 'records'}), flush=True)
 
 

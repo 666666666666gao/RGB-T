@@ -1,0 +1,49 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_and_cpu_launch_contract_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_files": [
+    "scripts/queue_recoverability_prefix_write_control.sh",
+    "scripts/guard_gpu_temperature.py"
+  ],
+  "planned_gpu_argument": 0,
+  "checks": {
+    "bash_syntax": "PASS",
+    "guard_python_compile": "PASS",
+    "native_handover": "Queue waits for the original native LasHeR report_completed.txt; absent marker plus absent producer tmux exits with failure. Waiting uses 240-second intervals.",
+    "checkpoint": "The own42 training_completed.txt must exist before evaluation. Existing evaluator strictly loads /data/gb/outputs/recoverability_prefix_own_s42_20261003/best.pth. Actual training receipt and current own42 inference configuration independently confirm best epoch25.",
+    "comparison_protocol": "Same complete original98 TRAIN-validation videos, split, pretrained inputs, learned search, selector, checkpoint and default evaluation seed42. Only --unsafe-writes changes the evaluation policy setting.",
+    "output_isolation": "New run root is /data/gb/outputs/recoverability_prefix_own_s42_unsafe_write_20261003; existing own42 and baseline/C1 artifacts are read-only references.",
+    "reference_gate": "After unsafe evaluation, queue waits for own42 job_completed.txt before collecting comparisons against baseline, C1 and own42. Existing collector verifies complete sequence inventories, prediction frame counts and full split configuration.",
+    "completion": "set -euo pipefail prevents final job_completed.txt after a failed evaluation or report. Final marker follows successful CPU report only.",
+    "cpu_report": "CUDA_VISIBLE_DEVICES is empty for reporting. No training, optimizer or additional checkpoint creation is requested.",
+    "thermal_whitelist": "The sole guard diff adds the exact new output root mapped to physicalGPU0. CPU parser checks accept its evaluator and exclude a foreign-suffix root, the shell queue and CPU reporting. Existing signal matching and opt-in thermal policy are unchanged."
+  },
+  "actual_metadata_at_review": {
+    "native_report_completed": true,
+    "native_tmux_live": false,
+    "own_training_completed": true,
+    "own_best_epoch": 25,
+    "own_full_reference_completed": false,
+    "own_tmux_live": true,
+    "new_unsafe_output_exists": false,
+    "split_sequences": 98
+  },
+  "launch_order": "Native completion is already present, so the queue will start evaluation immediately. Restart the monitor with the new exact GPU0 root before launching this queue with argument0.",
+  "interpretation_limits": [
+    "This is a template-write/pause enforcement control: --unsafe-writes forces the original raw>.84 template write after selection. Selector verification masks and identity-memory verification remain active.",
+    "Subsequent trajectories may diverge through changed template state; this is a full-video intervention comparison, not a same-state causal decomposition.",
+    "Internal98 results are development diagnostics. Selected single-best model and official-test selection rules are unchanged.",
+    "Software pacing remains reactive; report thermal pauses when interpreting wall-clock timing."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "gpu_jobs_launched": 0,
+    "optimizer_updates": 0,
+    "process_signals": 0,
+    "production_source_edits": 0
+  }
+}

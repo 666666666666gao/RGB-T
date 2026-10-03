@@ -1,0 +1,54 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_and_cpu_launch_contract_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_files": [
+    "scripts/queue_recoverability_prefix_capacity_b256.sh",
+    "scripts/run_temporal.sh",
+    "research/train_recoverability.py",
+    "research/recoverability_modules.py"
+  ],
+  "planned_gpu_argument": 2,
+  "checks": {
+    "bash_syntax": "PASS",
+    "embedded_cleanup_python_compile": "PASS",
+    "handover": "The queue waits for own42 job_completed.txt, which is emitted only after full98 evaluation and CPU comparison report. Missing marker with absent producer tmux exits with failure; waits use240 seconds.",
+    "data": "Exact same old s42/s43/s44 TRAIN roots followed by own TRAIN274, prefer-last-prefix, and existing own validation128. The unchanged trainer checks causal receipts, finite arrays, action masks, shared collection protocol and disjoint TRAIN/validation sequences. Actual prior own42 configuration confirms902/128 and prefer-last-prefix.",
+    "initialization_and_training": "Fresh seed42, same frozen C1 checkpoint, unchanged ABC architecture and objective, fresh AdamW with unchanged default settings. Batch256 over902 queries produces256/256/256/134, exactly four optimizer updates in one epoch.",
+    "real_training_evidence": "The existing trainer asserts finite losses and gradients, positive maximum gradient norms and changed parameters in each of A/B/C, and no C1 gradients. It strictly reloads best.pth and checks exact held validation metrics before completion.json.",
+    "receipt_gate": "Cleanup reads successful trainer config/completion and asserts902 TRAIN,128 validation, batch256, one epoch, four updates, all modules changed, frozen C1 gradients absent and strict reload equality.",
+    "output_isolation": "All writes are confined to the new /data/gb/outputs/recoverability_prefix_capacity_b256_20261003 root. Existing own42, pooled caches and pretrained/C1 input weights are read-only inputs.",
+    "cleanup": "After successful receipt assertions, the script resolves best.pth and checks its parent equals the resolved capacity root, then unlinks only that exact file. It preserves config, metrics, train log, completion receipt and best_validation arrays, and writes a separate capacity_cleanup.json with removed path/bytes and capacity-only scope. No recursive delete or input-weight cleanup exists.",
+    "completion_semantics": "set -euo pipefail prevents final job_completed.txt after any trainer, verification or cleanup failure. The final marker follows successful cleanup receipt creation.",
+    "cpu_cleanup": "CUDA_VISIBLE_DEVICES is empty for the embedded stdlib-only receipt verification and cleanup.",
+    "runtime_policy": "No monitor or hardware-limit operation is launched by this queue. The parent reports the earlier monitoring daemon was stopped under the latest user steering; the reviewer did not signal processes."
+  },
+  "actual_metadata_at_final_review": {
+    "own42_full_job_completed": true,
+    "own42_tmux_live": false,
+    "capacity_output_root_exists": false,
+    "actual_prior_own42_train_clips": 902,
+    "actual_prior_own42_validation_clips": 128,
+    "actual_prior_own42_prefer_last_prefix": true,
+    "actual_prior_own42_training_completed": true,
+    "actual_prior_own42_epochs": 30,
+    "actual_prior_own42_optimizer_steps": 240
+  },
+  "launch_order": "The own42 completion gate is now open. Launch with argument2; the queue will start its one-epoch capacity run immediately.",
+  "interpretation_limits": [
+    "This is one real B256 capacity check, not a selected candidate, matched-prefix result or tracking-performance claim.",
+    "Changing batch size changes update count and optimizer trajectory; its validation metrics do not replace the established B128 controls.",
+    "Source acceptance does not assert GPU capacity success before the actual one-epoch run finishes."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "gpu_jobs_launched": 0,
+    "optimizer_updates": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0
+  }
+}

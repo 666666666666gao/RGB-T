@@ -1,0 +1,67 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_diff_and_actual_metadata_cpu_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_source": "scripts/audit_recoverability_own_cache.py",
+  "dependencies_reviewed": [
+    "research/train_recoverability.py:load_data and fit configuration",
+    "research/recoverability_modules.py:DECISION_FIELDS",
+    "research/collect_recoverability.py:prefix configuration and receipts",
+    "scripts/run_recoverability_paired_prefix.sh"
+  ],
+  "checks": {
+    "source_compile": "PASS",
+    "minimal_diff": "Adds the completed paired C1 root to the existing five-cache audit, adds paired manifest/order and four-fit checks, compares all decision/label arrays, and changes only the output audit filename. Existing finite, action-mask, full causal history, source-protocol and split-membership checks remain in place.",
+    "paired_prefix": "Requires the sixth cache to be TRAIN with serial_c1_prefix true and jobs exactly equal to own TRAIN274, including manifest order. Independent actual metadata also confirms prefix_model is null and execution is per-sequence.",
+    "query_order": "The two dictionaries are keyed by sequence/query and retain first-key insertion order, matching the existing prefer-last-prefix loader's ordering. Both arms must contain the same902 queries. Each of four actual fit configurations is required to have that exact query order and the corresponding seed, B128 and30 epochs.",
+    "array_comparison": "After full per-cache finite/causal/mask checks, requires exact history_frames/history_valid equality and records elementwise difference counts for all24 DECISION_FIELDS plus LABEL_FIELDS. Independent NPZ header inspection confirms both actual274 caches have identical shapes and dtypes for every compared field.",
+    "output_preservation": "Writes only /data/gb/outputs/recoverability_own_policy_audit_20261003/paired_cache_audit.json, preserving the existing cache_audit.json and all source caches, fit configs and weights.",
+    "execution_boundary": "Audit operations are JSON/NPZ reads, NumPy checks and one result JSON write. Imports define field constants; the script invokes no model construction, neural forward, optimizer, CUDA operation, process signal or cleanup."
+  },
+  "actual_metadata_crosscheck": {
+    "six_cache_completion_receipts_valid": true,
+    "paired_clips": 274,
+    "paired_jobs_exactly_match_own": true,
+    "paired_serial_c1_prefix": true,
+    "paired_prefix_model": null,
+    "paired_prefix_execution": "per-sequence",
+    "own_and_paired_collection_args_equal": {
+      "batch_clips": 16,
+      "forward_batch": 64,
+      "max_prefix": 1024,
+      "seed": 46
+    },
+    "common_source_protocol_matches_all_six": true,
+    "all24_array_shapes_and_dtypes_equal": true,
+    "fits": [
+      {"arm": "own", "seed": 42, "train_clips": 902, "validation_clips": 128, "batch_size": 128, "epochs": 30, "prefer_last_prefix": true, "complete_expected_query_and_prefix_policy_order_match": true, "validation_order_match": true, "trainable_parameters": 313111},
+      {"arm": "own", "seed": 43, "train_clips": 902, "validation_clips": 128, "batch_size": 128, "epochs": 30, "prefer_last_prefix": true, "complete_expected_query_and_prefix_policy_order_match": true, "validation_order_match": true, "trainable_parameters": 313111},
+      {"arm": "c1", "seed": 42, "train_clips": 902, "validation_clips": 128, "batch_size": 128, "epochs": 30, "prefer_last_prefix": true, "complete_expected_query_and_prefix_policy_order_match": true, "validation_order_match": true, "trainable_parameters": 313111},
+      {"arm": "c1", "seed": 43, "train_clips": 902, "validation_clips": 128, "batch_size": 128, "epochs": 30, "prefer_last_prefix": true, "complete_expected_query_and_prefix_policy_order_match": true, "validation_order_match": true, "trainable_parameters": 313111}
+    ],
+    "all_four_fit_input_roots_and_validation_root_match_expected": true,
+    "all_four_fits_reference_same_frozen_c1": true,
+    "steps_per_epoch": 8,
+    "planned_updates_per_fit": 240,
+    "original_cache_audit_exists": true,
+    "new_paired_cache_audit_exists_at_review": false
+  },
+  "runtime_acceptance": "Source and actual metadata gates pass before the requested CPU audit. The reviewer inspected NPZ headers but did not execute the full new audit or predeclare its finite/causal/difference results.",
+  "interpretation_limits": [
+    "Elementwise cache differences document different recorded prefix states and conditional labels; they are not effect sizes or tracking-performance evidence.",
+    "All future utility labels still use frozen-C1 continuations. Matching prefix collection does not assert full deployed-policy continuation equivalence.",
+    "Four fit configurations establish the planned controls, not successful completion or acceptance of the still-running C1 fits."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "gpu_jobs_launched": 0,
+    "optimizer_updates": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0,
+    "full_audit_runs": 0
+  }
+}

@@ -12,6 +12,7 @@ from pathlib import Path
 
 OUTPUT_GPU = {
     '/data/gb/outputs/recoverability_native_lasher_s42_20261003': 0,
+    '/data/gb/outputs/recoverability_prefix_own_s42_unsafe_write_20261003': 0,
     '/data/gb/outputs/recoverability_paired_c1_prefix_20261003': 1,
     '/data/gb/outputs/recoverability_prefix_c1_s42_20261003': 1,
     '/data/gb/outputs/recoverability_prefix_own_s42_20261003': 2,

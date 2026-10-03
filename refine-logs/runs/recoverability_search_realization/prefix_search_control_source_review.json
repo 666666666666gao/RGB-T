@@ -1,0 +1,60 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_and_cpu_launch_contract_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_files": [
+    "scripts/run_recoverability_prefix_search_control.sh",
+    "scripts/run_temporal.sh",
+    "research/evaluate_recoverability.py",
+    "research/recoverability_tracker.py",
+    "research/recoverability_modules.py:select_actions",
+    "research/collect_recoverability_metrics.py"
+  ],
+  "planned_gpu_argument": 2,
+  "checks": {
+    "bash_syntax": "PASS",
+    "isolated_evaluator_argument_parser": "PASS; executed only the argparse function extracted from the evaluator, without importing the model or running evaluation.",
+    "actual_configuration_comparison": "All evaluator argument fields were compared with the completed own42 inference_config.json. The only differences are disable_search false to true and the new output path. Seed42, pretrained inputs, frozen C1/motion inputs, dataset, root, split, learned policy, safe writes, sequence limits and initialization remain identical.",
+    "checkpoint": "Requires own42 job_completed.txt before evaluation, reads the same own42 best.pth, and uses the unchanged strict evaluator load. Actual own42 training completion and inference configuration both identify epoch25; the checkpoint still exists.",
+    "search_intervention": "--disable-search sets search_enabled false. The tracker suppresses requested extra search and extra crop/visual forward, leaves unobserved extra regions invalid, and asserts the chosen region is original. Candidate scoring, verification masks, pause decisions and identity-memory write rules remain unchanged.",
+    "full_split": "Uses the exact original98 TRAIN-validation split with no sequence or frame limit. Existing evaluator checks the full split inventory; existing CPU collector requires98 complete sequences and verifies every prediction's GT frame count.",
+    "references": "CPU report compares against completed baseline, C1 and the same own42 full-video run. Read-only metadata checks confirm every reference has the exact98 split and49,418 frames, with matching dataset/root/split configuration.",
+    "output_isolation": "Writes only to /data/gb/outputs/recoverability_prefix_own_s42_no_search_20261004 and its predictions/report directories. Existing checkpoint and reference prediction roots are inputs only; the new root is absent at review.",
+    "completion_semantics": "set -euo pipefail stops on evaluation or report failure. job_completed.txt is emitted only after both the full evaluation and CPU report succeed.",
+    "cpu_reporting": "CUDA_VISIBLE_DEVICES is empty for collect_recoverability_metrics; reporting cannot start until the evaluator returns successfully.",
+    "scope": "No architecture, loss, training, optimizer, weight cleanup or thermal/power-control operation is introduced. run_temporal maps the supplied physical GPU argument to the evaluator's cuda:0."
+  },
+  "actual_metadata_at_review": {
+    "own42_job_completed": true,
+    "own42_checkpoint_exists": true,
+    "own42_best_epoch": 25,
+    "own42_inference_epoch": 25,
+    "new_output_root_exists": false,
+    "evaluation_seed": 42,
+    "zero_init": false,
+    "unsafe_writes": false,
+    "references": [
+      {"label": "baseline", "completed": true, "sequences": 98, "frames": 49418},
+      {"label": "c1", "completed": true, "sequences": 98, "frames": 49418},
+      {"label": "prefix_own_s42", "completed": true, "sequences": 98, "frames": 49418}
+    ]
+  },
+  "launch_order": "The own42 completion requirement is already satisfied. Source acceptance permits the planned launch with argument2.",
+  "interpretation_limits": [
+    "This measures the effect of executed extra visual search under the same learned selector and safe-write policy. Search-head and motion prediction computation remain active.",
+    "Full-video trajectories can diverge after suppressing an extra-region decision; this is a fixed-checkpoint policy intervention, not a same-state utility decomposition.",
+    "Original98 outcomes remain development diagnostics, not official-test acceptance or training-seed uncertainty estimates.",
+    "Runtime completion and tracking results remain pending the actual control run."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "gpu_jobs_launched": 0,
+    "optimizer_updates": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0
+  }
+}

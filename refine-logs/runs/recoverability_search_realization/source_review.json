@@ -1,0 +1,118 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "resolved_issues": [
+    {
+      "location": "scripts/diagnose_recoverability_search_realization.py:76-90,114-119",
+      "finding": "Resolved: oracle_beneficial, selector_nonpositive and selector_harm_gt_005 are computed as float32 tensor comparisons before Python serialization, and aggregates consume these Boolean fields. The former Python-double threshold included the actual equality witness boyputtinghandup/query67/region1; the tensor comparison correctly excludes it.",
+      "validation": "Nine boundary assertions executed expressions extracted from the actual source without model construction or neural forward. Corrected local TRAIN/VAL artifacts and threshold_count_correction.json were inspected: TRAIN413/354/3, VAL94/84/2; historical414 is retained only in the correction receipt.",
+      "status": "RESOLVED"
+    }
+  ],
+  "reviewer": "/root/prefix_matched_training_review",
+  "review_type": "source_and_actual_cache_cpu_schema_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_source": "scripts/diagnose_recoverability_search_realization.py",
+  "dependencies_reviewed": [
+    "research/recoverability_modules.py:RecoverabilityModules, select_actions, action_utility, objective",
+    "research/train_recoverability.py:forward, load_data",
+    "research/collect_recoverability.py:query action and frozen-C1 future labels"
+  ],
+  "checks": {
+    "syntax_compile": "PASS",
+    "decision_input_separation": "forward(model, batch) passes DECISION_FIELDS only. Labels are loaded earlier but cannot enter model.forward through this wrapper. Neither natural nor forced select_actions reads GT utility.",
+    "unavailable_region_leakage": "No cross-region feature aggregation was found in the action head. Candidate scores depend on their own inputs, causal history/memory, and original-region keep descriptors. The search head uses original-region features and causal motion/history only. The forced selector exposes original plus exactly one extra region.",
+    "forced_controller": "Only region_advantage, region_success_logits and absence_logit are replaced. Existing scores, verification probabilities and checkpoint threshold are preserved; select_actions asserts search activation, requested region, allowed selected region and gated action validity.",
+    "action_masks": "Real caches satisfy action_valid[...,0] == valid and action_valid[...,1] == valid & (raw_score > .84). The diagnostic's gated_valid reproduces the selector's two-sensor regular-write gate.",
+    "oracle_targets": "region_label_gain reproduces objective's maximum valid action utility within the extra region minus frozen-C1 regular keep utility. available_oracle_net_gain separately maximizes over original plus that extra region. gated_oracle_net_gain additionally enforces selector gate availability.",
+    "search_cost": "The existing score-space cost remains part of the unchanged selection rule. GT action_utility itself contains no search cost, so subtracting .01 once after utility lookup correctly measures a forced search even when the selector keeps an original-region candidate.",
+    "empty_regions": "Empty extra regions receive the objective's reference substitution and are excluded from region-pair aggregates. Original-region actions keep union oracle computations finite.",
+    "denominators": "Region aggregates count nonempty query-region pairs. Missing-target pairs require no correct original-region candidate and at least one correct extra-region candidate. Separate unique-query denominators were added and agree with the existing records. Neither type is a full-video recovery count. Beneficial and harm comparisons now preserve float32 tensor threshold semantics.",
+    "threshold_boundary_assertions": 9,
+    "training_state": "No optimizer, backward pass, checkpoint write, visual extractor forward or live-job change exists in the diagnostic. Model state is loaded strictly and inference uses eval plus no_grad. CPU neural execution was not performed by the reviewer."
+  },
+  "actual_cache_cpu_checks": [
+    {
+      "cache": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+      "partition": "train",
+      "queries": 274,
+      "mask_action_equivalence": true,
+      "nonempty_extra_query_region_pairs": 1641,
+      "empty_extra_query_region_pairs": 3,
+      "positive_region_label_pairs_gt_005": 413,
+      "original_missing_queries": 136,
+      "missing_correct_extra_pairs": 127,
+      "missing_queries_with_some_correct_extra": 47,
+      "keep_raw_write_queries": 81,
+      "correct_keep_raw_write_queries": 72,
+      "incorrect_keep_raw_write_queries_iou_lt_02": 9
+    },
+    {
+      "cache": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+      "partition": "validation",
+      "queries": 128,
+      "mask_action_equivalence": true,
+      "nonempty_extra_query_region_pairs": 768,
+      "empty_extra_query_region_pairs": 0,
+      "positive_region_label_pairs_gt_005": 94,
+      "original_missing_queries": 15,
+      "missing_correct_extra_pairs": 17,
+      "missing_queries_with_some_correct_extra": 7,
+      "keep_raw_write_queries": 70,
+      "correct_keep_raw_write_queries": 69,
+      "incorrect_keep_raw_write_queries_iou_lt_02": 1
+    }
+  ],
+  "nonblocking_reporting_notes": [
+    {
+      "location": "scripts/diagnose_recoverability_search_realization.py:129",
+      "finding": "Resolved: current scope text states that preloaded labels are excluded from model inputs and used only for post-forward scoring.",
+      "status": "RESOLVED"
+    },
+    {
+      "location": "scripts/diagnose_recoverability_search_realization.py:119-122",
+      "finding": "Keep-write-blocked counts describe the C1 keep candidate's regular-action eligibility. A natural selector may choose another candidate, so these counts are not actual withheld template writes.",
+      "minimal_change": "Retain the keep qualification when reporting results. If reporting correct/incorrect blocking rates, use their respective raw-write denominators, recoverable from the per-query records, rather than all queries or all raw writes.",
+      "status": "RESOLVED_IN_SOURCE_NAMES_AND_SCOPE"
+    },
+    {
+      "location": "scripts/diagnose_recoverability_search_realization.py:80-84",
+      "finding": "Every reported gain uses frozen-C1 regular keep as its reference. It is not the marginal value of extra search relative to this model's no-search action.",
+      "minimal_change": "Keep that reference explicit when interpreting the oracle/selector gap; no new computation is required for the stated training-target diagnostic."
+    }
+  ],
+  "runtime_acceptance": "Existing main-agent M0 and full CPU diagnostic JSON artifacts inspected; all completed, no optimizer or visual forwards. Corrected counts and Boolean fields are present, with the obsolete count preserved in threshold_count_correction.json. Reviewer did not run a neural forward.",
+  "existing_runtime_artifact_checks": {
+    "m0_queries": 2,
+    "train_queries": 274,
+    "validation_queries": 128,
+    "all_queries_have_six_forced_region_records": true,
+    "train_reported_beneficial_pairs_before_correction": 414,
+    "threshold_count_correction_receipt": "threshold_count_correction.json",
+    "threshold_count_correction_applied": true,
+    "train_objective_consistent_beneficial_pairs": 413,
+    "train_beneficial_selector_nonpositive_after_correction": 354,
+    "train_beneficial_selector_harm_gt_005_after_correction": 3,
+    "validation_objective_consistent_beneficial_pairs": 94,
+    "validation_beneficial_selector_nonpositive": 84,
+    "validation_beneficial_selector_harm_gt_005": 2,
+    "train_missing_correct_extra_pairs_and_selected": [127, 3],
+    "train_missing_unique_queries_and_selected": [47, 2],
+    "validation_missing_correct_extra_pairs_and_selected": [17, 0],
+    "validation_missing_unique_queries_and_selected": [7, 0],
+    "train_max_keep_tir_probability": 0.4812956750392914,
+    "validation_max_keep_tir_probability": 0.4810647964477539,
+    "actual_utility_label_dtypes": "current_iou, future_iou and wrong_update_fraction are float32; discrepancy is not float16 conversion.",
+    "independent_objective_check": "Pure CPU actual action_utility tensor arithmetic and float32 threshold independently produced 413 TRAIN pairs. No model construction or forward, optimizer or CUDA execution.",
+    "harm_threshold_conversion_discrepancies_on_existing_beneficial_records": 0,
+    "cpu_vs_saved_gpu_validation_choice_parity": "Main agent reports all128 identical; not independently executed by this reviewer."
+  },
+  "limits": [
+    "The reviewer ran source compilation, NumPy cache checks and pure CPU action_utility tensor arithmetic only; no neural forward, optimizer, GPU work or process signal.",
+    "CPU cached-state decisions are not verified bitwise against GPU online inference.",
+    "Future labels remain frozen-C1 continuations from the collected parent states.",
+    "Six separately forced one-extra-region cases are diagnostic counterfactuals; no six-region deployed budget or full-video gain is claimed.",
+    "The 128-query validation cache belongs to reused development videos, not an untouched confirmation set."
+  ]
+}
