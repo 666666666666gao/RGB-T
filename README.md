@@ -79,6 +79,15 @@ center coverage without visual inference, not tracking accuracy or a gain.
 uses the original factor4/minsize10 provider; the earlier inline rectangular
 approximation is obsolete. No checkpoint or live tracker was changed.
 
+The complete-core merger now waits for all four full evaluation receipts and
+both state-control receipts, then combines all five acceptance metrics, every
+attribute and1,437 sequence rows (479 sequences x baseline/ABC/box-only), all
+native/branch/calibration/forecast costs and paired intervals. It also retains
+the complete TRAIN audits,31epochs and earlier baseline/C1 mechanism reports.
+Its [CPU schema review](refine-logs/runs/abc_complete_merge_review.json) passed
+with negative outcomes retained; this is fixture evidence, not benchmark results.
+The merger is waiting and the formal ABC results are still pending.
+
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
 - Initial training after sanity passes: `bash scripts/run_c1_initial.sh`
