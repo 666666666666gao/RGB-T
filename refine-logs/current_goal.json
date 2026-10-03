@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "ALL4_B384_FIT_AND_FULL98_COMPLETE; SELECTED_OWN_EPOCH4_CONTROLS_AND_LOCKED_NATIVE_LASHER_RUNNING",
+      "status": "SELECTED_EPOCH4_CONTROLS_COMPLETE; BOTH_NATIVE_FULL_TESTS_ACTIVE; MATCHED_FUTURE_TEACHER_COLLECTION_ACTIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -47,7 +47,7 @@
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
       "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
-      "active_controls": "同一 selected epoch4：no_search GPU0、raw_write GPU2、identity GPU3；四项真实 M0 2序列128帧均PASS后手动全量。GPU1运行LasHeR245序列正式测试。",
+      "active_controls": "All3 original98/49418 completed; no_search TXT exact; identity TXT+NPZ exact; raw_write -0.225148pp vs selected4 CI[-0.659613,0.001939]. Both native full tests same locked best4 active.",
       "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
       "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
       "search_supervision_change": "Completed sourcePASS+fourM0+allfourB256full training and98videoreports. Selector target selectedinitialization twice, continuousoracle trainedmodels belowGOLA. No benefit established; pairwise competition supervision now independentnextfactor, architecture/inference unchanged.",
@@ -522,6 +522,31 @@
         "native_datasets_same_checkpoint": true,
         "other_seeds_must_improve": false,
         "best_internal_ci_contains_zero": true
+      },
+      "current_future_teacher_factor": {
+        "status": "SHARD0_BOTH_ARMS_LIVE; SHARDS1_2_3_QUEUED_AFTER_SAME_GPU_PREDECESSORS",
+        "started_cst": "2026-10-04T07:02:07+08:00",
+        "train_queries": 902,
+        "validation_queries": 128,
+        "same_prefix_model": "own epoch4",
+        "prefix_write_verification": "action",
+        "future_modes": [
+          "c1",
+          "own"
+        ],
+        "batch_clips": 1,
+        "forward_batch": 1,
+        "model_architecture_unchanged": true,
+        "source_isolation": "/data/gb/setup/future_policy_review_source",
+        "source_review": "same-family/provisional PASS",
+        "actual_state_m0": "PASS 1238 old/new steps each;110actions;330 actual future steps; all states/labels exact",
+        "cli_m0": "PASS 2q17/69actions; all28 nonfuture arrays exact",
+        "source_schema": "8shards exact jobs object wrapper, no content/order change",
+        "new_training_started": false,
+        "new_training_batch_size": 384,
+        "new_training_epochs": 60,
+        "new_training_updates": 180,
+        "full_goal_completed": false
       }
     },
     {
@@ -599,14 +624,14 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "selected epoch4 no_search full98 control",
-      "GPU1": "selected epoch4 locked LasHeR245 native test",
-      "GPU2": "selected epoch4 raw_write full98 control",
-      "GPU3": "selected epoch4 identity full98 control"
+      "GPU0": "Locked epoch4 native RGBT234; then c1+own shard1",
+      "GPU1": "Locked epoch4 native LasHeR; then c1+own shard2",
+      "GPU2": "Future C1 train/val shard0; then C1 shard3",
+      "GPU3": "Future own train/val shard0; then own shard3"
     },
     "gpu_memory_request": {
-      "status": "ALL4_B384_FULL_FIT_COMPLETE_60_EPOCHS_180_UPDATES; SERIAL_VIDEO_EVALUATION_RUNNING",
-      "policy": "实际batch384已完成四组全训练，nvidia约21GB；512多轮真实OOM，保留384。视频评测保持经过验证的逐帧因果推理，实测allocated447.435MiB/reserved488MiB；不虚占显存。",
+      "status": "REAL_B384_FITS_COMPLETE; CURRENT_SERIAL_NATIVE_AND_LABEL_COLLECTION; NEXT_FIT_BATCH384_PLANNED",
+      "policy": "Actual four completed B384 fits used about21GB each; B512 long-fit OOM retained. Serial causal evaluation/collection stays unchanged. No allocation padding, power or thermal controls.",
       "batch_size": 384,
       "sanity_epochs": 3,
       "sanity_optimizer_steps": 9,
@@ -626,7 +651,7 @@
       "temperature_power_constraints_enabled": false,
       "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
     },
-    "next_check_cst": "2026-10-04T06:21:00+08:00",
+    "next_check_cst": "2026-10-04T07:30:00+08:00",
     "checkpoint_cleanup_total": {
       "files": 51,
       "bytes": 70869872,
@@ -642,5 +667,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T06:03:01.5938684+08:00"
+  "updated_cst": "2026-10-04T07:12:36.0131462+08:00"
 }

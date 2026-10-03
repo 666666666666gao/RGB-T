@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "script": "scripts/queue_recoverability_future_collection.sh",
+  "sha256": "a6b7735a0947cfc1d60038e1f450b4051f3e5e10812f614975530511b75e1e20",
+  "blocking_findings": [],
+  "bash_n": "PASS, actual private copy; queue was not executed by reviewer",
+  "invocations": [
+    {
+      "gpu": 0,
+      "wait_marker": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/job_completed.txt",
+      "shard": 1,
+      "policies_in_order": [
+        "c1",
+        "own"
+      ]
+    },
+    {
+      "gpu": 1,
+      "wait_marker": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt",
+      "shard": 2,
+      "policies_in_order": [
+        "c1",
+        "own"
+      ]
+    },
+    {
+      "gpu": 2,
+      "wait_marker": "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004/job_completed.txt",
+      "shard": 3,
+      "policies_in_order": [
+        "c1"
+      ]
+    },
+    {
+      "gpu": 3,
+      "wait_marker": "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004/job_completed.txt",
+      "shard": 3,
+      "policies_in_order": [
+        "own"
+      ]
+    }
+  ],
+  "actual_upstream_evidence": [
+    "/data/gb/setup/write_pair_native_rgbt234_own_b384_full_20261004_command.txt",
+    "/data/gb/setup/write_pair_native_lasher_own_b384_full_20261004_command.txt"
+  ],
+  "marker_semantics": "Reviewer directly read both recorded native commands: set -euo pipefail, foreground evaluate via run_temporal, all CPU paired/bootstrap/plot/mechanism reports, then report_completed and finally the exact job_completed marker. The reviewed collection runner writes each partition marker only after that collector returns; validation runs after TRAIN. Thus every wait marker is downstream of the current same-GPU NN process completing successfully.",
+  "sequential_behavior": "Wait is read-only test-f with sleep240; policy arguments are forwarded in order to the reviewed private full runner by a foreground bash call. set -euo pipefail stops later policies on a failed runner. No background GPU launch, signal, source overwrite or training is present.",
+  "coverage": "Including the already-started c1/own shard0, these exact four queue invocations cover each policy x shard0..3 exactly once. Per policy:902TRAIN and128validation queries, with every shard collecting TRAIN then validation. No duplicate output roots are scheduled, and no same-GPU overlap is introduced by this mapping.",
+  "boundary": "PASS is for these four exact invocations after actual M0 acceptance. The existing full runner still checks the PASS acceptance JSON and rejects existing output roots. Deliberate activation of this collection queue is allowed; it does not authorize any fit, benchmark claim or production source transition.",
+  "reviewer_actions": {
+    "queue_execution": false,
+    "nn_execution": false,
+    "process_signals": false,
+    "production_source_changes": false
+  },
+  "reviewed_at_cst": "2026-10-04T07:11:16.3246984+08:00",
+  "policy_shard_mapping_cpu_check": "PASS_8_UNIQUE_PAIRS"
+}

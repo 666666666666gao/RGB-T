@@ -178,7 +178,7 @@ def main():
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',
                            'checkpoint_retention': 'best.pth only; all epoch metrics retained',
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
-                           'scope': 'causal predicted-prefix TRAIN caches with frozen-C1 continuation; not complete online or official accuracy'}
+                           'scope': 'causal predicted-prefix TRAIN caches; frozen continuation policy recorded in source_configs; not complete online or official accuracy'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision,
                        action_ranking=args.action_ranking, write_pair_calibration=args.write_pair_calibration,

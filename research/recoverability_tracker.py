@@ -117,6 +117,41 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
         choice = int(scores.masked_fill(~candidates['valid'], -torch.inf).argmax(1)[0])
         return (candidates, logits.sigmoid()[0], decode(candidates, transform, image), choice), requested_area
 
+    def accept_observation(self, image, observation, pause):
+        """Commit an observed candidate using the deployed template/memory rules."""
+        candidates, quality, boxes, choice = observation
+        parent = self.branch
+        self.last_observation = observation
+        confidence = float(candidates['raw_score'][0, choice])
+        branch = self._advance(parent, image, boxes, candidates, quality, choice)
+        write = confidence > .84 and not pause
+        if confidence > .84 and pause:
+            branch.template, branch.mask = parent.template, parent.mask
+            branch.pending = deque((entry for entry in parent.pending if self.frame - entry[0] < self.window), maxlen=self.window)
+            self.stats['template_updates'] -= 1
+            self.stats['paused_query_writes'] += 1
+        if write:
+            self.template_source_frame, self.template_source_box = self.frame, branch.box.copy()
+        descriptor = self.modules.memory.encode(candidates['instance_features'][:, choice].half().float())
+        gate = self.modules.memory.gate_logits(descriptor, candidates['evidence'][:, choice].float(),
+                                               quality[choice][None], self.identity_anchor)
+        probability = gate.softmax(-1)
+        verified = probability[..., 0] >= .5
+        observed = torch.ones(1, dtype=torch.bool, device=self.device)
+        memory_rates = self.modules.memory.write_rates(descriptor, probability, observed, verified & write)
+        self.identity_memory = self.modules.memory.update(self.identity_memory, descriptor, probability,
+                                                           observed, verified & write)
+        point = self.motion_model.memory.encode(candidates['modality_features'][:, choice].half().float())
+        self.motion_memory = self.motion_model.memory.update(self.motion_memory, point,
+                                                             candidates['evidence'][:, choice].float(), quality[choice][None],
+                                                             torch.tensor([write], device=self.device))
+        self.history.append((branch.box.copy(), self.frame, float(quality[choice])))
+        self.branch, self.branches = branch, [branch]
+        self.stats['max_motion_history'] = max(self.stats['max_motion_history'], len(self.history))
+        self.stats['max_pending_per_branch'] = max(self.stats['max_pending_per_branch'], len(branch.pending))
+        assert len(self.history) <= 8 and len(branch.pending) <= self.window
+        return branch, write, memory_rates, verified
+
     @torch.inference_mode()
     def step(self, image):
         self.frame += 1
@@ -151,41 +186,11 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
         observation = original if region == 0 else extra
         assert observation is not None and bool(data['valid'][0, region, choice])
         candidates, quality, boxes, _ = observation
-        self.last_observation = (candidates, quality, boxes, choice)
-        confidence = float(candidates['raw_score'][0, choice])
         prior_frame, prior_box = self.template_source_frame, self.template_source_box.copy()
-        branch = self._advance(parent, image, boxes, candidates, quality, choice)
-        write = confidence > .84 and not pause
-        if confidence > .84 and pause:
-            # Pause changes only appearance write, not confidence/position/provider update.
-            branch.template, branch.mask = parent.template, parent.mask
-            branch.pending = deque((entry for entry in parent.pending if self.frame - entry[0] < self.window), maxlen=self.window)
-            self.stats['template_updates'] -= 1
-            self.stats['paused_query_writes'] += 1
-        if write:
-            self.template_source_frame, self.template_source_box = self.frame, branch.box.copy()
-        # Match float16 descriptor storage used by the causal training prefixes.
-        descriptor = self.modules.memory.encode(candidates['instance_features'][:, choice].half().float())
-        gate = self.modules.memory.gate_logits(descriptor, candidates['evidence'][:, choice].float(),
-                                               quality[choice][None], self.identity_anchor)
-        probability = gate.softmax(-1)
-        verified = probability[..., 0] >= .5
-        observed = torch.ones(1, dtype=torch.bool, device=self.device)
-        memory_rates = self.modules.memory.write_rates(descriptor, probability, observed, verified & write)
         sources = torch.nn.functional.normalize(torch.cat((self.identity_anchor[:, None], self.identity_memory[:, :2]), 1), dim=-1)
         target_sources = torch.einsum('bsmd,bkmd->bksm', sources, output['descriptors']).argmax(2)
-        self.identity_memory = self.modules.memory.update(self.identity_memory, descriptor, probability,
-                                                           observed, verified & write)
-        point = self.motion_model.memory.encode(candidates['modality_features'][:, choice].half().float())
-        self.motion_memory = self.motion_model.memory.update(self.motion_memory, point,
-                                                             candidates['evidence'][:, choice].float(), quality[choice][None],
-                                                             torch.tensor([write], device=self.device))
-        self.history.append((branch.box.copy(), self.frame, float(quality[choice])))
-        self.branch, self.branches = branch, [branch]
+        branch, write, memory_rates, verified = self.accept_observation(image, (candidates, quality, boxes, choice), pause)
         self.stats['changed_candidate_indices'] += int(region != 0 or choice != original[3])
-        self.stats['max_motion_history'] = max(self.stats['max_motion_history'], len(self.history))
-        self.stats['max_pending_per_branch'] = max(self.stats['max_pending_per_branch'], len(branch.pending))
-        assert len(self.history) <= 8 and len(branch.pending) <= self.window
         diagnostic_boxes = torch.zeros((7, 5, 4), dtype=torch.float64, device=self.device)
         diagnostic_boxes[0] = torch.as_tensor(original[2], device=self.device)
         if extra is not None:

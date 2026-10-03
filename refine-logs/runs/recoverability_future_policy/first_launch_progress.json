@@ -1,0 +1,55 @@
+{
+  "observed_cst": "2026-10-04T07:06:52.947826+08:00",
+  "runs": {
+    "native_lasher": {
+      "completed_sequences": 101,
+      "frames": 94928,
+      "last_sequence": "boytakingbasketballfollowing",
+      "complete_marker": false
+    },
+    "native_rgbt234": {
+      "completed_sequences": 141,
+      "frames": 67108,
+      "last_sequence": "raningcar",
+      "complete_marker": false
+    },
+    "future_c1_train_shard0": {
+      "root": "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+      "progress": {
+        "completed_clips": 18,
+        "clips": 225,
+        "elapsed_seconds": 247.44671088596806,
+        "peak_cuda_mib": 513.63525390625
+      },
+      "completed": false
+    },
+    "future_own_train_shard0": {
+      "root": "/data/gb/outputs/recoverability_future_own_train_shard0_20261004",
+      "progress": {
+        "completed_clips": 18,
+        "clips": 225,
+        "elapsed_seconds": 249.75999393500388,
+        "peak_cuda_mib": 517.59912109375
+      },
+      "completed": false
+    }
+  },
+  "gpu": [
+    "0, 1180 MiB, 24576 MiB, 40 %",
+    "1, 851 MiB, 24576 MiB, 31 %",
+    "2, 919 MiB, 24576 MiB, 32 %",
+    "3, 921 MiB, 24576 MiB, 19 %"
+  ],
+  "processes": [
+    "2795018    01:10:29 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --seed 42 --write-verification action --output /data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/predictions",
+    "2859192       35:12 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --seed 42 --write-verification action --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/predictions",
+    "2914634       04:45 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard0.json --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy c1 --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+    "2914635       04:45 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard0.json --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_future_own_train_shard0_20261004"
+  ],
+  "production_source_hashes": {
+    "/data/gb/GOLA/research/collect_recoverability.py": "384edc0e795f3f92292e96f1091e2802c43b2c830c7069f4f9636bda737fdbd6",
+    "/data/gb/GOLA/research/recoverability_tracker.py": "b1ee16a734ba359c3006df7ceacf3ef22a7a5e790681dfe79f184a53248021fd"
+  },
+  "official_goal_completed": false,
+  "next_training_batch_size": 384
+}

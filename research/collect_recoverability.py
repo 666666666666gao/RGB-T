@@ -82,7 +82,10 @@ def decode(candidates, transform, image):
 
 
 @torch.inference_mode()
-def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_model=None):
+def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_model=None,
+                  future_policy='c1', prefix_write_verification='identity'):
+    assert future_policy in ('c1', 'own')
+    assert future_policy != 'own' or prefix_model is not None
     contexts = []
     for index, query in jobs:
         sequence = dataset[index]
@@ -92,7 +95,8 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
             tracker = BoundedRecoveryTracker(extractor, head, image, initial, torch.float16)
         else:
             from .recoverability_tracker import RecoverabilityTracker
-            tracker = RecoverabilityTracker(extractor, prefix_model, motion, image, initial, args.prefix_threshold)
+            tracker = RecoverabilityTracker(extractor, prefix_model, motion, image, initial, args.prefix_threshold,
+                                             write_verification=prefix_write_verification)
         evidence = np.zeros(10, dtype=np.float32)
         evidence[:6] = 1
         history = deque([{'descriptor': None, 'instance': None, 'evidence': evidence,
@@ -233,11 +237,17 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
                     shadow = copy.copy(context['tracker'])
                     shadow.stats = context['tracker'].stats.copy()
                     shadow.frame = query
-                    # Same parent state for all actions; only choice/query write changes.
-                    child = shadow._advance(parent, images[clip], boxes, candidate, quality, int(choice))
-                    if pause:
-                        child.template, child.mask = parent.template, parent.mask
-                        child.pending = deque((e for e in parent.pending if query - e[0] < shadow.window), maxlen=shadow.window)
+                    # Future-own steps append history: each action needs a private deque.
+                    if future_policy == 'own':
+                        shadow.history = deque(context['tracker'].history, maxlen=8)
+                        child, _, _, _ = shadow.accept_observation(
+                            images[clip], (candidate, quality, boxes, int(choice)), bool(pause))
+                    else:
+                        # Unchanged C1 teacher; only choice/query write changes.
+                        child = shadow._advance(parent, images[clip], boxes, candidate, quality, int(choice))
+                        if pause:
+                            child.template, child.mask = parent.template, parent.mask
+                            child.pending = deque((e for e in parent.pending if query - e[0] < shadow.window), maxlen=shadow.window)
                     row['action_valid'][region, choice, pause] = True
                     actions.append({'clip': clip, 'region': region, 'choice': int(choice), 'pause': pause,
                                     'tracker': shadow, 'branch': child,
@@ -246,16 +256,26 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
         future_images = [read_pair(*paths(c['sequence'], c['query'] + offset), device) for c in contexts]
         for start in range(0, len(actions), args.forward_batch):
             group = actions[start:start + args.forward_batch]
-            observations = observe_actions([(a['tracker'], a['branch'], future_images[a['clip']]) for a in group], extractor, head)
-            for action, observation in zip(group, observations):
-                shadow = action['tracker']
-                shadow.frame += 1
-                candidate, quality, boxes, choice = observation
-                action['branch'] = shadow._advance(action['branch'], future_images[action['clip']], boxes, candidate, quality, choice)
-                clip, region, original_choice, pause = (action[k] for k in ('clip', 'region', 'choice', 'pause'))
-                overlap = iou(action['branch'].box, contexts[clip]['sequence'][contexts[clip]['query'] + offset].get_bounding_box())
-                rows[clip]['future_iou'][region, original_choice, pause, offset - 1] = overlap
-                action['wrong_updates'] += int(float(candidate['raw_score'][0, choice]) > .84 and overlap < .2)
+            if future_policy == 'c1':
+                observations = observe_actions([(a['tracker'], a['branch'], future_images[a['clip']]) for a in group], extractor, head)
+                for action, observation in zip(group, observations):
+                    shadow = action['tracker']
+                    shadow.frame += 1
+                    candidate, quality, boxes, choice = observation
+                    action['branch'] = shadow._advance(action['branch'], future_images[action['clip']], boxes, candidate, quality, choice)
+                    clip, region, original_choice, pause = (action[k] for k in ('clip', 'region', 'choice', 'pause'))
+                    overlap = iou(action['branch'].box, contexts[clip]['sequence'][contexts[clip]['query'] + offset].get_bounding_box())
+                    rows[clip]['future_iou'][region, original_choice, pause, offset - 1] = overlap
+                    action['wrong_updates'] += int(float(candidate['raw_score'][0, choice]) > .84 and overlap < .2)
+            else:
+                for action in group:
+                    shadow = action['tracker']
+                    clip, region, original_choice, pause = (action[k] for k in ('clip', 'region', 'choice', 'pause'))
+                    box = shadow.step(future_images[clip])
+                    action['branch'] = shadow.branch
+                    overlap = iou(box, contexts[clip]['sequence'][contexts[clip]['query'] + offset].get_bounding_box())
+                    rows[clip]['future_iou'][region, original_choice, pause, offset - 1] = overlap
+                    action['wrong_updates'] += int(bool(shadow.last_decision['template_updated']) and overlap < .2)
     for action in actions:
         clip, region, choice, pause = (action[k] for k in ('clip', 'region', 'choice', 'pause'))
         rows[clip]['wrong_update_fraction'][region, choice, pause] = action['wrong_updates'] / 4
@@ -275,6 +295,9 @@ def main():
     p.add_argument('--head', default='/data/gb/outputs/c1_initial_seed42/best.pth')
     p.add_argument('--motion-run', default='/data/gb/outputs/abc_joint_v1_seed42')
     p.add_argument('--prefix-model', help='Frozen ABC checkpoint for actual learned-policy prefixes; default is unchanged C1.')
+    p.add_argument('--future-policy', choices=('c1', 'own'), default='c1',
+                   help='Use the frozen C1 teacher or the supplied ABC policy for three future steps.')
+    p.add_argument('--prefix-write-verification', choices=('identity', 'action'), default='identity')
     p.add_argument('--serial-c1-prefix', action='store_true', help='Run only C1 prefix frames individually to match learned-policy prefix execution.')
     p.add_argument('--jobs-file', help='Explicit sequence/query JSON jobs from the chosen TRAIN partition.')
     p.add_argument('--output', required=True)
@@ -285,6 +308,7 @@ def main():
     p.add_argument('--seed', type=int, default=42)
     args = p.parse_args()
     assert args.clips > 0 and args.batch_clips > 0 and args.forward_batch > 0 and args.max_prefix >= 8
+    assert args.future_policy != 'own' or args.prefix_model
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
     torch.set_num_threads(4)
@@ -348,6 +372,7 @@ def main():
                            'extra_proposal_policy': 'protected first anchor, dense_raw5 preserving region Hann winner; up to5 per region',
                            'instance_features': 'area-overlap weighted pre-attention RGB/TIR patches; anchor uses foreground region',
                            'future_policy': 'same frozen C1 peaks; all actions start same parent; pause changes only query template write; subsequent raw>.84 updates retained',
+                           'future_policy_mode': args.future_policy,
                            'future_horizon': 3, 'decision_inputs_copied_before_future_decode': True,
                            'history_capacity_covers_prefix': True, 'history_descriptor_storage': 'float16; motion inputs explicitly cast float32',
                            'sampling': 'uniform sequence then valid query, no GT failure selection; includes correct/incorrect/long-prefix states',
@@ -356,12 +381,17 @@ def main():
         config['prefix_policy'] = 'frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1'
         config['prefix_checkpoint_epoch'] = prefix_checkpoint['epoch']
         config['prefix_counts_columns'] = ['extra_visual_forwards', 'changed_candidate_indices', 'paused_query_writes', 'template_updates']
+    if args.future_policy == 'own':
+        config['future_policy'] = 'same frozen ABC checkpoint as prefix; query commits deployed template, identity and motion state; three causal step calls with private per-action histories; future GT only labels'
+        config['future_checkpoint_epoch'] = prefix_checkpoint['epoch']
+        config['future_execution'] = 'per-action serial, identical deployed step and write verification'
     if args.jobs_file:
         config['sampling'] = 'explicit TRAIN partition jobs; GT may choose supervision states, never online decisions'
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     rows, started = [], time.perf_counter()
     for start in range(0, len(jobs), args.batch_clips):
-        rows.extend(collect_batch(jobs[start:start + args.batch_clips], dataset, extractor, head, motion, device, args, prefix_model))
+        rows.extend(collect_batch(jobs[start:start + args.batch_clips], dataset, extractor, head, motion, device, args,
+                                  prefix_model, args.future_policy, args.prefix_write_verification))
         progress = {'completed_clips': len(rows), 'clips': len(jobs), 'elapsed_seconds': time.perf_counter() - started,
                     'peak_cuda_mib': torch.cuda.max_memory_allocated(device) / 2**20}
         (out / 'progress.json').write_text(json.dumps(progress))

@@ -136,7 +136,7 @@ def main():
                            'gt_input': 'only first annotation initializes; later GT only offline scoring',
                            'past_outputs_never_rewritten': True, 'arbitrary_historical_state_restoration': False,
                            'timing_excludes_initialization': True, 'timing_excludes_diagnostic_transfer_and_serialization': True,
-                           'bootstrap_training_future_policy': 'frozen C1 continuations, not this deployed policy',
+                           'bootstrap_training_future_policy': 'frozen continuation policy recorded in training source_configs; not recomputed by this evaluator',
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()

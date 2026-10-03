@@ -1,0 +1,201 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_type": "experiment-bridge CODE_REVIEW source gate for frozen own-policy future continuation",
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T06:46:47.7902286+08:00",
+  "baseline_commit": "e01ae172f635b0c4d01203690fa88147cfca8d3a",
+  "scope": "Two functional source changes (collect_recoverability.py and recoverability_tracker.py), two metadata-only strings in train_recoverability.py/evaluate_recoverability.py, the real-video checker and private canonical-module CLI loader. This is a source gate for private real checker M0 and a paired two-job TRAIN C1/own collection CLI M0 only. No production overwrite, training, deployment or automatic full execution is accepted by this gate.",
+  "files": [
+    {
+      "sha256": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+      "path": "research/collect_recoverability.py"
+    },
+    {
+      "sha256": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+      "path": "research/recoverability_tracker.py"
+    },
+    {
+      "sha256": "71cafe81ea7d8e8a19e2c5c24848b956e1ba89e2e439ebef3e17ad02733883ce",
+      "path": "scripts/check_recoverability_future_policy.py"
+    },
+    {
+      "sha256": "cf866af9ec3e252cb2a18936ab230bd0190e5eb979b09b365c6e0e6fa91b9ac5",
+      "path": "scripts/run_isolated_recoverability_collection.py"
+    },
+    {
+      "sha256": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+      "path": "research/train_recoverability.py"
+    },
+    {
+      "sha256": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+      "path": "research/evaluate_recoverability.py"
+    }
+  ],
+  "old_tracker": {
+    "path": "C:/Users/gb/.codex_tmp/gola_setup_20261002/recoverability_future_policy_tracker_before_20261004.py",
+    "sha256": "051e7abaf0a1cd279389e8cdcf0a498826eeb42aa7d15ebf0d1357dbe11af2ae"
+  },
+  "default_compatibility": {
+    "status": "SOURCE_PASS_ACTUAL_PARITY_PENDING",
+    "defaults": {
+      "future_policy": "c1",
+      "prefix_write_verification": "identity"
+    },
+    "collector_ast": "Independent AST specialization removes only the two new policy assertions, specializes the own/c1 query/future branches to c1, and restores the previously implicit identity constructor default. The complete resulting collect_batch AST equals the baseline function. Query proposals, masks, C1 continuation batching, labels, wrong-update denominator and sampling logic are unchanged on this path.",
+    "tracker_ast": "Only accept_observation was added as a method. All five other pre-existing non-step methods are AST-identical. Inlining the helper into step, restoring the prior-template/source diagnostic reads to their original positions, and restoring independent statistics-update ordering yields the exact old step AST.",
+    "diagnostic_reordering": "Both versions compute target_source_indices from pre-commit identity memory and the current output descriptors. The moved reads consume no state changed by the preceding old descriptor/gate calculations. Prior template frame/box is still captured before query commit. Changed-candidate counters and max-history/pending counters preserve their values on successful execution.",
+    "metadata": "New future_policy_mode and prefix_write_verification values are intentionally recorded. Config JSON bytes are therefore not expected to equal old config files. The requirement is unchanged default decision arrays, labels, trajectories and diagnostics, which must still be demonstrated on real NN execution.",
+    "schema": "No neural module, parameter tensor, checkpoint state_dict, action utility or trainable loss mathematics changed. Trainer and evaluator have exactly one metadata string edit each; independent AST normalization of those strings reproduces their complete baseline ASTs."
+  },
+  "own_query_commit": {
+    "status": "PASS",
+    "source": "collect_recoverability.py:237-254; recoverability_tracker.py:120-153",
+    "precondition": "own future requires an explicitly supplied prefix_model both at CLI and collect_batch level. The prefix model and motion module are loaded strictly, frozen and set to eval. The chosen prefix write-verification mode is explicitly applied to the tracker and consequently to its future step calls.",
+    "parent": "A learned prefix context updates context.branch=tracker.branch after every prefix frame. At query1 both refer to the initial branch. Therefore the shallow-copied shadow.branch used by accept_observation is the same actual pre-query parent as context.branch.",
+    "time": "Prefix execution stops at query-1. Each action shadow is assigned frame=query; accept_observation does not increment frame. It commits the query box and records history at query. The following three shadow.step calls advance exactly to query+1, query+2 and query+3.",
+    "actions": "Every valid candidate receives regular action; pause is enumerated only when raw confidence>.84. Each query action is deliberately forced before following the frozen future policy. It is not reselected using GT or constrained to the teacher's preferred current action.",
+    "state_commit": "The shared helper invokes the existing _advance for box/provider/template state, rolls back template/mask/pending entries for a query pause, applies the same verified identity-memory commit and context-slot updates, updates motion memory using actual write, appends selected box/frame/quality to bounded history, and replaces branch/branches. This includes real context-memory updates even when target/template writing is paused.",
+    "query_wrong_update": "Initial wrong_updates uses writes AND not pause AND currentIoU<.2, which is the same actual query write condition returned by this helper. It does not read a stale prefix last_decision."
+  },
+  "branch_isolation": {
+    "status": "SOURCE_PASS_ACTUAL_STATE_WITNESS_PENDING",
+    "private_mutables": "Each action copies the stats dict and creates its own history deque with maxlen8. _advance calls Branch.copy, which copies box/search_box arrays and pending/scores/boxes deques; newly committed boxes are copied. Existing history entry arrays and pending template tensors are read rather than modified in place.",
+    "tensor_states": "InstanceMemory.update and DiscriminativeMemory.update return new tensors. Assigning shadow.identity_memory and shadow.motion_memory does not mutate the parent's or sibling's tensor storage. Query template creation normalizes a newly allocated divided crop, and pauses reuse the unchanged parent template/mask.",
+    "other_aliases": "branch/branches, template-source metadata, last_observation and last_decision are replaced on the shadow. The shared frozen modules and anchors are read-only. The cropping provider copies the input bbox into its own cached_bbox. No parent deque is appended through a shadow.",
+    "shared_extractor_mode": "The extractor's proposal_policy is shared mutable configuration, but future branches execute serially, each step starts with peaks, and extra_observation restores peaks. Query dense proposals also restore peaks before future work. There is no concurrent branch execution in this code.",
+    "verification_needed": "Real tensor/array snapshots must confirm parent and untouched siblings remain unchanged after a shadow commits and advances. The inspected checker covers reversed jobs, not reversed action enumeration within a query; claims must preserve that distinction."
+  },
+  "future_causality_and_labels": {
+    "status": "PASS",
+    "query_inputs": "All query decision arrays and predicted-prefix history arrays are copied before future images or later GT are decoded. The new own branch occurs only after these copies. The future policy receives images and its actual predicted state through shadow.step, never GT arrays.",
+    "future_execution": "Each of three future frames calls the complete RecoverabilityTracker.step, including the actual optional one-extra-region visual search, learned candidate/regular/pause selection, and deployed template, identity-memory, motion-memory and history updates. It is not an original-only C1 observe_actions continuation.",
+    "future_wrong_writes": "Wrong-update accumulation uses bool(shadow.last_decision['template_updated']) after that frame's step together with offline IoU<.2. A high raw score whose actual write was paused is not counted as a write. The unchanged four-frame query-plus-three-future denominator remains4.",
+    "GT_scope": "GT selects eligible offline supervision jobs and supplies current/history/future labels only. Query candidate choice enumeration and future online decisions do not receive those labels. motion_targets remains a label field, not a decision input.",
+    "teacher_scope": "own means the supplied frozen ABC checkpoint, with its configured verification mode, continues for three causal steps. It does not mean the subsequently trained student updates the teacher online, nor does it establish long-horizon on-policy performance.",
+    "utility_scope": "Existing action_utility and immediate search-cost accounting are unchanged. The own continuation may execute additional future searches; no claim is made that existing query-only extra-crop receipt fields count those future visual calls."
+  },
+  "statistics_and_diagnostics": {
+    "step": "Normal deployed step retains the same last_observation, template updates/pauses, selected-candidate changes, memory target-commit/rate fields, pre-action source provenance, motion forecasts and actual output-box precision. Real old/new timeline parity is required because NN call ordering around independent diagnostic reads was changed.",
+    "forced_query": "accept_observation returns branch/write/memory_rates/verified but does not create a synthetic query last_decision or increment changed_candidate_indices for a forced counterfactual. Neither is used for labels or serialized prefix counters. Prefix counters are copied before forking. Future step overwrites last_decision before it is read for wrong-update labels.",
+    "receipt": "future_policy_mode, prefix checkpoint/mode, own future checkpoint epoch and serial future-execution description make the new teacher explicit. Samples keep the existing schema; config provenance distinguishes the teacher."
+  },
+  "matched_experiment_requirements": [
+    "Collect C1-future and own-future labels from identical jobs, prefix checkpoint, prefix write-verification mode, collector batch settings and query candidate generation. Verify all pre-future decision arrays and action masks are identical before treating this as a teacher-only comparison.",
+    "Explicitly use action verification on both matched arms if continuing the current action-mode policy. A new own/action cache versus old identity-prefix or mixed-prefix caches changes more than the future teacher.",
+    "Own teacher requires a learned prefix tracker. Recollect the matched C1-future control with that same prefix tracker instead of substituting old C1-prefix inputs and calling the comparison single-factor.",
+    "The computationally unchanged trainer asserts a common future_policy string across its TRAIN and VAL source configs. Do not mix C1-future and own-future roots inside one fit or silently remove that check; each arm needs consistently labeled TRAIN and validation data.",
+    "C1 future retains its historical batched implementation while own future executes deployed serial steps. Record those execution settings; finite-precision label differences alone do not establish a learned-policy improvement."
+  ],
+  "required_real_m0": [
+    "On isolated source, compare old/new deployed tracker boxes, every diagnostic array and statistics at fixed weights on real videos. Cover action and identity modes and actually observed regular writes, pauses, memory commits and extra-search behavior; compare deterministic arrays exactly while excluding latency.",
+    "Compare old/new default C1 collector output arrays and labels on the same real jobs, including a frozen-C1 prefix and a learned identity-mode prefix. Expected config additions are metadata, not trajectory differences.",
+    "For matched new c1/own future modes, assert identical query/prefix arrays and action_valid masks before any future decode. Include a query1 case, a history-full case and a query whose pending template entries expire within the tested horizon.",
+    "Force real observed regular and pause actions for the same high-confidence candidate, a non-writable regular candidate, and a valid extra-region candidate. Compare query template/mask, bounded memory states, branch box/provider and history against the same deployed commit rules.",
+    "After one fork commits and advances, verify the original parent and an untouched sibling tensor/array/deque contents remain unchanged. Reversing jobs must reproduce each row. Do not describe this as reversing per-query action enumeration.",
+    "Record each own shadow's future frame numbers query+1..query+3, actual selected box/search/pause/template_updated, and recompute future_iou and wrong_update_fraction against GT. Explicitly verify a future pause does not count as a wrong write merely because raw>.84.",
+    "Keep the four running production evaluations on their original sources. M0 must use a private source path and distinct outputs; production deployment remains pending successful real parity/state witnesses and an appropriate non-live source transition."
+  ],
+  "independent_ast_check": {
+    "status": "PASS",
+    "execution": "Reviewer-designed standard-library-only script executed directly using warm SSH2027 Python. It parsed/compiled source text and compared ASTs; it never imported or executed reviewed modules or any NN framework.",
+    "script": "C:/Users/gb/.codex_tmp/gola_setup_20261002/future_policy_ast_review.py",
+    "raw_receipt": "/data/gb/setup/future_policy_ast_review_20261004.json",
+    "syntax_compile_four_source_texts": true,
+    "default_collector_body_ast_equal": true,
+    "inlined_step_ast_equal_after_independent_read_stat_order_restoration": true,
+    "other_tracker_methods_ast_equal": [
+      "__init__",
+      "extra_observation",
+      "history_inputs",
+      "insert_region",
+      "original_inputs"
+    ],
+    "source_execution": false,
+    "tooling_note": "The first private checker attempt compared ast.unparse tuple formatting to an unparenthesized string and stopped. The check was corrected to compare parsed AST nodes; reviewed production sources were unchanged, and the complete checker then passed.",
+    "local_raw_receipt": "refine-logs/runs/recoverability_future_policy/source_ast_review_receipt.json",
+    "local_raw_receipt_sha256": "4961bac4e87d45a6787b7c4a4cdf7940cf131053adecce351a8e61c7dff3c44b"
+  },
+  "gate_conclusion": "PASS with zero active blocking findings and zero unresolved warnings for private real checker M0 plus matched two-job TRAIN C1/own CLI M0. Core collector/tracker hashes remain unchanged from the prior source gate; prior witness warnings are resolved. This is same-family/provisional source acceptance only. Actual GPU/CLI receipts remain pending, and full collection/training or live production replacement is not authorized by this gate.",
+  "reviewer_actions": {
+    "production_source_edits": 0,
+    "nn_imports": 0,
+    "nn_constructions": 0,
+    "nn_forward": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "gpu_runs": 0,
+    "process_signals": 0,
+    "production_deployments": 0,
+    "artifact_written": "refine-logs/runs/recoverability_future_policy/source_review.json",
+    "reviewed_loader_executed_with_stdlib_fixtures": true
+  },
+  "witness_source_review": {
+    "status": "PASS_FOR_PRIVATE_M0",
+    "runtime_status": "NOT_EXECUTED_BY_REVIEWER",
+    "sha256": "71cafe81ea7d8e8a19e2c5c24848b956e1ba89e2e439ebef3e17ad02733883ce",
+    "private_import": "Candidate collector/tracker and old collector/tracker load under private research.* module names. The production_tracker.RecoverabilityTracker assignment is an in-memory class override in this M0 process, required by the collector's function-local relative import. It writes no production source and cannot alter already-running evaluation processes. The shared decode utility is unchanged by this diff.",
+    "weights_and_execution": "Epoch4 is asserted, checkpoint state dict is loaded strictly, fixed C1/ABC and motion modules are frozen/eval, and the extractor base is frozen/eval by its existing constructor. Main is decorated with inference_mode and no optimizer is present. CUDA logical0 is explicit, so the main agent must place the private process on the released intended physical GPU.",
+    "tracker_parity": "For action and identity modes on 3whitemen160/ab_motocometurn128, the script compares every per-frame output box, branch/template/pending/identity/motion/history/source state and complete last_decision dictionary, including statistics. Counts include initialization: 159+127 evaluated transitions per verification mode; two modes yield572 transitions for each of old/new trackers. Latency is not compared.",
+    "helper_state_witness": "Each of four sequence/mode cases must find a real high-confidence candidate at frame>=8. Forced regular and pause commits are compared to the matching deployed state, regular writes are asserted, paused target-memory rates are zero, pending entries remain inside the window, and parent plus an untouched sibling are compared after each interleaved three-frame rollout. Summed real tracker counters must include extra forwards, pauses and changed candidate choices, otherwise the script fails rather than claiming coverage.",
+    "memory_rate_shape": "rates has shape[B,4,2]; rates[0,:2].sum(0)>0 has sensor shape[2], matching verified[0]&wrote. This assertion is dimensionally correct and checks target slots only; context-slot updates on pause remain allowed by the actual policy.",
+    "collector_parity": "Two distinct real TRAIN sequences use query1 and query17. Old and new default collector rows are compared with the same learned identity-mode prefix. Matched new c1/own runs use the same frozen prefix with action verification. DECISION_FIELDS, current_iou, history_iou, motion_targets and action_valid must compare exactly. This runtime script does not separately exercise prefix_model=None; source AST equivalence covers that unchanged default path pending any additional runtime check.",
+    "snapshot_timing": "history_arrays hooks save live row references plus pre-query parent snapshots. The paths hook copies all DECISION_FIELDS before returning the first future-image path; query-specific frame comparison prevents query17 prefix frames from firing it. All resulting own decision fields must remain equal to these saved copies. The snapshot is before future IMAGE decode, while some offline GT label reads have already happened; it is not runtime proof that no GT accessor was previously called.",
+    "future_invocations": "The query accept wrapper identifies the originating parent by its shared immutable identity_anchor tensor object, assigns every shadow its expected clip/region/candidate/pause, checks the real observation boxes against query input arrays and records actual query write/IoU. Distinct parent anchors are newly computed tensor objects. Source actions retain all shadows until collection ends, so their object ids remain unique. Each future step wrapper executes the real step first, verifies actual frame==previous+1, and reads the real returned box plus actual template_updated. Every shadow must have exactly query+1/query+2/query+3, its three float32 IoUs must equal the emitted future_iou cell, and query-plus-future actual wrong writes divided by4 must equal wrong_update_fraction. Counts also match all legal actions. Hooks are restored before the reversed-job replay.",
+    "scope_correction": "RESOLVED: receipt now names reversed_job_order_labels_bitwise_equal, matching the actual job reversal. It does not claim that within-query action enumeration was reversed.",
+    "finite_and_outputs": "The collector itself requires every row value finite and uses fixed action/label shapes. The witness saves both matched NPZ row sets and receipt only after all assertions pass into a new distinct output directory. elapsed_seconds starts after model construction and covers witness execution, not setup time; peak_cuda_mib is maximum allocated memory for this process, not nvidia-smi reservation.",
+    "acceptance_boundary": "PASS for private real checker M0. Prior two warnings are resolved in the inspected source. Actual assertions must still pass on GPU; source review is not runtime acceptance and does not authorize automatic full collection, training or replacement of live production source.",
+    "label_recomputation_scope": "The witness independently reconstructs emitted labels from actual post-step boxes, actual frame numbers, actual write flags and dataset GT, using the existing shared IoU geometry function. It validates teacher execution-to-label indexing and write accounting, not an independent implementation of the IoU primitive. Receipt does not claim every possible future pause/search event occurred; actual coverage comes from observed counters and assertions."
+  },
+  "nonblocking_findings": [],
+  "resolved_findings": [
+    {
+      "finding": "Receipt names action-order invariance but only jobs are reversed.",
+      "id": "WITNESS_RECEIPT_SCOPE",
+      "severity": "WARN",
+      "path": "scripts/check_recoverability_future_policy.py:233",
+      "fix": "Rename receipt field to reversed_job_order_labels_bitwise_equal; do not claim same-query action-order coverage without exercising it.",
+      "resolution": "Resolved by witness 71cafe81ea7d8e8a19e2c5c24848b956e1ba89e2e439ebef3e17ad02733883ce",
+      "status": "RESOLVED"
+    },
+    {
+      "finding": "Future wrapper checks total call count and parent deque isolation, not actual per-shadow q+1..q+3 return frames or independently reconstructed future/wrong-write labels.",
+      "id": "WITNESS_RUNTIME_LIMITS",
+      "severity": "WARN",
+      "path": "scripts/check_recoverability_future_policy.py:198",
+      "fix": "Keep the runtime conclusion limited, or augment this existing hook with actual post-step frames/boxes/template_updated and compare reconstructed GT labels before using it as the complete teacher-label acceptance gate.",
+      "resolution": "Resolved by witness 71cafe81ea7d8e8a19e2c5c24848b956e1ba89e2e439ebef3e17ad02733883ce",
+      "status": "RESOLVED"
+    }
+  ],
+  "private_cli_loader_review": {
+    "status": "PASS_FOR_PAIRED_CLI_M0",
+    "sha256": "cf866af9ec3e252cb2a18936ab230bd0190e5eb979b09b365c6e0e6fa91b9ac5",
+    "import_order": "Private collector is installed as research.collect_recoverability before executing private tracker as research.recoverability_tracker. The tracker relative decode import binds the private collector. The collector function-local RecoverabilityTracker import binds the private tracker. Both source modules execute without their __main__ guards; collector.main is then called exactly once.",
+    "process_boundary": "The loader only changes sys.modules and sys.argv in its own new process. It has no production source write, signal, process restart or deployment path. It still imports unchanged shared dependencies from the established repository, so it must run with that repository import path configured by the main agent.",
+    "arguments": "parse_known_args removes source-directory and forwards collection arguments unchanged to the existing collector parser. Actual stdlib fixture execution verified canonical module binding, the tracker relative import and exact forwarding of partition/future-policy/prefix-write-verification/jobs-file/output arguments.",
+    "paired_scope": "Two identical explicit eligible TRAIN jobs at query17; same frozen reference-own epoch4 checkpoint, source directory, action prefix verification, visual/C1/motion weights, seed, max-prefix, batch-clips and forward-batch settings. Only future-policy c1 versus own and distinct output directories differ. Use forward-batch1 for both planned M0 arms to align per-action C1 and own execution granularity.",
+    "runtime_receipts": "Both CLI processes must complete with clips2, TRAIN partition and finite samples. Compare all DECISION_FIELDS, current/history/motion labels, action_valid and actual prefix counters exactly; compare recorded source/prefix modes and checkpoint epoch. Future labels may differ. This CLI M0 additionally validates actual argument parsing, TRAIN-job validation and serialized provenance/output paths.",
+    "gate_limit": "Source PASS permits only the private checker M0 and this paired CLI M0. Await actual completion/receipts before any full run; no automatic full launcher was introduced."
+  },
+  "metadata_review": {
+    "source_configs_present": "Trainer config stores train_configs + val_configs at lines172-174; evaluator text is a provenance pointer rather than a claim it loaded those source configs.",
+    "training_change": "scope string now points to source_configs rather than incorrectly asserting fixed C1 for all caches",
+    "evaluation_change": "bootstrap_training_future_policy string points to training source_configs and says evaluation does not recompute it",
+    "computational_default_change": false,
+    "status": "PASS"
+  },
+  "followup_cpu_check": {
+    "nn_execution": false,
+    "torch_imported": false,
+    "receipt_sha256": "34132cf702dcfb6063c66b95d80c930363eb98658250444dce5403a347d5cc61",
+    "receipt": "refine-logs/runs/recoverability_future_policy/followup_source_check_receipt.json",
+    "execution": "Reviewer directly executed stdlib AST/compile checks and the actual private loader using temporary fake collector/tracker modules only. No production collection/tracking/NN code executed.",
+    "script": "C:/Users/gb/.codex_tmp/gola_setup_20261002/future_policy_followup_source_check_20261004.py",
+    "status": "PASS"
+  }
+}

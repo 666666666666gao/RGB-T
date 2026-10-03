@@ -1,0 +1,134 @@
+{
+  "status": "FAIL_SHARD_CLI_SCHEMA",
+  "checker_sha256": "bc06d353228cee07e7c4dcc8579de9ecc4371ef464a7eb3e7dcd47eaf09a747e",
+  "runner_sha256": "a1d66dfe29d686450eac2813fb08740d28919e7b4d86f761b7e606b0e672c311",
+  "checker_compile": true,
+  "runner_bash_n": true,
+  "historical_actual_saved_decisions": [
+    {
+      "sequence": "3whitemen",
+      "tracking_decisions": 448,
+      "selected_raw_over_084": 0,
+      "actual_writes": 0,
+      "actual_pauses": 0,
+      "old_prefix_writes": 0,
+      "old_prefix_pauses": 0,
+      "old_prefix_high_raw_frame8_onward": 0
+    },
+    {
+      "sequence": "ab_motocometurn",
+      "tracking_decisions": 171,
+      "selected_raw_over_084": 111,
+      "actual_writes": 108,
+      "actual_pauses": 3,
+      "old_prefix_writes": 68,
+      "old_prefix_pauses": 3,
+      "old_prefix_high_raw_frame8_onward": 71
+    }
+  ],
+  "job_manifests": {
+    "train": {
+      "jobs": 902,
+      "shard_sizes": [
+        225,
+        226,
+        225,
+        226
+      ],
+      "query_range": [
+        1,
+        1000
+      ],
+      "exact_selected_fit_queries_in_same_order": true,
+      "shard_schema_accepted_by_existing_cli": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "shards_contiguous_disjoint_and_complete": true
+    },
+    "validation": {
+      "jobs": 128,
+      "shard_sizes": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "query_range": [
+        6,
+        952
+      ],
+      "exact_selected_fit_queries_in_same_order": true,
+      "shard_schema_accepted_by_existing_cli": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "shards_contiguous_disjoint_and_complete": true
+    }
+  },
+  "cli_m0": {
+    "status": "PASS",
+    "compared_arrays": [
+      "action_valid",
+      "anchor_features",
+      "boxes",
+      "c1_quality",
+      "current_iou",
+      "evidence",
+      "features",
+      "history_boxes",
+      "history_descriptors",
+      "history_evidence",
+      "history_frames",
+      "history_instance_descriptors",
+      "history_iou",
+      "history_quality",
+      "history_valid",
+      "history_write",
+      "image_boxes",
+      "instance_features",
+      "modality_features",
+      "motion_log_weights",
+      "motion_means",
+      "motion_targets",
+      "original_choice",
+      "prefix_counts",
+      "raw_score",
+      "region_executed",
+      "requested_extra_crop_area",
+      "valid"
+    ],
+    "all_nonfuture_arrays_exact": true,
+    "legal_actions": 69,
+    "future_iou_max_difference": 0.7955051064491272,
+    "wrong_update_max_difference": 0.0,
+    "executed_extra_crops": [
+      12,
+      12
+    ],
+    "actual_prefix_counts": [
+      [
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        5
+      ]
+    ]
+  },
+  "v2_state_runtime_status": "PENDING_NOT_EXECUTED_BY_REVIEWER",
+  "full_gate": false,
+  "torch_imported": false,
+  "nn_forward": 0,
+  "optimizer_updates": 0,
+  "gpu_work": 0
+}
