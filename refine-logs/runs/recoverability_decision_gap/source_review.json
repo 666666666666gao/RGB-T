@@ -1,0 +1,93 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "assigned_model": "gpt-6-astra",
+  "assigned_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_source": "scripts/diagnose_recoverability_search_realization.py",
+  "reviewed_latest_verification_detail": true,
+  "dependencies_reviewed": [
+    "research/recoverability_modules.py:select_actions",
+    "research/train_recoverability.py:forward and load_data",
+    "research/collect_recoverability.py:action_valid and future rollout construction"
+  ],
+  "checks": {
+    "python_compile": "PASS",
+    "index_mapping": "Scores flatten as region/candidate/action: flat_action = 2*(5*region+candidate)+pause. Dividing by2 therefore indexes current.flatten(1)'s35 candidates correctly for both regular and pause actions. All70 indices were checked.",
+    "masked_score_winner": "available includes only original and the forced extra region. gated_valid reproduces deployed candidate validity, raw>.84 pause availability and two-sensor regular-write verification. output['scores'] equals the forced dictionary's scores. Diagnostic argmax and selector max return the same first index on ties; no GT quality mask is used to choose either winner.",
+    "threshold_category": "On missing-recovered pairs, the original keep candidate is incorrect. A correct eligible score winner with an incorrect final selection must have fallen back to keep because best_value is not strictly greater than keep_score+.03. The exact equality boundary is correctly classified as blocked.",
+    "ranking_category": "When an eligible correct action exists but the masked first score winner is incorrect, the pair belongs to ranking_rejected. This includes a correct action tied with an earlier incorrect maximum, consistently with deployed tie handling.",
+    "partition": "Selected-correct, correct-winner blocked by threshold, incorrect score winner despite eligible correct action, and no eligible correct action are mutually exclusive and exhaustive on the missing-recovered subset. The final aggregate assertion sums exactly these four categories. The same exclusivity is not claimed for all per-region records outside that subset.",
+    "verification_detail": "The added ungated winner still respects available regions and action_valid; it removes only the verification mask from this score statistic. The flag compares that winner's current correctness against the gated score winner's correctness. Under the actual regular/pause schema, this flag is a subset of ranking_rejected and is reported separately, never added to the four-way partition total.",
+    "gt_separation": "Current IoU is used only after model forwarding and actual selector choices to label correctness and define the diagnostic cohort. Neither correct_available nor correct_eligible influences deployment actions, candidate scores or masks. Existing forward supplies DECISION_FIELDS only.",
+    "scope_unchanged": "The diff adds post-selection diagnostics and aggregation only. Model, checkpoint loading, selector, utility labels, training supervision, costs, thresholds, live jobs and optimizer behavior are unchanged. Previously reported utility-gain fields retain their original reference and definitions.",
+    "output_preservation": "The script continues to write only the explicitly supplied output path. Planned M0 and full results must use the new decision_gap directory, preserving the existing search_realization JSONs. No source change writes a historical result path or a human Markdown document."
+  },
+  "actual_cache_cpu_checks": [
+    {
+      "partition": "train",
+      "queries": 274,
+      "valid_candidates": 9481,
+      "regular_mask_equals_valid": true,
+      "pause_mask_equals_valid_and_raw_gt_084": true,
+      "every_valid_candidate_retains_action_even_if_all_regular_writes_unverified": true,
+      "missing_recovered_query_region_pairs": 127
+    },
+    {
+      "partition": "validation",
+      "queries": 128,
+      "valid_candidates": 4444,
+      "regular_mask_equals_valid": true,
+      "pause_mask_equals_valid_and_raw_gt_084": true,
+      "every_valid_candidate_retains_action_even_if_all_regular_writes_unverified": true,
+      "missing_recovered_query_region_pairs": 17
+    }
+  ],
+  "independent_cpu_witnesses": {
+    "method": "Extracted actual source arithmetic and select_actions via AST; executed supplied legal tensors on CPU without model construction or neural forward. Selector debug return exposed its existing mask and max index without changing its calculations.",
+    "all70_action_indices_match_candidate_mapping": true,
+    "partition_legal_fixture_rows": 8,
+    "diagnostic_mask_exactly_equals_selector_mask": true,
+    "diagnostic_argmax_exactly_equals_selector_max_index_including_ties": true,
+    "each_partition_fixture_has_exactly_one_category": true,
+    "fixture_category_order": ["selected_correct", "threshold_blocked", "ranking_rejected", "all_correct_actions_ineligible"],
+    "fixture_category_counts": [2, 3, 3, 0],
+    "strict_point03_equality_stays_blocked": true,
+    "last_candidate_pause_flat69_maps_correctly": true,
+    "unverified_original_keep_falls_back_to_pause_flat1": true,
+    "latest_verification_detail_fixture_rows": 4,
+    "verification_winner_change_flags": [true, false, false, true],
+    "verification_detail_is_ranking_subset": true,
+    "verification_detail_excluded_from_partition_sum": true,
+    "correct_ungated_winner_can_still_fail_keep_margin": true
+  },
+  "interpretation_limits": [
+    "With actual action_valid = valid regular plus raw>.84 pause, every valid candidate retains at least one eligible action: low-raw candidates retain regular; high-raw candidates retain pause. Thus all-correct-actions-ineligible should be zero for this dataset/schema. This is an action-availability fact, not evidence that verification has no effect.",
+    "Verification can remove a high-scoring correct regular action while leaving its lower-scoring pause action eligible, making an incorrect candidate the masked score winner. Such cases remain in the ranking class and may be identified by the new verification detail.",
+    "The new detail describes a same-state score-winner change only. It does not execute an ungated selector policy, check whether its final choice would pass the keep margin, or establish better future/full-video tracking.",
+    "The four-way decomposition applies to query-region pairs where the original region lacks any correct candidate and the extra region supplies one. Pair counts are not unique-query recovery rates or continuous tracking gains.",
+    "Future utility fields still use frozen-C1 continuations. CPU diagnostic outputs from the locked own42 checkpoint do not alter or certify the ongoing B256 experiments."
+  ],
+  "planned_runtime": {
+    "status": "PENDING_NEW_CPU_M0_AND_FULL_DECOMPOSITION",
+    "locked_checkpoint": "/data/gb/outputs/recoverability_prefix_own_s42_20261003/best.pth",
+    "locked_epoch_from_actual_metadata": 25,
+    "first_stage": "Two-query CPU M0 with a new decision_gap output path.",
+    "full_stage": "CPU TRAIN274 plus validation128 after M0 succeeds, preserving historical JSONs.",
+    "visual_forwards": 0,
+    "optimizer_updates": 0
+  },
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "backward_passes": 0,
+    "optimizer_updates": 0,
+    "gpu_jobs_launched": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0,
+    "historical_results_overwritten": 0,
+    "human_markdown_documents_created": 0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "status": "FOUR_REAL_M0_PASS_FRESH_FULL_TRAINING_ACTUALLY_LAUNCHED",
+  "factor": "C action ranking loss only: utility-weighted pairwise ranking of actions that can coexist, vs existing relative-to-keep sign margin.",
+  "evidence": "Locked own42epoch25 actualCPU TRAIN274 with127missing-and-reintroduced-correct pairs:122ranking rejection,2keep-threshold,3selected; VAL128 with17pairs:16ranking,1threshold,0selected. Removing verification changes zero correct score winners to wrong in this missing-target subset; gate still impacts template writing elsewhere.",
+  "rationale": "Two alternatives may both beat the original keep and satisfy existing margin, while the poorer competitor is ranked highest. New loss explicitly compares their utility ordering.",
+  "budget_mask": "Compare original-region actions with any one extra region, and within the same region. Never compare actions from two different extra regions.",
+  "target": "Ground-truth utility gap>.05 weights hinge score gap .03. Utility is .7currentIoU+.3mean3futureIoU-.1wrong-update fraction; futureteacher remains frozen C1. Labels never enter model decision inputs.",
+  "matched": {
+    "seed": 42,
+    "batch_size": 256,
+    "epochs": 60,
+    "optimizer_updates": 240,
+    "train_queries": 902,
+    "validation_queries": 128,
+    "threshold": 0.03,
+    "extra_visual_budget": 1
+  },
+  "arms": [
+    "oracle_c1",
+    "selector_c1",
+    "oracle_own",
+    "selector_own"
+  ],
+  "reference": "Corresponding completed recoverability_search_{mode}_{prefix}_b256_full_20261004 reference-ranking fit. Reuse actual results, do not duplicate identical training.",
+  "unchanged": "No model/architecture, inference, selection, identity gate, pretrained baseline, other loss weights, input fields or data changes. reference mode remains default; prove old13losses unchanged.",
+  "source_gate": "Independent prefix_matched_training_review PASS same-family/provisional: three actual caches x2search modes all13defaultlosses and total bitwise equal121891e; handenumerated70x70compatibility/23eligible pairs; actualCPUgradientPASS; productionCPUwitnessPASS02:04.",
+  "launch": "Per released card only after corresponding reference full98 job marker and memory<500MiB, queue poll240s then M0 only. No old-job cancellation or timeout restart. All4M0 actual1epoch4updates/frozenC1/strictreload/capacity must pass before fresh full launches. M0 weights removed after receipts; full best only.",
+  "future_evaluation": "Complete98 development videos vs GOLA/C1/correspondingreference with5000paired intervals. Select one best model; no multiple-positive-seed requirement. No officialtest or paper freeze until continuous performance warrants it.",
+  "thermal_power_constraints": false,
+  "gpu_total_memory_previous_batch256_mib": [
+    17014,
+    16685,
+    16685,
+    16685
+  ],
+  "single_human_handoff": "docs/HANDOFF_20261002.md only",
+  "actual_m0_queue_launch_cst": "2026-10-04T02:04:12.254242+08:00",
+  "actual_launch_receipt": "refine-logs/runs/recoverability_pairwise/m0_queue_launch.json",
+  "full_launch_cst": "2026-10-04T02:09:22.838524+08:00",
+  "m0_gate_cleanup_receipt": "refine-logs/runs/recoverability_pairwise/m0_gate_cleanup.json",
+  "full_launch_receipt": "refine-logs/runs/recoverability_pairwise/full_launch.json"
+}

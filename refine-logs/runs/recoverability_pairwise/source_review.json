@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "reviewed_at": "2026-10-04T02:02:23+08:00",
+  "review_type": "Independent same-family/provisional experiment-bridge source gate",
+  "reviewer": "/root/prefix_matched_training_review",
+  "baseline_commit": "121891e",
+  "scope": "Pairwise action-ranking objective, default-reference preservation, trainer plumbing, four-arm matched recipe, M0-only release queue and CPU loss witness. Source/CPU gate only; no performance acceptance.",
+  "files": [
+    {"path": "research/recoverability_modules.py", "sha256": "fdd06187fa342af99b1398905d048b9b751b2c80a71768f3fe3bfafb5783c521"},
+    {"path": "research/train_recoverability.py", "sha256": "bf887ff140602df0da1362134809a9b40b9d575a18853b5398bd166cf040e57b"},
+    {"path": "scripts/run_recoverability_pairwise.sh", "sha256": "9567c76920f7c85efae6c530507c8aecfd1952b34242ad3637ec832b197316c9"},
+    {"path": "scripts/queue_recoverability_pairwise_m0.sh", "sha256": "5976efe472e56b874240c046271fc7e1b5e6373824610ac1444a79783a01e6a5"},
+    {"path": "scripts/check_recoverability_pairwise_loss.py", "sha256": "e40e3bcbd154d42e64b6d9e6a8470dee05a6b3265f58f7d41237ff038bf4f476"},
+    {"path": "refine-logs/runs/recoverability_pairwise/plan.json", "sha256": "c3787fb70bf215029b94d6522f4c465f2731782d717d635639732468c5a3045d"}
+  ],
+  "ranking_source_checks": {
+    "status": "PASS",
+    "indexing": "Flattening [7 regions, 5 candidates, 2 actions] gives 70 actions. Flat index // 10 correctly identifies the region; regular and pause actions retain their candidate/region association.",
+    "coexistence": "Original-region actions may compete with any one extra region; actions within the same region may compete. Actions from two different extra regions are excluded. Positive utility gap selects only the better-to-worse orientation and excludes self-pairs.",
+    "legal_mask": "Both actions must satisfy cached action_valid, as for legacy ranking supervision. This is the supervision-valid mask before the model's verification gate; it does not assert that every supervised regular action is currently eligible in deployed selection.",
+    "target_and_reduction": "A GT utility gap strictly greater than float32 .05 weights relu(.03 - predicted score gap). Reduction is weighted hinge sum divided by max(total positive gap weight, 1). No extra search cost or extra utility term is added here.",
+    "gt_isolation": "GT utility is used only in the supervised objective after model decisions. Decision inputs, select_actions, inference thresholds and verification are unchanged. Utility remains .7 current IoU + .3 mean three-future IoU - .1 wrong-update fraction; cached future labels remain frozen-C1 continuations.",
+    "empty_pair_behavior": "No valid ordered pair yields zero ranking loss.",
+    "changed_objectives": "Only ranking among the 13 reported loss components changes in pairwise mode. The other 12 component values remain identical for fixed inputs and outputs. Shared-parameter gradients may consequently change; no claim of unchanged optimization trajectories is made."
+  },
+  "independent_cpu_checks": {
+    "status": "PASS",
+    "execution": "Pure functions extracted from old and current source via AST; CPU tensors only. Actual cached label rows and synthetic bounded output tensors. No model construction, neural forward, autograd backward or optimizer by reviewer.",
+    "syntax": {
+      "recoverability_modules_python_compile": "PASS",
+      "train_recoverability_python_compile": "PASS",
+      "pairwise_witness_python_compile": "PASS",
+      "run_recoverability_pairwise_bash_n": "PASS",
+      "queue_recoverability_pairwise_m0_bash_n": "PASS",
+      "plan_json_parse": "PASS"
+    },
+    "unchanged_ast_vs_121891e": ["InstanceMemory", "RecoverabilityModules", "select_actions", "action_utility", "search_supervision_targets"],
+    "legacy_bitwise_regression": {
+      "actual_cache_rows_per_case": 8,
+      "caches": [
+        "/data/gb/outputs/recoverability_own_policy_train_20261003",
+        "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+        "/data/gb/outputs/recoverability_own_policy_validation_20261003"
+      ],
+      "search_modes": ["oracle", "selector"],
+      "cases": 6,
+      "all_13_components_torch_equal": true,
+      "total_torch_equal": true,
+      "pairwise_other_12_components_torch_equal": true,
+      "pairwise_totals_finite": true
+    },
+    "independent_pair_enumeration": {
+      "all_action_pairs_examined": 4900,
+      "compatible_including_diagonal": 1900,
+      "different_extra_pairs_excluded": 3000,
+      "compatibility_matches_independent_region_enumeration": true,
+      "fixture_legal_flat_indices": [0, 1, 2, 10, 11, 14, 20, 21, 69],
+      "fixture_valid_directed_pairs": 23,
+      "manual_weighted_hinge_matches_within_1e_minus_7": true,
+      "same_candidate_regular_pause_compared_when_legal_and_meaningful": true,
+      "empty_pair_loss_zero": true
+    },
+    "wrong_competitor_witness": {
+      "old_reference_loss": 0.0,
+      "pairwise_loss": 0.025714285671710968,
+      "finite_difference_better_action_score_increase_reduces_loss": true,
+      "finite_difference_worse_action_score_increase_increases_loss": true,
+      "invalid_action_score_change_has_no_effect": true,
+      "backward_run_by_reviewer": false
+    },
+    "boundaries": {
+      "float32_gap_equal_005_excluded": true,
+      "next_float32_gap_above_005_included": true,
+      "predicted_gap_equal_003_has_zero_hinge": true
+    },
+    "trainer_default_argparse": "reference",
+    "four_full_cli_recipes_match_actual_reference_configs_except_output_and_action_ranking": true
+  },
+  "existing_main_agent_cpu_witness": {
+    "receipt": "refine-logs/runs/recoverability_pairwise/cpu_loss_witness.json",
+    "status": "PASS",
+    "visual_forwards": 0,
+    "optimization_updates": 0,
+    "old_loss_wrong_competitor_ahead": 0.0,
+    "new_loss_wrong_competitor_ahead": 0.025714285671710968,
+    "gradient_raises_better_and_lowers_worse": true,
+    "invalid_actions_have_zero_gradient": true,
+    "correct_margin_satisfies_loss": true,
+    "different_extra_regions_not_compared": true,
+    "same_region_competitors_compared": true,
+    "provenance": "Receipt and witness source inspected; this score-tensor backward witness was executed by the main agent, not by the reviewer."
+  },
+  "trainer_and_runner": {
+    "status": "PASS",
+    "trainer_plumbing": "action_ranking defaults to reference and is supplied consistently to initial validation, training, epoch validation and strict best-checkpoint reload validation. It is recorded by the existing args/config/checkpoint path.",
+    "runner_arguments": ["physical_gpu", "oracle|selector", "m0|full", "own|c1"],
+    "arms": ["oracle_c1", "selector_c1", "oracle_own", "selector_own"],
+    "seed": 42,
+    "batch_size": 256,
+    "train_queries": 902,
+    "validation_queries": 128,
+    "m0_epochs": 1,
+    "m0_expected_updates": 4,
+    "full_epochs": 60,
+    "full_expected_updates": 240,
+    "train_roots": [
+      "/data/gb/outputs/recoverability_train_s42_20261003",
+      "/data/gb/outputs/recoverability_train_s43_20261003",
+      "/data/gb/outputs/recoverability_train_s44_20261003",
+      "own: /data/gb/outputs/recoverability_own_policy_train_20261003; c1: /data/gb/outputs/recoverability_paired_c1_prefix_20261003"
+    ],
+    "validation_root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+    "prefer_last_prefix": true,
+    "initialization": "Existing seed42 cold initialization, frozen pretrained C1 and fresh optimizer. Full stage does not load M0 weights or corresponding old reference weights.",
+    "checkpoint": "Existing trainer retains best.pth by validation utility and verifies strict reload. Full online evaluation uses exactly that run's best.pth. No architecture/schema change or new evaluator flag is required.",
+    "output_root": "/data/gb/outputs/recoverability_pairwise_${mode}_${prefix}_b256_${stage}_20261004",
+    "existing_output_rejected": true,
+    "completion_markers": "training_completed.txt follows successful trainer exit. For full, job_completed.txt follows successful full98 evaluation and CPU report; for M0 it follows successful trainer exit. set -euo pipefail prevents a failed stage from writing the later marker.",
+    "full_evaluation": "Existing LasHeR traingset full98 development split at /data/gb/outputs/c1_initial_seed42/split.json, seed42, unchanged selector and gate. CPU report compares GOLA baseline, C1, and corresponding existing reference-ranking search mode/prefix run.",
+    "references_reused_without_retraining": true
+  },
+  "queue": {
+    "status": "PASS",
+    "arguments": ["physical_gpu", "oracle|selector", "own|c1"],
+    "wait_for": "/data/gb/outputs/recoverability_search_${mode}_${prefix}_b256_full_20261004/job_completed.txt",
+    "poll_seconds": 240,
+    "missing_marker_and_missing_old_tmux": "Exit with failure; no cancellation, timeout restart, fallback or replacement of old run.",
+    "memory_guard": "After observing the old job marker, query the supplied physical GPU and require memory.used < 500 MiB. This is a single guard, not a memory wait loop: a busy GPU makes the queue exit without launching M0.",
+    "launch": "Only run_recoverability_pairwise.sh GPU MODE m0 PREFIX. No automatic full launch.",
+    "preserves_existing_jobs": true,
+    "signals_sent": false,
+    "thermal_or_power_control_added": false,
+    "full_launch_condition": "Main agent must inspect all four actual M0 receipts for 1 epoch/4 updates, real trainability, frozen C1, strict reload and capacity before separately launching fresh full stages, as specified in plan.json."
+  },
+  "metadata_crosscheck": {
+    "status": "PASS",
+    "actual_four_reference_fit_configs": "Read-only inspection confirmed corresponding search mode/prefix, seed42, B256, epochs60, prefer-last902 TRAIN and shared128 VAL. Existing training receipts report240 updates and strict reload success.",
+    "reference_action_ranking_field": "Absent in old configs because old source implements reference ranking; no claim of an explicitly stored old pairwise/reference CLI field.",
+    "runtime_state_at_independent_read": "All four old full job completion markers were still absent; all eight planned pairwise M0/full output roots were absent. These are time-specific observations, not launch-time guarantees.",
+    "later_parent_report": "At 01:58 CST the main agent reported selector_own full98/report complete and physical GPU3 at20 MiB. Reviewer did not repeat GPU/process monitoring; queue rechecks the actual marker and memory before launch."
+  },
+  "interpretation_limits": [
+    "Source PASS allows the specified M0 queues; it does not replace runtime completion, free-card or all-four-M0 gates and does not certify improved tracking.",
+    "The hinge is zero at a predicted pair score gap of exactly .03. Deployed replacement still requires its existing strict keep+.03 comparison and verification/availability conditions. Zero ranking loss is not a guarantee of action selection; no threshold change is proposed.",
+    "Pairwise supervision uses currently cached GT utility, including frozen-C1 future labels. It is not full own-policy future continuation and does not remove that teacher limitation.",
+    "Full98 results remain development evidence. Existing corresponding reference arms supply the matched comparison; no official-test or multiple-seed acceptance claim is introduced."
+  ],
+  "reviewer_actions": {
+    "source_edits": 0,
+    "neural_forwards": 0,
+    "backward_calls": 0,
+    "optimizer_steps": 0,
+    "gpu_runs": 0,
+    "process_signals": 0,
+    "weight_changes_or_deletions": 0,
+    "deployment_or_training_launches": 0,
+    "human_markdown_files_created": 0,
+    "artifact_written": "refine-logs/runs/recoverability_pairwise/source_review.json"
+  }
+}

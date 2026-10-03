@@ -1,0 +1,59 @@
+{
+  "status": "FOUR_M0_QUEUES_ACTUALLY_LAUNCHED_FULL_NOT_LAUNCHED",
+  "launched_cst": "2026-10-04T02:04:12.254242+08:00",
+  "source_gate": "independent same-family/provisional PASS reported by prefix_matched_training_review; CPU13lossesdefaultbitwise and pair gradients checked",
+  "cpu_production_witness": {
+    "completed": true,
+    "status": "PASS",
+    "device": "cpu",
+    "visual_forwards": 0,
+    "optimization_updates": 0,
+    "old_loss_wrong_competitor_ahead": 0.0,
+    "new_loss_wrong_competitor_ahead": 0.025714285671710968,
+    "gradient_raises_better_and_lowers_worse": true,
+    "invalid_actions_have_zero_gradient": true,
+    "correct_margin_satisfies_loss": true,
+    "different_extra_regions_not_compared": true,
+    "same_region_competitors_compared": true
+  },
+  "batch_size": 256,
+  "epochs": 1,
+  "updates_expected": 4,
+  "seed": 42,
+  "full_auto_start": false,
+  "poll_seconds": 240,
+  "runs": [
+    {
+      "gpu": 0,
+      "arm": "oracle_c1",
+      "tmux": "recoverability_pairwise_oracle_c1_b256_m0_queue_20261004",
+      "pane_pid": 2379401,
+      "output": "/data/gb/outputs/recoverability_pairwise_oracle_c1_b256_m0_20261004",
+      "log": "/data/gb/setup/recoverability_pairwise_oracle_c1_b256_m0_queue_20261004.log"
+    },
+    {
+      "gpu": 1,
+      "arm": "selector_c1",
+      "tmux": "recoverability_pairwise_selector_c1_b256_m0_queue_20261004",
+      "pane_pid": 2379407,
+      "output": "/data/gb/outputs/recoverability_pairwise_selector_c1_b256_m0_20261004",
+      "log": "/data/gb/setup/recoverability_pairwise_selector_c1_b256_m0_queue_20261004.log"
+    },
+    {
+      "gpu": 2,
+      "arm": "oracle_own",
+      "tmux": "recoverability_pairwise_oracle_own_b256_m0_queue_20261004",
+      "pane_pid": 2379413,
+      "output": "/data/gb/outputs/recoverability_pairwise_oracle_own_b256_m0_20261004",
+      "log": "/data/gb/setup/recoverability_pairwise_oracle_own_b256_m0_queue_20261004.log"
+    },
+    {
+      "gpu": 3,
+      "arm": "selector_own",
+      "tmux": "recoverability_pairwise_selector_own_b256_m0_queue_20261004",
+      "pane_pid": 2379419,
+      "output": "/data/gb/outputs/recoverability_pairwise_selector_own_b256_m0_20261004",
+      "log": "/data/gb/setup/recoverability_pairwise_selector_own_b256_m0_queue_20261004.log"
+    }
+  ]
+}

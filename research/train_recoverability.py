@@ -31,6 +31,8 @@ def arguments():
     p.add_argument('--threshold', type=float, default=.03)
     p.add_argument('--search-supervision', choices=('oracle', 'selector'), default='oracle',
                    help='Region utility upper bound, or detached deployed-selector marginal utility.')
+    p.add_argument('--action-ranking', choices=('reference', 'pairwise'), default='reference',
+                   help='Relative-to-keep sign margin, or utility-weighted ordering of coexisting action pairs.')
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--prefer-last-prefix', action='store_true',
                    help='For matched-query prefix controls, use the last supplied state for each sequence/query.')
@@ -77,13 +79,13 @@ def forward(model, data):
 
 
 @torch.no_grad()
-def evaluate(model, data, batch_size, threshold, details=False, search_supervision='oracle'):
+def evaluate(model, data, batch_size, threshold, details=False, search_supervision='oracle', action_ranking='reference'):
     model.eval()
     results, total_loss = [], 0.
     for start in range(0, len(data['valid']), batch_size):
         batch = {key: value[start:start + batch_size] for key, value in data.items()}
         output = forward(model, batch)
-        loss, _ = objective(model, output, batch, search_supervision, threshold)
+        loss, _ = objective(model, output, batch, search_supervision, threshold, action_ranking)
         chosen = select_actions(output, batch, threshold)
         utility = action_utility(batch).flatten(1)
         current = batch['current_iou'].float()
@@ -173,7 +175,8 @@ def main():
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
                            'scope': 'causal predicted-prefix TRAIN caches with frozen-C1 continuation; not complete online or official accuracy'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
-    metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision)
+    metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision,
+                       action_ranking=args.action_ranking)
     records, best = [{'epoch': 0, **metrics}], metrics['utility']
 
     def save(epoch, metrics):
@@ -193,7 +196,7 @@ def main():
             for step, indices in enumerate(order.split(args.batch_size), 1):
                 batch = {key: value[indices] for key, value in train.items()}
                 output = forward(model, batch)
-                loss, parts = objective(model, output, batch, args.search_supervision, args.threshold)
+                loss, parts = objective(model, output, batch, args.search_supervision, args.threshold, args.action_ranking)
                 assert torch.isfinite(loss)
                 optimizer.zero_grad(set_to_none=True)
                 loss.backward()
@@ -214,7 +217,8 @@ def main():
                     stream.write(json.dumps(row) + '\n')
                     stream.flush()
                     print('TRAIN', json.dumps(row), flush=True)
-            metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision)
+            metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision,
+                               action_ranking=args.action_ranking)
             records.append({'epoch': epoch, **metrics})
             if metrics['utility'] > best:
                 best = metrics['utility']
@@ -227,7 +231,7 @@ def main():
     checkpoint = torch.load(out / 'best.pth', map_location=device, weights_only=False)
     model.load_state_dict(checkpoint['model'], strict=True)
     best_metrics, values = evaluate(model, validation, args.batch_size, args.threshold, details=True,
-                                    search_supervision=args.search_supervision)
+                                    search_supervision=args.search_supervision, action_ranking=args.action_ranking)
     assert best_metrics == checkpoint['validation']
     np.savez_compressed(out / 'best_validation.npz', **values)
     receipt = {'completed': True, 'epochs': args.epochs, 'optimizer_steps': steps,

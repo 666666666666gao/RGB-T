@@ -257,7 +257,26 @@ def search_supervision_targets(output, data, mode='oracle', threshold=.03):
     return torch.stack(gains, 1), torch.stack(successes, 1)
 
 
-def objective(model, output, data, search_supervision='oracle', threshold=.03):
+def ranking_supervision_loss(scores, utility, action_valid, reference, mode='reference'):
+    if mode == 'reference':
+        delta = utility - reference[:, None, None, None]
+        meaningful = action_valid & (delta.abs() > .05)
+        return (F.relu(.03 - delta.sign() * scores) * meaningful).sum() / meaningful.sum().clamp(min=1)
+    assert mode == 'pairwise'
+    # Competitors must coexist within original plus ONE extra visual region.
+    scores = scores.flatten(1)
+    values, legal = utility.flatten(1), action_valid.flatten(1)
+    regions = torch.arange(scores.shape[1], device=scores.device) // 10
+    compatible = ((regions[:, None] == 0) | (regions[None, :] == 0)
+                  | (regions[:, None] == regions[None, :]))
+    gap = values[:, :, None] - values[:, None, :]
+    pairs = legal[:, :, None] & legal[:, None, :] & compatible & (gap > .05)
+    weight = gap.clamp(min=0) * pairs
+    predicted_gap = scores[:, :, None] - scores[:, None, :]
+    return (F.relu(.03 - predicted_gap) * weight).sum() / weight.sum().clamp(min=1)
+
+
+def objective(model, output, data, search_supervision='oracle', threshold=.03, action_ranking='reference'):
     batch = len(data['valid'])
     valid, action_valid = data['valid'], data['action_valid']
     current = data['current_iou'].float()
@@ -269,8 +288,7 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03):
     harmful = (delta < -.05) | ((current[rows, 0, keep, None, None, None] >= .5) & (current[..., None] < .2))
     advantage_loss = F.smooth_l1_loss(output['advantage'][action_valid], delta[action_valid])
     harm_loss = F.binary_cross_entropy_with_logits(output['harm_logits'][action_valid], harmful.float()[action_valid])
-    meaningful = action_valid & (delta.abs() > .05)
-    ranking_loss = (F.relu(.03 - delta.sign() * output['scores']) * meaningful).sum() / meaningful.sum().clamp(min=1)
+    ranking_loss = ranking_supervision_loss(output['scores'], utility, action_valid, reference, action_ranking)
     quality_loss = F.binary_cross_entropy_with_logits(output['quality_logits'][valid], current[valid])
     write_risk = ((data['raw_score'] > .84) & (current < .2)).float()
     risk_loss = F.binary_cross_entropy_with_logits(output['write_risk_logits'][valid], write_risk[valid])

@@ -70,6 +70,17 @@ def main():
                 selected_utility = utility.flatten(1)[rows, action['flat_action']]
                 assert (selected_utility <= gated_oracle + 1e-6).all()
                 selected_current = current[rows, action['region'], action['candidate']]
+                eligible = available & gated_valid
+                score_winner = output['scores'].masked_fill(~eligible, -torch.inf).flatten(1).argmax(1)
+                score_winner_current = current.flatten(1)[rows, score_winner // 2]
+                ungated_winner = output['scores'].masked_fill(~(available & batch['action_valid']), -torch.inf).flatten(1).argmax(1)
+                ungated_winner_current = current.flatten(1)[rows, ungated_winner // 2]
+                correct_available = (available & batch['action_valid'] & (current[..., None] >= .5)).flatten(1).any(1)
+                correct_eligible = (eligible & (current[..., None] >= .5)).flatten(1).any(1)
+                # A correct highest-score action can still lose to the keep margin.
+                threshold_blocks_correct_winner = (score_winner_current >= .5) & (selected_current < .5)
+                ranking_rejects_correct = correct_eligible & (score_winner_current < .5)
+                eligibility_rejects_correct = correct_available & ~correct_eligible
                 region_correct = (current[:, region].masked_fill(~batch['valid'][:, region], -1).max(1).values >= .5)
                 region_best = utility[:, region].masked_fill(~batch['action_valid'][:, region], -torch.inf).flatten(1).max(1).values
                 region_best = torch.where(region_exists, region_best, reference)
@@ -91,6 +102,15 @@ def main():
                         'selected_current_iou': float(selected_current[row]),
                         'selected_flat_action': int(action['flat_action'][row]),
                         'selected_pause': bool(action['pause'][row]),
+                        'correct_action_available': bool(correct_available[row]),
+                        'correct_action_eligible': bool(correct_eligible[row]),
+                        'score_winner_flat_action': int(score_winner[row]),
+                        'score_winner_current_iou': float(score_winner_current[row]),
+                        'threshold_blocks_correct_score_winner': bool(threshold_blocks_correct_winner[row]),
+                        'ranking_rejects_eligible_correct_candidate': bool(ranking_rejects_correct[row]),
+                        'eligibility_rejects_all_correct_actions': bool(eligibility_rejects_correct[row]),
+                        'verification_changes_correct_score_winner_to_wrong': bool(
+                            (ungated_winner_current[row] >= .5) & (score_winner_current[row] < .5)),
                     }))
             for row in range(len(keep)):
                 job = jobs[start + row]
@@ -119,6 +139,10 @@ def main():
         'oracle_beneficial_but_selector_harm_gt_005': sum(r['selector_harm_gt_005'] for _, r in beneficial),
         'missing_target_recovered_pairs': len(missing),
         'recovered_pairs_selected_correct': sum(r['selected_current_iou'] >= .5 for _, r in missing),
+        'missing_recovered_pairs_threshold_blocked': sum(r['threshold_blocks_correct_score_winner'] for _, r in missing),
+        'missing_recovered_pairs_ranking_rejected': sum(r['ranking_rejects_eligible_correct_candidate'] for _, r in missing),
+        'missing_recovered_pairs_all_correct_actions_ineligible': sum(r['eligibility_rejects_all_correct_actions'] for _, r in missing),
+        'missing_recovered_ranking_failures_mediated_by_verification': sum(r['verification_changes_correct_score_winner_to_wrong'] for _, r in missing),
         'missing_target_recovered_unique_queries': len({(row['sequence'], row['query_frame']) for row, _ in missing}),
         'recovered_selected_unique_queries': len({(row['sequence'], row['query_frame']) for row, r in missing if r['selected_current_iou'] >= .5}),
         'natural_search_queries': sum(r['natural_search'] for r in records),
@@ -128,6 +152,10 @@ def main():
         'correct_keep_regular_action_denied': sum(r['keep_raw_write'] and not r['keep_write_verified'] and r['keep_current_iou'] >= .5 for r in records),
         'incorrect_keep_regular_action_denied_iou_lt_02': sum(r['keep_raw_write'] and not r['keep_write_verified'] and r['keep_current_iou'] < .2 for r in records),
     }
+    assert (summary['missing_recovered_pairs_threshold_blocked']
+            + summary['missing_recovered_pairs_ranking_rejected']
+            + summary['missing_recovered_pairs_all_correct_actions_ineligible']
+            + summary['recovered_pairs_selected_correct']) == summary['missing_target_recovered_pairs']
     result = {
         'completed': True, 'model': args.model, 'checkpoint_epoch': checkpoint['epoch'],
         'cache': args.cache, 'partition': args.partition, 'threshold': threshold,

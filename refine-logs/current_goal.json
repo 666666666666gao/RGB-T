@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "SOURCE_AND_FOUR_REAL_M0_PASS_B256_FULL_ACTUALLY_LAUNCHED",
+      "status": "FOUR_SEARCH_REFERENCE_FULL98_CLOSED_NEGATIVE_PAIRWISE_ALL4M0_PASS_FULL_TRAINING_LIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -46,12 +46,14 @@
         "Train intervention advantage and harm on the current policy's states, and align selection, template/memory submission and motion state decisions. Reintroduce state restoration only if it beats box-only and pause-update controls."
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
-      "diagnostic": "Own42epoch25 CPU cached-state diagnostic: TRAIN274/1641nonempty query-region pairs, oracle-beneficial413 with354selector-nonpositive, missing-correct127pairs with3correct selections spanning2/47unique queries. VAL128/768pairs,94beneficial84nonpositive,17missing-correctpairs0selected. All81TRAIN C1-keep raw-write regular actions denied by verification (72correct9wrong); all70VAL denied (69correct1wrong). These are eligibility counts and frozen-C1 future labels, not deployed recovery rates. CPU natural choices128 equal saved GPU128. Same-weight full98 template-write/pause control actually launchedGPU0 after formalclosure; selector/memory verification remains active.",
-      "active_controls": "Previousfixed-own42 search/write2x2 ALL complete, allbelowGOLA. New4trainingarms are oracle|selector supervision x own|serialC1 prefixes, allseed42/B25660epochs240updates and identicalqueryorder.",
-      "write_control_completed": "Same-own42 rawtemplatewrite full98 seqIoU.725831009: +1.504355pp vs gatedfull withCI[-.511888,3.381141], still -1.744750pp vsGOLA CI[-3.853158,-.159353]. Thus gateoverblocking is real but insufficient to explain all degradation. No-search and matched C1full trajectories pending.",
+      "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
+      "active_controls": "Previousfixed42 search/write2x2 and4prefix controls COMPLETEnegative. NewCpairwise oracle|selector x own|serialC1, allseed42/B25660ep240steps; pairedreference4 completeoriginaltraining/results reused.",
+      "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
       "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
-      "search_supervision_change": "Onlysearchloss targetfactor changed. Detacheddeployedselectorforcedsingleextra comparedto sameoriginal-onlyselector; lookupGT afterselection;cost.01once,emptytargets0. Existingoracle13lossesbitwiseexactCPU; localpausebenefit notcreditedtosearch. Defaults/architecture/inference/otherlosses retained. All4realM0oneepoch4updates A/B/Cupdated C1frozen/reloadPASS. Freshfull actuallylaunched2026-10-04T01:06:29+08:00.",
-      "gate_category_diagnostic": "Read-only actualTRAIN9481/VAL4444 candidates: RGBandTIRargmaxalltarget. Blindargmaxverification would admit all5832TRAIN/1743VAL wrong candidates permodality; no threshold/policychange. DuplicatedIoUlabels notsensor reliability."
+      "search_supervision_change": "Completed sourcePASS+fourM0+allfourB256full training and98videoreports. Selector target selectedinitialization twice, continuousoracle trainedmodels belowGOLA. No benefit established; pairwise competition supervision now independentnextfactor, architecture/inference unchanged.",
+      "gate_category_diagnostic": "Read-only actualTRAIN9481/VAL4444 candidates: RGBandTIRargmaxalltarget. Blindargmaxverification would admit all5832TRAIN/1743VAL wrong candidates permodality; no threshold/policychange. DuplicatedIoUlabels notsensor reliability.",
+      "current_b256_results": "All4actual60epochs240updates/full98COMPLETE. OracleC1best42 .691787711/GOLA-5.149080ppCI[-8.229599,-2.122421]; oracleownbest46 .708548595/GOLA-3.472991ppCI[-6.287623,-.919647]. SelectorC1/ownbest0 both.739440162 EXACTC1/GOLA-.383835ppCI[-1.295319,.404423]; initialization not learnedgain. Native formal goals unmet.",
+      "prepared_ranking_factor": "Only C ranking target pairwise changed; samefamilyindependentCPU sourcePASS/default13lossesbitwise. All4actualM0 1epoch4steps/frozenC1/strictreloadPASS; exact902TRAIN/128VALorders matcholdreference. M0weightsdeleted4/6931408B. Freshfull all4actuallystarted02:09:22; observed02:13 all4primaryPIDs2388410/15/20/25 live epoch12/45updates; resultsnotready."
     },
     {
       "id": "S3_freeze_then_confirm",
@@ -115,7 +117,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Four B256full trainings actual01:06:29; each automatically full98 then existingCPUreport. No pending prefix queues.",
+    "queued_successor": "Four freshpairwisefulls live02:09:22; auto complete98video/report after60epochs. No pendingM0queue; no automaticnewsearch or retry.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -128,13 +130,13 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "oracle_search_supervision x serialC1prefix B256full",
-      "GPU1": "selector_search_supervision x serialC1prefix B256full",
-      "GPU2": "oracle_search_supervision x ownprefix B256full",
-      "GPU3": "selector_search_supervision x ownprefix B256full"
+      "GPU0": "pairwise oracle_c1 PID2388410",
+      "GPU1": "pairwise selector_c1 PID2388415",
+      "GPU2": "pairwise oracle_own PID2388420",
+      "GPU3": "pairwise selector_own PID2388425"
     },
     "gpu_memory_request": {
-      "status": "ALL_FOUR_B256_FULL_TRAINING_AFTER_FOUR_REAL_M0_PASS",
+      "status": "FOUR_FRESH_PAIRWISE_B256_FULL_TRAININGS_LIVE_AFTER_ALL4_REAL_M0_PASS",
       "changes_current_matched_controls": false,
       "capacity_epochs": 1,
       "capacity_queries": 902,
@@ -149,15 +151,16 @@
       "full_epochs": 60,
       "full_updates_expected": 240,
       "exposure_note": "BothB256armsmatched60epochs/240steps; priorB12830epochs/240steps notpurebatchcomparison.",
-      "current_verified_cst": "2026-10-04T01:09:47+08:00",
+      "current_verified_cst": "2026-10-04T02:13:52.687029+08:00",
       "current_total_memory_mib_per_card": [
         17014,
         16685,
         16685,
         16685
-      ]
+      ],
+      "current_phase": "Actual newpairwise training total17014/16685/16685/16685MiB; peakallocated10645.781MiB, no padding; serialevaluationlowerGPUmemoryisexpected"
     },
-    "next_check_cst": "2026-10-04T01:24:00+08:00"
+    "next_check_cst": "2026-10-04T02:31:00+08:00"
   },
   "model_selection": {
     "policy": "One best seed/checkpoint",
@@ -167,5 +170,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T01:08:00+08:00"
+  "updated_cst": "2026-10-04T02:13:52.687029+08:00"
 }

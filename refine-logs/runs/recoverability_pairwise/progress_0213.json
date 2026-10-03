@@ -1,0 +1,278 @@
+{
+  "status": "FOUR_REAL_PRIMARY_TRAINING_PROCESSES_LIVE",
+  "observed_cst": "2026-10-04T02:13:52.687029+08:00",
+  "memory_total_utilization": [
+    "0, 17014, 11",
+    "1, 16685, 83",
+    "2, 16685, 100",
+    "3, 16685, 100"
+  ],
+  "native_accuracy_completed": false,
+  "full98_completed": false,
+  "arms": {
+    "oracle_c1": {
+      "process": "2388410     270 Rl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 256 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --output /data/gb/outputs/recoverability_pairwise_oracle_c1_b256_full_20261004",
+      "recorded_train_rows": 23,
+      "last_train": {
+        "epoch": 12,
+        "step": 1,
+        "optimizer_steps": 45,
+        "loss": 1.6001622676849365,
+        "parts": {
+          "advantage": 0.030731379985809326,
+          "action_ranking": 0.010683172382414341,
+          "harm": 1.6500581502914429,
+          "quality": 0.7551061511039734,
+          "query_write_risk": 0.04294987767934799,
+          "future": 0.1325932890176773,
+          "memory_gate": 1.3823051452636719,
+          "margin_preservation": 0.004525954369455576,
+          "identity_margin": 0.13999295234680176,
+          "search_value": 0.019109953194856644,
+          "search_success": 0.5600037574768066,
+          "candidate_absence": 0.7377691268920898,
+          "search_ranking": 1.7617627382278442
+        },
+        "module_gradient_norms": {
+          "A": 0.09245205670595169,
+          "B": 3.4509754180908203,
+          "C": 1.0475125312805176
+        },
+        "elapsed_seconds": 245.20867917034775,
+        "peak_cuda_mib": 10646.38916015625
+      },
+      "last_validation": {
+        "epoch": 11,
+        "clips": 128,
+        "loss": 1.5320773124694824,
+        "valid_actions": 4772,
+        "current": 0.7315480709075928,
+        "c1_current": 0.730903148651123,
+        "utility_before_search_cost": 0.7298778295516968,
+        "utility": 0.7294090986251831,
+        "c1_utility": 0.7292657494544983,
+        "pause": 41,
+        "search_triggered": 6,
+        "changed_location": 2,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 13,
+        "c1_failed": 13,
+        "original_recall": 113,
+        "budget_recall": 113,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0006449222564697266,
+        "utility_gain_against_c1": 0.00014334917068481445
+      },
+      "train_queries": 902,
+      "validation_queries": 128,
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "training_completed": false,
+      "job_completed": false
+    },
+    "selector_c1": {
+      "process": "2388415     270 Sl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 256 --epochs 60 --seed 42 --search-supervision selector --action-ranking pairwise --output /data/gb/outputs/recoverability_pairwise_selector_c1_b256_full_20261004",
+      "recorded_train_rows": 23,
+      "last_train": {
+        "epoch": 12,
+        "step": 1,
+        "optimizer_steps": 45,
+        "loss": 1.4430413246154785,
+        "parts": {
+          "advantage": 0.03321176394820213,
+          "action_ranking": 0.010013803839683533,
+          "harm": 1.6791590452194214,
+          "quality": 0.7584059834480286,
+          "query_write_risk": 0.04447868838906288,
+          "future": 0.1330277919769287,
+          "memory_gate": 1.3835800886154175,
+          "margin_preservation": 0.005818986799567938,
+          "identity_margin": 0.13705386221408844,
+          "search_value": 0.018109332770109177,
+          "search_success": 0.6068496704101562,
+          "candidate_absence": 0.7665213942527771,
+          "search_ranking": 0.8620359301567078
+        },
+        "module_gradient_norms": {
+          "A": 0.12765692174434662,
+          "B": 6.833005905151367,
+          "C": 1.021314024925232
+        },
+        "elapsed_seconds": 244.81670369114727,
+        "peak_cuda_mib": 10646.38916015625
+      },
+      "last_validation": {
+        "epoch": 11,
+        "clips": 128,
+        "loss": 1.4835124015808105,
+        "valid_actions": 4772,
+        "current": 0.7303729057312012,
+        "c1_current": 0.730903148651123,
+        "utility_before_search_cost": 0.728063702583313,
+        "utility": 0.7272043228149414,
+        "c1_utility": 0.7292657494544983,
+        "pause": 54,
+        "search_triggered": 11,
+        "changed_location": 2,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 13,
+        "c1_failed": 13,
+        "original_recall": 113,
+        "budget_recall": 116,
+        "missing_candidate_found": 3,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": -0.000530242919921875,
+        "utility_gain_against_c1": -0.0020614266395568848
+      },
+      "train_queries": 902,
+      "validation_queries": 128,
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "training_completed": false,
+      "job_completed": false
+    },
+    "oracle_own": {
+      "process": "2388420     270 Sl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 256 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --output /data/gb/outputs/recoverability_pairwise_oracle_own_b256_full_20261004",
+      "recorded_train_rows": 23,
+      "last_train": {
+        "epoch": 12,
+        "step": 1,
+        "optimizer_steps": 45,
+        "loss": 1.5967340469360352,
+        "parts": {
+          "advantage": 0.03127998486161232,
+          "action_ranking": 0.010579741559922695,
+          "harm": 1.746898889541626,
+          "quality": 0.7718113660812378,
+          "query_write_risk": 0.04118656367063522,
+          "future": 0.12771373987197876,
+          "memory_gate": 1.369804859161377,
+          "margin_preservation": 0.004740388598293066,
+          "identity_margin": 0.14118650555610657,
+          "search_value": 0.019270069897174835,
+          "search_success": 0.538799524307251,
+          "candidate_absence": 0.6532599925994873,
+          "search_ranking": 1.7551301717758179
+        },
+        "module_gradient_norms": {
+          "A": 0.08509122580289841,
+          "B": 3.686413288116455,
+          "C": 1.1310229301452637
+        },
+        "elapsed_seconds": 244.15453861420974,
+        "peak_cuda_mib": 10646.38916015625
+      },
+      "last_validation": {
+        "epoch": 11,
+        "clips": 128,
+        "loss": 1.5287292003631592,
+        "valid_actions": 4772,
+        "current": 0.7315480709075928,
+        "c1_current": 0.730903148651123,
+        "utility_before_search_cost": 0.7298555374145508,
+        "utility": 0.7295430302619934,
+        "c1_utility": 0.7292657494544983,
+        "pause": 39,
+        "search_triggered": 4,
+        "changed_location": 2,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 13,
+        "c1_failed": 13,
+        "original_recall": 113,
+        "budget_recall": 113,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0006449222564697266,
+        "utility_gain_against_c1": 0.0002772808074951172
+      },
+      "train_queries": 902,
+      "validation_queries": 128,
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "training_completed": false,
+      "job_completed": false
+    },
+    "selector_own": {
+      "process": "2388425     270 Sl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 256 --epochs 60 --seed 42 --search-supervision selector --action-ranking pairwise --output /data/gb/outputs/recoverability_pairwise_selector_own_b256_full_20261004",
+      "recorded_train_rows": 23,
+      "last_train": {
+        "epoch": 12,
+        "step": 1,
+        "optimizer_steps": 45,
+        "loss": 1.77065110206604,
+        "parts": {
+          "advantage": 0.03477070853114128,
+          "action_ranking": 0.009803171269595623,
+          "harm": 1.7885854244232178,
+          "quality": 0.7765706777572632,
+          "query_write_risk": 0.04326161742210388,
+          "future": 0.12824217975139618,
+          "memory_gate": 1.37113618850708,
+          "margin_preservation": 0.005941030103713274,
+          "identity_margin": 0.13856260478496552,
+          "search_value": 0.01438979059457779,
+          "search_success": 0.5743944644927979,
+          "candidate_absence": 0.6637601852416992,
+          "search_ranking": 2.5404183864593506
+        },
+        "module_gradient_norms": {
+          "A": 0.11220929026603699,
+          "B": 15.728704452514648,
+          "C": 1.0961765050888062
+        },
+        "elapsed_seconds": 244.56303986627609,
+        "peak_cuda_mib": 10646.38916015625
+      },
+      "last_validation": {
+        "epoch": 11,
+        "clips": 128,
+        "loss": 1.4412415027618408,
+        "valid_actions": 4772,
+        "current": 0.7303729057312012,
+        "c1_current": 0.730903148651123,
+        "utility_before_search_cost": 0.728063702583313,
+        "utility": 0.7272043228149414,
+        "c1_utility": 0.7292657494544983,
+        "pause": 54,
+        "search_triggered": 11,
+        "changed_location": 2,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 13,
+        "c1_failed": 13,
+        "original_recall": 113,
+        "budget_recall": 116,
+        "missing_candidate_found": 3,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": -0.000530242919921875,
+        "utility_gain_against_c1": -0.0020614266395568848
+      },
+      "train_queries": 902,
+      "validation_queries": 128,
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "training_completed": false,
+      "job_completed": false
+    }
+  }
+}
