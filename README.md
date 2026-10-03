@@ -69,6 +69,16 @@ float32 box-scaling correction; this limited control is not a full benchmark
 zero-head equivalence claim. One detailed handoff contains current results,
 protocols, negative findings, code reviews, dataset paths and remaining work.
 
+A TRAIN-only search audit found189 failed sampled queries,151 without a correct
+candidate. Of88 missing-candidate queries whose target center was outside the
+native crop, the top-probability motion crop covered0; all three motion crops
+covered21, with four regions including the original. Validation found25 missing
+candidates,11 outside the crop and4 covered by any proposal. This is geometric
+center coverage without visual inference, not tracking accuracy or a gain.
+[Corrected native-crop audit](refine-logs/runs/abc_train_search_audit_v2.json)
+uses the original factor4/minsize10 provider; the earlier inline rectangular
+approximation is obsolete. No checkpoint or live tracker was changed.
+
 - [Detailed experiment handoff](docs/HANDOFF_20261002.md)
 - Sanity: `bash scripts/run_c1_sanity.sh`
 - Initial training after sanity passes: `bash scripts/run_c1_initial.sh`
