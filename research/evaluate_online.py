@@ -44,6 +44,7 @@ def arguments():
     p.add_argument('--max-frames', type=int, default=0, help='0 means all frames; positive values are smoke ONLY')
     p.add_argument('--amp-dtype', choices=['float16', 'bfloat16'], default='float16')
     p.add_argument('--record-mechanisms', action='store_true', help='Save every candidate and template write for full offline GT diagnostics.')
+    p.add_argument('--validation-split', help='Original TRAIN-held-out split; internal diagnostics only.')
     return p.parse_args()
 
 
@@ -160,6 +161,11 @@ def main():
         extractor = FrozenCandidateExtractor(args.pretrained).to(device)
     dtype = getattr(torch, args.amp_dtype)
     sequences = sorted(p for p in Path(args.root).iterdir() if p.is_dir())
+    if args.validation_split:
+        split = json.loads(Path(args.validation_split).read_text())
+        assert args.dataset == 'lasher' and not set(split['train']) & set(split['validation'])
+        sequences = [p for p in sequences if p.name in split['validation']]
+        assert {p.name for p in sequences} == set(split['validation'])
     if args.limit_sequences:
         sequences = sequences[:args.limit_sequences]
     assert sequences
@@ -171,7 +177,7 @@ def main():
                            'backbone_attention': 'none',
                            'candidate_box_scaling': 'float32_multiply_then_double',
                            'timing_excludes_first_frame_initialization': True,
-                           'smoke_only': bool(args.limit_sequences or args.max_frames),
+                           'smoke_only': bool(args.limit_sequences or args.max_frames or args.validation_split),
                            'head_epoch': checkpoint['epoch'] if head is not None else None,
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))

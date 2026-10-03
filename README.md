@@ -62,13 +62,39 @@ provenance/forecast diagnostics passed source review and GPU correspondence.
 Sampling uses full causal prefixes and batch32. Full98TRAIN-held-out videos
 (49418frames each) compare initial, trained last and trained box-only online;
 checkpoint selection uses sequence-weighted IoU before official tests. All98 videos are complete: initial .737194672342, trained last .739523904518, last box-only .738778577820. Epoch30 was locked before official testing; these are internal localization diagnostics, not PR/SR or a baseline improvement.
-Four GPUs now run full ABC and matched box-only on both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full ABC benchmark results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
+The full ABC and matched box-only evaluations use both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full RGBT234 ABC results are now complete and negative; LasHeR ABC results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal
 float32 box-scaling correction; this limited control is not a full benchmark
 zero-head equivalence claim. One detailed handoff contains current results,
 protocols, negative findings, code reviews, dataset paths and remaining work.
 
+Full **RGBT234 ABC epoch30** now covers all234 sequences/116649 frame pairs:
+MPR90.451789/MSR68.534016, versus full GOLA91.778858/69.232593;
+changes are **-1.327069/-0.698578pp**. Matched box-only is90.404683/68.475373.
+ABC-minus-box is only+0.047106/+0.058642pp, with95% paired intervals
+[-0.330319,0.422496]/[-0.174889,0.299397]. Fixed-weight5000 sequence bootstrap
+intervals for ABC-minus-baseline also include zero. The+2pp goal remains unmet.
+[Full native report and all events](refine-logs/runs/abc_full_rgbt234/main/full_report.json),
+[all12 attributes](refine-logs/runs/abc_full_rgbt234/main/per_attribute.csv),
+[all234 sequence pairs](refine-logs/runs/abc_full_rgbt234/main/per_sequence.csv),
+[branch/memory/forecast diagnostics](refine-logs/runs/abc_full_rgbt234/main/abc_diagnostics.json),
+[full completion marker](refine-logs/runs/abc_full_rgbt234/main/full_evaluation_completed.txt),
+[matched state-repair report](refine-logs/runs/abc_full_rgbt234/state/full_report.json),
+[state completion marker](refine-logs/runs/abc_full_rgbt234/state/state_comparison_completed.txt).
+Fewer failed frames do not override worse native sequence-weighted metrics.
+Only MB improves both native attribute metrics; declines remain in the report.
+
+GPU0/2 continue the original full LasHeR jobs. GPU1/3 now run full GOLA/C1
+controls on the same original98 TRAIN-held-out videos as the existing ABC
+comparison. Candidate diagnostics next distinguish dense-grid, peak and TopK
+losses, followed by budget-matched actual extra visual search and safe writes.
+A two-query replay with smaller batches drifted184px from cached boxes; this
+negative [subset receipt](refine-logs/runs/abc_dense_probe/subset_m0.json) is kept.
+Replaying the full original32-context group restored exact features/boxes/counts
+on both queries, but all examined local candidate policies still had oracleIoU0.
+[Original-group GPU receipt](refine-logs/runs/abc_dense_probe/original_group_m0.json).
+This is a limited TRAIN diagnostic, not a tracking improvement or full replay audit.
 A TRAIN-only search audit found189 failed sampled queries,151 without a correct
 candidate. Of88 missing-candidate queries whose target center was outside the
 native crop, the top-probability motion crop covered0; all three motion crops

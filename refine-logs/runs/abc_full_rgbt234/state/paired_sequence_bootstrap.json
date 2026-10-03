@@ -1,0 +1,43 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/abc_full_v1/state_compare/rgbt234/full_report.json"
+    ],
+    "output": "/data/gb/outputs/abc_full_v1/state_compare/rgbt234/paired_sequence_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "abc_box_only",
+        "abc"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.04710587167452899,
+          "percentile_95_interval_percentage_points": [
+            -0.3303191157363696,
+            0.4224961595269172
+          ],
+          "improved_sequences": 9,
+          "worsened_sequences": 11,
+          "tied_sequences": 214
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.058642341367050564,
+          "percentile_95_interval_percentage_points": [
+            -0.17488888854423718,
+            0.2993966974404004
+          ],
+          "improved_sequences": 13,
+          "worsened_sequences": 14,
+          "tied_sequences": 207
+        }
+      }
+    }
+  }
+}
