@@ -51,12 +51,18 @@ Learned A compression, B multi-future prediction and coupled C state recovery
 are now implemented. Fresh source review and actual GPU M0 passed: A/B/C
 parameters changed, frozen C1 had no gradients, and bounded online smoke checks
 passed. Small validation choices did not improve and the smoke videos had no
-branch switches. Three free GPUs are collecting 3072 TRAIN clips (3032 unique sequence/query pairs);
-all512 held-out clips are complete. A fixed30epoch/batch64 training/audit chain
-is waiting for collection completion. New branch-template and learned-slot
+branch switches. All3072 TRAIN clips (3032 unique sequence/query pairs) and
+512 held-out clips are complete. Joint training finished30epochs/1440steps,
+batch64, with A/B/C changed and frozen C1 exactly unchanged. Cached validation
+choices stayed equal to C1 in all31epoch records; cached best is epoch0,
+so there is no demonstrated learned selection gain. Strict initial/best/last
+reload and all held-out calibration checks passed.
+New branch-template and learned-slot
 provenance/forecast diagnostics passed source review and GPU correspondence.
-Sampling uses full causal prefixes and batch32; joint training and full ABC benchmark
-results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
+Sampling uses full causal prefixes and batch32. Full98TRAIN-held-out videos
+(49418frames each) compare initial, trained last and trained box-only online;
+checkpoint selection uses sequence-weighted IoU before official tests. All98 videos are complete: initial .737194672342, trained last .739523904518, last box-only .738778577820. Epoch30 was locked before official testing; these are internal localization diagnostics, not PR/SR or a baseline improvement.
+Four GPUs now run full ABC and matched box-only on both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. Full ABC benchmark results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal
 float32 box-scaling correction; this limited control is not a full benchmark
