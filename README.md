@@ -51,8 +51,11 @@ Learned A compression, B multi-future prediction and coupled C state recovery
 are now implemented. Fresh source review and actual GPU M0 passed: A/B/C
 parameters changed, frozen C1 had no gradients, and bounded online smoke checks
 passed. Small validation choices did not improve and the smoke videos had no
-branch switches. Three free GPUs are collecting 3072 TRAIN/512 held-out clips
-with full causal prefixes and batch32; joint training and full ABC benchmark
+branch switches. Three free GPUs are collecting 3072 TRAIN clips (3032 unique sequence/query pairs);
+all512 held-out clips are complete. A fixed30epoch/batch64 training/audit chain
+is waiting for collection completion. New branch-template and learned-slot
+provenance/forecast diagnostics passed source review and GPU correspondence.
+Sampling uses full causal prefixes and batch32; joint training and full ABC benchmark
 results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal

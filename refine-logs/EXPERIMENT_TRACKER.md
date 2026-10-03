@@ -28,5 +28,7 @@
 | A/B/C + causal collector/train/online interfaces | SOURCE_PASS | abc_temporal_review final PASS for M0; whole-prefix256 causal training |
 | Complete-prefix memory training correction | IMPLEMENTED_PREDEPLOY | reviewer actual24frame mismatch corrected to256>=maxprefix |
 | Real new ABC sanity | PASS_NO_GAIN_CLAIM | actual8TRAIN/8val;2optimizersteps;ABCchanged/C1frozen;2x128 onlineframes;0switches |
-| Collection / joint training | M1_RUNNING_M2_PENDING | three free GPUs1/2/3, batch32;3072TRAIN/512val planned;GPU0otheraccount occupied |
+| Collection / joint training | M1_RUNNING_M2_PENDING | three GPUs1/2/3 train704/640/416of1024 at10:14;val512 COMPLETE;fixed30epoch/batch64 chain WAIT_COLLECTION;GPU0otheraccount occupied |
 | Full ABC official benchmark | NOT_RUN | after internalvalidation, all245/234 andcomplete native/branch-aware metrics |
+
+| New full ABC diagnostics/audit | SOURCE_AND_GPU_M0_PASS | actualtemplate/learnedslot provenance,forecastPIT/NLL,strict8valreload;0real GPU switches, fullbench pending |

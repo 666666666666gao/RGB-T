@@ -1,0 +1,189 @@
+{
+  "completed": true,
+  "partition": "validation",
+  "clips": 512,
+  "valid_actions": 2412,
+  "all_arrays_finite": true,
+  "all_history_complete_causal_prefixes": true,
+  "history": 256,
+  "horizon": 3,
+  "unique_sequences": 98,
+  "unique_sequence_query_pairs": 503,
+  "shapes": {
+    "features": {
+      "shape": [
+        512,
+        5,
+        768
+      ],
+      "dtype": "float32"
+    },
+    "evidence": {
+      "shape": [
+        512,
+        5,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "raw_score": {
+      "shape": [
+        512,
+        5
+      ],
+      "dtype": "float32"
+    },
+    "c1_quality": {
+      "shape": [
+        512,
+        5
+      ],
+      "dtype": "float32"
+    },
+    "boxes": {
+      "shape": [
+        512,
+        5,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "modality_features": {
+      "shape": [
+        512,
+        5,
+        2,
+        768
+      ],
+      "dtype": "float32"
+    },
+    "anchor_features": {
+      "shape": [
+        512,
+        2,
+        768
+      ],
+      "dtype": "float32"
+    },
+    "image_boxes": {
+      "shape": [
+        512,
+        5,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "valid": {
+      "shape": [
+        512,
+        5
+      ],
+      "dtype": "bool"
+    },
+    "original_choice": {
+      "shape": [
+        512
+      ],
+      "dtype": "int64"
+    },
+    "history_descriptors": {
+      "shape": [
+        512,
+        256,
+        2,
+        768
+      ],
+      "dtype": "float32"
+    },
+    "history_evidence": {
+      "shape": [
+        512,
+        256,
+        10
+      ],
+      "dtype": "float32"
+    },
+    "history_quality": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "history_boxes": {
+      "shape": [
+        512,
+        256,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "history_frames": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "int64"
+    },
+    "history_write": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "bool"
+    },
+    "history_valid": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "bool"
+    },
+    "history_iou": {
+      "shape": [
+        512,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "motion_targets": {
+      "shape": [
+        512,
+        3,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "current_iou": {
+      "shape": [
+        512,
+        5
+      ],
+      "dtype": "float32"
+    },
+    "future_iou": {
+      "shape": [
+        512,
+        5,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "wrong_update_fraction": {
+      "shape": [
+        512,
+        5
+      ],
+      "dtype": "float32"
+    }
+  },
+  "internal_diagnostics_not_official_accuracy": {
+    "clips": 512,
+    "c1_failed_clips": 33,
+    "c1_correct_clips": 463,
+    "candidate_recalled_clips": 471,
+    "failed_and_recallable_clips": 8,
+    "mean_c1_iou": 0.7498722076416016,
+    "oracle_candidate_iou": 0.7644096612930298
+  }
+}

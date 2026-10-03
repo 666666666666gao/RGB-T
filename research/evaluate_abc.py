@@ -52,7 +52,14 @@ def track(paths_v, paths_i, initial, extractor, modules, device, args):
         latency.append(time.perf_counter() - started)
         # Diagnostic transfer/serialization is outside measured tracker latency.
         decisions.append({key: numpy_value(value) for key, value in tracker.last_decision.items()})
-        events.append(tracker.last_event)
+        event = tracker.last_event.copy()
+        event['candidate_sets'] = [record | {'boxes_xyxy': record['boxes_xyxy'].tolist(),
+                                            'valid': record['valid'].cpu().tolist(),
+                                            'c1_choice': int(record['c1_choice'].cpu())}
+                                   for record in event['candidate_sets']]
+        event['branches'] = [record | {'memory_write_rates': record['memory_write_rates'].cpu().tolist()}
+                             for record in event['branches']]
+        events.append(event)
     assert torch.equal(tracker.identity_anchor, protected)
     assert len(decisions) == len(latency) == len(predictions) - 1
     for box, decision in zip(predictions[1:], decisions):
@@ -97,6 +104,8 @@ def main():
                            'timing_excludes_first_frame_initialization': True,
                            'diagnostic_serialization_after_timing': True,
                            'candidate_diagnostic_requires_branch_aware_template_provenance': True,
+                           'branch_template_provenance_recorded': True,
+                           'all_parent_candidate_sets_recorded': True,
                            'gt_input': 'only first annotation initializes; later GT only offline scoring',
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))

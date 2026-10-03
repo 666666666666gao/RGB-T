@@ -155,7 +155,7 @@ def main():
     def save(name, epoch, metrics):
         torch.save({'module': 'ABC_temporal', 'model': model.state_dict(), 'optimizer': optimizer.state_dict(),
                     'epoch': epoch, 'args': vars(args), 'horizon': reference['horizon'],
-                    'validation': metrics, 'selection_policy': config['utility_target']}, out / name)
+                    'validation': metrics, 'selection_policy': config['checkpoint_selection']}, out / name)
     save('initial.pth', 0, metrics)
     save('best.pth', 0, metrics)
     (out / 'metrics.json').write_text(json.dumps(records, indent=2))

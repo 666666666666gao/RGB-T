@@ -1,0 +1,551 @@
+{
+  "no_gpu_execution": true,
+  "forecasts": [
+    {
+      "variant": "abc",
+      "sequence": "10rightblackboy",
+      "valid_joint": 63,
+      "independent_torch_nll_sum": -91.10113171154299,
+      "collector_nll_sum": -91.10113169388978,
+      "difference": 1.7653206896284246e-08,
+      "old_m0_lacks_new_provenance": true
+    },
+    {
+      "variant": "abc",
+      "sequence": "1boygo",
+      "valid_joint": 63,
+      "independent_torch_nll_sum": -89.30945666288167,
+      "collector_nll_sum": -89.30945659152002,
+      "difference": 7.136165436349984e-08,
+      "old_m0_lacks_new_provenance": true
+    },
+    {
+      "variant": "abc_box_only",
+      "sequence": "10rightblackboy",
+      "valid_joint": 63,
+      "independent_torch_nll_sum": -91.10113171154299,
+      "collector_nll_sum": -91.10113169388978,
+      "difference": 1.7653206896284246e-08,
+      "old_m0_lacks_new_provenance": true
+    },
+    {
+      "variant": "abc_box_only",
+      "sequence": "1boygo",
+      "valid_joint": 63,
+      "independent_torch_nll_sum": -89.30945666288167,
+      "collector_nll_sum": -89.30945659152002,
+      "difference": 7.136165436349984e-08,
+      "old_m0_lacks_new_provenance": true
+    }
+  ],
+  "audit_cpu_repeat": {
+    "initial": {
+      "epoch": 0,
+      "clips": 8,
+      "valid_actions": 34,
+      "exact_same_device_cpu_repeat": true,
+      "original_gpu_metric_differences": {
+        "clips": 0,
+        "valid_actions": 0,
+        "loss": 2.9802322387695312e-08,
+        "motion_trajectory_nll": 0.0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility": 0.0,
+        "c1_utility": 0.0,
+        "regret": 0.0,
+        "reselected": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "recall": 0,
+        "best_mode_normalized_ade": -7.450580596923828e-09,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "calibration": {
+        "current": {
+          "valid_actions": 34,
+          "mse": 0.006402283942659572,
+          "mae": 0.03447629584584052,
+          "ece_10_bins": 0.019653623465300744,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.1667825800677747,
+              "target_sum": 0.38293089251965284
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.5953160524368286,
+              "target_sum": 0.7437310814857483
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6210814118385315,
+              "target_sum": 0.6192179322242737
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7690802812576294,
+              "target_sum": 0.7341136932373047
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.3758811354637146,
+              "target_sum": 3.144926905632019
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.9369624853134155,
+              "target_sum": 0.9010869264602661
+            }
+          ]
+        },
+        "future": {
+          "valid_actions": 34,
+          "mse": 0.26601412429075266,
+          "mae": 0.37545008835660854,
+          "ece_10_bins": 0.37497902640378766,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.1667825800677747,
+              "target_sum": 12.357258528470993
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.5953160524368286,
+              "target_sum": 0.757286548614502
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6210814118385315,
+              "target_sum": 0.7743826508522034
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7690802812576294,
+              "target_sum": 0.7818958163261414
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.3758811354637146,
+              "target_sum": 3.1901305317878723
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.9369624853134155,
+              "target_sum": 0.8919894099235535
+            }
+          ]
+        }
+      }
+    },
+    "best": {
+      "epoch": 0,
+      "clips": 8,
+      "valid_actions": 34,
+      "exact_same_device_cpu_repeat": true,
+      "original_gpu_metric_differences": {
+        "clips": 0,
+        "valid_actions": 0,
+        "loss": 2.9802322387695312e-08,
+        "motion_trajectory_nll": 0.0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility": 0.0,
+        "c1_utility": 0.0,
+        "regret": 0.0,
+        "reselected": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "recall": 0,
+        "best_mode_normalized_ade": -7.450580596923828e-09,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "calibration": {
+        "current": {
+          "valid_actions": 34,
+          "mse": 0.006402283942659572,
+          "mae": 0.03447629584584052,
+          "ece_10_bins": 0.019653623465300744,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.1667825800677747,
+              "target_sum": 0.38293089251965284
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.5953160524368286,
+              "target_sum": 0.7437310814857483
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6210814118385315,
+              "target_sum": 0.6192179322242737
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7690802812576294,
+              "target_sum": 0.7341136932373047
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.3758811354637146,
+              "target_sum": 3.144926905632019
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.9369624853134155,
+              "target_sum": 0.9010869264602661
+            }
+          ]
+        },
+        "future": {
+          "valid_actions": 34,
+          "mse": 0.26601412429075266,
+          "mae": 0.37545008835660854,
+          "ece_10_bins": 0.37497902640378766,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.1667825800677747,
+              "target_sum": 12.357258528470993
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.5953160524368286,
+              "target_sum": 0.757286548614502
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6210814118385315,
+              "target_sum": 0.7743826508522034
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7690802812576294,
+              "target_sum": 0.7818958163261414
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.3758811354637146,
+              "target_sum": 3.1901305317878723
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.9369624853134155,
+              "target_sum": 0.8919894099235535
+            }
+          ]
+        }
+      }
+    },
+    "last": {
+      "epoch": 2,
+      "clips": 8,
+      "valid_actions": 34,
+      "exact_same_device_cpu_repeat": true,
+      "original_gpu_metric_differences": {
+        "clips": 0,
+        "valid_actions": 0,
+        "loss": -5.960464477539063e-08,
+        "motion_trajectory_nll": 0.0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility": 0.0,
+        "c1_utility": 0.0,
+        "regret": 0.0,
+        "reselected": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "recall": 0,
+        "best_mode_normalized_ade": -7.450580596923828e-09,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "calibration": {
+        "current": {
+          "valid_actions": 34,
+          "mse": 0.006395122359590986,
+          "mae": 0.03447016331855433,
+          "ece_10_bins": 0.019591322574155235,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.16774364579305256,
+              "target_sum": 0.38293089251965284
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.5946985483169556,
+              "target_sum": 0.7437310814857483
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6206789016723633,
+              "target_sum": 0.6192179322242737
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7688339948654175,
+              "target_sum": 0.7341136932373047
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.37480366230011,
+              "target_sum": 3.144926905632019
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.9369140863418579,
+              "target_sum": 0.9010869264602661
+            }
+          ]
+        },
+        "future": {
+          "valid_actions": 34,
+          "mse": 0.2659194496531218,
+          "mae": 0.3753887562514886,
+          "ece_10_bins": 0.3749371246550415,
+          "bins": [
+            {
+              "bin": 0,
+              "count": 26,
+              "prediction_sum": 0.1687353962825,
+              "target_sum": 12.357258528470993
+            },
+            {
+              "bin": 1,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 2,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 3,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 4,
+              "count": 0,
+              "prediction_sum": 0.0,
+              "target_sum": 0.0
+            },
+            {
+              "bin": 5,
+              "count": 1,
+              "prediction_sum": 0.596177875995636,
+              "target_sum": 0.757286548614502
+            },
+            {
+              "bin": 6,
+              "count": 1,
+              "prediction_sum": 0.6214275360107422,
+              "target_sum": 0.7743826508522034
+            },
+            {
+              "bin": 7,
+              "count": 1,
+              "prediction_sum": 0.7693624496459961,
+              "target_sum": 0.7818958163261414
+            },
+            {
+              "bin": 8,
+              "count": 4,
+              "prediction_sum": 3.3778008222579956,
+              "target_sum": 3.1901305317878723
+            },
+            {
+              "bin": 9,
+              "count": 1,
+              "prediction_sum": 0.937061071395874,
+              "target_sum": 0.8919894099235535
+            }
+          ]
+        }
+      }
+    }
+  },
+  "actual_m0_metadata": {
+    "epoch_records": 3,
+    "expected_best": 0,
+    "modules_changed": {
+      "A": true,
+      "B": true,
+      "C": true
+    },
+    "initial_last_c1_exact": true,
+    "optimizer_steps": 2
+  },
+  "limitations": [
+    "M0 only, not the uncompleted 30-epoch run.",
+    "Exact strict reload tested against CPU recomputation references in isolated copies; original GPU scalar differences separately retained.",
+    "Actual old M0 has no new provenance fields; full new summarize was tested with controlled CPU tracker output only."
+  ]
+}
