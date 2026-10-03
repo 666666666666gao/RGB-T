@@ -1,0 +1,164 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "reviewed_at": "2026-10-04T02:30:05+08:00",
+  "review_type": "Independent same-family/provisional experiment-bridge source gate",
+  "reviewer": "/root/prefix_matched_training_review",
+  "source": {
+    "path": "scripts/diagnose_recoverability_write_decisions.py",
+    "sha256": "46496fa826b9e802bab6c51dbb5df07e899f48afb7df0cd49c702096c8a60db2",
+    "scope": "Read-only CPU audit of existing checkpoints on cached decision states. No training, inference policy or live-run changes."
+  },
+  "resolved_initial_blocker": {
+    "initial_verdict": "BLOCKING",
+    "issue": "The original all_valid regular_denied_by_verification and two denied_but_* statistics used mask & ~verified. A low-raw candidate does not need verification for its regular action, so the original counters attributed nonexistent regular denials and could compare an invalid pause label.",
+    "source_evidence": "Existing select_actions uses regular_valid = valid & (~writes | verified), where writes is raw_score > .84.",
+    "independent_cpu_selector_witness": {
+      "valid_original_candidate_raw_score": 0.8,
+      "target_probability_both_sensors": 0.4,
+      "chosen_flat_action": 0,
+      "chosen_pause": false,
+      "old_denial_count": 1,
+      "actual_denial_count": 0
+    },
+    "actual_initial_m0_evidence": {
+      "receipt": "refine-logs/runs/recoverability_write_decisions/m0_initial_denial_mask_failure.json",
+      "queries": 2,
+      "valid_candidates": 70,
+      "write_eligible_candidates": 0,
+      "original_false_denial_count": 70,
+      "preserved_as_failed_historical_receipt": true,
+      "accepted_for_operative_statistics": false
+    },
+    "minimal_fix": "Define denied = eligible & ~verified and use mask & denied for all three denial statistics.",
+    "fixed_source_matches_actual_selector_condition": true,
+    "remaining_blocker": false
+  },
+  "source_checks": {
+    "status": "PASS",
+    "loading": "Existing load_data enforces partition, completed source receipt, finite arrays, causal decision protocol, valid original keep and action-valid consistency. The script checks checkpoint c1_head against cache head and strictly loads the existing checkpoint into a CPU eval model.",
+    "shapes": "valid, raw_score, current_iou, risk logits and verified are [B,7,5]; target_probability is [B,7,5,2]; scores/action utility are [B,7,5,2]. Last-axis regular/pause subtraction and chosen [row,region,candidate] indexing are correct.",
+    "gt_boundary": "forward(model,batch) filters to DECISION_FIELDS. select_actions is called before the audit reads current_iou or computes action_utility. GT class masks and BCE targets only score the already-produced decisions and never control model inputs, availability, gates, thresholds or selection.",
+    "eligible": "valid & (raw_score > .84), equal to cached action_valid[...,1]. A regular action may exist without a template write; write_eligible is not the model verification outcome.",
+    "quality_groups": "Within write_eligible, current IoU >= .5 is correct, IoU < .2 is wrong, and .2 <= IoU < .5 is uncertain. These three masks are disjoint and exhaust eligible candidates. They are localization categories, not sensor identity or reliability labels.",
+    "risk_labels": "joint_event_bce_sum uses eligible & (IoU < .2) and equals the existing risk training label on valid candidates. conditional_bce_sum and risk_brier_sum instead use IoU < .2. Only eligible groups supply conditional write-risk calibration; all_valid conditional/Brier fields diagnose localization labels and are not the original training risk loss. Final source scope now states this distinction.",
+    "aggregation": "Integer counts and per-candidate float sums accumulate across batches without averaging batch means. Candidate counts are the denominator for sums; the three eligible subgroups partition write_eligible. all_valid and write_eligible overlap and should not be added together.",
+    "same_candidate_comparison": "pause_score_gap and pause_teacher_utility_gap consistently mean pause minus regular for the same candidate. Reference and same-region search-cost terms cancel in the score difference. Utility remains the existing current/frozen-C1-future/wrong-update formula, with no added search-cost charge.",
+    "writes": "The script writes only its requested JSON path, creates its parent directory and prints the receipt. It does not save or modify a checkpoint, source module, dataset, live process or training configuration."
+  },
+  "independent_cpu_checks": {
+    "status": "PASS",
+    "method": "Compile current diagnostic source; execute its actual aggregation AST against 16 real own-TRAIN label rows with deterministic synthetic output tensors. Execute existing select_actions, action_utility and a forward-input spy. No module construction, neural forward, backward or optimizer by reviewer.",
+    "python_compile": "PASS",
+    "actual_rows": 16,
+    "batch_sizes_compared": [16, 3],
+    "all_integer_counts_identical_across_batch_sizes": true,
+    "float_sum_max_absolute_difference": 0.000072479248046875,
+    "float_sum_interpretation": "Normal float32 reduction-order difference; integer counts and query rows match exactly. No bitwise float-sum claim is made.",
+    "selected_query_rows_identical_across_batch_sizes": true,
+    "all_eligible_subgroup_sum_fields_partition_write_eligible": true,
+    "joint_bce_sum_matches_existing_training_target": true,
+    "fixed_denial_counts_equal_eligible_and_unverified": true,
+    "all_valid_denial_count_equals_write_eligible_denial_count": true,
+    "changing_gt_does_not_change_any_selector_output": true,
+    "forward_spy_observes_only_decision_fields": true,
+    "synthetic_output_fixture_counts": {
+      "all_valid": {"candidates": 547, "wrong": 432, "denied": 4},
+      "write_eligible": {"candidates": 9, "wrong": 1, "denied": 4},
+      "eligible_correct": {"candidates": 8, "wrong": 0, "denied": 4},
+      "eligible_wrong": {"candidates": 1, "wrong": 1, "denied": 0},
+      "eligible_uncertain": {"candidates": 0, "wrong": 0, "denied": 0}
+    }
+  },
+  "actual_cache_metadata_read_only": {
+    "own_train": {
+      "root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+      "queries": 274,
+      "valid_candidates": 9481,
+      "write_eligible_candidates": 295,
+      "valid_low_raw_candidates": 9186,
+      "writable_original_keep_states": 81,
+      "eligible_correct": 256,
+      "eligible_wrong": 12,
+      "eligible_uncertain": 27
+    },
+    "shared_validation": {
+      "root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+      "queries": 128,
+      "valid_candidates": 4444,
+      "write_eligible_candidates": 328,
+      "valid_low_raw_candidates": 4116,
+      "writable_original_keep_states": 70,
+      "eligible_correct": 293,
+      "eligible_wrong": 2,
+      "eligible_uncertain": 33
+    },
+    "paired_c1_train": {
+      "root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+      "queries": 274,
+      "valid_candidates": 9491,
+      "write_eligible_candidates": 272,
+      "valid_low_raw_candidates": 9219,
+      "writable_original_keep_states": 75,
+      "eligible_correct": 222,
+      "eligible_wrong": 26,
+      "eligible_uncertain": 24
+    },
+    "common_shapes": {
+      "valid": ["N", 7, 5],
+      "current_iou": ["N", 7, 5],
+      "action_valid": ["N", 7, 5, 2],
+      "future_iou": ["N", 7, 5, 2, 3]
+    },
+    "purpose": "Confirms real low-raw populations, group denominators, shape compatibility and actual writable states for the structural witness. No neural evaluation was used to obtain these metadata counts."
+  },
+  "risk_only_witness_review": {
+    "status": "PASS",
+    "construction": "Select the first actual writable original-C1 keep from the loaded partition. Existing load_data already guarantees that keep is valid. Create a separate fresh RecoverabilityModules(c1), set only action[-1].bias[5] to10, run under no_grad and select at the unchanged .03 threshold.",
+    "initialization_isolation": "Fresh action/search final weights are zero; action advantage differences are zero and regular/pause harm outputs match. Fresh gate target probability exceeds .5. Region net value is -.01, so search cannot trigger. The checkpoint-loaded model and checkpoint tensors are not modified.",
+    "score_mechanism": "For a writable keep, its regular relative score is0 and its pause advantage from risk alone is .025*sigmoid(10), approximately .024998864. This is below the unchanged .03 replacement threshold. The witness asserts both the gap and retention of regular keep without search.",
+    "selection_of_state_uses_gt": false,
+    "independent_of_max_queries": true,
+    "meaning": "A structural coefficient witness on an actual cached state with a separately initialized model. It does not measure a trained checkpoint's response to a risk intervention, prove risk is the sole learned cause, or recommend a threshold change."
+  },
+  "actual_main_agent_m0_v2": {
+    "receipt": "refine-logs/runs/recoverability_write_decisions/m0_v2.json",
+    "receipt_read_by_reviewer": true,
+    "completed": true,
+    "model": "/data/gb/outputs/recoverability_search_oracle_own_b256_full_20261004/best.pth",
+    "checkpoint_epoch": 46,
+    "partition": "validation",
+    "aggregate_queries": 2,
+    "all_valid_candidates": 70,
+    "write_eligible_candidates": 0,
+    "regular_denied_by_verification": 0,
+    "all_three_denial_counters_zero": true,
+    "additional_witness_query_index": 4,
+    "witness_risk_logit": 10.0,
+    "witness_pause_score_gap": 0.024998864158988,
+    "witness_threshold": 0.03,
+    "witness_regular_keep_retained": true,
+    "visual_backbone_forwards": 0,
+    "optimization_updates": 0,
+    "provenance": "Executed by main agent in private CPU context; reviewer read the actual receipt. m0_v2 predates the final explanatory scope-string edit; tested computational logic is unchanged."
+  },
+  "interpretation_limits": [
+    "Grouped counts cover all valid cached candidates in all seven regions. They characterize candidate-level verification conditions, including currently unavailable extra regions, and are not counts of executed online template writes or denied live events.",
+    "For query rows where write_eligible is false, the pause action has no valid cached rollout label. Its reported pause score/teacher utility difference must not be interpreted as a legal regular-versus-pause counterfactual. Corrected denial aggregates already restrict these comparisons to eligible candidates.",
+    "The two-query M0 contains no writable candidates in its aggregate; it checks zero-denial behavior. Its additional query4 witness is explicitly separate and not folded into the aggregate denominator.",
+    "Future pause utilities use frozen-C1 continuations. These cached-state statistics do not establish full-policy future outcomes or full98 tracking improvements.",
+    "No new deployment threshold, gating policy, architecture, loss or training recommendation is emitted by this audit. Current four pairwise jobs remain outside its mutation scope."
+  ],
+  "reviewer_actions": {
+    "source_edits": 0,
+    "neural_forwards": 0,
+    "backward_calls": 0,
+    "optimizer_steps": 0,
+    "gpu_runs": 0,
+    "process_signals": 0,
+    "weight_changes_or_deletions": 0,
+    "deployment_or_training_launches": 0,
+    "human_markdown_files_created": 0,
+    "artifact_written": "refine-logs/runs/recoverability_write_decisions/source_review.json"
+  }
+}

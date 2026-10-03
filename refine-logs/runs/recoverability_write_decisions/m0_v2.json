@@ -1,0 +1,113 @@
+{
+  "completed": true,
+  "checkpoint_epoch": 46,
+  "model": "/data/gb/outputs/recoverability_search_oracle_own_b256_full_20261004/best.pth",
+  "cache": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+  "partition": "validation",
+  "queries": 2,
+  "visual_forwards": 0,
+  "optimization_updates": 0,
+  "groups": {
+    "all_valid": {
+      "candidates": 70,
+      "wrong": 18,
+      "predicted_risk_sum": 0.24282605946063995,
+      "conditional_bce_sum": 130.05462646484375,
+      "joint_event_bce_sum": 0.24370145797729492,
+      "risk_brier_sum": 17.968721389770508,
+      "regular_denied_by_verification": 0,
+      "denied_but_regular_score_not_worse": 0,
+      "denied_but_pause_teacher_utility_not_better": 0,
+      "rgb_target_probability_sum": 33.4900016784668,
+      "tir_target_probability_sum": 31.278541564941406
+    },
+    "write_eligible": {
+      "candidates": 0,
+      "wrong": 0,
+      "predicted_risk_sum": 0.0,
+      "conditional_bce_sum": 0.0,
+      "joint_event_bce_sum": 0.0,
+      "risk_brier_sum": 0.0,
+      "regular_denied_by_verification": 0,
+      "denied_but_regular_score_not_worse": 0,
+      "denied_but_pause_teacher_utility_not_better": 0,
+      "rgb_target_probability_sum": 0.0,
+      "tir_target_probability_sum": 0.0
+    },
+    "eligible_correct": {
+      "candidates": 0,
+      "wrong": 0,
+      "predicted_risk_sum": 0.0,
+      "conditional_bce_sum": 0.0,
+      "joint_event_bce_sum": 0.0,
+      "risk_brier_sum": 0.0,
+      "regular_denied_by_verification": 0,
+      "denied_but_regular_score_not_worse": 0,
+      "denied_but_pause_teacher_utility_not_better": 0,
+      "rgb_target_probability_sum": 0.0,
+      "tir_target_probability_sum": 0.0
+    },
+    "eligible_wrong": {
+      "candidates": 0,
+      "wrong": 0,
+      "predicted_risk_sum": 0.0,
+      "conditional_bce_sum": 0.0,
+      "joint_event_bce_sum": 0.0,
+      "risk_brier_sum": 0.0,
+      "regular_denied_by_verification": 0,
+      "denied_but_regular_score_not_worse": 0,
+      "denied_but_pause_teacher_utility_not_better": 0,
+      "rgb_target_probability_sum": 0.0,
+      "tir_target_probability_sum": 0.0
+    },
+    "eligible_uncertain": {
+      "candidates": 0,
+      "wrong": 0,
+      "predicted_risk_sum": 0.0,
+      "conditional_bce_sum": 0.0,
+      "joint_event_bce_sum": 0.0,
+      "risk_brier_sum": 0.0,
+      "regular_denied_by_verification": 0,
+      "denied_but_regular_score_not_worse": 0,
+      "denied_but_pause_teacher_utility_not_better": 0,
+      "rgb_target_probability_sum": 0.0,
+      "tir_target_probability_sum": 0.0
+    }
+  },
+  "queries_scored_after_forward": [
+    {
+      "query_index": 0,
+      "chosen_region": 0,
+      "chosen_candidate": 0,
+      "chosen_pause": false,
+      "write_eligible": false,
+      "current_iou": 0.7726874947547913,
+      "predicted_write_risk": 0.006876254454255104,
+      "regular_verified": false,
+      "pause_score_gap": 0.017674505710601807,
+      "pause_teacher_utility_gap": -0.26342564821243286
+    },
+    {
+      "query_index": 1,
+      "chosen_region": 0,
+      "chosen_candidate": 0,
+      "chosen_pause": false,
+      "write_eligible": false,
+      "current_iou": 0.8723072409629822,
+      "predicted_write_risk": 0.014444973319768906,
+      "regular_verified": false,
+      "pause_score_gap": -0.0008080601692199707,
+      "pause_teacher_utility_gap": -0.22974085807800293
+    }
+  ],
+  "risk_only_witness": {
+    "query_index": 4,
+    "risk_logit": 10.0,
+    "pause_score_gap": 0.024998864158988,
+    "keep_threshold": 0.03,
+    "regular_keep_retained": true,
+    "witness_uses_fresh_initial_model_not_modified_checkpoint": true
+  },
+  "scope": "Read-only CPU causal cache forwards; GT only after choices. Risk label IoU<.2 is localization proxy, not sensor reliability or semantic identity. Future pause utilities remain frozen-C1 teacher labels. Risk-only witness is one additional actual writable state from this partition, independent of max-queries aggregate. No deployed threshold change or performance claim.",
+  "elapsed_seconds": 2.204556061886251
+}

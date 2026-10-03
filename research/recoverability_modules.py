@@ -180,8 +180,9 @@ class RecoverabilityModules(nn.Module):
         return output
 
 
-def select_actions(output, data, threshold=.03):
+def select_actions(output, data, threshold=.03, write_verification='identity'):
     """One optional extra region, then change only with positive net advantage."""
+    assert write_verification in ('identity', 'action')
     batch = len(data['valid'])
     device = data['valid'].device
     keep = data['original_choice'].long()
@@ -192,14 +193,16 @@ def select_actions(output, data, threshold=.03):
     valid = data['valid'][..., None].expand(-1, -1, -1, 2).clone()
     writes = data['raw_score'] > .84
     valid[..., 1] &= writes
-    verified = (output['target_probability'] >= .5).all(-1)
-    valid[..., 0] &= ~writes | verified
+    write_allowed = (output['target_probability'] >= .5).all(-1)
+    if write_verification == 'action':
+        write_allowed = torch.ones_like(write_allowed)
+    valid[..., 0] &= ~writes | write_allowed
     available = torch.zeros((batch, 7), dtype=torch.bool, device=device)
     available[:, 0] = True
     available[torch.arange(batch, device=device), best_region] = search
     valid &= available[:, :, None, None]
     keep_pause = (writes[torch.arange(batch, device=device), 0, keep]
-                  & ~verified[torch.arange(batch, device=device), 0, keep]).long()
+                  & ~write_allowed[torch.arange(batch, device=device), 0, keep]).long()
     keep_index = keep * 2 + keep_pause
     scores = output['scores'].masked_fill(~valid, -torch.inf).flatten(1)
     baseline = scores.gather(1, keep_index[:, None]).squeeze(1)

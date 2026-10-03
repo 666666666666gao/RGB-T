@@ -1,0 +1,87 @@
+{
+  "status": "COMPLETE_SIX_FIXED_OUTPUT_CPU_COMPARISONS",
+  "observed_cst": "2026-10-04T03:14:25.7325228+08:00",
+  "visual_forwards": 0,
+  "optimizer_updates": 0,
+  "rows": [
+    {
+      "arm": "oracle_c1",
+      "partition": "train",
+      "queries": 274,
+      "identity_mean_teacher_utility": 0.35819797735681663,
+      "action_mean_teacher_utility": 0.35819797735681663,
+      "identity_pause": 42,
+      "action_pause": 42,
+      "identity_correct": 111,
+      "action_correct": 111,
+      "write_eligible_candidates": 272,
+      "regular_denied": 0
+    },
+    {
+      "arm": "oracle_c1",
+      "partition": "validation",
+      "queries": 128,
+      "identity_mean_teacher_utility": 0.7299420444433053,
+      "action_mean_teacher_utility": 0.7299420444433053,
+      "identity_pause": 47,
+      "action_pause": 47,
+      "identity_correct": 112,
+      "action_correct": 112,
+      "write_eligible_candidates": 328,
+      "regular_denied": 0
+    },
+    {
+      "arm": "oracle_own",
+      "partition": "train",
+      "queries": 274,
+      "identity_mean_teacher_utility": 0.4286615526444707,
+      "action_mean_teacher_utility": 0.42781902455306703,
+      "identity_pause": 81,
+      "action_pause": 0,
+      "identity_correct": 132,
+      "action_correct": 132,
+      "write_eligible_candidates": 295,
+      "regular_denied": 293
+    },
+    {
+      "arm": "oracle_own",
+      "partition": "validation",
+      "queries": 128,
+      "identity_mean_teacher_utility": 0.730089604297973,
+      "action_mean_teacher_utility": 0.7296105653185805,
+      "identity_pause": 70,
+      "action_pause": 1,
+      "identity_correct": 112,
+      "action_correct": 112,
+      "write_eligible_candidates": 328,
+      "regular_denied": 328
+    },
+    {
+      "arm": "selector_own",
+      "partition": "train",
+      "queries": 274,
+      "identity_mean_teacher_utility": 0.42956290461112795,
+      "action_mean_teacher_utility": 0.42956290461112795,
+      "identity_pause": 50,
+      "action_pause": 50,
+      "identity_correct": 133,
+      "action_correct": 133,
+      "write_eligible_candidates": 295,
+      "regular_denied": 0
+    },
+    {
+      "arm": "selector_own",
+      "partition": "validation",
+      "queries": 128,
+      "identity_mean_teacher_utility": 0.7299245365102252,
+      "action_mean_teacher_utility": 0.7299245365102252,
+      "identity_pause": 51,
+      "action_pause": 51,
+      "identity_correct": 112,
+      "action_correct": 112,
+      "write_eligible_candidates": 328,
+      "regular_denied": 0
+    }
+  ],
+  "scope": "Same causal cached state and checkpoint output, GT scored only after choices. Utility labels continue frozen C1 teacher; gross within-state utility difference has the identical search cost cancel. oracle_c1/selector_own cached choices identical, oracle_own pause declines without changing current quality and teacher utility slightly declines. No full-video gain conclusion."
+}

@@ -1,0 +1,103 @@
+{
+  "status": "ALL_THREE_REAL_GPU_M0_AND_C1_PARITY_PASS_THEN_FULL98_ACTUALLY_RUNNING",
+  "observed_cst": "2026-10-04T03:12:55.837449",
+  "native_accuracy": false,
+  "poll_seconds": 240,
+  "next_check_cst": "2026-10-04T03:33:00+08:00",
+  "expected_full_end_cst": "2026-10-04T03:38:00--03:45:00+08:00",
+  "arms": {
+    "oracle_c1": {
+      "gpu": 0,
+      "m0_complete": true,
+      "m0_frames": 128,
+      "m0_template_updates": 5,
+      "full_root": "/data/gb/outputs/recoverability_action_verify_oracle_c1_full_20261004",
+      "actual_process": "2500295 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_pairwise_oracle_c1_b256_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_action_verify_oracle_c1_full_20261004/predictions",
+      "completed_sequences": 10,
+      "latest_sequence": {
+        "sequence": "Aboydownbike",
+        "sequence_index": 10,
+        "sequences": 98,
+        "frames": 986,
+        "elapsed_seconds": 31.863935311324894,
+        "stats": {
+          "template_updates": 18,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 40,
+          "extra_visual_forwards": 40,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 24,
+          "paused_query_writes": 15,
+          "max_motion_history": 8
+        }
+      },
+      "full_completed": false
+    },
+    "oracle_own": {
+      "gpu": 2,
+      "m0_complete": true,
+      "m0_frames": 128,
+      "m0_template_updates": 65,
+      "full_root": "/data/gb/outputs/recoverability_action_verify_oracle_own_full_20261004",
+      "actual_process": "2500301 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_pairwise_oracle_own_b256_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_action_verify_oracle_own_full_20261004/predictions",
+      "completed_sequences": 10,
+      "latest_sequence": {
+        "sequence": "Aboydownbike",
+        "sequence_index": 10,
+        "sequences": 98,
+        "frames": 986,
+        "elapsed_seconds": 33.22580035869032,
+        "stats": {
+          "template_updates": 224,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 25,
+          "extra_visual_forwards": 25,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 18,
+          "paused_query_writes": 5,
+          "max_motion_history": 8
+        }
+      },
+      "full_completed": false
+    },
+    "selector_own": {
+      "gpu": 3,
+      "m0_complete": true,
+      "m0_frames": 128,
+      "m0_template_updates": 4,
+      "full_root": "/data/gb/outputs/recoverability_action_verify_selector_own_full_20261004",
+      "actual_process": "2500310 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_pairwise_selector_own_b256_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_action_verify_selector_own_full_20261004/predictions",
+      "completed_sequences": 10,
+      "latest_sequence": {
+        "sequence": "Aboydownbike",
+        "sequence_index": 10,
+        "sequences": 98,
+        "frames": 986,
+        "elapsed_seconds": 31.800971664022654,
+        "stats": {
+          "template_updates": 18,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 23,
+          "extra_visual_forwards": 23,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 22,
+          "paused_query_writes": 15,
+          "max_motion_history": 8
+        }
+      },
+      "full_completed": false
+    }
+  },
+  "actual_gpu": [
+    "0, 1180 MiB, 24576 MiB, 37 %",
+    "1, 20 MiB, 24576 MiB, 0 %",
+    "2, 851 MiB, 24576 MiB, 39 %",
+    "3, 851 MiB, 24576 MiB, 34 %"
+  ],
+  "fresh_zero_init_real_c1_bitwise_parity": {
+    "passed": true,
+    "frames": 128,
+    "sequences": 2,
+    "template_updates": 65
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "reviewed_at": "2026-10-04T03:01:42+08:00",
+  "review_type": "Independent same-family/provisional experiment-bridge source gate",
+  "reviewer": "/root/prefix_matched_training_review",
+  "baseline_commit": "b61ab937a43fd9b5a1fcb61d899617d3b4de79b2",
+  "scope": "Fixed-weight identity-versus-action verification control, evaluator/tracker plumbing, cached-state diagnostic extension, three trained-weight M0 queues and manually gated full98 evaluation. No new training or deployment by reviewer.",
+  "files": [
+    {"path": "research/recoverability_modules.py", "sha256": "4393fb4f8da3d614aba9a48219c93e1d9b9a9a361a492a115344d5e9ef89a813"},
+    {"path": "research/recoverability_tracker.py", "sha256": "051e7abaf0a1cd279389e8cdcf0a498826eeb42aa7d15ebf0d1357dbe11af2ae"},
+    {"path": "research/evaluate_recoverability.py", "sha256": "b2d304301e7e88fefa30bd538f4907ba794c9126cfe4c4ad41483a26b2324097"},
+    {"path": "scripts/diagnose_recoverability_write_decisions.py", "sha256": "a750585e0f03a9d41e2a3a7a0b6408202d32ba1b1f2783fa7d47f93baa8ae651"},
+    {"path": "scripts/run_recoverability_action_verification.sh", "sha256": "9cedb4b47ed5fd8698e695cda63dd07a7be671d67d037070a29c23281dd420c2"},
+    {"path": "scripts/queue_recoverability_action_verification_m0.sh", "sha256": "4cb942784a973572983926bcee9fbc21eecc0ef49ac9e019571aa3499898fa53"},
+    {"path": "refine-logs/runs/recoverability_action_verification/plan.json", "sha256": "ef04d39d54459a336282370e760c5989ee6d163dc3e5620b6048e6bc19e46c50"}
+  ],
+  "selector_and_tracker": {
+    "status": "PASS",
+    "default": "identity is the default in select_actions, RecoverabilityTracker and evaluator CLI. Its eligibility and keep-baseline equations are unchanged apart from the local variable rename; default and explicit identity selections were independently checked bitwise against b61ab93.",
+    "action_mode": "Regular actions retain candidate validity and region availability, but no longer require both target probabilities >=.5. Pause remains legal only for valid candidates with raw_score>.84. When identity would force the original keep into pause, action mode instead uses the original regular keep as the baseline and requires the existing strict score advantage >.03 to replace it.",
+    "scores_and_budget": "Model scores, risk coefficient .025, candidate extra-region cost .01, regional search trigger/value, threshold .03 and original-plus-one-extra availability are unchanged. The flag does not modify output tensors or introduce an additional cost.",
+    "flag_plumbing": "Evaluator CLI passes args.write_verification into the appended tracker constructor argument; tracker stores it and supplies it to both pre-search and post-search select_actions calls. Existing collector construction omits the new optional argument and therefore retains identity behavior.",
+    "configuration_recording": "Existing vars(args) inference_config records the explicit mode. Model classes and checkpoint state_dict schema are unchanged; old weights still load strictly without a compatibility path.",
+    "unsafe_writes_distinction": "unsafe-writes leaves identity-based selection intact and then unconditionally sets pause=False before the raw-score write. action mode changes which regular candidates can participate and which keep action is the baseline, but still honors a learned pause that wins by >.03. It can also change the selected location. The new runner does not set unsafe-writes.",
+    "memory_updates": "Identity target-memory commits remain verified & actual_write per sensor. Motion-memory and template update equations are unchanged. Actual memory/motion/template trajectories may differ because selected actions and actual writes differ; unchanged rules and parameters do not imply identical state trajectories.",
+    "gt_boundary": "No GT is added to select_actions, tracker or evaluator decisions. As before, only the first annotation initializes online tracking; subsequent GT is consumed by the separate metric collector."
+  },
+  "independent_cpu_checks": {
+    "status": "PASS",
+    "method": "Extract pure functions from b61ab93 and current source with AST. Use actual cached labels plus deterministic synthetic output tensors. Compile changed Python, parse evaluator arguments in isolation and syntax-check both shell scripts. No neural model construction, neural forward, backward or optimizer by reviewer.",
+    "syntax": {
+      "recoverability_modules": "PASS",
+      "recoverability_tracker": "PASS",
+      "evaluate_recoverability": "PASS",
+      "diagnose_recoverability_write_decisions": "PASS",
+      "runner_bash_n": "PASS",
+      "queue_bash_n": "PASS"
+    },
+    "unchanged_ast_vs_b61ab93": ["InstanceMemory", "RecoverabilityModules", "action_utility", "search_supervision_targets", "ranking_supervision_loss", "objective"],
+    "legacy_regression": {
+      "cache_roots": [
+        "/data/gb/outputs/recoverability_own_policy_train_20261003",
+        "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+        "/data/gb/outputs/recoverability_own_policy_validation_20261003"
+      ],
+      "actual_rows_per_cache": 8,
+      "search_modes": ["oracle", "selector"],
+      "ranking_modes": ["reference", "pairwise"],
+      "objective_cases": 12,
+      "all_13_loss_components_bitwise_equal": true,
+      "total_loss_torch_equal": true,
+      "all_default_selection_return_fields_torch_equal": true,
+      "all_explicit_identity_selection_return_fields_torch_equal": true
+    },
+    "action_checks": {
+      "search_trigger_and_searched_region_same_for_same_outputs": true,
+      "selected_candidates_valid_and_available": true,
+      "selected_pause_requires_raw_above_084": true,
+      "changing_current_and_future_gt_does_not_change_any_selection_output": true,
+      "input_output_tensors_not_mutated": true,
+      "low_identity_risk_only_identity_pauses_action_keeps_regular": true,
+      "pause_score_gap_0031_can_select_pause_in_action_mode": true,
+      "pause_score_gap_exactly_003_keeps_regular": true,
+      "low_raw_pause_score_100_still_excluded": true
+    },
+    "cli_and_tracker": {
+      "isolated_cli_default_identity": true,
+      "explicit_action_does_not_enable_unsafe_writes": true,
+      "both_tracker_select_calls_pass_stored_write_verification": true
+    }
+  },
+  "diagnostic_extension": {
+    "status": "PASS",
+    "preserved_prior_source": {
+      "path": "refine-logs/runs/recoverability_write_decisions/diagnostic_source_reviewed.py",
+      "actual_sha256_verified": "46496fa826b9e802bab6c51dbb5df07e899f48afb7df0cd49c702096c8a60db2"
+    },
+    "same_output_comparison": "Identity and action selections use the identical checkpoint output and cached state. Both selections occur before current IoU and action utility are looked up. Explicit assertions require identical search-trigger and searched-region fields.",
+    "label_lookup": "Chosen [row,region,candidate,pause] utility indexing is correct in both modes. The reported chosen utility is gross cached teacher utility; the same search cost cancels in the within-state identity/action difference because search decisions are asserted identical.",
+    "existing_audit_logic": "Previously corrected eligible & ~verified denial counters, quality groups and conditional-versus-joint risk-label explanation remain unchanged. Groups cover all cached regions, not executed online writes, and invalid low-raw pause gaps remain explicitly excluded from meaningful interpretation.",
+    "low_identity_witness": "Start from the separate fresh risk-bias10 model on an actual writable keep. Make a shallow output-dictionary copy and replace only its target_probability tensor with .4. This is an explicit downstream selector counterfactual, not a claim that the fresh model naturally produced .4. Identity must choose keep-pause while action keeps regular because .025*sigmoid(10)<.03. Original checkpoint/model and source output tensors remain unchanged.",
+    "main_agent_actual_cpu_receipt": {
+      "path": "refine-logs/runs/recoverability_action_verification/cpu_m0.json",
+      "receipt_read_by_reviewer": true,
+      "completed": true,
+      "checkpoint_epoch": 48,
+      "checkpoint_arm": "pairwise_oracle_own",
+      "aggregate_validation_queries": 2,
+      "all_valid_candidates": 70,
+      "write_eligible_candidates": 0,
+      "regular_denied_by_verification": 0,
+      "additional_witness_query_index": 4,
+      "risk_only_pause_score_gap": 0.024998864158988,
+      "threshold": 0.03,
+      "low_identity_identity_mode_forces_pause": true,
+      "low_identity_action_mode_retains_regular": true,
+      "visual_forwards": 0,
+      "optimization_updates": 0,
+      "qualification": "Actual private CPU cached-state M0 executed by main agent. It is neither GPU real-video M0 nor C1 video parity."
+    }
+  },
+  "fixed_checkpoint_metadata": {
+    "status": "PASS",
+    "verification": "Read actual remote best.pth metadata on CPU and corresponding training completion JSON; no model execution.",
+    "oracle_c1": {"checkpoint_epoch": 9, "fit_best_epoch": 9, "fit_completed": true},
+    "oracle_own": {"checkpoint_epoch": 48, "fit_best_epoch": 48, "fit_completed": true},
+    "selector_own": {"checkpoint_epoch": 15, "fit_best_epoch": 15, "fit_completed": true},
+    "excluded_selector_c1": {"checkpoint_epoch": 0, "fit_best_epoch": 0, "fit_completed": true},
+    "common": {
+      "module": "ABC_recoverability",
+      "seed": 42,
+      "threshold": 0.03,
+      "action_ranking": "pairwise",
+      "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth"
+    },
+    "original_full_markers_at_read": "All four reference full98 job_completed.txt markers were still absent. This is a time-specific observation; queue launch rechecks the actual marker.",
+    "heldout_split": {
+      "path": "/data/gb/outputs/c1_initial_seed42/split.json",
+      "validation_sequences": 98,
+      "train_validation_overlap": 0
+    }
+  },
+  "runner_and_queue": {
+    "status": "PASS",
+    "runner_arguments": ["physical_gpu", "oracle_c1|oracle_own|selector_own", "m0|full"],
+    "queue_arguments": ["physical_gpu", "arm"],
+    "reference": "/data/gb/outputs/recoverability_pairwise_${arm}_b256_full_20261004",
+    "output": "/data/gb/outputs/recoverability_action_verify_${arm}_${stage}_20261004",
+    "existing_output_rejected": true,
+    "fixed_model": "Both stages read the existing reference/best.pth. No training, optimizer, weight saving, M0-weight inheritance or replacement checkpoint is introduced.",
+    "reference_completion_gate": "Runner requires corresponding original full98/report job_completed.txt. Queue waits for that marker, requires the corresponding old tmux session while waiting, exits if it vanished without completion and sleeps240 seconds between checks.",
+    "memory_gate": "After the marker, query the supplied physical GPU and require memory.used<500 MiB. This is one check; a busy card makes the queue exit without launching. No process cancellation or fallback occurs.",
+    "m0": "All three trained arms run two heldout sequences capped at64 frames with write-verification action. oracle_c1 first runs an additional separate --zero-init --parity-check evaluation on the same two sequences before its trained-weight M0. Both use the existing actual-video C1 bitwise box/update parity assertions.",
+    "fresh_parity": "zero-init constructs fresh residual modules using frozen C1 and does not load the trained model state. Reference checkpoint supplies the existing threshold/config. Output is isolated under the first M0 initialization_parity subdirectory; it is not reused as trained weights.",
+    "all_m0_before_full_gate": "As explicitly planned, main agent must inspect all three actual trained-model M0 receipts plus first oracle_c1 real-video parity success before separately dispatching full. The queue never launches full. The runner's full branch itself does not implement a cross-arm M0 barrier; that is the manual launch gate in plan.json.",
+    "full": "No sequence/frame limits, zero-init or parity flag in full. Existing original98 heldout split, LasHeR traingset, pretrained baseline, seed42 and same selected checkpoint. CPU metric report compares GOLA baseline, C1 and the corresponding default-identity pairwise reference predictions.",
+    "completion_marker": "set -euo pipefail; M0 job marker follows all required evaluators for that arm, full job marker follows full evaluation and CPU report. A failing evaluator/parity/report prevents marker creation.",
+    "no_redundant_selector_c1_full": true,
+    "full_auto_launch": false
+  },
+  "interpretation_limits": [
+    "PASS is a source/CPU gate for the specified staged control. Actual GPU M0, first-arm video parity and later full98 results remain pending and cannot be inferred from CPU selector checks.",
+    "Same-output search decisions are unchanged. During full online action-mode evaluation, changed selections and template/memory writes can change later inputs and search behavior; this is an expected policy-trajectory effect.",
+    "A memory gate and motion update equations remain unchanged, but actual memory and motion states are not promised bitwise identical after actions diverge. Final plan wording explicitly distinguishes unchanged update rules and parameters from changed state trajectories.",
+    "Frozen-C1 cached utility labels are post-selection teacher counterfactuals, not full action-mode continuation labels or evidence of full-video gains.",
+    "This fixed-weight control can admit incorrect regular writes as well as correct ones. Its performance must come from the planned full98 comparison; the source review makes no direction-of-gain or official-accuracy claim."
+  ],
+  "reviewer_actions": {
+    "source_edits": 0,
+    "neural_forwards": 0,
+    "backward_calls": 0,
+    "optimizer_steps": 0,
+    "gpu_runs": 0,
+    "process_signals": 0,
+    "weight_changes_or_deletions": 0,
+    "deployment_or_training_launches": 0,
+    "human_markdown_files_created": 0,
+    "artifact_written": "refine-logs/runs/recoverability_action_verification/source_review.json"
+  }
+}
