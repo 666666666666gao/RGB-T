@@ -19,3 +19,14 @@
 | Online核心数据集完整评测 | RGBT234 DONE / LasHeR RUNNING | 22:35 LasHeR两原session活跃90/245、73440帧，ETA约105分钟；RGBT234两组234/234、116649帧全量完成，actualGT来源已验证 |
 | RGBT234真实GT来源修正 | PASS / DEPLOYED | fresh reviewPASS；原生loader逐序列/模态及图像数PASS；只CPU重评分、保留旧包GT日志、无推理重跑 |
 | RGBT234正式C1初轮效果 | INCONCLUSIVE / ESSENTIALLY TIED | baseline MPR91.778858/MSR69.232593；C1 MPR91.817009/MSR69.233890，差+.038151/+.001297百分点；继续C2/C3前须分析收益/损害，不主张显著提升 |
+
+## 2026-10-03 integrated ABC campaign (current)
+| Stage | Status | Evidence / next gate |
+|---|---|---|
+| Original fullGOLA-B/C1 two-dataset evaluation | COMPLETE | e72b9bb full native/all diagnostics/5CI include0 |
+| New ABC acceptance | ACTIVE_UNMET | all5 overall standard metrics >=baseline+2pp, no narrowed claim |
+| A/B/C + causal collector/train/online interfaces | SOURCE_PASS | abc_temporal_review final PASS for M0; whole-prefix256 causal training |
+| Complete-prefix memory training correction | IMPLEMENTED_PREDEPLOY | reviewer actual24frame mismatch corrected to256>=maxprefix |
+| Real new ABC sanity | PASS_NO_GAIN_CLAIM | actual8TRAIN/8val;2optimizersteps;ABCchanged/C1frozen;2x128 onlineframes;0switches |
+| Collection / joint training | M1_RUNNING_M2_PENDING | three free GPUs1/2/3, batch32;3072TRAIN/512val planned;GPU0otheraccount occupied |
+| Full ABC official benchmark | NOT_RUN | after internalvalidation, all245/234 andcomplete native/branch-aware metrics |

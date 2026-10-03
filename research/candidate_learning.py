@@ -158,7 +158,7 @@ class FrozenCandidateExtractor(nn.Module):
         selected_boxes = boxes.gather(1, indices.unsqueeze(-1).expand(-1, -1, 4))
         # These identity descriptors use pre-attention patch features separately
         # for each sensor. Jointly attended tokens are never called RGB/TIR evidence.
-        sims = []
+        sims, modality_features, anchor_features = [], [], []
         for channel in (slice(0, 3), slice(3, 6)):
             z_raw = self.base.patch_embed(z[:, channel])
             d_raw = self.base.patch_embed(d[:, channel])
@@ -167,13 +167,17 @@ class FrozenCandidateExtractor(nn.Module):
             z_anchor = (z_raw * z_weights.unsqueeze(-1)).sum(1) / z_weights.sum(1, keepdim=True).clamp(min=1)
             d_anchor = (d_raw * d_weights.unsqueeze(-1)).sum(1) / d_weights.sum(1, keepdim=True).clamp(min=1)
             candidate_raw = x_raw.gather(1, gather)
+            modality_features.append(candidate_raw.float())
+            anchor_features.append(z_anchor.float())
             sims.extend((F.cosine_similarity(candidate_raw, z_anchor.unsqueeze(1), dim=-1),
                          F.cosine_similarity(candidate_raw, d_anchor.unsqueeze(1), dim=-1)))
         selected_raw = raw.gather(1, indices)
         evidence = torch.cat((selected_raw.unsqueeze(-1), ranked.gather(1, indices).unsqueeze(-1),
                               torch.stack(sims, dim=-1), selected_boxes), dim=-1)
         return {'features': features, 'evidence': evidence, 'raw_score': selected_raw,
-                'boxes': selected_boxes, 'valid': valid}, output
+                'boxes': selected_boxes, 'valid': valid,
+                'modality_features': torch.stack(modality_features, dim=2),
+                'anchor_features': torch.stack(anchor_features, dim=1)}, output
 
 
 class CandidateQualityHead(nn.Module):

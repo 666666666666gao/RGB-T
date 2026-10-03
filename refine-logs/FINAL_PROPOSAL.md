@@ -5,3 +5,6 @@
 A 压缩保留目标—困难候选的判别差距；B 将身份与运动歧义区分并以多未来软约束保留真目标位置；C 维护暂时未选中候选路径，学习当前差距及未来状态污染后果，切换时恢复框、运动、在线模板与暂存记忆。
 
 当前只有 C1：完整冻结 GOLA-B 上的候选质量与排序训练入口。它建立候选审计和可训练新头，不构成 A/B、不构成短期 rollout 价值预测、不构成分支追踪与状态修复。上述内容必须以后单独实现和验证；不能以 C1 指标主张整套方法已成立。
+
+## 2026-10-03 integrated ABC source status
+New research/temporal_modules.py implements differentiable modality-separated bounded memory, identity-conditioned joint three-mode/H3 motion density, and current/future/cost selector on full frozen pretrained GOLA/C1 observations. New causal TRAINcollector/trainentry/ABCBranch+ABCTracker/evaluate_abc interfaces are prepared. Full past teacher and student replay frames0..query-1 up to256 sampledprefix; online memory remains4slots and8motion observations per branch. M0 review/sanity precedes any deployment or efficacy claim. All previous formal C1 scores and negative C2/C3 remain authoritative; new+2 pp acceptance not met.

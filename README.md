@@ -47,8 +47,13 @@ pure-quality policy and cannot be attributed to training. Teacher generation
 and cached optimization cost are separately reported.
 These internal C2/C3 results are not official online tracking PR/SR.
 
-Learned A compression, B multi-future prediction and the complete online
-A/B/C recovery system remain pending. Existing v1 artifacts and initial C3
+Learned A compression, B multi-future prediction and coupled C state recovery
+are now implemented. Fresh source review and actual GPU M0 passed: A/B/C
+parameters changed, frozen C1 had no gradients, and bounded online smoke checks
+passed. Small validation choices did not improve and the smoke videos had no
+branch switches. Three free GPUs are collecting 3072 TRAIN/512 held-out clips
+with full causal prefixes and batch32; joint training and full ABC benchmark
+results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal
 float32 box-scaling correction; this limited control is not a full benchmark
