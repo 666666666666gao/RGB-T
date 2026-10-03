@@ -1,0 +1,103 @@
+{
+  "completed": true,
+  "created_cst": "2026-10-04T01:07:37.249280+08:00",
+  "S1_status": "CLOSED_CONTINUOUS_NEGATIVE",
+  "S1_prefix_distribution_pairs": {
+    "42": {
+      "own_mean_iou": 0.710787459268218,
+      "c1_mean_iou": 0.7014315027856172,
+      "own_minus_c1_prefix": {
+        "delta_percentage_points": 0.9355956482600741,
+        "paired_sequence_95_ci": [
+          -0.7377412083907665,
+          2.989544235893093
+        ],
+        "improved_sequences": 32,
+        "worsened_sequences": 25,
+        "tied_sequences": 41,
+        "bootstrap_resamples": 5000
+      }
+    },
+    "43": {
+      "own_mean_iou": 0.7130202618831557,
+      "c1_mean_iou": 0.7138974293283468,
+      "own_minus_c1_prefix": {
+        "delta_percentage_points": -0.08771674451909453,
+        "paired_sequence_95_ci": [
+          -1.0658945002279019,
+          0.6597312323765496
+        ],
+        "improved_sequences": 28,
+        "worsened_sequences": 29,
+        "tied_sequences": 41,
+        "bootstrap_resamples": 5000
+      }
+    }
+  },
+  "S2_same_checkpoint_search_write_factorial": {
+    "model": "own42_epoch25",
+    "sequence_count": 98,
+    "mean_sequence_iou": {
+      "gated_write_with_search": 0.710787459268218,
+      "gated_write_without_search": 0.7157214306405684,
+      "raw_template_write_with_search": 0.7258310094686745,
+      "raw_template_write_without_search": 0.7346303216238407
+    },
+    "without_search_minus_with_gated_write": {
+      "delta_percentage_points": 0.49339713723504114,
+      "paired_sequence_95_ci": [
+        0.003042219584464803,
+        1.095798723974274
+      ],
+      "improved_sequences": 24,
+      "worsened_sequences": 16,
+      "tied_sequences": 58,
+      "bootstrap_resamples": 5000
+    },
+    "without_search_minus_with_raw_write": {
+      "delta_percentage_points": 0.879931215516632,
+      "paired_sequence_95_ci": [
+        -0.32696995693363573,
+        2.6640000046247434
+      ],
+      "improved_sequences": 22,
+      "worsened_sequences": 9,
+      "tied_sequences": 67,
+      "bootstrap_resamples": 5000
+    },
+    "raw_write_minus_gated_with_search": {
+      "delta_percentage_points": 1.5043550200456468,
+      "paired_sequence_95_ci": [
+        -0.5118879465563513,
+        3.3811408473648603
+      ],
+      "improved_sequences": 62,
+      "worsened_sequences": 28,
+      "tied_sequences": 8,
+      "bootstrap_resamples": 5000
+    },
+    "raw_write_minus_gated_without_search": {
+      "delta_percentage_points": 1.8908890983272375,
+      "paired_sequence_95_ci": [
+        -0.47686616548976374,
+        4.272261601680358
+      ],
+      "improved_sequences": 64,
+      "worsened_sequences": 26,
+      "tied_sequences": 8,
+      "bootstrap_resamples": 5000
+    },
+    "interaction_no_search_and_raw_write": {
+      "delta_percentage_points": 0.38653407828159103,
+      "paired_sequence_95_ci": [
+        -0.882830815387945,
+        2.244015247656603
+      ],
+      "improved_sequences": 16,
+      "worsened_sequences": 19,
+      "tied_sequences": 63,
+      "bootstrap_resamples": 5000
+    }
+  },
+  "scope": "CPU aggregation of completed fixed-weight98 development-video reports. All variants below complete GOLA. Exact-query prefix distributions are controlled, but future continuations still frozen C1. Raw-write controls restore actual templates only; candidate selector and identity-memory verification stay active. Factorial is diagnostic, not paper module ablation or native official metrics."
+}

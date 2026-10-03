@@ -1,0 +1,117 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "reviewer": "/root/prefix_matched_training_review",
+  "assigned_model": "gpt-6-astra",
+  "assigned_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_scope": "Current helper/trainer diff, CPU target witness and latest FOUR-argument runner, including the added own|c1 prefix factor. Source gate only; no GPU M0 or training-performance acceptance.",
+  "reviewed_files": [
+    "research/recoverability_modules.py",
+    "research/train_recoverability.py",
+    "scripts/run_recoverability_search_supervision.sh",
+    "scripts/check_recoverability_search_targets.py",
+    "refine-logs/runs/recoverability_search_supervision/plan.json"
+  ],
+  "runner_contract": {
+    "argument_order": ["physical_gpu", "oracle|selector", "m0|full", "own|c1"],
+    "required_argument_count": 4,
+    "reviewed_latest_prefix_extension": true,
+    "arms": ["oracle_own", "selector_own", "oracle_c1", "selector_c1"],
+    "seed_each": 42,
+    "train_queries_each": 902,
+    "validation_queries_each": 128,
+    "batch_size_each": 256,
+    "batches_per_epoch": [256, 256, 256, 134],
+    "m0_epochs_each": 1,
+    "m0_optimizer_updates_each": 4,
+    "full_epochs_each": 60,
+    "full_optimizer_updates_each": 240,
+    "output_pattern": "/data/gb/outputs/recoverability_search_${mode}_${prefix}_b256_${stage}_20261004",
+    "report_label_pattern": "search_${mode}_${prefix}_b256",
+    "own_prefix_root": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+    "c1_prefix_root": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+    "common_validation_root": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+    "preferred_prefix_is_last_train_root": true
+  },
+  "source_checks": {
+    "python_compile": "PASS",
+    "latest_four_argument_runner_bash_syntax": "PASS",
+    "gt_separation": "forward still supplies DECISION_FIELDS only. select_actions is unchanged and reads no GT utility fields. The helper precomputes the utility table, but determines each action from existing scores/decision masks before looking up that action's GT utility. Changing GT does not change the seven selector decisions.",
+    "same_selector_local_reference": "The reference is the same detached selector with all extra regions unavailable through its existing search controller. It includes original-region candidate changes and regular/pause selection. Each forced case exposes only the original region plus one selected extra region, retaining score, verification and .03 intervention rules.",
+    "gross_gain_and_cost": "Selector labels equal chosen gross action utility minus the same-selector local-only gross utility. The label does not subtract .01. Existing controller, action-score and cached evaluation cost handling remain unchanged; the new target does not deduct search cost a second time or reward local-only improvements.",
+    "success_and_rank_targets": "Success is selected current IoU at least .5 for a nonempty extra region. Region ranking consumes the resulting marginal gains with the existing >.05 beneficial-query mask and unchanged rank-loss weight. Success is not an assertion that the extra region supplied the final selected candidate.",
+    "empty_regions": "Empty extra regions receive exactly zero gain and success, as specified.",
+    "detachment_and_mutation": "torch.no_grad covers all target computation. Search-control tensors are replaced in a shallow copied output dictionary; original output tensors are not mutated. Target generation consumes no RNG and creates no target gradient path into the selector.",
+    "legacy_inference": "AST comparison with HEAD confirms InstanceMemory, RecoverabilityModules, select_actions and action_utility are unchanged. There are no parameter/schema, architecture, verification, threshold or inference changes.",
+    "default_oracle": "The default mode remains oracle. Its region gain and success formulas are preserved, and complete old/new objective outputs were checked for bitwise equality using actual cached labels plus bounded supplied output tensors.",
+    "other_losses": "Only search value, search success and search ranking targets can change between modes. The other10 reported loss terms, including candidate absence and A/C supervision, remain identical for the same supplied outputs/data. Shared parameters may still receive different gradients from the changed search loss, as expected.",
+    "trainer_wiring": "Mode and threshold are passed consistently to training, validation, initial metrics and strict checkpoint-reload validation. The fifth positional evaluate argument remains details. Checkpoint selection still uses held validation utility rather than training/validation loss.",
+    "initialization_and_order": "Each M0/full invocation starts a fresh seeded process, constructs the unchanged model from frozen C1, and creates a fresh AdamW. The runner never loads an M0 checkpoint. Same seed and unchanged initialization/shuffle operations preserve the intended matched setup; target computation itself consumes no RNG.",
+    "four_arm_prefix_extension": "Latest fourth argument accepts only own or c1, switches only the final TRAIN prefix root, and preserves prefer-last-prefix and the common128 validation cache. Both output roots and report labels include mode and prefix, with separate m0/full roots.",
+    "completion_and_weights": "The runner rejects an existing output root, requires completed chosen-prefix and validation caches, emits training_completed only after successful training, and uses the retained best.pth for full98 evaluation. With set -euo pipefail, the full job marker follows successful CPU GT report only. Trainer retention remains best.pth only per run.",
+    "full_video_evaluation": "Full stage uses the existing evaluator with fixed seed42, full pretrained inputs and the original98 development split, with no sequence/frame cap. CUDA-hidden reporting compares against full GOLA baseline and C1 using GT; its sequence-mean IoU is internal full-video evidence, not official-test acceptance."
+  },
+  "independent_cpu_evidence": {
+    "execution_method": "Extracted actual functions via AST and executed pure CPU tensor/loss arithmetic in memory. No model construction, neural forward, backward pass, optimizer or production deployment.",
+    "legacy_checks": [
+      {"partition": "train", "actual_cache_label_rows": 8, "output_source": "bounded supplied tensors", "old_new_oracle_total_loss_bitwise_equal": true, "all13_loss_parts_bitwise_equal": true, "selector_only_three_search_parts_may_differ": true, "all7_choices_invariant_under_gt_change": true, "rng_state_unchanged_by_targets": true},
+      {"partition": "validation", "actual_cache_label_rows": 8, "output_source": "bounded supplied tensors", "old_new_oracle_total_loss_bitwise_equal": true, "all13_loss_parts_bitwise_equal": true, "selector_only_three_search_parts_may_differ": true, "all7_choices_invariant_under_gt_change": true, "rng_state_unchanged_by_targets": true}
+    ],
+    "local_pause_witness": {
+      "condition": "Original keep raw score .9; TIR target probability .4 denies its regular action. Same selector chooses the original pause action both locally and with each extra region.",
+      "local_flat_action": 1,
+      "local_pause_gross_gain_over_original_regular": 0.23999996483325958,
+      "all_six_selector_search_gains_exactly_zero": true
+    },
+    "actual_metadata": {
+      "own_and_serial_c1_274_job_manifests_exactly_equal": true,
+      "own_and_c1_902_query_orders_exactly_equal": true,
+      "paired_c1_serial_flag_true_and_prefix_model_null": true,
+      "both_prefix_completion_markers_present": true,
+      "validation_completion_marker_present": true,
+      "train_validation_sequence_disjoint": true,
+      "default_cli_search_supervision": "oracle"
+    }
+  },
+  "existing_main_agent_cpu_witness": {
+    "source_reviewed": true,
+    "receipt_read": "/data/gb/outputs/recoverability_search_supervision_checks_20261004/cpu_targets.json",
+    "completed": true,
+    "status": "PASS",
+    "oracle_correct_but_selector_rejects_gain": 0.0,
+    "harmful_selected_gain": -0.699999988079071,
+    "local_candidate_improvement_not_search_gain": 0.0,
+    "realized_search_gross_gain": 0.19999998807907104,
+    "realized_search_net_gain_after_one_cost": 0.18999998271465302,
+    "empty_targets_zero": true,
+    "targets_detached": true,
+    "outputs_unmodified": true,
+    "gt_changes_do_not_select_actions": true,
+    "neural_training_or_performance_claim": false
+  },
+  "runtime_gate": {
+    "status": "PENDING_REAL_GPU_M0_FOR_ALL_FOUR_ARMS",
+    "scope": "Source PASS authorizes the planned four M0 invocations. Under the planned M0-first workflow, all four must actually complete one epoch/four updates with finite losses, changed A/B/C, positive real gradients, frozen C1, strict best reload and acceptable measured capacity before the full experiment stage.",
+    "orchestration": "The script is a stage runner; it does not automatically chain or inspect M0 before a full invocation. The parent controls M0-first scheduling and M0-weight cleanup. Full initialization remains independent of M0 weights.",
+    "latest_plan_interpretation": "The latest explicit four-arm instruction governs. Older 'both arms' wording in plan.json's m0_gate should be read as all four current mode/prefix combinations."
+  },
+  "interpretation_limits": [
+    "Selector targets adapt to the current model on cached causal states; future utilities still come from frozen-C1 continuations. They are not complete on-policy future outcomes.",
+    "The four current B256 arms match one another in seed, query budget, exposure and updates. Compared with prior B128/30-epoch runs, B256/60 epochs retain240 updates but double example exposure; that comparison does not isolate batch size.",
+    "Success remains selected localization correctness. The unchanged search controller multiplies predicted value by predicted success; source correctness does not guarantee that this training change improves tracking.",
+    "The128 cache and98 videos are reused development validation. Cached loss/utility gains and CPU witnesses cannot substitute for completed continuous full-video comparisons.",
+    "No .5-to-argmax gate change is introduced, and no new seed-count acceptance rule is added."
+  ],
+  "reviewer_execution": {
+    "neural_forwards": 0,
+    "backward_passes": 0,
+    "optimizer_updates": 0,
+    "gpu_jobs_launched": 0,
+    "process_signals": 0,
+    "weight_deletions": 0,
+    "production_source_edits": 0,
+    "remote_source_files_written": 0
+  }
+}

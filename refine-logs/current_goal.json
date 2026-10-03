@@ -30,14 +30,14 @@
     },
     {
       "id": "S1_own_policy_distribution_control",
-      "status": "paired_vector_audit_complete_c1_fits_complete_full_video_pending",
-      "work": "Own42/43 full98 negative .710787459/.713020262; GOLA .743278507. Exact pairedserialC1 cache274 actual CPU finite/mask/causal/protocol/split auditPASS, identical full902queryorder all4fitconfigs; no future decision inputs. C1corresponding42/43 fits each30epochs240updates nowCOMPLETE best22/20, full98live. Compare continuous results before attribution, frozenC1 futurecontinuation limitation remains.",
+      "status": "CLOSED_CONTINUOUS_NEGATIVE",
+      "work": "All4prefix models complete98. GOLA.743278507; own42/43.710787459/.713020262; matchedC1prefix42/43.701431503/.713897429. own-minus-C1prefix42 +.935596pp CI[-.737741,2.989544],43 -.087717pp CI[-1.065895,.659731]. No consistent prefix benefit or baseline improvement; exact6cache/902order auditPASS. Futurecontinuation remainsC1.",
       "current_limit": "The implemented collector uses learned-policy prefixes but future action rollouts still use frozen C1. This is a prefix-distribution ablation, not a completed own-policy future-continuation correction.",
       "acceptance": "Execution consistency and causal/parent-state M0 pass before matched training; exact same queries/order, initialization, losses and update count in both arms; real A/B/C updates and frozen-base checks pass. Report cached decisions and full continuous-video performance against GOLA-B/C1. Diagnose any remaining negative continuous performance before extending unchanged-cache training."
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "read_only_diagnostic_complete_interventions_pending_S1",
+      "status": "SOURCE_AND_FOUR_REAL_M0_PASS_B256_FULL_ACTUALLY_LAUNCHED",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -47,9 +47,11 @@
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
       "diagnostic": "Own42epoch25 CPU cached-state diagnostic: TRAIN274/1641nonempty query-region pairs, oracle-beneficial413 with354selector-nonpositive, missing-correct127pairs with3correct selections spanning2/47unique queries. VAL128/768pairs,94beneficial84nonpositive,17missing-correctpairs0selected. All81TRAIN C1-keep raw-write regular actions denied by verification (72correct9wrong); all70VAL denied (69correct1wrong). These are eligibility counts and frozen-C1 future labels, not deployed recovery rates. CPU natural choices128 equal saved GPU128. Same-weight full98 template-write/pause control actually launchedGPU0 after formalclosure; selector/memory verification remains active.",
-      "active_controls": "Same own42epoch25 full98 unsafe-template-writeGPU0 and no-extra-searchGPU2; fixed selection and memory gates retained, no new architecture or trainingloss. Do not interpret partial controls as final performance.",
+      "active_controls": "Previousfixed-own42 search/write2x2 ALL complete, allbelowGOLA. New4trainingarms are oracle|selector supervision x own|serialC1 prefixes, allseed42/B25660epochs240updates and identicalqueryorder.",
       "write_control_completed": "Same-own42 rawtemplatewrite full98 seqIoU.725831009: +1.504355pp vs gatedfull withCI[-.511888,3.381141], still -1.744750pp vsGOLA CI[-3.853158,-.159353]. Thus gateoverblocking is real but insufficient to explain all degradation. No-search and matched C1full trajectories pending.",
-      "factorial_control": "Complete diagnostic2x2: full(gatedwrite+extra-search) and rawwrite+search complete; no-search+gatedwriteGPU2 live; no-search+rawwriteGPU0 actuallylaunched00:33 afterPASS sourcegate. Sameown42epoch25/seed42/full98, selectorandidentitymemoryverification unchanged. Not paper eight-module ablation or new performancecandidate."
+      "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
+      "search_supervision_change": "Onlysearchloss targetfactor changed. Detacheddeployedselectorforcedsingleextra comparedto sameoriginal-onlyselector; lookupGT afterselection;cost.01once,emptytargets0. Existingoracle13lossesbitwiseexactCPU; localpausebenefit notcreditedtosearch. Defaults/architecture/inference/otherlosses retained. All4realM0oneepoch4updates A/B/Cupdated C1frozen/reloadPASS. Freshfull actuallylaunched2026-10-04T01:06:29+08:00.",
+      "gate_category_diagnostic": "Read-only actualTRAIN9481/VAL4444 candidates: RGBandTIRargmaxalltarget. Blindargmaxverification would admit all5832TRAIN/1743VAL wrong candidates permodality; no threshold/policychange. DuplicatedIoUlabels notsensor reliability."
     },
     {
       "id": "S3_freeze_then_confirm",
@@ -113,7 +115,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Matched C1seed42GPU1 and seed43GPU3 launched after pairedcomplete; own43 is an optional matched control, no multiseed acceptance requirement",
+    "queued_successor": "Four B256full trainings actual01:06:29; each automatically full98 then existingCPUreport. No pending prefix queues.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -126,13 +128,13 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU1": "C1prefix42 fitCOMPLETE best22; full98live",
-      "GPU2": "own42epoch25 no-extra-search full98 after completed B256capacity",
-      "GPU0": "own42epoch25 no-extra-search plus raw-template-write joint full98 control LIVE from00:33:00",
-      "GPU3": "C1prefix43 fitCOMPLETE best20; full98live"
+      "GPU0": "oracle_search_supervision x serialC1prefix B256full",
+      "GPU1": "selector_search_supervision x serialC1prefix B256full",
+      "GPU2": "oracle_search_supervision x ownprefix B256full",
+      "GPU3": "selector_search_supervision x ownprefix B256full"
     },
     "gpu_memory_request": {
-      "status": "capacity_complete_actual4updates_frozenchecksPASS_ownweightdeleted",
+      "status": "ALL_FOUR_B256_FULL_TRAINING_AFTER_FOUR_REAL_M0_PASS",
       "changes_current_matched_controls": false,
       "capacity_epochs": 1,
       "capacity_queries": 902,
@@ -142,8 +144,20 @@
       "policy": "Increase effective training/collection batches, without artificial allocations or altering currently matched controls",
       "peak_allocated_mib": 10645.29443359375,
       "observed_total_gpu_memory_mib": 16685,
-      "interpretation": "Allocated peak and observed total/reserved memory are distinct; not a performance gain. Current matched controls unchanged."
-    }
+      "interpretation": "Allocated peak and observed total/reserved memory are distinct; not a performance gain. Current matched controls unchanged.",
+      "full_batch_size": 256,
+      "full_epochs": 60,
+      "full_updates_expected": 240,
+      "exposure_note": "BothB256armsmatched60epochs/240steps; priorB12830epochs/240steps notpurebatchcomparison.",
+      "current_verified_cst": "2026-10-04T01:09:47+08:00",
+      "current_total_memory_mib_per_card": [
+        17014,
+        16685,
+        16685,
+        16685
+      ]
+    },
+    "next_check_cst": "2026-10-04T01:24:00+08:00"
   },
   "model_selection": {
     "policy": "One best seed/checkpoint",
@@ -153,5 +167,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T00:34:00+08:00"
+  "updated_cst": "2026-10-04T01:08:00+08:00"
 }

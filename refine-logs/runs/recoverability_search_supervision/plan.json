@@ -1,0 +1,36 @@
+{
+  "status": "SOURCE_PASS_ALL4_REAL_M0_PASS_FULL4_LAUNCHED",
+  "stage": "S2_selector_realizable_search_one_factor",
+  "authority": "User requests useful larger GPU memory and four GPUs; best one seed/checkpoint permitted; all temperature/power control disabled.",
+  "factor": "Search value/success/ranking supervision only: existing oracle upper bound vs detached deployed-selector marginal utility against the same selector without an extra region.",
+  "reference": "Original-region-only selector retains same action score, verification, pause and .03 intervention threshold. Local changes do not earn search utility.",
+  "gain": "Gross GT rollout utility difference after selection; deployed search cost .01 charged once even if final choice stays original. Empty regions get zero value/success.",
+  "limits": "Current causal cached-prefix states; future action labels still frozen C1. Not full on-policy future training, sensor reliability supervision or a non-degradation guarantee.",
+  "matched": {
+    "seed": 42,
+    "train_queries": 902,
+    "validation_queries": 128,
+    "batch_size": 256,
+    "full_epochs": 60,
+    "full_optimizer_updates": 240,
+    "m0_epochs": 1,
+    "m0_optimizer_updates": 4,
+    "learning_rate": 0.0001,
+    "extra_visual_forward_budget_per_frame": 1,
+    "threshold": 0.03,
+    "architecture_and_other_losses_unchanged": true
+  },
+  "exposure_note": "B256 full arms are matched to each other. They have60 epochs rather than the prior B12830 epochs to retain240 optimization updates; therefore not a pure batch-size performance comparison to prior runs.",
+  "source_gate": "Independent same-family/provisional source review plus CPU target witness before deploying main source.",
+  "m0_gate": "Both arms complete real1epoch4updates, finite losses, A/B/C changes, frozenC1 absent gradients, strict best-weight reload and within24GiB capacity before either full arm starts.",
+  "checkpoints": "Only best.pth per full arm; M0 weights removed after receipt audit. Full runs initialize fresh, not from M0.",
+  "evaluation": "Each best cached-utility checkpoint evaluated on complete98 internal development videos; select single candidate by full-video sequence-mean IoU relative fullGOLA andC1. Cached improvement alone is not success. No official test or paper ablation expansion unless continuous performance warrants it.",
+  "runtime": "Use released cards only, no job preemption, no allocation padding, no thermal/power daemon. Estimate completion from logs; long job polls240seconds.",
+  "output_roots": [
+    "/data/gb/outputs/recoverability_search_oracle_own_b256_full_20261004",
+    "/data/gb/outputs/recoverability_search_selector_own_b256_full_20261004",
+    "/data/gb/outputs/recoverability_search_oracle_c1_b256_full_20261004",
+    "/data/gb/outputs/recoverability_search_selector_c1_b256_full_20261004"
+  ],
+  "prefix_control": "Extend the existing exact-query own vs serialC1 prefix factor to both search-supervision modes:2x2 control, one seed42 throughout. All4fit data orders matched; study whether selector supervision depends on prefix distribution. No minimum seed acceptance."
+}

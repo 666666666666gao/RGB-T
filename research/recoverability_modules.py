@@ -215,7 +215,49 @@ def action_utility(data):
             + .3 * data['future_iou'].float().mean(-1) - .1 * data['wrong_update_fraction'].float())
 
 
-def objective(model, output, data):
+@torch.no_grad()
+def search_supervision_targets(output, data, mode='oracle', threshold=.03):
+    """Gross search gain; deployment charges .01 once per extra visual forward.
+
+    Selector targets compare the same detached selector with and without each
+    extra region. GT is looked up after its choices; it never selects an action.
+    The continuation utility still comes from the frozen-C1 cache teacher.
+    """
+    utility = action_utility(data)
+    rows = torch.arange(len(data['valid']), device=utility.device)
+    current = data['current_iou'].float()
+    if mode == 'oracle':
+        reference = utility[rows, 0, data['original_choice'].long(), 0]
+        region_best = utility.masked_fill(~data['action_valid'], -torch.inf).flatten(2).max(-1).values
+        has_candidate = data['action_valid'].flatten(2).any(-1)
+        region_best = torch.where(has_candidate, region_best, reference[:, None])
+        gain = region_best[:, 1:] - reference[:, None]
+        success = (current.masked_fill(~data['valid'], -1).max(-1).values[:, 1:] >= .5).float()
+        return gain, success
+    assert mode == 'selector'
+    forced = dict(output)
+    forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
+    forced['region_success_logits'] = torch.zeros_like(output['region_success_logits'])
+    forced['absence_logit'] = torch.full_like(output['absence_logit'], 20)
+    local = select_actions(forced, data, threshold)
+    assert not local['search_triggered'].any() and (local['region'] == 0).all()
+    reference = utility.flatten(1)[rows, local['flat_action']]
+    gains, successes = [], []
+    for region in range(1, 7):
+        forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
+        forced['region_advantage'][:, region - 1] = 1
+        chosen = select_actions(forced, data, threshold)
+        assert chosen['search_triggered'].all() and (chosen['searched_region'] == region).all()
+        assert ((chosen['region'] == 0) | (chosen['region'] == region)).all()
+        selected = utility.flatten(1)[rows, chosen['flat_action']]
+        has_candidate = data['valid'][:, region].any(1)
+        gains.append(torch.where(has_candidate, selected - reference, 0))
+        selected_current = current[rows, chosen['region'], chosen['candidate']]
+        successes.append(((selected_current >= .5) & has_candidate).float())
+    return torch.stack(gains, 1), torch.stack(successes, 1)
+
+
+def objective(model, output, data, search_supervision='oracle', threshold=.03):
     batch = len(data['valid'])
     valid, action_valid = data['valid'], data['action_valid']
     current = data['current_iou'].float()
@@ -257,12 +299,8 @@ def objective(model, output, data):
     preservation = ((student_gap - teacher_gap).square() * pairs).sum() / pairs.sum().clamp(min=1)
     identity = (F.relu(.2 - student_gap) * pairs).sum() / pairs.sum().clamp(min=1)
 
-    region_best = utility.masked_fill(~action_valid, -torch.inf).flatten(2).max(-1).values
-    region_has_candidate = action_valid.flatten(2).any(-1)
-    region_best = torch.where(region_has_candidate, region_best, reference[:, None])
-    region_gain = region_best[:, 1:] - reference[:, None]
+    region_gain, region_success = search_supervision_targets(output, data, search_supervision, threshold)
     region_value_loss = F.smooth_l1_loss(output['region_advantage'], region_gain)
-    region_success = (current.masked_fill(~valid, -1).max(-1).values[:, 1:] >= .5).float()
     search_success_loss = F.binary_cross_entropy_with_logits(output['region_success_logits'], region_success)
     absence = (current[:, 0].masked_fill(~valid[:, 0], -1).max(-1).values < .5).float()
     absence_loss = F.binary_cross_entropy_with_logits(output['absence_logit'], absence)
