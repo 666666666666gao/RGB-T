@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "reviewer": "/root/recoverability_collection_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "reviewed_files": [
+    "collect_recoverability.py",
+    "candidate_learning.py",
+    "bounded_recovery.py",
+    "collect_temporal.py",
+    "collect_rollouts.py",
+    "temporal_modules.py"
+  ],
+  "executed_checks": [
+    {
+      "check": "exact instance_pool CPU",
+      "cases": "fullcrop/singlepatch/unequaloverlaps/partialoutside/oversized,2batches5boxes3features",
+      "max_abs_error": 0,
+      "torch": "1.13.1+cpu"
+    },
+    {
+      "check": "exact history_arrays CPU",
+      "queries": [
+        1,
+        8,
+        1024
+      ],
+      "full_prefix_retained": true,
+      "float16_storage": true,
+      "copies_independent": true
+    },
+    {
+      "check": "sixfiles compile",
+      "result": "PASS"
+    }
+  ],
+  "source_findings": [
+    "unchanged original C1 inputs/peaks; ROI added separately",
+    "motion past input only; current arrays before GT supervision and future decode",
+    "same-parent copied counterfactual states; query pause changes template/mask/pending only, confidence/provider/box unchanged",
+    "unexecuted extra crops zero candidate/action mask; pause valid only raw>.84",
+    "frozen original keep region0 valid; partition disjoint and mixed uniform sampling"
+  ],
+  "remaining_gate": "real GPU small and capacity M0, then full TRAIN/val collection",
+  "source_edits": false,
+  "gpu_or_full_launch_performed": false,
+  "performance_claim": false
+}

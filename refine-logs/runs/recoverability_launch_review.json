@@ -1,0 +1,44 @@
+{
+  "verdict": "PASS",
+  "reviewer": "/root/recoverability_collection_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "scope": "limited continuation launch-script review after real source/CPU/GPU gates",
+  "checks": [
+    "basename collect_recoverability maps once to research.collect_recoverability",
+    "GPU/partition/clips/seed forwarded correctly, CLI args match argparse",
+    "prefix batch32,forward batch256,max prefix1024 match measuredcapacity options",
+    "GPU CUDA_VISIBLE_DEVICES mapped to collector cuda:0",
+    "original data/split/pretrained/C1/motion defaults unchanged",
+    "allfouroutputs unique"
+  ],
+  "planned_jobs": [
+    {
+      "gpu": 0,
+      "partition": "train",
+      "clips": 256,
+      "seed": 42
+    },
+    {
+      "gpu": 1,
+      "partition": "train",
+      "clips": 256,
+      "seed": 43
+    },
+    {
+      "gpu": 2,
+      "partition": "train",
+      "clips": 256,
+      "seed": 44
+    },
+    {
+      "gpu": 3,
+      "partition": "validation",
+      "clips": 128,
+      "seed": 100042
+    }
+  ],
+  "mutations_or_launches_performed": false
+}

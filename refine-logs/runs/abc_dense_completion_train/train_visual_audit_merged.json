@@ -1,0 +1,345 @@
+{
+  "completed": true,
+  "official_tracking_accuracy": false,
+  "source_reports": [
+    "/data/gb/outputs/abc_dense_completion_train_s42_20261003/dense_candidate_audit.json",
+    "/data/gb/outputs/abc_dense_completion_train_s43_20261003/dense_candidate_audit.json",
+    "/data/gb/outputs/abc_dense_completion_train_s44_20261003/dense_candidate_audit.json"
+  ],
+  "protocol": {
+    "partition": "train",
+    "sample": "all sampled C1 failed queries without candidate IoU>=.5; GT-selected offline diagnosis",
+    "causal": "first GT initializes; predicted C1 prefix; no future images; query GT only scores after forward",
+    "precision": "original float16 forward and float32-multiply-before-double decoding; actual adjusted crop",
+    "comparison": "same causal search; hann5/raw5 equal proposal budget; hann16/dense256 are larger-budget diagnostic upper bounds",
+    "raw5": "preserves original Hann winner, ranks remaining spatial peaks by raw score with original NMS",
+    "dense_hann5_and_dense_raw5": "same five-proposal budget and original Hann winner, spacing and NMS; rank all256 positions instead of local peaks; no extra visual forward or GT-conditioned proposal",
+    "cache_replay": "full original batch groups and order preserve causal batch shapes; fixed five slots, valid counts and actual feature/box/choice differences are recorded",
+    "scope": "read-only TRAIN/validation GPU replay, no optimizer, no deployed ABC tracker change",
+    "extra_search": "protected-anchor local/factor8 widened/fixed half-crop offset/query%8 and three frozen causal motion means; each alternative adds one 224x224 visual crop and up to5 candidates to unchanged original5; all three motion modes together cost four regions/up to20 proposals; factor8 crop has larger physical area, not equal-area; six alternatives are offline batched, not deployed FPS; padding-only crops with no finite adjusted inverse are explicitly unexecuted, generate zero candidates, and retain requested area while actual area is undefined; executed crop counts reflect this; query GT is only a post-forward recall label; failure-selected sample cannot measure harms on original correct frames"
+  },
+  "weighting": "sampled replay rows; repeated sequence-query pairs retained with multiplicities; not independent training seeds",
+  "queries": 151,
+  "unique_sequence_query_pairs": 147,
+  "repeat_rows": 4,
+  "replayed_original_groups": 78,
+  "replayed_prefix_contexts": 2496,
+  "sum_gpu_job_elapsed_seconds": 4265.954308034852,
+  "peak_cuda_allocated_mib": 2623.77587890625,
+  "all": {
+    "queries": 151,
+    "local_correct_candidate_queries": {
+      "replayed_original5": 0,
+      "dense256": 35,
+      "local_peak": 0,
+      "raw5": 0,
+      "hann16": 0,
+      "dense_hann5": 10,
+      "dense_raw5": 17
+    },
+    "extra_search": {
+      "anchor_local": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 151,
+        "union_original5_plus_extra5_correct_queries": 6,
+        "union_original5_plus_dense_hann5_correct_queries": 13,
+        "union_original5_plus_dense_raw5_correct_queries": 15,
+        "extra_dense256_correct_queries": 34,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 64,
+        "mean_original_plus_extra_actual_crop_area_pixels": 228777.32247257864,
+        "queries_with_defined_actual_crop_area": 151,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_widened": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 151,
+        "union_original5_plus_extra5_correct_queries": 25,
+        "union_original5_plus_dense_hann5_correct_queries": 19,
+        "union_original5_plus_dense_raw5_correct_queries": 27,
+        "extra_dense256_correct_queries": 38,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 115,
+        "mean_original_plus_extra_actual_crop_area_pixels": 569589.551874224,
+        "queries_with_defined_actual_crop_area": 151,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_fixed_offset": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 151,
+        "union_original5_plus_extra5_correct_queries": 10,
+        "union_original5_plus_dense_hann5_correct_queries": 7,
+        "union_original5_plus_dense_raw5_correct_queries": 12,
+        "extra_dense256_correct_queries": 20,
+        "union_c1_score_selection_correct_queries": 1,
+        "target_center_inside_extra_crop_queries": 40,
+        "mean_original_plus_extra_actual_crop_area_pixels": 228886.6118584437,
+        "queries_with_defined_actual_crop_area": 151,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_0": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 150,
+        "union_original5_plus_extra5_correct_queries": 20,
+        "union_original5_plus_dense_hann5_correct_queries": 24,
+        "union_original5_plus_dense_raw5_correct_queries": 28,
+        "extra_dense256_correct_queries": 35,
+        "union_c1_score_selection_correct_queries": 4,
+        "target_center_inside_extra_crop_queries": 60,
+        "mean_original_plus_extra_actual_crop_area_pixels": 229962.67084635416,
+        "queries_with_defined_actual_crop_area": 150,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_1": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 151,
+        "union_original5_plus_extra5_correct_queries": 7,
+        "union_original5_plus_dense_hann5_correct_queries": 15,
+        "union_original5_plus_dense_raw5_correct_queries": 15,
+        "extra_dense256_correct_queries": 37,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 60,
+        "mean_original_plus_extra_actual_crop_area_pixels": 228875.1933141039,
+        "queries_with_defined_actual_crop_area": 151,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_2": {
+        "requested_extra_visual_crops": 151,
+        "executed_extra_visual_crops": 151,
+        "union_original5_plus_extra5_correct_queries": 6,
+        "union_original5_plus_dense_hann5_correct_queries": 16,
+        "union_original5_plus_dense_raw5_correct_queries": 17,
+        "extra_dense256_correct_queries": 33,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 60,
+        "mean_original_plus_extra_actual_crop_area_pixels": 228832.69543537873,
+        "queries_with_defined_actual_crop_area": 151,
+        "maximum_original_plus_extra_candidates": 10
+      }
+    },
+    "top_probability_motion_union_correct_queries": 7,
+    "any_three_motion_union_correct_queries": 25,
+    "any_three_motion_budget": {
+      "regions_including_original": 4,
+      "maximum_candidates": 20
+    }
+  },
+  "inside_original_actual_crop": {
+    "queries": 64,
+    "local_correct_candidate_queries": {
+      "replayed_original5": 0,
+      "dense256": 35,
+      "local_peak": 0,
+      "raw5": 0,
+      "hann16": 0,
+      "dense_hann5": 10,
+      "dense_raw5": 17
+    },
+    "extra_search": {
+      "anchor_local": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 6,
+        "union_original5_plus_dense_hann5_correct_queries": 13,
+        "union_original5_plus_dense_raw5_correct_queries": 15,
+        "extra_dense256_correct_queries": 34,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 64,
+        "mean_original_plus_extra_actual_crop_area_pixels": 242315.4910888672,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_widened": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 9,
+        "union_original5_plus_dense_hann5_correct_queries": 12,
+        "union_original5_plus_dense_raw5_correct_queries": 12,
+        "extra_dense256_correct_queries": 16,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 64,
+        "mean_original_plus_extra_actual_crop_area_pixels": 602600.9651794434,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_fixed_offset": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 2,
+        "union_original5_plus_dense_hann5_correct_queries": 1,
+        "union_original5_plus_dense_raw5_correct_queries": 4,
+        "extra_dense256_correct_queries": 11,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 28,
+        "mean_original_plus_extra_actual_crop_area_pixels": 242425.9494934082,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_0": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 7,
+        "union_original5_plus_dense_hann5_correct_queries": 11,
+        "union_original5_plus_dense_raw5_correct_queries": 14,
+        "extra_dense256_correct_queries": 20,
+        "union_c1_score_selection_correct_queries": 1,
+        "target_center_inside_extra_crop_queries": 40,
+        "mean_original_plus_extra_actual_crop_area_pixels": 242472.52989196777,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_1": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 7,
+        "union_original5_plus_dense_hann5_correct_queries": 15,
+        "union_original5_plus_dense_raw5_correct_queries": 15,
+        "extra_dense256_correct_queries": 37,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 60,
+        "mean_original_plus_extra_actual_crop_area_pixels": 242543.6089477539,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_2": {
+        "requested_extra_visual_crops": 64,
+        "executed_extra_visual_crops": 64,
+        "union_original5_plus_extra5_correct_queries": 6,
+        "union_original5_plus_dense_hann5_correct_queries": 16,
+        "union_original5_plus_dense_raw5_correct_queries": 17,
+        "extra_dense256_correct_queries": 33,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 60,
+        "mean_original_plus_extra_actual_crop_area_pixels": 242481.95693969727,
+        "queries_with_defined_actual_crop_area": 64,
+        "maximum_original_plus_extra_candidates": 10
+      }
+    },
+    "top_probability_motion_union_correct_queries": 7,
+    "any_three_motion_union_correct_queries": 12,
+    "any_three_motion_budget": {
+      "regions_including_original": 4,
+      "maximum_candidates": 20
+    }
+  },
+  "outside_original_actual_crop": {
+    "queries": 87,
+    "local_correct_candidate_queries": {
+      "replayed_original5": 0,
+      "dense256": 0,
+      "local_peak": 0,
+      "raw5": 0,
+      "hann16": 0,
+      "dense_hann5": 0,
+      "dense_raw5": 0
+    },
+    "extra_search": {
+      "anchor_local": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 87,
+        "union_original5_plus_extra5_correct_queries": 0,
+        "union_original5_plus_dense_hann5_correct_queries": 0,
+        "union_original5_plus_dense_raw5_correct_queries": 0,
+        "extra_dense256_correct_queries": 0,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 0,
+        "mean_original_plus_extra_actual_crop_area_pixels": 218818.20992726294,
+        "queries_with_defined_actual_crop_area": 87,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_widened": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 87,
+        "union_original5_plus_extra5_correct_queries": 16,
+        "union_original5_plus_dense_hann5_correct_queries": 7,
+        "union_original5_plus_dense_raw5_correct_queries": 15,
+        "extra_dense256_correct_queries": 22,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 51,
+        "mean_original_plus_extra_actual_crop_area_pixels": 545305.2938106143,
+        "queries_with_defined_actual_crop_area": 87,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_fixed_offset": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 87,
+        "union_original5_plus_extra5_correct_queries": 8,
+        "union_original5_plus_dense_hann5_correct_queries": 6,
+        "union_original5_plus_dense_raw5_correct_queries": 8,
+        "extra_dense256_correct_queries": 9,
+        "union_c1_score_selection_correct_queries": 1,
+        "target_center_inside_extra_crop_queries": 12,
+        "mean_original_plus_extra_actual_crop_area_pixels": 218926.6393453664,
+        "queries_with_defined_actual_crop_area": 87,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_0": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 86,
+        "union_original5_plus_extra5_correct_queries": 13,
+        "union_original5_plus_dense_hann5_correct_queries": 13,
+        "union_original5_plus_dense_raw5_correct_queries": 14,
+        "extra_dense256_correct_queries": 15,
+        "union_c1_score_selection_correct_queries": 3,
+        "target_center_inside_extra_crop_queries": 20,
+        "mean_original_plus_extra_actual_crop_area_pixels": 220653.00830078125,
+        "queries_with_defined_actual_crop_area": 86,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_1": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 87,
+        "union_original5_plus_extra5_correct_queries": 0,
+        "union_original5_plus_dense_hann5_correct_queries": 0,
+        "union_original5_plus_dense_raw5_correct_queries": 0,
+        "extra_dense256_correct_queries": 0,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 0,
+        "mean_original_plus_extra_actual_crop_area_pixels": 218820.26687095905,
+        "queries_with_defined_actual_crop_area": 87,
+        "maximum_original_plus_extra_candidates": 10
+      },
+      "anchor_motion_2": {
+        "requested_extra_visual_crops": 87,
+        "executed_extra_visual_crops": 87,
+        "union_original5_plus_extra5_correct_queries": 0,
+        "union_original5_plus_dense_hann5_correct_queries": 0,
+        "union_original5_plus_dense_raw5_correct_queries": 0,
+        "extra_dense256_correct_queries": 0,
+        "union_c1_score_selection_correct_queries": 0,
+        "target_center_inside_extra_crop_queries": 0,
+        "mean_original_plus_extra_actual_crop_area_pixels": 218791.85938622485,
+        "queries_with_defined_actual_crop_area": 87,
+        "maximum_original_plus_extra_candidates": 10
+      }
+    },
+    "top_probability_motion_union_correct_queries": 0,
+    "any_three_motion_union_correct_queries": 13,
+    "any_three_motion_budget": {
+      "regions_including_original": 4,
+      "maximum_candidates": 20
+    }
+  },
+  "repeated_pairs": [
+    {
+      "sequence": "ab_pingpongball3",
+      "query_frame": 12,
+      "multiplicity": 2
+    },
+    {
+      "sequence": "ab_pingpongball3",
+      "query_frame": 35,
+      "multiplicity": 2
+    },
+    {
+      "sequence": "boyputtinghandup",
+      "query_frame": 68,
+      "multiplicity": 2
+    },
+    {
+      "sequence": "rightblkboybesidesred",
+      "query_frame": 183,
+      "multiplicity": 2
+    }
+  ]
+}

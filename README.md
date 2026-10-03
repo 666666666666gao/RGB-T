@@ -399,3 +399,21 @@ The frozen-C1 full98 dense Hann online control is running on GPU3; dense raw
 waits for GPU0's existing diagnostic success. Both passed fresh-context CPU
 review and genuine1935-frame-per-policy M0, with exact default parity. Their
 full online efficacy/harm results remain pending; the five+2pp goal is unmet.
+2026-10-03 16:55 update: the full98 TRAIN-held-out dense-Hann control is negative
+(mean sequence IoU .730287 vs frozen C1 .739440). Dense-raw .741248 improves C1
+by .180800pp but is below full GOLA .743279 by .203034pp; both paired CIs include
+zero. All actual98 receipts,294-row reports and markers are in
+`refine-logs/runs/abc_candidate_dense_{hann5,raw5}_full/`.
+Completed151 TRAIN visual queries (147 unique pairs) show widening recalls25
+missing targets but the old C1 cross-region scorer selects0. These are diagnostic
+oracle counts, not deployed accuracy. Actual merged rows and budget accounting:
+`refine-logs/runs/abc_dense_completion_train/`.
+New mixed TRAIN/validation long-prefix search/action collection is LIVE on four
+GPUs; maxprefix1024, prefixbatch32, forwardbatch256. Original GOLA/C1 remains
+frozen; separate ROI descriptors, true visual region labels and same-parent
+regular/query-paused-write future3-step labels support upgraded A/B/C training.
+Source/CPU and real GPU M0 passed; capacity256 peak17100.568MiB. No upgraded
+training or new formal metric is claimed yet. Fifteen obsolete/duplicate weights
+were removed; each completed experiment retains its selected validation-best
+checkpoint, with all metrics/logs/predictions preserved. The one handoff contains
+the full record: `docs/HANDOFF_20261002.md`. Main all-five +2 goal remains unmet.
