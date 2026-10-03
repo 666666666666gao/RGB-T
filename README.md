@@ -439,3 +439,12 @@ Complete cache-training receipts/31epoch records/512selected-action CSV rows
 and descriptive paired uncertainty: `refine-logs/runs/recoverability_fit_complete/`.
 Best gains are confined to128held-out queries, no paused writes, only0/1/1/1
 newly recalled queries. Online integration and all-five native+2 remain unmet.
+
+19:05 online milestone: fixed-size incremental ROI identity memory and frozen
+motion state, original-only search decisions, at most one actual extra crop,
+and query-only safe-write actions are integrated. Real zero-init M0 passed on
+2 held-out videos/128frames: unrounded trajectories and each choice/raw-score/
+write decision exactly match C1. Source/CPU/real-M0 receipts are in
+`refine-logs/runs/recoverability_online_m0/`. Four best-only independent models
+are running all98 internal videos; a240-second queue collects full diagnostics.
+These runs are not completed native scores and all-five +2 remains unmet.

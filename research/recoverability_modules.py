@@ -44,14 +44,17 @@ class InstanceMemory(nn.Module):
                             quality[..., None].expand_as(roi_anchor), point_anchor, roi_anchor), -1)
         return self.gate(torch.cat((descriptor, cues), -1))
 
-    def update(self, memory, descriptor, probability, observed, commit):
+    def write_rates(self, descriptor, probability, observed, commit):
         assignment = torch.einsum('bmd,smd->bsm', descriptor, self.target_keys).softmax(1)
         target_rate = assignment * probability[..., 0][:, None] * commit[:, None]
         other_rate = probability[..., 1:].permute(0, 2, 1) * observed[:, None, None]
         category = probability.argmax(-1)
         context_class = torch.stack(((category == 1) & (probability[..., 1] >= .5), category == 2), 1)
         other_rate *= context_class
-        rates = torch.cat((target_rate, other_rate), 1)
+        return torch.cat((target_rate, other_rate), 1)
+
+    def update(self, memory, descriptor, probability, observed, commit):
+        rates = self.write_rates(descriptor, probability, observed, commit)
         return memory * (1 - rates[..., None]) + descriptor[:, None] * rates[..., None]
 
     @staticmethod
@@ -139,6 +142,12 @@ class RecoverabilityModules(nn.Module):
 
     def forward(self, data):
         anchor, memory, past, past_logits = self.memory.history(data)
+        output = self.decide(data, anchor, memory)
+        output.update(past_descriptors=past, past_gate_logits=past_logits)
+        return output
+
+    def decide(self, data, anchor, memory):
+        """Current-only decision from the incrementally maintained bounded state."""
         inputs, fused, descriptor, support, gate, proof = self.candidate_inputs(data, anchor, memory)
         batch = len(inputs)
         keep = data['original_choice'].long()
@@ -166,7 +175,7 @@ class RecoverabilityModules(nn.Module):
                   'target_probability': proof.reshape(batch, 7, 5, 2),
                   'gate_logits': gate.reshape(batch, 7, 5, 2, 3),
                   'descriptors': descriptor, 'support': support, 'anchor': anchor,
-                  'memory': memory, 'past_descriptors': past, 'past_gate_logits': past_logits}
+                  'memory': memory}
         output.update(self.search_decision(inputs, data))
         return output
 

@@ -1,0 +1,26 @@
+{
+  "reviewed_at": "2026-10-03T19:06:04.4730479+08:00",
+  "reviewer": "/root/recoverability_online_review",
+  "model": "gpt-6-astra",
+  "reasoning": "max",
+  "attribution": "same-family / provisional",
+  "verdict": "PASS",
+  "files": [
+    "research/recoverability_modules.py",
+    "research/recoverability_tracker.py",
+    "research/evaluate_recoverability.py",
+    "research/collect_recoverability_metrics.py"
+  ],
+  "fixed_actual_issues": [
+    "max_pending_per_branch was zero despite real pending entries",
+    "mixed reference/method CSV columns",
+    "real zero-intervention CSV header"
+  ],
+  "cpu_source_witnesses": [
+    "17 mixed incremental vs replay frames: identity maxerror5.96e-8/motion5.22e-8",
+    "13 synthetic visual frames with8updates: all visual inputs, masks/templates and outputs bitwise C1 equal",
+    "both datasets31 manually expected counter values each and CSV paths passed"
+  ],
+  "genuine_gpu_m0": "2 actual held-out videos128frames,65writes, unrounded boxes/eachchoice/rawscore/write match C1; noextra/pause",
+  "real_benchmark_completed": false
+}
