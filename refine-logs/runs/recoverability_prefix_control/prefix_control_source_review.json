@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "agent": "/root/prefix_matched_training_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blocking_issues": [],
+  "review_scope": "last-prefix loader and paired-prefix collect/training scripts, batch16 parity driver",
+  "actual_cpu_checks": {
+    "old_queries": 767,
+    "own_queries": 274,
+    "intersection": 139,
+    "new_queries": 135,
+    "controlled_union": 902,
+    "last_root_selections": 274,
+    "shared_selections": 628,
+    "planned_updates_each": 240,
+    "train_validation_sequence_overlap": 0,
+    "driver_jobs": 16,
+    "driver_queries": 17
+  },
+  "verified": "Default dedup AST selection/order exactly equals HEAD. Controlled dictionary keeps first-key insertion order and selects last supplied row; planned arm order identical. Source/protocol keys match, array rows/original/action masks/full causal history checked. Architecture/loss/optimizer/init/frozenC1 unchanged,313111 trainable params. Both scripts B128/30ep/samevalidation/seed42, strictbest-only/reload. Driver compares real batched16 default C1 to zeroABC serial using sameweights, all24 decision/label fields, nooptimizer/weights, separateexecution/bitwise flags.",
+  "qualifications": "Actual completed pairedC1cache must have exact274jobs/settings; verify real loaded902arm query lists.274preferred rows may not all genuinely differ. Current future labels frozenC1; validation repeatedly used development. Realbatch16 parity notyetexecuted; no production batching changes proposed absent mismatch.",
+  "reviewer_execution_issue": "First CPU driver job selection replay lacked cwd and failed beforedatasetload; corrected projectcwd passed. No GPU/model execution/file mutation.",
+  "post_training_pipeline_review": "PASS same-family/provisional: exact original98 full videos and actual GT after strict validation-best reload; full baseline/C1 references, CPU reports and final completion marker only after success; reviewed before any full launch."
+}

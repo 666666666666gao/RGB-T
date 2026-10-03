@@ -160,7 +160,7 @@ def main():
         assert {row['sequence'] for row in receipt['records']} == set(names)
         assert {p.stem for p in path.glob('*.txt')} == set(names)
         assert config['root'] == args.root and config['dataset'] == args.dataset
-        assert config['validation_split'] == args.split
+        assert config.get('validation_split') == args.split
         assert config['limit_sequences'] == config['max_frames'] == 0 and config.get('sequence_offset', 0) == 0
         assert receipt['smoke_only'] == bool(args.split)
         counts, motion, bins, events, latency_arrays = [], [], [], [], []
@@ -209,8 +209,8 @@ def main():
                  'efficiency': {'instrumented_tracking_fps': len(latency)/float(latency.sum()),
                                 'latency_p50_ms': float(np.percentile(latency, 50)*1000),
                                 'latency_p95_ms': float(np.percentile(latency, 95)*1000),
-                                'peak_cuda_allocated_mib': receipt['peak_cuda_allocated_mib'],
-                                'peak_cuda_reserved_mib': receipt['peak_cuda_reserved_mib']}, 'inference_config': config}
+                                'peak_cuda_allocated_mib': receipt.get('peak_cuda_allocated_mib'),
+                                'peak_cuda_reserved_mib': receipt.get('peak_cuda_reserved_mib')}, 'inference_config': config}
         if counts:
             totals = {key: sum(c[key] for c in counts) for key in counts[0]}
             assert totals['valid_tracking_frames'] == valid_count

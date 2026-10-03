@@ -37,7 +37,8 @@ def main():
     motion = TemporalModules(c1, old_config['slots'], old_config['motion_history'], old_config['modes'], old['horizon']).to(device)
     motion.load_state_dict(old['model'], strict=True)
     motion.eval().requires_grad_(False)
-    args = SimpleNamespace(max_prefix=256, forward_batch=64, prefix_threshold=checkpoint['args']['threshold'])
+    args = SimpleNamespace(max_prefix=256, forward_batch=64, prefix_threshold=checkpoint['args']['threshold'],
+                           serial_c1_prefix=False)
     real_history, real_step, real_read = collector.history_arrays, RecoverabilityTracker.step, collector.read_pair
     step_records, parents = {}, []
 

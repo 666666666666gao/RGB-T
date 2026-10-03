@@ -30,10 +30,12 @@ def arguments():
     p.add_argument('--weight-decay', type=float, default=1e-4)
     p.add_argument('--threshold', type=float, default=.03)
     p.add_argument('--seed', type=int, default=42)
+    p.add_argument('--prefer-last-prefix', action='store_true',
+                   help='For matched-query prefix controls, use the last supplied state for each sequence/query.')
     return p.parse_args()
 
 
-def load_data(roots, partition, device):
+def load_data(roots, partition, device, prefer_last_prefix=False):
     arrays, configs, names, jobs = [], [], set(), []
     for root in map(Path, roots):
         config = json.loads((root / 'config.json').read_text())
@@ -61,6 +63,9 @@ def load_data(roots, partition, device):
         if job not in seen:
             unique.append(index)
             seen.add(job)
+    if prefer_last_prefix:
+        by_query = {(job[0], job[1]): index for index, job in enumerate(jobs)}
+        unique = list(by_query.values())
     indices = torch.tensor(unique, device=device)
     return {key: value[indices] for key, value in pooled.items()}, configs, names, [jobs[i] for i in unique]
 
@@ -127,7 +132,7 @@ def main():
     torch.cuda.manual_seed_all(args.seed)
     torch.set_num_threads(4)
     device = torch.device('cuda:0')
-    train, train_configs, train_names, train_jobs = load_data(args.train, 'train', device)
+    train, train_configs, train_names, train_jobs = load_data(args.train, 'train', device, args.prefer_last_prefix)
     validation, val_configs, val_names, val_jobs = load_data([args.validation], 'validation', device)
     assert not train_names & val_names
     reference = train_configs[0]

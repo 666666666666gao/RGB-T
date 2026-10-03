@@ -103,7 +103,9 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
         active = [c for c in contexts if frame < c['query']]
         images = [read_pair(*paths(c['sequence'], frame), device) for c in active]
         if prefix_model is None:
-            observations = observe_actions([(c['tracker'], c['branch'], im) for c, im in zip(active, images)], extractor, head)
+            items = [(c['tracker'], c['branch'], im) for c, im in zip(active, images)]
+            observations = ([observe_actions([item], extractor, head)[0] for item in items]
+                            if args.serial_c1_prefix else observe_actions(items, extractor, head))
             for context, image, observation in zip(active, images, observations):
                 advance_prefix(context, frame, observation, image)
                 candidates, _, _, choice = observation
@@ -273,6 +275,7 @@ def main():
     p.add_argument('--head', default='/data/gb/outputs/c1_initial_seed42/best.pth')
     p.add_argument('--motion-run', default='/data/gb/outputs/abc_joint_v1_seed42')
     p.add_argument('--prefix-model', help='Frozen ABC checkpoint for actual learned-policy prefixes; default is unchanged C1.')
+    p.add_argument('--serial-c1-prefix', action='store_true', help='Run only C1 prefix frames individually to match learned-policy prefix execution.')
     p.add_argument('--jobs-file', help='Explicit sequence/query JSON jobs from the chosen TRAIN partition.')
     p.add_argument('--output', required=True)
     p.add_argument('--clips', type=int, default=256)
@@ -340,6 +343,7 @@ def main():
     config = vars(args) | {'jobs': [{'sequence': dataset[i].get_name(), 'query_frame': q} for i, q in jobs],
                            'regions': REGIONS, 'source': 'LasHeR training split only; existing881/98 disjoint partition',
                            'prefix_policy': 'frozen full GOLA/C1 peaks, actual predicted history through query-1',
+                           'prefix_execution': 'per-sequence' if prefix_model is not None or args.serial_c1_prefix else 'batch-clips',
                            'original_proposal_policy': 'unchanged frozen C1 five peaks',
                            'extra_proposal_policy': 'protected first anchor, dense_raw5 preserving region Hann winner; up to5 per region',
                            'instance_features': 'area-overlap weighted pre-attention RGB/TIR patches; anchor uses foreground region',

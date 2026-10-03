@@ -3,9 +3,28 @@
 The [current execution goal](refine-logs/current_goal.json) prioritizes the
 cached-to-continuous tracking gap, selector-realizable search and consistent
 state submission. The all-five +2pp target remains **ACTIVE_UNMET**. Freeze the
-method and expand paper experiments only after independent-seed full-video
-improvement. The [single handoff](docs/HANDOFF_20261002.md) records current
+best model using full-video internal validation, then expand paper experiments
+after that model improves; no minimum seed count is required. The [single handoff](docs/HANDOFF_20261002.md) records current
 completion receipts, negative controls and pending reports.
+
+The locked new Recoverability seed42/epoch7 has completed all 234 RGBT234
+sequences and 116649 frame pairs: MPR **90.960249**, MSR **68.832481**.
+It remains below complete local GOLA-B by **0.818609/0.400112 pp**;
+both paired 95% intervals include zero. All 12 attributes, native curves,
+sequence results and mechanisms are in the
+[full report artifacts](refine-logs/runs/recoverability_native_rgbt234_s42).
+LasHeR evaluation of this locked checkpoint remains in progress.
+
+Before comparing own-policy prefixes with C1 prefixes, a real batch-16 check
+found different frozen-head outputs from identical batched/single inputs.
+Serializing only C1 prefix observations restored exact equality in all 24
+decision/label fields in the diagnostic. The explicit `--serial-c1-prefix`
+option defaults off; old cached experiments retain their original definition.
+The [evidence and source gates](refine-logs/runs/recoverability_prefix_control)
+separate execution sanity from learned full-video gains. Matched training uses
+the same 902 query identities/order and 240 updates per arm; full training waits
+for the completed paired-prefix cache and actual query-order check. Production
+parity passed all 24 fields; the paired collector started on GPU1 at22:26:32 CST.
 
 This repository extends official GOLA commit `339c737cda6a24be667b6e5abdc721e8d6046f05`.
 Complete pretrained GOLA-B remains frozen; C1 learns candidate quality and ranking.
