@@ -28,12 +28,13 @@ candidates42/43, then evaluate full98 videos. They read only completed caches.
 Actual paired-vector auditing and equal-seed C1 controls remain pending before
 interpreting a prefix-policy effect. GPU0 continues locked formal LasHeR.
 
-The user also requires at most75C and250W per GPU. Setting the hardware limits
-was denied by server permissions; all limits remain350W. GPU1 collection and
-GPU2/3 training are paused with state retained. The reviewed thermal controller
-pauses our named jobs at74C/245W and resumes only after a confirmed hardware
-limit<=250W plus cooldown. GPU0 formal evaluation continues below thresholds.
-Administrator setup remains necessary; pauses affect timing and must be disclosed.
+The user prefers at most75C and250W but has deferred administrator hardware
+setup after the permission denial. Hardware power limits remain350W. All three
+paused experiments resumed from retained states at23:14:46; GPU0 continued.
+The owned-job controller explicitly opts into uncapped resume, pauses at74C/245W
+and resumes after cooldown to72C/220W. This is reactive software pacing;
+instantaneous power above250W is observed and cannot be prevented by it.
+Training budgets and weights are unchanged; disclose pacing/pause costs.
 
 This repository extends official GOLA commit `339c737cda6a24be667b6e5abdc721e8d6046f05`.
 Complete pretrained GOLA-B remains frozen; C1 learns candidate quality and ranking.

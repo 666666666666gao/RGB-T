@@ -1,7 +1,7 @@
 {
   "version": "2026-10-03_closed_loop_recovery_best_model",
   "status": "ACTIVE_UNMET",
-  "authority": "Latest user correction: select one best-performing seed/checkpoint; do not require at least three stable seeds",
+  "authority": "Latest user: choose one best seed/checkpoint, use four GPUs, prefer75C/250W; administrator hardware setup explicitly deferred by answer 那先不管吧",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
   "execution_objective": "以完整预训练 GOLA-B 和已有 C1 为固定起点，仅在 LasHeR、RGBT234 上，围绕候选找回、跨区域选择与可信状态提交改进闭环跟踪。先解决缓存验证收益无法转化为连续视频收益的问题，再用模型自身状态训练、选择器可实现的搜索收益、候选关联和风险干预降低持续漂移与误干预。固定验证协议及训练、记忆、搜索预算；按内部验证的完整视频主指标选择一个最佳 seed/checkpoint；该模型超过完整 GOLA-B 并具备必要机制证据后，即可冻结并开展完整论文实验，不要求多个 seed 同时超过。最终验收为两个核心数据集五项原生指标均比同条件完整 GOLA-B 高至少 2 个百分点，且完整报告性能、机制、不确定性和实际推理成本。",
@@ -30,8 +30,8 @@
     },
     {
       "id": "S1_own_policy_distribution_control",
-      "status": "own_training_and_paired_collection_preserved_STOP_wait_hardware_power_cap_G0_evaluation_live",
-      "work": "Own902querycandidate42/43 fits andpaired274collection launched onall4cards, actual121updates each/epoch15 at22:42. Latestuser75C/250W priority: measured82C/80C and307/315W, manualSTOP ownGPU1/2/3 preservesstates. Directpower/targettemp settings denied InsufficientPermissions and sudo-nrequirespassword. Independently reviewedguard live23:01:40, STOP>=74C/245W, CONT onlyconfirmedhardwarelimit<=250 AND<=70C/220W, exactownedoutputwhitelist. Hardwarelimits still350W; admininputpending. GPU0underlimits formal continues; C1s42queue stillwaitsactualpairedcompletedmarker. No prefixeffect orfullgoalachievement claim.",
+      "status": "four_jobs_resumed_with_user_optin_software_thermal_power_pacing",
+      "work": "Latestuser defers administrator hardware setup; allthreepaused experimentalPIDs actuallyreceivedCONT23:14:46 fromtheirretainedstates, G0formalcontinued. Softmonitor exactownedwhitelistlivePID2065281, --allow-uncapped-resume --resume-temp72; STOP>=74C/245W, CONTcool<=72C/220W without250hardwarecap onlyviaexplicituserflag. Actualallcaps350, sample301.26W provesinstant250notguaranteed. Fourtasks advancepaced; pairedactualvectors/equal-seedC1/full98 reports remainpending. Goal remains onebestfixedmodel acrossbothdatasets five+2unmet.",
       "current_limit": "The implemented collector uses learned-policy prefixes but future action rollouts still use frozen C1. This is a prefix-distribution ablation, not a completed own-policy future-continuation correction.",
       "acceptance": "Execution consistency and causal/parent-state M0 pass before matched training; exact same queries/order, initialization, losses and update count in both arms; real A/B/C updates and frozen-base checks pass. Report cached decisions and full continuous-video performance against GOLA-B/C1. Diagnose any remaining negative continuous performance before extending unchanged-cache training."
     },
@@ -114,17 +114,18 @@
       "resume_power_max": 220,
       "temperature_requested_max_celsius": 75,
       "pause_at_power": 245,
-      "resume_requires_hardware_power_limit_max": 250,
-      "hardware_limit_setting": "DENIED: sudo admin required; actual all350W unchanged",
-      "monitor_pid": 2041093,
-      "resume_temperature_max": 70,
+      "resume_requires_hardware_power_limit_max": null,
+      "hardware_limit_setting": "DEFERRED by latestuser; directsettingswerepermissiondenied; actual all350W unchanged",
+      "monitor_pid": 2065281,
+      "resume_temperature_max": 72,
       "pause_at_temperature": 74,
       "power_requested_max_watts": 250,
       "scope": "Only UID-owned exact whitelisted experiment commands; foreign processes excluded",
-      "priority": "Thermal/power constraints take precedence over keeping every GPU busy",
-      "monitor_session": "gpu_thermal_guard_20261003",
+      "priority": "Continue experiments as latestuser directed while retaining thermal/power software throttling; hardware hard caps deferred",
+      "monitor_session": "gpu_thermal_guard_soft_20261003",
       "monitor_interval_seconds": 2,
-      "latest_state": "GPU1/2/3 paused with state retained; GPU0eval continues below thresholds; admin input requested"
+      "latest_state": "Actual3CONTmatched23:14:46, experimentalPIDstates/RNG/optimizerpreserved; monitorpacing4tasks. Hardwarecaps350 remain; instantaneouspower>250 observed and disclosed; userdefersadminsetup",
+      "allow_uncapped_resume": true
     }
   },
   "model_selection": {

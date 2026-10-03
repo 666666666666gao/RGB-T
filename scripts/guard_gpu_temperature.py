@@ -37,10 +37,12 @@ def owned_jobs(process_rows):
     return jobs
 
 
-def action_for(temperature, power, hardware_power_limit, stopped, pause_temp, resume_temp, pause_power, resume_power):
+def action_for(temperature, power, hardware_power_limit, stopped, pause_temp, resume_temp, pause_power, resume_power,
+               allow_uncapped_resume=False):
     if not stopped and (temperature >= pause_temp or power >= pause_power):
         return 'STOP'
-    if stopped and hardware_power_limit <= 250 and temperature <= resume_temp and power <= resume_power:
+    if (stopped and (hardware_power_limit <= 250 or allow_uncapped_resume)
+            and temperature <= resume_temp and power <= resume_power):
         return 'CONT'
     return None
 
@@ -52,6 +54,8 @@ def main():
     parser.add_argument('--pause-power', type=float, default=245.)
     parser.add_argument('--resume-power', type=float, default=220.)
     parser.add_argument('--interval', type=float, default=2.)
+    parser.add_argument('--allow-uncapped-resume', action='store_true',
+                        help='User-authorized continuation while administrator hardware-cap setup is deferred.')
     parser.add_argument('--log', required=True)
     args = parser.parse_args()
     assert args.resume_temp < args.pause_temp <= 75
@@ -68,7 +72,8 @@ def main():
             for job in jobs:
                 gpu = gpus[job['gpu']]
                 action = action_for(gpu['temperature'], gpu['power'], gpu['hardware_power_limit'], 'T' in job['state'],
-                                    args.pause_temp, args.resume_temp, args.pause_power, args.resume_power)
+                                    args.pause_temp, args.resume_temp, args.pause_power, args.resume_power,
+                                    args.allow_uncapped_resume)
                 if action:
                     # UID and exact command restrict signals to the observed experiment.
                     # pkill returns1 when a normal train/evaluation phase has already exited.
@@ -80,7 +85,8 @@ def main():
                                     'signal_matched': result.returncode == 0})
             record = {'observed_utc': datetime.now(timezone.utc).isoformat(), 'gpus': gpus,
                       'jobs': [{key: job[key] for key in ('pid', 'state', 'output', 'gpu')} for job in jobs],
-                      'actions': actions, 'hardware_caps_configured_by_this_script': False}
+                      'actions': actions, 'hardware_caps_configured_by_this_script': False,
+                      'allow_uncapped_resume': args.allow_uncapped_resume}
             log.write(json.dumps(record, allow_nan=False) + '\n')
             time.sleep(args.interval)
 

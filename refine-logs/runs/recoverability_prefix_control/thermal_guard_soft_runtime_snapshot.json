@@ -1,0 +1,89 @@
+{
+  "session": "gpu_thermal_guard_soft_20261003",
+  "user_authority": "\u90a3\u5148\u4e0d\u7ba1\u5427: deferhardwarecapsetup/continueexperiments",
+  "old_monitor_only_restarted": true,
+  "experimental_processes_restarted": false,
+  "actual_matched_CONT": {
+    "1977211": {
+      "time": "2026-10-03T15:14:46.402606+00:00",
+      "gpu": 1
+    },
+    "1991504": {
+      "time": "2026-10-03T15:14:46.402606+00:00",
+      "gpu": 2
+    },
+    "1991509": {
+      "time": "2026-10-03T15:14:46.402606+00:00",
+      "gpu": 3
+    }
+  },
+  "last_sample": {
+    "observed_utc": "2026-10-03T15:16:25.882880+00:00",
+    "gpus": {
+      "0": {
+        "temperature": 63.0,
+        "power": 135.51,
+        "hardware_power_limit": 350.0
+      },
+      "1": {
+        "temperature": 73.0,
+        "power": 128.94,
+        "hardware_power_limit": 350.0
+      },
+      "2": {
+        "temperature": 64.0,
+        "power": 301.26,
+        "hardware_power_limit": 350.0
+      },
+      "3": {
+        "temperature": 67.0,
+        "power": 162.24,
+        "hardware_power_limit": 350.0
+      }
+    },
+    "jobs": [
+      {
+        "pid": 1737327,
+        "state": "Dl+",
+        "output": "/data/gb/outputs/recoverability_native_lasher_s42_20261003",
+        "gpu": 0
+      },
+      {
+        "pid": 1977211,
+        "state": "Tl+",
+        "output": "/data/gb/outputs/recoverability_paired_c1_prefix_20261003",
+        "gpu": 1
+      },
+      {
+        "pid": 1991504,
+        "state": "Sl+",
+        "output": "/data/gb/outputs/recoverability_prefix_own_s42_20261003",
+        "gpu": 2
+      },
+      {
+        "pid": 1991509,
+        "state": "Tl+",
+        "output": "/data/gb/outputs/recoverability_prefix_own_s43_20261003",
+        "gpu": 3
+      }
+    ],
+    "actions": [
+      {
+        "pid": 1991504,
+        "gpu": 2,
+        "action": "STOP",
+        "signal_matched": true
+      },
+      {
+        "pid": 1991509,
+        "gpu": 3,
+        "action": "CONT",
+        "signal_matched": true
+      }
+    ],
+    "hardware_caps_configured_by_this_script": false,
+    "allow_uncapped_resume": true
+  },
+  "samples": 48,
+  "hardware_power_cap_applied": false
+}
