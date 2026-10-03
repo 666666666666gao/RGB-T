@@ -1,0 +1,352 @@
+{
+  "observed_cst": "2026-10-04T05:07:18.722933+08:00",
+  "scope": "same4 originalB384 full jobs; stages detected from actual markers and process commands, no restart",
+  "arms": {
+    "reference_c1": {
+      "last_epoch": 60,
+      "optimizer_steps": 180,
+      "last_validation_epoch": 60,
+      "fit_receipt": {
+        "completed": true,
+        "epochs": 60,
+        "optimizer_steps": 180,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.10796144604682922,
+          "B": 11.163415908813477,
+          "C": 2.626054048538208
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 1229.5946224997751,
+        "peak_cuda_mib": 14194.94091796875,
+        "best_epoch": 14,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.5401451587677002,
+          "valid_actions": 4772,
+          "current": 0.7315480709075928,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7298790812492371,
+          "utility": 0.7294884324073792,
+          "c1_utility": 0.7292657494544983,
+          "pause": 42,
+          "search_triggered": 5,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0006449222564697266,
+          "utility_gain_against_c1": 0.00022268295288085938
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.186617136001587,
+          "valid_actions": 4772,
+          "current": 0.7315480709075928,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7296105623245239,
+          "utility": 0.7287511825561523,
+          "c1_utility": 0.7292657494544983,
+          "pause": 1,
+          "search_triggered": 11,
+          "changed_location": 1,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 114,
+          "missing_candidate_found": 1,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0006449222564697266,
+          "utility_gain_against_c1": -0.0005145668983459473
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "full_job_complete": false,
+      "actual_processes": [
+        "2702837       04:08 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004/predictions"
+      ],
+      "completed_video_records": 0,
+      "last_video": null,
+      "terminal_oom": false,
+      "error_tail": null
+    },
+    "calibrated_c1": {
+      "last_epoch": 60,
+      "optimizer_steps": 180,
+      "last_validation_epoch": 60,
+      "fit_receipt": {
+        "completed": true,
+        "epochs": 60,
+        "optimizer_steps": 180,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.1108451709151268,
+          "B": 11.016122817993164,
+          "C": 5.6480793952941895
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 1478.9041058062576,
+        "peak_cuda_mib": 14194.94091796875,
+        "best_epoch": 53,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.2009557485580444,
+          "valid_actions": 4772,
+          "current": 0.7315480709075928,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7296271920204163,
+          "utility": 0.7293146848678589,
+          "c1_utility": 0.7292657494544983,
+          "pause": 0,
+          "search_triggered": 4,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0006449222564697266,
+          "utility_gain_against_c1": 4.89354133605957e-05
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.1968486309051514,
+          "valid_actions": 4772,
+          "current": 0.7315480709075928,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7296271920204163,
+          "utility": 0.7287678122520447,
+          "c1_utility": 0.7292657494544983,
+          "pause": 0,
+          "search_triggered": 11,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 114,
+          "missing_candidate_found": 1,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0006449222564697266,
+          "utility_gain_against_c1": -0.0004979372024536133
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "full_job_complete": false,
+      "actual_processes": [
+        "2664834       24:55 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004"
+      ],
+      "completed_video_records": 0,
+      "last_video": null,
+      "terminal_oom": false,
+      "error_tail": null
+    },
+    "reference_own": {
+      "last_epoch": 60,
+      "optimizer_steps": 180,
+      "last_validation_epoch": 60,
+      "fit_receipt": {
+        "completed": true,
+        "epochs": 60,
+        "optimizer_steps": 180,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.10438112169504166,
+          "B": 12.927838325500488,
+          "C": 2.6403591632843018
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 1239.4255778938532,
+        "peak_cuda_mib": 14194.94091796875,
+        "best_epoch": 4,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.6876100301742554,
+          "valid_actions": 4772,
+          "current": 0.730903148651123,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7292776107788086,
+          "utility": 0.7292776107788086,
+          "c1_utility": 0.7292657494544983,
+          "pause": 1,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 1.1861324310302734e-05
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.1870617866516113,
+          "valid_actions": 4772,
+          "current": 0.7303729057312012,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7278330326080322,
+          "utility": 0.7276768088340759,
+          "c1_utility": 0.7292657494544983,
+          "pause": 0,
+          "search_triggered": 2,
+          "changed_location": 1,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": -0.000530242919921875,
+          "utility_gain_against_c1": -0.0015889406204223633
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "full_job_complete": false,
+      "actual_processes": [
+        "2703226       03:57 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions"
+      ],
+      "completed_video_records": 0,
+      "last_video": null,
+      "terminal_oom": false,
+      "error_tail": null
+    },
+    "calibrated_own": {
+      "last_epoch": 60,
+      "optimizer_steps": 180,
+      "last_validation_epoch": 60,
+      "fit_receipt": {
+        "completed": true,
+        "epochs": 60,
+        "optimizer_steps": 180,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.10740679502487183,
+          "B": 12.921957969665527,
+          "C": 5.226747512817383
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 1233.8339729662985,
+        "peak_cuda_mib": 14194.94091796875,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.77094304561615,
+          "valid_actions": 4772,
+          "current": 0.730903148651123,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7292657494544983,
+          "utility": 0.7292657494544983,
+          "c1_utility": 0.7292657494544983,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.1981515884399414,
+          "valid_actions": 4772,
+          "current": 0.7303729057312012,
+          "c1_current": 0.730903148651123,
+          "utility_before_search_cost": 0.7278330326080322,
+          "utility": 0.7276768088340759,
+          "c1_utility": 0.7292657494544983,
+          "pause": 0,
+          "search_triggered": 2,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 13,
+          "c1_failed": 13,
+          "original_recall": 113,
+          "budget_recall": 113,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": -0.000530242919921875,
+          "utility_gain_against_c1": -0.0015889406204223633
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "full_job_complete": false,
+      "actual_processes": [
+        "2703015       04:04 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004/predictions"
+      ],
+      "completed_video_records": 0,
+      "last_video": null,
+      "terminal_oom": false,
+      "error_tail": null
+    }
+  },
+  "actual_gpu": [
+    "0, 1180 MiB, 24576 MiB, 35 %",
+    "1, 21283 MiB, 24576 MiB, 0 %",
+    "2, 851 MiB, 24576 MiB, 40 %",
+    "3, 851 MiB, 24576 MiB, 36 %"
+  ]
+}

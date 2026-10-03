@@ -1,10 +1,10 @@
 {
   "version": "2026-10-03_closed_loop_recovery_best_model",
   "status": "ACTIVE_UNMET",
-  "authority": "Latest user: choose one best seed/checkpoint, use all four GPUs for useful work, increase useful batch memory; explicit latest correction 不管功率和温度了 disables both power and temperature controls.",
+  "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "以完整预训练 GOLA-B 和已有 C1 为固定起点，仅在 LasHeR、RGBT234 上，围绕候选找回、跨区域选择与可信状态提交改进闭环跟踪。先解决缓存验证收益无法转化为连续视频收益的问题，再用模型自身状态训练、选择器可实现的搜索收益、候选关联和风险干预降低持续漂移与误干预。固定验证协议及训练、记忆、搜索预算；按内部验证的完整视频主指标选择一个最佳 seed/checkpoint；该模型超过完整 GOLA-B 并具备必要机制证据后，即可冻结并开展完整论文实验，不要求多个 seed 同时超过。最终验收为两个核心数据集五项原生指标均比同条件完整 GOLA-B 高至少 2 个百分点，且完整报告性能、机制、不确定性和实际推理成本。",
+  "execution_objective": "保留完整预训练 GOLA-B 和已有 C1，仅使用 LasHeR、RGBT234。围绕候选找回、跨区域选择和可信状态提交改进连续跟踪。按照预先固定的完整内部视频指标选一个最佳 seed/checkpoint，无最低 seed 数量要求；使用同一选定权重完成两个数据集五项原生指标、全部属性、曲线、配对区间及机制和推理成本报告。最终目标为五项均比本地完整 GOLA-B 提高两个百分点。缓存涨点、训练完成及局部内部正向结果不视为目标达成。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "WRITE_PAIR_FOUR_MATCHED_B384_FULL_TRAINING_LIVE_AFTER_ALL4_M0; ACTION_THREE_FULL98_CLOSED_NEGATIVE",
+      "status": "ALL4_B384_FIT_AND_FULL98_COMPLETE; SELECTED_OWN_EPOCH4_CONTROLS_AND_LOCKED_NATIVE_LASHER_RUNNING",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -47,7 +47,7 @@
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
       "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
-      "active_controls": "Threefixedweight actionverification original98/49418 allcomplete; oracle_c1/selector_own exactlysameidentity, oracle_own.723164681 stillGOLA-2.011383ppCI[-4.251119,-.221986]. Currentfreshreference/calibrated x c1/ownB384 all4traininglive.",
+      "active_controls": "同一 selected epoch4：no_search GPU0、raw_write GPU2、identity GPU3；四项真实 M0 2序列128帧均PASS后手动全量。GPU1运行LasHeR245序列正式测试。",
       "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
       "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
       "search_supervision_change": "Completed sourcePASS+fourM0+allfourB256full training and98videoreports. Selector target selectedinitialization twice, continuousoracle trainedmodels belowGOLA. No benefit established; pairwise competition supervision now independentnextfactor, architecture/inference unchanged.",
@@ -57,274 +57,402 @@
       "current_pairwise_results": "refine-logs/runs/recoverability_pairwise/full98_summary.json; original full98 same fixed protocol all4 markers complete, paired5000, all negative versus GOLA",
       "write_decision_audit": "Read-only old8 andfixed6 diagnostics complete. VAL47/51 learnedpauses allcorrectcurrent, teachermaxgap.017622 below.03 whilepredictionmean.041005/.047132. Newconditionalwritepair finalgap supervised; frozenC1 futureteacher remains.",
       "current_write_pair_training": {
-        "status": "ACTUAL_ALL4_MATCHED_FRESH_B384_FULL_TRAINING_LIVE",
-        "observed_cst": "2026-10-04T04:44:54.836571+08:00",
-        "launch_cst": "2026-10-04T04:42:23+08:00",
+        "status": "COMPLETE_ALL4_60_EPOCHS_180_UPDATES",
         "batch_size": 384,
-        "epochs": 60,
-        "expected_optimizer_steps": 180,
-        "native_accuracy": false,
-        "source_review": "PASS independent same-family provisional",
-        "sanity_gate": "all4 actual3epoch9updates PASS; ephemeral best0 removed/not reused",
+        "seed": 42,
         "arms": {
           "reference_c1": {
-            "physical_gpu": 0,
             "root": "/data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004",
-            "actual_process": "2664829       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004",
-            "last_train": {
-              "epoch": 7,
-              "step": 1,
-              "optimizer_steps": 19,
-              "loss": 1.7004015445709229,
-              "parts": {
-                "advantage": 0.055161550641059875,
-                "action_ranking": 0.00742039131000638,
-                "harm": 1.8666236400604248,
-                "quality": 0.8331921696662903,
-                "query_write_risk": 0.052803415805101395,
-                "future": 0.1424989551305771,
-                "memory_gate": 1.3653812408447266,
-                "margin_preservation": 0.0030336682684719563,
-                "identity_margin": 0.15757153928279877,
-                "search_value": 0.02136664278805256,
-                "search_success": 0.6498689651489258,
-                "candidate_absence": 0.7695533037185669,
-                "search_ranking": 1.7370017766952515
+            "best_epoch": 14,
+            "sequence_mean_iou": 0.7180320787565557,
+            "frame_mean_iou": 0.6477692334933928,
+            "paired": {
+              "write_pair_reference_c1_b384_vs_baseline": {
+                "mean_iou_delta_percentage_points": -2.5246428214233996,
+                "paired_sequence_95_ci": [
+                  -5.074154175367276,
+                  -0.05722056857872531
+                ],
+                "improved_sequences": 41,
+                "worsened_sequences": 54,
+                "tied_sequences": 3,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "module_gradient_norms": {
-                "A": 0.08505488932132721,
-                "B": 1.071043610572815,
-                "C": 0.9750622510910034
+              "write_pair_reference_c1_b384_vs_c1": {
+                "mean_iou_delta_percentage_points": -2.1408082844983896,
+                "paired_sequence_95_ci": [
+                  -4.714632367976535,
+                  0.38256290638101476
+                ],
+                "improved_sequences": 40,
+                "worsened_sequences": 55,
+                "tied_sequences": 3,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "elapsed_seconds": 131.1723146578297,
-              "peak_cuda_mib": 14194.94091796875
+              "write_pair_reference_c1_b384_vs_action_verify_oracle_c1": {
+                "mean_iou_delta_percentage_points": 0.014123394288738428,
+                "paired_sequence_95_ci": [
+                  -1.0425987659692373,
+                  1.3480609175569191
+                ],
+                "improved_sequences": 34,
+                "worsened_sequences": 38,
+                "tied_sequences": 26,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+              }
             },
-            "last_completed_validation": {
-              "epoch": 6,
-              "clips": 128,
-              "loss": 1.6528031826019287,
-              "valid_actions": 4772,
-              "current": 0.7303729057312012,
-              "c1_current": 0.730903148651123,
-              "utility_before_search_cost": 0.7279382944107056,
-              "utility": 0.7270007133483887,
-              "c1_utility": 0.7292657494544983,
-              "pause": 21,
-              "search_triggered": 12,
-              "changed_location": 1,
-              "rescued": 0,
-              "harmed": 0,
-              "failed": 13,
-              "c1_failed": 13,
-              "original_recall": 113,
-              "budget_recall": 114,
-              "missing_candidate_found": 1,
-              "wrong_update_fraction": 0.0078125,
-              "c1_wrong_update_fraction": 0.0078125,
-              "current_gain_against_c1": -0.000530242919921875,
-              "utility_gain_against_c1": -0.002265036106109619
+            "counters": {
+              "tracking_frames": 49320,
+              "valid_tracking_frames": 49233,
+              "candidate_evaluations": 244256,
+              "local_candidate_recalled_frames": 40207,
+              "budget_candidate_recalled_frames": 40401,
+              "local_missing_frames": 9026,
+              "missing_correct_candidates_reintroduced": 194,
+              "reintroduced_candidates_selected_correctly": 23,
+              "c1_same_state_failed_frames": 8327,
+              "c1_same_state_correct_frames": 37929,
+              "selected_failed_frames": 8366,
+              "changed_candidate_indices": 1354,
+              "valid_changed_candidate_indices": 1344,
+              "same_state_rescues": 181,
+              "same_state_harms": 197,
+              "same_state_iou_improvements": 360,
+              "same_state_iou_degradations": 434,
+              "requested_extra_searches": 3497,
+              "extra_visual_forwards": 3497,
+              "searches_without_new_correct_candidate": 3280,
+              "requested_extra_area_sum_pixels_squared": 2992999052.0359187,
+              "template_updates": 5901,
+              "known_template_updates": 5900,
+              "wrong_template_updates_localization_proxy": 396,
+              "paused_query_writes": 8986,
+              "known_paused_query_writes": 8985,
+              "wrong_query_writes_prevented_localization_proxy": 356,
+              "correct_query_writes_prevented": 8604,
+              "known_active_template_frames": 49140,
+              "wrong_active_template_frames_localization_proxy": 4044,
+              "memory_rgb_target_write_known_mass": 3360.96339648962,
+              "memory_rgb_target_write_wrong_mass": 225.29321664571762,
+              "memory_rgb_target_read_known_mass": 49216.12974379703,
+              "memory_rgb_target_read_wrong_mass": 3565.836407474417,
+              "memory_tir_target_write_known_mass": 3348.2698899507523,
+              "memory_tir_target_write_wrong_mass": 224.7703652381897,
+              "memory_tir_target_read_known_mass": 49219.39708135463,
+              "memory_tir_target_read_wrong_mass": 3433.321834936201,
+              "candidate_quality_squared_error_sum": 6134.953770468154,
+              "known_candidate_evaluations": 243712
             },
-            "fit_complete": false,
-            "job_complete": false,
-            "active_weight": "/data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004/best.pth"
+            "rates": {
+              "local_recall": 0.8166676822456482,
+              "budget_recall": 0.8206081286941685,
+              "missing_candidate_reintroduction_rate": 0.021493463328163084,
+              "wrong_template_write_rate": 0.0671186440677966,
+              "misintervention_rate_on_correct_same_state_c1": 0.005193914946347122
+            },
+            "failure_events": 250,
+            "recovery_rate": 0.94,
+            "median_recovery_delay_frames": 13.0,
+            "all_completion_markers_present": true
           },
           "calibrated_c1": {
-            "physical_gpu": 1,
             "root": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004",
-            "actual_process": "2664834       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004",
-            "last_train": {
-              "epoch": 7,
-              "step": 1,
-              "optimizer_steps": 19,
-              "loss": 1.709420084953308,
-              "parts": {
-                "advantage": 0.05521100386977196,
-                "action_ranking": 0.007424929179251194,
-                "harm": 1.8672090768814087,
-                "quality": 0.8333144187927246,
-                "query_write_risk": 0.05285189300775528,
-                "future": 0.14248451590538025,
-                "memory_gate": 1.3653799295425415,
-                "margin_preservation": 0.0030334345065057278,
-                "identity_margin": 0.1575707197189331,
-                "search_value": 0.02136632241308689,
-                "search_success": 0.6498659253120422,
-                "candidate_absence": 0.7695502042770386,
-                "search_ranking": 1.7370024919509888,
-                "query_write_advantage": 0.008821261115372181
+            "best_epoch": 53,
+            "sequence_mean_iou": 0.7182608460754145,
+            "frame_mean_iou": 0.6441238210413401,
+            "paired": {
+              "write_pair_calibrated_c1_b384_vs_baseline": {
+                "mean_iou_delta_percentage_points": -2.5017660895375124,
+                "paired_sequence_95_ci": [
+                  -4.737527491167585,
+                  -0.7771193200911275
+                ],
+                "improved_sequences": 19,
+                "worsened_sequences": 26,
+                "tied_sequences": 53,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "module_gradient_norms": {
-                "A": 0.08500751852989197,
-                "B": 1.071112036705017,
-                "C": 0.930774450302124
+              "write_pair_calibrated_c1_b384_vs_c1": {
+                "mean_iou_delta_percentage_points": -2.1179315526125024,
+                "paired_sequence_95_ci": [
+                  -4.266951123932325,
+                  -0.45042747282103196
+                ],
+                "improved_sequences": 18,
+                "worsened_sequences": 29,
+                "tied_sequences": 51,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "elapsed_seconds": 130.99023591401055,
-              "peak_cuda_mib": 14194.94091796875
+              "write_pair_calibrated_c1_b384_vs_action_verify_oracle_c1": {
+                "mean_iou_delta_percentage_points": 0.03700012617462536,
+                "paired_sequence_95_ci": [
+                  -2.632896267137388,
+                  2.428766946176158
+                ],
+                "improved_sequences": 49,
+                "worsened_sequences": 46,
+                "tied_sequences": 3,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+              }
             },
-            "last_completed_validation": {
-              "epoch": 6,
-              "clips": 128,
-              "loss": 1.661293387413025,
-              "valid_actions": 4772,
-              "current": 0.7303729057312012,
-              "c1_current": 0.730903148651123,
-              "utility_before_search_cost": 0.7278330326080322,
-              "utility": 0.7268955707550049,
-              "c1_utility": 0.7292657494544983,
-              "pause": 0,
-              "search_triggered": 12,
-              "changed_location": 1,
-              "rescued": 0,
-              "harmed": 0,
-              "failed": 13,
-              "c1_failed": 13,
-              "original_recall": 113,
-              "budget_recall": 114,
-              "missing_candidate_found": 1,
-              "wrong_update_fraction": 0.0078125,
-              "c1_wrong_update_fraction": 0.0078125,
-              "current_gain_against_c1": -0.000530242919921875,
-              "utility_gain_against_c1": -0.002370178699493408
+            "counters": {
+              "tracking_frames": 49320,
+              "valid_tracking_frames": 49233,
+              "candidate_evaluations": 243967,
+              "local_candidate_recalled_frames": 39764,
+              "budget_candidate_recalled_frames": 39875,
+              "local_missing_frames": 9469,
+              "missing_correct_candidates_reintroduced": 111,
+              "reintroduced_candidates_selected_correctly": 22,
+              "c1_same_state_failed_frames": 8521,
+              "c1_same_state_correct_frames": 37639,
+              "selected_failed_frames": 8517,
+              "changed_candidate_indices": 1433,
+              "valid_changed_candidate_indices": 1425,
+              "same_state_rescues": 158,
+              "same_state_harms": 145,
+              "same_state_iou_improvements": 340,
+              "same_state_iou_degradations": 338,
+              "requested_extra_searches": 3499,
+              "extra_visual_forwards": 3437,
+              "searches_without_new_correct_candidate": 3290,
+              "requested_extra_area_sum_pixels_squared": 609322219.0109433,
+              "template_updates": 19683,
+              "known_template_updates": 19662,
+              "wrong_template_updates_localization_proxy": 1406,
+              "paused_query_writes": 2,
+              "known_paused_query_writes": 2,
+              "wrong_query_writes_prevented_localization_proxy": 1,
+              "correct_query_writes_prevented": 1,
+              "known_active_template_frames": 49231,
+              "wrong_active_template_frames_localization_proxy": 3779,
+              "memory_rgb_target_write_known_mass": 9082.488827466965,
+              "memory_rgb_target_write_wrong_mass": 626.3207131028175,
+              "memory_rgb_target_read_known_mass": 49221.32158438756,
+              "memory_rgb_target_read_wrong_mass": 3324.12332633089,
+              "memory_tir_target_write_known_mass": 1045.9773842692375,
+              "memory_tir_target_write_wrong_mass": 83.288623213768,
+              "memory_tir_target_read_known_mass": 49233.00013396188,
+              "memory_tir_target_read_wrong_mass": 3251.454600796089,
+              "candidate_quality_squared_error_sum": 8168.180726516796,
+              "known_candidate_evaluations": 243364
             },
-            "fit_complete": false,
-            "job_complete": false,
-            "active_weight": "/data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004/best.pth"
+            "rates": {
+              "local_recall": 0.8076696524688725,
+              "budget_recall": 0.8099242378079743,
+              "missing_candidate_reintroduction_rate": 0.011722462773260112,
+              "wrong_template_write_rate": 0.0715084935408402,
+              "misintervention_rate_on_correct_same_state_c1": 0.0038523871516246448
+            },
+            "failure_events": 229,
+            "recovery_rate": 0.9344978165938864,
+            "median_recovery_delay_frames": 11.0,
+            "all_completion_markers_present": true
           },
           "reference_own": {
-            "physical_gpu": 2,
             "root": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
-            "actual_process": "2664839       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
-            "last_train": {
-              "epoch": 7,
-              "step": 1,
-              "optimizer_steps": 19,
-              "loss": 1.7041678428649902,
-              "parts": {
-                "advantage": 0.05794505402445793,
-                "action_ranking": 0.007302587851881981,
-                "harm": 1.985780119895935,
-                "quality": 0.8485369086265564,
-                "query_write_risk": 0.051457926630973816,
-                "future": 0.13757874071598053,
-                "memory_gate": 1.3552403450012207,
-                "margin_preservation": 0.0030824460554867983,
-                "identity_margin": 0.1580958366394043,
-                "search_value": 0.019986992701888084,
-                "search_success": 0.646781325340271,
-                "candidate_absence": 0.680134654045105,
-                "search_ranking": 1.7254643440246582
+            "best_epoch": 4,
+            "sequence_mean_iou": 0.745906102961742,
+            "frame_mean_iou": 0.6643539017935426,
+            "paired": {
+              "write_pair_reference_own_b384_vs_baseline": {
+                "mean_iou_delta_percentage_points": 0.26275959909521607,
+                "paired_sequence_95_ci": [
+                  -0.22457627475613082,
+                  0.8387283066188091
+                ],
+                "improved_sequences": 23,
+                "worsened_sequences": 19,
+                "tied_sequences": 56,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "module_gradient_norms": {
-                "A": 0.07878926396369934,
-                "B": 1.179762363433838,
-                "C": 1.0300893783569336
+              "write_pair_reference_own_b384_vs_c1": {
+                "mean_iou_delta_percentage_points": 0.6465941360202258,
+                "paired_sequence_95_ci": [
+                  -0.007688138784314003,
+                  1.6607855115548813
+                ],
+                "improved_sequences": 24,
+                "worsened_sequences": 8,
+                "tied_sequences": 66,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "elapsed_seconds": 132.05336345592514,
-              "peak_cuda_mib": 14194.94091796875
+              "write_pair_reference_own_b384_vs_action_verify_oracle_own": {
+                "mean_iou_delta_percentage_points": 2.274142146586496,
+                "paired_sequence_95_ci": [
+                  0.572999546002048,
+                  4.4168079723220535
+                ],
+                "improved_sequences": 30,
+                "worsened_sequences": 23,
+                "tied_sequences": 45,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+              }
             },
-            "last_completed_validation": {
-              "epoch": 6,
-              "clips": 128,
-              "loss": 1.6530909538269043,
-              "valid_actions": 4772,
-              "current": 0.7303729057312012,
-              "c1_current": 0.730903148651123,
-              "utility_before_search_cost": 0.7279382944107056,
-              "utility": 0.7270007133483887,
-              "c1_utility": 0.7292657494544983,
-              "pause": 21,
-              "search_triggered": 12,
-              "changed_location": 1,
-              "rescued": 0,
-              "harmed": 0,
-              "failed": 13,
-              "c1_failed": 13,
-              "original_recall": 113,
-              "budget_recall": 114,
-              "missing_candidate_found": 1,
-              "wrong_update_fraction": 0.0078125,
-              "c1_wrong_update_fraction": 0.0078125,
-              "current_gain_against_c1": -0.000530242919921875,
-              "utility_gain_against_c1": -0.002265036106109619
+            "counters": {
+              "tracking_frames": 49320,
+              "valid_tracking_frames": 49233,
+              "candidate_evaluations": 227147,
+              "local_candidate_recalled_frames": 40790,
+              "budget_candidate_recalled_frames": 40812,
+              "local_missing_frames": 8443,
+              "missing_correct_candidates_reintroduced": 22,
+              "reintroduced_candidates_selected_correctly": 0,
+              "c1_same_state_failed_frames": 7169,
+              "c1_same_state_correct_frames": 38651,
+              "selected_failed_frames": 7142,
+              "changed_candidate_indices": 78,
+              "valid_changed_candidate_indices": 78,
+              "same_state_rescues": 24,
+              "same_state_harms": 5,
+              "same_state_iou_improvements": 45,
+              "same_state_iou_degradations": 19,
+              "requested_extra_searches": 225,
+              "extra_visual_forwards": 225,
+              "searches_without_new_correct_candidate": 203,
+              "requested_extra_area_sum_pixels_squared": 146908486.76793873,
+              "template_updates": 20743,
+              "known_template_updates": 20742,
+              "wrong_template_updates_localization_proxy": 1907,
+              "paused_query_writes": 80,
+              "known_paused_query_writes": 80,
+              "wrong_query_writes_prevented_localization_proxy": 8,
+              "correct_query_writes_prevented": 72,
+              "known_active_template_frames": 49232,
+              "wrong_active_template_frames_localization_proxy": 4588,
+              "memory_rgb_target_write_known_mass": 11921.616236388683,
+              "memory_rgb_target_write_wrong_mass": 1095.839786350727,
+              "memory_rgb_target_read_known_mass": 49232.002263936236,
+              "memory_rgb_target_read_wrong_mass": 3909.605875734338,
+              "memory_tir_target_write_known_mass": 11917.301464915276,
+              "memory_tir_target_write_wrong_mass": 1095.6870092749596,
+              "memory_tir_target_read_known_mass": 49232.00194132266,
+              "memory_tir_target_read_wrong_mass": 4475.754963142055,
+              "candidate_quality_squared_error_sum": 5145.725369118628,
+              "known_candidate_evaluations": 226722
             },
-            "fit_complete": false,
-            "job_complete": false,
-            "active_weight": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+            "rates": {
+              "local_recall": 0.8285093331708407,
+              "budget_recall": 0.8289561879227347,
+              "missing_candidate_reintroduction_rate": 0.0026057088712542935,
+              "wrong_template_write_rate": 0.09193906084273455,
+              "misintervention_rate_on_correct_same_state_c1": 0.000129362759048925
+            },
+            "failure_events": 190,
+            "recovery_rate": 0.9421052631578948,
+            "median_recovery_delay_frames": 13.0,
+            "all_completion_markers_present": true
           },
           "calibrated_own": {
-            "physical_gpu": 3,
             "root": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004",
-            "actual_process": "2664845       02:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004",
-            "last_train": {
-              "epoch": 7,
-              "step": 1,
-              "optimizer_steps": 19,
-              "loss": 1.7128242254257202,
-              "parts": {
-                "advantage": 0.05794106796383858,
-                "action_ranking": 0.007260628044605255,
-                "harm": 1.9860994815826416,
-                "quality": 0.8486353158950806,
-                "query_write_risk": 0.05148792639374733,
-                "future": 0.13756416738033295,
-                "memory_gate": 1.355238914489746,
-                "margin_preservation": 0.003080107970163226,
-                "identity_margin": 0.15811480581760406,
-                "search_value": 0.01998685486614704,
-                "search_success": 0.6467768549919128,
-                "candidate_absence": 0.6801313161849976,
-                "search_ranking": 1.725464105606079,
-                "query_write_advantage": 0.008618034422397614
+            "best_epoch": 0,
+            "sequence_mean_iou": 0.7394401616015396,
+            "frame_mean_iou": 0.6485879665086087,
+            "paired": {
+              "write_pair_calibrated_own_b384_vs_baseline": {
+                "mean_iou_delta_percentage_points": -0.3838345369250097,
+                "paired_sequence_95_ci": [
+                  -1.2953190572198827,
+                  0.4044231811456272
+                ],
+                "improved_sequences": 10,
+                "worsened_sequences": 19,
+                "tied_sequences": 69,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "module_gradient_norms": {
-                "A": 0.0787336677312851,
-                "B": 1.1799049377441406,
-                "C": 0.9886059761047363
+              "write_pair_calibrated_own_b384_vs_c1": {
+                "mean_iou_delta_percentage_points": 0.0,
+                "paired_sequence_95_ci": [
+                  0.0,
+                  0.0
+                ],
+                "improved_sequences": 0,
+                "worsened_sequences": 0,
+                "tied_sequences": 98,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
               },
-              "elapsed_seconds": 131.07776949135587,
-              "peak_cuda_mib": 14194.94091796875
+              "write_pair_calibrated_own_b384_vs_action_verify_oracle_own": {
+                "mean_iou_delta_percentage_points": 1.6275480105662705,
+                "paired_sequence_95_ci": [
+                  -0.2063705633873355,
+                  3.8905730769171036
+                ],
+                "improved_sequences": 25,
+                "worsened_sequences": 25,
+                "tied_sequences": 48,
+                "bootstrap_resamples": 5000,
+                "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+              }
             },
-            "last_completed_validation": {
-              "epoch": 6,
-              "clips": 128,
-              "loss": 1.6614562273025513,
-              "valid_actions": 4772,
-              "current": 0.7303729057312012,
-              "c1_current": 0.730903148651123,
-              "utility_before_search_cost": 0.7278330326080322,
-              "utility": 0.7268955707550049,
-              "c1_utility": 0.7292657494544983,
-              "pause": 0,
-              "search_triggered": 12,
-              "changed_location": 1,
-              "rescued": 0,
-              "harmed": 0,
-              "failed": 13,
-              "c1_failed": 13,
-              "original_recall": 113,
-              "budget_recall": 114,
-              "missing_candidate_found": 1,
-              "wrong_update_fraction": 0.0078125,
-              "c1_wrong_update_fraction": 0.0078125,
-              "current_gain_against_c1": -0.000530242919921875,
-              "utility_gain_against_c1": -0.002370178699493408
+            "counters": {
+              "tracking_frames": 49320,
+              "valid_tracking_frames": 49233,
+              "candidate_evaluations": 226542,
+              "local_candidate_recalled_frames": 39968,
+              "budget_candidate_recalled_frames": 39968,
+              "local_missing_frames": 9265,
+              "missing_correct_candidates_reintroduced": 0,
+              "reintroduced_candidates_selected_correctly": 0,
+              "c1_same_state_failed_frames": 8151,
+              "c1_same_state_correct_frames": 37763,
+              "selected_failed_frames": 8151,
+              "changed_candidate_indices": 0,
+              "valid_changed_candidate_indices": 0,
+              "same_state_rescues": 0,
+              "same_state_harms": 0,
+              "same_state_iou_improvements": 0,
+              "same_state_iou_degradations": 0,
+              "requested_extra_searches": 0,
+              "extra_visual_forwards": 0,
+              "searches_without_new_correct_candidate": 0,
+              "requested_extra_area_sum_pixels_squared": 0.0,
+              "template_updates": 20599,
+              "known_template_updates": 20598,
+              "wrong_template_updates_localization_proxy": 1895,
+              "paused_query_writes": 0,
+              "known_paused_query_writes": 0,
+              "wrong_query_writes_prevented_localization_proxy": 0,
+              "correct_query_writes_prevented": 0,
+              "known_active_template_frames": 49232,
+              "wrong_active_template_frames_localization_proxy": 4598,
+              "memory_rgb_target_write_known_mass": 11866.855078935623,
+              "memory_rgb_target_write_wrong_mass": 1091.7414481043816,
+              "memory_rgb_target_read_known_mass": 49232.00012600072,
+              "memory_rgb_target_read_wrong_mass": 3919.0038060931906,
+              "memory_tir_target_write_known_mass": 11866.85508453846,
+              "memory_tir_target_write_wrong_mass": 1091.7414473295212,
+              "memory_tir_target_read_known_mass": 49231.99996933218,
+              "memory_tir_target_read_wrong_mass": 4490.819184522237,
+              "candidate_quality_squared_error_sum": 5105.601098502677,
+              "known_candidate_evaluations": 226114
             },
-            "fit_complete": false,
-            "job_complete": false,
-            "active_weight": "/data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004/best.pth"
+            "rates": {
+              "local_recall": 0.8118132147137083,
+              "budget_recall": 0.8118132147137083,
+              "missing_candidate_reintroduction_rate": 0.0,
+              "wrong_template_write_rate": 0.09199922322555588,
+              "misintervention_rate_on_correct_same_state_c1": 0.0
+            },
+            "failure_events": 176,
+            "recovery_rate": 0.9375,
+            "median_recovery_delay_frames": 14.0,
+            "all_completion_markers_present": true
           }
         },
-        "actual_gpu": [
-          "0, 21610 MiB, 24576 MiB, 100 %",
-          "1, 21281 MiB, 24576 MiB, 100 %",
-          "2, 21281 MiB, 24576 MiB, 100 %",
-          "3, 21281 MiB, 24576 MiB, 100 %"
-        ],
-        "next_check_cst": "2026-10-04T04:52:00+08:00",
-        "poll_seconds": 240,
-        "estimated_fit_end_cst": "2026-10-04T04:56:00--05:02:00+08:00",
-        "estimated_full98_reports_end_cst": "2026-10-04T05:25:00--05:40:00+08:00",
-        "next_action": "observe same4 handles near fit end; do not restart from read-only observer failure; each runner auto full98actualGT/5000report after ownfit; onceall4reportdone, do jointmatched sameprefixcalibrated-vs-reference and GOLA/C1 comparison"
+        "source_changed_this_turn": false,
+        "native_accuracy": false,
+        "summary": "refine-logs/runs/recoverability_write_pair/full98_summary.json"
       },
       "actual_b512_failure": "FouroneepochM0passed; threefull terminalOOMepoch3firstforward after2epochs4updates, allocated15.46GiB reservedunused7.84GiB; referenceC1fit60/120complete butpartialfull98 intentionallystoppedPID2640830. Failurelogsretained andweightsremovedafterevidence. No lifetimemodification/allocator/fallback; independentrescuePASSexplicitfreshmatchedB384.",
       "latest_same_handle_progress": {
@@ -384,6 +512,16 @@
         ],
         "next_check_cst": "2026-10-04T05:02:00+08:00",
         "poll_seconds": 240
+      },
+      "matched_write_pair_effect": "C1前缀 calibrated-reference +0.022876732pp CI[-2.301099,1.972581]；自身前缀 -0.646594136pp CI[-1.660786,0.007688]，校准新增监督收益未成立。自身reference epoch4内部IoU0.745906103，比GOLA+0.262759599pp CI[-0.224576,0.838728]，仅正向点估计。",
+      "selected_model": {
+        "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "best_epoch": 4,
+        "selection_scope": "Complete original98 heldout video sequence equal-weight IoU, development evidence",
+        "native_datasets_same_checkpoint": true,
+        "other_seeds_must_improve": false,
+        "best_internal_ci_contains_zero": true
       }
     },
     {
@@ -448,7 +586,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Each newB384 fit automatically original98fullvideo actualGTreport/5000paired after ownbeststrictreload; afterall4reports jointmatched newreference/calibrated comparisons mandatory. No nativefinaltestqueued.",
+    "queued_successor": "三项full98自动执行实际GT/5000paired后完成标记；LasHeR正式测试自动生成全指标/属性/曲线/GOLA及C1配对区间/机制报告。RGBT234同一checkpoint待卡释放后M0及正式全量。",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -461,14 +599,14 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "reference_c1 B38460ep180steps freshfit",
-      "GPU1": "calibrated_c1 B38460ep180steps freshfit",
-      "GPU2": "reference_own B38460ep180steps freshfit",
-      "GPU3": "calibrated_own B38460ep180steps freshfit"
+      "GPU0": "selected epoch4 no_search full98 control",
+      "GPU1": "selected epoch4 locked LasHeR245 native test",
+      "GPU2": "selected epoch4 raw_write full98 control",
+      "GPU3": "selected epoch4 identity full98 control"
     },
     "gpu_memory_request": {
-      "status": "B384_ALL4_3EPOCH9UPDATE_M0_PASS_THEN_REAL_FULL_ALL4_LIVE",
-      "policy": "B512multi-epoch failed3arms despiteoneepochcapacityPASS; explicitmatchedfreshB384 all4. Realbatchmemory notpadding; serialcausalvideotracking preserved.",
+      "status": "ALL4_B384_FULL_FIT_COMPLETE_60_EPOCHS_180_UPDATES; SERIAL_VIDEO_EVALUATION_RUNNING",
+      "policy": "实际batch384已完成四组全训练，nvidia约21GB；512多轮真实OOM，保留384。视频评测保持经过验证的逐帧因果推理，实测allocated447.435MiB/reserved488MiB；不虚占显存。",
       "batch_size": 384,
       "sanity_epochs": 3,
       "sanity_optimizer_steps": 9,
@@ -483,16 +621,16 @@
       "card_total_mib": 24576,
       "full_epochs": 60,
       "full_updates": 180,
-      "allfour_full_completed": false,
+      "allfour_full_completed": true,
       "allocation_padding": false,
       "temperature_power_constraints_enabled": false,
       "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
     },
-    "next_check_cst": "2026-10-04T05:02:00+08:00",
+    "next_check_cst": "2026-10-04T06:21:00+08:00",
     "checkpoint_cleanup_total": {
-      "files": 48,
-      "bytes": 65671124,
-      "receipt": "refine-logs/runs/recoverability_write_pair/write_pair_b384_m0_and_failed_b512_cleanup_20261004.json",
+      "files": 51,
+      "bytes": 70869872,
+      "receipt": "refine-logs/runs/recoverability_write_pair/unselected_weight_cleanup_completed.json",
       "active_inputs_preserved": true
     }
   },
@@ -504,5 +642,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T04:56:21.2445720+08:00"
+  "updated_cst": "2026-10-04T06:03:01.5938684+08:00"
 }

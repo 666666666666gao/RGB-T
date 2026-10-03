@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_type": "Existing API-only fixed-weight mechanism-control invocation review",
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T05:51:41.7017558+08:00",
+  "scope": "Three already-implemented inference controls at the same trained reference_own B384 best epoch4. No new model, tracker, evaluator, training, threshold or loss code. Review covers actual source semantics, checkpoint identity, invocation flags, timeline invariants, M0/full separation and existing GT collector.",
+  "production_source_sha256": {
+    "research/evaluate_recoverability.py": "d061c766e2683383a4cf0821ffcbaa17903b7036005e5a477850c5274deea777",
+    "research/recoverability_tracker.py": "b1ee16a734ba359c3006df7ceacf3ef22a7a5e790681dfe79f184a53248021fd",
+    "research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729"
+  },
+  "source_comparison": "Raw production hashes were read directly. Private read-only evaluator/tracker copies were independently compared with local source: git diff --no-index is empty and exact text equality holds after CRLF-to-LF normalization. Collector, modules and launcher raw hashes match local bytes. No source was deployed or changed by reviewer.",
+  "fixed_checkpoint": {
+    "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "training_receipt_directly_read": true,
+    "completed_epochs": 60,
+    "completed_optimizer_updates": 180,
+    "best_epoch": 4,
+    "ABC_modules_changed": true,
+    "frozen_c1_gradients_absent": true,
+    "strict_reload_metrics_equal": true,
+    "reference_inference_config_directly_read": true,
+    "reference_mode": {
+      "policy": "learned",
+      "disable_search": false,
+      "unsafe_writes": false,
+      "write_verification": "action",
+      "head_epoch": 4,
+      "seed": 42,
+      "threshold": 0.03
+    },
+    "reference_full_job_marker": "2026-10-04T05:34:45+08:00",
+    "reference_predictions": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions",
+    "loading": "evaluate_recoverability.py loads this checkpoint with strict=True and eval().requires_grad_(False), using its stored threshold. All controls must omit --zero-init and --parity-check and retain learned policy. No optimizer exists in this evaluator."
+  },
+  "common_invocation": {
+    "launcher": "bash scripts/run_temporal.sh <physical_gpu> evaluate_recoverability",
+    "common_args": [
+      "--dataset",
+      "lasher",
+      "--root",
+      "/data/wangwj/dataset/LasHeR/traingset",
+      "--model",
+      "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "--validation-split",
+      "/data/gb/outputs/c1_initial_seed42/split.json",
+      "--seed",
+      "42"
+    ],
+    "m0_extra_args": [
+      "--limit-sequences",
+      "2",
+      "--max-frames",
+      "64"
+    ],
+    "full_extra_args": [],
+    "output": "--output /data/gb/outputs/recoverability_write_pair_<control>_own_b384_<m0|full>_20261004/predictions",
+    "fresh_outputs": "Main agent must use the distinct named control/stage roots, with no existing predictions reused. The evaluator itself uses mkdir(exist_ok=True), so a new-output check belongs to the invocation preparation.",
+    "defaults_retained": "Same pretrained GOLA, frozen C1 head, frozen motion run, threshold, candidate policy and seed as reference. No sequence offset, zero-init, parity-check or c1-policy override."
+  },
+  "controls": [
+    {
+      "name": "no_search",
+      "physical_gpu": 0,
+      "args": [
+        "--disable-search",
+        "--write-verification",
+        "action"
+      ],
+      "source": "recoverability_tracker.py:133-148",
+      "meaning": "search_enabled=False prevents the optional extra visual observation and candidate insertion. All available candidates remain in region0, and the tracker asserts a region0 choice. Learned local candidate selection and regular/pause action remain enabled. The B/search head and frozen motion forecast are still computed, so this is an extra-search execution control, not removal of every B parameter or operation.",
+      "expected_invariants": "Actual search_requested and extra_executed are false, extra-region valid masks are empty, every selected region is0, and extra_visual_forwards is0. The unchanged selector may internally propose a search, but no unavailable extra candidate can win.",
+      "purpose": "Parent reports reference has225 extra forwards and22 correct candidate reintroductions but zero extra-region final selections. This control tests complete-trajectory equality and actual cost, rather than assuming that no extra selections makes all side effects equal."
+    },
+    {
+      "name": "raw_write",
+      "physical_gpu": 2,
+      "args": [
+        "--unsafe-writes",
+        "--write-verification",
+        "action"
+      ],
+      "source": "recoverability_tracker.py:149-178",
+      "meaning": "The same action-mode selector first chooses a candidate. safe_writes=False then explicitly sets the executed pause toFalse. Query template/mask updates therefore follow the existing raw confidence>.84 condition after selection.",
+      "timeline_assertion": "The tracker sets pause=False before computing write=(confidence>.84 and not pause), before incrementing pause counters, and before serializing pause/template_updated. Thus collector line37 writes==(raw>.84)&~paused remains valid. Actual paused_query_writes must be0. The log records the executed override, not the selector's unexecuted pause proposal.",
+      "state_boundary": "Target identity-memory commits still require verified AND actual write, and motion-memory update also consumes actual write. Forced writes may therefore change template, memory and later trajectories. Identity memory verification itself is not bypassed. Describe this as disabling query-write suppression, not an isolated template-only change with all other state fixed.",
+      "purpose": "Parent reports80 reference pauses:72 currently correct and8 currently wrong. This control measures the net continuous effect of suppressing those learned pauses without forcing candidate selections or changing weights."
+    },
+    {
+      "name": "identity",
+      "physical_gpu": 3,
+      "args": [
+        "--write-verification",
+        "identity"
+      ],
+      "source": "recoverability_modules.py:183-213; recoverability_tracker.py:132,142",
+      "meaning": "Restore the existing dual-modality target_probability>=.5 regular-action eligibility veto for writable candidates. The default keep action becomes pause when its write is denied. The unchanged learned scores and keep+.03 threshold then choose among legal actions. Both selector calls receive identity mode.",
+      "state_boundary": "No unsafe override and no disable-search flag are supplied. This can alter candidate selection, query writes and later state-dependent search; it is not merely a post-selection write counter. The A identity-memory gate formula remains unchanged.",
+      "purpose": "Test the independent A-derived query-write veto at exactly the same learned epoch4 weights."
+    }
+  ],
+  "m0_and_full_gate": {
+    "status": "REQUIRES_ACTUAL_RUNTIME_EVIDENCE",
+    "m0": "Run each control on its own sorted first2 held-out sequences with max_frames64, the same epoch4 checkpoint and the exact control flags. Require completed receipt with2 sequences/128 frames, finite predictions/times, expected mode config and timeline/counter invariants. In raw_write verify pause and paused_query_writes are0 and raw-threshold writes; in no_search verify zero requested/executed extra search and region0 choices. All controls retain the source assertion that memory_target_commit matches positive target write rates and no target memory write occurs without an actual query write.",
+    "all_three_barrier": "Only after all three real M0 checks pass may the main agent manually invoke three fresh full98 runs. No automatic M0-to-full launch is part of this review.",
+    "full": "Use the same checkpoint and flags with limit_sequences=0, max_frames=0 and sequence_offset=0. Require all98 original split sequences and49418 frames. Full internal evaluation still has smoke_only=True because validation_split is supplied; this field does not make full98 partial.",
+    "collector_on_m0": "Do not run the full98 collector on2-sequence M0 outputs: it deliberately asserts98 split members and full sequence lengths. M0 receipts and actual timelines are separate functional evidence."
+  },
+  "full_collector_invocation": {
+    "entry": "/data/gb/envs/gola/bin/python -u -m research.collect_recoverability_metrics",
+    "device": "CPU, CUDA_VISIBLE_DEVICES empty, existing LD_LIBRARY_PATH/PYTHONPATH and OMP_NUM_THREADS=4",
+    "common_args": [
+      "--dataset",
+      "lasher",
+      "--root",
+      "/data/wangwj/dataset/LasHeR/traingset",
+      "--split",
+      "/data/gb/outputs/c1_initial_seed42/split.json"
+    ],
+    "labels": "--labels write_pair_<control>_own_b384",
+    "runs": "--runs /data/gb/outputs/recoverability_write_pair_<control>_own_b384_full_20261004/predictions",
+    "reference_labels": [
+      "baseline",
+      "c1",
+      "write_pair_reference_own_b384"
+    ],
+    "references": [
+      "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions",
+      "/data/gb/outputs/abc_internal_validation_v1/c1/predictions",
+      "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions"
+    ],
+    "output": "/data/gb/outputs/recoverability_write_pair_<control>_own_b384_full_20261004/report",
+    "ground_truth": "The existing collector reads dataset GT after inference and validates predictions, timelines, sequence lengths, inference scope configuration and actual counters. References are comparison trajectories, not substitute labels.",
+    "paired_analysis": "Existing5000 paired sequence bootstrap with seed42. All three reports compare the same fixed checkpoint control against GOLA, C1 and the unmodified epoch4 reference trajectory. Complete reports are required before interpreting effects; no new native-accuracy claim is produced by this collector."
+  },
+  "interpretation_limits": [
+    "This is a targeted three-control mechanism audit, not an eight-module ablation, newly trained model comparison or paper freeze.",
+    "The reported reference positive point estimate versus GOLA has a confidence interval containing0. It does not yet establish a reliable improvement or the all-five-native +2 goal.",
+    "Any lower extra-search cost or changed write counts must be measured from actual full trajectories. No-search zero cost is not a proof that every prediction will be bitwise equal.",
+    "Identity and forced-write effects can propagate through later memory and trajectory state despite identical initial model weights. Report the executed control precisely.",
+    "The source gate permits the three actual M0 invocations only. Runtime M0, full98 completion and result acceptance remain separate gates."
+  ],
+  "reviewer_actions": {
+    "production_source_edits": 0,
+    "neural_forwards": 0,
+    "backward_calls": 0,
+    "optimizer_updates": 0,
+    "gpu_runs": 0,
+    "process_signals": 0,
+    "launches": 0,
+    "artifact_written": "refine-logs/runs/recoverability_write_pair/control_invocation_review.json"
+  }
+}

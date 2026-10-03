@@ -1,0 +1,128 @@
+{
+  "observed_cst": "2026-10-04T05:58:02.098686+08:00",
+  "training_batch_size": 384,
+  "all4_training_and_full98_prior_completed": true,
+  "native_goal_completed": false,
+  "runs": {
+    "no_search": {
+      "root": "/data/gb/outputs/recoverability_write_pair_no_search_own_b384_full_20261004",
+      "head_epoch": 4,
+      "dataset": "lasher",
+      "root_data": "/data/wangwj/dataset/LasHeR/traingset",
+      "full_scope": true,
+      "smoke_only": true,
+      "completed_sequences": 9,
+      "last": {
+        "sequence": "9whitegirl",
+        "sequence_index": 9,
+        "sequences": 98,
+        "frames": 124,
+        "elapsed_seconds": 4.743183413986117,
+        "stats": {
+          "template_updates": 98,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 1,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_complete": false
+    },
+    "raw_write": {
+      "root": "/data/gb/outputs/recoverability_write_pair_raw_write_own_b384_full_20261004",
+      "head_epoch": 4,
+      "dataset": "lasher",
+      "root_data": "/data/wangwj/dataset/LasHeR/traingset",
+      "full_scope": true,
+      "smoke_only": true,
+      "completed_sequences": 9,
+      "last": {
+        "sequence": "9whitegirl",
+        "sequence_index": 9,
+        "sequences": 98,
+        "frames": 124,
+        "elapsed_seconds": 5.107636379543692,
+        "stats": {
+          "template_updates": 98,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 1,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_complete": false
+    },
+    "identity": {
+      "root": "/data/gb/outputs/recoverability_write_pair_identity_own_b384_full_20261004",
+      "head_epoch": 4,
+      "dataset": "lasher",
+      "root_data": "/data/wangwj/dataset/LasHeR/traingset",
+      "full_scope": true,
+      "smoke_only": true,
+      "completed_sequences": 9,
+      "last": {
+        "sequence": "9whitegirl",
+        "sequence_index": 9,
+        "sequences": 98,
+        "frames": 124,
+        "elapsed_seconds": 4.7204878982156515,
+        "stats": {
+          "template_updates": 98,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 1,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_complete": false
+    },
+    "native_lasher": {
+      "root": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004",
+      "head_epoch": 4,
+      "dataset": "lasher",
+      "root_data": "/data/wangwj/dataset/LasHeR/testingset",
+      "full_scope": true,
+      "smoke_only": false,
+      "completed_sequences": 4,
+      "last": {
+        "sequence": "1blackteacher",
+        "sequence_index": 4,
+        "sequences": 245,
+        "frames": 851,
+        "elapsed_seconds": 48.65155401779339,
+        "stats": {
+          "template_updates": 698,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_complete": false
+    }
+  },
+  "gpu": [
+    "0, 1180 MiB, 24576 MiB, 40 %",
+    "1, 851 MiB, 24576 MiB, 27 %",
+    "2, 851 MiB, 24576 MiB, 39 %",
+    "3, 851 MiB, 24576 MiB, 38 %"
+  ],
+  "processes": [
+    "2794997 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --seed 42 --disable-search --write-verification action --output /data/gb/outputs/recoverability_write_pair_no_search_own_b384_full_20261004/predictions",
+    "2795005 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --seed 42 --unsafe-writes --write-verification action --output /data/gb/outputs/recoverability_write_pair_raw_write_own_b384_full_20261004/predictions",
+    "2795013 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --seed 42 --write-verification identity --output /data/gb/outputs/recoverability_write_pair_identity_own_b384_full_20261004/predictions",
+    "2795018 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --seed 42 --write-verification action --output /data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/predictions"
+  ]
+}
