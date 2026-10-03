@@ -30,8 +30,8 @@
     },
     {
       "id": "S1_own_policy_distribution_control",
-      "status": "production_serial_prefix_m0_pass_paired_c1_collection_live",
-      "work": "Own274TRAIN/128VAL and all5cacheaudit complete. Capacity902queries_B128_1epoch8realupdates PASS,peak10123.497MiB. Originalbatch16parity FAIL preserved; identicalinput firsthead batch/singledivergence localized. ExplicitserialC1prefix productionM0 passed all24 fields bitwise47.061sec/4865.291MiB; query/extra/future batching unchanged. Exact274 pairedC1collector liveGPU1 since22:26:32 withsamejobs/order; equal902query30epoch240update controls notstarted untilcachecomplete andactualloadedqueryorderverified.",
+      "status": "own_training_and_paired_collection_preserved_STOP_wait_hardware_power_cap_G0_evaluation_live",
+      "work": "Own902querycandidate42/43 fits andpaired274collection launched onall4cards, actual121updates each/epoch15 at22:42. Latestuser75C/250W priority: measured82C/80C and307/315W, manualSTOP ownGPU1/2/3 preservesstates. Directpower/targettemp settings denied InsufficientPermissions and sudo-nrequirespassword. Independently reviewedguard live23:01:40, STOP>=74C/245W, CONT onlyconfirmedhardwarelimit<=250 AND<=70C/220W, exactownedoutputwhitelist. Hardwarelimits still350W; admininputpending. GPU0underlimits formal continues; C1s42queue stillwaitsactualpairedcompletedmarker. No prefixeffect orfullgoalachievement claim.",
       "current_limit": "The implemented collector uses learned-policy prefixes but future action rollouts still use frozen C1. This is a prefix-distribution ablation, not a completed own-policy future-continuation correction.",
       "acceptance": "Execution consistency and causal/parent-state M0 pass before matched training; exact same queries/order, initialization, losses and update count in both arms; real A/B/C updates and frozen-base checks pass. Report cached decisions and full continuous-video performance against GOLA-B/C1. Diagnose any remaining negative continuous performance before extending unchanged-cache training."
     },
@@ -101,7 +101,31 @@
     "poll_seconds": 240,
     "checkpoint_retention": "Only the validation-best checkpoint per meaningful independent experiment; protect pretrained and required frozen inputs and retain logs/predictions/metrics",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
-    "repository": "https://github.com/666666666666gao/RGB-T"
+    "repository": "https://github.com/666666666666gao/RGB-T",
+    "gpu_assignment_cst_20261003_2234": {
+      "GPU2": "own-state candidate seed42 training then full98 evaluation",
+      "GPU1": "274 matched C1 prefix collection",
+      "GPU3": "own-state candidate seed43 training then full98 evaluation",
+      "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
+      "GPU0": "locked LasHeR full formal evaluation"
+    },
+    "queued_successor": "GPU1 c1seed42 reviewed pipeline queued22:39:42; waitactualpairedcollector successmarker at240s, noGPUallocationwhilewaiting; actualpaired-vectoraudit before interpretingeffect",
+    "thermal_power_constraints": {
+      "resume_power_max": 220,
+      "temperature_requested_max_celsius": 75,
+      "pause_at_power": 245,
+      "resume_requires_hardware_power_limit_max": 250,
+      "hardware_limit_setting": "DENIED: sudo admin required; actual all350W unchanged",
+      "monitor_pid": 2041093,
+      "resume_temperature_max": 70,
+      "pause_at_temperature": 74,
+      "power_requested_max_watts": 250,
+      "scope": "Only UID-owned exact whitelisted experiment commands; foreign processes excluded",
+      "priority": "Thermal/power constraints take precedence over keeping every GPU busy",
+      "monitor_session": "gpu_thermal_guard_20261003",
+      "monitor_interval_seconds": 2,
+      "latest_state": "GPU1/2/3 paused with state retained; GPU0eval continues below thresholds; admin input requested"
+    }
   },
   "model_selection": {
     "policy": "One best seed/checkpoint",

@@ -22,9 +22,18 @@ decision/label fields in the diagnostic. The explicit `--serial-c1-prefix`
 option defaults off; old cached experiments retain their original definition.
 The [evidence and source gates](refine-logs/runs/recoverability_prefix_control)
 separate execution sanity from learned full-video gains. Matched training uses
-the same 902 query identities/order and 240 updates per arm; full training waits
-for the completed paired-prefix cache and actual query-order check. Production
-parity passed all 24 fields; the paired collector started on GPU1 at22:26:32 CST.
+the same 902 query identities/order and 240 updates per arm. Production parity
+passed all 24 fields. GPU1 collects paired C1 prefixes; GPU2/3 train own-state
+candidates42/43, then evaluate full98 videos. They read only completed caches.
+Actual paired-vector auditing and equal-seed C1 controls remain pending before
+interpreting a prefix-policy effect. GPU0 continues locked formal LasHeR.
+
+The user also requires at most75C and250W per GPU. Setting the hardware limits
+was denied by server permissions; all limits remain350W. GPU1 collection and
+GPU2/3 training are paused with state retained. The reviewed thermal controller
+pauses our named jobs at74C/245W and resumes only after a confirmed hardware
+limit<=250W plus cooldown. GPU0 formal evaluation continues below thresholds.
+Administrator setup remains necessary; pauses affect timing and must be disclosed.
 
 This repository extends official GOLA commit `339c737cda6a24be667b6e5abdc721e8d6046f05`.
 Complete pretrained GOLA-B remains frozen; C1 learns candidate quality and ranking.
