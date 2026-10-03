@@ -1,0 +1,31 @@
+{
+  "status": "PUBLISHED_SOURCE_EQUALS_REVIEWED_DEPLOYED_AFTER_ACTUAL_EXPORT_CRLF_NORMALIZATION",
+  "observed_cst": "2026-10-04T04:52:37.327007+08:00",
+  "rows": {
+    "research/recoverability_modules.py": {
+      "deployed_reviewed_raw_sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+      "git_export_sha256": "4c2d2c0b51f46bff3e66940a8fd1362264066805c3df2bfa481a9cd4e6d89abf",
+      "deployed_crlf_count": 0,
+      "export_crlf_count": 356,
+      "both_normalized_bytes_equal": true,
+      "live_deployed_source_not_overwritten": true
+    },
+    "research/train_recoverability.py": {
+      "deployed_reviewed_raw_sha256": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713",
+      "git_export_sha256": "ce5241ef04521960d860429fe90102bcf2e57982a5de296befcfdd943243add9",
+      "deployed_crlf_count": 0,
+      "export_crlf_count": 260,
+      "both_normalized_bytes_equal": true,
+      "live_deployed_source_not_overwritten": true
+    },
+    "scripts/run_recoverability_write_pair_b384.sh": {
+      "deployed_reviewed_raw_sha256": "e02e8451e467c29baddb51c1399eb839a04fc52910cb6adfccf9c5dd5d9c3dfc",
+      "git_export_sha256": "5e8d37d8c4546ef872b39311fbefe6b09d3c1cd8be6aca8f82bcfd00589d1eaa",
+      "deployed_crlf_count": 0,
+      "export_crlf_count": 53,
+      "both_normalized_bytes_equal": true,
+      "live_deployed_source_not_overwritten": true
+    }
+  },
+  "preflight_correction": "Initial rawSHA comparison rejected before extraction. Second normalization incorrectly assumed archiveLF and also rejected before extraction. Actual primary inspection found deployedsourceLF/exportCRLF356/260/53lines, bothnormalized equal; corrected exactbytes comparison with bothnormalization. No neural rerun/restart/source mutation; only owned text artifacts extracted, rawdocument mirrors copied next."
+}

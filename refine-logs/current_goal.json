@@ -326,7 +326,65 @@
         "estimated_full98_reports_end_cst": "2026-10-04T05:25:00--05:40:00+08:00",
         "next_action": "observe same4 handles near fit end; do not restart from read-only observer failure; each runner auto full98actualGT/5000report after ownfit; onceall4reportdone, do jointmatched sameprefixcalibrated-vs-reference and GOLA/C1 comparison"
       },
-      "actual_b512_failure": "FouroneepochM0passed; threefull terminalOOMepoch3firstforward after2epochs4updates, allocated15.46GiB reservedunused7.84GiB; referenceC1fit60/120complete butpartialfull98 intentionallystoppedPID2640830. Failurelogsretained andweightsremovedafterevidence. No lifetimemodification/allocator/fallback; independentrescuePASSexplicitfreshmatchedB384."
+      "actual_b512_failure": "FouroneepochM0passed; threefull terminalOOMepoch3firstforward after2epochs4updates, allocated15.46GiB reservedunused7.84GiB; referenceC1fit60/120complete butpartialfull98 intentionallystoppedPID2640830. Failurelogsretained andweightsremovedafterevidence. No lifetimemodification/allocator/fallback; independentrescuePASSexplicitfreshmatchedB384.",
+      "latest_same_handle_progress": {
+        "observed_cst": "2026-10-04T04:54:34.701536+08:00",
+        "scope": "read-only same4 originalB384 full handles, no relaunch/retraining/rescore",
+        "arms": {
+          "reference_c1": {
+            "last_epoch": 35,
+            "optimizer_steps": 103,
+            "last_loss": 1.3543615341186523,
+            "last_validation_epoch": 34,
+            "fit_complete": false,
+            "full_job_complete": false,
+            "actual_processes": [
+              "2664829       12:11 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_c1_b384_full_20261004"
+            ]
+          },
+          "calibrated_c1": {
+            "last_epoch": 31,
+            "optimizer_steps": 91,
+            "last_loss": 1.3914756774902344,
+            "last_validation_epoch": 30,
+            "fit_complete": false,
+            "full_job_complete": false,
+            "actual_processes": [
+              "2664834       12:11 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_paired_c1_prefix_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_c1_b384_full_20261004"
+            ]
+          },
+          "reference_own": {
+            "last_epoch": 35,
+            "optimizer_steps": 103,
+            "last_loss": 1.341701865196228,
+            "last_validation_epoch": 34,
+            "fit_complete": false,
+            "full_job_complete": false,
+            "actual_processes": [
+              "2664839       12:11 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --output /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004"
+            ]
+          },
+          "calibrated_own": {
+            "last_epoch": 35,
+            "optimizer_steps": 103,
+            "last_loss": 1.3494523763656616,
+            "last_validation_epoch": 34,
+            "fit_complete": false,
+            "full_job_complete": false,
+            "actual_processes": [
+              "2664845       12:11 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_train_s42_20261003 /data/gb/outputs/recoverability_train_s43_20261003 /data/gb/outputs/recoverability_train_s44_20261003 /data/gb/outputs/recoverability_own_policy_train_20261003 --prefer-last-prefix --validation /data/gb/outputs/recoverability_own_policy_validation_20261003 --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --write-pair-calibration --output /data/gb/outputs/recoverability_write_pair_calibrated_own_b384_full_20261004"
+            ]
+          }
+        },
+        "actual_gpu": [
+          "0, 21610 MiB, 24576 MiB, 100 %",
+          "1, 21283 MiB, 24576 MiB, 100 %",
+          "2, 21281 MiB, 24576 MiB, 100 %",
+          "3, 21281 MiB, 24576 MiB, 100 %"
+        ],
+        "next_check_cst": "2026-10-04T05:02:00+08:00",
+        "poll_seconds": 240
+      }
     },
     {
       "id": "S3_freeze_then_confirm",
@@ -430,7 +488,7 @@
       "temperature_power_constraints_enabled": false,
       "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
     },
-    "next_check_cst": "2026-10-04T04:52:00+08:00",
+    "next_check_cst": "2026-10-04T05:02:00+08:00",
     "checkpoint_cleanup_total": {
       "files": 48,
       "bytes": 65671124,
@@ -446,5 +504,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T04:47:35.0767278+08:00"
+  "updated_cst": "2026-10-04T04:56:21.2445720+08:00"
 }
