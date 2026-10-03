@@ -1,0 +1,79 @@
+{
+  "version": "2026-10-03_closed_loop_recovery",
+  "status": "ACTIVE_UNMET",
+  "authority": "User request to optimize the existing goal using the supplied experimental findings and research plan",
+  "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
+  "system_goal_text_edit_supported": false,
+  "execution_objective": "以完整预训练 GOLA-B 和已有 C1 为固定起点，仅在 LasHeR、RGBT234 上研究有界历史与搜索预算下的闭环恢复。先解决缓存收益不能转化为连续跟踪收益的问题，再使判别记忆、选择器感知搜索与风险干预协同工作，可靠选中并持续跟踪重新找回的正确候选，减少误干预和错误状态提交。固定方法与验证选择规则后，以独立训练种子和两个完整官方测试集验证五项原生指标均比本地完整 GOLA-B 提高至少 2 个百分点，并提交完整性能、机制、成本和不确定性证据。",
+  "scope": {
+    "datasets": ["LasHeR", "RGBT234"],
+    "excluded": ["VTUAV", "GTOT", "RGBT210"],
+    "baseline": "Full locally reproduced pretrained GOLA-B, including its original online template update",
+    "c1": "Keep the existing frozen C1 and disclose comparisons against both GOLA-B and C1",
+    "historical_results": "Preserve all negative and superseded results; never attribute C1 gains to later ABC models",
+    "search_budget": "Bounded memory/history and at most one additional visual forward per frame; report realized cost and matched-budget controls",
+    "datasets_stay_in_place": true
+  },
+  "stages": [
+    {
+      "id": "S0_close_existing_evidence",
+      "status": "in_progress",
+      "work": "Finish the already locked native reports and full no-search/unsafe-write controls; preserve primary completion/failure receipts. Repair report-only metadata failure without rerunning completed inference.",
+      "acceptance": "All sequences, native metrics, attributes, curves, paired comparisons and actual completion markers are present. Training completion and cached gains do not establish baseline improvement."
+    },
+    {
+      "id": "S1_own_policy_distribution_control",
+      "status": "collection_in_progress_training_not_started",
+      "work": "Keep the architecture, initialization, losses and budget fixed. Collect the current model's causal continuous prefixes on TRAIN and held-out videos, then compare matched training with and without those states. Evaluate full continuous videos against GOLA-B and C1.",
+      "current_limit": "The implemented collector uses learned-policy prefixes but future action rollouts still use frozen C1. This is a prefix-distribution ablation, not a completed own-policy future-continuation correction.",
+      "acceptance": "Causal/parent-state M0 passes, real parameter updates and frozen-base checks pass, cached and full-video decisions are both reported. If full-video performance remains negative, diagnose the mismatch before extending training on unchanged caches."
+    },
+    {
+      "id": "S2_realizable_search_selection_update",
+      "status": "planned_after_S1",
+      "work_order": [
+        "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
+        "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
+        "Maintain bounded short associations for selected and unselected candidates, preserving target/distractor/unknown distinctions and candidate margins under compression.",
+        "Separate candidate identity correctness from RGB/TIR evidence reliability; test controlled single-modality degradation rather than interpreting duplicated IoU labels as modality reliability.",
+        "Train intervention advantage and harm on the current policy's states, and align selection, template/memory submission and motion state decisions. Reintroduce state restoration only if it beats box-only and pause-update controls."
+      ],
+      "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE."
+    },
+    {
+      "id": "S3_freeze_then_confirm",
+      "status": "not_ready",
+      "freeze_gate": "At least three independent training seeds consistently exceed complete GOLA-B on full internal videos under a locked protocol; the benefit must extend beyond the few cached queries that selected the checkpoint. Seek repeatable 1-2pp SR/MSR improvement as an advancement target, not as completion of the all-five +2 goal.",
+      "validation": "The existing 98 videos are repeatedly used development data and must be disclosed as such. Pre-register a validation protocol not used to tune the proposed structure/thresholds; official tests cannot select seeds, epochs or thresholds.",
+      "confirmation": "After freezing the method, complete Baseline/A/B/C/AB/AC/BC/ABC with defined equal-capacity/equal-search alternatives, memory/search budget curves, fair serial timing, FLOPs with coverage, independent training seeds (planned 42-45), and SUTrack-B224 transfer under matched training resources.",
+      "final_acceptance": "Across the registered independent seeds, every native metric mean is at least 2 percentage points above the same local complete GOLA-B; no seed has a negative point-estimate delta on a core metric. Report every seed, mean/std and fixed-checkpoint 5000 paired-sequence confidence intervals; require positive paired evidence for all five metrics, without confusing sequence uncertainty with seed variation or selecting a favorable test seed. All comprehensive reports and synchronization receipts are complete."
+    }
+  ],
+  "native_targets_percent": {
+    "LasHeR": {"PR": 78.598449, "NPR": 75.101973, "SR": 63.037425},
+    "RGBT234": {"MPR": 93.778858, "MSR": 71.232593}
+  },
+  "mandatory_evidence": [
+    "All five native overall metrics, all 19/12 attributes, all sequences and native curves",
+    "Fixed-checkpoint paired sequence uncertainty and separate independent-seed variation",
+    "Candidate recall, missing-candidate recovery, newly recovered candidates actually selected and sustained",
+    "Recovery events and delay with denominators, harmful interventions and repeat drift",
+    "Template/memory write provenance and localization contamination proxies with identity-label limitations",
+    "Motion/search calibration and full realized forward count, latency/FPS/peak memory under matched hardware and load"
+  ],
+  "optional_stretch_user_proposed_percent": {
+    "LasHeR": {"PR": 80.5, "NPR": 76.5, "SR_range": [64.0, 64.5]},
+    "RGBT234": {"MPR": 94.7, "MSR_range": [71.5, 72.0]},
+    "interpretation": "Planning references from the user's proposal, not verified present SOTA and not a guarantee. All-five +2 does not establish SOTA."
+  },
+  "operations": {
+    "server": "2027",
+    "project": "/data/gb/GOLA",
+    "environment": "/data/gb/envs/gola",
+    "use_four_gpus_when_useful": true,
+    "poll_seconds": 240,
+    "checkpoint_retention": "Only the validation-best checkpoint per meaningful independent experiment; protect pretrained and required frozen inputs and retain logs/predictions/metrics",
+    "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
+    "repository": "https://github.com/666666666666gao/RGB-T"
+  }
+}

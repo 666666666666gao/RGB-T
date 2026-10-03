@@ -1,7 +1,7 @@
 """Collect mixed causal search/action supervision on LasHeR TRAIN partitions.
 
-The frozen full GOLA/C1 prefix is kept. Query inputs are copied before future
-images. Query/past/future GT only supplies supervision after visual proposals.
+Prefixes use frozen full GOLA/C1 or a frozen learned ABC policy. Query inputs
+are copied before future images. GT supplies supervision, never online actions.
 """
 import argparse
 import copy
@@ -82,12 +82,17 @@ def decode(candidates, transform, image):
 
 
 @torch.inference_mode()
-def collect_batch(jobs, dataset, extractor, head, motion, device, args):
+def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_model=None):
     contexts = []
     for index, query in jobs:
         sequence = dataset[index]
         initial = sequence[0].get_bounding_box().copy()
-        tracker = BoundedRecoveryTracker(extractor, head, read_pair(*paths(sequence, 0), device), initial, torch.float16)
+        image = read_pair(*paths(sequence, 0), device)
+        if prefix_model is None:
+            tracker = BoundedRecoveryTracker(extractor, head, image, initial, torch.float16)
+        else:
+            from .recoverability_tracker import RecoverabilityTracker
+            tracker = RecoverabilityTracker(extractor, prefix_model, motion, image, initial, args.prefix_threshold)
         evidence = np.zeros(10, dtype=np.float32)
         evidence[:6] = 1
         history = deque([{'descriptor': None, 'instance': None, 'evidence': evidence,
@@ -97,15 +102,33 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args):
     for frame in range(1, max(q for _, q in jobs)):
         active = [c for c in contexts if frame < c['query']]
         images = [read_pair(*paths(c['sequence'], frame), device) for c in active]
-        observations = observe_actions([(c['tracker'], c['branch'], im) for c, im in zip(active, images)], extractor, head)
-        for context, image, observation in zip(active, images, observations):
-            advance_prefix(context, frame, observation, image)
-            candidates, _, _, choice = observation
-            context['history'][-1]['instance'] = candidates['instance_features'][0, choice].cpu().numpy().copy()
+        if prefix_model is None:
+            observations = observe_actions([(c['tracker'], c['branch'], im) for c, im in zip(active, images)], extractor, head)
+            for context, image, observation in zip(active, images, observations):
+                advance_prefix(context, frame, observation, image)
+                candidates, _, _, choice = observation
+                context['history'][-1]['instance'] = candidates['instance_features'][0, choice].cpu().numpy().copy()
+        else:
+            for context, image in zip(active, images):
+                tracker = context['tracker']
+                box = tracker.step(image)
+                candidates, quality, _, choice = tracker.last_observation
+                assert tracker.frame == frame
+                context['branch'] = tracker.branch
+                context['history'].append({
+                    'descriptor': candidates['modality_features'][0, choice].cpu().numpy().copy(),
+                    'instance': candidates['instance_features'][0, choice].cpu().numpy().copy(),
+                    'evidence': candidates['evidence'][0, choice].cpu().numpy().copy(),
+                    'quality': float(quality[choice]), 'box': box.copy(), 'frame': frame,
+                    'write': bool(tracker.last_decision['template_updated'])})
     images = [read_pair(*paths(c['sequence'], c['query']), device) for c in contexts]
     original = observe_actions([(c['tracker'], c['branch'], im) for c, im in zip(contexts, images)], extractor, head)
     rows = [history_arrays(c, obs[0]['anchor_features'][0].cpu().numpy(), args.max_prefix)
             for c, obs in zip(contexts, original)]
+    if prefix_model is not None:
+        for row, context in zip(rows, contexts):
+            row['prefix_counts'] = np.asarray([context['tracker'].stats[key] for key in
+                ('extra_visual_forwards', 'changed_candidate_indices', 'paused_query_writes', 'template_updates')], dtype=np.int64)
     history = {key: torch.from_numpy(np.stack([row[key] for row in rows])).to(device)
                for key in ('anchor_features', 'history_descriptors', 'history_evidence', 'history_quality',
                            'history_boxes', 'history_frames', 'history_write', 'history_valid')}
@@ -249,6 +272,8 @@ def main():
     p.add_argument('--pretrained', default='pretrained_models/gola_b224.bin')
     p.add_argument('--head', default='/data/gb/outputs/c1_initial_seed42/best.pth')
     p.add_argument('--motion-run', default='/data/gb/outputs/abc_joint_v1_seed42')
+    p.add_argument('--prefix-model', help='Frozen ABC checkpoint for actual learned-policy prefixes; default is unchanged C1.')
+    p.add_argument('--jobs-file', help='Explicit sequence/query JSON jobs from the chosen TRAIN partition.')
     p.add_argument('--output', required=True)
     p.add_argument('--clips', type=int, default=256)
     p.add_argument('--batch-clips', type=int, default=16)
@@ -279,6 +304,16 @@ def main():
     for _ in range(args.clips):
         index, queries = eligible[int(rng.integers(len(eligible)))]
         jobs.append((index, int(rng.choice(queries))))
+    if args.jobs_file:
+        requested_jobs = json.loads(Path(args.jobs_file).read_text())['jobs']
+        eligible_names = {dataset[index].get_name(): (index, set(queries)) for index, queries in eligible}
+        jobs = []
+        for job in requested_jobs:
+            index, queries = eligible_names[job['sequence']]
+            assert job['query_frame'] in queries
+            jobs.append((index, job['query_frame']))
+        assert jobs and len(set(jobs)) == len(jobs)
+        args.clips = len(jobs)
     c1 = torch.load(args.head, map_location='cpu', weights_only=False)
     assert c1['module'] == 'C1_candidate_quality' and c1['args']['candidates'] == 5
     extractor = InstanceExtractor(args.pretrained, c1['args']['candidates'], .45, c1['args']['nms_iou']).to(device)
@@ -291,6 +326,15 @@ def main():
     motion = TemporalModules(c1, motion_config['slots'], motion_config['motion_history'], motion_config['modes'], checkpoint['horizon']).to(device)
     motion.load_state_dict(checkpoint['model'], strict=True)
     motion.eval().requires_grad_(False)
+    prefix_model = None
+    if args.prefix_model:
+        from .recoverability_modules import RecoverabilityModules
+        prefix_checkpoint = torch.load(args.prefix_model, map_location='cpu', weights_only=False)
+        assert prefix_checkpoint['module'] == 'ABC_recoverability'
+        prefix_model = RecoverabilityModules(c1).to(device)
+        prefix_model.load_state_dict(prefix_checkpoint['model'], strict=True)
+        prefix_model.eval().requires_grad_(False)
+        args.prefix_threshold = prefix_checkpoint['args']['threshold']
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
     config = vars(args) | {'jobs': [{'sequence': dataset[i].get_name(), 'query_frame': q} for i, q in jobs],
@@ -304,10 +348,16 @@ def main():
                            'history_capacity_covers_prefix': True, 'history_descriptor_storage': 'float16; motion inputs explicitly cast float32',
                            'sampling': 'uniform sequence then valid query, no GT failure selection; includes correct/incorrect/long-prefix states',
                            'pretrained_load': extractor.load_receipt}
+    if prefix_model is not None:
+        config['prefix_policy'] = 'frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1'
+        config['prefix_checkpoint_epoch'] = prefix_checkpoint['epoch']
+        config['prefix_counts_columns'] = ['extra_visual_forwards', 'changed_candidate_indices', 'paused_query_writes', 'template_updates']
+    if args.jobs_file:
+        config['sampling'] = 'explicit TRAIN partition jobs; GT may choose supervision states, never online decisions'
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     rows, started = [], time.perf_counter()
     for start in range(0, len(jobs), args.batch_clips):
-        rows.extend(collect_batch(jobs[start:start + args.batch_clips], dataset, extractor, head, motion, device, args))
+        rows.extend(collect_batch(jobs[start:start + args.batch_clips], dataset, extractor, head, motion, device, args, prefix_model))
         progress = {'completed_clips': len(rows), 'clips': len(jobs), 'elapsed_seconds': time.perf_counter() - started,
                     'peak_cuda_mib': torch.cuda.max_memory_allocated(device) / 2**20}
         (out / 'progress.json').write_text(json.dumps(progress))
@@ -326,6 +376,8 @@ def main():
                'query_frames_after256': sum(q > 256 for _, q in jobs),
                'decision_input_contains_future': False, 'official_tracking_accuracy': False,
                'elapsed_seconds': time.perf_counter() - started, 'peak_cuda_mib': torch.cuda.max_memory_allocated(device) / 2**20}
+    if prefix_model is not None:
+        receipt['actual_prefix_counts_sum'] = np.stack([row['prefix_counts'] for row in rows]).sum(0).tolist()
     (out / 'completion.json').write_text(json.dumps(receipt, indent=2, allow_nan=False))
     print('COMPLETED', json.dumps(receipt), flush=True)
 

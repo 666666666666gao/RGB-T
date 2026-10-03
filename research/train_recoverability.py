@@ -54,7 +54,7 @@ def load_data(roots, partition, device):
         arrays.append(row)
         configs.append(config)
         names.update(job['sequence'] for job in config['jobs'])
-        jobs.extend((job['sequence'], job['query_frame']) for job in config['jobs'])
+        jobs.extend((job['sequence'], job['query_frame'], config['prefix_policy']) for job in config['jobs'])
     pooled = {key: torch.cat([row[key] for row in arrays]) for key in arrays[0]}
     unique, seen = [], set()
     for index, job in enumerate(jobs):
@@ -133,7 +133,7 @@ def main():
     reference = train_configs[0]
     for config in train_configs + val_configs:
         for key in ('split', 'root', 'cache', 'head', 'pretrained', 'motion_run', 'max_prefix',
-                    'regions', 'prefix_policy', 'future_policy', 'future_horizon'):
+                    'regions', 'future_policy', 'future_horizon'):
             assert config[key] == reference[key], key
         assert config['head'] == args.c1_head
     split = json.loads(Path(reference['split']).read_text())
@@ -164,7 +164,7 @@ def main():
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',
                            'checkpoint_retention': 'best.pth only; all epoch metrics retained',
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
-                           'scope': 'bootstrap frozen-C1 state/continuation cache, not online method or official benchmark accuracy'}
+                           'scope': 'causal predicted-prefix TRAIN caches with frozen-C1 continuation; not complete online or official accuracy'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     metrics = evaluate(model, validation, args.batch_size, args.threshold)
     records, best = [{'epoch': 0, **metrics}], metrics['utility']

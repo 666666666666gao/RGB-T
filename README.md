@@ -1,5 +1,12 @@
 # RGB-T research on pretrained GOLA
 
+The [current execution goal](refine-logs/current_goal.json) prioritizes the
+cached-to-continuous tracking gap, selector-realizable search and consistent
+state submission. The all-five +2pp target remains **ACTIVE_UNMET**. Freeze the
+method and expand paper experiments only after independent-seed full-video
+improvement. The [single handoff](docs/HANDOFF_20261002.md) records current
+completion receipts, negative controls and pending reports.
+
 This repository extends official GOLA commit `339c737cda6a24be667b6e5abdc721e8d6046f05`.
 Complete pretrained GOLA-B remains frozen; C1 learns candidate quality and ranking.
 Both requested benchmarks have now been evaluated in full with corrected C1

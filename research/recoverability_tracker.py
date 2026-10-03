@@ -149,6 +149,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
         observation = original if region == 0 else extra
         assert observation is not None and bool(data['valid'][0, region, choice])
         candidates, quality, boxes, _ = observation
+        self.last_observation = (candidates, quality, boxes, choice)
         confidence = float(candidates['raw_score'][0, choice])
         prior_frame, prior_box = self.template_source_frame, self.template_source_box.copy()
         branch = self._advance(parent, image, boxes, candidates, quality, choice)

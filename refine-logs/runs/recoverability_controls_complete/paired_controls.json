@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "scope": "same locked checkpoint and original98 complete internal videos; fixed-weight5000 paired sequence uncertainty, not native metrics",
+  "sources": {
+    "full": [
+      "/data/gb/outputs/recoverability_online_full_report_20261003/per_sequence.csv",
+      "recoverability_s42"
+    ],
+    "no_search": [
+      "/data/gb/outputs/recoverability_no_search_s42_20261003/report/per_sequence.csv",
+      "no_search"
+    ],
+    "unsafe_writes": [
+      "/data/gb/outputs/recoverability_unsafe_writes_s42_20261003/report/per_sequence.csv",
+      "unsafe_writes"
+    ]
+  },
+  "sequence_mean_iou": {
+    "full": 0.7240210454285869,
+    "no_search": 0.7373567957438997,
+    "unsafe_writes": 0.7235311188024784
+  },
+  "paired": {
+    "no_search_minus_full": {
+      "mean_delta_percentage_points": 1.3335750315312644,
+      "paired95_ci_percentage_points": [
+        0.05029221518175088,
+        3.2141203295439773
+      ],
+      "improved": 16,
+      "worsened": 13,
+      "tied": 69
+    },
+    "full_minus_unsafe_writes": {
+      "mean_delta_percentage_points": 0.04899266261085946,
+      "paired95_ci_percentage_points": [
+        0.0,
+        0.13130673301968324
+      ],
+      "improved": 3,
+      "worsened": 0,
+      "tied": 95
+    }
+  }
+}
