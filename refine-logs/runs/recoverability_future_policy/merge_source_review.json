@@ -1,0 +1,126 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "review_type": "experiment-bridge CODE_REVIEW for CPU-only matched future-cache merge",
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "baseline_commit": "7694381bd03d7a289a69088af71ddc686599c54d",
+  "source": {
+    "path": "research/merge_recoverability_future_caches.py",
+    "sha256": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030"
+  },
+  "scope": "Source review plus independent CPU helper fixtures using copied actual M0 arrays. Complete merge main was not executed; the sixteen actual full-cache partitions are not claimed complete. No NN import/execution, optimizer, deployment or process signal by reviewer.",
+  "resolved_static_finding": {
+    "initial_sha256": "c86c3f348c3b213b4ddc40d436d6d9b8a169daafec9b08037b683567277e5cbe",
+    "finding": "Initial COMMON_CONFIG omitted split/root/cache/regions, although the existing train_recoverability.py149-151 requires those fields consistent across TRAIN and validation. Same-policy future_policy text was checked only inside each partition, not across TRAIN/validation.",
+    "resolution": "Current source adds the four existing trainer config invariants to COMMON_CONFIG, requires source split path to match args.split, and checks same-policy TRAIN/validation future_policy text. No data, model, fallback or compatibility change.",
+    "verification": "Source inspection verifies the cross-partition checks. CPU helper fixtures on the final SHA reject injected root/cache/split/regions conflicts. The initial SHA was statically reviewed; no failed fixture run on that original SHA is claimed."
+  },
+  "input_schema_review": {
+    "markers": "All2policies x2partitions x4shards require their actual job_completed.txt marker, completed receipt, expected partition and future_policy_mode before use. These are the actual collector/runner field names previously verified on CLI and full-collection sources.",
+    "jobs_formats": "Main reads the parent train.json/validation.json as bare ordered lists, which is the actual CPU-plan format. It does not incorrectly index them by jobs. Per-shard config.json contains jobs lists. The eight separate CLI shard job files use jobs objects but are not parsed by this merge. Actual parent lists have902TRAIN/128validation entries.",
+    "split": "Actual /data/gb/outputs/c1_initial_seed42/split.json has881TRAIN/98validation sequences, disjoint. Reviewer directly checked both planned job lists belong to their declared partitions. Main asserts membership/disjointness and source split path identity.",
+    "arrays": "Each shard must have positive consistent clip counts, finite row arrays, expected candidate-instance/future-label shapes, legal regular and raw>.84 pause masks, valid original candidate, valid last history slot, only pre-query valid history frames and exact receipt valid-action count. Keys/dtypes/nonbatch shapes must agree across shards.",
+    "order": "Shards are loaded in0..3order and concatenated on axis0. Combined jobs must exactly equal the predefined ordered list with no duplicate sequence/query pairs. The merge performs no deduplication, resampling, relabeling or selection."
+  },
+  "pair_and_config_review": {
+    "allowed_label_difference": "Only future_iou and wrong_update_fraction may differ between teachers. Every field including those two must retain identical dtype/shape across the pair. All other arrays, including causal inputs, current/history/motion labels, action masks and prefix counts, must match exactly.",
+    "settings": "COMMON_CONFIG is checked within each partition and across every policy/partition. Main also enforces prefix epoch4/action verification, serial batch-clips1/forward-batch1, max-prefix1024, horizon3 and seed42.",
+    "teacher_checkpoint": "Existing requested checkpoint SHA check is performed against the actual prefix_model file and fixed known reference-own epoch4 SHA a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72. No model is imported or loaded by torch.",
+    "training_compatibility": "All fields checked by the current untouched trainer's config compatibility loop are covered: split/root/cache/head/pretrained/motion_run/max_prefix/regions/future_horizon globally, and future_policy within each teacher across TRAIN/validation. Each merged config preserves prefix_policy and future_policy/mode, and supplies the complete ordered jobs/clips. Each merged receipt supplies exactly the completion fields used by load_data. Opposite teachers remain separate training arms."
+  },
+  "write_and_reload_review": {
+    "read_before_write": "Both complete partitions of both teachers are fully read, validated and compared, then all common configs/settings/checkpoint are verified, before args.output.mkdir. Missing or mismatched input stops before creating merged outputs.",
+    "output_layout": "Creates four fresh roots under output/c1|own/train|validation. Existing output is rejected with exist_ok=False. Each config contains original shard roots/source_configs and each completion receipt retains original source_receipts.",
+    "npz": "np.savez_compressed serializes the validated arrays without dtype conversion or mathematical changes. Each NPZ is reopened and every saved array must exactly equal its in-memory source before completion is written. Helper positive fixtures also round-tripped actual M0 payloads through the same NumPy format.",
+    "completion": "Individual completion/job markers follow that root's successful reload. paired_cache_gate.json is written only after all four merged roots finish. Downstream sanity must require this final paired gate PASS, not merely one root's completion marker.",
+    "no_automatic_fit": "There is no subprocess, GPU, NN, optimizer or training call. Result explicitly sets training_started=false and official_goal_completed=false; the next milestone is matched B384 sanity, not automatic full fitting."
+  },
+  "fixture_design": {
+    "execution": "Reviewer independently designed and directly executed the actual module's read_partition/verify_pair helpers using CPU NumPy in a private temporary directory. Candidate module was imported under a private name; main was never called and torch was never imported.",
+    "actual_payloads": [
+      "/data/gb/outputs/future_policy_cli_m0_c1_20261004/samples.npz",
+      "/data/gb/outputs/future_policy_cli_m0_own_20261004/samples.npz"
+    ],
+    "synthetic_metadata": "The two actual M0 rows are copied into four one-row fixture shards with explicit CPU_FIXTURE_ONLY sequence IDs, so the ordering and duplicate-rejection invariants can be exercised. These are program fixtures, not collected experimental jobs; they make no benchmark/completion claim and are not eligible for real main's split checks.",
+    "positive_checks": [
+      "four-shard exact ordered concatenation",
+      "actual M0 future-IoU differences permitted",
+      "controlled changes in both permitted future-label fields allowed"
+    ],
+    "rejected_cases": [
+      "one changed decision-input element",
+      "mismatched future-field dtype",
+      "missing completion marker",
+      "wrong expected job order",
+      "nonserial forward_batch config",
+      "invalid regular-action mask",
+      "root mismatch",
+      "cache mismatch",
+      "split mismatch",
+      "regions mismatch"
+    ],
+    "limits": "Fixtures validate helper behavior and actual field compatibility. They do not establish that all16real inputs are complete, exercise main on unfinished caches, run the four-root real merge, or count as a training/benchmark result."
+  },
+  "gate_conclusion": "PASS for the reviewed CPU merger source and helpers. Run the actual merge only once all16real shard directories have completed. A successful actual paired_cache_gate and all four merged outputs may support the separately controlled matched B384 sanity milestone. No automatic training, full-fit acceptance, benchmark accuracy or research-goal completion is authorized or claimed by this review.",
+  "reviewer_actions": {
+    "full_merge_main_calls": 0,
+    "nn_imports": 0,
+    "nn_forward": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "gpu_work": 0,
+    "existing_experiment_output_changes": 0,
+    "production_source_changes": 0,
+    "process_signals": 0
+  },
+  "reviewed_at_cst": "2026-10-04T07:35:58.4858127+08:00",
+  "helper_fixture_receipt": {
+    "status": "PASS",
+    "candidate_sha256": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "unexpected_acceptances": [],
+    "checks": {
+      "four_shards_ordered_exact_concatenation": "PASS",
+      "actual_m0_future_only_difference_accepted": {
+        "future_iou": {
+          "different_elements": 14,
+          "max_absolute_difference": 0.7955051064491272
+        },
+        "wrong_update_fraction": {
+          "different_elements": 0,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "both_future_label_fields_may_differ": "PASS",
+      "changed_decision_input": "REJECTED_AS_REQUIRED",
+      "mismatched_future_dtype": "REJECTED_AS_REQUIRED",
+      "missing_actual_completion_marker": "REJECTED_AS_REQUIRED",
+      "different_expected_job_order": "REJECTED_AS_REQUIRED",
+      "different_serial_execution_config": "REJECTED_AS_REQUIRED",
+      "invalid_regular_action_mask": "REJECTED_AS_REQUIRED",
+      "trainer_required_config_root": "REJECTED_AS_REQUIRED",
+      "trainer_required_config_cache": "REJECTED_AS_REQUIRED",
+      "trainer_required_config_split": "REJECTED_AS_REQUIRED",
+      "trainer_required_config_regions": "REJECTED_AS_REQUIRED"
+    },
+    "fixture_scope": "Actual two-row CLI M0 NPZ payloads copied into four one-row shards with synthetic CPU_FIXTURE_ONLY job IDs. Tests program behavior only; no collection/benchmark completion is claimed.",
+    "source_array_roots": {
+      "c1": "/data/gb/outputs/future_policy_cli_m0_c1_20261004",
+      "own": "/data/gb/outputs/future_policy_cli_m0_own_20261004"
+    },
+    "full_merge_main_executed": false,
+    "nn_imports": 0,
+    "nn_forward": 0,
+    "gpu_work": 0,
+    "existing_outputs_changed": false,
+    "process_signals": 0
+  },
+  "helper_fixture_receipt_path": "refine-logs/runs/recoverability_future_policy/merge_helper_fixture_receipt.json",
+  "helper_fixture_receipt_sha256": "76461d9df980baedb3b57489b9a71417fe9c2ab8cb47b8796380f3e638accff8",
+  "reviewer_fixture_script": "C:/Users/gb/.codex_tmp/gola_setup_20261002/review_future_merge_helpers_20261004.py",
+  "reviewer_fixture_script_sha256": "55180cde4661a11eaf3703fd17117288c2e5e8d71546149f1a5ac2c9d56636ac"
+}

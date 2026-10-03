@@ -1,0 +1,275 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/recoverability_online_review",
+  "review_context": "Continuing independent reviewer; direct artifact/source reads and independent CPU recomputation. No new fresh-context reviewer was spawned.",
+  "audited_utc": "2026-10-03T23:48:31.037657+00:00",
+  "scope": "Selected reference-own B384 epoch 4, complete RGBT234 native result only",
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "neural_network_forward_executed": false,
+    "training_executed": false,
+    "remote_files_modified": false,
+    "note": "Short read-only CPU audit processes only; no experiment process or GPU job changed.",
+    "experiment_processes_started_restarted_or_terminated": false
+  },
+  "run_root": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004",
+  "dataset": "rgbt234",
+  "actual_gt_root": "/data/zhouy/DATASET/RGB-T234",
+  "checkpoint": {
+    "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "bytes": 1732916,
+    "selected_epoch": 4,
+    "training_seed": 42,
+    "batch_size": 384,
+    "train_completion_verified": true,
+    "strict_reload_training_receipt": true,
+    "current_file_hash_matches_requested": true
+  },
+  "completeness": {
+    "sequences": 234,
+    "frames": 116649,
+    "valid_noninitial_frames": 116415,
+    "all_three_prediction_sequence_sets_exact": true,
+    "all_receipt_records_and_prediction_lengths_match_actual_gt": true,
+    "markers": {
+      "report_completed.txt": "2026-10-04T07:33:52+08:00",
+      "job_completed.txt": "2026-10-04T07:33:52+08:00",
+      "mechanism_report/recoverability_metrics_completed.txt": "full GT localization and mechanism diagnostics completed; native accuracy separate"
+    }
+  },
+  "native_protocol": {
+    "ground_truth": "Actual visible.txt and infrared.txt from every sequence",
+    "prediction_loading": "float32, rounded to integer via numpy round(0), matching installed rgbt loader",
+    "numpy_version": "2.1.3",
+    "initial_frame_included": true,
+    "MPR": "Per-frame minimum RGB/TIR center distance <= threshold; equal sequence mean at 20 pixels",
+    "MSR": "Per-frame maximum RGB/TIR IoU > each of 21 thresholds linspace(0,1,21); mean over thresholds and sequences",
+    "not_mean_raw_iou": true
+  },
+  "native_recomputation": {
+    "implementation": "Independent NumPy vectorized arithmetic, not collector or native metric function calls",
+    "overall_percent": {
+      "baseline": {
+        "MPR": 91.77885757450758,
+        "MSR": 69.2325931778893
+      },
+      "c1": {
+        "MPR": 91.81700889694795,
+        "MSR": 69.2340473415621
+      },
+      "write_pair_reference_own_b384": {
+        "MPR": 92.13340500935078,
+        "MSR": 69.57809745628578
+      }
+    },
+    "all_702_sequence_metric_pairs_exact": true,
+    "max_absolute_difference_percentage_points": 0,
+    "all_12_attributes_per_variant_exact": true,
+    "all_mean_curves_and_thresholds_exact": true,
+    "official_report_deltas_percentage_points": {
+      "baseline": {
+        "MPR": 0.35454743484319806,
+        "MSR": 0.3455042783964757
+      },
+      "c1": {
+        "MPR": 0.3163961124028276,
+        "MSR": 0.34405011472367164
+      }
+    }
+  },
+  "paired_bootstrap": {
+    "iterations": 5000,
+    "seed": 42,
+    "all_report_fields_exact": true,
+    "resampling": "Equal-weight paired sequences with shared draws across native metrics; fixed checkpoints, not training-seed variation",
+    "results": {
+      "baseline": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.3545474348432863,
+          "percentile_95_interval_percentage_points": [
+            -0.9120770386978747,
+            1.698236118977602
+          ],
+          "improved_sequences": 36,
+          "worsened_sequences": 36,
+          "tied_sequences": 162
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.34550427839646364,
+          "percentile_95_interval_percentage_points": [
+            -0.44368981552504133,
+            1.1960979039612387
+          ],
+          "improved_sequences": 64,
+          "worsened_sequences": 54,
+          "tied_sequences": 116
+        }
+      },
+      "c1": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.3163961124028392,
+          "percentile_95_interval_percentage_points": [
+            -0.6680022993250778,
+            1.4362182568871824
+          ],
+          "improved_sequences": 24,
+          "worsened_sequences": 27,
+          "tied_sequences": 183
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.3440501147236557,
+          "percentile_95_interval_percentage_points": [
+            -0.28405255337739155,
+            1.0671908048555838
+          ],
+          "improved_sequences": 46,
+          "worsened_sequences": 46,
+          "tied_sequences": 142
+        }
+      }
+    }
+  },
+  "plot_artifacts": [
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/baseline_paired_report/official_curves.png",
+      "bytes": 95360
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/baseline_paired_report/official_curves.pdf",
+      "bytes": 19133
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/baseline_paired_report/attribute_deltas.png",
+      "bytes": 39149
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/baseline_paired_report/attribute_deltas.pdf",
+      "bytes": 17791
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/c1_paired_report/official_curves.png",
+      "bytes": 93871
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/c1_paired_report/official_curves.pdf",
+      "bytes": 19106
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/c1_paired_report/attribute_deltas.png",
+      "bytes": 36237
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/c1_paired_report/attribute_deltas.pdf",
+      "bytes": 17230
+    }
+  ],
+  "mechanism_scope": {
+    "native_accuracy_completed_false_expected": true,
+    "raw_mean_iou_independently_recomputed_for_all_three_variants": true,
+    "raw_mean_iou_bootstrap_exact": true,
+    "sequence_mean_iou": {
+      "baseline": 0.7014646427138628,
+      "c1": 0.7014440516456725,
+      "write_pair_reference_own_b384": 0.7050499893858237
+    },
+    "baseline_peak_memory_missing_and_null_verified": true
+  },
+  "source_checks": {
+    "research/collect_core_metrics.py": {
+      "sha256": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+      "matches_previously_reviewed_local_source": true
+    },
+    "research/paired_sequence_bootstrap.py": {
+      "sha256": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+      "matches_previously_reviewed_local_source": true
+    },
+    "research/collect_recoverability_metrics.py": {
+      "sha256": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+      "matches_previously_reviewed_local_source": true
+    },
+    "evaluation.py": {
+      "sha256": "d09fafd64981dde3f86125e3df1f4aaa933683fcac244c805c3449a5f233792f",
+      "matches_previously_reviewed_local_source": true
+    }
+  },
+  "blocking_findings": [],
+  "interpretation": {
+    "native_point_estimates_positive_against_both_references": true,
+    "all_four_native_95_intervals_include_zero": true,
+    "rgbt234_gain_at_least_two_percentage_points": false,
+    "lasher_metrics_included": false,
+    "claim_limit": "The selected fixed checkpoint has small positive RGBT234 point estimates, without a paired 95% interval excluding zero; this audit does not establish a +2-point result, LasHeR completion, or training-seed uncertainty."
+  },
+  "mechanism_reconciliation": {
+    "all_234_npz_and_actual_gt_recomputed": true,
+    "all_counter_fields_exact_against_per_sequence_and_summary": true,
+    "four_runtime_counters_exact_against_all_234_receipts": true,
+    "prior_template_source_chain_causal_and_boxes_consistent": true,
+    "valid_candidate_budget_at_most_10": true,
+    "memory_target_read_write_localization_provenance_mass_recomputed": true,
+    "intervention_rows": 1836,
+    "intervention_count_exact": true,
+    "max_history_frames": 8,
+    "max_pending_observed": 5,
+    "counters": {
+      "tracking_frames": 116415,
+      "valid_tracking_frames": 116415,
+      "candidate_evaluations": 541254,
+      "local_candidate_recalled_frames": 102875,
+      "budget_candidate_recalled_frames": 102915,
+      "local_missing_frames": 13540,
+      "missing_correct_candidates_reintroduced": 40,
+      "reintroduced_candidates_selected_correctly": 0,
+      "c1_same_state_failed_frames": 10285,
+      "c1_same_state_correct_frames": 101196,
+      "selected_failed_frames": 10277,
+      "changed_candidate_indices": 112,
+      "valid_changed_candidate_indices": 112,
+      "same_state_rescues": 19,
+      "same_state_harms": 12,
+      "same_state_iou_improvements": 40,
+      "same_state_iou_degradations": 35,
+      "requested_extra_searches": 497,
+      "extra_visual_forwards": 497,
+      "searches_without_new_correct_candidate": 457,
+      "requested_extra_area_sum_pixels_squared": 108632863.81431861,
+      "template_updates": 57105,
+      "known_template_updates": 57105,
+      "wrong_template_updates_localization_proxy": 1287,
+      "paused_query_writes": 1243,
+      "known_paused_query_writes": 1243,
+      "wrong_query_writes_prevented_localization_proxy": 35,
+      "correct_query_writes_prevented": 1206,
+      "known_active_template_frames": 116415,
+      "wrong_active_template_frames_localization_proxy": 1380,
+      "memory_rgb_target_write_known_mass": 32825.37500369549,
+      "memory_rgb_target_write_wrong_mass": 748.9983240365982,
+      "memory_rgb_target_read_known_mass": 116414.99999116204,
+      "memory_rgb_target_read_wrong_mass": 1376.0066534935654,
+      "memory_tir_target_write_known_mass": 32809.961450755596,
+      "memory_tir_target_write_wrong_mass": 786.564161658287,
+      "memory_tir_target_read_known_mass": 116415.00001631254,
+      "memory_tir_target_read_wrong_mass": 1440.7811811521226,
+      "candidate_quality_squared_error_sum": 7037.5119843420225,
+      "known_candidate_evaluations": 541254
+    },
+    "rates": {
+      "local_recall": 0.8836919640939741,
+      "budget_recall": 0.8840355624275222,
+      "missing_candidate_reintroduction_rate": 0.0029542097488921715,
+      "wrong_template_write_rate": 0.022537431048069347,
+      "misintervention_rate_on_correct_same_state_c1": 0.00011858176212498517
+    },
+    "motion_calibration_note": "Frozen motion helper source is unchanged and previously reviewed; this audit did not independently recompute all forecast likelihood/PIT fields."
+  },
+  "reviewer_model_metadata": {
+    "model_family": "Codex/GPT-6",
+    "exact_model_id": null,
+    "exact_model_id_note": "The current reviewer host does not expose an independently verifiable exact model identifier.",
+    "requested_reasoning_effort": "max",
+    "actual_reasoning_effort_not_independently_exposed": true
+  }
+}

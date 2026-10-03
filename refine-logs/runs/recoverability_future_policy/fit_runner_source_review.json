@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_type": "experiment-bridge Phase2.5 source gate for two matched future-teacher fit invocations",
+  "reviewer": "/root/write_pair_calibration_review",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "baseline_commit": "7694381bd03d7a289a69088af71ddc686599c54d",
+  "source": {
+    "path": "scripts/run_recoverability_future_fit.sh",
+    "sha256": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386"
+  },
+  "scope": "Source/API/CPU bash syntax review only. Complete merged caches and new training M0s are not claimed to exist or pass. Reviewer did not execute the runner, trainer, evaluator or any NN. No production source transition or process signal was performed.",
+  "stages_and_data_gate": {
+    "accepted_parameters": "Only c1/own policy and m0/full stage are accepted; each policy/stage has its own fresh output root. Existing root is rejected before the training invocation.",
+    "cache_precondition": "Both stages require the actual merged paired_cache_gate.json status PASS, all_non_future_arrays_exact true and exactly902TRAIN/128validation jobs. The already-reviewed merger writes this final gate only after validating all16input shards and writing/reloading all4merged roots. Existing trainer independently checks its chosen TRAIN/validation receipts, data masks/finite values/counts/splits/config compatibility.",
+    "m0": "Three epochs at batch384; torch.randperm(...).split(384) keeps the134-row final batch, hence3updates/epoch and9optimizer updates. M0 ends after trainer completion and writes its job marker; it contains no evaluator or call to full stage.",
+    "full_precondition": "Full stage additionally requires future_policy_fit_m0_acceptance_20261004.json status PASS, both_teacher_arms_passed true, batch_size384 and optimizer_steps_per_arm9. This is the planned manual two-arm acceptance, not an automatically manufactured success flag. A missing/failed/single-arm acceptance cannot pass the script's condition.",
+    "full": "Sixty epochs at the same3updates/epoch give180updates, followed by actual full98 evaluation and GT metrics. Calling full creates a new student and output root; it does not resume or reuse M0 weights.",
+    "completion_order": "set -euo pipefail propagates failures. training_completed follows a successful trainer exit. For full, final job_completed is written only after evaluator and CPU collector finish. A training marker alone does not claim full98 success."
+  },
+  "training_api_and_single_factor": {
+    "exact_flags": {
+      "batch_size": 384,
+      "seed": 42,
+      "search_supervision": "oracle",
+      "action_ranking": "pairwise",
+      "write_verification": "action",
+      "write_pair_calibration": false,
+      "prefer_last_prefix": false
+    },
+    "unchanged_defaults": {
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "threshold": 0.03,
+      "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth"
+    },
+    "fresh_initialization": "Trainer seeds torch/CUDA, constructs RecoverabilityModules from the frozen C1 checkpoint and has no resume/prefix-model load argument. The fixed own4 checkpoint is used by the already-collected prefixes/teachers, not loaded as initial student weights. C1 is strict-loaded, eval/frozen and excluded from optimizer parameters; model.train preserves C1 eval mode.",
+    "objective_scope": "All passed flags exist in the current parser. Omitting write-pair-calibration correctly leaves it false. Both teacher arms otherwise use identical source, batch/epoch/update budget, seed, optimizer defaults, action search/write modes and matched query inputs. The treatment changes the frozen future labels and the resulting same-form validation target, as planned.",
+    "current_trainer_checks": "Before updates, choices must reproduce C1 and no extra search may trigger. Training requires finite losses/gradients, no C1 gradients, positive A/B/C gradient norms and changed trained A/B/C groups. Best checkpoint is strict-reloaded and its validation metrics must exactly reproduce before completed receipt is written.",
+    "best_zero_boundary": "Best checkpoint selection uses strict held-out utility improvement and may legitimately retain epoch0. The A/B/C changed receipt concerns the trained trajectory before reloading best, not a promise that selected best has moved. Report the actual selected epoch and behavior."
+  },
+  "manual_m0_acceptance_expectations": [
+    "Read both actual c1/own M0 completion/config/train records:902TRAIN/128validation, batch384,3epochs,9updates, intended flags and finite losses/gradients.",
+    "Verify actual A/B/C gradient/update receipts, frozen C1 state/gradients, strict reload equality and usable selected checkpoint in both arms; record selected epoch even if0.",
+    "Write the two-arm fit acceptance only after both real M0s pass. This review is not that runtime acceptance and does not itself permit an early full run."
+  ],
+  "evaluation_and_report": {
+    "dataset": "lasher at the actual existing /data/wangwj/dataset/LasHeR/traingset path, filtered by the original split's98validation sequences. No sequence offset, sequence limit or max-frames truncation is passed. The evaluator requires the full split name set.",
+    "checkpoint_and_policy": "Uses this full run's best.pth, strict-loaded by the existing evaluator, action verification, seed42 and default learned policy/search-enabled/safe-writes. There is no zero-init, unsafe-write or no-search control flag.",
+    "actual_gt": "Collector reads dataset ground_truth for each sequence and scores actual complete TXT predictions. C1/GOLA/own4 predictions are comparison variants, not replacement labels. The collector enforces98names, complete per-sequence frame counts, matching dataset root/split, no truncated inference settings and actual completion receipts.",
+    "references": [
+      {
+        "label": "baseline",
+        "path": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions"
+      },
+      {
+        "label": "c1",
+        "path": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions"
+      },
+      {
+        "label": "write_pair_reference_own_b384",
+        "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions"
+      }
+    ],
+    "actual_reference_validation": "Reviewer directly read all three inference configs/completion receipts and prediction name sets: each completed98sequences/49418frames at the exact requested root/split with no frame/sequence limits. The selected own4 reference records head_epoch4. The existing directory spelling traingset was verified on disk.",
+    "statistics": "Existing collector computes actual GT localization/mechanism reports and5000paired sequence bootstrap resamples with seed42 against each of the three requested references. The full98 internal split has smoke_only=true by existing evaluator convention because validation_split is set; this does not indicate frame truncation and the collector explicitly expects it.",
+    "claim_boundary": "These are descriptive full-video internal98 results, not native LasHeR245/RGBT234 completion or training-seed uncertainty. Per-arm reports compare the three specified references; the direct new own-teacher versus new C1-teacher comparison is a later paired analysis once both full outputs exist, not an extra training experiment."
+  },
+  "production_and_resource_boundary": {
+    "module_location": "The runner intentionally calls existing modules from /data/gb/GOLA via the existing foreground run_temporal wrapper. It contains no source deployment, process stop or source-switch action. Main agent must honor the existing hold on production files until the old native LasHeR job exits before any planned deployment/transition.",
+    "cpu_metrics": "After full inference, CUDA_VISIBLE_DEVICES is cleared for the existing offline collector. No automatic queue or other experiment is introduced.",
+    "current_status": "Runner prepared/reviewed only. Actual merged data and both new M0s must independently satisfy their gates. No new training was executed by reviewer."
+  },
+  "verification": {
+    "bash_n": "PASS on actual private copy",
+    "argument_and_default_source_review": "PASS",
+    "actual_reference_metadata_and_name_sets": "PASS",
+    "trainer_or_evaluator_execution": false
+  },
+  "gate_conclusion": "PASS, zero source blockers. This source gate permits preparing the exact two-arm M0 invocation once the actual merged cache gate passes, followed by manual two-arm M0 acceptance before the separately invoked60epoch/full98 stage. It is not evidence that merged data, M0 training, full training, full evaluation or the research goal has completed. Same-family/provisional.",
+  "reviewer_actions": {
+    "runner_execution": 0,
+    "nn_imports": 0,
+    "nn_forward": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "gpu_work": 0,
+    "process_signals": 0,
+    "production_source_changes": 0
+  },
+  "reviewed_at_cst": "2026-10-04T07:52:43.6868883+08:00",
+  "actual_cpu_receipt": {
+    "status": "PASS",
+    "bash_n": "PASS",
+    "references": [
+      {
+        "label": "baseline",
+        "path": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions",
+        "completed": true,
+        "sequences": 98,
+        "frames": 49418,
+        "full_frame_scope": true,
+        "head_epoch": null
+      },
+      {
+        "label": "c1",
+        "path": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions",
+        "completed": true,
+        "sequences": 98,
+        "frames": 49418,
+        "full_frame_scope": true,
+        "head_epoch": 3
+      },
+      {
+        "label": "write_pair_reference_own_b384",
+        "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions",
+        "completed": true,
+        "sequences": 98,
+        "frames": 49418,
+        "full_frame_scope": true,
+        "head_epoch": 4
+      }
+    ],
+    "actual_dataset_root_exists": true,
+    "heldout_names": 98,
+    "m0_budget": {
+      "epochs": 3,
+      "updates_per_epoch": 3,
+      "optimizer_updates": 9
+    },
+    "full_budget": {
+      "epochs": 60,
+      "updates_per_epoch": 3,
+      "optimizer_updates": 180
+    },
+    "nn_execution": false,
+    "runner_execution": false
+  },
+  "actual_cpu_receipt_path": "refine-logs/runs/recoverability_future_policy/fit_runner_cpu_receipt.json",
+  "actual_cpu_receipt_sha256": "7bb4c0cf6e7b724b520bfd9a586deb96097ea82b7ec80b8cffa4dcbca01d2e56",
+  "inspected_dependencies": [
+    {
+      "path": "scripts/run_temporal.sh",
+      "sha256": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729"
+    },
+    {
+      "path": "research/train_recoverability.py",
+      "sha256": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93"
+    },
+    {
+      "path": "research/recoverability_modules.py",
+      "sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158"
+    },
+    {
+      "path": "research/evaluate_recoverability.py",
+      "sha256": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8"
+    },
+    {
+      "path": "research/collect_recoverability_metrics.py",
+      "sha256": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553"
+    }
+  ]
+}
