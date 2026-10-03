@@ -45,11 +45,13 @@ def arguments():
     p.add_argument('--amp-dtype', choices=['float16', 'bfloat16'], default='float16')
     p.add_argument('--record-mechanisms', action='store_true', help='Save every candidate and template write for full offline GT diagnostics.')
     p.add_argument('--validation-split', help='Original TRAIN-held-out split; internal diagnostics only.')
+    p.add_argument('--pause-after-correction', type=int, default=0,
+                   help='C1 write control: pause this many frames including each non-Hann selection; 0 preserves original updates.')
     return p.parse_args()
 
 
 @torch.inference_mode()
-def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtype, timeline=None):
+def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtype, timeline=None, pause_after_correction=0):
     assert len(paths_v) == len(paths_i)
     normalization = get_dataset_norm_stats_transform('mm', inplace=True)
     template_size, search_size = np.array((112, 112)), np.array((224, 224))
@@ -69,6 +71,7 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
     predictions = [init_box.copy()]
     latencies = []
     updates, alternative_selections = 0, 0
+    pause_until = 0
     for frame in range(1, len(paths_v)):
         torch.cuda.synchronize(device)
         started = time.perf_counter()
@@ -107,8 +110,12 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
         provider.update(confidence, box, size)
         # Past predictions are appended once and never rewritten.
         predictions.append(box.copy())
-        updater.update(0, confidence, image, box)
-        if confidence > .84:
+        if pause_after_correction and head is not None and choice != 0:
+            pause_until = frame + pause_after_correction - 1
+        write_permitted = frame > pause_until
+        if write_permitted:
+            updater.update(0, confidence, image, box)
+        if confidence > .84 and write_permitted:
             # Match the official online-mask plugin, which uses unadjusted params.
             d_params = get_siamfc_cropping_params(box, 2., template_size)
             d_mask = foreground_mask(box, d_params).to(device).unsqueeze(0)
@@ -127,7 +134,8 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
                              'valid': candidates['valid'][0].cpu().numpy().copy(),
                              'predicted_quality': predicted_quality.float().cpu().numpy().copy(),
                              'choice': np.array(choice, dtype=np.int64),
-                             'template_updated': np.array(confidence > .84)})
+                             'template_updated': np.array(confidence > .84 and write_permitted),
+                             'template_write_permitted': np.array(write_permitted)})
     updater.delete(0)
     updater.stop()
     post_process.stop()
@@ -138,6 +146,7 @@ def track_sequence(paths_v, paths_i, init_box, extractor, head, device, amp_dtyp
 
 def main():
     args = arguments()
+    assert args.pause_after_correction >= 0 and (args.pause_after_correction == 0 or args.variant == 'c1')
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -180,6 +189,7 @@ def main():
                            'smoke_only': bool(args.limit_sequences or args.max_frames or args.validation_split),
                            'head_epoch': checkpoint['epoch'] if head is not None else None,
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
+    config['template_write_policy'] = 'raw confidence > .84 AND outside a causal pause after C1 non-Hann selection; no GT validation'
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     torch.cuda.reset_peak_memory_stats(device)
     full_started = time.perf_counter()
@@ -197,7 +207,8 @@ def main():
             if args.max_frames:
                 visible, infrared = visible[:args.max_frames], infrared[:args.max_frames]
             timeline = [] if args.record_mechanisms else None
-            predictions, latencies, updates, switches = track_sequence(visible, infrared, init_box, extractor, head, device, dtype, timeline)
+            predictions, latencies, updates, switches = track_sequence(visible, infrared, init_box, extractor, head, device, dtype,
+                                                                      timeline, args.pause_after_correction)
             np.savetxt(out / f'{sequence.name}.txt', predictions, delimiter='\t', fmt='%.3f')
             np.save(out / f'{sequence.name}_latency.npy', latencies)
             if timeline is not None:

@@ -1,0 +1,57 @@
+{
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "kind": "SOURCE_AND_CPU_MOCK",
+  "gpu_or_optimizer_used": false,
+  "pause0_old_head_parity": "PASS: baseline/C1 each with and without candidate timeline; all predictions, original candidate fields, calls, writes, masks, and forward memory equal",
+  "pause3_causal_boundaries": {
+    "status": "PASS",
+    "permission": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "pixel_writes": [
+      1,
+      7,
+      12
+    ],
+    "mask_writes": [
+      1,
+      7,
+      12
+    ],
+    "provider_updates": 12,
+    "cases": [
+      "current + next2 blocked",
+      "frame4 repeat extends through frame6",
+      "frame7 first allowed",
+      "low-confidence frame8 correction still blocks through frame10",
+      "frame11 confidence=.84 does not write",
+      "frame12 writes",
+      "template pixels and mask agree in every next forward"
+    ]
+  },
+  "summarize_write_contract": {
+    "status": "PASS",
+    "rejected": [
+      "missing-explicit-permission",
+      "wrong-write-flag",
+      "integer-permission",
+      "wrong-permission-length"
+    ],
+    "legacy_missing_field_accepted_under_old_contract": true,
+    "init_and_unknown_excluded": true
+  },
+  "gt_causality_main": "PASS: actual main accepts corrupted future GT identically and passes only first row in XYXY to track_sequence; no GPU/model forward in this probe",
+  "status": "PASS"
+}

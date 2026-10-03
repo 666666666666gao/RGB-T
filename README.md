@@ -62,7 +62,7 @@ provenance/forecast diagnostics passed source review and GPU correspondence.
 Sampling uses full causal prefixes and batch32. Full98TRAIN-held-out videos
 (49418frames each) compare initial, trained last and trained box-only online;
 checkpoint selection uses sequence-weighted IoU before official tests. All98 videos are complete: initial .737194672342, trained last .739523904518, last box-only .738778577820. Epoch30 was locked before official testing; these are internal localization diagnostics, not PR/SR or a baseline improvement.
-The full ABC and matched box-only evaluations use both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full RGBT234 ABC results are now complete and negative; LasHeR ABC results remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
+The full ABC and matched box-only evaluations use both core benchmarks, with native scores/all attributes/sequences/curves/events, branch and slot provenance, forecast calibration, complete costs and paired uncertainty. The complete98 internal report shows last-minus-initial +0.232923pp (95% paired CI [-0.345903,0.896431]) and last-minus-box +0.074533pp ([-0.210859,0.423822]); both include zero, and some repair diagnostics worsen. [All internal metrics and events](refine-logs/runs/abc_internal_full_report.json) and [every internal sequence](refine-logs/runs/abc_internal_per_sequence.csv) retain the negative results. Full RGBT234 ABC results are now complete and negative; LasHeR native ABC scores are now 76.757374 PR / 73.319447 NPR / 61.060039 SR, only +0.158925/+0.217474/+0.022614pp over local GOLA. Its complete mechanism/state/uncertainty report markers remain pending. The target is +2pp on all five overall native metrics. Existing v1 artifacts and initial C3
 negative results are retained as history. Six full internal zero-head control
 videos (1401 frames) had exactly equal raw trajectories after the minimal
 float32 box-scaling correction; this limited control is not a full benchmark
@@ -360,3 +360,15 @@ python ../profile_model.py GOLA dinov2 --mixin_config large --device cuda  # GOL
   year={2026}
 } 
 ```
+
+The complete25 validation candidate-missing queries show dense256 correct boxes
+in10 cases but zero local-peak/Top5/Top16 recall. Fixed six extra-search alternatives
+recover1–3 correct candidates each; old C1 selection accepts almost none.
+This is GT-selected offline diagnosis, not tracking efficacy or harm evidence.
+[Actual25-query visual audit](refine-logs/runs/abc_budgeted_search/validation_full.json).
+The C1 three-frame post-correction write pause passed fresh-context CPU review
+and genuine1935-frame GPU M0: pause0 exactly matches old predictions/candidate
+fields; pause3 actually withholds one high-confidence write. All98 full-video
+pause3 controls are running; safety and efficacy are not established.
+[Source review](refine-logs/runs/abc_pause_write_source_review.json),
+[actual GPU parity/write proof](refine-logs/runs/abc_pause_write_m0_review.json).

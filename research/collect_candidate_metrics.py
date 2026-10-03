@@ -33,7 +33,7 @@ def ground_truth(root, name, dataset):
             for modality in ('visible', 'infrared')}
 
 
-def summarize(timeline, predictions, gt, dataset):
+def summarize(timeline, predictions, gt, dataset, write_permission=None):
     boxes = timeline['boxes_xyxy'].copy()
     boxes[:, :, 2:] -= boxes[:, :, :2]
     n, k, _ = boxes.shape
@@ -63,7 +63,11 @@ def summarize(timeline, predictions, gt, dataset):
     rescuable = original_failed & recalled
     rescued = rescuable & (chosen_quality >= .5)
     updates = timeline['template_updated']
-    assert np.array_equal(updates, timeline['evidence'][np.arange(n), choice, 0] > .84)
+    expected_updates = timeline['evidence'][np.arange(n), choice, 0] > .84
+    if write_permission is not None:
+        assert write_permission.shape == (n,) and write_permission.dtype == np.bool_
+        expected_updates &= write_permission
+    assert np.array_equal(updates, expected_updates)
     wrong_updates = updates & chosen_failed
     # Before-frame active template source: first-frame initialization is valid;
     # an unannotated update makes its source quality unknown, not a negative.
