@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T15:17:41.674201+08:00",
+  "reviewer_agent": "/root/current_policy_completion_audit_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "underlying_runtime_model_independently_certified": false,
+    "provenance": "Delegator reports accepted Astra/max fresh independent-context invocation. Same model family; underlying runtime identity is not independently certified."
+  },
+  "scope": "SOURCE ONLY review of four prepared actual-completion audit helpers and the four-factor closure. Bounded CPU synthetic fixtures and syntax/source checks. No actual M0/full-fit/full98/native acceptance.",
+  "readiness": "Reviewed helpers may be staged. Execute actual fit acceptance only after corresponding real 60-epoch fits; full98 acceptance additionally requires the actual fit audit and complete full98 reports. Execute closure only after both pairs have actual fit and full98 PASS receipts.",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "helper_patches": [],
+  "reviewed_helper_sha256": {
+    "oracle_actual_full_fit_cpu_audit.py": "9c23f7fa5ceca31276e3acdbdfe2530531639ba96e336f489ddab0ce83ff68cd",
+    "oracle_actual_full98_cpu_audit.py": "1074108f0df17fa795fb5b652693f882cc43a62b9d2e2cd52202f2fa997b0022",
+    "selector_actual_full_fit_cpu_audit.py": "f60efbb10b4331df3c60644037d00089eecccde9f361dd2e745ca304eda43ccc",
+    "selector_actual_full98_cpu_audit.py": "cb44043fd58b4db0059140db0504d834dfd65cc3d915e965c70152cf5f6b0928",
+    "four_factor_closure.py": "0bf276a1858ff1004328c69c7297f7c94a31b09b66107c4bf23868bfebe29c08"
+  },
+  "source_findings": [
+    "All oracle helper functions have exactly the accepted warm-predecessor ASTs. Selector full-fit differs only in its mode-specific review, acceptance, audit, runner/output paths and search supervision; shared private source and cache remain common. Selector full98 differs only in its mode-specific paths and labels.",
+    "The source-review hash lookup is verification.local_remote_source_bytes_equal for both modes. Both actual review files, both private runners, trainer/modules and all hard-coded main-source checks match the expected bytes. No private/main model class or running queue was edited.",
+    "Producer prefix epoch25 remains distinct from training initialization epoch4 and protected old4 SHA a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72. Full-fit checks retain the paired902TRAIN/128VAL gate, original disjoint881/98 sequences and matched per-teacher cache/job manifests.",
+    "Full-fit helpers require their own actual paired3-epoch/9-update M0 receipt and extracted full-runner guard. Full60 epochs, B384, seed42, 180 updates, lr/decay1e-4, threshold.03, budgeted action ranking, action write verification and no calibration remain checked. A single best seed/checkpoint is sufficient; no multi-seed gate was added.",
+    "Strict first-maximum cache selection includes epoch0. Epoch0 is explicitly parent behavior rather than new learning. The future actual helpers require all25 model states with8 exact frozenC1 states, source-linked terminalABC update evidence, parent128VAL replay and selected-best21-field replay. This reviewer did not run those neural replays.",
+    "Both full98 scripts exactly match runner output labels, paths and ordered references: baseline, c1, protected globalold4, then matched original-warm teacher. Each pair has7 total audited prediction sets and5x98 CSV rows per new report; no newly running cell is used as a reference.",
+    "Full98 metric functions use independent NumPy geometry, knownGT masks, first-frame exclusion, strictIoU<.2 failure and IoU>=.5 recovery confirmation, with unknownGT resetting streaks. Actual proposal/search/write/lineage counters and descriptive latency are recomputed; existing collector metric functions are not invoked.",
+    "All98 per-sequence results and seed42 paired5000 sequence intervals are checked against reports. Internal meanIoU is not native SR, and no LasHeR245 or RGBT234 native accuracy is accepted by these helpers.",
+    "Four-factor closure consumes both pairs of actual fit/full98 receipts and audited per-sequence tables, checks98 names, means and identical shared references, and computes4 factor contrasts plus12 comparisons against old4/GOLA/C1. It only nominates the best current checkpoint if its internal mean exceeds old4; it neither launches native evaluation nor promotes a checkpoint nor claims the all-five+2pp goal.",
+    "Full98 output attributes actual execution to/root and source review as requested Astra/max, with no independent runtime-model certification. Source review remains same-family/provisional."
+  ],
+  "verification": {
+    "status": "PASS_SOURCE_AND_BOUNDED_CPU_FIXTURES_ONLY",
+    "helper_sha256": {
+      "oracle_actual_full_fit_cpu_audit.py": "9c23f7fa5ceca31276e3acdbdfe2530531639ba96e336f489ddab0ce83ff68cd",
+      "oracle_actual_full98_cpu_audit.py": "1074108f0df17fa795fb5b652693f882cc43a62b9d2e2cd52202f2fa997b0022",
+      "selector_actual_full_fit_cpu_audit.py": "f60efbb10b4331df3c60644037d00089eecccde9f361dd2e745ca304eda43ccc",
+      "selector_actual_full98_cpu_audit.py": "cb44043fd58b4db0059140db0504d834dfd65cc3d915e965c70152cf5f6b0928",
+      "four_factor_closure.py": "0bf276a1858ff1004328c69c7297f7c94a31b09b66107c4bf23868bfebe29c08"
+    },
+    "checks": {
+      "all_five_remote_CPU_compile": true,
+      "selector_exact_scoped_replacements": true,
+      "oracle_all_function_ASTs_equal_to_accepted_predecessors": true,
+      "actual_private_main_and_review_source_hashes_preserved": true,
+      "both_runner_label_root_and_ordered_four_reference_contracts": true,
+      "data_prefix25_and_training_parent4_distinct": true,
+      "CPU_replay_call_contract_no_neural_execution_and_metric_tolerance": true,
+      "180_update_arithmetic_and_strict_first_max_best_selection": true,
+      "independent_IoU_and_six_failure_recovery_threshold_unknownGT_fixtures": true,
+      "six_frame_actual_action_counters_and_template_lineage": {
+        "counters_checked": 30,
+        "supplemental_checked": 5,
+        "broken_lineage_cases_rejected": 2
+      },
+      "synthetic_files_only_closure": {
+        "positive_candidate_and_all16_manual5000_bootstrap_pairs": true,
+        "all_four_below_old4_no_candidate": true,
+        "mismatched_audited_mean_rejected": true,
+        "pending_fit_acceptance_rejected": true
+      }
+    },
+    "actual_remote_source_sha256": {
+      "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/train_recoverability.py": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+      "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+      "/data/gb/experiments/recoverability_current_policy_fit_20261004/scripts/run_recoverability_current_policy_fit.sh": "906ba8b46e245c90844d2a45985f32f06dbea658fdbbc04b42f9762743e1352c",
+      "/data/gb/GOLA/research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+      "/data/gb/GOLA/research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+      "/data/gb/GOLA/research/collect_candidate_metrics.py": "ae88efa107728894b2322c3e9da50b72e1eefcd31e587dba2e5088255dd2c600",
+      "/data/gb/GOLA/research/collect_abc_metrics.py": "cc75ef35f74c0c34080964787328c45db495431ab6fe2b498ce16d70c0d1aea9",
+      "/data/gb/GOLA/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+      "/data/gb/GOLA/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+      "/data/gb/experiments/recoverability_current_policy_fit_20261004/scripts/run_recoverability_current_policy_selector_fit.sh": "e56b6211d49b5e459ace8ec4d45320d0e33dd939d4cdb18443a5ed98447a9beb",
+      "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+      "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158"
+    },
+    "scope": "Static source review and synthetic CPU math/files only. No real completion audit, M0, full fit, full98 or native acceptance.",
+    "execution": {
+      "remote_python": "/data/gb/envs/gola/bin/python",
+      "torch_imported": false,
+      "NN_forward": 0,
+      "optimizer_steps": 0,
+      "GPU_queries": 0,
+      "power_temperature_queries": 0,
+      "process_signals": 0,
+      "weights_read": false,
+      "weights_modified": false,
+      "production_sources_modified": false,
+      "actual_completion_audits_executed": 0,
+      "runtime_seconds": 1.295
+    }
+  },
+  "fixture_harness_corrections": [
+    "The first diagnostic execution hid captured SSH stderr through CalledProcessError; the reviewer harness now reports the actual stderr on nonzero exit.",
+    "A bounded knownGT fixture initially passed a Python list to a function whose real input is a NumPy array. The fixture was corrected to a NumPy array and all checks passed. None of the five production helpers changed."
+  ],
+  "limits": [
+    "No complete new collection, new M0 training, full-fit completion, full98 result or native accuracy was established by this review. Active work was not polled.",
+    "Full-fit CPU replay correctness is source-reviewed and its call contract is exercised with a recorder stub only. Actual retained checkpoints and128VAL caches were not read by this reviewer.",
+    "Mechanism fixtures are six synthetic tracking frames; closure fixtures are synthetic98-row CSV files in a temporary CPU-only directory. They test program behavior and are not experimental results.",
+    "The focused full98 helper retains its stated limits: memoryEMA mass, quality bins and motion calibration are not independently recomputed; GT localization proxies do not establish semantic identity or independent rollout causality.",
+    "Sequence bootstrap does not represent training-seed uncertainty. One successful checkpoint remains sufficient for the user objective; same-checkpoint full native all-five+2pp requires separate evidence."
+  ],
+  "prepared_remote_destination": "/data/gb/setup/current_policy_completion_review",
+  "reviewer_execution": {
+    "torch_imported": false,
+    "NN_forward": 0,
+    "GPU_queries": 0,
+    "power_temperature_queries": 0,
+    "optimizer_steps": 0,
+    "training_or_inference_jobs_started": 0,
+    "process_signals": 0,
+    "weights_read": false,
+    "weights_modified_or_deleted": false,
+    "production_sources_modified": false,
+    "actual_completion_audits_executed": 0,
+    "git_staged_or_pushed": false
+  },
+  "staging_verification": {
+    "destination": "/data/gb/setup/current_policy_completion_review",
+    "staged_after_source_PASS": true,
+    "all_helper_fixture_and_code_bytes_equal": true,
+    "remote_sha256": {
+      "oracle_actual_full_fit_cpu_audit.py": "9c23f7fa5ceca31276e3acdbdfe2530531639ba96e336f489ddab0ce83ff68cd",
+      "oracle_actual_full98_cpu_audit.py": "1074108f0df17fa795fb5b652693f882cc43a62b9d2e2cd52202f2fa997b0022",
+      "selector_actual_full_fit_cpu_audit.py": "f60efbb10b4331df3c60644037d00089eecccde9f361dd2e745ca304eda43ccc",
+      "selector_actual_full98_cpu_audit.py": "cb44043fd58b4db0059140db0504d834dfd65cc3d915e965c70152cf5f6b0928",
+      "four_factor_closure.py": "0bf276a1858ff1004328c69c7297f7c94a31b09b66107c4bf23868bfebe29c08",
+      "completion_audit_cpu_fixture_receipt.json": "72506a465e1f7ae2b36e3e4350f78394c15b7a4b2d3ef40dcd377ec56227ca37",
+      "completion_audit_source_checks.py": "2ef6a0a673976d48e3df831f3dbcd38e320f345f42628d57dbcc10eabf17daaa"
+    },
+    "actual_helpers_executed": false
+  }
+}

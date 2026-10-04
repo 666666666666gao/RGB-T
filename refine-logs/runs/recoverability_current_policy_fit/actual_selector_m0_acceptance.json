@@ -1,0 +1,460 @@
+{
+  "status": "PASS",
+  "both_teacher_arms_passed": true,
+  "batch_size": 384,
+  "optimizer_steps_per_arm": 9,
+  "epochs_per_arm": 3,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Delegator reports successful requested spawn metadata. Independent context, same model family; no independent certification of the underlying runtime model.",
+    "review_turn": "Explicit follow-up to the existing independent-context review agent; no new runtime-model certification."
+  },
+  "accepted_at_cst": "2026-10-04T15:33:45.447422+08:00",
+  "scope": "Actual completed current-policy M0 CPU acceptance; permits separately authorized 60-epoch/180-update full fits but launches none. No online or native accuracy claim.",
+  "source_review": "/data/gb/setup/current_policy_selector_fit_source_review_20261004.json",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/train_recoverability.py": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/scripts/run_recoverability_current_policy_selector_fit.sh": "e56b6211d49b5e459ace8ec4d45320d0e33dd939d4cdb18443a5ed98447a9beb",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158"
+  },
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/recoverability_modules.py"
+  ],
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "parent_epoch": 4,
+  "actual_roots": {
+    "c1": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_m0_20261004",
+    "own": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_m0_20261004"
+  },
+  "best_epochs": {
+    "c1": 0,
+    "own": 0
+  },
+  "arms": {
+    "c1": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_m0_20261004",
+      "completed_at": "2026-10-04T15:30:51+08:00",
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "actual_module_updates_vs_loaded_parent": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_update_evidence": "Unchanged audited trainer snapshots ABC after parent load; its terminal changed flags are true, with 9 AdamW updates and finite positive A/B/C gradients on all six logged first/last steps. Terminal weights are not separately retained.",
+      "max_module_gradient_norms": {
+        "A": 0.0938296690583229,
+        "B": 8.065409660339355,
+        "C": 1.5719096660614014
+      },
+      "C1_frozen_runtime_and_all8_retained_tensors_exact": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "strict25_tensor_CPU_load": true,
+      "config_initial_checkpoint_epoch": 4,
+      "config_full_TRAIN_VAL_initial_parity": false,
+      "CPU_initial_VAL128_parity": false,
+      "epoch0_metrics_reproduced_from_parent_on_VAL128": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_ABC_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "all4_epoch_metrics_and_strict_best_selection_exact": true,
+      "all21_cached_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.4467724561691284,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7383785247802734,
+        "utility": 0.7383785247802734,
+        "c1_utility": 0.7383668422698975,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "epoch_utility": [
+        0.7383785247802734,
+        0.7369488477706909,
+        0.7369488477706909,
+        0.7369488477706909
+      ],
+      "artifact_sha256": {
+        "config.json": "f63e02aed3f2e3c869a18d448f8584226794757bca56fb9e8d959082e91cebb5",
+        "completion.json": "7881acf440bacf5bf06443c5a893ffcf7a1904b90cc9506e9c3a97e18ea7a0c5",
+        "metrics.json": "aa83ef66329d5b97b8eb23e365a0503093f06d1acd50c01202f078d4d994381c",
+        "train.jsonl": "0cfec61d88e1a893403188b488e5fcf698c18d6c1b0be2fcc16af39b12e29b79",
+        "best.pth": "8ba6567c09da5dcd69f6d2d9de69a65789905a43c5e7e80111464e0af6a45ff5",
+        "best_validation.npz": "5fd13b37c65a1ee7d609a8be1bcfeaa7afce6cc29f939927bc4656957771b753",
+        "training_completed.txt": "4b21b81963eda469fa3ea7d604d0f25d4b3da2bdb4068900edae1752a7fc720c",
+        "job_completed.txt": "4b21b81963eda469fa3ea7d604d0f25d4b3da2bdb4068900edae1752a7fc720c"
+      },
+      "learning_gain_claimed": false
+    },
+    "own": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_m0_20261004",
+      "completed_at": "2026-10-04T15:30:52+08:00",
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "actual_module_updates_vs_loaded_parent": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_update_evidence": "Unchanged audited trainer snapshots ABC after parent load; its terminal changed flags are true, with 9 AdamW updates and finite positive A/B/C gradients on all six logged first/last steps. Terminal weights are not separately retained.",
+      "max_module_gradient_norms": {
+        "A": 0.09382595121860504,
+        "B": 8.065582275390625,
+        "C": 1.5566154718399048
+      },
+      "C1_frozen_runtime_and_all8_retained_tensors_exact": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "strict25_tensor_CPU_load": true,
+      "config_initial_checkpoint_epoch": 4,
+      "config_full_TRAIN_VAL_initial_parity": false,
+      "CPU_initial_VAL128_parity": false,
+      "epoch0_metrics_reproduced_from_parent_on_VAL128": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_ABC_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "all4_epoch_metrics_and_strict_best_selection_exact": true,
+      "all21_cached_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.4336048364639282,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7412313222885132,
+        "utility": 0.7412313222885132,
+        "c1_utility": 0.7412196397781372,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "epoch_utility": [
+        0.7412313222885132,
+        0.7401260137557983,
+        0.7401260137557983,
+        0.7401260137557983
+      ],
+      "artifact_sha256": {
+        "config.json": "ac25e9e7b9cf24f9bdeacf560ad563c52f1e5fc6755b489461002f1f5f37e660",
+        "completion.json": "f709cdc79983794f08e099b75f6284e25a2ba319c005371294b0396039e3c198",
+        "metrics.json": "dc5097471af6340bea42c3de72b7b6a56b68609e9824c3523a7c45334eb95664",
+        "train.jsonl": "db1ad659c9d9729bca78c5eee9f1f6fe7cfccbd898955ba072785306774aca32",
+        "best.pth": "e2e4666093cb6302f84bb66c2df652d7fe9942b858196aa48a47f2131e54e9d8",
+        "best_validation.npz": "8eecfcc33368f34f176454cd06e0758c4ef89f200bc992e49db487f1440c0dc3",
+        "training_completed.txt": "6154b881964430b7ecfa5a300e901442398bf04f4cb4916adfa1dff7dc7a69c9",
+        "job_completed.txt": "6154b881964430b7ecfa5a300e901442398bf04f4cb4916adfa1dff7dc7a69c9"
+      },
+      "learning_gain_claimed": false
+    }
+  },
+  "learning_gain_claimed": false,
+  "full_gate": {
+    "blocked_before_actual_acceptance": true,
+    "requires_real_both_teacher_PASS_batch384_9updates": true,
+    "acceptance_path": "/data/gb/setup/current_policy_selector_fit_m0_acceptance_20261004.json"
+  },
+  "limitations": [
+    "Epoch0 and selected-best numerical replay covers all128 VAL queries per teacher. The config's complete TRAIN+VAL initial parity is recorded; TRAIN embeddings were not reread.",
+    "Terminal ABC changes are evidenced by the source-linked runtime receipt and real logged optimization; selected-best parameter differences are independently computed from retained tensors.",
+    "GPU numerical outputs are compared on CPU using the existing 2e-6 scalar-metric tolerance and float32-epsilon row tolerance; all discrete fields must match exactly."
+  ],
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "TRAIN_embeddings_read": false,
+    "jobs_started": 0,
+    "weights_modified": false,
+    "deleted_or_other_M0_weights_read": false,
+    "production_source_modified": false,
+    "runtime_seconds": 6.171
+  }
+}

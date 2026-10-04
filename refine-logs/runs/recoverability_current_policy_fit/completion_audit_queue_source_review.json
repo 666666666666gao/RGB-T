@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T15:22:17.599027+08:00",
+  "reviewer_agent": "/root/current_policy_completion_audit_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "underlying_runtime_model_independently_certified": false,
+    "provenance": "Delegator reports accepted Astra/max fresh independent-context invocation. Same model family; underlying runtime identity is not independently certified."
+  },
+  "scope": "SOURCE ONLY and bounded mocked CPU control flow for the completion-audit queue. No actual coordinator, training, neural replay, complete-result audit or accuracy acceptance was executed.",
+  "readiness": "Queue source PASS for coordinator launch by the root with CUDA_VISIBLE_DEVICES empty, PYTHONPATH set to the accepted private source followed by/data/gb/GOLA, and OMP_NUM_THREADS=4. Actual downstream acceptance remains gated on real completion markers and the reviewed actual audit programs.",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "source_patches": [],
+  "queue_sha256": "26a518606baf6de3277c4c662bdee5be3849ec1de10a18d00a7e2a894428c999",
+  "queue_local_path": "D:\\Program Files\\UserCache\\gb\\codex_tmp\\gola_setup_20261002\\GOLA-source\\scripts\\queue_current_policy_completion_audits.py",
+  "queue_remote_path": "/data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
+  "dependency_source_review": "/data/gb/setup/current_policy_completion_review/completion_audit_source_review.json",
+  "reviewed_helper_sha256": {
+    "oracle_actual_full_fit_cpu_audit.py": "9c23f7fa5ceca31276e3acdbdfe2530531639ba96e336f489ddab0ce83ff68cd",
+    "oracle_actual_full98_cpu_audit.py": "1074108f0df17fa795fb5b652693f882cc43a62b9d2e2cd52202f2fa997b0022",
+    "selector_actual_full_fit_cpu_audit.py": "f60efbb10b4331df3c60644037d00089eecccde9f361dd2e745ca304eda43ccc",
+    "selector_actual_full98_cpu_audit.py": "cb44043fd58b4db0059140db0504d834dfd65cc3d915e965c70152cf5f6b0928",
+    "four_factor_closure.py": "0bf276a1858ff1004328c69c7297f7c94a31b09b66107c4bf23868bfebe29c08"
+  },
+  "findings": [
+    "The queue requires its own PASS/same-family/provisional source review and empty CUDA_VISIBLE_DEVICES before creating a unique pipeline directory. Existing pipeline directories are refused instead of restarted.",
+    "The four expected roots exactly match oracle/selector timesC1/own B384 full20261004 runner roots. Only filesystem terminal markers are polled, at240-second intervals; there are no hardware, power or temperature queries.",
+    "Both actual full-fit helpers run sequentially only after all4 training_completed.txt markers exist, under the accepted private cwd and exact remote Python. Their actual receipt statuses, both-teacher flags,60 epochs and180 updates are checked before progression.",
+    "Both actual full98 helpers wait for all4 job_completed.txt markers, which the reviewed runners write after full98 inference and report generation. They run with check=True, followed by the reviewed four-factor closure which itself validates both actual fit/full98 receipt pairs.",
+    "The terminal pipeline state and completion marker are written only after all5 checked helper subprocesses return successfully. A helper error or bad fit receipt stops subsequent stages and leaves no completion marker.",
+    "This script starts only the reviewed CPU audit processes. It contains no neural training/inference launch, native benchmark or checkpoint promotion, model-source write, process signal or weight deletion. CPU replay occurs only in the later real full-fit helpers and is not performed by this source reviewer."
+  ],
+  "verification": {
+    "status": "PASS_SOURCE_AND_MOCKED_QUEUE_FLOW_ONLY",
+    "queue_sha256": "26a518606baf6de3277c4c662bdee5be3849ec1de10a18d00a7e2a894428c999",
+    "remote_python": "/data/gb/envs/gola/bin/python",
+    "remote_compile": true,
+    "cases": {
+      "successful_stage_order": {
+        "status": "PASS",
+        "mocked_helper_calls": [
+          "oracle_actual_full_fit_cpu_audit.py",
+          "selector_actual_full_fit_cpu_audit.py",
+          "oracle_actual_full98_cpu_audit.py",
+          "selector_actual_full98_cpu_audit.py",
+          "four_factor_closure.py"
+        ],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ]
+        ],
+        "expected_stop": null,
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": true
+      },
+      "missing_fourth_training_marker": {
+        "status": "PASS",
+        "mocked_helper_calls": [],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ]
+        ],
+        "expected_stop": "EndFixture",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "oracle_fit_failure": {
+        "status": "PASS",
+        "mocked_helper_calls": [
+          "oracle_actual_full_fit_cpu_audit.py"
+        ],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ]
+        ],
+        "expected_stop": "CalledProcessError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "wrong_selector_fit_receipt": {
+        "status": "PASS",
+        "mocked_helper_calls": [
+          "oracle_actual_full_fit_cpu_audit.py",
+          "selector_actual_full_fit_cpu_audit.py"
+        ],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ]
+        ],
+        "expected_stop": "AssertionError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "oracle_full98_failure": {
+        "status": "PASS",
+        "mocked_helper_calls": [
+          "oracle_actual_full_fit_cpu_audit.py",
+          "selector_actual_full_fit_cpu_audit.py",
+          "oracle_actual_full98_cpu_audit.py"
+        ],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ]
+        ],
+        "expected_stop": "CalledProcessError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "closure_failure": {
+        "status": "PASS",
+        "mocked_helper_calls": [
+          "oracle_actual_full_fit_cpu_audit.py",
+          "selector_actual_full_fit_cpu_audit.py",
+          "oracle_actual_full98_cpu_audit.py",
+          "selector_actual_full98_cpu_audit.py",
+          "four_factor_closure.py"
+        ],
+        "mocked_sleeps": [
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_TRAINING_COMPLETIONS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ],
+          [
+            "WAIT_ALL4_FULL98_REPORTS",
+            240
+          ]
+        ],
+        "expected_stop": "CalledProcessError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "missing_source_review": {
+        "status": "PASS",
+        "mocked_helper_calls": [],
+        "mocked_sleeps": [],
+        "expected_stop": "FileNotFoundError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "source_review_not_PASS": {
+        "status": "PASS",
+        "mocked_helper_calls": [],
+        "mocked_sleeps": [],
+        "expected_stop": "AssertionError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "duplicate_pipeline": {
+        "status": "PASS",
+        "mocked_helper_calls": [],
+        "mocked_sleeps": [],
+        "expected_stop": "FileExistsError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      },
+      "nonempty_CUDA_environment": {
+        "status": "PASS",
+        "mocked_helper_calls": [],
+        "mocked_sleeps": [],
+        "expected_stop": "AssertionError",
+        "actual_completion_marker_written": false,
+        "synthetic_completion_marker_written": false
+      }
+    },
+    "scope": "Program executed only with synthetic temporary paths and mocked subprocess/sleep; no actual coordinator or helper launch.",
+    "execution": {
+      "actual_queue_launches": 0,
+      "actual_helper_executions": 0,
+      "actual_sleeps": 0,
+      "NN_forward": 0,
+      "optimizer_steps": 0,
+      "torch_imported": false,
+      "GPU_queries": 0,
+      "power_temperature_queries": 0,
+      "process_signals": 0,
+      "production_sources_modified": false,
+      "actual_outputs_changed": false,
+      "weights_read_or_modified": false
+    }
+  },
+  "limits": [
+    "All program executions in this review used temporary synthetic filesystem paths, mocked subprocess.run and mocked time.sleep. Real waits, actual markers and training progress were not polled.",
+    "No actual completion pipeline was launched by the reviewer. Real helper receipts and native all-five+2pp evidence remain pending.",
+    "The fresh independent-context review is same-family/provisional; requested Astra/max invocation metadata does not independently certify the runtime model."
+  ],
+  "reviewer_execution": {
+    "actual_queue_launches": 0,
+    "actual_helper_executions": 0,
+    "actual_sleeps": 0,
+    "NN_forward": 0,
+    "optimizer_steps": 0,
+    "torch_imported": false,
+    "GPU_queries": 0,
+    "power_temperature_queries": 0,
+    "process_signals": 0,
+    "production_sources_modified": false,
+    "actual_outputs_changed": false,
+    "weights_read_or_modified": false
+  },
+  "staging_verification": {
+    "staged_after_source_PASS": true,
+    "all_queue_fixture_and_code_bytes_equal": true,
+    "remote_sha256": {
+      "queue_current_policy_completion_audits.py": "26a518606baf6de3277c4c662bdee5be3849ec1de10a18d00a7e2a894428c999",
+      "completion_audit_queue_cpu_fixture_receipt.json": "ce69a09609b282203613d8c93ac8b5df22bf3aff9837e831b7eca0776d459ed0",
+      "completion_audit_queue_source_checks.py": "62bc481cd80a36893cb81bd9bd33e657f094095ab46e95a669421f0a39c9882e"
+    },
+    "actual_queue_launched": false
+  }
+}

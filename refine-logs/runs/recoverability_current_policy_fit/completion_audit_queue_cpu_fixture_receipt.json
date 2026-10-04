@@ -1,0 +1,198 @@
+{
+  "status": "PASS_SOURCE_AND_MOCKED_QUEUE_FLOW_ONLY",
+  "queue_sha256": "26a518606baf6de3277c4c662bdee5be3849ec1de10a18d00a7e2a894428c999",
+  "remote_python": "/data/gb/envs/gola/bin/python",
+  "remote_compile": true,
+  "cases": {
+    "successful_stage_order": {
+      "status": "PASS",
+      "mocked_helper_calls": [
+        "oracle_actual_full_fit_cpu_audit.py",
+        "selector_actual_full_fit_cpu_audit.py",
+        "oracle_actual_full98_cpu_audit.py",
+        "selector_actual_full98_cpu_audit.py",
+        "four_factor_closure.py"
+      ],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ]
+      ],
+      "expected_stop": null,
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": true
+    },
+    "missing_fourth_training_marker": {
+      "status": "PASS",
+      "mocked_helper_calls": [],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ]
+      ],
+      "expected_stop": "EndFixture",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "oracle_fit_failure": {
+      "status": "PASS",
+      "mocked_helper_calls": [
+        "oracle_actual_full_fit_cpu_audit.py"
+      ],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ]
+      ],
+      "expected_stop": "CalledProcessError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "wrong_selector_fit_receipt": {
+      "status": "PASS",
+      "mocked_helper_calls": [
+        "oracle_actual_full_fit_cpu_audit.py",
+        "selector_actual_full_fit_cpu_audit.py"
+      ],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ]
+      ],
+      "expected_stop": "AssertionError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "oracle_full98_failure": {
+      "status": "PASS",
+      "mocked_helper_calls": [
+        "oracle_actual_full_fit_cpu_audit.py",
+        "selector_actual_full_fit_cpu_audit.py",
+        "oracle_actual_full98_cpu_audit.py"
+      ],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ]
+      ],
+      "expected_stop": "CalledProcessError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "closure_failure": {
+      "status": "PASS",
+      "mocked_helper_calls": [
+        "oracle_actual_full_fit_cpu_audit.py",
+        "selector_actual_full_fit_cpu_audit.py",
+        "oracle_actual_full98_cpu_audit.py",
+        "selector_actual_full98_cpu_audit.py",
+        "four_factor_closure.py"
+      ],
+      "mocked_sleeps": [
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_TRAINING_COMPLETIONS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ],
+        [
+          "WAIT_ALL4_FULL98_REPORTS",
+          240
+        ]
+      ],
+      "expected_stop": "CalledProcessError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "missing_source_review": {
+      "status": "PASS",
+      "mocked_helper_calls": [],
+      "mocked_sleeps": [],
+      "expected_stop": "FileNotFoundError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "source_review_not_PASS": {
+      "status": "PASS",
+      "mocked_helper_calls": [],
+      "mocked_sleeps": [],
+      "expected_stop": "AssertionError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "duplicate_pipeline": {
+      "status": "PASS",
+      "mocked_helper_calls": [],
+      "mocked_sleeps": [],
+      "expected_stop": "FileExistsError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    },
+    "nonempty_CUDA_environment": {
+      "status": "PASS",
+      "mocked_helper_calls": [],
+      "mocked_sleeps": [],
+      "expected_stop": "AssertionError",
+      "actual_completion_marker_written": false,
+      "synthetic_completion_marker_written": false
+    }
+  },
+  "scope": "Program executed only with synthetic temporary paths and mocked subprocess/sleep; no actual coordinator or helper launch.",
+  "execution": {
+    "actual_queue_launches": 0,
+    "actual_helper_executions": 0,
+    "actual_sleeps": 0,
+    "NN_forward": 0,
+    "optimizer_steps": 0,
+    "torch_imported": false,
+    "GPU_queries": 0,
+    "power_temperature_queries": 0,
+    "process_signals": 0,
+    "production_sources_modified": false,
+    "actual_outputs_changed": false,
+    "weights_read_or_modified": false
+  }
+}

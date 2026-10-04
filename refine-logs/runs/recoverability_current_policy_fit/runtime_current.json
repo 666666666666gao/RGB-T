@@ -1,0 +1,222 @@
+{
+  "observed_at": "2026-10-04T15:37:39.161162+08:00",
+  "training_queue_state": {
+    "phase": "FULL_LAUNCHED",
+    "observed_at": "2026-10-04T15:33:46.060692+08:00",
+    "jobs": [
+      {
+        "mode": "oracle",
+        "policy": "c1",
+        "gpu": 0,
+        "session": "current_policy_oracle_c1_b384_full_20261004",
+        "pane_pid": 3835378,
+        "output": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
+        "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/oracle_c1_full.log"
+      },
+      {
+        "mode": "selector",
+        "policy": "c1",
+        "gpu": 1,
+        "session": "current_policy_selector_c1_b384_full_20261004",
+        "pane_pid": 3835384,
+        "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
+        "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/selector_c1_full.log"
+      },
+      {
+        "mode": "oracle",
+        "policy": "own",
+        "gpu": 2,
+        "session": "current_policy_oracle_own_b384_full_20261004",
+        "pane_pid": 3835390,
+        "output": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
+        "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/oracle_own_full.log"
+      },
+      {
+        "mode": "selector",
+        "policy": "own",
+        "gpu": 3,
+        "session": "current_policy_selector_own_b384_full_20261004",
+        "pane_pid": 3835396,
+        "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004",
+        "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/selector_own_full.log"
+      }
+    ]
+  },
+  "completion_queue_state": {
+    "phase": "WAIT_ALL4_TRAINING_COMPLETIONS",
+    "observed_at": "2026-10-04T15:23:41.950793+08:00"
+  },
+  "live_handles": [
+    "3817842 3817836       13:58  0.0  9216 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
+    "3835521 3835380       03:49  100 1206392 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
+    "3835522 3835392       03:49  100 1208972 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
+    "3835526 3835386       03:49  100 1208432 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
+    "3835530 3835399       03:49  100 1210300 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004"
+  ],
+  "gpu": "0, 20654, 100\n1, 20325, 100\n2, 20325, 100\n3, 20325, 100",
+  "fits": [
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_m0_20261004",
+      "policy": "c1",
+      "mode": "oracle",
+      "stage": "m0",
+      "training_complete": true,
+      "job_complete": true,
+      "latest_update": {
+        "epoch": 3,
+        "step": 3,
+        "optimizer_steps": 9,
+        "loss": 1.8137500286102295
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
+      "policy": "c1",
+      "mode": "oracle",
+      "stage": "full",
+      "training_complete": false,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 10,
+        "step": 3,
+        "optimizer_steps": 30,
+        "loss": 1.7094556093215942
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_m0_20261004",
+      "policy": "own",
+      "mode": "oracle",
+      "stage": "m0",
+      "training_complete": true,
+      "job_complete": true,
+      "latest_update": {
+        "epoch": 3,
+        "step": 3,
+        "optimizer_steps": 9,
+        "loss": 1.8023689985275269
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
+      "policy": "own",
+      "mode": "oracle",
+      "stage": "full",
+      "training_complete": false,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 10,
+        "step": 3,
+        "optimizer_steps": 30,
+        "loss": 1.7034332752227783
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_m0_20261004",
+      "policy": "c1",
+      "mode": "selector",
+      "stage": "m0",
+      "training_complete": true,
+      "job_complete": true,
+      "latest_update": {
+        "epoch": 3,
+        "step": 3,
+        "optimizer_steps": 9,
+        "loss": 1.4564499855041504
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
+      "policy": "c1",
+      "mode": "selector",
+      "stage": "full",
+      "training_complete": false,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 10,
+        "step": 3,
+        "optimizer_steps": 30,
+        "loss": 1.7941988706588745
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_m0_20261004",
+      "policy": "own",
+      "mode": "selector",
+      "stage": "m0",
+      "training_complete": true,
+      "job_complete": true,
+      "latest_update": {
+        "epoch": 3,
+        "step": 3,
+        "optimizer_steps": 9,
+        "loss": 1.446510910987854
+      }
+    },
+    {
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004",
+      "policy": "own",
+      "mode": "selector",
+      "stage": "full",
+      "training_complete": false,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 10,
+        "step": 3,
+        "optimizer_steps": 30,
+        "loss": 1.7879111766815186
+      }
+    }
+  ],
+  "m0_acceptances": {
+    "current_policy_fit": {
+      "status": "PASS",
+      "both_teacher_arms_passed": true,
+      "batch_size": 384,
+      "optimizer_steps_per_arm": 9,
+      "parent_epoch": 4
+    },
+    "current_policy_selector_fit": {
+      "status": "PASS",
+      "both_teacher_arms_passed": true,
+      "batch_size": 384,
+      "optimizer_steps_per_arm": 9,
+      "parent_epoch": 4
+    }
+  },
+  "cache_gate": {
+    "status": "PASS",
+    "matched_partitions": {
+      "train": 902,
+      "validation": 128
+    },
+    "all_non_future_arrays_exact": true,
+    "future_labels": {
+      "train": {
+        "future_iou": {
+          "different_elements": 8289,
+          "max_absolute_difference": 0.9877115488052368
+        },
+        "wrong_update_fraction": {
+          "different_elements": 81,
+          "max_absolute_difference": 0.5
+        }
+      },
+      "validation": {
+        "future_iou": {
+          "different_elements": 1224,
+          "max_absolute_difference": 0.979588508605957
+        },
+        "wrong_update_fraction": {
+          "different_elements": 4,
+          "max_absolute_difference": 0.25
+        }
+      }
+    },
+    "teacher_checkpoint_sha256": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62",
+    "training_started": false,
+    "official_goal_completed": false,
+    "next_gate": "matched B384 training sanity before full fit"
+  },
+  "collection_complete_artifacts": 16
+}
