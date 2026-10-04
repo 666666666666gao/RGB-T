@@ -6379,7 +6379,7 @@
     "environment": "/data/gb/envs/gola",
     "use_four_gpus_when_useful": true,
     "poll_seconds": 240,
-    "checkpoint_retention": "Only the validation-best checkpoint per meaningful independent experiment; protect pretrained and required frozen inputs and retain logs/predictions/metrics",
+    "checkpoint_retention": "Retain one overall best metrics checkpoint plus necessary frozen teachers/pretrained inputs. Keep temporary20/40/60 and cached best only until full98 selection and formal evaluation close; then remove our unselected/failed checkpoints after preserving metrics and checking live references.",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
     "repository": "https://github.com/666666666666gao/RGB-T",
     "gpu_assignment_cst_20261003_2234": {
@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Both original RGBT234 controls now running; no pending duplicate evaluator.",
+    "queued_successor": "Original controller632884 waits for all4 original TRAIN/VAL collections, then new-data M0, full60epoch ABC training, full98 continuous selection and both full native datasets. Actual new training is not started at 03:15:35.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6403,56 +6403,58 @@
     },
     "gpu_assignment_current": [
       {
-        "shard": "train0",
         "gpu": 0,
-        "runner_pid": 4157261,
-        "clips": 296,
-        "root": "/data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
-        "log": "/data/gb/setup/recoverability_best_policy_collect_train0_rest_20261004.log",
-        "actual_nn_pid": 4157273,
-        "actual_handle": "4157273 4157261       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train0_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
-        "configuration_sha256": "7cc3ce04f380577b4a7ec7f7c7d24499806ada5632ded39395f9e6b35f18f9d1",
-        "actual_gpu_env_exact": true,
-        "configuration_epoch4_prefix_and_future": true
+        "runner_pid": 561748,
+        "child_pid": 561756,
+        "child_state": "Rl",
+        "partition": "train",
+        "last_completed_clips": 440,
+        "full_train_count": 440,
+        "phase_supported_by_collector_source": "After full progress, samples.npz compressed export before completion receipt.",
+        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
       },
       {
-        "shard": "train1",
         "gpu": 1,
-        "runner_pid": 4157262,
-        "clips": 295,
-        "root": "/data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
-        "log": "/data/gb/setup/recoverability_best_policy_collect_train1_rest_20261004.log",
-        "actual_nn_pid": 4157274,
-        "actual_handle": "4157274 4157262       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train1_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
-        "configuration_sha256": "aaa499940a98672e59848f7fe0cba63987f65595e4301fead8a22e706eb3851b",
-        "actual_gpu_env_exact": true,
-        "configuration_epoch4_prefix_and_future": true
+        "runner_pid": 561749,
+        "child_pid": 561759,
+        "child_state": "Rl",
+        "partition": "train",
+        "last_completed_clips": 440,
+        "full_train_count": 440,
+        "phase_supported_by_collector_source": "After full progress, samples.npz compressed export before completion receipt.",
+        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
       },
       {
-        "shard": "validation",
         "gpu": 2,
-        "runner_pid": 4157263,
-        "clips": 112,
-        "root": "/data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
-        "log": "/data/gb/setup/recoverability_best_policy_collect_validation_rest_20261004.log",
-        "actual_nn_pid": 4157275,
-        "actual_handle": "4157275 4157263       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition validation --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_validation_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
-        "configuration_sha256": "9652cbf8292136be66cb7c14eaef7c1723f412b9026d8c21bede763906f6c68b",
-        "actual_gpu_env_exact": true,
-        "configuration_epoch4_prefix_and_future": true
+        "runner_pid": 561750,
+        "child_pid": 561757,
+        "child_state": "Rl",
+        "partition": "train",
+        "last_completed_clips": 432,
+        "full_train_count": 441,
+        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
       },
       {
-        "shard": "train2",
         "gpu": 3,
-        "runner_pid": 4157265,
-        "clips": 295,
-        "root": "/data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
-        "log": "/data/gb/setup/recoverability_best_policy_collect_train2_rest_20261004.log",
-        "actual_nn_pid": 4157276,
-        "actual_handle": "4157276 4157265       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train2_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
-        "configuration_sha256": "851861fc2c8c5b3955001e7079ac05ff118ad7f8ac03a056989962493931d7a8",
-        "actual_gpu_env_exact": true,
-        "configuration_epoch4_prefix_and_future": true
+        "runner_pid": 561752,
+        "child_pid": 716170,
+        "child_state": "Rl",
+        "partition": "validation",
+        "preceding_actual_train_completion": {
+          "completed": true,
+          "clips": 441,
+          "elapsed_seconds": 5293.0566265038215,
+          "original_correct_queries": 370,
+          "original_failed_queries": 47,
+          "original_candidate_present_queries": 379,
+          "actual_prefix_counts_sum": [
+            1201,
+            87,
+            172,
+            44125
+          ]
+        },
+        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
       }
     ],
     "gpu_memory_request": {
@@ -7118,7 +7120,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T03:02:19.432469+08:00",
+  "updated_cst": "2026-10-05T03:17:28.784077+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -7939,17 +7941,20 @@
     "pipeline_launch": "refine-logs/runs/recoverability_best_native_policy/actual_pipeline_launch.json",
     "controller_pid": 632884,
     "first_remote_completion_check_cst": "2026-10-05T03:00:00+08:00",
-    "next_goal_check_cst": "2026-10-05T03:15:00+08:00",
+    "next_goal_check_cst": "2026-10-05T03:30:00+08:00",
     "poll_interval_seconds": 180,
     "goal_performance_achieved": false,
-    "last_actual_observation_cst": "2026-10-05T03:00:01.575853+08:00",
-    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_milestone_observation_0300.json",
-    "train_collected": 1664,
+    "last_actual_observation_cst": "2026-10-05T03:15:35.571022+08:00",
+    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_milestone_observation_0315.json",
+    "train_collected": 1753,
     "train_total": 1762,
     "validation_total": 196,
     "new_training_started": false,
     "final_report_source_review": "refine-logs/runs/recoverability_best_native_policy/goal_report_source_review.json",
     "final_report_deployment": "refine-logs/runs/recoverability_best_native_policy/actual_goal_report_deployment.json",
-    "final_report_executed": false
+    "final_report_executed": false,
+    "phase_diagnostic": "refine-logs/runs/recoverability_best_native_policy/actual_collection_phase_diagnostic_0315.json",
+    "first_validation_collection_started": true,
+    "first_validation_gpu": 3
   }
 }
