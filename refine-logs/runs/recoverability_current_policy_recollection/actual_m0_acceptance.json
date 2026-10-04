@@ -1,0 +1,84 @@
+{
+  "status": "PASS_ACTUAL_MATCHED_M0",
+  "accepted_at": "2026-10-04T05:37:33.652052+00:00",
+  "prefix_model": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+  "prefix_checkpoint_epoch": 25,
+  "jobs": [
+    {
+      "sequence": "blackbagbike",
+      "query_frame": 16
+    },
+    {
+      "sequence": "girlumbrella",
+      "query_frame": 35
+    }
+  ],
+  "completed_policies": [
+    "c1",
+    "own"
+  ],
+  "outputs": {
+    "c1": "/data/gb/outputs/recoverability_current_policy_m0_20261004/c1",
+    "own": "/data/gb/outputs/recoverability_current_policy_m0_20261004/own"
+  },
+  "nonfuture_arrays_bitwise_equal": true,
+  "nonfuture_array_names": [
+    "action_valid",
+    "anchor_features",
+    "boxes",
+    "c1_quality",
+    "current_iou",
+    "evidence",
+    "features",
+    "history_boxes",
+    "history_descriptors",
+    "history_evidence",
+    "history_frames",
+    "history_instance_descriptors",
+    "history_iou",
+    "history_quality",
+    "history_valid",
+    "history_write",
+    "image_boxes",
+    "instance_features",
+    "modality_features",
+    "motion_log_weights",
+    "motion_means",
+    "motion_targets",
+    "original_choice",
+    "prefix_counts",
+    "raw_score",
+    "region_executed",
+    "requested_extra_crop_area",
+    "valid"
+  ],
+  "actual_prefix_counts_sum": {
+    "c1": [
+      0,
+      0,
+      0,
+      49
+    ],
+    "own": [
+      0,
+      0,
+      0,
+      49
+    ]
+  },
+  "pause_action_count": {
+    "c1": 11,
+    "own": 11
+  },
+  "future_iou_max_absolute_difference": 0.9088212847709656,
+  "wrong_update_fraction_max_absolute_difference": 0.0,
+  "scope": "MATCHED_FULL_COLLECTION_ONLY",
+  "source_review": "/data/gb/setup/recoverability_current_policy_recollection/source_review.json",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "state_distribution_shift_proven": false,
+  "tracking_accuracy_claim_allowed": false,
+  "full_training_allowed": false,
+  "optimizer_updates": 0,
+  "limits": "Two short TRAIN queries establish current-checkpoint CLI completion and paired inputs. Source review supplies unchanged causal step semantics; this CPU audit does not replay future boxes or prove broad state changes."
+}

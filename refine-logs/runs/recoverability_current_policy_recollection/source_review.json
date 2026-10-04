@@ -1,0 +1,88 @@
+{
+  "status": "PASS_SOURCE_ONLY",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_scope": "Fresh source and checkpoint-input review of the existing collector; implementation and self-review of this minimal runner and CPU acceptance helper. No new real M0 has been executed by this reviewer.",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "delegator_reported_invocation_accepted": true,
+    "underlying_runtime_model_independently_verified": false
+  },
+  "blocking_source_findings": [],
+  "original_prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "original_prefix_checkpoint_epoch": 4,
+  "current_prefix_model": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+  "current_prefix_checkpoint_epoch": 25,
+  "current_checkpoint_is_protected_candidate_not_promoted_global_best": true,
+  "original_jobs_directory": "/data/gb/setup/recoverability_future_policy_jobs_20261004",
+  "isolated_source_directory": "/data/gb/setup/future_policy_review_source",
+  "remote_review_directory": "/data/gb/setup/recoverability_current_policy_recollection",
+  "source_input_audit": "source_input_audit.json",
+  "actual_source_findings": [
+    "The isolated collector, tracker, trainer and evaluator are byte-equal to their /data/gb/GOLA/research counterparts at this review. No active main source was modified.",
+    "The warm module source differs from main only at new budgeted_winner_loss and changed objective top-level definitions. InstanceMemory and RecoverabilityModules class ASTs, select_actions, trainer forward, and all other top-level module AST nodes are unchanged.",
+    "The collector checks ABC_recoverability and strictly loads prefix state without restricting prefix epoch to 4. CPU reads establish current epoch25, equal 25 tensor keys/shapes/dtypes, all17 ABC tensors changed and eight C1 tensors equal to old4.",
+    "Prefix frames execute RecoverabilityTracker.step. Both teacher arms share identical current25 prefix, jobs, frozen C1 head, motion model, query observations, seed and serial batch settings.",
+    "Own future branches copy private history, commit the query through accept_observation, and execute the same deployed shadow.step on query+1..query+3. C1 future uses unchanged observe_actions/_advance with the fixed C1 head.",
+    "Decision arrays are copied before future decoding; later GT is used only for labels. Tracking actions receive images and model state, not future GT.",
+    "The existing check_recoverability_future_policy.py hard-codes checkpoint epoch4; its old runtime PASS is inherited causal source evidence, not this current25 M0 acceptance.",
+    "Existing loader deduplicates identical sequence/query/prefix-policy entries. This factor replaces current-policy states only and makes no DAgger aggregation claim."
+  ],
+  "collection_factor": "Replace old4 prefix state generator with current own25, and consequently use own25 for the own continuation. Keep the two teacher modes, architecture, selection/write rules, exact jobs and collection budget unchanged.",
+  "collection_settings": {
+    "future_policies": ["c1", "own"],
+    "batch_clips": 1,
+    "forward_batch": 1,
+    "max_prefix": 1024,
+    "seed": 42,
+    "prefix_write_verification": "action",
+    "threshold_from_checkpoint": 0.03,
+    "expected_train_jobs_per_teacher": 902,
+    "expected_validation_jobs_per_teacher": 128,
+    "train_shard_counts": [225, 226, 225, 226],
+    "validation_shard_counts": [32, 32, 32, 32],
+    "exact_original_sequence_query_ids_verified": true,
+    "new_sampler_loader_or_data_schema": false,
+    "old_caches_and_negative_results_preserved": true
+  },
+  "m0": {
+    "status": "PENDING_REAL_EXECUTION",
+    "jobs_file": "m0_jobs.json",
+    "partition": "train",
+    "jobs": [
+      {"sequence": "blackbagbike", "query_frame": 16},
+      {"sequence": "girlumbrella", "query_frame": 35}
+    ],
+    "job_selection": "First two existing ordered TRAIN jobs with query<=64, without score or label filtering.",
+    "outputs": {
+      "c1": "/data/gb/outputs/recoverability_current_policy_m0_20261004/c1",
+      "own": "/data/gb/outputs/recoverability_current_policy_m0_20261004/own"
+    },
+    "acceptance_helper": "actual_m0_cpu_audit.py",
+    "acceptance_receipt": "/data/gb/setup/recoverability_current_policy_recollection/actual_m0_acceptance.json",
+    "required_acceptance_status": "PASS_ACTUAL_MATCHED_M0",
+    "acceptance_scope": "MATCHED_FULL_COLLECTION_ONLY",
+    "limits": "Short matched TRAIN M0 checks actual CLI completion, current25 identity, causal history indices, legal actions and exact paired nonfuture arrays. It does not replay future GT boxes, prove broad state shift, establish accuracy, or approve training. Zero prefix interventions remain a valid M0 with an explicit lack of distribution-shift evidence."
+  },
+  "full_entry_gate": "Runner requires this source PASS and a newly generated actual_m0_acceptance.json with exact current25 path/epoch, identical M0 jobs, both completed teachers, bitwise paired nonfuture arrays and collection-only scope. The old epoch4 PASS cannot satisfy this gate.",
+  "full_output_pattern": "/data/gb/outputs/recoverability_current_policy_{c1|own}_{train|validation}_shard{0..3}_20261004",
+  "validation": {
+    "runner_bash_syntax": "PASS",
+    "cpu_acceptance_helper_ast": "PASS",
+    "entry_guard_cpu_fixture_status": "PASS_CPU_GUARD_FIXTURES_ONLY",
+    "entry_guard_cpu_fixture_receipt": "entry_guard_cpu_fixture_receipt.json",
+    "gpu_execution_by_reviewer": false,
+    "model_instantiation_by_reviewer": false,
+    "full_collection_launched": false,
+    "training_launched": false
+  },
+  "parent_launch_commands_after_deployment": [
+    "bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 m0",
+    "bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own m0",
+    "/data/gb/envs/gola/bin/python /data/gb/setup/recoverability_current_policy_recollection/actual_m0_cpu_audit.py"
+  ],
+  "future_full_invocation_after_actual_m0_pass": "bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh GPU POLICY SHARD",
+  "later_training_boundary": "Training source review, actual training M0, protected-parent choice and matched B384/60epoch/180update budget remain separate. This receipt launches or authorizes no training.",
+  "goal_status": "ALL_FIVE_NATIVE_METRICS_PLUS_2PP_UNMET"
+}

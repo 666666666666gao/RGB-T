@@ -1,0 +1,262 @@
+{
+  "status": "PASS_CPU_SOURCE_AND_INPUT_REVIEW",
+  "observed_at_utc": "2026-10-04T05:26:25.084733+00:00",
+  "isolated_main_source_comparisons": {
+    "collect_recoverability.py": {
+      "isolated_path": "/data/gb/setup/future_policy_review_source/collect_recoverability.py",
+      "main_path": "/data/gb/GOLA/research/collect_recoverability.py",
+      "bytes_equal": true
+    },
+    "recoverability_tracker.py": {
+      "isolated_path": "/data/gb/setup/future_policy_review_source/recoverability_tracker.py",
+      "main_path": "/data/gb/GOLA/research/recoverability_tracker.py",
+      "bytes_equal": true
+    },
+    "train_recoverability.py": {
+      "isolated_path": "/data/gb/setup/future_policy_review_source/train_recoverability.py",
+      "main_path": "/data/gb/GOLA/research/train_recoverability.py",
+      "bytes_equal": true
+    },
+    "evaluate_recoverability.py": {
+      "isolated_path": "/data/gb/setup/future_policy_review_source/evaluate_recoverability.py",
+      "main_path": "/data/gb/GOLA/research/evaluate_recoverability.py",
+      "bytes_equal": true
+    }
+  },
+  "warm_main_architecture_comparisons": {
+    "recoverability_modules.py": {
+      "main_path": "/data/gb/GOLA/research/recoverability_modules.py",
+      "warm_path": "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/recoverability_modules.py",
+      "classes_ast_equal": [
+        "InstanceMemory",
+        "RecoverabilityModules"
+      ],
+      "functions_ast_equal": [
+        "select_actions"
+      ],
+      "whole_source_bytes_equal": false
+    },
+    "train_recoverability.py": {
+      "main_path": "/data/gb/GOLA/research/train_recoverability.py",
+      "warm_path": "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/train_recoverability.py",
+      "classes_ast_equal": [],
+      "functions_ast_equal": [
+        "forward"
+      ],
+      "whole_source_bytes_equal": false
+    }
+  },
+  "checkpoints": {
+    "old_prefix": {
+      "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "epoch": 4,
+      "module": "ABC_recoverability",
+      "tensor_count": 25,
+      "actual_training_args": {
+        "train": [
+          "/data/gb/outputs/recoverability_train_s42_20261003",
+          "/data/gb/outputs/recoverability_train_s43_20261003",
+          "/data/gb/outputs/recoverability_train_s44_20261003",
+          "/data/gb/outputs/recoverability_own_policy_train_20261003"
+        ],
+        "validation": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+        "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "output": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
+        "epochs": 60,
+        "batch_size": 384,
+        "lr": 0.0001,
+        "weight_decay": 0.0001,
+        "threshold": 0.03,
+        "search_supervision": "oracle",
+        "action_ranking": "pairwise",
+        "write_verification": "action",
+        "write_pair_calibration": false,
+        "seed": 42,
+        "prefer_last_prefix": true
+      }
+    },
+    "current_prefix": {
+      "path": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+      "epoch": 25,
+      "module": "ABC_recoverability",
+      "tensor_count": 25,
+      "actual_training_args": {
+        "train": [
+          "/data/gb/outputs/recoverability_future_policy_merged_20261004/own/train"
+        ],
+        "validation": "/data/gb/outputs/recoverability_future_policy_merged_20261004/own/validation",
+        "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "output": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004",
+        "epochs": 60,
+        "batch_size": 384,
+        "lr": 0.0001,
+        "weight_decay": 0.0001,
+        "threshold": 0.03,
+        "search_supervision": "oracle",
+        "action_ranking": "budgeted",
+        "write_verification": "action",
+        "write_pair_calibration": false,
+        "seed": 42,
+        "prefer_last_prefix": false
+      }
+    }
+  },
+  "checkpoint_keys_shapes_dtypes_equal": true,
+  "changed_abc_tensor_names": [
+    "memory.target_keys",
+    "memory.projection.0.weight",
+    "memory.projection.0.bias",
+    "memory.projection.1.weight",
+    "memory.projection.1.bias",
+    "memory.gate.0.weight",
+    "memory.gate.0.bias",
+    "memory.gate.2.weight",
+    "memory.gate.2.bias",
+    "action.0.weight",
+    "action.0.bias",
+    "action.2.weight",
+    "action.2.bias",
+    "search.0.weight",
+    "search.0.bias",
+    "search.2.weight",
+    "search.2.bias"
+  ],
+  "frozen_c1_tensors_equal": 8,
+  "jobs": {
+    "train": {
+      "total_jobs": 902,
+      "unique_sequence_query_ids": 902,
+      "same_original_job_ids": true,
+      "original_jobs_path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/train.json",
+      "shards": {
+        "train_shard0.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard0.json",
+          "jobs": 225,
+          "first_job": {
+            "sequence": "AQmanfromdarktrees",
+            "query_frame": 248
+          },
+          "last_job": {
+            "sequence": "huggirl",
+            "query_frame": 271
+          }
+        },
+        "train_shard1.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard1.json",
+          "jobs": 226,
+          "first_job": {
+            "sequence": "whitegirl",
+            "query_frame": 672
+          },
+          "last_job": {
+            "sequence": "shunfengtribike",
+            "query_frame": 66
+          }
+        },
+        "train_shard2.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard2.json",
+          "jobs": 225,
+          "first_job": {
+            "sequence": "basketballatboysrighthand",
+            "query_frame": 409
+          },
+          "last_job": {
+            "sequence": "5runthree",
+            "query_frame": 168
+          }
+        },
+        "train_shard3.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json",
+          "jobs": 226,
+          "first_job": {
+            "sequence": "bikefromnorth",
+            "query_frame": 221
+          },
+          "last_job": {
+            "sequence": "greenboy",
+            "query_frame": 224
+          }
+        }
+      }
+    },
+    "validation": {
+      "total_jobs": 128,
+      "unique_sequence_query_ids": 128,
+      "same_original_job_ids": true,
+      "original_jobs_path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/validation.json",
+      "shards": {
+        "validation_shard0.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/validation_shard0.json",
+          "jobs": 32,
+          "first_job": {
+            "sequence": "womanongrass",
+            "query_frame": 42
+          },
+          "last_job": {
+            "sequence": "whitecarcome",
+            "query_frame": 37
+          }
+        },
+        "validation_shard1.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/validation_shard1.json",
+          "jobs": 32,
+          "first_job": {
+            "sequence": "stubesideswhitecar",
+            "query_frame": 233
+          },
+          "last_job": {
+            "sequence": "folddenumbrellainhand",
+            "query_frame": 11
+          }
+        },
+        "validation_shard2.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/validation_shard2.json",
+          "jobs": 32,
+          "first_job": {
+            "sequence": "boyfollowing",
+            "query_frame": 97
+          },
+          "last_job": {
+            "sequence": "aboy_1202",
+            "query_frame": 64
+          }
+        },
+        "validation_shard3.json": {
+          "path": "/data/gb/setup/recoverability_future_policy_jobs_20261004/validation_shard3.json",
+          "jobs": 32,
+          "first_job": {
+            "sequence": "tallboyblack",
+            "query_frame": 243
+          },
+          "last_job": {
+            "sequence": "man2startmoto",
+            "query_frame": 267
+          }
+        }
+      }
+    }
+  },
+  "m0_jobs": [
+    {
+      "sequence": "blackbagbike",
+      "query_frame": 16
+    },
+    {
+      "sequence": "girlumbrella",
+      "query_frame": 35
+    }
+  ],
+  "train_validation_sequence_sets_disjoint": true,
+  "source_has_no_prefix_epoch4_restriction": true,
+  "model_instantiations": 0,
+  "nn_forwards": 0,
+  "optimizer_updates": 0,
+  "gpu_queries": 0,
+  "gpu_jobs_launched": 0,
+  "notes": [
+    "Only torch.load(map_location=cpu) and CPU tensor comparisons executed. No model instantiated or inference executed.",
+    "Main trainer/modules intentionally differ from warm loss source; class and forward/select_actions ASTs above are equal.",
+    "The existing epoch4 state-witness checker is not accepted as a new epoch25 runtime receipt."
+  ]
+}

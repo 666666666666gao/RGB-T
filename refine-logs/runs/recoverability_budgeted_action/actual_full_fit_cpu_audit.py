@@ -287,81 +287,124 @@ def fit_audit():
     return result
 
 
-def native_audit(control):
-    from rgbt import LasHeR
-    evaluator = LasHeR()  # Names, packaged GT and attributes only; no native metric calls.
-    root = OUTPUTS / ('recoverability_write_pair_native_lasher_' + control + '_own_b384_full_20261004')
-    gt_root = Path('/data/wangwj/dataset/LasHeR/testingset')
-    runs = {'baseline': OUTPUTS / 'online_core/lasher_baseline',
-            'c1': OUTPUTS / 'online_core_v2/lasher_c1',
-            'write_pair_reference_own_b384': OUTPUTS / 'recoverability_write_pair_native_lasher_own_b384_full_20261004',
+def rgbt234_values(prediction, ground_truth):
+    """Independent installed native dual-GT geometry, including unmodified first row."""
+    errors, overlaps = [], []
+    pc = (prediction[:, 2:] - 1) / 2 + prediction[:, :2]
+    for modality in ('visible', 'infrared'):
+        target = ground_truth[modality]
+        gc = (target[:, 2:] - 1) / 2 + target[:, :2]
+        errors.append(((pc - gc) ** 2).sum(1) ** .5)
+        right = np.minimum(prediction[:, :2] + prediction[:, 2:] - 1, target[:, :2] + target[:, 2:] - 1)
+        left = np.maximum(prediction[:, :2], target[:, :2])
+        intersection = np.maximum(right - left + 1, 0).prod(1)
+        overlaps.append(intersection / (prediction[:, 2:].prod(1) + target[:, 2:].prod(1) - intersection))
+    return {'MPR': np.minimum(*errors), 'MSR': np.maximum(*overlaps)}
+
+
+def native_audit(control, dataset='lasher'):
+    from rgbt import LasHeR, RGBT234
+    # The toolkit supplies names and attribute groups; metric functions are never invoked.
+    evaluator = LasHeR() if dataset == 'lasher' else RGBT234()
+    sequence_count, frame_count = {'lasher': (245, 220703), 'rgbt234': (234, 116649)}[dataset]
+    root = OUTPUTS / ('recoverability_write_pair_native_' + dataset + '_' + control + '_own_b384_full_20261004')
+    gt_root = Path('/data/wangwj/dataset/LasHeR/testingset' if dataset == 'lasher' else '/data/zhouy/DATASET/RGB-T234')
+    runs = {'baseline': OUTPUTS / ('online_core/' + dataset + '_baseline'),
+            'c1': OUTPUTS / ('online_core_v2/' + dataset + '_c1'),
+            'write_pair_reference_own_b384': OUTPUTS / ('recoverability_write_pair_native_' + dataset + '_own_b384_full_20261004'),
             'write_pair_' + control + '_own_b384': root}
     candidate = 'write_pair_' + control + '_own_b384'
+    markers = {name: (root / name).read_text().strip() for name in ('job_completed.txt', 'report_completed.txt',
+                'mechanism_report/recoverability_metrics_completed.txt')}
     report = read(root / 'core_report/full_report.json')
     names = list(evaluator.ALL)
-    assert len(names) == 245 and {p.name for p in gt_root.iterdir() if p.is_dir()} == set(names)
-    assert report['sequences'] == 245 and report['frames'] == 220703 and set(report['variants']) == set(runs)
-    gt = {n: np.loadtxt(gt_root / n / 'init.txt', delimiter=',', dtype=np.float32, ndmin=2) for n in names}
-    assert sum(map(len, gt.values())) == 220703
-    assert all(np.array_equal(gt[n], np.asarray(evaluator.seqs_gt[n], dtype=np.float32)) for n in names)
+    assert len(names) == sequence_count and {p.name for p in gt_root.iterdir() if p.is_dir()} == set(names)
+    assert report['sequences'] == sequence_count and report['frames'] == frame_count and set(report['variants']) == set(runs)
+    if dataset == 'lasher':
+        gt = {n: np.loadtxt(gt_root / n / 'init.txt', delimiter=',', dtype=np.float32, ndmin=2) for n in names}
+        assert all(np.array_equal(gt[n], np.asarray(evaluator.seqs_gt[n], dtype=np.float32)) for n in names)
+        lengths = {n: len(g) for n, g in gt.items()}
+        thresholds = {'NPR': np.linspace(0, .5, 51), 'PR': np.linspace(0, 50, 51), 'SR': np.linspace(0, 1, 21)}
+    else:
+        gt = {n: {m: np.loadtxt(gt_root / n / (m + '.txt'), delimiter=',', dtype=np.float32, ndmin=2)
+                  for m in ('visible', 'infrared')} for n in names}
+        assert all(g['visible'].shape == g['infrared'].shape for g in gt.values())
+        lengths = {n: len(g['visible']) for n, g in gt.items()}
+        thresholds = {'MPR': np.linspace(0, 50, 51), 'MSR': np.linspace(0, 1, 21)}
+        assert report['actual_data_root'] == report['official_gt_source'] == str(gt_root)
+    assert sum(lengths.values()) == frame_count
     with (root / 'core_report/per_sequence.csv').open() as f:
         rows = list(csv.DictReader(f))
-    assert len(rows) == 4 * 245
+    assert len(rows) == 4 * sequence_count
     recorded = {(r['variant'], r['sequence']): r for r in rows}
-    thresholds = {'NPR': np.linspace(0, .5, 51), 'PR': np.linspace(0, 50, 51), 'SR': np.linspace(0, 1, 21)}
+    assert len(recorded) == len(rows)
     scores, overall, counters = {}, {}, {}
     for variant, run in runs.items():
         prediction = run / 'predictions'
         receipt = read(prediction / 'inference_completion.json')
-        assert receipt['completed'] and not receipt['smoke_only'] and receipt['sequences'] == 245 and receipt['frames'] == 220703
+        assert receipt['completed'] and not receipt['smoke_only'] and receipt['sequences'] == sequence_count and receipt['frames'] == frame_count
         assert {p.stem for p in prediction.glob('*.txt')} == set(names)
-        assert {r['sequence'] for r in receipt['records']} == set(names)
-        assert all(r['frames'] == len(gt[r['sequence']]) for r in receipt['records'])
+        assert len(receipt['records']) == sequence_count and {r['sequence'] for r in receipt['records']} == set(names)
+        assert all(r['frames'] == lengths[r['sequence']] for r in receipt['records'])
         curves = {m: [] for m in thresholds}
         for n in names:
             p = np.loadtxt(prediction / (n + '.txt'), dtype=np.float32, ndmin=2).round(0)
-            g = gt[n]
-            assert p.shape == g.shape and np.isfinite(p).all() and (p[1:, 2:] > 0).all()
-            p[0] = g[0]
-            pc, gc = (p[:, 2:] - 1) / 2 + p[:, :2], (g[:, 2:] - 1) / 2 + g[:, :2]
-            pr = ((pc - gc) ** 2).sum(1) ** .5
-            npr = ((pc / (g[:, 2:] + 1e-8) - gc / (g[:, 2:] + 1e-8)) ** 2).sum(1) ** .5
-            right = np.minimum(p[:, :2] + p[:, 2:] - 1, g[:, :2] + g[:, 2:] - 1)
-            left = np.maximum(p[:, :2], g[:, :2])
-            intersection = np.maximum(right - left + 1, 0).prod(1)
-            sr = intersection / (p[:, 2:].prod(1) + g[:, 2:].prod(1) - intersection)
-            unknown = (g <= 0).any(1)
-            for metric, values in [('NPR', npr), ('PR', pr), ('SR', sr)]:
-                values[unknown] = -1
-                curve = (values[:, None] > thresholds[metric] if metric == 'SR'
+            assert p.shape == (lengths[n], 4) and np.isfinite(p).all() and (p[1:, 2:] > 0).all()
+            if dataset == 'lasher':
+                g = gt[n]
+                p[0] = g[0]
+                pc, gc = (p[:, 2:] - 1) / 2 + p[:, :2], (g[:, 2:] - 1) / 2 + g[:, :2]
+                pr = ((pc - gc) ** 2).sum(1) ** .5
+                npr = ((pc / (g[:, 2:] + 1e-8) - gc / (g[:, 2:] + 1e-8)) ** 2).sum(1) ** .5
+                right = np.minimum(p[:, :2] + p[:, 2:] - 1, g[:, :2] + g[:, 2:] - 1)
+                left = np.maximum(p[:, :2], g[:, :2])
+                intersection = np.maximum(right - left + 1, 0).prod(1)
+                sr = intersection / (p[:, 2:].prod(1) + g[:, 2:].prod(1) - intersection)
+                values_by_metric = {'NPR': npr, 'PR': pr, 'SR': sr}
+                for values in values_by_metric.values():
+                    values[(g <= 0).any(1)] = -1
+            else:
+                values_by_metric = rgbt234_values(p, gt[n])
+            for metric, values in values_by_metric.items():
+                curve = (values[:, None] > thresholds[metric] if metric.endswith('SR')
                          else values[:, None] <= thresholds[metric]).mean(0)
                 curves[metric].append(curve)
-                value = float(curve.mean() if metric == 'SR' else curve[20]) * 100
+                value = float(curve.mean() if metric.endswith('SR') else curve[20]) * 100
                 assert value == float(recorded[variant, n][metric]), (variant, n, metric, value, recorded[variant, n][metric])
         curves = {m: np.array(c) for m, c in curves.items()}
-        overall[variant] = {m: float(c.mean() if m == 'SR' else c.mean(0)[20]) * 100 for m, c in curves.items()}
+        overall[variant] = {m: float(c.mean() if m.endswith('SR') else c.mean(0)[20]) * 100 for m, c in curves.items()}
         assert overall[variant] == report['variants'][variant]['overall_metrics_percent']
         for m, c in curves.items():
             assert np.array_equal(c.mean(0), report['variants'][variant]['mean_curves'][m]['values'])
             assert np.array_equal(thresholds[m], report['variants'][variant]['mean_curves'][m]['thresholds'])
         for attr in evaluator.get_attr_list():
             indices = [names.index(n) for n in getattr(evaluator, attr)]
-            values = {m: float(c[indices].mean() if m == 'SR' else c[indices].mean(0)[20]) * 100 for m, c in curves.items()}
+            values = {m: float(c[indices].mean() if m.endswith('SR') else c[indices].mean(0)[20]) * 100 for m, c in curves.items()}
             assert {'sequences': len(indices), **values} == report['variants'][variant]['attributes'][attr]
-        scores[variant] = {n: {m: float(c[i].mean() if m == 'SR' else c[i, 20]) * 100
+        scores[variant] = {n: {m: float(c[i].mean() if m.endswith('SR') else c[i, 20]) * 100
                               for m, c in curves.items()} for i, n in enumerate(names)}
         if variant == candidate:
+            by_sequence = {r['sequence']: r for r in receipt['records']}
+            mechanism_counters = read(root / 'mechanism_report/full_recoverability_report.json')['variants'][candidate]['counters']
             for n in names:
                 with np.load(prediction / (n + '_recoverability_decisions.npz')) as z:
-                    assert len(z['region']) == len(gt[n]) - 1
+                    assert len(z['region']) == lengths[n] - 1
                     if control == 'no_search':
                         assert not z['search_requested'].any() and not z['extra_executed'].any() and not z['region'].any()
                     else:
                         assert not z['pause'].any()
-                        raw = z['raw_score'].reshape(len(gt[n]) - 1, 35)
+                        raw = z['raw_score'].reshape(lengths[n] - 1, 35)
                         chosen_raw = raw[np.arange(len(raw)), z['choice']]
                         assert np.array_equal(z['template_updated'], chosen_raw > .84)
+                    actual = {'extra_searches_requested': int(z['search_requested'].sum()),
+                              'extra_visual_forwards': int(z['extra_executed'].sum()),
+                              'template_updates': int(z['template_updated'].sum()),
+                              'paused_query_writes': int(z['pause'].sum()),
+                              'changed_candidate_indices': int((z['choice'] != z['original_choice']).sum())}
+                    assert all(by_sequence[n]['stats'][k] == v for k, v in actual.items()), n
             counters = {k: sum(r['stats'][k] for r in receipt['records']) for k in ('extra_searches_requested', 'extra_visual_forwards', 'template_updates', 'paused_query_writes', 'changed_candidate_indices')}
+            assert all(mechanism_counters['requested_extra_searches' if k == 'extra_searches_requested' else k] == v
+                       for k, v in counters.items())
             if control == 'no_search':
                 assert counters['extra_searches_requested'] == counters['extra_visual_forwards'] == 0
             else:
@@ -377,6 +420,9 @@ def native_audit(control):
     assert full_config['bootstrap_training_future_policy'] == 'frozen C1 continuations, not this deployed policy'
     assert config['head_epoch'] == 4 and config['motion_history_capacity'] == 8
     assert config['frozen_motion_memory_and_predictor_parameters'] == 158412
+    assert config['model'] == str(OUTPUTS / 'recoverability_write_pair_reference_own_b384_full_20261004/best.pth')
+    assert config['max_frames'] == config['limit_sequences'] == config['sequence_offset'] == 0
+    assert config['validation_split'] is None and config['model_training_seed'] == config['seed'] == 42
     bootstrap = {}
     for reference in ('baseline', 'c1', 'write_pair_reference_own_b384'):
         folder = root / (reference + '_paired_report')
@@ -384,10 +430,17 @@ def native_audit(control):
         artifact = read(folder / 'paired_bootstrap.json')
         assert artifact['args']['iterations'] == 5000 and artifact['args']['seed'] == 42
         assert list(paired['variants']) == [reference, candidate]
-        assert paired['variants'][reference]['overall_metrics_percent'] == overall[reference]
-        assert paired['variants'][candidate]['overall_metrics_percent'] == overall[candidate]
+        assert paired['sequences'] == sequence_count and paired['frames'] == frame_count
+        for v in (reference, candidate):
+            for field in ('overall_metrics_percent', 'attributes', 'mean_curves'):
+                assert paired['variants'][v][field] == report['variants'][v][field]
+        with (folder / 'per_sequence.csv').open() as f:
+            paired_rows = list(csv.DictReader(f))
+        assert len(paired_rows) == 2 * sequence_count
+        assert {(r['variant'], r['sequence']) for r in paired_rows} == {(v, n) for v in (reference, candidate) for n in names}
+        assert all(float(r[m]) == scores[r['variant']][r['sequence']][m] for r in paired_rows for m in thresholds)
         ordered = sorted(names)
-        draws = np.random.default_rng(42).integers(245, size=(5000, 245))
+        draws = np.random.default_rng(42).integers(sequence_count, size=(5000, sequence_count))
         metric_results = {}
         for metric in thresholds:
             delta = np.array([scores[candidate][n][metric] - scores[reference][n][metric] for n in ordered])
@@ -395,25 +448,31 @@ def native_audit(control):
                 'percentile_95_interval_percentage_points': np.percentile(delta[draws].mean(1), (2.5, 97.5)).tolist(),
                 'improved_sequences': int((delta > 0).sum()), 'worsened_sequences': int((delta < 0).sum()),
                 'tied_sequences': int((delta == 0).sum())}
-        assert metric_results == artifact['datasets']['lasher']['metrics']
+        assert metric_results == artifact['datasets'][dataset]['metrics']
         bootstrap[reference] = metric_results
     result = common()
-    result.update(scope='Completed LasHeR ' + control + ' control; actual GT and all four variants independently rescored with NumPy.',
-        root=str(root), dataset='lasher', actual_GT=str(gt_root), sequences=245, frames=220703,
-        completeness='All980 predictions and all980 receipt frame counts checked; all245 candidate diagnostic NPZ control-action arrays checked.',
-        packaged_GT_equals_actual_GT=True, native_arithmetic='float32 rounded predictions; GT initial row included; strict centers and inclusive IoU; GT any coordinate<=0 maps to-1; NPR/PR <= threshold, SR > threshold; equal sequence weights.',
+    result.update(scope='Completed ' + dataset + ' ' + control + ' control; actual GT and all four variants independently rescored with NumPy.',
+        root=str(root), dataset=dataset, actual_GT=str(gt_root), sequences=sequence_count, frames=frame_count,
+        completed_markers=markers,
+        completeness={'prediction_TXT': 4 * sequence_count, 'receipt_records': 4 * sequence_count,
+                      'candidate_diagnostic_NPZ': sequence_count, 'GT_TXT': sequence_count * (1 if dataset == 'lasher' else 2)},
+        native_arithmetic=('float32 rounded predictions; GT initial row included; strict centers and inclusive IoU; GT any coordinate<=0 maps to-1; NPR/PR <= threshold, SR > threshold; equal sequence weights.'
+                           if dataset == 'lasher' else 'float32 rounded predictions, unmodified first row included. Actual visible/infrared GT independently scored; per-frame min center distance<=threshold for MPR, max inclusive IoU>threshold for MSR. Equal sequence weights, MPR at20px, MSR mean of21 thresholds. No LasHeR invalid-GT rule or prediction replacement.'),
         native_invalid_prediction_size_replacements=0, native_metric_function_calls=0,
-        all_980_native_sequence_triples_exact=True, all_19_attributes_and_mean_curves_per_variant_exact=True,
+        all_native_sequence_metrics_exact=True, all_attributes_and_mean_curves_per_variant_exact=True,
+        attribute_count=len(evaluator.get_attr_list()), all_three_paired_reports_and_CSV_equal_core=True,
         native_overall_percent=overall, paired_5000_seed42_bootstrap_exact=bootstrap,
         observed_extra_search_control_counters=counters,
         config_differences_vs_full=differences,
         control_scope=('Disables additional NN visual search only. Frozen B motion memory/predictor remains active; this is not full B-off.'
                        if control == 'no_search' else 'Forces query template writes at raw_score>.84 regardless of learned pause; does not disable learned search or A memory.'),
         descriptive_config_change='bootstrap_training_future_policy changed wording only; verified actual strings, same checkpoint and remaining execution configuration.',
-        checker_corrections=[{'issue': 'First no_search audit config assertion omitted changed bootstrap_training_future_policy description',
+        checker_corrections=([{'issue': 'First no_search audit config assertion omitted changed bootstrap_training_future_policy description',
                              'observed': 'All980 native triples/attributes/curves already passed before assertion.',
-                             'fix': 'Include this exact descriptive string difference. No production change and no metric tolerance relaxation.'}],
+                             'fix': 'Include this exact descriptive string difference. No production change and no metric tolerance relaxation.'}]
+                            if dataset == 'lasher' else []),
         uncertainty_scope='Paired sequence uncertainty for fixed checkpoints, not training-seed variation.',
+        verification_boundary='Native metrics and actual control actions verified. Full mechanism memory-provenance mass, calibration bins, motion calibration and efficiency are outside this focused control audit.',
         artifacts_sha256={p: sha(root / p) for p in ('predictions/inference_config.json', 'predictions/inference_completion.json', 'core_report/full_report.json', 'core_report/per_sequence.csv')})
     result['execution']['neural_forward'] = False
     return result
@@ -421,14 +480,20 @@ def native_audit(control):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('section', choices=['fit', 'native', 'native-raw'])
+    parser.add_argument('section', choices=['fit', 'native', 'native-raw', 'rgbt234-no-search', 'rgbt234-raw-write'])
     args = parser.parse_args()
     start = time.perf_counter()
-    result = fit_audit() if args.section == 'fit' else native_audit('no_search' if args.section == 'native' else 'raw_write')
+    if args.section == 'fit':
+        result = fit_audit()
+    else:
+        result = native_audit('no_search' if args.section in ('native', 'rgbt234-no-search') else 'raw_write',
+                              'rgbt234' if args.section.startswith('rgbt234') else 'lasher')
     result['execution']['elapsed_seconds'] = time.perf_counter() - start
     out = SETUP / {'fit': 'budgeted_action_actual_full_fit_cpu_audit_20261004.json',
                    'native': 'own4_native_no_search_lasher_independent_cpu_audit_20261004.json',
-                   'native-raw': 'own4_native_raw_write_lasher_independent_cpu_audit_20261004.json'}[args.section]
+                   'native-raw': 'own4_native_raw_write_lasher_independent_cpu_audit_20261004.json',
+                   'rgbt234-no-search': 'write_pair_native_rgbt234_no_search_independent_cpu_audit_20261004.json',
+                   'rgbt234-raw-write': 'write_pair_native_rgbt234_raw_write_independent_cpu_audit_20261004.json'}[args.section]
     with out.open('w') as f:
         json.dump(result, f, indent=2, allow_nan=False)
     print('AUDIT_PASS', args.section, str(out), result['execution']['elapsed_seconds'], flush=True)

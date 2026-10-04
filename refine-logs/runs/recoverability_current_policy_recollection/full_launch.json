@@ -1,0 +1,79 @@
+{
+  "status": "ACTUAL_MATCHED_FULL_COLLECTION_TWO_CARDS_LAUNCHED",
+  "at_cst": "2026-10-04T13:39:47.361958+08:00",
+  "prefix_model": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+  "prefix_epoch": 25,
+  "acceptance": "/data/gb/setup/recoverability_current_policy_recollection/actual_m0_acceptance.json",
+  "arms": [
+    {
+      "physical_gpu": 1,
+      "teacher": "c1",
+      "shards": [
+        0,
+        2
+      ],
+      "session": "current_policy_recollection_c1_shards02_20261004",
+      "pane_pid": 3630057,
+      "command": "(bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1"
+    },
+    {
+      "physical_gpu": 3,
+      "teacher": "own",
+      "shards": [
+        0,
+        2
+      ],
+      "session": "current_policy_recollection_own_shards02_20261004",
+      "pane_pid": 3630065,
+      "command": "(bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1"
+    }
+  ],
+  "current_warm_full98_remains_on_gpu": [
+    0,
+    2
+  ],
+  "remaining_shards": [
+    1,
+    3
+  ],
+  "remaining_shards_launch_condition": "After originalwarm reports reviewed; prioritize official verification if warm model earns promotion, otherwise useGPU0/2 for remainingmatchedcollection",
+  "training_launched": false,
+  "new_architecture": false,
+  "source_unmodified": true,
+  "queries_original_902_TRAIN_128_VAL": true,
+  "first_observation_not_before": "2026-10-04T13:42:47.361958+08:00",
+  "metrics_improvement_claimed": false,
+  "remaining_shards_launch": {
+    "launched_at": "2026-10-04T13:47:45.011662+08:00",
+    "first_observation_not_before": "2026-10-04T13:50:45.011662+08:00",
+    "jobs": [
+      {
+        "gpu": 0,
+        "future_policy": "c1",
+        "shards": [
+          1,
+          3
+        ],
+        "tmux_session": "current_policy_recollection_c1_shards13_20261004",
+        "pane_pid": 3644319,
+        "command": "(bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1"
+      },
+      {
+        "gpu": 2,
+        "future_policy": "own",
+        "shards": [
+          1,
+          3
+        ],
+        "tmux_session": "current_policy_recollection_own_shards13_20261004",
+        "pane_pid": 3644327,
+        "command": "(bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1"
+      }
+    ],
+    "original_warm_evaluation_processes_terminal": true,
+    "actual_full98_audit_status": "PASS",
+    "promotion": false,
+    "reason": "Both warm candidates below protected global old4 on full98; continue matched current-policy data factor instead of native evaluation."
+  },
+  "all_four_gpus_have_meaningful_tasks": true
+}

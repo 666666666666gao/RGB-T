@@ -1,0 +1,31 @@
+{
+  "status": "ACTUAL_TWO_TRAIN_M0_LAUNCHED",
+  "at_cst": "2026-10-04T13:33:34.570770+08:00",
+  "prefix_model": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+  "prefix_epoch": 25,
+  "queries_per_teacher": 2,
+  "arms": [
+    {
+      "physical_gpu": 1,
+      "teacher": "c1",
+      "session": "current_policy_recollection_c1_m0_20261004",
+      "pane_pid": 3619175,
+      "command": "bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 m0 > /data/gb/setup/current_policy_recollection_c1_m0_20261004.log 2>&1"
+    },
+    {
+      "physical_gpu": 3,
+      "teacher": "own",
+      "session": "current_policy_recollection_own_m0_20261004",
+      "pane_pid": 3619182,
+      "command": "bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own m0 > /data/gb/setup/current_policy_recollection_own_m0_20261004.log 2>&1"
+    }
+  ],
+  "full_collection_launched": false,
+  "full_training_launched": false,
+  "original_warm_full98_preserved": [
+    3578792,
+    3578798
+  ],
+  "first_observation_after_seconds": 180,
+  "source_review": "PASS_SOURCE_ONLY same-family/provisional"
+}

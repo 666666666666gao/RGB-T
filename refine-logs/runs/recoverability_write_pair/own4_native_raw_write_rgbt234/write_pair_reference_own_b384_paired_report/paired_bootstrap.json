@@ -1,0 +1,43 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "write_pair_reference_own_b384",
+        "write_pair_raw_write_own_b384"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": -0.3738674819968944,
+          "percentile_95_interval_percentage_points": [
+            -0.9468705773070617,
+            0.05405516648366238
+          ],
+          "improved_sequences": 7,
+          "worsened_sequences": 12,
+          "tied_sequences": 215
+        },
+        "MSR": {
+          "mean_delta_percentage_points": -0.2926444028776139,
+          "percentile_95_interval_percentage_points": [
+            -0.7277224527615497,
+            0.03295484138887694
+          ],
+          "improved_sequences": 27,
+          "worsened_sequences": 34,
+          "tied_sequences": 173
+        }
+      }
+    }
+  }
+}

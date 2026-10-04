@@ -1,0 +1,153 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/budgeted_full_fit_acceptance",
+  "model_metadata": "Codex/GPT-6 family; exact runtime model/effort not independently exposed",
+  "audited_utc": "2026-10-04T05:10:37.938590+00:00",
+  "checker": "/data/gb/setup/write_pair_native_rgbt234_cpu_audit_20261004.py",
+  "checker_sha256": "898cdb1f50245fc1eed715d22d38426f48e534653e9aa090bdd36538292f8d1f",
+  "blocking_findings": [],
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GPU_queries": 0,
+    "training": false,
+    "source_model_data_modified": false,
+    "job_commands_or_processes_changed": false,
+    "neural_forward": false,
+    "elapsed_seconds": 1.468516076914966
+  },
+  "scope": "Completed rgbt234 no_search control; actual GT and all four variants independently rescored with NumPy.",
+  "root": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004",
+  "dataset": "rgbt234",
+  "actual_GT": "/data/zhouy/DATASET/RGB-T234",
+  "sequences": 234,
+  "frames": 116649,
+  "completed_markers": {
+    "job_completed.txt": "2026-10-04T13:00:21+08:00",
+    "report_completed.txt": "2026-10-04T13:00:21+08:00",
+    "mechanism_report/recoverability_metrics_completed.txt": "full GT localization and mechanism diagnostics completed; native accuracy separate"
+  },
+  "completeness": {
+    "prediction_TXT": 936,
+    "receipt_records": 936,
+    "candidate_diagnostic_NPZ": 234,
+    "GT_TXT": 468
+  },
+  "native_arithmetic": "float32 rounded predictions, unmodified first row included. Actual visible/infrared GT independently scored; per-frame min center distance<=threshold for MPR, max inclusive IoU>threshold for MSR. Equal sequence weights, MPR at20px, MSR mean of21 thresholds. No LasHeR invalid-GT rule or prediction replacement.",
+  "native_invalid_prediction_size_replacements": 0,
+  "native_metric_function_calls": 0,
+  "all_native_sequence_metrics_exact": true,
+  "all_attributes_and_mean_curves_per_variant_exact": true,
+  "attribute_count": 12,
+  "all_three_paired_reports_and_CSV_equal_core": true,
+  "native_overall_percent": {
+    "baseline": {
+      "MPR": 91.77885757450758,
+      "MSR": 69.2325931778893
+    },
+    "c1": {
+      "MPR": 91.81700889694795,
+      "MSR": 69.2340473415621
+    },
+    "write_pair_reference_own_b384": {
+      "MPR": 92.13340500935078,
+      "MSR": 69.57809745628578
+    },
+    "write_pair_no_search_own_b384": {
+      "MPR": 92.1418609538798,
+      "MSR": 69.58413741666362
+    }
+  },
+  "paired_5000_seed42_bootstrap_exact": {
+    "baseline": {
+      "MPR": {
+        "mean_delta_percentage_points": 0.36300337937229016,
+        "percentile_95_interval_percentage_points": [
+          -0.90611910936279,
+          1.6994134166896675
+        ],
+        "improved_sequences": 36,
+        "worsened_sequences": 36,
+        "tied_sequences": 162
+      },
+      "MSR": {
+        "mean_delta_percentage_points": 0.3515442387743236,
+        "percentile_95_interval_percentage_points": [
+          -0.4362670946925897,
+          1.2037379622980615
+        ],
+        "improved_sequences": 64,
+        "worsened_sequences": 54,
+        "tied_sequences": 116
+      }
+    },
+    "c1": {
+      "MPR": {
+        "mean_delta_percentage_points": 0.3248520569318431,
+        "percentile_95_interval_percentage_points": [
+          -0.6564275046501493,
+          1.4423753364128826
+        ],
+        "improved_sequences": 24,
+        "worsened_sequences": 27,
+        "tied_sequences": 183
+      },
+      "MSR": {
+        "mean_delta_percentage_points": 0.35009007510151563,
+        "percentile_95_interval_percentage_points": [
+          -0.27357029712493663,
+          1.0731382170421637
+        ],
+        "improved_sequences": 46,
+        "worsened_sequences": 46,
+        "tied_sequences": 142
+      }
+    },
+    "write_pair_reference_own_b384": {
+      "MPR": {
+        "mean_delta_percentage_points": 0.008455944529003879,
+        "percentile_95_interval_percentage_points": [
+          0.0,
+          0.025367833587011637
+        ],
+        "improved_sequences": 1,
+        "worsened_sequences": 0,
+        "tied_sequences": 233
+      },
+      "MSR": {
+        "mean_delta_percentage_points": 0.006039960377859928,
+        "percentile_95_interval_percentage_points": [
+          0.0,
+          0.018119881133579784
+        ],
+        "improved_sequences": 1,
+        "worsened_sequences": 0,
+        "tied_sequences": 233
+      }
+    }
+  },
+  "observed_extra_search_control_counters": {
+    "extra_searches_requested": 0,
+    "extra_visual_forwards": 0,
+    "template_updates": 57105,
+    "paused_query_writes": 1243,
+    "changed_candidate_indices": 111
+  },
+  "config_differences_vs_full": [
+    "output",
+    "disable_search",
+    "bootstrap_training_future_policy"
+  ],
+  "control_scope": "Disables additional NN visual search only. Frozen B motion memory/predictor remains active; this is not full B-off.",
+  "descriptive_config_change": "bootstrap_training_future_policy changed wording only; verified actual strings, same checkpoint and remaining execution configuration.",
+  "checker_corrections": [],
+  "uncertainty_scope": "Paired sequence uncertainty for fixed checkpoints, not training-seed variation.",
+  "verification_boundary": "Native metrics and actual control actions verified. Full mechanism memory-provenance mass, calibration bins, motion calibration and efficiency are outside this focused control audit.",
+  "artifacts_sha256": {
+    "predictions/inference_config.json": "887ca55d266bf7bf13b848140b5d865b69f969f59127799d43ad3031482da248",
+    "predictions/inference_completion.json": "d139196bcd268efe442e0882e2e92084f927dcbc43b7c44b550e27e729bae1eb",
+    "core_report/full_report.json": "cadfb542f606dccc1ed6facc4d8da1fc324a9ce9f833a703f63e91370c3739c2",
+    "core_report/per_sequence.csv": "bc8b094a275d85e0af59133d51e9def5811ca499e6b95c8415c58c0082e849e9"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "execution_status": "PREPARED_NOT_EXECUTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/warm_budgeted_initialization_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Actual accepted spawn metadata confirmed by delegator; not a separate measurement of the underlying runtime model."
+  },
+  "scope": "Fresh source review of the small adaptation from the previously accepted cold full98 CPU checker. The warm result audit has not been executed.",
+  "reviewed_checker": "refine-logs/runs/recoverability_warm_budgeted_action/actual_full98_cpu_audit.py",
+  "staged_checker": "/data/gb/setup/warm_budgeted_action_actual_full98_cpu_audit_20261004.py",
+  "source_sha256_local_and_remote": "abb76c9e73c9a983637331ee083f2fa24bc5bf8a97ae1a60e60157887043ce94",
+  "checker_origin": "refine-logs/runs/recoverability_budgeted_action/actual_full98_cpu_audit.py",
+  "blocking_issues": [],
+  "findings": [
+    "The seven ROOTS map baseline, C1, protected old4, both matched cold budgeted predictions and the two warm predictions correctly.",
+    "Each warm report compares to baseline, C1, old4 and the corresponding teacher's cold budgeted arm; labels and path ordering agree with the staged warm runner.",
+    "FIT_AUDIT requires the actual warm full-fit PASS record. Each new inference head_epoch is checked against its completed 60-epoch/180-update training receipt, allowing best0.",
+    "Both new job_completed markers and metric-report completion markers are required before the checker reads and scores the results.",
+    "All eight helper functions have identical ASTs to the accepted cold checker: sha, record, close, xywh, overlap, known, failure_events and mechanism. IoU, failure/recovery, selected-box and template-write lineage arithmetic are unchanged.",
+    "The seed42 paired 5000-resample bootstrap and comparison tolerances are unchanged.",
+    "The source reads retained predictions, GT, diagnostics and JSON metadata. best.pth occurs only as an expected configuration path; no checkpoint is loaded.",
+    "The output is a new warm audit JSON. The source correctly states that epoch0 is protected parent behavior and does not establish a new learning gain."
+  ],
+  "static_checks": {
+    "AST_syntax": "PASS",
+    "helper_function_ASTs_exact": [
+      "sha",
+      "record",
+      "close",
+      "xywh",
+      "overlap",
+      "known",
+      "failure_events",
+      "mechanism"
+    ],
+    "local_remote_source_bytes_equal": true,
+    "variants": 7,
+    "expected_GT_TXT": 98,
+    "expected_prediction_TXT": 686,
+    "expected_new_mechanism_NPZ": 196,
+    "expected_latency_NPY": 686,
+    "paired_comparisons": 8,
+    "bootstrap_resamples_per_comparison": 5000,
+    "torch_imports": 0,
+    "training_state_queries_during_source_review": 0
+  },
+  "attribution": {
+    "inherited_checker_reviewer_fields": {
+      "reviewer_model": "gpt-6-astra",
+      "reviewer_reasoning_effort": "max"
+    },
+    "interpretation": "These existing constants identify the original checker reviewer provenance. They are not a runtime model attestation for whoever invokes the derived checker.",
+    "current_source_review_executor": "/root/warm_budgeted_initialization_review",
+    "actual_full98_result_executor": null,
+    "actual_full98_execution_occurred": false,
+    "runtime_reporting": "The actual executor should be recorded by the root execution receipt, preserving same-family/provisional attribution."
+  },
+  "next_execution_condition": "Run once only after this full-fit audit actually passes and both original warm full98 jobs and reports are complete. The root may execute the staged checker after those conditions hold.",
+  "execution_limits": {
+    "NN_forwards": 0,
+    "optimizer_steps": 0,
+    "GPU_initializations_or_queries": 0,
+    "source_or_weight_or_job_changes": false,
+    "deleted_cold_or_M0_weights_read": false,
+    "full98_result_checks_executed": false,
+    "success_standard": "The full native LasHeR and RGBT234 five-metric +2 percentage point goal is unchanged and not established by this prepared checker."
+  }
+}
+

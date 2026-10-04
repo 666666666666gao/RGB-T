@@ -1,0 +1,60 @@
+{
+  "observed_cst": "2026-10-04T13:22:18.192068+08:00",
+  "scope": "Only current NN handles and useful memory; no temperature/power queries",
+  "gpu": [
+    "0, 1180, 33",
+    "1, 20, 0",
+    "2, 851, 41",
+    "3, 20, 0"
+  ],
+  "warm_full98": {
+    "c1": {
+      "training_completed": "2026-10-04T13:11:01+08:00",
+      "job_completed": false,
+      "last_progress": {
+        "sequence": "ab_rightcupcoming_infwhite_quezhen",
+        "sequence_index": 14,
+        "sequences": 98,
+        "frames": 6981,
+        "elapsed_seconds": 243.39304802380502,
+        "stats": {
+          "template_updates": 2138,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 26,
+          "extra_visual_forwards": 26,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 50,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "completed_sequences": 14
+    },
+    "own": {
+      "training_completed": "2026-10-04T13:11:01+08:00",
+      "job_completed": false,
+      "last_progress": {
+        "sequence": "ab_mototurn",
+        "sequence_index": 13,
+        "sequences": 98,
+        "frames": 65,
+        "elapsed_seconds": 2.113330078776926,
+        "stats": {
+          "template_updates": 49,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "completed_sequences": 13
+    }
+  },
+  "original_warm_evaluators": [
+    "3578792 3541146       11:17 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004/predictions",
+    "3578798 3541153       11:17 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/predictions"
+  ]
+}

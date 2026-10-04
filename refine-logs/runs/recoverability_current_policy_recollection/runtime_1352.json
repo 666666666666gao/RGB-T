@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-10-04T13:51:11.995668+08:00",
+  "gpu": "0, 1258 MiB, 25 %\n1, 923 MiB, 40 %\n2, 931 MiB, 41 %\n3, 925 MiB, 39 %",
+  "compute_processes": "3494704, 312 MiB\n3644333, 906 MiB\n3630071, 900 MiB\n3644334, 908 MiB\n3630072, 902 MiB",
+  "progress": {
+    "0": {
+      "policy": "c1",
+      "shard": 1,
+      "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard1_20261004",
+      "job_completed": false,
+      "progress": {
+        "completed_clips": 19,
+        "clips": 226,
+        "elapsed_seconds": 194.888757430017,
+        "peak_cuda_mib": 512.97900390625
+      }
+    },
+    "1": {
+      "policy": "c1",
+      "shard": 0,
+      "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
+      "job_completed": false,
+      "progress": {
+        "completed_clips": 51,
+        "clips": 225,
+        "elapsed_seconds": 676.2847667420283,
+        "peak_cuda_mib": 518.5244140625
+      }
+    },
+    "2": {
+      "policy": "own",
+      "shard": 1,
+      "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard1_20261004",
+      "job_completed": false,
+      "progress": {
+        "completed_clips": 18,
+        "clips": 226,
+        "elapsed_seconds": 189.70520283607766,
+        "peak_cuda_mib": 518.2314453125
+      }
+    },
+    "3": {
+      "policy": "own",
+      "shard": 0,
+      "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004",
+      "job_completed": false,
+      "progress": {
+        "completed_clips": 50,
+        "clips": 225,
+        "elapsed_seconds": 667.4535674322397,
+        "peak_cuda_mib": 522.9140625
+      }
+    }
+  },
+  "collector_processes": [
+    "3630057 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
+    "3630059 3630057       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
+    "3630065 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
+    "3630067 3630065       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
+    "3644319 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
+    "3644321 3644319       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
+    "3644327 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1",
+    "3644329 3644327       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1"
+  ]
+}
