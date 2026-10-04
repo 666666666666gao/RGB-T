@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "BOTH_NATIVE_FULL_COMPLETE; MATCHED_FUTURE_TEACHER_COLLECTION_ACTIVE; NEW_B384_FIT_NOT_STARTED",
+      "status": "BOTH_NATIVE_COMPLETE_ALL5_POSITIVE_BELOW_PLUS2; PAIRED_CACHE_AND_ACTUAL_M0_CPU_PASS; MATCHED_B384_FULL_FITS_ACTIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -524,7 +524,7 @@
         "best_internal_ci_contains_zero": true
       },
       "current_future_teacher_factor": {
-        "status": "10/16 collection outputs complete at08:52:58; GPU0ownTRAIN1=116/226, GPU1C1TRAIN2=88/225, GPU2ownTRAIN2=51/225. Full merger and freshM0/fit still NOT executed.",
+        "status": "All16 source collections and exact paired902TRAIN128VAL merge PASS; both real B384 M0s3epochs9updates independentCPU acceptance PASS; fresh matched full60epochs180updates on GPU0c1/GPU2own actually launched10:02:24.",
         "started_cst": "2026-10-04T07:02:07+08:00",
         "train_queries": 902,
         "validation_queries": 128,
@@ -542,7 +542,7 @@
         "actual_state_m0": "PASS 1238 old/new steps each;110actions;330 actual future steps; all states/labels exact",
         "cli_m0": "PASS 2q17/69actions; all28 nonfuture arrays exact",
         "source_schema": "8shards exact jobs object wrapper, no content/order change",
-        "new_training_started": false,
+        "new_training_started": true,
         "new_training_batch_size": 384,
         "new_training_epochs": 60,
         "new_training_updates": 180,
@@ -571,6 +571,158 @@
           "paired_cache_exists": false,
           "review_status": "PASS same-family/provisional",
           "log": "/data/gb/setup/future_policy_fit_m0_queue_20261004.log"
+        },
+        "actual_m0": {
+          "status": "BOTH_ACTUAL_COMPLETE_INDEPENDENT_CPU_ACCEPTANCE_PASS",
+          "train_queries": 902,
+          "validation_queries": 128,
+          "batch_size": 384,
+          "epochs_per_arm": 3,
+          "updates_per_arm": 9,
+          "best_epoch_c1": 0,
+          "best_epoch_own": 0,
+          "peak_cuda_allocated_mib": 14190.27880859375,
+          "all_ABC_changed": true,
+          "frozen_c1_gradients_absent": true,
+          "strict_reload_metrics_equal": true,
+          "learned_accuracy_gain_established": false,
+          "evidence": "refine-logs/runs/recoverability_future_policy/actual_m0",
+          "full_fits_started": true
+        },
+        "actual_runtime_m0_audit": {
+          "status": "PASS",
+          "review_independence": "same-family",
+          "acceptance_status": "provisional",
+          "path": "refine-logs/runs/recoverability_future_policy/actual_m0_cpu_audit.json",
+          "sha256": "8e9fc10a3cf99dc19e32a512556d5b9481d5d8d9700ec9a46bc38029cce739e0",
+          "acceptance_sha256": "952fcb3500c34cc49d1f3bb4c968de74c425447b54be760bee17fafe8ae56d9c",
+          "all16_source_to4_merged_arrays_exact": true,
+          "all28_nonfuture_arrays_exact": true,
+          "all8_c1_tensors_per_arm_exact": true,
+          "both_best_epoch0_states_all25_exact": true,
+          "cpu_mean_checker_ulp_deviation": 2,
+          "production_strict_reload_metrics_exact": true,
+          "nn_executed_by_reviewer": false
+        },
+        "actual_full_fit_launch": {
+          "status": "BOTH_FULL_FITS_LAUNCHED",
+          "observed_cst": "2026-10-04T10:02:24.560799+08:00",
+          "runner_sha256": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386",
+          "actual_m0_acceptance_sha256": "952fcb3500c34cc49d1f3bb4c968de74c425447b54be760bee17fafe8ae56d9c",
+          "arms": [
+            {
+              "physical_gpu": 0,
+              "policy": "c1",
+              "session": "future_policy_c1_b384_full_20261004",
+              "pane_pid": 3237680,
+              "output": "/data/gb/outputs/recoverability_future_c1_b384_full_20261004",
+              "log": "/data/gb/setup/future_policy_c1_b384_full_20261004.log",
+              "command": "bash /data/gb/GOLA/scripts/run_recoverability_future_fit.sh 0 c1 full > /data/gb/setup/future_policy_c1_b384_full_20261004.log 2>&1",
+              "epochs": 60,
+              "optimizer_steps_planned": 180,
+              "batch_size": 384,
+              "seed": 42,
+              "completed": false
+            },
+            {
+              "physical_gpu": 2,
+              "policy": "own",
+              "session": "future_policy_own_b384_full_20261004",
+              "pane_pid": 3237687,
+              "output": "/data/gb/outputs/recoverability_future_own_b384_full_20261004",
+              "log": "/data/gb/setup/future_policy_own_b384_full_20261004.log",
+              "command": "bash /data/gb/GOLA/scripts/run_recoverability_future_fit.sh 2 own full > /data/gb/setup/future_policy_own_b384_full_20261004.log 2>&1",
+              "epochs": 60,
+              "optimizer_steps_planned": 180,
+              "batch_size": 384,
+              "seed": 42,
+              "completed": false
+            }
+          ],
+          "full98_evaluation_queued_after_fit": true,
+          "official_goal_completed": false
+        },
+        "actual_initial_full_fit_runtime": {
+          "observed_cst": "2026-10-04T10:04:41.666447+08:00",
+          "arms": {
+            "c1": {
+              "last_train": {
+                "epoch": 6,
+                "step": 1,
+                "optimizer_steps": 16,
+                "loss": 1.7110013961791992,
+                "parts": {
+                  "advantage": 0.05913648009300232,
+                  "action_ranking": 0.008752835914492607,
+                  "harm": 1.8428127765655518,
+                  "quality": 0.8019318580627441,
+                  "query_write_risk": 0.05261297523975372,
+                  "future": 0.14029136300086975,
+                  "memory_gate": 1.3816142082214355,
+                  "margin_preservation": 0.0021397999953478575,
+                  "identity_margin": 0.1644754856824875,
+                  "search_value": 0.021978795528411865,
+                  "search_success": 0.6628736257553101,
+                  "candidate_absence": 0.8291770815849304,
+                  "search_ranking": 1.7166900634765625
+                },
+                "module_gradient_norms": {
+                  "A": 0.09123517572879791,
+                  "B": 0.9291257262229919,
+                  "C": 1.0142699480056763
+                },
+                "elapsed_seconds": 111.57867177389562,
+                "peak_cuda_mib": 14190.64404296875
+              },
+              "training_completed": false,
+              "job_completed": false,
+              "config_batch": 384
+            },
+            "own": {
+              "last_train": {
+                "epoch": 6,
+                "step": 1,
+                "optimizer_steps": 16,
+                "loss": 1.707985281944275,
+                "parts": {
+                  "advantage": 0.05553999915719032,
+                  "action_ranking": 0.00874244887381792,
+                  "harm": 1.8432279825210571,
+                  "quality": 0.801923930644989,
+                  "query_write_risk": 0.05261072888970375,
+                  "future": 0.13418704271316528,
+                  "memory_gate": 1.3816155195236206,
+                  "margin_preservation": 0.0021509944926947355,
+                  "identity_margin": 0.16440096497535706,
+                  "search_value": 0.021562719717621803,
+                  "search_success": 0.6630390882492065,
+                  "candidate_absence": 0.82939612865448,
+                  "search_ranking": 1.7240147590637207
+                },
+                "module_gradient_norms": {
+                  "A": 0.09120112657546997,
+                  "B": 0.9303995370864868,
+                  "C": 0.9894822239875793
+                },
+                "elapsed_seconds": 111.45620151376352,
+                "peak_cuda_mib": 14190.64404296875
+              },
+              "training_completed": false,
+              "job_completed": false,
+              "config_batch": 384
+            }
+          },
+          "gpu": "0, 20654 MiB, 24576 MiB, 50 %\n1, 851 MiB, 24576 MiB, 32 %\n2, 20325 MiB, 24576 MiB, 13 %\n3, 851 MiB, 24576 MiB, 19 %\n",
+          "all_original_four_nn_handles_alive": true,
+          "expected_fit_nn_pids": [
+            3237695,
+            3237696
+          ],
+          "expected_native_control_nn_pids": [
+            3225109,
+            3134348
+          ],
+          "official_goal_completed": false
         }
       },
       "actual_native_no_search_control": {
@@ -589,6 +741,24 @@
         "scope": "Only extra visual search disabled; motion head remains, not complete B-off",
         "review": "PASS same-family/provisional",
         "full_goal_completed": false
+      },
+      "actual_native_raw_write_control": {
+        "status": "LAUNCHED",
+        "observed_cst": "2026-10-04T09:55:28.885489+08:00",
+        "physical_gpu": 1,
+        "session": "write_pair_native_lasher_raw_write_own_b384_full_20261004",
+        "pane_pid": 3225103,
+        "command": "/data/gb/setup/write_pair_native_lasher_raw_write_own_b384_full_20261004_command.sh",
+        "command_sha256": "8f5a4709f2b3adaafdde2c046d677cde17d5242e1cc5c11001e25cb8fa9803a8",
+        "source_review_sha256": "9f0e667d9d455bdfd4a50e4f5c4328aa509b2a6e107e245bfac78a0f56ccf9ea",
+        "checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "dataset": "lasher",
+        "expected_sequences": 245,
+        "expected_frames": 220703,
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004",
+        "completed": false,
+        "full_goal_completed": false,
+        "scope": "Fixed epoch4 full native coupled raw-write control, not template-only or training"
       }
     },
     {
@@ -666,14 +836,14 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "own TRAIN/VAL shard1; afterall16+merge, c1 B384M0",
-      "GPU1": "C1 TRAIN/VAL shard2",
-      "GPU2": "own TRAIN/VAL shard2; afterall16+merge, own B384M0",
-      "GPU3": "Actual complete Las no_search locked epoch4 control PID3134348, launched09:03:36;245/220703 full pipeline"
+      "GPU0": "future C1 teacher fresh B384 60epoch/180update fit; then full98",
+      "GPU1": "fixed own4 native Las raw-write full245/220703",
+      "GPU2": "future own4 teacher fresh B38460epoch/180update fit; then full98",
+      "GPU3": "fixed own4 native Las no-search full245/220703"
     },
     "gpu_memory_request": {
-      "status": "REAL_B384_FITS_COMPLETE; CURRENT_SERIAL_NATIVE_AND_LABEL_COLLECTION; NEXT_FIT_BATCH384_PLANNED",
-      "policy": "Actual four completed B384 fits used about21GB each; B512 long-fit OOM retained. Serial causal evaluation/collection stays unchanged. No allocation padding, power or thermal controls.",
+      "status": "MATCHED_FRESH_FULL_B384_FITS_ACTIVE_GPU0_GPU2; GPU1_GPU3_FULL_NATIVE_CONTROLS_ACTIVE",
+      "policy": "Use actual batch384 training to occupy useful GPU memory; previous real B384 fits reached about21GB/card; batch512 long training OOM. Current new M0 peak allocation14190.2788MiB. Serial evaluation stays unchanged; no allocation padding or temperature/power controls.",
       "batch_size": 384,
       "sanity_epochs": 3,
       "sanity_optimizer_steps": 9,
@@ -691,9 +861,17 @@
       "allfour_full_completed": true,
       "allocation_padding": false,
       "temperature_power_constraints_enabled": false,
-      "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
+      "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json",
+      "latest_actual_nvidia_mib_by_gpu": {
+        "GPU0": 20654,
+        "GPU1": 851,
+        "GPU2": 20325,
+        "GPU3": 851
+      },
+      "latest_fullfit_allocated_peak_mib": 14190.64404296875,
+      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_future_policy/full_fit_initial_runtime.json"
     },
-    "next_check_cst": "2026-10-04T09:12:00+08:00",
+    "next_check_cst": "2026-10-04T10:20:00+08:00 near estimated fit end; 240second polling when needed",
     "checkpoint_cleanup_total": {
       "files": 51,
       "bytes": 70869872,
@@ -1027,6 +1205,21 @@
       "full_goal_completed": false,
       "lasher_native_complete": true,
       "independent_cpu_audit": "PASS same-family/provisional;735 prediction-GT metric triples,19attributes,all curves exact;both5000CI exact;245mechanismNPZ/5778interventions reconciled"
+    },
+    "actual_full98_quality_argmax_diagnostic": {
+      "status": "PASS_OFFLINE_SAME_STATE_DIAGNOSTIC",
+      "valid_frames": 49233,
+      "candidates": 226722,
+      "quality_vs_keep_changes": 874,
+      "rescues": 149,
+      "harms": 208,
+      "correct_candidates_reintroduced": 22,
+      "reintroduced_correct_above_keep": 9,
+      "reintroduced_quality_argmax_correct": 8,
+      "actual_action_reintroduced_selected": 0,
+      "inference_changed": false,
+      "meaning": "Naive quality argmax harms normal frames; subset recognition does not justify online deployment.",
+      "record": "refine-logs/runs/recoverability_future_policy/internal_quality_vs_action_full98_cpu_diagnostic.json"
     }
   },
   "model_selection": {
@@ -1037,5 +1230,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T09:05:24.8100876+08:00"
+  "updated_cst": "2026-10-04T10:05:36.7645651+08:00"
 }

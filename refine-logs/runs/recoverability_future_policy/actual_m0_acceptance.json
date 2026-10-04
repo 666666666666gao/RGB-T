@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "both_teacher_arms_passed": true,
+  "batch_size": 384,
+  "optimizer_steps_per_arm": 9,
+  "epochs_per_arm": 3,
+  "accepted_at_cst": "2026-10-04T10:02:23.572963+08:00",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "audit_path": "/data/gb/setup/future_policy_actual_m0_cpu_audit_20261004.json",
+  "audit_sha256": "8e9fc10a3cf99dc19e32a512556d5b9481d5d8d9700ec9a46bc38029cce739e0",
+  "actual_receipts": {
+    "c1": {
+      "path": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004/completion.json",
+      "sha256": "4978483c717d09580853ed52a6e54aed3a3d8c22ebb01d42bb89289d5dff1623",
+      "checkpoint_path": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004/best.pth",
+      "checkpoint_sha256": "1c22212246d04475bff470e38f0f2cfe691a9e9bf71cc9e59ef248984fe24f2a",
+      "best_epoch": 0
+    },
+    "own": {
+      "path": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004/completion.json",
+      "sha256": "c80e14fe463ef57abff7e34e3030a0b428bf9ebbf6bbd95434872d7641533038",
+      "checkpoint_path": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004/best.pth",
+      "checkpoint_sha256": "87993ae0471b56b3f91c96d27c181d74dbd94e33ec2c31c6f9d6c7d625144b11",
+      "best_epoch": 0
+    }
+  },
+  "paired_cache_gate_path": "/data/gb/outputs/recoverability_future_policy_merged_20261004/paired_cache_gate.json",
+  "paired_cache_gate_sha256": "b65183c169d1a58bc9cfeefe0c1fa8fb0ba36f15fe5d160d8a9d33c68f2aa7b4",
+  "all16_to4_actual_cache_arrays_verified": true,
+  "strict_reload_metrics_exact_both": true,
+  "frozen_C1_tensors_exact_both": true,
+  "ABC_updates_runtime_asserted_both": true,
+  "best_epochs": {
+    "c1": 0,
+    "own": 0
+  },
+  "selected_checkpoints_are_initialization": true,
+  "learning_improvement_claimed": false,
+  "approved_next_step": "Previously source-reviewed manual fresh B384 60epoch180update two-arm full runner; same teacher pair and existing protocol, not resume from M0.",
+  "full_runner_sha256": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386",
+  "actual_full_training_started_by_reviewer": false,
+  "reviewer_NN_executions": 0
+}

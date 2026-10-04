@@ -1,0 +1,38 @@
+{
+  "status": "BOTH_FULL_FITS_LAUNCHED",
+  "observed_cst": "2026-10-04T10:02:24.560799+08:00",
+  "runner_sha256": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386",
+  "actual_m0_acceptance_sha256": "952fcb3500c34cc49d1f3bb4c968de74c425447b54be760bee17fafe8ae56d9c",
+  "arms": [
+    {
+      "physical_gpu": 0,
+      "policy": "c1",
+      "session": "future_policy_c1_b384_full_20261004",
+      "pane_pid": 3237680,
+      "output": "/data/gb/outputs/recoverability_future_c1_b384_full_20261004",
+      "log": "/data/gb/setup/future_policy_c1_b384_full_20261004.log",
+      "command": "bash /data/gb/GOLA/scripts/run_recoverability_future_fit.sh 0 c1 full > /data/gb/setup/future_policy_c1_b384_full_20261004.log 2>&1",
+      "epochs": 60,
+      "optimizer_steps_planned": 180,
+      "batch_size": 384,
+      "seed": 42,
+      "completed": false
+    },
+    {
+      "physical_gpu": 2,
+      "policy": "own",
+      "session": "future_policy_own_b384_full_20261004",
+      "pane_pid": 3237687,
+      "output": "/data/gb/outputs/recoverability_future_own_b384_full_20261004",
+      "log": "/data/gb/setup/future_policy_own_b384_full_20261004.log",
+      "command": "bash /data/gb/GOLA/scripts/run_recoverability_future_fit.sh 2 own full > /data/gb/setup/future_policy_own_b384_full_20261004.log 2>&1",
+      "epochs": 60,
+      "optimizer_steps_planned": 180,
+      "batch_size": 384,
+      "seed": 42,
+      "completed": false
+    }
+  ],
+  "full98_evaluation_queued_after_fit": true,
+  "official_goal_completed": false
+}

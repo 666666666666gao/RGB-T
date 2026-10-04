@@ -1,0 +1,427 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/recoverability_online_review",
+  "reviewer_model_metadata": {
+    "model_family": "Codex/GPT-6",
+    "exact_model_id": null,
+    "requested_reasoning_effort": "max",
+    "note": "The current reviewer host does not expose independently verifiable exact model/effort metadata."
+  },
+  "reviewed_utc": "2026-10-04T01:54:18.269382+00:00",
+  "scope": "Source/command gate for one fixed epoch4 seed42 native LasHeR raw-write closed-loop control. No new model, training seed, threshold or inference-source changes.",
+  "command": {
+    "local": "refine-logs/runs/recoverability_write_pair/own4_native_raw_write_lasher/run_command.sh",
+    "remote": "/data/gb/setup/write_pair_native_lasher_raw_write_own_b384_full_20261004_command.sh",
+    "sha256": "8f5a4709f2b3adaafdde2c046d677cde17d5242e1cc5c11001e25cb8fa9803a8",
+    "local_remote_bytes_equal": true,
+    "bash_n_passed": true,
+    "exact_changes_from_passed_no_search": [
+      "physical GPU3 to GPU1",
+      "disable-search to unsafe-writes",
+      "no_search labels/output to raw_write",
+      "wait marker to completed C1 validation shard2"
+    ]
+  },
+  "inference": {
+    "dataset": "lasher",
+    "root": "/data/wangwj/dataset/LasHeR/testingset",
+    "model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "pretrained": "pretrained_models/gola_b224.bin",
+    "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+    "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+    "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/predictions",
+    "validation_split": null,
+    "sequence_offset": 0,
+    "limit_sequences": 0,
+    "max_frames": 0,
+    "zero_init": false,
+    "parity_check": false,
+    "policy": "learned",
+    "disable_search": false,
+    "unsafe_writes": true,
+    "write_verification": "action",
+    "seed": 42,
+    "checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "locked_epoch": 4,
+    "threshold": 0.03,
+    "training_batch_size": 384,
+    "expected_sequences": 245,
+    "expected_frames": 220703,
+    "actual_image_count_verified": true,
+    "first_frame_initialization": "init.txt first line only; later GT read only by offline collectors",
+    "max_extra_visual_forwards_per_frame": 1,
+    "max_actual_candidates_per_frame": 10,
+    "new_abc_parameters_from_locked_full_config": 313111,
+    "new_model_or_training_seed": false
+  },
+  "write_control_semantics": {
+    "selection": "Current-frame search, candidates, regular/pause action scores and selected spatial candidate are computed before unsafe-writes forces pause=False.",
+    "raw_confidence": "Template commit is selected candidate raw_score > .84, from whichever actual region was selected; original raw threshold does not mean force the original C1 candidate.",
+    "template_and_mask": "_advance writes selected-box crop/mask and pending record at raw>.84. Unsafe mode skips the prior-template/mask/pending restoration used by learned pause. Template provenance advances on write.",
+    "identity_memory": "Target slots retain per-modality target-probability>=.5 verification and learned slot/rate gates, with commit=verified AND write. Thus cancelling pause can enable target-memory writes. Non-target/uncertain slots still update from observed/class probability independently of write.",
+    "frozen_motion_memory": "DiscriminativeMemory.update retains frozen learned trust and slot assignment, multiplied by write; cancelling pause can enable its writes even though its weights remain frozen.",
+    "geometry_history": "Selected box/frame/C1 quality enter the bounded 8-frame history every step regardless of write. Current selected box and search-provider update are unchanged for an identical entering state; subsequent trajectories/search/memory can diverge.",
+    "anchors": "Visual, identity and motion anchors remain frozen; identity and motion memory each keep four slots per sensor.",
+    "interpretation": "Coupled closed-loop write-permission ablation, not template-only, memory-disabled, identical-trajectory, identical-actual-budget, or independent future-counterfactual evidence."
+  },
+  "pipeline": {
+    "shell": "set -euo pipefail",
+    "gpu_mapping": "run_temporal.sh 1 sets CUDA_VISIBLE_DEVICES=1 and CUDA_DEVICE_ORDER=PCI_BUS_ID; evaluator cuda:0 uses that single visible device",
+    "cpu_after_inference": true,
+    "native_metrics": [
+      "NPR",
+      "PR",
+      "SR"
+    ],
+    "attributes": 19,
+    "pairwise_references": [
+      "baseline",
+      "c1",
+      "write_pair_reference_own_b384"
+    ],
+    "paired_iterations": 5000,
+    "paired_seed": 42,
+    "paired_delta_direction": "raw_write minus each reference",
+    "pairwise_plot_variant_count": 2,
+    "core_summary_variant_count": 4,
+    "mechanism_report_includes_selected_full_reference": true,
+    "completion_markers": "report_completed.txt and job_completed.txt are last and written only after all commands succeed",
+    "output_absent_at_review": true,
+    "existing_output_guard": true
+  },
+  "resources": {
+    "snapshot_utc": "2026-10-04T01:54:18.269414+00:00",
+    "all_gpu_snapshot": [
+      "0, GPU-056342c7-d51f-dab2-04c3-8f308babf946, 349 MiB, 0 %",
+      "1, GPU-70340485-fe6b-551b-c7e3-0aa8842efc56, 20 MiB, 0 %",
+      "2, GPU-a6b1e246-e8f7-12b2-3654-63cb30557749, 20 MiB, 0 %",
+      "3, GPU-e63caff9-f8b8-eade-74e0-d8d15ea6ffc2, 851 MiB, 28 %"
+    ],
+    "gpu1_snapshot": "1, GPU-70340485-fe6b-551b-c7e3-0aa8842efc56, 20 MiB, 0 %",
+    "gpu1_compute_processes": [],
+    "prerequisite_path": "/data/gb/outputs/recoverability_future_c1_validation_shard2_20261004",
+    "prerequisite_completion": {
+      "completed": true,
+      "clips": 32,
+      "partition": "validation",
+      "valid_actions": 1182,
+      "requested_extra_crops": 192,
+      "executed_extra_crops": 192,
+      "original_correct_queries": 28,
+      "original_failed_queries": 3,
+      "original_candidate_present_queries": 29,
+      "query_frames_after256": 3,
+      "decision_input_contains_future": false,
+      "official_tracking_accuracy": false,
+      "elapsed_seconds": 234.15284951543435,
+      "peak_cuda_mib": 517.29296875,
+      "actual_prefix_counts_sum": [
+        18,
+        6,
+        9,
+        1703
+      ]
+    },
+    "prerequisite_job_completed": "2026-10-04T09:25:53+08:00",
+    "wait_interval_seconds": 240,
+    "no_gpu1_overlap_observed": true,
+    "observation_is_not_a_future_reservation": true
+  },
+  "reference_completeness": {
+    "baseline": {
+      "path": "/data/gb/outputs/online_core/lasher_baseline",
+      "completed": true,
+      "sequences": 245,
+      "frames": 220703,
+      "all_prediction_TXT_rows_match_actual_image_count": true,
+      "smoke_only": false,
+      "job_completed": "2026-10-03T00:24:18+08:00"
+    },
+    "c1": {
+      "path": "/data/gb/outputs/online_core_v2/lasher_c1",
+      "completed": true,
+      "sequences": 245,
+      "frames": 220703,
+      "all_prediction_TXT_rows_match_actual_image_count": true,
+      "smoke_only": false,
+      "job_completed": "2026-10-03T03:44:22+08:00"
+    },
+    "write_pair_reference_own_b384": {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004",
+      "completed": true,
+      "sequences": 245,
+      "frames": 220703,
+      "all_prediction_TXT_rows_match_actual_image_count": true,
+      "smoke_only": false,
+      "job_completed": "2026-10-04T08:33:02+08:00",
+      "report_completed": "2026-10-04T08:33:02+08:00",
+      "locked_epoch": 4,
+      "threshold": 0.03,
+      "new_abc_parameters": 313111,
+      "parameters_not_recomputed_in_this_source_only_review": true
+    }
+  },
+  "source_sha256": {
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729",
+    "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "research/paired_sequence_bootstrap.py": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+    "research/plot_core_metrics.py": "e7b0230bc4652c4f264bcbd7455fd486da540f9a06cbdbf7b1db9380008629ec",
+    "research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "research/bounded_recovery.py": "20b3b710c777d8c00c0336cd9c7f402b8555bbe84bd952ce85a3f1208e0ce089",
+    "research/temporal_modules.py": "e4455fd4a01ad2056c8e7986e68dfd5571f34fccca00693c179d2813a2a0991c"
+  },
+  "all_local_remote_source_bytes_hash_equal": true,
+  "all_previously_reviewed_source_hashes_unchanged": true,
+  "cli_parsed_from_actual_source_without_importing_NN": [
+    {
+      "module": "research.evaluate_recoverability",
+      "args": {
+        "dataset": "lasher",
+        "root": "/data/wangwj/dataset/LasHeR/testingset",
+        "model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "pretrained": "pretrained_models/gola_b224.bin",
+        "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/predictions",
+        "validation_split": null,
+        "sequence_offset": 0,
+        "limit_sequences": 0,
+        "max_frames": 0,
+        "zero_init": false,
+        "parity_check": false,
+        "policy": "learned",
+        "disable_search": false,
+        "unsafe_writes": true,
+        "write_verification": "action",
+        "seed": 42
+      }
+    },
+    {
+      "module": "research.collect_core_metrics",
+      "args": {
+        "dataset": "lasher",
+        "data_root": "/data/wangwj/dataset/LasHeR/testingset",
+        "variants": [
+          "baseline",
+          "write_pair_raw_write_own_b384"
+        ],
+        "runs": [
+          "/data/gb/outputs/online_core/lasher_baseline",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/baseline_paired_report"
+      }
+    },
+    {
+      "module": "research.paired_sequence_bootstrap",
+      "args": {
+        "reports": [
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/baseline_paired_report/full_report.json"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/baseline_paired_report/paired_bootstrap.json",
+        "iterations": 5000,
+        "seed": 42
+      }
+    },
+    {
+      "module": "research.plot_core_metrics",
+      "args": {
+        "report": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/baseline_paired_report/full_report.json",
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/baseline_paired_report"
+      }
+    },
+    {
+      "module": "research.collect_core_metrics",
+      "args": {
+        "dataset": "lasher",
+        "data_root": "/data/wangwj/dataset/LasHeR/testingset",
+        "variants": [
+          "c1",
+          "write_pair_raw_write_own_b384"
+        ],
+        "runs": [
+          "/data/gb/outputs/online_core_v2/lasher_c1",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/c1_paired_report"
+      }
+    },
+    {
+      "module": "research.paired_sequence_bootstrap",
+      "args": {
+        "reports": [
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/c1_paired_report/full_report.json"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/c1_paired_report/paired_bootstrap.json",
+        "iterations": 5000,
+        "seed": 42
+      }
+    },
+    {
+      "module": "research.plot_core_metrics",
+      "args": {
+        "report": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/c1_paired_report/full_report.json",
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/c1_paired_report"
+      }
+    },
+    {
+      "module": "research.collect_core_metrics",
+      "args": {
+        "dataset": "lasher",
+        "data_root": "/data/wangwj/dataset/LasHeR/testingset",
+        "variants": [
+          "write_pair_reference_own_b384",
+          "write_pair_raw_write_own_b384"
+        ],
+        "runs": [
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report"
+      }
+    },
+    {
+      "module": "research.paired_sequence_bootstrap",
+      "args": {
+        "reports": [
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report/full_report.json"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report/paired_bootstrap.json",
+        "iterations": 5000,
+        "seed": 42
+      }
+    },
+    {
+      "module": "research.plot_core_metrics",
+      "args": {
+        "report": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report/full_report.json",
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/write_pair_reference_own_b384_paired_report"
+      }
+    },
+    {
+      "module": "research.collect_core_metrics",
+      "args": {
+        "dataset": "lasher",
+        "data_root": "/data/wangwj/dataset/LasHeR/testingset",
+        "variants": [
+          "baseline",
+          "c1",
+          "write_pair_reference_own_b384",
+          "write_pair_raw_write_own_b384"
+        ],
+        "runs": [
+          "/data/gb/outputs/online_core/lasher_baseline",
+          "/data/gb/outputs/online_core_v2/lasher_c1",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/core_report"
+      }
+    },
+    {
+      "module": "research.collect_recoverability_metrics",
+      "args": {
+        "dataset": "lasher",
+        "root": "/data/wangwj/dataset/LasHeR/testingset",
+        "split": null,
+        "runs": [
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/predictions"
+        ],
+        "labels": [
+          "write_pair_raw_write_own_b384"
+        ],
+        "references": [
+          "/data/gb/outputs/online_core/lasher_baseline/predictions",
+          "/data/gb/outputs/online_core_v2/lasher_c1/predictions",
+          "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/predictions"
+        ],
+        "reference_labels": [
+          "baseline",
+          "c1",
+          "write_pair_reference_own_b384"
+        ],
+        "output": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/mechanism_report"
+      }
+    }
+  ],
+  "prior_default_equivalence_evidence": {
+    "source_review": "refine-logs/runs/recoverability_write_pair/own4_native_no_search_lasher/source_review.json",
+    "equivalence": {
+      "source_ast_receipt": "refine-logs/runs/recoverability_future_policy/source_ast_review_receipt.json",
+      "final_runtime_cpu_receipt": "refine-logs/runs/recoverability_future_policy/final_runtime_cpu_receipt.json",
+      "actual_state_receipt": "refine-logs/runs/recoverability_future_policy/state_m0_v3_receipt.json",
+      "source_review": "refine-logs/runs/recoverability_future_policy/source_review_final_20261004_071116.json",
+      "old_new_full_tracker_transitions_each": 1238,
+      "full_videos": [
+        {
+          "sequence": "3whitemen",
+          "frames": 449
+        },
+        {
+          "sequence": "ab_motocometurn",
+          "frames": 172
+        }
+      ],
+      "verification_modes": [
+        "action",
+        "identity"
+      ],
+      "all_boxes_states_timelines_bitwise_equal": true,
+      "actual_action_mode_witness": {
+        "extra_searches": 13,
+        "template_updates": 108,
+        "paused_query_writes": 3
+      },
+      "default_c1_collector_arrays_bitwise_equal": true,
+      "attribution": "Previously completed main-agent GPU M0 and independent CPU artifact/source review; this reviewer read the actual saved receipts and matching current source, and did not rerun NN/GPU checks."
+    },
+    "source_transition": {
+      "record": "refine-logs/runs/recoverability_future_policy/future_policy_production_transition_20261004.json",
+      "transition_observed_cst": "2026-10-04T08:39:08.227697+08:00",
+      "native_runs_closed_before_transition": {
+        "lasher": "2026-10-04T08:33:02+08:00",
+        "rgbt234": "2026-10-04T07:33:52+08:00"
+      },
+      "evaluator_single_metadata_string_only": true,
+      "entire_evaluator_ast_equal_after_restoring_that_string": true,
+      "tracker_change_description": "The tracker transition also extracts accept_observation from step. Therefore the entire production transition should not be called metadata-only; the evaluator edit is metadata-only and the tracker extraction is supported by source/runtime equivalence evidence.",
+      "unchanged_tracker_methods_ast": [
+        "__init__",
+        "history_inputs",
+        "original_inputs",
+        "insert_region",
+        "extra_observation"
+      ],
+      "old_tracker_raw_sha256": "051e7abaf0a1cd279389e8cdcf0a498826eeb42aa7d15ebf0d1357dbe11af2ae",
+      "old_tracker_crlf_sha256": "b1ee16a734ba359c3006df7ceacf3ef22a7a5e790681dfe79f184a53248021fd",
+      "old_tracker_crlf_hash_matches_transition_before": true,
+      "precommit_memory_read_order_checked": true,
+      "neural_module_state_dict_or_loss_changed_for_this_diagnostic": false
+    }
+  },
+  "interpretation_limits": [
+    "This gate reports no raw-write native outcome. The run has not been launched by this reviewer.",
+    "Sequence-bootstrap intervals describe fixed-weight paired sequence resampling, not training-seed uncertainty.",
+    "Template, target-memory and frozen-motion-memory commit changes are coupled through write; future states and executed search budget may differ.",
+    "This is the same locked model and original native GT protocol. No model renaming or offline localization IoU is treated as native score."
+  ],
+  "reviewer_actions": {
+    "nn_imports": 0,
+    "nn_forward": 0,
+    "gpu_runs": 0,
+    "launches": 0,
+    "training": 0,
+    "process_signals": 0,
+    "source_edits": 0,
+    "model_changes": 0,
+    "raw_report_changes": 0,
+    "human_markdown_changes": 0,
+    "machine_review_json_copies": 2
+  }
+}

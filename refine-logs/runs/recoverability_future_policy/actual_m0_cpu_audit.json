@@ -1,0 +1,701 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-04T10:01:06.778650+08:00",
+  "scope": "Actual both-teacher B384/3epoch/9update M0 and all real cache gates; CPU-only independent artifact audit, no model execution.",
+  "source_sha256": {
+    "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "research/merge_recoverability_future_caches.py": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "scripts/run_recoverability_future_fit.sh": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386"
+  },
+  "paired_cache_gate_path": "/data/gb/outputs/recoverability_future_policy_merged_20261004/paired_cache_gate.json",
+  "paired_cache_gate_sha256": "b65183c169d1a58bc9cfeefe0c1fa8fb0ba36f15fe5d160d8a9d33c68f2aa7b4",
+  "paired_cache_gate": {
+    "status": "PASS",
+    "matched_partitions": {
+      "train": 902,
+      "validation": 128
+    },
+    "all_non_future_arrays_exact": true,
+    "future_labels": {
+      "train": {
+        "future_iou": {
+          "different_elements": 4717,
+          "max_absolute_difference": 0.9877115488052368
+        },
+        "wrong_update_fraction": {
+          "different_elements": 49,
+          "max_absolute_difference": 0.5
+        }
+      },
+      "validation": {
+        "future_iou": {
+          "different_elements": 745,
+          "max_absolute_difference": 0.9899621605873108
+        },
+        "wrong_update_fraction": {
+          "different_elements": 4,
+          "max_absolute_difference": 0.25
+        }
+      }
+    },
+    "teacher_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "training_started": false,
+    "official_goal_completed": false,
+    "next_gate": "matched B384 training sanity before full fit"
+  },
+  "cache_checks": {
+    "c1_train": {
+      "clips": 902,
+      "valid_actions": 32990,
+      "source_shards": [
+        "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+        "/data/gb/outputs/recoverability_future_c1_train_shard1_20261004",
+        "/data/gb/outputs/recoverability_future_c1_train_shard2_20261004",
+        "/data/gb/outputs/recoverability_future_c1_train_shard3_20261004"
+      ],
+      "source_receipt_sha256": {
+        "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004/completion.json": "205b235f63e52562e73eb8a898f0426998724127e52f383c7cbe2ec0656ff94e",
+        "/data/gb/outputs/recoverability_future_c1_train_shard1_20261004/completion.json": "1be8e34326e9e53f4f1658811761b2ea05d95ad6c062060153288d312546bcb8",
+        "/data/gb/outputs/recoverability_future_c1_train_shard2_20261004/completion.json": "05a0c6320cb16d0ea2df2cb6eb6c1282140eb7db1296a5496e2d570d5a61cbe6",
+        "/data/gb/outputs/recoverability_future_c1_train_shard3_20261004/completion.json": "a585e915265e364d7cf30500bf684795379eb661ed1825f78f90bbda293e55d1"
+      },
+      "merged_completion_sha256": "e459c757ac3752f8b4ee54bd6a698927b242aa81c2f675c3bb495ac1e1915a6d",
+      "merged_config_sha256": "9ecc4869af877910bc8cd77aeb3c6e8e82790b82e53a790f1ead412968fd5e94",
+      "all30_merged_fields_equal_ordered_actual_shards": true,
+      "all_source_success_markers_present": true,
+      "array_check_provenance": "Actual first reviewer CPU invocation completed all source read_partition assertions and all30 merged dtype/shape/value comparisons; its later summary-mean assertion failed only after this successful cache stage. Not recomputed in finalization."
+    },
+    "own_train": {
+      "clips": 902,
+      "valid_actions": 32990,
+      "source_shards": [
+        "/data/gb/outputs/recoverability_future_own_train_shard0_20261004",
+        "/data/gb/outputs/recoverability_future_own_train_shard1_20261004",
+        "/data/gb/outputs/recoverability_future_own_train_shard2_20261004",
+        "/data/gb/outputs/recoverability_future_own_train_shard3_20261004"
+      ],
+      "source_receipt_sha256": {
+        "/data/gb/outputs/recoverability_future_own_train_shard0_20261004/completion.json": "16eface0c0b4708bab66e285703294df84284936ab204d0249447004ac1d2745",
+        "/data/gb/outputs/recoverability_future_own_train_shard1_20261004/completion.json": "6325cab0b94aafdc9426fec23d123e16aa53dd4bc165d3783fb8d8abe4b93f8a",
+        "/data/gb/outputs/recoverability_future_own_train_shard2_20261004/completion.json": "3ca076eab5c37c2a3a4b85edf1248ac98978f7654be95e7fb01194f300b59421",
+        "/data/gb/outputs/recoverability_future_own_train_shard3_20261004/completion.json": "d521ed25e041284ced6ee98ac97b2468d0b7604dc0d33032b4bd87eba599997c"
+      },
+      "merged_completion_sha256": "d071177ce66b38a0dc4cb94d2ef935d9f4c307a7f6e283c6bf93ea448b3c88ca",
+      "merged_config_sha256": "623607aeccb09dfecfa6105184fd24d2274a40db379d9378ca21ab6cef9b3e7b",
+      "all30_merged_fields_equal_ordered_actual_shards": true,
+      "all_source_success_markers_present": true,
+      "array_check_provenance": "Actual first reviewer CPU invocation completed all source read_partition assertions and all30 merged dtype/shape/value comparisons; its later summary-mean assertion failed only after this successful cache stage. Not recomputed in finalization."
+    },
+    "train_pair": {
+      "same30_field_dtype_shape": true,
+      "all28_non_future_fields_exact": true,
+      "future_label_differences": {
+        "future_iou": {
+          "different_elements": 4717,
+          "max_absolute_difference": 0.9877115488052368
+        },
+        "wrong_update_fraction": {
+          "different_elements": 49,
+          "max_absolute_difference": 0.5
+        }
+      },
+      "provenance": "Actual original verify_pair completed and equalled the real paired gate before the later CPU-summary assertion."
+    },
+    "c1_validation": {
+      "clips": 128,
+      "valid_actions": 4774,
+      "source_shards": [
+        "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard1_20261004",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard2_20261004",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004"
+      ],
+      "source_receipt_sha256": {
+        "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004/completion.json": "ee3b7d1f3e5baaea0f91905b96cc26c5b17f1afe78b6a75faece4c604d5f27f6",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard1_20261004/completion.json": "e4e9f9524c258dc3ff034bff425d8bd685dbdaf315259bca042497595b44dddc",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard2_20261004/completion.json": "e7eeb68937d5b39f55d72070002bc33fafe5ed80cb11facabc259f6367ea0a19",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/completion.json": "bc1504198e7caaa13cec40bf781927c39b283fb092a154b91bf8050de5e9e536"
+      },
+      "merged_completion_sha256": "9d360633936ecb6906a69cd76120202d2cd4dbaa2c454bcf13e6d1fc08bbcdec",
+      "merged_config_sha256": "a8138330505b8d015faf43ecb0090a5f4e05ab9a6d254145db3b4aa8d6152f7e",
+      "all30_merged_fields_equal_ordered_actual_shards": true,
+      "all_source_success_markers_present": true,
+      "array_check_provenance": "Actual first reviewer CPU invocation completed all source read_partition assertions and all30 merged dtype/shape/value comparisons; its later summary-mean assertion failed only after this successful cache stage. Not recomputed in finalization."
+    },
+    "own_validation": {
+      "clips": 128,
+      "valid_actions": 4774,
+      "source_shards": [
+        "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004",
+        "/data/gb/outputs/recoverability_future_own_validation_shard1_20261004",
+        "/data/gb/outputs/recoverability_future_own_validation_shard2_20261004",
+        "/data/gb/outputs/recoverability_future_own_validation_shard3_20261004"
+      ],
+      "source_receipt_sha256": {
+        "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004/completion.json": "12bf27e3e0e68f478c316ca409e5464eb14f41bed3d65bd02a6af529ef8f0e8e",
+        "/data/gb/outputs/recoverability_future_own_validation_shard1_20261004/completion.json": "b9a3bfdc05dc06e76326ba017c4e3ab880804915e088d0f21c7d0620fcaaab28",
+        "/data/gb/outputs/recoverability_future_own_validation_shard2_20261004/completion.json": "7574ec634539797305ca7d1d98e8178dd3f88913b00bf6354004ff8f2b15cd97",
+        "/data/gb/outputs/recoverability_future_own_validation_shard3_20261004/completion.json": "e574d6d034ebcb96173315f56a32fbbde38b988dc505a5faa86314fecb0fa36a"
+      },
+      "merged_completion_sha256": "ab848cf6e9c8d7177c6bc27e80bc3104b07c1ddd0a8f6989ecc298222c917d11",
+      "merged_config_sha256": "c58dd5c34ebd671bee7f31941dd9542fb5642e428f96b26febe5deedbadea715",
+      "all30_merged_fields_equal_ordered_actual_shards": true,
+      "all_source_success_markers_present": true,
+      "array_check_provenance": "Actual first reviewer CPU invocation completed all source read_partition assertions and all30 merged dtype/shape/value comparisons; its later summary-mean assertion failed only after this successful cache stage. Not recomputed in finalization."
+    },
+    "validation_pair": {
+      "same30_field_dtype_shape": true,
+      "all28_non_future_fields_exact": true,
+      "future_label_differences": {
+        "future_iou": {
+          "different_elements": 745,
+          "max_absolute_difference": 0.9899621605873108
+        },
+        "wrong_update_fraction": {
+          "different_elements": 4,
+          "max_absolute_difference": 0.25
+        }
+      },
+      "provenance": "Actual original verify_pair completed and equalled the real paired gate before the later CPU-summary assertion."
+    }
+  },
+  "all16_real_source_shards_checked": true,
+  "all4_merged_caches_equal_ordered_sources": true,
+  "all28_non_future_arrays_exact_on_both_partitions": true,
+  "teacher_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "frozen_C1_source": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "frozen_C1_source_sha256": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+  "both_teacher_arms_passed": true,
+  "batch_size": 384,
+  "optimizer_steps_per_arm": 9,
+  "epochs_per_arm": 3,
+  "arms": {
+    "c1": {
+      "root": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004",
+      "status": "PASS",
+      "artifact_sha256": {
+        "config.json": "097a9036b591d542b0cf0dc5665ca9b12a22be0735eb56678c5ca33c9fd8f39f",
+        "completion.json": "4978483c717d09580853ed52a6e54aed3a3d8c22ebb01d42bb89289d5dff1623",
+        "train.jsonl": "f4cd0b3452f16c0a6748019d229b791cde50a70545f7b7949a74b76cf4a7e42c",
+        "metrics.json": "9f8ea366cd25c89f25e4665a6dcf08deb2f61bb40ba587e3b4012973161910bb",
+        "best_validation.npz": "bb97264708491198d8eaec255f6058b54d6ed64bb968b82aff6693760aa893e3",
+        "best.pth": "1c22212246d04475bff470e38f0f2cfe691a9e9bf71cc9e59ef248984fe24f2a",
+        "training_completed.txt": "3644e40d51138106460a6a291c91d4c8f71e42b1be762822077eea021359eaa8",
+        "job_completed.txt": "3644e40d51138106460a6a291c91d4c8f71e42b1be762822077eea021359eaa8"
+      },
+      "completion": {
+        "completed": true,
+        "epochs": 3,
+        "optimizer_steps": 9,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09182725846767426,
+          "B": 1.1284642219543457,
+          "C": 2.615239143371582
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 62.20551522029564,
+        "peak_cuda_mib": 14190.27880859375,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.7535483837127686,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.703992247581482,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "train_log_rows": 6,
+      "actual_optimizer_steps": 9,
+      "logging_explanation": "Source logs only first and last of3updates/epoch;6rows represent9updates.",
+      "all_logged_losses_parts_and_gradients_finite": true,
+      "all_logged_ABC_gradient_norms_positive": true,
+      "recorded_final_ABC_parameter_changes": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1_checkpoint_tensors_equal": 8,
+      "frozen_C1_checkpoint_tensor_elements": 117889,
+      "strict_reload_record_and_checkpoint_metrics_exact": true,
+      "best_npz_all21fields_reconciled": true,
+      "cpu_utility_max_abs_error": 5.960464477539063e-08,
+      "cpu_npz_summary_max_abs_error": 1.1920928955078125e-07,
+      "checkpoint_state_keys": 25,
+      "checkpoint_state_finite_cpu": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best_checkpoint_is_initialization": true,
+      "learning_gain_claimed": false,
+      "epoch_metrics": [
+        {
+          "epoch": 0,
+          "clips": 128,
+          "loss": 1.7535483837127686,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 1,
+          "clips": 128,
+          "loss": 1.7402225732803345,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 2,
+          "clips": 128,
+          "loss": 1.722884178161621,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 3,
+          "clips": 128,
+          "loss": 1.703992247581482,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482289671897888,
+          "utility": 0.7482289671897888,
+          "c1_utility": 0.7482289671897888,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        }
+      ]
+    },
+    "own": {
+      "root": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004",
+      "status": "PASS",
+      "artifact_sha256": {
+        "config.json": "34112eaf4ae1d0507daf86f04de23b73b379ee737ae7d4337de025803c70133a",
+        "completion.json": "c80e14fe463ef57abff7e34e3030a0b428bf9ebbf6bbd95434872d7641533038",
+        "train.jsonl": "02e714d4cefe315394eba0d8e76d945102c9d8cd250a65eb9da5e94888ef743b",
+        "metrics.json": "d3fed76dd4d230c472489b88607b7423a17298a3d5cd7820df4fa9310a7d5e4c",
+        "best_validation.npz": "29a6a88b3bd2e813e5712dcbc65d715e07232ee6f356c0a73a54e036ac3d04d7",
+        "best.pth": "87993ae0471b56b3f91c96d27c181d74dbd94e33ec2c31c6f9d6c7d625144b11",
+        "training_completed.txt": "45239acfedd6acdd30b89a9eba1a0c0fda6f514b484ec426f69784e09f20e636",
+        "job_completed.txt": "45239acfedd6acdd30b89a9eba1a0c0fda6f514b484ec426f69784e09f20e636"
+      },
+      "completion": {
+        "completed": true,
+        "epochs": 3,
+        "optimizer_steps": 9,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09182477742433548,
+          "B": 1.116971492767334,
+          "C": 2.610682725906372
+        },
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 62.51542126806453,
+        "peak_cuda_mib": 14190.27880859375,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.748532772064209,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 128,
+          "loss": 1.6989374160766602,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        "retained_weights": [
+          "best.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "train_log_rows": 6,
+      "actual_optimizer_steps": 9,
+      "logging_explanation": "Source logs only first and last of3updates/epoch;6rows represent9updates.",
+      "all_logged_losses_parts_and_gradients_finite": true,
+      "all_logged_ABC_gradient_norms_positive": true,
+      "recorded_final_ABC_parameter_changes": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_C1_checkpoint_tensors_equal": 8,
+      "frozen_C1_checkpoint_tensor_elements": 117889,
+      "strict_reload_record_and_checkpoint_metrics_exact": true,
+      "best_npz_all21fields_reconciled": true,
+      "cpu_utility_max_abs_error": 5.960464477539063e-08,
+      "cpu_npz_summary_max_abs_error": 1.1920928955078125e-07,
+      "checkpoint_state_keys": 25,
+      "checkpoint_state_finite_cpu": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best_checkpoint_is_initialization": true,
+      "learning_gain_claimed": false,
+      "epoch_metrics": [
+        {
+          "epoch": 0,
+          "clips": 128,
+          "loss": 1.748532772064209,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 1,
+          "clips": 128,
+          "loss": 1.734999656677246,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 2,
+          "clips": 128,
+          "loss": 1.7177317142486572,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        },
+        {
+          "epoch": 3,
+          "clips": 128,
+          "loss": 1.6989374160766602,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482534646987915,
+          "utility": 0.7482534646987915,
+          "c1_utility": 0.7482534646987915,
+          "pause": 0,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 0.0
+        }
+      ]
+    }
+  },
+  "both_best0_model_states_exact": true,
+  "selected_checkpoint_learning_gain": false,
+  "strict_reload_boundary": "Actual trainer performs strict load_state_dict then NN validation and asserts metrics equal before writing completion. Reviewer independently checked checkpoint/completion/epoch metrics exact and reconciled all stored validation arrays with cache GT. Reviewer did not rerun NN or recompute neural loss.",
+  "ABC_update_evidence_boundary": "Final-training A/B/C changes and frozen-C1 gradient absence are actual runtime assertions recorded in completion; positive gradient traces corroborate updates. Only selected best.pth is retained and it is epoch0, so final epoch3 tensors are not available for a new independent before/after tensor comparison. Best0 is not called a trained improvement.",
+  "CPU_summary_check": "Boolean counts exact. Float32 GPU versus CPU means can differ by reduction order; compare recorded mean to float64 sum using standard (n+1)*eps/(1-(n+1)*eps)*mean(abs(values)) rounding bound. Observed maximum CPU/GPU difference1.1920928955078125e-7=2float32ULP; production strict_reload metadata equality remains exact.",
+  "review_harness_initial_failure": {
+    "assertion": "CPU mean difference<=1e-7",
+    "observed": "current/c1_current CPU0.7492049932479858 versus GPU0.7492051124572754; float64mean0.7492050489381654, GPU error6.351910997182131e-8",
+    "interpretation": "Reviewer-chosen cross-device summary tolerance was too strict; original experiment strict-reload equality passed and was not relaxed.",
+    "cache_stage_completed_before_failure": true,
+    "cache_stage_not_repeated": true
+  },
+  "blocking_findings": [],
+  "observed_m0_completed_marker": "2026-10-04T09:40:45+08:00",
+  "finalization_cpu_seconds": 0.05498884292319417,
+  "array_stage": "First invocation completed bothTRAIN and bothvalidation30-field exact comparisons plus all28 paired fields, then failed only at later CPU/GPU summary mean tolerance. Trace retained in reviewer tool output.",
+  "reviewer_execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized_before": false,
+    "cuda_initialized_after": false,
+    "torch_version": "2.5.1+cu118",
+    "model_instances": 0,
+    "nn_forward": 0,
+    "nn_backward": 0,
+    "optimizer_updates": 0,
+    "training_launch": false,
+    "source_changes": false,
+    "process_signals": false
+  },
+  "full_gate": "The previously reviewed matched fresh60epoch180update full runner may be invoked after acceptance is written; this audit is not full training or accuracy completion."
+}
