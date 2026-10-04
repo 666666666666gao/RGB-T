@@ -1,0 +1,835 @@
+{
+  "status": "PASS",
+  "all_four_arms_passed": true,
+  "stage": "m0",
+  "batch_size": 416,
+  "epochs_per_arm": 3,
+  "optimizer_steps_per_arm": 9,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "accepted_at_cst": "2026-10-04T17:35:58.656615+08:00",
+  "scope": "Real training and retained-tensor CPU replay; complete ABC still executes. No continuous or native improvement claim.",
+  "source_review": "/data/gb/setup/module_freeze_runner_audit_source_review_20261004.json",
+  "source_staging": "/data/gb/setup/module_freeze_source_staging_20261004.json",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_module_freeze_20261004/research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "/data/gb/experiments/recoverability_module_freeze_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_module_freeze_20261004/scripts/run_recoverability_module_freeze.sh": "be4238e308cd71e7bcb62e406f6d16d9c10e42756a32ecd8047e8ea272ea7596",
+    "/data/gb/experiments/recoverability_module_freeze_20261004/audit/actual_module_freeze_fit_cpu_audit.py": "a66b370d9d90884c8c8ea268133b30266ac0768b773d5f465ab53a9caedfe6e4",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "/data/gb/GOLA/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "/data/gb/GOLA/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8"
+  },
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_module_freeze_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_module_freeze_20261004/research/recoverability_modules.py"
+  ],
+  "arms": {
+    "bc": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_m0_20261004",
+      "frozen_modules": [
+        "A"
+      ],
+      "active_modules": [
+        "B",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": false,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {
+        "A": true
+      },
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.0,
+        "B": 2.6835057735443115,
+        "C": 1.6682398319244385
+      },
+      "trainable_parameters": {
+        "A": 0,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7872822284698486,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7412313222885132,
+        "utility": 0.7412313222885132,
+        "c1_utility": 0.7412196397781372,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "peak_cuda_mib": 10826.51513671875,
+      "artifact_sha256": {
+        "config.json": "528b23a7d3486b8d5f2dfb7ad024e839210e6ce0244e716d6f34bc6e7db722c0",
+        "completion.json": "55ed41746613d48680a83be642970f63df387d33d4f5c86cf52edbc25c7a574c",
+        "metrics.json": "59bc3e96057ca7fe96068aa2c1ebfb08aca45d12af28f4e42e50eeff06fed5a4",
+        "train.jsonl": "7cee3647f0fa655e1f536a0d0f741878c758296c7735550776922ceaf9ca60c6",
+        "best.pth": "0202eee02992b03be97718547fab5f98305a6498083726bcf70a8cdf2b04b746",
+        "best_validation.npz": "8eecfcc33368f34f176454cd06e0758c4ef89f200bc992e49db487f1440c0dc3",
+        "training_completed.txt": "41a13fb91171a57eeeeb4f0b081ea13e474808fabb96ae62066f2fd2f983eb92",
+        "job_completed.txt": "41a13fb91171a57eeeeb4f0b081ea13e474808fabb96ae62066f2fd2f983eb92"
+      },
+      "learning_gain_claimed": false
+    },
+    "ac": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_m0_20261004",
+      "frozen_modules": [
+        "B"
+      ],
+      "active_modules": [
+        "A",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": false,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {
+        "B": true
+      },
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.10607163608074188,
+        "B": 0.0,
+        "C": 1.6651113033294678
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 0,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7872822284698486,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7412313222885132,
+        "utility": 0.7412313222885132,
+        "c1_utility": 0.7412196397781372,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "peak_cuda_mib": 15077.92333984375,
+      "artifact_sha256": {
+        "config.json": "cc7bea9f5230be883a75c4c599781aba9ed84d1015469dbe71967edaf1723214",
+        "completion.json": "13f873a1d2c416a5449eb9840f658957d84676a8625132a9e3f0c8abebedc42b",
+        "metrics.json": "eb4a990ccf7670093f2eeefa047cbfed4d7a463df4d595f1c4c467a5b73558b9",
+        "train.jsonl": "059b1178a2893ecebcc8dbdcd8d0eef764d8bfcbe6801bb5490610c634986beb",
+        "best.pth": "0d1707ab0e619797c7b4283cf2ed1342cce7c72bdabb503837f47d4eb59acc50",
+        "best_validation.npz": "8eecfcc33368f34f176454cd06e0758c4ef89f200bc992e49db487f1440c0dc3",
+        "training_completed.txt": "b47caa9d7f7a3617fa6c0832a942ab56a77e0cf73afd2bb6682848fe1e1d1486",
+        "job_completed.txt": "b47caa9d7f7a3617fa6c0832a942ab56a77e0cf73afd2bb6682848fe1e1d1486"
+      },
+      "learning_gain_claimed": false
+    },
+    "ab": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_m0_20261004",
+      "frozen_modules": [
+        "C"
+      ],
+      "active_modules": [
+        "A",
+        "B"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": false
+      },
+      "terminal_frozen_weights_unchanged": {
+        "C": true
+      },
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.1063753291964531,
+        "B": 2.6833226680755615,
+        "C": 0.0
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 0
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7872822284698486,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7412313222885132,
+        "utility": 0.7412313222885132,
+        "c1_utility": 0.7412196397781372,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "peak_cuda_mib": 15077.3466796875,
+      "artifact_sha256": {
+        "config.json": "6bb276056ace5416b8d1b5ffb119f134c01c7ed2653cca05d5ff4e75954a5cb9",
+        "completion.json": "5e442d59b1e5eb9dc1ac3716786d22fd1ac1a97eff093fd08f11354c9432b592",
+        "metrics.json": "a40f891a3c6ea891d9de07d7c34ec30a8735d582931b1be476ee393ac7bd9659",
+        "train.jsonl": "48cbb1c7c6638849425acbdb41a7d9723b75b28649b2b31fea102f23695d8582",
+        "best.pth": "322272874d1e835bf4e17f6e7ae82e65df830cb37a7ce8c8590a209a6bce80b8",
+        "best_validation.npz": "8eecfcc33368f34f176454cd06e0758c4ef89f200bc992e49db487f1440c0dc3",
+        "training_completed.txt": "b47caa9d7f7a3617fa6c0832a942ab56a77e0cf73afd2bb6682848fe1e1d1486",
+        "job_completed.txt": "b47caa9d7f7a3617fa6c0832a942ab56a77e0cf73afd2bb6682848fe1e1d1486"
+      },
+      "learning_gain_claimed": false
+    },
+    "c": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_m0_20261004",
+      "frozen_modules": [
+        "A",
+        "B"
+      ],
+      "active_modules": [
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": false,
+        "B": false,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {
+        "A": true,
+        "B": true
+      },
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.0,
+        "B": 0.0,
+        "C": 1.6682398319244385
+      },
+      "trainable_parameters": {
+        "A": 0,
+        "B": 0,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 5.960464477539063e-08,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7872822284698486,
+        "valid_actions": 4774,
+        "current": 0.7403526306152344,
+        "c1_current": 0.7403526306152344,
+        "utility_before_search_cost": 0.7412313222885132,
+        "utility": 0.7412313222885132,
+        "c1_utility": 0.7412196397781372,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 11,
+        "c1_failed": 11,
+        "original_recall": 114,
+        "budget_recall": 114,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.1682510375976562e-05
+      },
+      "peak_cuda_mib": 10825.17333984375,
+      "artifact_sha256": {
+        "config.json": "60b572e56aa3c9afa280ee2248692e4ac10c97226fd1f65c0c8472a1553fd12e",
+        "completion.json": "d0914544e152919c03c27f351b139f9f0724f8f187bfb8142291cf0d2eb89d52",
+        "metrics.json": "2454de9276be9612d8856476bca2483d9250b2ab4f86694560dcfe02f145d159",
+        "train.jsonl": "922a04565b862c703bf58d599f9b34936cdb80b515c85ec849ee1e35bb936849",
+        "best.pth": "5752d39f16f71c161aa49d96349d5f6a566a1d698c5eb284f09337e3910403ed",
+        "best_validation.npz": "8eecfcc33368f34f176454cd06e0758c4ef89f200bc992e49db487f1440c0dc3",
+        "training_completed.txt": "41a13fb91171a57eeeeb4f0b081ea13e474808fabb96ae62066f2fd2f983eb92",
+        "job_completed.txt": "41a13fb91171a57eeeeb4f0b081ea13e474808fabb96ae62066f2fd2f983eb92"
+      },
+      "learning_gain_claimed": false
+    }
+  },
+  "limitations": [
+    "Best selection uses the same128 developer VAL queries.",
+    "Terminal update evidence is receipt/log based; retained-best differences are independently measured.",
+    "Batch416 differs from the prior joint-ABC batch384 reference; this is not an isolated module ablation."
+  ],
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "TRAIN_embeddings_read": false,
+    "jobs_started": 0,
+    "weights_modified": false,
+    "runtime_seconds": 12.212
+  }
+}

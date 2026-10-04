@@ -1,0 +1,71 @@
+{
+  "review_date": "2026-10-04",
+  "verdict": "PASS",
+  "scope": "Current train_recoverability.py module-freeze diff only, supported by source review and stdlib-only fixtures",
+  "reviewer": {
+    "agent": "/root/module_freeze_source_review",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_model_runtime_independently_attested": false,
+    "review_independence": "same-family",
+    "acceptance_status": "provisional"
+  },
+  "findings": [],
+  "blocking_fixes_required": [],
+  "source_checks": [
+    {
+      "status": "PASS",
+      "paths": ["research/train_recoverability.py:38", "research/train_recoverability.py:167", "research/train_recoverability.py:183"],
+      "result": "A maps to memory, B to search, C to action. requires_grad_(False) runs after strict parent loading and frozen-C1 verification, before the initial snapshot and requires_grad-filtered AdamW parameter list. BC freezes A; AC freezes B; AB freezes C; C freezes A and B. Frozen parameters are absent from the optimizer, including its weight decay."
+    },
+    {
+      "status": "PASS",
+      "paths": ["research/recoverability_modules.py:20", "research/recoverability_modules.py:85", "research/recoverability_modules.py:143", "research/recoverability_modules.py:149", "research/recoverability_modules.py:314"],
+      "result": "The canonical model source is unchanged from HEAD. All modules still execute, all existing loss terms remain, and gradients through frozen operators to active upstream parameters are retained. The reviewed ABC modules use LayerNorm/Linear/GELU and parameters, with no BatchNorm running-state or Dropout behavior requiring a separate frozen eval-mode change."
+    },
+    {
+      "status": "PASS",
+      "paths": ["research/train_recoverability.py:21", "research/train_recoverability.py:140"],
+      "result": "Removing only the exact freeze additions restores AST equality to the prepatch trainer. load_data, forward, and evaluate are unchanged. The no-flag default remains joint ABC training; existing seeds, losses, optimizer settings, validation, and checkpoint-selection behavior are unchanged."
+    },
+    {
+      "status": "PASS",
+      "paths": ["research/train_recoverability.py:193", "research/train_recoverability.py:227", "research/train_recoverability.py:256", "research/train_recoverability.py:268"],
+      "result": "Configuration counts only trainable parameters. Each step asserts frozen gradients are absent and records zero for frozen groups; active gradients retain the original calculation. Completion requires exact unchanged frozen state, changed active state, zero frozen maximum gradients, and positive active maximum gradients. The exact source assertions reject scalar fixtures with frozen gradients, frozen state changes, or absent active changes."
+    },
+    {
+      "status": "PASS",
+      "paths": ["research/train_recoverability.py:83", "research/train_recoverability.py:149", "research/train_recoverability.py:156", "research/recoverability_modules.py:13", "research/recoverability_modules.py:183"],
+      "result": "The trainer still passes only DECISION_FIELDS into the model. These fields exclude the five LABEL_FIELDS. The unchanged selector reads current/past decision inputs and outputs; current/future ground truth is used by losses and held-out evaluation metrics. Existing sequence split and cache checks are untouched."
+    },
+    {
+      "status": "PASS",
+      "paths": ["research/train_recoverability.py:199", "research/train_recoverability.py:209", "research/train_recoverability.py:247", "research/train_recoverability.py:260"],
+      "result": "Epoch0 is evaluated and saved before updates. Only strictly larger held-out utility replaces best, and best reload must reproduce its saved metrics. Scalar execution of the actual selection branch rejects ties and decreases. Initial parent loading precedes the state used by update assertions."
+    }
+  ],
+  "interpretation_notes": [
+    "modules_changed and frozen_module_weights_unchanged describe the last optimized state immediately before best reload. They are not a claim that selected best differs from the parent. A best epoch0 equal to the parent remains valid and must be reported by the independent actual checkpoint audit.",
+    "This is a learning-influence diagnostic with complete ABC still deployed. It does not identify a unique cause of prior negative results or complete an eight-combination deployment ablation.",
+    "The matched full joint ABC-own reference is supplied context, not re-certified by this source-only review."
+  ],
+  "fixture_evidence": {
+    "script": "refine-logs/runs/recoverability_module_freeze/trainer_source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_module_freeze/trainer_source_checks.json",
+    "execution": "PASS with CPython 3.13, standard library only",
+    "fixture_variants": ["ABC_default", "BC", "AC", "AB", "C"],
+    "neural_execution": false,
+    "torch_imported": false,
+    "ssh_used": false,
+    "gpu_used": false,
+    "trainer_edited_by_reviewer": false
+  },
+  "not_certified": [
+    "Runner or CPU auditor not yet supplied for this review",
+    "Deployment/private package state",
+    "Real M0 three epochs/nine updates for any new freeze arm",
+    "Independent actual 128-output CPU replay and real parent/frozen/active tensor evidence",
+    "Fresh full sixty-epoch/one-hundred-eighty-update fits or complete 98-video tracking results",
+    "Final same-checkpoint five-native-metric baseline-plus-two target"
+  ]
+}

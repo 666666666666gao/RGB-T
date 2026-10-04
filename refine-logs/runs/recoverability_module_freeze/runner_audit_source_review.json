@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_date": "2026-10-04",
+  "reviewer_agent": "/root/module_freeze_source_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model_runtime_independently_attested": false,
+  "scope": "Source-only review of the exact B416 runner and real-fit CPU-audit helper, following the separate trainer-diff review",
+  "reviewed_sources": [
+    "scripts/run_recoverability_module_freeze.sh",
+    "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py",
+    "research/train_recoverability.py",
+    "research/recoverability_modules.py"
+  ],
+  "findings": [],
+  "blocking_fixes_required": [],
+  "checks": [
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_module_freeze.sh:6",
+      "result": "BC freezes A, AC freezes B, AB freezes C, and C freezes A/B. The runner changes training eligibility only; the full ABC implementation remains the deployed model. The eight literal variant/stage command fixtures agree with the trainer argument parser."
+    },
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_module_freeze.sh:31",
+      "result": "All four arms use own future-policy caches from own25 prefixes, 902 TRAIN/128 validation, protected old4 initialization, seed42, oracle search supervision, budgeted action ranking, action write verification, no pair calibration, lr/weight decay 1e-4, and threshold .03. Batch416 gives three optimizer steps per epoch: M0 three epochs/nine updates and full sixty epochs/one hundred eighty updates."
+    },
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_module_freeze.sh:16",
+      "result": "The paired-cache and provisional source-review gates precede training. Full additionally requires the actual all-four-arm M0 acceptance with B416, three epochs, and nine steps. Literal gate execution rejects missing receipts and each incorrect required field. This source-review receipt is not an M0 acceptance receipt."
+    },
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_module_freeze.sh:23",
+      "result": "An existing output directory prevents an accidental repeated run. Private cwd/PYTHONPATH and explicit trainer/model import-path checks select the isolated research package. set -euo pipefail leaves training_completed/job_completed markers after successful trainer completion only. These two markers denote training completion; this runner launches no continuous-video evaluation."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:30",
+      "result": "The actual auditor requires empty CUDA_VISIBLE_DEVICES and private cwd, imports the private sources, loads tensors on CPU, disables autograd, and asserts CUDA remains uninitialized. It checks the existing staging/source invariant before and after, plus the protected parent's existing known identity. No new source-binding mechanism was requested by this review."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:105",
+      "result": "All four arms require actual config/completion/metrics/log/checkpoint/output/terminal artifacts. The audit checks cache provenance, 881/98 disjoint sequence partitions, own teacher/prefix epoch25, matching jobs, expected B416 log triplets and real optimizer counts, finite losses/gradients, active changes, frozen unchanged receipts, and frozen-C1 gradient evidence. Eight stage/variant log fixtures accept expected records and reject wrong steps, frozen gradients, and frozen changes."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:160",
+      "result": "The retained best is the earliest maximum held-out utility, matching strict-improvement training selection. The auditor verifies the full epoch history, selected/last metrics and checkpoint arguments. Selected checkpoints compare all 25 state tensors against the parent/C1; frozen groups stay exact, active groups must differ only when best_epoch is nonzero. Eight source fixtures accept best0 equal to the parent and trained active-group changes, while rejecting incorrect frozen/active differences."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:172",
+      "result": "The actual auditor strictly loads the parent and selected model, verifies all eight retained C1 tensors, frozen/trainable group counts, parent epoch0 validation replay, selected-best validation metrics, and all 21 saved fields across 128 validation outputs. Integer/boolean outputs require exact equality; float outputs use the already-established float32-epsilon tolerance. Cached evaluation uses the existing dataset-label utility/IoU implementation. This is CPU replay using the reviewed evaluator, not an independent reimplementation of metrics."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:207",
+      "result": "Terminal updates are explicitly labeled as source-linked real receipt/log evidence, with no retained last weights. Selected-best tensor differences are measured separately. The final acceptance file is written only after all four arms pass and before/after source/parent checks finish. No continuous or native metric improvement is claimed."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/actual_module_freeze_fit_cpu_audit.py:236",
+      "result": "The comparison limitation is explicit: new arms use B416 while the existing joint-ABC reference used B384. This diagnostic does not isolate module freezing from the batch-size change and is not a completed eight-combination paper ablation or root-cause proof."
+    }
+  ],
+  "actual_source_fixture_execution": {
+    "status": "PASS",
+    "script": "refine-logs/runs/recoverability_module_freeze/runner_audit_source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_module_freeze/runner_audit_source_checks.json",
+    "bash_syntax": "PASS",
+    "auditor_python_compile": "PASS",
+    "literal_gate_cases": 3,
+    "variant_stage_commands": 8,
+    "variant_stage_log_cases": 8,
+    "selected_checkpoint_cases": 8,
+    "metric_tolerance_invalid_values_rejected": true,
+    "local_reference_metadata_checked": true,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "neural_execution": false,
+    "ssh_used": false,
+    "gpu_used": false,
+    "production_sources_edited_by_reviewer": false
+  },
+  "pending_runtime_evidence": [
+    "Private source staging and actual source import verification on the server",
+    "All four real B416 M0 fits and their genuine CPU acceptance receipt",
+    "Whether B416 fits the actual training memory budget",
+    "Fresh full fits and actual full-fit CPU replay",
+    "Complete 98-video results and any later same-checkpoint native five-metric evaluation"
+  ],
+  "runtime_certification": false,
+  "deployment_success_claimed": false,
+  "M0_success_claimed": false,
+  "full_fit_success_claimed": false,
+  "learning_or_native_improvement_claimed": false
+}

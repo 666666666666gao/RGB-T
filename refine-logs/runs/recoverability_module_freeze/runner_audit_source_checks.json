@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "scope": "Source syntax, literal guards, stdlib scalar/config/log fixtures only",
+  "bash_syntax": {
+    "status": "PASS",
+    "executable": "E:\\dcda6-main\\Git\\bin\\bash.exe"
+  },
+  "auditor_python_compile": "PASS",
+  "guard_cases": [
+    {
+      "gate": 0,
+      "valid_passed": true,
+      "missing_receipt_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "all_non_future_arrays_exact",
+        "matched_partitions"
+      ]
+    },
+    {
+      "gate": 1,
+      "valid_passed": true,
+      "missing_receipt_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "review_independence",
+        "acceptance_status"
+      ]
+    },
+    {
+      "gate": 2,
+      "valid_passed": true,
+      "missing_receipt_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "all_four_arms_passed",
+        "batch_size",
+        "optimizer_steps_per_arm",
+        "epochs_per_arm"
+      ]
+    }
+  ],
+  "runner_command_cases": [
+    {
+      "variant": "bc",
+      "stage": "m0",
+      "epochs": 3,
+      "steps": 9
+    },
+    {
+      "variant": "bc",
+      "stage": "full",
+      "epochs": 60,
+      "steps": 180
+    },
+    {
+      "variant": "ac",
+      "stage": "m0",
+      "epochs": 3,
+      "steps": 9
+    },
+    {
+      "variant": "ac",
+      "stage": "full",
+      "epochs": 60,
+      "steps": 180
+    },
+    {
+      "variant": "ab",
+      "stage": "m0",
+      "epochs": 3,
+      "steps": 9
+    },
+    {
+      "variant": "ab",
+      "stage": "full",
+      "epochs": 60,
+      "steps": 180
+    },
+    {
+      "variant": "c",
+      "stage": "m0",
+      "epochs": 3,
+      "steps": 9
+    },
+    {
+      "variant": "c",
+      "stage": "full",
+      "epochs": 60,
+      "steps": 180
+    }
+  ],
+  "audit_log_cases": [
+    {
+      "variant": "bc",
+      "epochs": 3,
+      "log_rows": 6,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "bc",
+      "epochs": 60,
+      "log_rows": 120,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "ac",
+      "epochs": 3,
+      "log_rows": 6,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "ac",
+      "epochs": 60,
+      "log_rows": 120,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "ab",
+      "epochs": 3,
+      "log_rows": 6,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "ab",
+      "epochs": 60,
+      "log_rows": 120,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "c",
+      "epochs": 3,
+      "log_rows": 6,
+      "invalid_step_gradient_change_rejected": true
+    },
+    {
+      "variant": "c",
+      "epochs": 60,
+      "log_rows": 120,
+      "invalid_step_gradient_change_rejected": true
+    }
+  ],
+  "selected_checkpoint_cases": [
+    {
+      "variant": "bc",
+      "best_epoch": 0,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "bc",
+      "best_epoch": 2,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "ac",
+      "best_epoch": 0,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "ac",
+      "best_epoch": 2,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "ab",
+      "best_epoch": 0,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "ab",
+      "best_epoch": 2,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "c",
+      "best_epoch": 0,
+      "correct_passed_wrong_rejected": true
+    },
+    {
+      "variant": "c",
+      "best_epoch": 2,
+      "correct_passed_wrong_rejected": true
+    }
+  ],
+  "metric_error_invalid_values_rejected": true,
+  "existing_parent_and_cache_metadata_match": true,
+  "new_batch_size": 416,
+  "joint_ABC_reference_batch_size": 384,
+  "torch_imported": false,
+  "numpy_imported": false,
+  "neural_execution": false,
+  "ssh_used": false,
+  "gpu_used": false,
+  "runtime_certification": false,
+  "limitations": [
+    "Fake values check audit acceptance logic; no real new checkpoints or outputs were audited.",
+    "No M0/full run was launched by these fixtures.",
+    "B416 differs from B384 joint-ABC, so the comparison is not an isolated module ablation."
+  ]
+}

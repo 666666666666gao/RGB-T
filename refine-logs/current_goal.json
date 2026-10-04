@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "OLD4_ALL5_BELOW_PLUS2; CURRENT_POLICY_ALL4_FULL_TRAINING_COMPLETE_AND_CPU_REPLAY_PASS; ALL4_FULL98_EVALUATIONS_RUNNING",
+      "status": "OLD4_ALL5_BELOW_PLUS2; CURRENT_POLICY_ALL4_FULL98_NEGATIVE_CLOSED; B416_FREEZE_ALL4_ACTUAL_M0_PASS_FULL_RUNNING",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -5848,7 +5848,7 @@
         "full_collection_complete": true
       },
       "current_policy_fit_factor": {
-        "status": "ACTUAL_ALL4_60EPOCH180UPDATE_FITS_COMPLETE_AND_CPU_REPLAY_PASS; FOUR_FULL98_EVALUATIONS_RUNNING",
+        "status": "ACTUAL_ALL4_60EPOCH180UPDATE_AND_FULL98_GT_CPU_AUDITS_COMPLETE_NEGATIVE; NO_PROMOTION",
         "source_review": "refine-logs/runs/recoverability_current_policy_fit/source_review.json",
         "selector_source_review": "refine-logs/runs/recoverability_current_policy_fit/selector_source_review.json",
         "queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/queue_source_review.json",
@@ -5924,74 +5924,47 @@
         "selector_target_scope": "Actual current selector forced-region utility from paired teacher labels; detaches choices, does not let ground-truth labels select actions. Existing oracle remains only the paired control; zero-gain M0 CPU fixtures do not prove accuracy.",
         "promotion_policy": "Select one best checkpoint only after complete internal-video evidence and full native LasHeR/RGBT234 evaluation; allfive baseline+2 target unchanged.",
         "actual_latest_runtime": {
-          "observed_at": "2026-10-04T16:02:28.986638+08:00",
-          "phase": {
-            "phase": "WAIT_ALL4_FULL98_REPORTS",
-            "observed_at": "2026-10-04T16:00:10.106134+08:00"
-          },
-          "live_handles": [
-            "3817842 3817836       38:47 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
-            "3872913 3835380       07:46 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
-            "3872964 3835392       07:45 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
-            "3872976 3835399       07:44 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/predictions",
-            "3880000 3835386       03:56 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/predictions"
-          ],
+          "status": "ALL4_FULL98_AND_ACTUAL_CPU_AUDITS_COMPLETE",
+          "observed_at": "2026-10-04T16:47:08.023458+08:00",
+          "original_runtime_1635_path_check_correction": "Original completion.json/summary.json existence checks named nonexistent files. Actual terminal files are inference_completion.json and full_recoverability_report.json; original snapshot retained, no experiments rerun.",
           "fits": [
             {
               "mode": "oracle",
               "policy": "c1",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 33,
-              "predicted_sequence_files": 13
+              "completed_sequences": 98,
+              "completed_frames": 49418,
+              "actual_inference_complete": true,
+              "actual_full_report_exists": true,
+              "actual_CPU_GT_audit": "PASS"
             },
             {
               "mode": "oracle",
               "policy": "own",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 57,
-              "predicted_sequence_files": 13
+              "completed_sequences": 98,
+              "completed_frames": 49418,
+              "actual_inference_complete": true,
+              "actual_full_report_exists": true,
+              "actual_CPU_GT_audit": "PASS"
             },
             {
               "mode": "selector",
               "policy": "c1",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 39,
-              "predicted_sequence_files": 10
+              "completed_sequences": 98,
+              "completed_frames": 49418,
+              "actual_inference_complete": true,
+              "actual_full_report_exists": true,
+              "actual_CPU_GT_audit": "PASS"
             },
             {
               "mode": "selector",
               "policy": "own",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 40,
-              "predicted_sequence_files": 13
+              "completed_sequences": 98,
+              "completed_frames": 49418,
+              "actual_inference_complete": true,
+              "actual_full_report_exists": true,
+              "actual_CPU_GT_audit": "PASS"
             }
-          ],
-          "actual_full_fit_audits": {
-            "current_policy_fit": {
-              "status": "PASS",
-              "best_epochs": {
-                "c1": 33,
-                "own": 57
-              },
-              "both_teacher_arms_passed": true
-            },
-            "current_policy_selector_fit": {
-              "status": "PASS",
-              "best_epochs": {
-                "c1": 39,
-                "own": 40
-              },
-              "both_teacher_arms_passed": true
-            }
-          }
+          ]
         },
         "actual_full_launch": {
           "phase": "FULL_LAUNCHED",
@@ -6075,7 +6048,7 @@
         },
         "completion_audit_source_review": "refine-logs/runs/recoverability_current_policy_fit/completion_audit_source_review.json",
         "completion_audit_queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/completion_audit_queue_source_review.json",
-        "completion_audit_execution": "Actual two 60epoch/180update full-fit CPU audits PASS: same parent initialization, A/B/C updated, C1 frozen, all128 cached validation outputs and best-epoch selection replayed. Actual full98 GT audits and four-factor closure remain pending; CPU executor root, source review same-family/provisional. No new native or continuous accuracy claim.",
+        "completion_audit_execution": "All4 actual completed full98 runs, 98sequences/49418frames each, audited against real GT; finite outputs, initialization provenance, masks, mechanisms and paired comparisons passed. All4 below GOLA and protectedold4; no promotion or native evaluation candidate. Original observer used two wrong filenames at16:35; corrected receipt is separate, no experimental restart.",
         "actual_unused_m0_cleanup": {
           "status": "COMPLETED_4_UNUSED_M0_WEIGHT_CLEANUP",
           "observed_at": "2026-10-04T15:41:55.23854+08:00",
@@ -6141,7 +6114,7 @@
           "selector_own": 40,
           "oracle_c1": 33
         },
-        "actual_full98_status": "RUNNING_ALL4; NO_COMPLETE_REPORT_OR_ACCURACY_CONCLUSION",
+        "actual_full98_status": "ALL4_COMPLETED_AUDITED; ALL4_BELOW_GOLA_AND_PROTECTED_OLD4",
         "best_cached_epoch_is_not_full_video_selection": true,
         "actual_cache_opportunity_diagnosis": {
           "scope": "Matched cached TRAIN-heldout queries only; checkpoint selection data, not independent continuous/native confirmation.",
@@ -6158,7 +6131,197 @@
           "queries": 128,
           "extra_correct_candidate_queries_available": 8,
           "observed_at": "2026-10-04T16:24:07.792846+08:00"
-        }
+        },
+        "actual_full98_acceptance_paths": [
+          "refine-logs/runs/recoverability_current_policy_fit/actual_oracle_full98_acceptance.json",
+          "refine-logs/runs/recoverability_current_policy_fit/actual_selector_full98_acceptance.json"
+        ],
+        "actual_factor_closure_path": "refine-logs/runs/recoverability_current_policy_fit/actual_four_factor_closure.json",
+        "actual_complete_sequence_iou": {
+          "oracle_own": 0.7338001239081596,
+          "oracle_c1": 0.733077908717197,
+          "selector_own": 0.7275910803730843,
+          "selector_c1": 0.7273161897202881
+        },
+        "native_evaluation_candidate": null
+      },
+      "module_freeze_learning_influence": {
+        "status": "ACTUAL_ALL4_M0_CPU_PASS; FOUR_FRESH_FULL_FITS_RUNNING",
+        "date": "2026-10-04",
+        "purpose": "Diagnose joint-learning influence after four complete current-policy fits underperformed GOLA and the protected best; retain the complete ABC inference architecture.",
+        "batch_size": 416,
+        "batch_change_reason": "User requested more useful GPU memory. Previous B384 reserved about20GiB/card; B512 long fits OOM at epoch3. Increase modestly and measure real M0/full memory, without dummy allocations.",
+        "variant_frozen_modules": {
+          "bc": [
+            "A"
+          ],
+          "ac": [
+            "B"
+          ],
+          "ab": [
+            "C"
+          ],
+          "c": [
+            "A",
+            "B"
+          ]
+        },
+        "gpu_assignments": {
+          "bc": 0,
+          "ac": 1,
+          "ab": 2,
+          "c": 3
+        },
+        "all_deployed_modules": [
+          "A",
+          "B",
+          "C"
+        ],
+        "inference_source_changed": false,
+        "m0_epochs": 3,
+        "m0_optimizer_steps_per_arm": 9,
+        "full_epochs": 60,
+        "full_optimizer_steps_per_arm": 180,
+        "train_clips": 902,
+        "validation_clips": 128,
+        "seed": 42,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "threshold": 0.03,
+        "search_supervision": "oracle",
+        "action_ranking": "budgeted",
+        "write_verification": "action",
+        "write_pair_calibration": false,
+        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "train": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/train",
+        "validation": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation",
+        "private_source": "/data/gb/experiments/recoverability_module_freeze_20261004",
+        "checkpoint_retention": "best.pth only; raw metrics and negative evidence retained",
+        "full_training_gate": "Actual all-four M0 nine-step logs, frozen/active tensor evidence, parent initialization and all128 cached21-field CPU replays PASS.",
+        "full_evaluation": "Separate actual full-fit CPU audit before any continuous98-video evaluator; no automatic full98 launch in runner.",
+        "scope": "LasHeR TRAIN/internal validation only. Native final evaluation remains LasHeR plus RGBT234, same selected checkpoint both datasets.",
+        "limitations": [
+          "B416 differs from prior joint ABC reference B384; these controls are not isolated eight-way deployment ablations.",
+          "A selected best epoch0 is the parent, not new learning; terminal optimized state is reported separately.",
+          "Cached developer validation improvements do not establish continuous or native tracking improvements."
+        ],
+        "temperature_or_power_queries_or_controls": false,
+        "foreign_gpu0_process_must_be_preserved": 3494704,
+        "actual_m0_acceptance": "refine-logs/runs/recoverability_module_freeze/actual_m0_acceptance.json",
+        "actual_best_m0_epochs": {
+          "c": 0,
+          "ac": 0,
+          "ab": 0,
+          "bc": 0
+        },
+        "actual_full_launch": {
+          "status": "FULL_ALL4_LAUNCHED_AFTER_ACTUAL_M0_CPU_PASS",
+          "launched_at_cst": "2026-10-04T17:37:31.904936+08:00",
+          "batch_size": 416,
+          "epochs_per_arm": 60,
+          "optimizer_steps_per_arm": 180,
+          "runs": [
+            {
+              "gpu": 0,
+              "variant": "bc",
+              "stage": "full",
+              "runner_pid": 4045998,
+              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+            },
+            {
+              "gpu": 1,
+              "variant": "ac",
+              "stage": "full",
+              "runner_pid": 4045999,
+              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+            },
+            {
+              "gpu": 2,
+              "variant": "ab",
+              "stage": "full",
+              "runner_pid": 4046000,
+              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+            },
+            {
+              "gpu": 3,
+              "variant": "c",
+              "stage": "full",
+              "runner_pid": 4046002,
+              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+            }
+          ],
+          "m0_acceptance": "/data/gb/setup/module_freeze_m0_acceptance_20261004.json",
+          "fresh_parent_initialization": true,
+          "automatic_full98_evaluation": false,
+          "memory_monitor_pid": 4046004
+        },
+        "actual_full_latest_observation": {
+          "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
+          "runs": [
+            {
+              "gpu": 0,
+              "variant": "bc",
+              "stage": "full",
+              "runner_pid": 4045998,
+              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+              "train_epoch_latest": 9,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 1,
+              "variant": "ac",
+              "stage": "full",
+              "runner_pid": 4045999,
+              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+              "train_epoch_latest": 1,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 2,
+              "variant": "ab",
+              "stage": "full",
+              "runner_pid": 4046000,
+              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+              "train_epoch_latest": 1,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 3,
+              "variant": "c",
+              "stage": "full",
+              "runner_pid": 4046002,
+              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+              "train_epoch_latest": 9,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+              ],
+              "best_epoch": null
+            }
+          ],
+          "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
+        },
+        "source_review_status": "PASS_SAME_FAMILY_PROVISIONAL"
       }
     },
     {
@@ -6237,32 +6400,36 @@
     },
     "gpu_assignment_current": [
       {
-        "output": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
-        "observed_at": "2026-10-04T16:02:28.986638+08:00",
-        "pid": 3872913,
-        "gpu": 0,
-        "task": "current-policy full98 evaluation oracle/c1, fixed best epoch33"
+        "task": "CompleteABC bc active-module training, batch416,60epochs180steps",
+        "output": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+        "runner_pid": 4045998,
+        "observed_at": "2026-10-04T17:38:22.786193+08:00",
+        "actual_nn_handle": "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+        "gpu": 0
       },
       {
-        "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
-        "observed_at": "2026-10-04T16:02:28.986638+08:00",
-        "pid": 3880000,
-        "gpu": 1,
-        "task": "current-policy full98 evaluation selector/c1, fixed best epoch39"
+        "task": "CompleteABC ac active-module training, batch416,60epochs180steps",
+        "output": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+        "runner_pid": 4045999,
+        "observed_at": "2026-10-04T17:38:22.786193+08:00",
+        "actual_nn_handle": "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+        "gpu": 1
       },
       {
-        "output": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
-        "observed_at": "2026-10-04T16:02:28.986638+08:00",
-        "pid": 3872964,
-        "gpu": 2,
-        "task": "current-policy full98 evaluation oracle/own, fixed best epoch57"
+        "task": "CompleteABC ab active-module training, batch416,60epochs180steps",
+        "output": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+        "runner_pid": 4046000,
+        "observed_at": "2026-10-04T17:38:22.786193+08:00",
+        "actual_nn_handle": "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+        "gpu": 2
       },
       {
-        "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004",
-        "observed_at": "2026-10-04T16:02:28.986638+08:00",
-        "pid": 3872976,
-        "gpu": 3,
-        "task": "current-policy full98 evaluation selector/own, fixed best epoch40"
+        "task": "CompleteABC c active-module training, batch416,60epochs180steps",
+        "output": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+        "runner_pid": 4046002,
+        "observed_at": "2026-10-04T17:38:22.786193+08:00",
+        "actual_nn_handle": "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+        "gpu": 3
       }
     ],
     "gpu_memory_request": {
@@ -6301,381 +6468,254 @@
         "GPU2": 851,
         "GPU3": 851
       },
-      "status": "Useful higher VRAM applied: actual B384 full training used20325–20654MiB/card, all100% at15:37. All4 full60epochs/180updates now terminal; low-VRAM full-video inference is expected. No allocation padding/B512 unchanged retry/temperature or power query.",
+      "status": "Actual batch416 fits launched all4 after9step/3epoch M0 and full128/21field CPU acceptance. At17:38 GPU0/1/2/3 used16176/21271/21271/15845MiB. Higher real memory on active-A fits; frozen-A variants need less. No dummy allocations/power/temperature queries.",
       "actual_latest_observation": {
-        "observed_at": "2026-10-04T16:02:28.986638+08:00",
-        "phase": {
-          "phase": "WAIT_ALL4_FULL98_REPORTS",
-          "observed_at": "2026-10-04T16:00:10.106134+08:00"
-        },
-        "live_handles": [
-          "3817842 3817836       38:47 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
-          "3872913 3835380       07:46 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
-          "3872964 3835392       07:45 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
-          "3872976 3835399       07:44 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/predictions",
-          "3880000 3835386       03:56 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/predictions"
-        ],
-        "fits": [
+        "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
+        "runs": [
           {
-            "mode": "oracle",
-            "policy": "c1",
-            "training_complete": true,
-            "job_complete": false,
-            "optimizer_steps": 180,
-            "best_epoch": 33,
-            "predicted_sequence_files": 13
+            "gpu": 0,
+            "variant": "bc",
+            "stage": "full",
+            "runner_pid": 4045998,
+            "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+            "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+            "train_epoch_latest": 9,
+            "complete": false,
+            "actual_NN_handles": [
+              "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+            ],
+            "best_epoch": null
           },
           {
-            "mode": "oracle",
-            "policy": "own",
-            "training_complete": true,
-            "job_complete": false,
-            "optimizer_steps": 180,
-            "best_epoch": 57,
-            "predicted_sequence_files": 13
+            "gpu": 1,
+            "variant": "ac",
+            "stage": "full",
+            "runner_pid": 4045999,
+            "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+            "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+            "train_epoch_latest": 1,
+            "complete": false,
+            "actual_NN_handles": [
+              "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+            ],
+            "best_epoch": null
           },
           {
-            "mode": "selector",
-            "policy": "c1",
-            "training_complete": true,
-            "job_complete": false,
-            "optimizer_steps": 180,
-            "best_epoch": 39,
-            "predicted_sequence_files": 10
+            "gpu": 2,
+            "variant": "ab",
+            "stage": "full",
+            "runner_pid": 4046000,
+            "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+            "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+            "train_epoch_latest": 1,
+            "complete": false,
+            "actual_NN_handles": [
+              "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+            ],
+            "best_epoch": null
           },
           {
-            "mode": "selector",
-            "policy": "own",
-            "training_complete": true,
-            "job_complete": false,
-            "optimizer_steps": 180,
-            "best_epoch": 40,
-            "predicted_sequence_files": 13
+            "gpu": 3,
+            "variant": "c",
+            "stage": "full",
+            "runner_pid": 4046002,
+            "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+            "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+            "train_epoch_latest": 9,
+            "complete": false,
+            "actual_NN_handles": [
+              "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+            ],
+            "best_epoch": null
           }
         ],
-        "actual_full_fit_audits": {
-          "current_policy_fit": {
-            "status": "PASS",
-            "best_epochs": {
-              "c1": 33,
-              "own": 57
-            },
-            "both_teacher_arms_passed": true
-          },
-          "current_policy_selector_fit": {
-            "status": "PASS",
-            "best_epochs": {
-              "c1": 39,
-              "own": 40
-            },
-            "both_teacher_arms_passed": true
-          }
-        }
+        "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
       },
       "all_four_gpus_active": true,
       "current_four_fit_plan": {
-        "status": "ACTUAL_ALL4_60EPOCH180UPDATE_FITS_COMPLETE_AND_CPU_REPLAY_PASS; FOUR_FULL98_EVALUATIONS_RUNNING",
-        "source_review": "refine-logs/runs/recoverability_current_policy_fit/source_review.json",
-        "selector_source_review": "refine-logs/runs/recoverability_current_policy_fit/selector_source_review.json",
-        "queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/queue_source_review.json",
-        "actual_queue_launch": {
-          "status": "SOURCE_GATED_COORDINATOR_LIVE_WAITING",
-          "launched_at": "2026-10-04T14:55:45.9379+08:00",
-          "session": "current_policy_four_fit_pipeline_20261004",
-          "pane": "3767976\t0",
-          "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004.log",
-          "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data/gb/experiments/recoverability_current_policy_fit_20261004:/data/gb/GOLA OMP_NUM_THREADS=4 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py > /data/gb/setup/current_policy_four_fit_pipeline_20261004.log 2>&1",
-          "source_reviews_passed": true,
-          "main_model_source_unchanged": true,
-          "collection_complete": false,
-          "actual_m0_started": false,
-          "full_training_started": false,
-          "actual_m0_acceptance_complete": false,
-          "poll_seconds": 240,
-          "verified_at": "2026-10-04T14:56:07.381522+08:00",
-          "actual_phase": {
-            "phase": "WAIT_COMPLETE_COLLECTION",
-            "observed_at": "2026-10-04T14:55:45.961392+08:00",
-            "completed_artifacts": 8,
-            "expected_artifacts": 16
-          },
-          "coordinator_handle": "3767978 3767976       00:22 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py"
-        },
-        "architecture_changed": false,
-        "active_main_model_source_changed": false,
-        "train_queries": 902,
-        "validation_queries": 128,
-        "seed": 42,
-        "batch_size": 384,
-        "initialization_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-        "initialization_epoch": 4,
-        "data_prefix_checkpoint": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
-        "data_prefix_epoch": 25,
-        "collection_is_dataset_replacement_not_dagger_aggregation": true,
-        "cells": [
-          {
-            "search_supervision": "oracle",
-            "future_policy": "c1",
-            "gpu": 0
-          },
-          {
-            "search_supervision": "selector",
-            "future_policy": "c1",
-            "gpu": 1
-          },
-          {
-            "search_supervision": "oracle",
-            "future_policy": "own",
-            "gpu": 2
-          },
-          {
-            "search_supervision": "selector",
-            "future_policy": "own",
-            "gpu": 3
-          }
-        ],
-        "controlled_comparisons": "Oracle pair changes only collected policy state versus previous warm fits. Selector counterparts use identical data, initialization, architecture, seed and training budget; only existing search supervision changes oracle to realized selector utility.",
-        "m0_epochs": 3,
-        "m0_updates_per_cell": 9,
-        "full_epochs": 60,
-        "full_updates_per_cell": 180,
-        "m0_training_started": true,
-        "actual_m0_acceptance_completed": true,
-        "full_training_started": true,
-        "full_launch_gate": "All16 terminal collections; strict matched902/128 CPU merge; all4 actual M0 completions; both independent CPU M0 replay receipts PASS. Full fits initialize old4 freshly, not M0 weights.",
-        "queue_poll_seconds": 240,
-        "expected_collection_complete_cst": "2026-10-04 15:20–15:25 (estimate from actual stages; not completion evidence)",
-        "source_review_attribution": "Fresh gpt-6-astra/max requested and accepted; independent-context, same-family provisional review. CPU source checks and mocked queue fixtures are not real M0 training.",
-        "initial_import_failure": "Missing research.candidate_learning in newly staged private package; resolved by copying36 unchanged accepted dependencies. Actual isolated CPU imports and39-file parity passed; no fallback or model-source change.",
-        "selector_target_scope": "Actual current selector forced-region utility from paired teacher labels; detaches choices, does not let ground-truth labels select actions. Existing oracle remains only the paired control; zero-gain M0 CPU fixtures do not prove accuracy.",
-        "promotion_policy": "Select one best checkpoint only after complete internal-video evidence and full native LasHeR/RGBT234 evaluation; allfive baseline+2 target unchanged.",
-        "actual_latest_runtime": {
-          "observed_at": "2026-10-04T16:02:28.986638+08:00",
-          "phase": {
-            "phase": "WAIT_ALL4_FULL98_REPORTS",
-            "observed_at": "2026-10-04T16:00:10.106134+08:00"
-          },
-          "live_handles": [
-            "3817842 3817836       38:47 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
-            "3872913 3835380       07:46 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
-            "3872964 3835392       07:45 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
-            "3872976 3835399       07:44 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/predictions",
-            "3880000 3835386       03:56 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/predictions"
+        "status": "ACTUAL_ALL4_M0_CPU_PASS; FOUR_FRESH_FULL_FITS_RUNNING",
+        "date": "2026-10-04",
+        "purpose": "Diagnose joint-learning influence after four complete current-policy fits underperformed GOLA and the protected best; retain the complete ABC inference architecture.",
+        "batch_size": 416,
+        "batch_change_reason": "User requested more useful GPU memory. Previous B384 reserved about20GiB/card; B512 long fits OOM at epoch3. Increase modestly and measure real M0/full memory, without dummy allocations.",
+        "variant_frozen_modules": {
+          "bc": [
+            "A"
           ],
-          "fits": [
-            {
-              "mode": "oracle",
-              "policy": "c1",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 33,
-              "predicted_sequence_files": 13
-            },
-            {
-              "mode": "oracle",
-              "policy": "own",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 57,
-              "predicted_sequence_files": 13
-            },
-            {
-              "mode": "selector",
-              "policy": "c1",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 39,
-              "predicted_sequence_files": 10
-            },
-            {
-              "mode": "selector",
-              "policy": "own",
-              "training_complete": true,
-              "job_complete": false,
-              "optimizer_steps": 180,
-              "best_epoch": 40,
-              "predicted_sequence_files": 13
-            }
+          "ac": [
+            "B"
           ],
-          "actual_full_fit_audits": {
-            "current_policy_fit": {
-              "status": "PASS",
-              "best_epochs": {
-                "c1": 33,
-                "own": 57
-              },
-              "both_teacher_arms_passed": true
-            },
-            "current_policy_selector_fit": {
-              "status": "PASS",
-              "best_epochs": {
-                "c1": 39,
-                "own": 40
-              },
-              "both_teacher_arms_passed": true
-            }
-          }
-        },
-        "actual_full_launch": {
-          "phase": "FULL_LAUNCHED",
-          "observed_at": "2026-10-04T15:33:46.060692+08:00",
-          "jobs": [
-            {
-              "mode": "oracle",
-              "policy": "c1",
-              "gpu": 0,
-              "session": "current_policy_oracle_c1_b384_full_20261004",
-              "pane_pid": 3835378,
-              "output": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
-              "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/oracle_c1_full.log"
-            },
-            {
-              "mode": "selector",
-              "policy": "c1",
-              "gpu": 1,
-              "session": "current_policy_selector_c1_b384_full_20261004",
-              "pane_pid": 3835384,
-              "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
-              "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/selector_c1_full.log"
-            },
-            {
-              "mode": "oracle",
-              "policy": "own",
-              "gpu": 2,
-              "session": "current_policy_oracle_own_b384_full_20261004",
-              "pane_pid": 3835390,
-              "output": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
-              "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/oracle_own_full.log"
-            },
-            {
-              "mode": "selector",
-              "policy": "own",
-              "gpu": 3,
-              "session": "current_policy_selector_own_b384_full_20261004",
-              "pane_pid": 3835396,
-              "output": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004",
-              "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/selector_own_full.log"
-            }
+          "ab": [
+            "C"
+          ],
+          "c": [
+            "A",
+            "B"
           ]
         },
-        "actual_m0_acceptances": {
-          "current_policy_fit": {
-            "status": "PASS",
-            "both_teacher_arms_passed": true,
-            "batch_size": 384,
-            "optimizer_steps_per_arm": 9,
-            "parent_epoch": 4
-          },
-          "current_policy_selector_fit": {
-            "status": "PASS",
-            "both_teacher_arms_passed": true,
-            "batch_size": 384,
-            "optimizer_steps_per_arm": 9,
-            "parent_epoch": 4
-          }
+        "gpu_assignments": {
+          "bc": 0,
+          "ac": 1,
+          "ab": 2,
+          "c": 3
         },
-        "m0_best_epochs_all_zero_parent_not_new_learning": true,
-        "completion_cpu_queue": {
-          "status": "REVIEWED_CPU_COMPLETION_COORDINATOR_LIVE_WAITING",
-          "launched_at": "2026-10-04T15:23:41.925669+08:00",
-          "session": "current_policy_completion_pipeline_20261004",
-          "pane": "3817836\t0",
-          "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data/gb/experiments/recoverability_current_policy_fit_20261004:/data/gb/GOLA OMP_NUM_THREADS=4 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py > /data/gb/setup/current_policy_completion_pipeline_20261004.log 2>&1",
-          "log": "/data/gb/setup/current_policy_completion_pipeline_20261004.log",
-          "source_review": "/data/gb/setup/current_policy_completion_review/completion_audit_source_review.json",
-          "queue_source_review": "/data/gb/setup/current_policy_completion_review/completion_audit_queue_source_review.json",
-          "poll_seconds": 240,
-          "actual_full_fit_acceptance_executed": false,
-          "actual_full98_acceptance_executed": false,
-          "actual_native_evaluation_started": false,
-          "GPU_tasks_started": 0,
-          "verified_at": "2026-10-04T15:25:58.549932+08:00",
-          "handle": "3817842 3817836       02:17 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
-          "phase": {
-            "phase": "WAIT_ALL4_TRAINING_COMPLETIONS",
-            "observed_at": "2026-10-04T15:23:41.950793+08:00"
-          }
+        "all_deployed_modules": [
+          "A",
+          "B",
+          "C"
+        ],
+        "inference_source_changed": false,
+        "m0_epochs": 3,
+        "m0_optimizer_steps_per_arm": 9,
+        "full_epochs": 60,
+        "full_optimizer_steps_per_arm": 180,
+        "train_clips": 902,
+        "validation_clips": 128,
+        "seed": 42,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "threshold": 0.03,
+        "search_supervision": "oracle",
+        "action_ranking": "budgeted",
+        "write_verification": "action",
+        "write_pair_calibration": false,
+        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "train": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/train",
+        "validation": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation",
+        "private_source": "/data/gb/experiments/recoverability_module_freeze_20261004",
+        "checkpoint_retention": "best.pth only; raw metrics and negative evidence retained",
+        "full_training_gate": "Actual all-four M0 nine-step logs, frozen/active tensor evidence, parent initialization and all128 cached21-field CPU replays PASS.",
+        "full_evaluation": "Separate actual full-fit CPU audit before any continuous98-video evaluator; no automatic full98 launch in runner.",
+        "scope": "LasHeR TRAIN/internal validation only. Native final evaluation remains LasHeR plus RGBT234, same selected checkpoint both datasets.",
+        "limitations": [
+          "B416 differs from prior joint ABC reference B384; these controls are not isolated eight-way deployment ablations.",
+          "A selected best epoch0 is the parent, not new learning; terminal optimized state is reported separately.",
+          "Cached developer validation improvements do not establish continuous or native tracking improvements."
+        ],
+        "temperature_or_power_queries_or_controls": false,
+        "foreign_gpu0_process_must_be_preserved": 3494704,
+        "actual_m0_acceptance": "refine-logs/runs/recoverability_module_freeze/actual_m0_acceptance.json",
+        "actual_best_m0_epochs": {
+          "c": 0,
+          "ac": 0,
+          "ab": 0,
+          "bc": 0
         },
-        "completion_audit_source_review": "refine-logs/runs/recoverability_current_policy_fit/completion_audit_source_review.json",
-        "completion_audit_queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/completion_audit_queue_source_review.json",
-        "completion_audit_execution": "Actual two 60epoch/180update full-fit CPU audits PASS: same parent initialization, A/B/C updated, C1 frozen, all128 cached validation outputs and best-epoch selection replayed. Actual full98 GT audits and four-factor closure remain pending; CPU executor root, source review same-family/provisional. No new native or continuous accuracy claim.",
-        "actual_unused_m0_cleanup": {
-          "status": "COMPLETED_4_UNUSED_M0_WEIGHT_CLEANUP",
-          "observed_at": "2026-10-04T15:41:55.23854+08:00",
-          "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-          "parent_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
-          "files": [
+        "actual_full_launch": {
+          "status": "FULL_ALL4_LAUNCHED_AFTER_ACTUAL_M0_CPU_PASS",
+          "launched_at_cst": "2026-10-04T17:37:31.904936+08:00",
+          "batch_size": 416,
+          "epochs_per_arm": 60,
+          "optimizer_steps_per_arm": 180,
+          "runs": [
             {
-              "path": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_m0_20261004/best.pth",
-              "bytes": 1732916,
-              "sha256": "2df3846b381b2fb3ee75a6a75987d14e26388644d529900392d25d27ad363e79",
-              "selected_epoch": 0,
-              "all25_tensors_equal_protected_parent": true,
-              "full_fit_initializes_protected_old4": true,
-              "M0_process_terminal": true
+              "gpu": 0,
+              "variant": "bc",
+              "stage": "full",
+              "runner_pid": 4045998,
+              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
             },
             {
-              "path": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_m0_20261004/best.pth",
-              "bytes": 1732916,
-              "sha256": "2ba52b12f856c5970c18a12a2594e2424bbae625514e201555a3d1f932239c01",
-              "selected_epoch": 0,
-              "all25_tensors_equal_protected_parent": true,
-              "full_fit_initializes_protected_old4": true,
-              "M0_process_terminal": true
+              "gpu": 1,
+              "variant": "ac",
+              "stage": "full",
+              "runner_pid": 4045999,
+              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
             },
             {
-              "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_m0_20261004/best.pth",
-              "bytes": 1732916,
-              "sha256": "8ba6567c09da5dcd69f6d2d9de69a65789905a43c5e7e80111464e0af6a45ff5",
-              "selected_epoch": 0,
-              "all25_tensors_equal_protected_parent": true,
-              "full_fit_initializes_protected_old4": true,
-              "M0_process_terminal": true
+              "gpu": 2,
+              "variant": "ab",
+              "stage": "full",
+              "runner_pid": 4046000,
+              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
             },
             {
-              "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_m0_20261004/best.pth",
-              "bytes": 1732916,
-              "sha256": "e2e4666093cb6302f84bb66c2df652d7fe9942b858196aa48a47f2131e54e9d8",
-              "selected_epoch": 0,
-              "all25_tensors_equal_protected_parent": true,
-              "full_fit_initializes_protected_old4": true,
-              "M0_process_terminal": true
+              "gpu": 3,
+              "variant": "c",
+              "stage": "full",
+              "runner_pid": 4046002,
+              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
             }
           ],
-          "total_bytes": 6931664,
-          "actual_both_M0_acceptances_passed": true,
-          "full4_live_and_independent_of_M0_weights": true,
-          "data_and_M0_metrics_and_negative_records_preserved": true,
-          "GPU_queries": 0,
-          "completed_at": "2026-10-04T15:41:55.242007+08:00",
-          "parent_unchanged": true,
-          "cumulative_files": 66,
-          "cumulative_bytes": 96862396
+          "m0_acceptance": "/data/gb/setup/module_freeze_m0_acceptance_20261004.json",
+          "fresh_parent_initialization": true,
+          "automatic_full98_evaluation": false,
+          "memory_monitor_pid": 4046004
         },
-        "full_training_completed": true,
-        "actual_full_fit_cpu_acceptance_completed": true,
-        "actual_full_fit_acceptance_paths": [
-          "refine-logs/runs/recoverability_current_policy_fit/actual_oracle_full_fit_acceptance.json",
-          "refine-logs/runs/recoverability_current_policy_fit/actual_selector_full_fit_acceptance.json"
-        ],
-        "actual_best_epochs": {
-          "oracle_own": 57,
-          "selector_c1": 39,
-          "selector_own": 40,
-          "oracle_c1": 33
+        "actual_full_latest_observation": {
+          "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
+          "runs": [
+            {
+              "gpu": 0,
+              "variant": "bc",
+              "stage": "full",
+              "runner_pid": 4045998,
+              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+              "train_epoch_latest": 9,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 1,
+              "variant": "ac",
+              "stage": "full",
+              "runner_pid": 4045999,
+              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+              "train_epoch_latest": 1,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 2,
+              "variant": "ab",
+              "stage": "full",
+              "runner_pid": 4046000,
+              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+              "train_epoch_latest": 1,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+              ],
+              "best_epoch": null
+            },
+            {
+              "gpu": 3,
+              "variant": "c",
+              "stage": "full",
+              "runner_pid": 4046002,
+              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+              "train_epoch_latest": 9,
+              "complete": false,
+              "actual_NN_handles": [
+                "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+              ],
+              "best_epoch": null
+            }
+          ],
+          "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
         },
-        "actual_full98_status": "RUNNING_ALL4; NO_COMPLETE_REPORT_OR_ACCURACY_CONCLUSION",
-        "best_cached_epoch_is_not_full_video_selection": true
+        "source_review_status": "PASS_SAME_FAMILY_PROVISIONAL"
       }
     },
-    "next_check_cst": "2026-10-04 16:35–16:45: observe original full98 evaluators near estimated completion; refine from actual frame throughput. CPU coordinator waits240sec. No duplicate jobs or early repetitive polling.",
+    "next_check_cst": "Expected BC/C complete near17:42–17:44; AC/AB near17:57–18:00 based actualepoch9/1 at17:38. Poll180–300s near expected completion, refine from real throughput; CPU full audit only after all4 markers. Full98 decision separate.",
     "checkpoint_cleanup_total": {
-      "bytes": 96862396,
-      "latest": "Four actual-M0 epoch0 duplicates of protectedold4 removed only after both actualacceptances and four independent full-fit parent checks. Data, metrics and negative records remain.",
-      "files": 66
+      "bytes": 103794060,
+      "latest": "Four completed negative current-policy full-fit weights removed after actual full-fit/full98 GT acceptance,38-artifact archive verification and no active or new-plan dependency. Protectedold4/own25/C1/motion/GOLA/DINO unchanged; reports/rawpredictions retained.",
+      "files": 70
     },
     "current_native_rgbt234": {
       "observed_cst": "2026-10-04T07:45:54.642846+08:00",
@@ -7021,57 +7061,70 @@
       "record": "refine-logs/runs/recoverability_future_policy/internal_quality_vs_action_full98_cpu_diagnostic.json"
     },
     "checkpoint_cleanup_latest": {
-      "status": "COMPLETED_4_UNUSED_M0_WEIGHT_CLEANUP",
-      "observed_at": "2026-10-04T15:41:55.23854+08:00",
-      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-      "parent_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "status": "COMPLETED",
+      "observed_at_cst": "2026-10-04T17:07:01.428177+08:00",
       "files": [
         {
-          "path": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_m0_20261004/best.pth",
+          "path": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth",
           "bytes": 1732916,
-          "sha256": "2df3846b381b2fb3ee75a6a75987d14e26388644d529900392d25d27ad363e79",
-          "selected_epoch": 0,
-          "all25_tensors_equal_protected_parent": true,
-          "full_fit_initializes_protected_old4": true,
-          "M0_process_terminal": true
+          "sha256": "bb371492e10140c28f5f211a0ba1ff77cbc418afc436e6e7b680acba2f084e40",
+          "full_fit_cpu_status": "PASS",
+          "full98_gt_cpu_status": "PASS",
+          "raw_predictions_retained": true,
+          "reports_retained": true,
+          "no_active_process_reference": true,
+          "not_used_by_new_freeze_plan": true
         },
         {
-          "path": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_m0_20261004/best.pth",
+          "path": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth",
           "bytes": 1732916,
-          "sha256": "2ba52b12f856c5970c18a12a2594e2424bbae625514e201555a3d1f932239c01",
-          "selected_epoch": 0,
-          "all25_tensors_equal_protected_parent": true,
-          "full_fit_initializes_protected_old4": true,
-          "M0_process_terminal": true
+          "sha256": "9d5c31f18696f2c2eac0f128e1de34ba6387f5fc8ec91fa87b0e966d66b33539",
+          "full_fit_cpu_status": "PASS",
+          "full98_gt_cpu_status": "PASS",
+          "raw_predictions_retained": true,
+          "reports_retained": true,
+          "no_active_process_reference": true,
+          "not_used_by_new_freeze_plan": true
         },
         {
-          "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_m0_20261004/best.pth",
+          "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/best.pth",
           "bytes": 1732916,
-          "sha256": "8ba6567c09da5dcd69f6d2d9de69a65789905a43c5e7e80111464e0af6a45ff5",
-          "selected_epoch": 0,
-          "all25_tensors_equal_protected_parent": true,
-          "full_fit_initializes_protected_old4": true,
-          "M0_process_terminal": true
+          "sha256": "33ae3214bf78f4e048b11d0c78d9abb63447f080fa878577b2c2f228293d09f8",
+          "full_fit_cpu_status": "PASS",
+          "full98_gt_cpu_status": "PASS",
+          "raw_predictions_retained": true,
+          "reports_retained": true,
+          "no_active_process_reference": true,
+          "not_used_by_new_freeze_plan": true
         },
         {
-          "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_m0_20261004/best.pth",
+          "path": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth",
           "bytes": 1732916,
-          "sha256": "e2e4666093cb6302f84bb66c2df652d7fe9942b858196aa48a47f2131e54e9d8",
-          "selected_epoch": 0,
-          "all25_tensors_equal_protected_parent": true,
-          "full_fit_initializes_protected_old4": true,
-          "M0_process_terminal": true
+          "sha256": "dfa74a0f74d4ab6e05f604a0a8339468daba14f4d6f716d6fa263b64aa956b4b",
+          "full_fit_cpu_status": "PASS",
+          "full98_gt_cpu_status": "PASS",
+          "raw_predictions_retained": true,
+          "reports_retained": true,
+          "no_active_process_reference": true,
+          "not_used_by_new_freeze_plan": true
         }
       ],
-      "total_bytes": 6931664,
-      "actual_both_M0_acceptances_passed": true,
-      "full4_live_and_independent_of_M0_weights": true,
-      "data_and_M0_metrics_and_negative_records_preserved": true,
-      "GPU_queries": 0,
-      "completed_at": "2026-10-04T15:41:55.242007+08:00",
-      "parent_unchanged": true,
-      "cumulative_files": 66,
-      "cumulative_bytes": 96862396
+      "protected_sha256": {
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62",
+        "/data/gb/outputs/c1_initial_seed42/best.pth": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+        "/data/gb/outputs/abc_joint_v1_seed42/last.pth": "da217b7005672a0dbaa8b988cafd014d70fe0960cd02739ac0a418623b2e8a91",
+        "/data/gb/GOLA/pretrained_models/gola_b224.bin": "6339efe9f98a130b3279afe43e51b7dd4c1fb7352917c2aa385ab00a978d8a69",
+        "/data/gb/cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73"
+      },
+      "native_candidate": null,
+      "scope": "Only four completed negative full-fit bestweights; all raw prediction/report metadata and protected checkpoints retained.",
+      "removed_weights": 4,
+      "removed_bytes": 6931664,
+      "cumulative_removed_weights": 70,
+      "cumulative_removed_bytes": 103794060,
+      "protected_weights_unchanged": true,
+      "actual_completed_at_cst": "2026-10-04T17:07:01.950177+08:00"
     },
     "native_lasher_no_search_completed": {
       "completed_cst": "2026-10-04T11:50:03+08:00",
@@ -7134,5 +7187,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04 16:30:19"
+  "updated_cst": "2026-10-04 17:40:30"
 }

@@ -1,0 +1,178 @@
+{
+  "status": "ACTUAL_ALL4_M0_CPU_PASS; FOUR_FRESH_FULL_FITS_RUNNING",
+  "date": "2026-10-04",
+  "purpose": "Diagnose joint-learning influence after four complete current-policy fits underperformed GOLA and the protected best; retain the complete ABC inference architecture.",
+  "batch_size": 416,
+  "batch_change_reason": "User requested more useful GPU memory. Previous B384 reserved about20GiB/card; B512 long fits OOM at epoch3. Increase modestly and measure real M0/full memory, without dummy allocations.",
+  "variant_frozen_modules": {
+    "bc": [
+      "A"
+    ],
+    "ac": [
+      "B"
+    ],
+    "ab": [
+      "C"
+    ],
+    "c": [
+      "A",
+      "B"
+    ]
+  },
+  "gpu_assignments": {
+    "bc": 0,
+    "ac": 1,
+    "ab": 2,
+    "c": 3
+  },
+  "all_deployed_modules": [
+    "A",
+    "B",
+    "C"
+  ],
+  "inference_source_changed": false,
+  "m0_epochs": 3,
+  "m0_optimizer_steps_per_arm": 9,
+  "full_epochs": 60,
+  "full_optimizer_steps_per_arm": 180,
+  "train_clips": 902,
+  "validation_clips": 128,
+  "seed": 42,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "threshold": 0.03,
+  "search_supervision": "oracle",
+  "action_ranking": "budgeted",
+  "write_verification": "action",
+  "write_pair_calibration": false,
+  "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "train": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/train",
+  "validation": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation",
+  "private_source": "/data/gb/experiments/recoverability_module_freeze_20261004",
+  "checkpoint_retention": "best.pth only; raw metrics and negative evidence retained",
+  "full_training_gate": "Actual all-four M0 nine-step logs, frozen/active tensor evidence, parent initialization and all128 cached21-field CPU replays PASS.",
+  "full_evaluation": "Separate actual full-fit CPU audit before any continuous98-video evaluator; no automatic full98 launch in runner.",
+  "scope": "LasHeR TRAIN/internal validation only. Native final evaluation remains LasHeR plus RGBT234, same selected checkpoint both datasets.",
+  "limitations": [
+    "B416 differs from prior joint ABC reference B384; these controls are not isolated eight-way deployment ablations.",
+    "A selected best epoch0 is the parent, not new learning; terminal optimized state is reported separately.",
+    "Cached developer validation improvements do not establish continuous or native tracking improvements."
+  ],
+  "temperature_or_power_queries_or_controls": false,
+  "foreign_gpu0_process_must_be_preserved": 3494704,
+  "actual_m0_acceptance": "refine-logs/runs/recoverability_module_freeze/actual_m0_acceptance.json",
+  "actual_best_m0_epochs": {
+    "c": 0,
+    "ac": 0,
+    "ab": 0,
+    "bc": 0
+  },
+  "actual_full_launch": {
+    "status": "FULL_ALL4_LAUNCHED_AFTER_ACTUAL_M0_CPU_PASS",
+    "launched_at_cst": "2026-10-04T17:37:31.904936+08:00",
+    "batch_size": 416,
+    "epochs_per_arm": 60,
+    "optimizer_steps_per_arm": 180,
+    "runs": [
+      {
+        "gpu": 0,
+        "variant": "bc",
+        "stage": "full",
+        "runner_pid": 4045998,
+        "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+      },
+      {
+        "gpu": 1,
+        "variant": "ac",
+        "stage": "full",
+        "runner_pid": 4045999,
+        "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+      },
+      {
+        "gpu": 2,
+        "variant": "ab",
+        "stage": "full",
+        "runner_pid": 4046000,
+        "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+      },
+      {
+        "gpu": 3,
+        "variant": "c",
+        "stage": "full",
+        "runner_pid": 4046002,
+        "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+      }
+    ],
+    "m0_acceptance": "/data/gb/setup/module_freeze_m0_acceptance_20261004.json",
+    "fresh_parent_initialization": true,
+    "automatic_full98_evaluation": false,
+    "memory_monitor_pid": 4046004
+  },
+  "actual_full_latest_observation": {
+    "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
+    "runs": [
+      {
+        "gpu": 0,
+        "variant": "bc",
+        "stage": "full",
+        "runner_pid": 4045998,
+        "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+        "train_epoch_latest": 9,
+        "complete": false,
+        "actual_NN_handles": [
+          "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+        ],
+        "best_epoch": null
+      },
+      {
+        "gpu": 1,
+        "variant": "ac",
+        "stage": "full",
+        "runner_pid": 4045999,
+        "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+        "train_epoch_latest": 1,
+        "complete": false,
+        "actual_NN_handles": [
+          "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+        ],
+        "best_epoch": null
+      },
+      {
+        "gpu": 2,
+        "variant": "ab",
+        "stage": "full",
+        "runner_pid": 4046000,
+        "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+        "train_epoch_latest": 1,
+        "complete": false,
+        "actual_NN_handles": [
+          "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+        ],
+        "best_epoch": null
+      },
+      {
+        "gpu": 3,
+        "variant": "c",
+        "stage": "full",
+        "runner_pid": 4046002,
+        "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+        "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+        "train_epoch_latest": 9,
+        "complete": false,
+        "actual_NN_handles": [
+          "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+        ],
+        "best_epoch": null
+      }
+    ],
+    "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
+  },
+  "source_review_status": "PASS_SAME_FAMILY_PROVISIONAL"
+}

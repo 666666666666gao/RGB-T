@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "scope": "source AST and stdlib scalar fixtures only",
+  "neural_execution": false,
+  "ssh": false,
+  "gpu_execution": false,
+  "runtime_certification": false,
+  "default_ABC_ast_equivalence_after_removing_exact_freeze_patch": true,
+  "canonical_modules_ast_equal_HEAD": true,
+  "variants": [
+    {
+      "variant": "ABC_default",
+      "frozen": [],
+      "active": [
+        "A",
+        "B",
+        "C"
+      ],
+      "fixture_optimizer_parameter_objects": 17,
+      "rejected_invalid_receipts": [
+        "missing_active_weight_change"
+      ]
+    },
+    {
+      "variant": "BC",
+      "frozen": [
+        "A"
+      ],
+      "active": [
+        "B",
+        "C"
+      ],
+      "fixture_optimizer_parameter_objects": 8,
+      "rejected_invalid_receipts": [
+        "missing_active_weight_change",
+        "frozen_weight_change",
+        "frozen_gradient_present"
+      ]
+    },
+    {
+      "variant": "AC",
+      "frozen": [
+        "B"
+      ],
+      "active": [
+        "A",
+        "C"
+      ],
+      "fixture_optimizer_parameter_objects": 13,
+      "rejected_invalid_receipts": [
+        "missing_active_weight_change",
+        "frozen_weight_change",
+        "frozen_gradient_present"
+      ]
+    },
+    {
+      "variant": "AB",
+      "frozen": [
+        "C"
+      ],
+      "active": [
+        "A",
+        "B"
+      ],
+      "fixture_optimizer_parameter_objects": 13,
+      "rejected_invalid_receipts": [
+        "missing_active_weight_change",
+        "frozen_weight_change",
+        "frozen_gradient_present"
+      ]
+    },
+    {
+      "variant": "C",
+      "frozen": [
+        "A",
+        "B"
+      ],
+      "active": [
+        "C"
+      ],
+      "fixture_optimizer_parameter_objects": 4,
+      "rejected_invalid_receipts": [
+        "missing_active_weight_change",
+        "frozen_weight_change",
+        "frozen_gradient_present"
+      ]
+    }
+  ],
+  "decision_label_fields_disjoint": true,
+  "forward_label_mutation_does_not_change_inputs": true,
+  "strict_best_selection_fixture_saved_epochs": [
+    3
+  ],
+  "parent_load_before_freeze_before_snapshot_before_optimizer": true,
+  "completion_change_checks_precede_best_reload": true,
+  "limitations": [
+    "Scalar fixtures validate routing/assertion logic, not autograd or real state tensors.",
+    "Actual M0 3 epochs/9 updates and independent 128-output CPU audit remain pending.",
+    "No deployment, full training, tracking result, or cause of prior negative results is certified."
+  ]
+}

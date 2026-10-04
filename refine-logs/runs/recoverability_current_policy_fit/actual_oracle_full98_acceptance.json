@@ -1,0 +1,424 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "source_reviewer_requested_model": "gpt-6-astra",
+  "source_reviewer_requested_reasoning_effort": "max",
+  "actual_executor": "/root",
+  "underlying_runtime_model_independently_certified": false,
+  "observed_cst": "2026-10-04T16:28:13.699605+08:00",
+  "script_path": "/data/gb/setup/current_policy_completion_review/oracle_actual_full98_cpu_audit.py",
+  "script_sha256": "1074108f0df17fa795fb5b652693f882cc43a62b9d2e2cd52202f2fa997b0022",
+  "source_sha256": {
+    "research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "research/collect_candidate_metrics.py": "ae88efa107728894b2322c3e9da50b72e1eefcd31e587dba2e5088255dd2c600",
+    "research/collect_abc_metrics.py": "cc75ef35f74c0c34080964787328c45db495431ab6fe2b498ce16d70c0d1aea9",
+    "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e"
+  },
+  "actual_full_fit_audit_sha256": "370a946569e668c599313b14122e561c6614c7f0ee8f2fad042d545fc0c6627c",
+  "split_path": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "split_sha256": "e3380d902cb760ef2a8bf1d7f408bff1a3b16bf62bf943cc157dedf96a1b5ef2",
+  "scope": {
+    "dataset": "LasHeR traingset internal held-out98",
+    "split_train_sequences": 881,
+    "split_validation_sequences": 98,
+    "frames_per_variant": 49418,
+    "valid_noninitial_gt_frames": 49233,
+    "first_frame_excluded": true,
+    "unknown_gt_frames_excluded": true,
+    "formal_native_test_datasets_read": false,
+    "native_official_accuracy_claimed": false
+  },
+  "method": "Source-reviewed independent NumPy IoU, state-machine failure/recovery, mechanism masks and lineage, and seed42 paired5000 sequence bootstrap; existing collector functions were read, not invoked for the audited metrics.",
+  "definitions": {
+    "failure": "3 consecutive valid post-init GT frames IoU<.2; unknown GT resets confirmation streak",
+    "recovery": "3 consecutive valid frames IoU>=.5; delay from failure start to recovery start",
+    "writes": "actual template_updated == selected raw_score>.84 AND not pause in action verification",
+    "recall": "actual valid executed proposals at IoU>=.5; selected-correct additionally uses chosen proposal",
+    "harm_rescue": "same-state selected versus original C1 proposal, not independent causal rollout"
+  },
+  "input_files_hashed": 1689,
+  "input_manifest_sha256": "84bc2bee82b4c485023f9652deca4eb02ce44f73f113d2bd1ae885f93dcb07b8",
+  "actual_files_read": {
+    "gt_txt": 98,
+    "prediction_txt": 686,
+    "new_mechanism_npz": 196,
+    "latency_npy": 686
+  },
+  "report_artifacts_sha256": {
+    "current_policy_fit_c1_b384": {
+      "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/job_completed.txt": "4a109c2e610938c66a0c7782a9a3dcba1f590ead3da689e1bf95919bf9dcdab2",
+      "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/report/recoverability_metrics_completed.txt": "ec8a7fb20cba8e825469e36dbab8a6818b2196c285d790e701f753ab78f783b9",
+      "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/report/full_recoverability_report.json": "2c002cc974648f397c7d623786813fe27b8eaec7d8a0a58981af5742072fb0ff",
+      "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/report/per_sequence.csv": "af0423d9f665c8bdc5bbf2b2923729d50062edced4536ca56836a8a05761f027"
+    },
+    "current_policy_fit_own_b384": {
+      "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/job_completed.txt": "f6a1113d3803fe7e29e90f700e1803f8ed87ee1ab55406a3a2294e051f717cb7",
+      "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/report/recoverability_metrics_completed.txt": "ec8a7fb20cba8e825469e36dbab8a6818b2196c285d790e701f753ab78f783b9",
+      "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/report/full_recoverability_report.json": "a65ec1a1700e2b904a7cdfcc27ba604aabe25bef5d4b961ac42a0ccc518f57db",
+      "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/report/per_sequence.csv": "568148aab91c580ae22cb0421e5da9b27b4c37145a8c2f98f1c077bac4cadff4"
+    }
+  },
+  "checks": {
+    "integer_exact": 10694,
+    "float_compared": 1272,
+    "max_float_absolute_difference": 0.0
+  },
+  "checker_corrections": [],
+  "variants": {
+    "baseline": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.7432785069707898,
+      "frame_mean_iou": 0.6671272582460237,
+      "recovery_rate": 0.9396984924623115,
+      "median_recovery_delay_frames": 11.0,
+      "sequences": 98,
+      "failed_frames": 7048,
+      "failure_event_count": 199,
+      "recovered_event_count": 187,
+      "unrecovered_event_count": 12,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 40.421243972645875,
+        "latency_p50_ms": 25.249595288187265,
+        "latency_p95_ms": 27.993114502169192
+      },
+      "inference_config_sha256": "860642ee0a7bb433225b9a55022954833b7449b591f629197a28580826ff435c",
+      "inference_completion_sha256": "e81a1b7ea03e5f7c01c870d0297e61d554b119bdc9a050af454de208ac7beb98",
+      "predictions_root": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions"
+    },
+    "c1": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.7394401616015396,
+      "frame_mean_iou": 0.6485879665086087,
+      "recovery_rate": 0.9375,
+      "median_recovery_delay_frames": 14.0,
+      "sequences": 98,
+      "failed_frames": 8151,
+      "failure_event_count": 176,
+      "recovered_event_count": 165,
+      "unrecovered_event_count": 11,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 39.6330611517825,
+        "latency_p50_ms": 25.74371499940753,
+        "latency_p95_ms": 28.56868777889758
+      },
+      "inference_config_sha256": "5c455fa1c472fba31a296a45bbfa347ac5adf05192adb13ee1496dc670e10108",
+      "inference_completion_sha256": "ffbbc30d0b8e654af81c1a1618724577316463faf0e8f133d9da6c0a7ea91415",
+      "predictions_root": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions"
+    },
+    "write_pair_reference_own_b384": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.745906102961742,
+      "frame_mean_iou": 0.6643539017935426,
+      "recovery_rate": 0.9421052631578948,
+      "median_recovery_delay_frames": 13.0,
+      "sequences": 98,
+      "failed_frames": 7142,
+      "failure_event_count": 190,
+      "recovered_event_count": 179,
+      "unrecovered_event_count": 11,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 26.767580444536183,
+        "latency_p50_ms": 38.130074040964246,
+        "latency_p95_ms": 41.273680632002645
+      },
+      "inference_config_sha256": "f4ec81c198a76d014b7038db9e2ac034e96eabca28a9360d99e746bc099b36e3",
+      "inference_completion_sha256": "0072319770aee46ad0a0530da6fde28f461d22f897e9c0024d6c0b17b08962ce",
+      "predictions_root": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions"
+    },
+    "warm_budgeted_action_c1_b384": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.7288608471276007,
+      "frame_mean_iou": 0.6564428584646693,
+      "recovery_rate": 0.9424778761061947,
+      "median_recovery_delay_frames": 11.0,
+      "sequences": 98,
+      "failed_frames": 7712,
+      "failure_event_count": 226,
+      "recovered_event_count": 213,
+      "unrecovered_event_count": 13,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 28.715046000339033,
+        "latency_p50_ms": 34.60240666754544,
+        "latency_p95_ms": 38.395233475603156
+      },
+      "inference_config_sha256": "dac5c76973a5c41e08c866f415d6eb7519ee39da900322e38b5bb3dc7293a671",
+      "inference_completion_sha256": "07285ea06f501265d60792e58f577bdc6c9463116e7085de542a1eccbab9c15f",
+      "predictions_root": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004/predictions"
+    },
+    "warm_budgeted_action_own_b384": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.727793406930436,
+      "frame_mean_iou": 0.6552351471944479,
+      "recovery_rate": 0.9417040358744395,
+      "median_recovery_delay_frames": 11.0,
+      "sequences": 98,
+      "failed_frames": 7804,
+      "failure_event_count": 223,
+      "recovered_event_count": 210,
+      "unrecovered_event_count": 13,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 26.835533239277392,
+        "latency_p50_ms": 37.32046810910106,
+        "latency_p95_ms": 41.279656859114766
+      },
+      "inference_config_sha256": "1b836cf0e89960f895446d528dc31c3f255dfd56d61e20de148101578da9988d",
+      "inference_completion_sha256": "6526229c6d99921b1e08aee7b5af8dbe880b5ab158bfd384fbf924490a83d8b8",
+      "predictions_root": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/predictions"
+    },
+    "current_policy_fit_c1_b384": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.733077908717197,
+      "frame_mean_iou": 0.658913208864364,
+      "recovery_rate": 0.933920704845815,
+      "median_recovery_delay_frames": 11.0,
+      "sequences": 98,
+      "failed_frames": 7551,
+      "failure_event_count": 227,
+      "recovered_event_count": 212,
+      "unrecovered_event_count": 15,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 28.33993383008747,
+        "latency_p50_ms": 35.507594933733344,
+        "latency_p95_ms": 38.71265666093677
+      },
+      "inference_config_sha256": "3211bc623778ae888706dc0b4ed5bce380e135bd3941326c12aafd0841c1a1a4",
+      "inference_completion_sha256": "62c711ec35614f6d4c9ff7d3b88be2b409cb617e012cbfeeb50874ba4e3304f3",
+      "predictions_root": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
+      "independently_recomputed_mechanism_counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "candidate_evaluations": 227388,
+        "local_candidate_recalled_frames": 40589,
+        "budget_candidate_recalled_frames": 40608,
+        "local_missing_frames": 8644,
+        "missing_correct_candidates_reintroduced": 19,
+        "reintroduced_candidates_selected_correctly": 4,
+        "c1_same_state_failed_frames": 7546,
+        "c1_same_state_correct_frames": 38506,
+        "selected_failed_frames": 7551,
+        "changed_candidate_indices": 796,
+        "valid_changed_candidate_indices": 793,
+        "same_state_rescues": 138,
+        "same_state_harms": 150,
+        "same_state_iou_improvements": 266,
+        "same_state_iou_degradations": 284,
+        "requested_extra_searches": 302,
+        "extra_visual_forwards": 301,
+        "searches_without_new_correct_candidate": 279,
+        "requested_extra_area_sum_pixels_squared": 206031822.31598204,
+        "template_updates": 20175,
+        "known_template_updates": 20116,
+        "wrong_template_updates_localization_proxy": 1674,
+        "paused_query_writes": 0,
+        "known_paused_query_writes": 0,
+        "wrong_query_writes_prevented_localization_proxy": 0,
+        "correct_query_writes_prevented": 0,
+        "known_active_template_frames": 49230,
+        "wrong_active_template_frames_localization_proxy": 4641
+      },
+      "additional_action_counts": {
+        "chosen_extra_region_frames": 42,
+        "chosen_extra_gt_correct_frames": 8,
+        "selected_regular_actions": 49320,
+        "selected_pause_actions": 0,
+        "skipped_empty_extra_regions": 1
+      },
+      "all98_mechanism_arrays_finite_and_shape_checked": true,
+      "all49320_selected_boxes_and_actual_template_write_lineage_verified": true
+    },
+    "current_policy_fit_own_b384": {
+      "frames": 49418,
+      "valid_frames": 49233,
+      "sequence_mean_iou": 0.7338001239081596,
+      "frame_mean_iou": 0.6582590678024641,
+      "recovery_rate": 0.9323671497584541,
+      "median_recovery_delay_frames": 12.0,
+      "sequences": 98,
+      "failed_frames": 7577,
+      "failure_event_count": 207,
+      "recovered_event_count": 193,
+      "unrecovered_event_count": 14,
+      "per_sequence_metrics_exact_to_report_csv": true,
+      "full_failure_event_records_exact": true,
+      "efficiency": {
+        "instrumented_tracking_fps": 26.53926414153769,
+        "latency_p50_ms": 38.00822771154344,
+        "latency_p95_ms": 41.48584841750562
+      },
+      "inference_config_sha256": "aece6331ed652f4acbea009282d86938eaed7b0679b1ca71a160917a3ecf214d",
+      "inference_completion_sha256": "b173b16300bc3d965c8d148344276230c66e235205682ab13cfdb06b6d7d889e",
+      "predictions_root": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
+      "independently_recomputed_mechanism_counters": {
+        "tracking_frames": 49320,
+        "valid_tracking_frames": 49233,
+        "candidate_evaluations": 232114,
+        "local_candidate_recalled_frames": 40487,
+        "budget_candidate_recalled_frames": 40594,
+        "local_missing_frames": 8746,
+        "missing_correct_candidates_reintroduced": 107,
+        "reintroduced_candidates_selected_correctly": 4,
+        "c1_same_state_failed_frames": 7580,
+        "c1_same_state_correct_frames": 38424,
+        "selected_failed_frames": 7577,
+        "changed_candidate_indices": 376,
+        "valid_changed_candidate_indices": 374,
+        "same_state_rescues": 68,
+        "same_state_harms": 57,
+        "same_state_iou_improvements": 126,
+        "same_state_iou_degradations": 131,
+        "requested_extra_searches": 1177,
+        "extra_visual_forwards": 1176,
+        "searches_without_new_correct_candidate": 1064,
+        "requested_extra_area_sum_pixels_squared": 438783536.8977616,
+        "template_updates": 20029,
+        "known_template_updates": 20008,
+        "wrong_template_updates_localization_proxy": 1622,
+        "paused_query_writes": 17,
+        "known_paused_query_writes": 17,
+        "wrong_query_writes_prevented_localization_proxy": 5,
+        "correct_query_writes_prevented": 12,
+        "known_active_template_frames": 49231,
+        "wrong_active_template_frames_localization_proxy": 4639
+      },
+      "additional_action_counts": {
+        "chosen_extra_region_frames": 71,
+        "chosen_extra_gt_correct_frames": 11,
+        "selected_regular_actions": 49303,
+        "selected_pause_actions": 17,
+        "skipped_empty_extra_regions": 1
+      },
+      "all98_mechanism_arrays_finite_and_shape_checked": true,
+      "all49320_selected_boxes_and_actual_template_write_lineage_verified": true
+    }
+  },
+  "paired": {
+    "current_policy_fit_c1_b384_vs_baseline": {
+      "mean_iou_delta_percentage_points": -1.0200598253592648,
+      "paired_sequence_95_ci": [
+        -2.5387246007106916,
+        0.04498054076259682
+      ],
+      "improved_sequences": 18,
+      "worsened_sequences": 23,
+      "tied_sequences": 57,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_c1_b384_vs_c1": {
+      "mean_iou_delta_percentage_points": -0.6362252884342552,
+      "paired_sequence_95_ci": [
+        -2.2891916305608797,
+        0.7951960146339914
+      ],
+      "improved_sequences": 22,
+      "worsened_sequences": 22,
+      "tied_sequences": 54,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_c1_b384_vs_write_pair_reference_own_b384": {
+      "mean_iou_delta_percentage_points": -1.282819424454481,
+      "paired_sequence_95_ci": [
+        -2.7816516113676015,
+        -0.16839215084980896
+      ],
+      "improved_sequences": 21,
+      "worsened_sequences": 30,
+      "tied_sequences": 47,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_c1_b384_vs_warm_budgeted_action_c1_b384": {
+      "mean_iou_delta_percentage_points": 0.42170615895962704,
+      "paired_sequence_95_ci": [
+        -0.5901637904204324,
+        2.046208477340348
+      ],
+      "improved_sequences": 16,
+      "worsened_sequences": 13,
+      "tied_sequences": 69,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_own_b384_vs_baseline": {
+      "mean_iou_delta_percentage_points": -0.947838306263005,
+      "paired_sequence_95_ci": [
+        -2.5286467538321835,
+        0.21231768470039938
+      ],
+      "improved_sequences": 24,
+      "worsened_sequences": 15,
+      "tied_sequences": 59,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_own_b384_vs_c1": {
+      "mean_iou_delta_percentage_points": -0.5640037693379952,
+      "paired_sequence_95_ci": [
+        -2.219923158941848,
+        0.8898881793262903
+      ],
+      "improved_sequences": 25,
+      "worsened_sequences": 17,
+      "tied_sequences": 56,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_own_b384_vs_write_pair_reference_own_b384": {
+      "mean_iou_delta_percentage_points": -1.210597905358221,
+      "paired_sequence_95_ci": [
+        -2.745481513632434,
+        0.005304407168880977
+      ],
+      "improved_sequences": 21,
+      "worsened_sequences": 27,
+      "tied_sequences": 50,
+      "bootstrap_resamples": 5000
+    },
+    "current_policy_fit_own_b384_vs_warm_budgeted_action_own_b384": {
+      "mean_iou_delta_percentage_points": 0.6006716977723617,
+      "paired_sequence_95_ci": [
+        -0.6974041005597837,
+        2.3971180118356727
+      ],
+      "improved_sequences": 25,
+      "worsened_sequences": 18,
+      "tied_sequences": 55,
+      "bootstrap_resamples": 5000
+    }
+  },
+  "sequence_summary_digest_sha256": "699f0549be93876b089437e4b907fda19cc2273da492a42a278a40ff2bd1f45e",
+  "limitations": [
+    "Internal development98, not 245-sequence formal native test or training-seed uncertainty.",
+    "Stored candidate/template quality is a GT localization proxy, not semantic identity labels.",
+    "Memory EMA mass, quality-calibration bins and motion forecast calibration were not independently recomputed in this focused audit; all stored diagnostic arrays were read and checked finite.",
+    "Both current-policy checkpoints are selected by the pre-existing validation rule; epoch0, if selected, is protected parent behavior and not a new learning gain. These fits do not establish a unique failure cause."
+  ],
+  "execution": {
+    "device": "CPU",
+    "CUDA_VISIBLE_DEVICES": "",
+    "torch_imported": false,
+    "NN_forward": 0,
+    "backward": 0,
+    "optimizer": 0,
+    "GPU_queries": 0,
+    "process_signals": 0,
+    "production_source_modified": false,
+    "elapsed_seconds": 2.986368988174945
+  }
+}

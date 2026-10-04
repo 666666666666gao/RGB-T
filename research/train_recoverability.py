@@ -35,6 +35,8 @@ def arguments():
     p.add_argument('--action-ranking', choices=('reference', 'pairwise', 'budgeted'), default='reference',
                    help='Keep sign margin, coexisting pair ordering, or budgeted winner versus current rival.')
     p.add_argument('--write-verification', choices=('identity', 'action'), default='identity')
+    p.add_argument('--frozen-modules', nargs='+', choices=('A', 'B', 'C'), default=[],
+                   help='Keep selected pretrained ABC modules fixed while retaining the complete deployed method.')
     p.add_argument('--write-pair-calibration', action='store_true',
                    help='Calibrate net pause-versus-write score differences on writable candidates.')
     p.add_argument('--seed', type=int, default=42)
@@ -163,6 +165,8 @@ def main():
         assert all(torch.equal(value.cpu(), c1['head'][key]) for key, value in model.c1.state_dict().items())
         initial_checkpoint_epoch = checkpoint['epoch']
     groups = {'A': model.memory, 'B': model.search, 'C': model.action}
+    for name in args.frozen_modules:
+        groups[name].requires_grad_(False)
     initial = {name: {key: value.detach().clone() for key, value in module.state_dict().items()}
                for name, module in groups.items()}
     model.eval()
@@ -186,7 +190,7 @@ def main():
                            'decision_fields': DECISION_FIELDS, 'initial_all_choices_match_c1': initial_matches_c1,
                            'initial_checkpoint_epoch': initial_checkpoint_epoch,
                            'base_GOLA': 'full pretrained frozen visual extractor used by collector',
-                           'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters()) for name, module in groups.items()},
+                           'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters() if p.requires_grad) for name, module in groups.items()},
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',
                            'checkpoint_retention': 'best.pth only; all epoch metrics retained',
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
@@ -221,7 +225,11 @@ def main():
                 loss.backward()
                 gradients = {}
                 for name, module in groups.items():
-                    gradients[name] = float(torch.stack([p.grad.detach().square().sum() for p in module.parameters() if p.grad is not None]).sum().sqrt())
+                    if name in args.frozen_modules:
+                        assert all(p.grad is None for p in module.parameters())
+                        gradients[name] = 0.
+                    else:
+                        gradients[name] = float(torch.stack([p.grad.detach().square().sum() for p in module.parameters() if p.grad is not None]).sum().sqrt())
                     assert np.isfinite(gradients[name])
                     max_gradients[name] = max(max_gradients[name], gradients[name])
                 norm = torch.nn.utils.clip_grad_norm_(parameters, 5.)
@@ -247,7 +255,8 @@ def main():
             print('VALIDATION', json.dumps(records[-1]), flush=True)
     changed = {name: any(not torch.equal(initial[name][key], value) for key, value in module.state_dict().items())
                for name, module in groups.items()}
-    assert all(changed.values()) and all(norm > 0 for norm in max_gradients.values())
+    assert all(changed[name] == (name not in args.frozen_modules) for name in groups)
+    assert all((norm > 0) == (name not in args.frozen_modules) for name, norm in max_gradients.items())
     checkpoint = torch.load(out / 'best.pth', map_location=device, weights_only=False)
     model.load_state_dict(checkpoint['model'], strict=True)
     best_metrics, values = evaluate(model, validation, args.batch_size, args.threshold, details=True,
@@ -258,6 +267,8 @@ def main():
     np.savez_compressed(out / 'best_validation.npz', **values)
     receipt = {'completed': True, 'epochs': args.epochs, 'optimizer_steps': steps,
                'modules_changed': changed, 'max_module_gradient_norms': max_gradients,
+               'frozen_modules': args.frozen_modules,
+               'frozen_module_weights_unchanged': {name: not changed[name] for name in args.frozen_modules},
                'frozen_c1_gradients_absent': all(p.grad is None for p in model.c1.parameters()),
                'elapsed_seconds': time.perf_counter() - started,
                'peak_cuda_mib': torch.cuda.max_memory_allocated(device) / 2**20,

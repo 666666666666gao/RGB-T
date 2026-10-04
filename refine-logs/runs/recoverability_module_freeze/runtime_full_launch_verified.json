@@ -1,0 +1,62 @@
+{
+  "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
+  "runs": [
+    {
+      "gpu": 0,
+      "variant": "bc",
+      "stage": "full",
+      "runner_pid": 4045998,
+      "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
+      "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
+      "train_epoch_latest": 9,
+      "complete": false,
+      "actual_NN_handles": [
+        "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
+      ],
+      "best_epoch": null
+    },
+    {
+      "gpu": 1,
+      "variant": "ac",
+      "stage": "full",
+      "runner_pid": 4045999,
+      "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
+      "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
+      "train_epoch_latest": 1,
+      "complete": false,
+      "actual_NN_handles": [
+        "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
+      ],
+      "best_epoch": null
+    },
+    {
+      "gpu": 2,
+      "variant": "ab",
+      "stage": "full",
+      "runner_pid": 4046000,
+      "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
+      "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
+      "train_epoch_latest": 1,
+      "complete": false,
+      "actual_NN_handles": [
+        "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
+      ],
+      "best_epoch": null
+    },
+    {
+      "gpu": 3,
+      "variant": "c",
+      "stage": "full",
+      "runner_pid": 4046002,
+      "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
+      "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
+      "train_epoch_latest": 9,
+      "complete": false,
+      "actual_NN_handles": [
+        "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
+      ],
+      "best_epoch": null
+    }
+  ],
+  "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
+}
