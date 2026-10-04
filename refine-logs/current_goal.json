@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "ALL881_98_DIRECT_FULL60_EPOCH_TRAINING_RUNNING",
+      "status": "FULL60_TRAINING_COMPLETE_SAME_EPOCH59_BOTH_FULL_NATIVE_RUNNING",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -7129,10 +7129,10 @@
       "validation": 76
     },
     "teacher_sha256": "a840219e1d362ac353ea13fae853a11d93505799f5bf7d6fbc2112e7b578a529",
-    "updated_cst": "2026-10-04T23:03:42.425366+08:00",
+    "updated_cst": "2026-10-04T23:27:02.656317+08:00",
     "scope": "onefixedeligiblequery/video; maximumquery/history1024; future3forTRAINlabels; frozencompletepretrainedGOLA/C1; allABCactive; noallframes/endtoendclaim",
     "previous_full_fit_cpu_acceptance": "refine-logs/runs/recoverability_best_policy_fit/actual_full_cpu_acceptance.json",
-    "next": "Complete the original four 60epoch/180update fits, then automatically evaluate one fixed VAL-selected checkpoint on both complete native benchmarks.",
+    "next": "Finish both complete native benchmarks, independently replay GT metrics, then consolidate all five original goal metrics.",
     "previous_clips": {
       "train": 902,
       "validation": 128
@@ -7180,11 +7180,11 @@
       "temperature_or_power_queries": false,
       "collector_changed": false,
       "training_started": true,
-      "native_started": false,
+      "native_started": true,
       "launched_at_cst": "2026-10-04T21:56:24.411689+08:00",
       "evidence": "refine-logs/runs/recoverability_full_coverage/collection_export_manifest.json"
     },
-    "status": "ACTUAL_ALL881_98_GT_GATE_PASS_DIRECT_FULL60_FOUR_GPU_TRAINING_RUNNING",
+    "status": "ACTUAL_FULL60_FOUR_FITS_CPU_PASS_SAME_EPOCH59_BOTH_NATIVE_RUNNING",
     "pipeline_launch": {
       "status": "ORIGINAL_CONTROLLER_LAUNCHED_NOT_COMPLETE",
       "controller_pid": 247721,
@@ -7466,6 +7466,104 @@
       "NN_restarts": 0,
       "temperature_or_power_queries": false,
       "tracking_improvement_claimed": false
+    },
+    "actual_full_fit_cpu_acceptance": "refine-logs/runs/recoverability_full_coverage/actual_full_cpu_acceptance.json",
+    "actual_selected_checkpoint": {
+      "status": "PASS",
+      "selected_arm": "pairwise_lr4",
+      "checkpoint": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth",
+      "checkpoint_sha256": "cb5f4d52026d99292bb3a4b31be6ac8d7f32e4bbd876cb2f14919630f5d66460",
+      "selected_best_epoch": 59,
+      "best0_is_parent_not_new_learning": false,
+      "all_four_full_fits_CPU_passed": true,
+      "completed_epochs": 60,
+      "optimizer_steps": 180,
+      "selection_rule": "Maximum developer VAL98 utility; first arm in declared order on ties; no native-test selection.",
+      "cached_utility_by_arm": {
+        "pairwise_lr4": 0.7214645743370056,
+        "pairwise_lr5": 0.7212849855422974,
+        "budgeted_lr4": 0.7213870286941528,
+        "budgeted_lr5": 0.7212849855422974
+      },
+      "both_datasets_same_fixed_checkpoint": true,
+      "new_complete_native_inference_requested_by_user": true,
+      "selected_at_cst": "2026-10-04T23:27:02.654194+08:00"
+    },
+    "actual_native_launch": {
+      "status": "LAUNCHED_NOT_COMPLETE",
+      "selection": {
+        "status": "PASS",
+        "selected_arm": "pairwise_lr4",
+        "checkpoint": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth",
+        "checkpoint_sha256": "cb5f4d52026d99292bb3a4b31be6ac8d7f32e4bbd876cb2f14919630f5d66460",
+        "selected_best_epoch": 59,
+        "best0_is_parent_not_new_learning": false,
+        "all_four_full_fits_CPU_passed": true,
+        "completed_epochs": 60,
+        "optimizer_steps": 180,
+        "selection_rule": "Maximum developer VAL98 utility; first arm in declared order on ties; no native-test selection.",
+        "cached_utility_by_arm": {
+          "pairwise_lr4": 0.7214645743370056,
+          "pairwise_lr5": 0.7212849855422974,
+          "budgeted_lr4": 0.7213870286941528,
+          "budgeted_lr5": 0.7212849855422974
+        },
+        "both_datasets_same_fixed_checkpoint": true,
+        "new_complete_native_inference_requested_by_user": true,
+        "selected_at_cst": "2026-10-04T23:27:02.654194+08:00"
+      },
+      "runs": [
+        {
+          "gpu": 0,
+          "runner_pid": 345965,
+          "log": "/data/gb/setup/full_coverage_native_gpu0_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ]
+        },
+        {
+          "gpu": 1,
+          "runner_pid": 345966,
+          "log": "/data/gb/setup/full_coverage_native_gpu1_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ]
+        },
+        {
+          "gpu": 2,
+          "runner_pid": 345967,
+          "log": "/data/gb/setup/full_coverage_native_gpu2_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ]
+        },
+        {
+          "gpu": 3,
+          "runner_pid": 345969,
+          "log": "/data/gb/setup/full_coverage_native_gpu3_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ]
+        }
+      ],
+      "expected": {
+        "lasher": {
+          "sequences": 245,
+          "frames": 220703
+        },
+        "rgbt234": {
+          "sequences": 234,
+          "frames": 116649
+        }
+      },
+      "all_test_frames_required": true,
+      "temperature_or_power_queries": false,
+      "reports_complete": false,
+      "launched_at_cst": "2026-10-04T23:27:02.656317+08:00"
     }
   }
 }
