@@ -1,0 +1,196 @@
+{
+  "observed_at_cst": "2026-10-04T23:31:12.100446+08:00",
+  "selected_checkpoint": {
+    "status": "PASS",
+    "selected_arm": "pairwise_lr4",
+    "checkpoint": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth",
+    "checkpoint_sha256": "cb5f4d52026d99292bb3a4b31be6ac8d7f32e4bbd876cb2f14919630f5d66460",
+    "selected_best_epoch": 59,
+    "best0_is_parent_not_new_learning": false,
+    "all_four_full_fits_CPU_passed": true,
+    "completed_epochs": 60,
+    "optimizer_steps": 180,
+    "selection_rule": "Maximum developer VAL98 utility; first arm in declared order on ties; no native-test selection.",
+    "cached_utility_by_arm": {
+      "pairwise_lr4": 0.7214645743370056,
+      "pairwise_lr5": 0.7212849855422974,
+      "budgeted_lr4": 0.7213870286941528,
+      "budgeted_lr5": 0.7212849855422974
+    },
+    "both_datasets_same_fixed_checkpoint": true,
+    "new_complete_native_inference_requested_by_user": true,
+    "selected_at_cst": "2026-10-04T23:27:02.654194+08:00"
+  },
+  "rows": [
+    {
+      "gpu": 0,
+      "runner_pid": 345965,
+      "log": "/data/gb/setup/full_coverage_native_gpu0_20261004.log",
+      "datasets_in_order": [
+        "lasher",
+        "rgbt234"
+      ],
+      "actual_child_handles": "345983 Rl         04:09 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 0 --limit-sequences 62 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu0/predictions",
+      "datasets": {
+        "lasher": {
+          "completed_sequences": 5,
+          "completed_frames": 1776,
+          "completion_marker": false,
+          "latest_sequence": {
+            "sequence": "1boycoming",
+            "sequence_index": 5,
+            "sequences": 62,
+            "frames": 174,
+            "elapsed_seconds": 7.303630266804248,
+            "stats": {
+              "template_updates": 173,
+              "max_pending_per_branch": 5,
+              "extra_searches_requested": 0,
+              "extra_visual_forwards": 0,
+              "skipped_empty_extra_regions": 0,
+              "changed_candidate_indices": 0,
+              "paused_query_writes": 0,
+              "max_motion_history": 8
+            }
+          }
+        },
+        "rgbt234": {
+          "completed_sequences": 0,
+          "completed_frames": 0,
+          "completion_marker": false,
+          "latest_sequence": null
+        }
+      }
+    },
+    {
+      "gpu": 1,
+      "runner_pid": 345966,
+      "log": "/data/gb/setup/full_coverage_native_gpu1_20261004.log",
+      "datasets_in_order": [
+        "lasher",
+        "rgbt234"
+      ],
+      "actual_child_handles": "345984 Rl         04:09 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 62 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu1/predictions",
+      "datasets": {
+        "lasher": {
+          "completed_sequences": 1,
+          "completed_frames": 556,
+          "completion_marker": false,
+          "latest_sequence": {
+            "sequence": "blkboyhead",
+            "sequence_index": 1,
+            "sequences": 61,
+            "frames": 556,
+            "elapsed_seconds": 36.22076720325276,
+            "stats": {
+              "template_updates": 35,
+              "max_pending_per_branch": 5,
+              "extra_searches_requested": 232,
+              "extra_visual_forwards": 232,
+              "skipped_empty_extra_regions": 0,
+              "changed_candidate_indices": 76,
+              "paused_query_writes": 0,
+              "max_motion_history": 8
+            }
+          }
+        },
+        "rgbt234": {
+          "completed_sequences": 0,
+          "completed_frames": 0,
+          "completion_marker": false,
+          "latest_sequence": null
+        }
+      }
+    },
+    {
+      "gpu": 2,
+      "runner_pid": 345967,
+      "log": "/data/gb/setup/full_coverage_native_gpu2_20261004.log",
+      "datasets_in_order": [
+        "lasher",
+        "rgbt234"
+      ],
+      "actual_child_handles": "345982 Rl         04:09 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 123 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu2/predictions",
+      "datasets": {
+        "lasher": {
+          "completed_sequences": 8,
+          "completed_frames": 5587,
+          "completion_marker": false,
+          "latest_sequence": {
+            "sequence": "girlafterglassdoor",
+            "sequence_index": 8,
+            "sequences": 61,
+            "frames": 1130,
+            "elapsed_seconds": 37.350513151846826,
+            "stats": {
+              "template_updates": 1114,
+              "max_pending_per_branch": 5,
+              "extra_searches_requested": 0,
+              "extra_visual_forwards": 0,
+              "skipped_empty_extra_regions": 0,
+              "changed_candidate_indices": 0,
+              "paused_query_writes": 0,
+              "max_motion_history": 8
+            }
+          }
+        },
+        "rgbt234": {
+          "completed_sequences": 0,
+          "completed_frames": 0,
+          "completion_marker": false,
+          "latest_sequence": null
+        }
+      }
+    },
+    {
+      "gpu": 3,
+      "runner_pid": 345969,
+      "log": "/data/gb/setup/full_coverage_native_gpu3_20261004.log",
+      "datasets_in_order": [
+        "lasher",
+        "rgbt234"
+      ],
+      "actual_child_handles": "345985 Rl         04:10 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 184 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu3/predictions",
+      "datasets": {
+        "lasher": {
+          "completed_sequences": 11,
+          "completed_frames": 4740,
+          "completion_marker": false,
+          "latest_sequence": {
+            "sequence": "redtricycle",
+            "sequence_index": 11,
+            "sequences": 61,
+            "frames": 168,
+            "elapsed_seconds": 5.408234255388379,
+            "stats": {
+              "template_updates": 100,
+              "max_pending_per_branch": 5,
+              "extra_searches_requested": 0,
+              "extra_visual_forwards": 0,
+              "skipped_empty_extra_regions": 0,
+              "changed_candidate_indices": 0,
+              "paused_query_writes": 0,
+              "max_motion_history": 8
+            }
+          }
+        },
+        "rgbt234": {
+          "completed_sequences": 0,
+          "completed_frames": 0,
+          "completion_marker": false,
+          "latest_sequence": null
+        }
+      }
+    }
+  ],
+  "pipeline": {
+    "stage": "ONE_CHECKPOINT_BOTH_COMPLETE_NATIVE_BENCHMARKS",
+    "observed_at_cst": "2026-10-04T23:27:02.582487+08:00",
+    "automatic_restarts": 0,
+    "poll_interval_seconds": 180,
+    "official_goal_completed": false
+  },
+  "NN_restarts": 0,
+  "NN_calls_by_observer": 0,
+  "power_or_temperature_queries": false
+}

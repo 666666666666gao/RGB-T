@@ -7132,7 +7132,7 @@
     "updated_cst": "2026-10-04T23:27:02.656317+08:00",
     "scope": "onefixedeligiblequery/video; maximumquery/history1024; future3forTRAINlabels; frozencompletepretrainedGOLA/C1; allABCactive; noallframes/endtoendclaim",
     "previous_full_fit_cpu_acceptance": "refine-logs/runs/recoverability_best_policy_fit/actual_full_cpu_acceptance.json",
-    "next": "Finish both complete native benchmarks, independently replay GT metrics, then consolidate all five original goal metrics.",
+    "next": "Original four GPU owners finish both full datasets; controller247721 runs native GT reports, CPU-only continuation373019 consolidates and exports all five metrics. Root must fetch/sync final evidence; do not manually start a duplicate merger.",
     "previous_clips": {
       "train": 902,
       "validation": 128
@@ -7200,9 +7200,9 @@
       "launched_at_cst": "2026-10-04T22:08:32.057216+08:00"
     },
     "cleanup_cumulative": {
-      "removed_weights": 88,
-      "removed_bytes": 134986548,
-      "protected_old4_new46_new28_and_pretrained_unchanged": true
+      "removed_weights": 90,
+      "removed_bytes": 138452380,
+      "all_protected_weights_before_after_exact": true
     },
     "final_five_metrics_merger": {
       "selected_epoch0_provenance_explicit": true,
@@ -7564,6 +7564,211 @@
       "temperature_or_power_queries": false,
       "reports_complete": false,
       "launched_at_cst": "2026-10-04T23:27:02.656317+08:00"
+    },
+    "actual_native_progress": {
+      "observed_at_cst": "2026-10-04T23:49:05.767654+08:00",
+      "selected_checkpoint": {
+        "status": "PASS",
+        "selected_arm": "pairwise_lr4",
+        "checkpoint": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth",
+        "checkpoint_sha256": "cb5f4d52026d99292bb3a4b31be6ac8d7f32e4bbd876cb2f14919630f5d66460",
+        "selected_best_epoch": 59,
+        "best0_is_parent_not_new_learning": false,
+        "all_four_full_fits_CPU_passed": true,
+        "completed_epochs": 60,
+        "optimizer_steps": 180,
+        "selection_rule": "Maximum developer VAL98 utility; first arm in declared order on ties; no native-test selection.",
+        "cached_utility_by_arm": {
+          "pairwise_lr4": 0.7214645743370056,
+          "pairwise_lr5": 0.7212849855422974,
+          "budgeted_lr4": 0.7213870286941528,
+          "budgeted_lr5": 0.7212849855422974
+        },
+        "both_datasets_same_fixed_checkpoint": true,
+        "new_complete_native_inference_requested_by_user": true,
+        "selected_at_cst": "2026-10-04T23:27:02.654194+08:00"
+      },
+      "rows": [
+        {
+          "gpu": 0,
+          "runner_pid": 345965,
+          "log": "/data/gb/setup/full_coverage_native_gpu0_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ],
+          "actual_child_handles": "345983 Rl         22:03 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 0 --limit-sequences 62 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu0/predictions",
+          "datasets": {
+            "lasher": {
+              "completed_sequences": 31,
+              "completed_frames": 25144,
+              "completion_marker": false,
+              "latest_sequence": {
+                "sequence": "ab_whiteboywithbluebag",
+                "sequence_index": 31,
+                "sequences": 62,
+                "frames": 518,
+                "elapsed_seconds": 25.16644588764757,
+                "stats": {
+                  "template_updates": 137,
+                  "max_pending_per_branch": 5,
+                  "extra_searches_requested": 56,
+                  "extra_visual_forwards": 56,
+                  "skipped_empty_extra_regions": 0,
+                  "changed_candidate_indices": 10,
+                  "paused_query_writes": 0,
+                  "max_motion_history": 8
+                }
+              }
+            },
+            "rgbt234": {
+              "completed_sequences": 0,
+              "completed_frames": 0,
+              "completion_marker": false,
+              "latest_sequence": null
+            }
+          }
+        },
+        {
+          "gpu": 1,
+          "runner_pid": 345966,
+          "log": "/data/gb/setup/full_coverage_native_gpu1_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ],
+          "actual_child_handles": "345984 Dl         22:03 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 62 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu1/predictions",
+          "datasets": {
+            "lasher": {
+              "completed_sequences": 23,
+              "completed_frames": 21391,
+              "completion_marker": false,
+              "latest_sequence": {
+                "sequence": "boyaroundtrees",
+                "sequence_index": 23,
+                "sequences": 61,
+                "frames": 2469,
+                "elapsed_seconds": 144.0886787790805,
+                "stats": {
+                  "template_updates": 1117,
+                  "max_pending_per_branch": 5,
+                  "extra_searches_requested": 313,
+                  "extra_visual_forwards": 313,
+                  "skipped_empty_extra_regions": 0,
+                  "changed_candidate_indices": 85,
+                  "paused_query_writes": 0,
+                  "max_motion_history": 8
+                }
+              }
+            },
+            "rgbt234": {
+              "completed_sequences": 0,
+              "completed_frames": 0,
+              "completion_marker": false,
+              "latest_sequence": null
+            }
+          }
+        },
+        {
+          "gpu": 2,
+          "runner_pid": 345967,
+          "log": "/data/gb/setup/full_coverage_native_gpu2_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ],
+          "actual_child_handles": "345982 Rl         22:03 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 123 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu2/predictions",
+          "datasets": {
+            "lasher": {
+              "completed_sequences": 23,
+              "completed_frames": 29222,
+              "completion_marker": false,
+              "latest_sequence": {
+                "sequence": "leftboy2jointhe4",
+                "sequence_index": 23,
+                "sequences": 61,
+                "frames": 1244,
+                "elapsed_seconds": 52.6047408557497,
+                "stats": {
+                  "template_updates": 585,
+                  "max_pending_per_branch": 5,
+                  "extra_searches_requested": 98,
+                  "extra_visual_forwards": 98,
+                  "skipped_empty_extra_regions": 0,
+                  "changed_candidate_indices": 32,
+                  "paused_query_writes": 0,
+                  "max_motion_history": 8
+                }
+              }
+            },
+            "rgbt234": {
+              "completed_sequences": 0,
+              "completed_frames": 0,
+              "completion_marker": false,
+              "latest_sequence": null
+            }
+          }
+        },
+        {
+          "gpu": 3,
+          "runner_pid": 345969,
+          "log": "/data/gb/setup/full_coverage_native_gpu3_20261004.log",
+          "datasets_in_order": [
+            "lasher",
+            "rgbt234"
+          ],
+          "actual_child_handles": "345985 Rl         22:03 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth --write-verification action --seed 42 --sequence-offset 184 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/shards/gpu3/predictions",
+          "datasets": {
+            "lasher": {
+              "completed_sequences": 46,
+              "completed_frames": 30442,
+              "completion_marker": false,
+              "latest_sequence": {
+                "sequence": "whitecarcomeinrain",
+                "sequence_index": 46,
+                "sequences": 61,
+                "frames": 84,
+                "elapsed_seconds": 2.7576892590150237,
+                "stats": {
+                  "template_updates": 83,
+                  "max_pending_per_branch": 5,
+                  "extra_searches_requested": 0,
+                  "extra_visual_forwards": 0,
+                  "skipped_empty_extra_regions": 0,
+                  "changed_candidate_indices": 0,
+                  "paused_query_writes": 0,
+                  "max_motion_history": 8
+                }
+              }
+            },
+            "rgbt234": {
+              "completed_sequences": 0,
+              "completed_frames": 0,
+              "completion_marker": false,
+              "latest_sequence": null
+            }
+          }
+        }
+      ],
+      "pipeline": {
+        "stage": "ONE_CHECKPOINT_BOTH_COMPLETE_NATIVE_BENCHMARKS",
+        "observed_at_cst": "2026-10-04T23:27:02.582487+08:00",
+        "automatic_restarts": 0,
+        "poll_interval_seconds": 180,
+        "official_goal_completed": false
+      },
+      "NN_restarts": 0,
+      "NN_calls_by_observer": 0,
+      "power_or_temperature_queries": false
+    },
+    "actual_final_cpu_continuation": {
+      "status": "CPU_CONTINUATION_LAUNCHED_NOT_COMPLETED",
+      "pid": 373019,
+      "poll_seconds": 180,
+      "original_gpu_controller_pid": 247721,
+      "NN_restarts": 0,
+      "NN_calls": 0,
+      "created_at_cst": "2026-10-04T23:41:53.301905+08:00"
     }
   }
 }
