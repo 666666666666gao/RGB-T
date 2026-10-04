@@ -7929,7 +7929,7 @@
     "request": "我需要完整训练完后完整的指标",
     "current_training_type": "冻结完整预训练视觉底座和 C1，训练全部新增 A/B/C；不是全帧或端到端主干重训。",
     "latest_closed_run": "60epochs/180updates complete; both479 sequences337352frames complete, latestABC five76.6199257142/73.2014381770/60.9720228525/90.0224682346/68.2283506111; goal unmet.",
-    "current_live_evidence": "2026-10-05T06:08:01.843579+08:00 originalcontroller632884 final4cachedbest full98 actualNNlive1011031—1011034; all12 fixedepoch20/40/60 completed/belowGOLA; newnativepending.",
+    "current_live_evidence": "2026-10-05T06:43:01.883205+08:00 original632884 stage=BOTH_COMPLETE_NATIVE_BENCHMARKS; allfull60/300 completed; newnative results pending.",
     "next_chain": "Complete remaining full98 retained checkpoints; select one positive trained checkpoint; same checkpoint full LasHeR/RGBT234; all five native metrics/attributes/curves/paired CI. Four full fits completed04:25; new native tests not started.",
     "no_architecture_expansion_before_current_chain_closes": true,
     "actual_continuation_launch": {
@@ -7954,7 +7954,7 @@
     }
   },
   "current_best_native_policy_iteration": {
-    "status": "FULL60_COMPLETE_ALL12_FIXED_EPOCH_FULL98_NEGATIVE_FINAL4_RUNNING",
+    "status": "ALL16_FULL98_COMPLETE_SELECTED_CHECKPOINT_NATIVE_RUNNING",
     "plan": "refine-logs/runs/recoverability_best_native_policy/plan.json",
     "pipeline_launch": "refine-logs/runs/recoverability_best_native_policy/actual_pipeline_launch.json",
     "controller_pid": 632884,
@@ -7962,8 +7962,8 @@
     "next_goal_check_cst": "2026-10-05T06:34:00+08:00",
     "poll_interval_seconds": 180,
     "goal_performance_achieved": false,
-    "last_actual_observation_cst": "2026-10-05T06:08:01.843579+08:00",
-    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_training_observation_0608.json",
+    "last_actual_observation_cst": "2026-10-05T06:43:01.883205+08:00",
+    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_training_observation_0643.json",
     "train_collected": 1762,
     "train_total": 1762,
     "validation_total": 196,
@@ -7977,7 +7977,7 @@
     "collection_completed_receipts": "refine-logs/runs/recoverability_best_native_policy/actual_full_collection_completion.json",
     "validation_collected": 196,
     "all8_collection_markers_passed": true,
-    "sole_local_observer_started_session": 43960,
+    "sole_local_observer_started_session": null,
     "actual_training_summary": "refine-logs/runs/recoverability_best_native_policy/actual_full_training_completed_summary.json",
     "full_training_started_cst": "2026-10-05T03:36:17.046957+08:00",
     "new_data_cache_GT_gate": "PASS",
@@ -7988,10 +7988,10 @@
     "all4_completed_epochs": 60,
     "all4_optimizer_steps": 300,
     "actual_full_training_CPU_accepted_cst": "2026-10-05T04:25:05.537933+08:00",
-    "full98_stage": "FULL98_best",
+    "full98_stage": "BOTH_COMPLETE_NATIVE_BENCHMARKS",
     "full98_epoch020_completed": true,
     "full98_epoch020_scores": "refine-logs/runs/recoverability_best_native_policy/actual_full98_epoch020_scores.json",
-    "new_native_started": false,
+    "new_native_started": true,
     "actual_capacity_only_weight_cleanup": "refine-logs/runs/recoverability_best_native_policy/actual_m0_weights_retirement_completed.json",
     "TRAIN_transition_query_coverage": "refine-logs/runs/recoverability_best_native_policy/actual_train_failure_transition_query_coverage.json",
     "TRAIN_event_query_eligibility_only": "refine-logs/runs/recoverability_best_native_policy/actual_train_event_query_eligibility_proposal.json",
@@ -8001,6 +8001,134 @@
     "final_cpu_continuation_launch": "refine-logs/runs/recoverability_best_native_policy/actual_final_cpu_continuation_launch.json",
     "final_cpu_continuation_status": "ACTUAL_CPU_WAITING_ORIGINAL_FULL_NATIVE_REPORTS",
     "final_cpu_first_completion_check_cst": "2026-10-05T07:30:00+08:00",
-    "final_cpu_poll_interval_seconds": 180
+    "final_cpu_poll_interval_seconds": 180,
+    "completed_native_metrics_frontpage": "refine-logs/runs/recoverability_best_native_policy/previous_complete_native_metrics_frontpage.json",
+    "full98_selection": {
+      "status": "PASS",
+      "checkpoint": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth",
+      "selected_best_epoch": 40,
+      "all_four_full_fits_CPU_passed": true,
+      "completed_epochs": 60,
+      "optimizer_steps": 300,
+      "selection_rule": "Highest full98 continuous TRAIN-held-out sequence mean IoU among trained positive epochs; declared order on ties; no native-test selection.",
+      "candidates": [
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.7256798161881709
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.7315419043765427
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.72781702091127
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.7304041882121898
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_040.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_epoch_040/predictions",
+          "epoch": 40,
+          "sequence_mean_iou": 0.7241337163433669
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_040.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_epoch_040/predictions",
+          "epoch": 40,
+          "sequence_mean_iou": 0.7240233567728899
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_epoch_040/predictions",
+          "epoch": 40,
+          "sequence_mean_iou": 0.7339718956709874
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_040.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_epoch_040/predictions",
+          "epoch": 40,
+          "sequence_mean_iou": 0.72541773409445
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7230413096575642
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7262183501551286
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7276863142682287
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7286013706140076
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_best/predictions",
+          "epoch": 4,
+          "sequence_mean_iou": 0.7249104219981505
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_best/predictions",
+          "epoch": 39,
+          "sequence_mean_iou": 0.7240564485956886
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_best/predictions",
+          "epoch": 59,
+          "sequence_mean_iou": 0.7272626052953101
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_best/predictions",
+          "epoch": 50,
+          "sequence_mean_iou": 0.7217366149086326
+        }
+      ],
+      "both_datasets_same_fixed_checkpoint": true,
+      "parent_remains_historical_reference": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "selected_at_cst": "2026-10-05T06:37:17.469113+08:00"
+    },
+    "full98_total_completed_checkpoints": 16
   }
 }
