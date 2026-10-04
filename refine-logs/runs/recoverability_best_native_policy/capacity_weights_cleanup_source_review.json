@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "same_family_provisional": true,
+  "runtime_attested": false,
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-05T05:21:10.3542331+08:00",
+  "target_source": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\retire_m0_weights_cpu.py",
+  "inspected_sources": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\retire_m0_weights_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\complete_pipeline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\merge_complete_goal_report.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\audit_fit_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\retire_completed_full_coverage_inferior_weights_20261005.py"
+  ],
+  "inspected_evidence": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_full_training_started_summary.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_full_training_completed_summary.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_training_observation_0508.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_full_coverage\\inferior_weights_retirement_completed.json"
+  ],
+  "concrete_issues": [],
+  "findings": [
+    "Only best.pth and epoch_003.pth under the four explicitly matched recoverability_best_native_policy_{pairwise_lr4,pairwise_lr5,budgeted_lr4,budgeted_lr5}_m0_20261005 roots can enter the eight-file unlink list. No recursive deletion is present.",
+    "Both CPU PASS receipts, exact arm sets, 3/15 and 60/300 completion counts, M0 completion files, FULL98 stage, target-file presence and absence of target paths in live process command lines are checked before any unlink.",
+    "Saved actual receipts match the script schema: all eight M0 checkpoints have changed ABC, exact C1 and passed CPU replay. Full acceptance at 2026-10-05T04:25:05.537933+08:00 contains all sixteen best/20/40/60 checkpoints; the saved 05:08:33 observation is FULL98_epoch_040.",
+    "All sixteen full-fit checkpoints and the prior eight protected teacher/pretrained/reference checkpoints are retained and hashed before and after deletion. Logs, metrics, configs, NPZ files and CPU receipts never enter the unlink list."
+  ],
+  "m0_checkpoint_dependency_after_full_cpu_gate": {
+    "would_break_original_future_chain": false,
+    "explanation": "complete_pipeline.py lines 106-110 consume M0 and then full CPU gates once. From lines 113-144, continuous selection reads only roots from the full receipt, and native inference uses that selected full checkpoint. merge_complete_goal_report.py lines 19-32 requires the selected full checkpoint to exist; it does not open an M0 checkpoint. The completed M0 audit is the only inspected M0 weight reader and is not scheduled again after this gate."
+  },
+  "validation": {
+    "source_edited": false,
+    "SSH_calls": 0,
+    "ast_parse": "PASS",
+    "neural_calls": 0,
+    "GPU_queries": 0,
+    "live_remote_state_reverified": false,
+    "cleanup_source_executed": false
+  },
+  "limitation": "Source review plus existing local receipts only. The cleanup script must satisfy its own current runtime assertions when invoked; this verdict does not attest remote execution or deletion."
+}
