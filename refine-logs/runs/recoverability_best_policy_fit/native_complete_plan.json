@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_REVIEW_PENDING_NOT_LAUNCHED",
+  "user_request": "Finish complete training and provide complete native metrics, not cached validation or partial sequences.",
+  "training_before_evaluation": {"arms": 4, "epochs_per_arm": 60, "optimizer_steps_per_arm": 180, "batch_size": 416, "actual_full_CPU_PASS_required": true},
+  "checkpoint_selection": "Maximum developer VAL128 utility once, declared order pairwise_lr4/pairwise_lr5/budgeted_lr4/budgeted_lr5 breaks ties. Native tests never select weights.",
+  "both_datasets_same_checkpoint": true,
+  "report_best0_honestly": true,
+  "fresh_complete_native_inference_even_if_best0": true,
+  "datasets": {
+    "lasher": {"sequences": 245, "frames": 220703, "root": "/data/wangwj/dataset/LasHeR/testingset", "offsets": [0,62,123,184], "counts": [62,61,61,61], "metrics": ["PR","NPR","SR"]},
+    "rgbt234": {"sequences": 234, "frames": 116649, "root": "/data/zhouy/DATASET/RGB-T234", "offsets": [0,59,118,176], "counts": [59,59,58,58], "metrics": ["MPR","MSR"]}
+  },
+  "parallelism": "Four GPUs; each executes its complete LasHeR shard followed by its complete RGBT234 shard, unchanged native evaluator.",
+  "no_frame_truncation": true,
+  "no_dataset_moves": true,
+  "temperature_or_power_queries": false,
+  "score_only_actual_GT": true,
+  "comparators": ["complete_GOLA_B_with_online_template","C1_v2"],
+  "outputs": ["five_native_metrics","per_sequence","per_attribute","official_curves","5000_paired_bootstrap_GOLA_and_C1","recovery_and_harm_and_write_and_search_diagnostics"],
+  "intermediate_progress_is_not_acceptance": true,
+  "separate_full98_not_a_prerequisite_this_round": "User prioritizes complete native results after complete training; full98 remains internal research evidence, not substituted for test metrics.",
+  "no_goal_success_claim_until_all_five_plus2": true
+}

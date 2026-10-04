@@ -1,0 +1,184 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 fresh source review",
+  "reviewed_at_cst": "2026-10-04T20:06:48.258137+08:00",
+  "reviewer_agent": "/root/best_policy_native_complete_source_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "runtime_model_attested": false,
+  "runtime_reasoning_effort_attested": false,
+  "scope": "New native-completion orchestration and independent actual-GT CPU auditor, with direct source/metadata inspection and stdlib/Bash source fixtures. No new inference, actual new fit acceptance, GT scoring or GPU execution occurred in this review.",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "production_changes_required": false,
+  "resolved_findings": [
+    {
+      "file": "refine-logs/runs/recoverability_best_policy_fit/merge_native_complete.py",
+      "issue": "Aggregate inference_config initially retained shard0 output path.",
+      "minimal_fix": "Parent added output=str(out) to aggregate config before deployment.",
+      "verification": "Final source and exact AST assertion confirm the aggregate output path; final SHA256 is recorded."
+    }
+  ],
+  "source_findings": [
+    {
+      "topic": "Complete real four-arm training barrier",
+      "status": "PASS",
+      "evidence": "launch_native_complete.py requires actual_full_fit_cpu_audit status PASS, all_four_lr_ranking_arms_passed, exactly four named PASS arms, 60 epochs, 180 optimizer steps and B416. These are the exact fields written by the existing real-fit CPU auditor after actual logs, retained-best tensor loading and VAL128 replay. No M0/source-only receipt can satisfy the full-fit counts.",
+      "limit": "The new actual full-fit receipt was not read or certified by this review."
+    },
+    {
+      "topic": "One developer-VAL selection and best0 honesty",
+      "status": "PASS",
+      "evidence": "Selection uses maximum best_validation.utility across pairwise_lr4, pairwise_lr5, budgeted_lr4, budgeted_lr5 in that explicit order, so Python max selects the first arm on ties. Selected best.pth bytes are checked against the actual CPU audit. best_epoch and best0_is_parent_not_new_learning are carried through. One immutable selection file supplies both datasets; existing selection/launch/output roots reject repeated launch. Fresh complete native inference is still requested when best epoch is zero.",
+      "limit": "VAL128 is developer validation, not native-test selection or a claim of new learning when best0 wins."
+    },
+    {
+      "topic": "Unchanged native evaluator and exact queue coverage",
+      "status": "PASS",
+      "evidence": "The production evaluator matches 08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8. Eight actual Bash routing fragments confirm GPU0..3 each executes its whole contiguous LasHeR shard then its whole RGBT234 shard, with one fixed checkpoint, learned policy defaults, explicit action writes, seed42 and max_frames0. LasHeR offsets/counts cover indices0..244 exactly; RGBT234 covers0..233 exactly. Existing evaluator initializes only from init.txt first row or visible.txt first row; later GT is absent from tracking input. Each marker follows successful evaluator return.",
+      "limit": "Source review reuses the unchanged evaluator and prior actual native evidence; no additional NN sanity is required by this review."
+    },
+    {
+      "topic": "Strict complete shard union and preserved prediction artifacts",
+      "status": "PASS",
+      "evidence": "Merge requires all four actual markers and completed smoke-marked shard receipts; exact declared boundaries; ordered sequence records; fixed model/head epoch/root/dataset/action mode; no zero_init, parity, disabled search, unsafe writes, frame cap or validation subset. It checks visible and IR file counts against every prediction/receipt length, four prediction columns, finite boxes/latencies, positive n-1 latency arrays, and all prediction/latency/NPZ paths. The full union must contain exactly245/220703 or234/116649. Only then does it hard-link the same-filesystem per-sequence files into an absent aggregate root and set smoke_onlyFalse. Common inference fields are required to match across workers. Records are reindexed globally and output metadata points to the aggregate directory.",
+      "limit": "Source fixtures checked control-flow metadata and shape/finite predicate doubles, not real NumPy data, hard-link IO or completed new shards. Detailed timeline internals are checked later by the unchanged mechanism collector."
+    },
+    {
+      "topic": "Actual-GT metrics and collector field contracts",
+      "status": "PASS",
+      "evidence": "Report script first requires the strict merge PASS. Aggregate config/completion keys satisfy collect_core_metrics and collect_recoverability_metrics. Core collector independently checks all actual GT against the native evaluator GT, exact counts/prediction shape and full receipts, then uses native NPR/PR/SR order for LasHeR and MPR/MSR for RGBT234. It writes per-sequence, all attributes and mean curves. Separate baseline and C1 two-variant reports feed unchanged paired_sequence_bootstrap defaults5000/seed42 and full curve/attribute plots. Mechanism collector receives direct prediction roots, reconciles runtime counters/timelines with actual GT and writes its own completion marker. Shell report_completed is written only after every collector/plot command succeeds."
+    },
+    {
+      "topic": "New independent CPU native arithmetic audit",
+      "status": "PASS",
+      "evidence": "audit_native_complete_cpu.py waits for report and mechanism markers, rechecks all3variants exact complete receipts/names/frame lengths, loads actual dataset GT and computes native metrics itself. Eight geometry expressions are AST-identical to the prior actual audit after only variable renaming: float32 round0 predictions, inclusive centers/IoU, LasHeR GT first row and existing invalid-GT mapping, RGBT234 minimum RGB/TIR errors and maximum overlap, equal sequence weighting. It checks every core sequence metric, all attributes, thresholds/curves and overall metrics exactly; both paired reports match core and both5000/seed42 CIs are independently reproduced. Metric function calls and NN calls are absent. Unrelated original fit/control/no-search assertions are correctly removed for the current3variant scope.",
+      "limit": "As in the prior accepted audit, noninitial rounded prediction widths/heights must be positive; failure rejects acceptance and does not silently change native protocol. Detailed mechanism mass recomputation is explicitly outside this focused arithmetic auditor. No actual new report was scored here."
+    },
+    {
+      "topic": "Execution and interpretation boundaries",
+      "status": "PASS",
+      "evidence": "Launcher queries GPU index/memory only and starts four fixed queues after the actual full-fit gate. No temperature/power management or native-test tuning appears. Concurrent per-frame timing is explicitly descriptive and not an isolated-speed comparison. New launch status is LAUNCHED_NOT_COMPLETE, merge native_metrics_computedFalse, and inference gt_scoring_completedFalse until actual downstream scoring. Plan preserves the all-five plus2 research success condition; no source review or partial inference satisfies it."
+    }
+  ],
+  "source_fixture_execution": {
+    "status": "PASS",
+    "script": "refine-logs/runs/recoverability_best_policy_fit/native_source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_best_policy_fit/native_source_checks.json",
+    "command": "E:/python.exe refine-logs/runs/recoverability_best_policy_fit/native_source_checks.py",
+    "counts": {
+      "python_compile": 10,
+      "bash_syntax": 3,
+      "exact_disjoint_full_shard_partition": 2,
+      "exact_native_cli_routing": 8,
+      "once_only_four_arm_selection_and_four_queue_launch_mock": 4,
+      "deterministic_first_arm_tie_selection": 1,
+      "duplicate_launch_rejected": 1,
+      "full_fit_selection_gate_rejection": 8,
+      "source_review_gate_rejection": 1,
+      "nonfree_gpu_mock_rejection": 1,
+      "literal_shell_gate_positive": 3,
+      "literal_shell_gate_rejection": 6,
+      "complete_merge_metadata_positive": 2,
+      "invalid_merge_metadata_rejection": 30,
+      "full_frame_finite_latency_metadata_positive": 1,
+      "invalid_full_frame_finite_latency_rejection": 7,
+      "prediction_latency_timeline_presence_positive": 1,
+      "missing_timeline_rejection": 1,
+      "native_geometry_expression_matches_prior_actual_audit": 8,
+      "paired_bootstrap_draws_match_prior_actual_audit": 1,
+      "paired_bootstrap_result_math_matches_prior_actual_audit": 1,
+      "independent_audit_calls_no_native_metric_functions": 1,
+      "aggregate_output_metadata_corrected": 1
+    },
+    "limits": "Array checks use shape/finite metadata doubles; no real array arithmetic, complete merge execution, hard-link IO, ground-truth scoring or new native result is certified."
+  },
+  "unchanged_upstream_actual_evidence": {
+    "lasher": {
+      "status": "PASS",
+      "scope": "Selected reference-own B384 epoch 4, complete LasHeR native result only",
+      "sequences": 245,
+      "frames": 220703,
+      "actual_audit_source_matches": {
+        "research/collect_core_metrics.py": true,
+        "research/paired_sequence_bootstrap.py": true,
+        "research/collect_recoverability_metrics.py": true,
+        "research/collect_abc_metrics.py": true,
+        "evaluation.py": true
+      },
+      "use": "Unchanged native collector/protocol evidence only; not acceptance of this new selected checkpoint or new inference."
+    },
+    "rgbt234": {
+      "status": "PASS",
+      "scope": "Selected reference-own B384 epoch 4, complete RGBT234 native result only",
+      "sequences": 234,
+      "frames": 116649,
+      "actual_audit_source_matches": {
+        "research/collect_core_metrics.py": true,
+        "research/paired_sequence_bootstrap.py": true,
+        "research/collect_recoverability_metrics.py": true,
+        "evaluation.py": true
+      },
+      "use": "Unchanged native collector/protocol evidence only; not acceptance of this new selected checkpoint or new inference."
+    }
+  },
+  "source_sha256": {
+    "scripts/run_best_policy_native_complete.sh": "9139d552ffb40a187594f031b7cc6b601be9a3b2411ab3bc0de62e79b02c794e",
+    "scripts/report_best_policy_native_complete.sh": "699bda419d3177d6750d2f9fe16d83beb8ff0827f0cfcd6c6bfad5799308b273",
+    "refine-logs/runs/recoverability_best_policy_fit/launch_native_complete.py": "b6bcfef758f5c3c9dc6b0215970be7272848a94e47bdb0505388cf09c88359a2",
+    "refine-logs/runs/recoverability_best_policy_fit/merge_native_complete.py": "c353e5910ee53575ed5dbc94148a7a6aab3b6eeffdfeb5bf3eaed99c3ec571b6",
+    "refine-logs/runs/recoverability_best_policy_fit/audit_native_complete_cpu.py": "8ba95bd19762b08ed577a7e1c5de269ac1a79d91ac2c9dfeaf0aea1028d2d34f",
+    "refine-logs/runs/recoverability_best_policy_fit/native_complete_plan.json": "621a574c7ca8169499ca1d87101137a8a6527a9ef65fe2756d71c7c2992b6dfb",
+    "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729",
+    "research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "research/paired_sequence_bootstrap.py": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+    "research/plot_core_metrics.py": "e7b0230bc4652c4f264bcbd7455fd486da540f9a06cbdbf7b1db9380008629ec",
+    "evaluation.py": "d09fafd64981dde3f86125e3df1f4aaa933683fcac244c805c3449a5f233792f",
+    "refine-logs/runs/recoverability_best_policy_fit/actual_best_policy_fit_cpu_audit.py": "5e9681caa8543ef05bfadb31de1315d8003ec2a27d31345f75bc598cd88d489d",
+    "refine-logs/runs/recoverability_best_policy_fit/native_source_checks.py": "17e510efc5fffa14d0e616a6513206b5709b4ffe88e89f56bde0ef773177bcfd",
+    "refine-logs/runs/recoverability_best_policy_fit/native_source_checks.json": "2d7716d311f1f4489d90f90bf432837cfe2d912fb432f96da88739373331b355"
+  },
+  "source_fixture_reference_sha256": {
+    "D:\\Program Files\\UserCache\\gb\\codex_tmp\\gola_setup_20261002\\write_pair_native_rgbt234_cpu_audit_original_20261004.py": "898cdb1f50245fc1eed715d22d38426f48e534653e9aa090bdd36538292f8d1f"
+  },
+  "execution": {
+    "noNN": true,
+    "noSSH": true,
+    "noGPU": true,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "dataset_reads": 0,
+    "checkpoint_reads": 0,
+    "NPZ_reads": 0,
+    "GPU_queries": 0,
+    "SSH_calls": 0,
+    "optimizer_steps": 0,
+    "training_or_evaluation_jobs_started": 0,
+    "reviewed_source_files_modified": false,
+    "reviewer_files_written": [
+      "native_source_checks.py",
+      "native_source_checks.json",
+      "native_source_review.json"
+    ],
+    "existing_text_metadata_read": true
+  },
+  "runtime_context_from_parent_not_reverified": {
+    "all_four_M0": "Actual3epochs9stepsCPUaccepted; strict25tensor loads reported PASS.",
+    "all_four_full_fits": "Running60epochs180stepsB416 when review assigned; no actual completion claim from this review."
+  },
+  "pending_runtime_evidence": [
+    "Actual all-four60epoch180stepB416 CPU acceptance before selection/launch.",
+    "Actual single VAL128 selection and same fixed checkpoint for both datasets.",
+    "All four full-frame shard completions for each dataset and actual strict merged unions.",
+    "Complete native metrics, all report artifacts and new independent CPU arithmetic acceptance for both datasets."
+  ],
+  "actual_new_full_fit_acceptance_claimed": false,
+  "actual_new_native_complete_claimed": false,
+  "new_NN_started_claimed": false,
+  "native_improvement_claimed": false,
+  "official_goal_completed": false
+}

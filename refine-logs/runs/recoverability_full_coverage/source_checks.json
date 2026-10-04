@@ -1,0 +1,244 @@
+{
+  "status": "PASS",
+  "scope": "Source, JSON metadata and stdlib synthetic fixtures only.",
+  "source_sha256": {
+    "refine-logs/runs/recoverability_full_coverage/prepare_jobs_cpu.py": "090f2570f005477c9a1e292da6bcf54d18813844caedfccbcfdb61a3b7dd8953",
+    "refine-logs/runs/recoverability_full_coverage/launch_collection.py": "9d6b317faa93bc21b37cd917b9c710663960dfa9af5cea6c211a21c1c12d2c8a",
+    "refine-logs/runs/recoverability_full_coverage/plan.json": "5a60575ff41c43c898db40d13147651a991ae0bc078f79a8daf04500d06c45f5",
+    "scripts/run_full_coverage_collect.sh": "bda6bcd89991427415029048e3eaa4fd0f101eb4172c960a5b72607f919eaa68"
+  },
+  "python_sources_compiled": 2,
+  "bash_syntax": "PASS",
+  "eligibility_predicate_AST_matches_collector": true,
+  "eligibility_fixtures": [
+    {
+      "frames": 4,
+      "invalid": [],
+      "eligible_queries": 0,
+      "accepted": false,
+      "selected_query": null
+    },
+    {
+      "frames": 5,
+      "invalid": [],
+      "eligible_queries": 1,
+      "accepted": true,
+      "selected_query": 1
+    },
+    {
+      "frames": 6,
+      "invalid": [],
+      "eligible_queries": 2,
+      "accepted": true,
+      "selected_query": 2
+    },
+    {
+      "frames": 10,
+      "invalid": [],
+      "eligible_queries": 6,
+      "accepted": true,
+      "selected_query": 4
+    },
+    {
+      "frames": 1027,
+      "invalid": [],
+      "eligible_queries": 1023,
+      "accepted": true,
+      "selected_query": 512
+    },
+    {
+      "frames": 1028,
+      "invalid": [],
+      "eligible_queries": 1024,
+      "accepted": true,
+      "selected_query": 513
+    },
+    {
+      "frames": 1500,
+      "invalid": [],
+      "eligible_queries": 1024,
+      "accepted": true,
+      "selected_query": 513
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        0
+      ],
+      "eligible_queries": 6,
+      "accepted": false,
+      "selected_query": null
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        1
+      ],
+      "eligible_queries": 5,
+      "accepted": true,
+      "selected_query": 4
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        2
+      ],
+      "eligible_queries": 4,
+      "accepted": true,
+      "selected_query": 5
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        3
+      ],
+      "eligible_queries": 3,
+      "accepted": true,
+      "selected_query": 5
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        4
+      ],
+      "eligible_queries": 2,
+      "accepted": true,
+      "selected_query": 6
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        8
+      ],
+      "eligible_queries": 4,
+      "accepted": true,
+      "selected_query": 3
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        9
+      ],
+      "eligible_queries": 5,
+      "accepted": true,
+      "selected_query": 3
+    },
+    {
+      "frames": 10,
+      "invalid": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "eligible_queries": 0,
+      "accepted": false,
+      "selected_query": null
+    },
+    {
+      "frames": 1500,
+      "invalid": [
+        512,
+        1026,
+        1027
+      ],
+      "eligible_queries": 1018,
+      "accepted": true,
+      "selected_query": 514
+    }
+  ],
+  "invalid_anchor_or_no_query_rejections": 3,
+  "partition_positive_and_negative_cases": 3,
+  "ordered_shards": [
+    {
+      "partition": "train",
+      "gpu": 0,
+      "clips": 221
+    },
+    {
+      "partition": "train",
+      "gpu": 1,
+      "clips": 220
+    },
+    {
+      "partition": "train",
+      "gpu": 2,
+      "clips": 220
+    },
+    {
+      "partition": "train",
+      "gpu": 3,
+      "clips": 220
+    },
+    {
+      "partition": "validation",
+      "gpu": 0,
+      "clips": 25
+    },
+    {
+      "partition": "validation",
+      "gpu": 1,
+      "clips": 25
+    },
+    {
+      "partition": "validation",
+      "gpu": 2,
+      "clips": 24
+    },
+    {
+      "partition": "validation",
+      "gpu": 3,
+      "clips": 24
+    }
+  ],
+  "teacher_arm": "pairwise_lr4",
+  "teacher_epoch": 46,
+  "teacher_schema_from_existing_actual_receipt": "strict25 tensors, C1 all8 retained exact; no new checkpoint load",
+  "existing_M0_and_full_all_four_arms_PASS": true,
+  "unchanged_collector_matches_existing_actual_receipt": true,
+  "reference_paths_equal_collector_defaults": true,
+  "previous_unique_train_val_videos": [
+    549,
+    76
+  ],
+  "collector_flags": {
+    "--root": "/data/wangwj/dataset/LasHeR",
+    "--partition": "$partition",
+    "--clips": "16",
+    "--batch-clips": "16",
+    "--forward-batch": "64",
+    "--max-prefix": "1024",
+    "--seed": "42",
+    "--prefix-model": "$parent",
+    "--future-policy": "own",
+    "--prefix-write-verification": "action",
+    "--jobs-file": "/data/gb/setup/full_coverage_jobs_${partition}_gpu${gpu}_20261004.json",
+    "--output": "$run"
+  },
+  "literal_gate_negative_fixtures_rejected": 8,
+  "launch_process_count": 4,
+  "per_gpu_partition_order": [
+    "train",
+    "validation"
+  ],
+  "command_evidence": [
+    "E:\\python.exe -I -B refine-logs/runs/recoverability_full_coverage/source_checks.py",
+    "E:\\dcda6-main\\Git\\bin\\bash.exe -n scripts/run_full_coverage_collect.sh",
+    "E:\\dcda6-main\\Git\\bin\\bash.exe -n scripts/run_temporal.sh"
+  ],
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "torch_imported": false,
+  "numpy_imported": false,
+  "SSH_calls": 0,
+  "GPU_calls": 0,
+  "neural_forward_calls": 0,
+  "actual_data_or_checkpoint_reads": 0,
+  "preparer_or_launcher_executed": false,
+  "runtime_attested": false,
+  "limitation": "PASS does not establish all979 actual videos eligible, completed collection, actual-GT replay, training or native metrics."
+}

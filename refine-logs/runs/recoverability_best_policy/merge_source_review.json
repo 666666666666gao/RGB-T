@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 fresh source-only review of actual partition CPU merging and completed-cache gate",
+  "reviewed_at_cst": "2026-10-04T19:13:16.826375+08:00",
+  "reviewer_routing": {
+    "agent_task": "/root/best_policy_cache_merge_review",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "routing_source": "experiment-bridge and installed local Codex review policy",
+    "fresh_context": true,
+    "actual_model_independently_attested": false,
+    "actual_reasoning_effort_independently_attested": false,
+    "runtime_independently_attested": false,
+    "attribution": "Fresh Codex-family reviewer; requested routing recorded without separate runtime model attestation."
+  },
+  "scope": "Review the two local CPU scripts, unchanged collector/model/loader interfaces, source dataset accessors, explicit query manifests, split metadata and collection configuration metadata. Execute only stdlib AST and in-memory synthetic arithmetic/files. No actual dataset, checkpoint, NPZ, acceptance receipt, SSH, GPU, neural model, optimizer or native evaluation access.",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "resolved_blocking_issues": [],
+  "production_changes_required": false,
+  "source_findings": [
+    {
+      "topic": "Exact source counts, query order and data split",
+      "verdict": "Correct",
+      "evidence": "The merger source requires TRAIN 16+296+295+295 and validation 16+112. The exact local source job manifests concatenate element-for-element to the original902/128 jobs, with unique sequence/query pairs. Source split metadata has881/98 disjoint sequence names; every query belongs to its requested partition. Runtime merger jobs must equal the existing reference cache jobs, and the predecessor reference-cache merger itself enforces the original ordered manifests. No extra query selection or resampling is introduced."
+    },
+    {
+      "topic": "Completed-only inputs and independent current GT replay",
+      "verdict": "Correct",
+      "evidence": "Source-review PASS and separate actual16+16 probe PASS are required before loading the TRAIN dataset. Every source shard must have its completed marker, completed receipt, expected partition/count and frozenold4 own/action configuration before its NPZ is opened with allow_pickle=False. Current IoU is recomputed from stored image-coordinate predictions and sequence[query_frame].get_bounding_box(), using the same TRAIN root/cache as the accepted reference configuration. The target is dataset GT, not another tracker prediction or score."
+    },
+    {
+      "topic": "Chronological history, padding and frame zero",
+      "verdict": "Correct",
+      "evidence": "The collector keeps history right-aligned with left padding. Its initial history entry is frame0, followed by every predicted frame through query-1; all current planned queries lie in1..1024. Executing the exact source history loop on five synthetic lengths confirms right alignment, inclusion of frame0 and the final query-1 slot. The merger requires the entire valid-frame list to equal range(max(0,query-1024),query), then independently replays every finite positive-area historical GT target. Invalid GT labels must equal-1, matching the collector; the exact collector label loop fixture also preserves-1 padding and labels frame0 correctly."
+    },
+    {
+      "topic": "Box convention, float storage and numeric checks",
+      "verdict": "Correct for the intended collection; actual tolerance remains a runtime gate",
+      "evidence": "The cached dataset is configured as continuous XYXY and its frame accessor returns the stored bounding box unchanged. Both original and extra-region predictions are clipped to image boundaries before collection; the merger reuses stored image boxes without clipping or coordinate conversion. Its intersection and nonnegative predicted-area calculation matches the collector box_iou computation for the intended GT boxes. Seven exact arithmetic fixtures cover identical, overlapping, contained, disjoint, zero-width, inverted and fractional boxes. Two thousand deterministic image-clipped float32 storage fixtures all meet1e-4; maximum observed error is1.0184344557018221e-05. Invalid histories are skipped by the explicit GT-validity mask, not converted into model labels.",
+      "limit": "These are synthetic source arithmetic checks. The reviewer did not certify actual array values, target sizes or actual per-shard maximum errors; the real merger must enforce its1e-4 assertions."
+    },
+    {
+      "topic": "Schema and unchanged training loader",
+      "verdict": "Correct",
+      "evidence": "The merger requires all decision fields, finite arrays, expected instance/candidate/action/future/history dimensions, valid original choices, writable-action threshold raw_score>.84, count-consistent valid_actions and matching keys/dtypes/trailing shapes across shards. It concatenates every original array without dtype conversion and performs exact NPZ reload equality. The resulting config retains partition, jobs and prefix_policy and its completion retains the fields required by unchanged train_recoverability.load_data. The final gate compares TRAIN/VAL schema dtypes and trailing dimensions plus the shared collector configuration.",
+      "limit": "Loader compatibility is source-level; no NumPy archive or Torch loader was executed in this review."
+    },
+    {
+      "topic": "Causality and future supervision claim boundary",
+      "verdict": "Correct",
+      "evidence": "The unchanged collector copies current/history decision arrays before future image decoding and uses private per-action histories for the three frozen-own future steps. Actual DECISION_FIELDS are disjoint from all five training-label fields and motion_targets; unchanged training forward passes only DECISION_FIELDS. Both epoch values remain4 and the parent path/hash, own policy and action write verification are checked. Future IoUs and wrong-update fractions are checked for finite/range/provenance consistency, and both receipt texts explicitly avoid claiming an independent future-neural replay."
+    },
+    {
+      "topic": "Completion marker and final fitting gate order",
+      "verdict": "Correct for the required two-receipt gate",
+      "evidence": "No merged directory is created until all source validation and exact ordered jobs pass. Arrays are saved and strictly reloaded before completion metadata. The marker is written just before the final parent-immutability assertion, but partition_cpu_acceptance.json is written only after that assertion; the output directory must initially be absent. The final cache gate requires both partition acceptance files and checks merged/source artifact hashes, exact jobs, numeric error receipts, shared configuration and sequence-disjoint split before writing its PASS receipt. Thus a failed final parent check cannot authorize fitting merely through the earlier marker. One exact-AST in-memory gate fixture passes;19 targeted missing/failed/mutated inputs reject without writing a gate result."
+    },
+    {
+      "topic": "Frozen sources and execution scope",
+      "verdict": "Correct",
+      "evidence": "Ten local runner/collector/model/config/dataset sources remain byte-identical to the prior shard source review. Neither CPU script imports Torch, runs a neural forward, performs an optimizer step, reads image pixels, controls GPUs or touches a native benchmark. Runtime parent-checkpoint reads are SHA256 byte reads only. This review changed only its checker and two JSON records.",
+      "limit": "Remote source identity and real execution are not independently attested by this source-only review."
+    }
+  ],
+  "checks": {
+    "script": "refine-logs/runs/recoverability_best_policy/merge_source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_best_policy/merge_source_checks.json",
+    "status": "PASS",
+    "command": "E:/python.exe refine-logs/runs/recoverability_best_policy/merge_source_checks.py",
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+    "compiled_source_files": 6,
+    "exact_partition_jobs": {
+      "train": 902,
+      "validation": 128
+    },
+    "exact_source_count_maps": {
+      "train": [
+        [
+          "train_probe",
+          16
+        ],
+        [
+          "train0_rest",
+          296
+        ],
+        [
+          "train1_rest",
+          295
+        ],
+        [
+          "train2_rest",
+          295
+        ]
+      ],
+      "validation": [
+        [
+          "validation_probe",
+          16
+        ],
+        [
+          "validation_rest",
+          112
+        ]
+      ]
+    },
+    "exact_iou_fixtures": 7,
+    "float32_storage_fixtures": 2000,
+    "float32_storage_max_iou_error": 1.0184344557018221e-05,
+    "history_source_loop_cases": 5,
+    "history_validity_and_sentinel_fixture": "PASS",
+    "synthetic_full_gate_pass_cases": 1,
+    "synthetic_full_gate_rejection_cases": 19,
+    "initial_checker_only_issue": "The first run completed all fixtures but failed serializing the checker path across the Windows workspace junction. Resolving __file__ consistently fixed this review-only path; the final checker run passed. No production script was changed."
+  },
+  "source_sha256": {
+    "refine-logs/runs/recoverability_best_policy/actual_partition_merge_cpu.py": "e6f19be11e5199bba231be2014943fc5a358adbbde8efbe7018bf61d6f262040",
+    "refine-logs/runs/recoverability_best_policy/actual_completed_cache_gate_cpu.py": "e0e1834074045148b9639064260f07477891982102892f5c503e81dbd0bd0d54",
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/train.json": "daef5da36693e6eb6b5bd4752cb161cf7f03c76a4be2a85f9ce10607e649b734",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_probe.json": "ec290d369d8afad81279f354c9c18cead2c577704004b53007f5383c514575bc",
+    "refine-logs/runs/recoverability_best_policy/jobs_train0_rest.json": "764b19239365833f65883c7e15c0e40021b1cb6ac27a94e67fe29a340f197eb0",
+    "refine-logs/runs/recoverability_best_policy/jobs_train1_rest.json": "19a9cff888b28dec4830c619b5437b8db22f0d5653f45f23d35eb693da5b1a59",
+    "refine-logs/runs/recoverability_best_policy/jobs_train2_rest.json": "5b8ccb6530de555a6de5048f1c6a6af78cf4f790de6267fb745534f95ca2253e",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/validation.json": "286080f408e73e7725d792c7777e2655a2e1c4ae14b1ff079e2e27b3d4314cb5",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_probe.json": "2532fe8c77a7cb5caa9fede5af9aca54384c35aa564354719f4c7475df7a735c",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_rest.json": "0f59687f471350595fb790e2c711739ab7f9e71ac0c47cb1ed2682726b31628f",
+    "refine-logs/runs/c1_seed42_split.json": "e3380d902cb760ef2a8bf1d7f408bff1a3b16bf62bf943cc157dedf96a1b5ef2",
+    "refine-logs/runs/recoverability_best_policy/probe_train/config.json": "6e4e7f20e80bf25f169dbedb3945596d79b958270b9da0265eaa43f6c8b11584",
+    "research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "trackit/core/operator/numpy/bbox/utility/image.py": "7011ecf384bde2b8266ff1ed459ab45d8fa2612181fe902f1e0f8a1a7c92bb03",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+    "refine-logs/runs/recoverability_best_policy/remote_MMOT_dataset.py": "f14a86549de6fb029801010a935ce194c773ffa2a87e28683695f003e6a9ed43",
+    "refine-logs/runs/recoverability_best_policy/remote_train_lasher.yaml": "219e29c7fa010b5b477fef1904b63c312004502f2fa460dabbeea32f81580ce7",
+    "refine-logs/runs/recoverability_best_policy/shard_source_review.json": "3edc0132179cdc716cd90371fe8ff552631a09ee24b6cd59880bfd29d7d79fcf",
+    "refine-logs/runs/recoverability_best_policy/merge_source_checks.py": "de5822ccc0743a986128d54fec2e6d150aa5db2bde78bb1163dab248b367561f",
+    "refine-logs/runs/recoverability_best_policy/merge_source_checks.json": "6be5ba172672b74170fb1e5959b30dbfe1d6846d9b96cb230d17ec41e05d47c3",
+    "refine-logs/runs/recoverability_current_policy_fit/merge_current_policy_caches.py": "e959173265fa1ce5391b379e9061baa08a1df278fa4e4d4537c1002ee1abd386",
+    "trackit/datasets/MMOT/datasets/LasHeR.py": "16e7bda3001afdbb428c8fc5fba165a53db0f0906678c98b2271f316b899917f",
+    "trackit/datasets/common/filter/data_cleaning/bounding_box.py": "bf80dbe9b24be2c1ee8c1e2ac627df6848b50bf6e50452ce4a99efb58daba625"
+  },
+  "actual_partition_cpu_acceptance": false,
+  "actual_completed_cache_acceptance": false,
+  "runtime_independently_attested": false,
+  "execution": {
+    "numpy_imported": false,
+    "torch_imported": false,
+    "dataset_reads": 0,
+    "checkpoint_reads": 0,
+    "actual_npz_reads": 0,
+    "actual_acceptance_receipt_reads": 0,
+    "collection_config_metadata_read": true,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "native_test_reads": 0,
+    "production_edits": false
+  },
+  "next_gate": "After each planned partition source set actually completes, root may execute the reviewed partition CPU merger once for that partition. Require both real partition_cpu_acceptance.json files and then execute the reviewed completed-cache gate before any new fitting. Its next declared stage is real B416 3epoch9step sanity plus actual CPU acceptance before a new full fit.",
+  "claim_boundary": "Source review and synthetic fixtures only. No real merged-cache acceptance, learned gain, native metric gain, all-five-native-metrics +2 percentage-point completion, or independent future-neural audit is established. The broader goal remains unmet; one best seed is allowed. Data here are LasHeR TRAIN partitions; no native Las/RGB evaluation or temperature/power control was performed."
+}

@@ -1,0 +1,3139 @@
+{
+  "status": "PASS",
+  "all_four_lr_ranking_arms_passed": true,
+  "stage": "full",
+  "batch_size": 416,
+  "epochs_per_arm": 60,
+  "optimizer_steps_per_arm": 180,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "accepted_at_cst": "2026-10-04T20:09:47.752112+08:00",
+  "scope": "Real training and retained-tensor CPU replay; complete ABC still executes. No continuous or native improvement claim.",
+  "source_review": "/data/gb/setup/best_policy_fit_source_review_20261004.json",
+  "source_staging": "/data/gb/setup/best_policy_fit_source_staging_20261004.json",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/__init__.py": "cad2ff60fbce0fb19134144996b7901ada3d941caa9190f99417d213b6170e17",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/abc_tracker.py": "3024b1f0092db7d5e8ffb41f6a9d90e2bd596e05ed6fb088decf909ae0097edf",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_dense_candidates.py": "ce2cf3c238524fdd8ea5f4a64fb2a1f6b0d9dcc1de61b837fd5c9a6c4df6e94e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_groundtruth.py": "7cf91338ebfc376f35bf6a4ae0ba7b51cbfd83dccf82643deb0a7841ea1ecaae",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_temporal_search.py": "f19beb619b8b7fa2d47ae6bde5ba8f0941f5fdaace015385ac049754e9daef9f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_temporal_training.py": "6af194b636566f704a4e5c8db2b45ad2d3b2069852f53a586480d46e46bf12c7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/bounded_recovery.py": "20b3b710c777d8c00c0336cd9c7f402b8555bbe84bd952ce85a3f1208e0ce089",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/branch_utility.py": "b1f74dec1589e1c687b01ae02f59a0b0b1cd79a81ed607099d6dc92e710bf170",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/check_zero_residual_tracking.py": "1980e37539842fd76f09a224748f46eb497f3b63ae7c88d54ca0297e2493e5b7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_abc_metrics.py": "cc75ef35f74c0c34080964787328c45db495431ab6fe2b498ce16d70c0d1aea9",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_candidate_metrics.py": "ae88efa107728894b2322c3e9da50b72e1eefcd31e587dba2e5088255dd2c600",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_internal_abc.py": "4d7b3cf22838ec3dc89e9d4abed83414d600a131597d32e86111c7961a72dc3a",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_temporal.py": "dcbb61f9efa52df25861b626c6cdd7dfc4bcebb7fb95ce94a9040b42e9a4abb5",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_candidate_policies.py": "a5877e7a303a211a71e875fa8a7efce18fa380ea4f6f347b698458d4f466073f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_internal_controls.py": "ea6a34f26c9edce4fd3686db3ab98f50700febc39d57a85c9cf5edef54fb10b4",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_paused_updates.py": "2c9341378ddd5d801424aed29b3963249aa2b1408dba6fba524e2adb65cc1d8f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_abc.py": "12aee567510c51af1df9fd3a1a224e522cc80a32631b27a28894ba9f72d306bf",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_online.py": "75bb132df53528dea5ad6a2bf309e0520c7db2342e9f8915e23a87947fd92cad",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_abc_complete.py": "f4177b415e604d7f72701b51aee359923e5b11884f339f44d79a7f13a16dc01f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_core_diagnostics.py": "ab13765e76e046e4701febdeff4bc8f01aac52838f7c9cec6c32996160839bc7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_dense_audits.py": "5f7e8a41c84aa1e40314d9b43543f8dc7ea5910e9e0edb12df84f726f579aa40",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_recoverability_future_caches.py": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/monitor_core.py": "45f217e3647fbe3b8ac90d7364322f1aba5aefdd9f602b7b6b29470aac5dd90d",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/paired_sequence_bootstrap.py": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/plot_core_metrics.py": "e7b0230bc4652c4f264bcbd7455fd486da540f9a06cbdbf7b1db9380008629ec",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/probe_recovery.py": "997f84e9fd4afbb72c8f18cdba63108db7e59199c82d1d4338505efef368ad5f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/temporal_modules.py": "e4455fd4a01ad2056c8e7986e68dfd5571f34fccca00693c179d2813a2a0991c",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_branch_utility.py": "92dd03b9338d94d8c018ed0001fd4f6b6816a8c920b5ef09830ac58c3619c00e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_candidate.py": "68d84108a89a2ec863b827ee0bb5bb37548f5787627f51ca4b7a9427060f8210",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_temporal.py": "2e9e4754f587f456e1d3cd8922bed1b3d6b0b7b61478a50a99b66c96cb1faa13",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/scripts/run_recoverability_best_policy_fit.sh": "1497dbfe21843a2bb43b27157b07a15daaf277afa495313667c0719fead02ee3",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/audit/actual_best_policy_fit_cpu_audit.py": "5e9681caa8543ef05bfadb31de1315d8003ec2a27d31345f75bc598cd88d489d",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "/data/gb/GOLA/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "/data/gb/GOLA/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8"
+  },
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_modules.py"
+  ],
+  "arms": {
+    "pairwise_lr4": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ],
+        [
+          4,
+          1,
+          10
+        ],
+        [
+          4,
+          3,
+          12
+        ],
+        [
+          5,
+          1,
+          13
+        ],
+        [
+          5,
+          3,
+          15
+        ],
+        [
+          6,
+          1,
+          16
+        ],
+        [
+          6,
+          3,
+          18
+        ],
+        [
+          7,
+          1,
+          19
+        ],
+        [
+          7,
+          3,
+          21
+        ],
+        [
+          8,
+          1,
+          22
+        ],
+        [
+          8,
+          3,
+          24
+        ],
+        [
+          9,
+          1,
+          25
+        ],
+        [
+          9,
+          3,
+          27
+        ],
+        [
+          10,
+          1,
+          28
+        ],
+        [
+          10,
+          3,
+          30
+        ],
+        [
+          11,
+          1,
+          31
+        ],
+        [
+          11,
+          3,
+          33
+        ],
+        [
+          12,
+          1,
+          34
+        ],
+        [
+          12,
+          3,
+          36
+        ],
+        [
+          13,
+          1,
+          37
+        ],
+        [
+          13,
+          3,
+          39
+        ],
+        [
+          14,
+          1,
+          40
+        ],
+        [
+          14,
+          3,
+          42
+        ],
+        [
+          15,
+          1,
+          43
+        ],
+        [
+          15,
+          3,
+          45
+        ],
+        [
+          16,
+          1,
+          46
+        ],
+        [
+          16,
+          3,
+          48
+        ],
+        [
+          17,
+          1,
+          49
+        ],
+        [
+          17,
+          3,
+          51
+        ],
+        [
+          18,
+          1,
+          52
+        ],
+        [
+          18,
+          3,
+          54
+        ],
+        [
+          19,
+          1,
+          55
+        ],
+        [
+          19,
+          3,
+          57
+        ],
+        [
+          20,
+          1,
+          58
+        ],
+        [
+          20,
+          3,
+          60
+        ],
+        [
+          21,
+          1,
+          61
+        ],
+        [
+          21,
+          3,
+          63
+        ],
+        [
+          22,
+          1,
+          64
+        ],
+        [
+          22,
+          3,
+          66
+        ],
+        [
+          23,
+          1,
+          67
+        ],
+        [
+          23,
+          3,
+          69
+        ],
+        [
+          24,
+          1,
+          70
+        ],
+        [
+          24,
+          3,
+          72
+        ],
+        [
+          25,
+          1,
+          73
+        ],
+        [
+          25,
+          3,
+          75
+        ],
+        [
+          26,
+          1,
+          76
+        ],
+        [
+          26,
+          3,
+          78
+        ],
+        [
+          27,
+          1,
+          79
+        ],
+        [
+          27,
+          3,
+          81
+        ],
+        [
+          28,
+          1,
+          82
+        ],
+        [
+          28,
+          3,
+          84
+        ],
+        [
+          29,
+          1,
+          85
+        ],
+        [
+          29,
+          3,
+          87
+        ],
+        [
+          30,
+          1,
+          88
+        ],
+        [
+          30,
+          3,
+          90
+        ],
+        [
+          31,
+          1,
+          91
+        ],
+        [
+          31,
+          3,
+          93
+        ],
+        [
+          32,
+          1,
+          94
+        ],
+        [
+          32,
+          3,
+          96
+        ],
+        [
+          33,
+          1,
+          97
+        ],
+        [
+          33,
+          3,
+          99
+        ],
+        [
+          34,
+          1,
+          100
+        ],
+        [
+          34,
+          3,
+          102
+        ],
+        [
+          35,
+          1,
+          103
+        ],
+        [
+          35,
+          3,
+          105
+        ],
+        [
+          36,
+          1,
+          106
+        ],
+        [
+          36,
+          3,
+          108
+        ],
+        [
+          37,
+          1,
+          109
+        ],
+        [
+          37,
+          3,
+          111
+        ],
+        [
+          38,
+          1,
+          112
+        ],
+        [
+          38,
+          3,
+          114
+        ],
+        [
+          39,
+          1,
+          115
+        ],
+        [
+          39,
+          3,
+          117
+        ],
+        [
+          40,
+          1,
+          118
+        ],
+        [
+          40,
+          3,
+          120
+        ],
+        [
+          41,
+          1,
+          121
+        ],
+        [
+          41,
+          3,
+          123
+        ],
+        [
+          42,
+          1,
+          124
+        ],
+        [
+          42,
+          3,
+          126
+        ],
+        [
+          43,
+          1,
+          127
+        ],
+        [
+          43,
+          3,
+          129
+        ],
+        [
+          44,
+          1,
+          130
+        ],
+        [
+          44,
+          3,
+          132
+        ],
+        [
+          45,
+          1,
+          133
+        ],
+        [
+          45,
+          3,
+          135
+        ],
+        [
+          46,
+          1,
+          136
+        ],
+        [
+          46,
+          3,
+          138
+        ],
+        [
+          47,
+          1,
+          139
+        ],
+        [
+          47,
+          3,
+          141
+        ],
+        [
+          48,
+          1,
+          142
+        ],
+        [
+          48,
+          3,
+          144
+        ],
+        [
+          49,
+          1,
+          145
+        ],
+        [
+          49,
+          3,
+          147
+        ],
+        [
+          50,
+          1,
+          148
+        ],
+        [
+          50,
+          3,
+          150
+        ],
+        [
+          51,
+          1,
+          151
+        ],
+        [
+          51,
+          3,
+          153
+        ],
+        [
+          52,
+          1,
+          154
+        ],
+        [
+          52,
+          3,
+          156
+        ],
+        [
+          53,
+          1,
+          157
+        ],
+        [
+          53,
+          3,
+          159
+        ],
+        [
+          54,
+          1,
+          160
+        ],
+        [
+          54,
+          3,
+          162
+        ],
+        [
+          55,
+          1,
+          163
+        ],
+        [
+          55,
+          3,
+          165
+        ],
+        [
+          56,
+          1,
+          166
+        ],
+        [
+          56,
+          3,
+          168
+        ],
+        [
+          57,
+          1,
+          169
+        ],
+        [
+          57,
+          3,
+          171
+        ],
+        [
+          58,
+          1,
+          172
+        ],
+        [
+          58,
+          3,
+          174
+        ],
+        [
+          59,
+          1,
+          175
+        ],
+        [
+          59,
+          3,
+          177
+        ],
+        [
+          60,
+          1,
+          178
+        ],
+        [
+          60,
+          3,
+          180
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.13649578392505646,
+        "B": 16.619300842285156,
+        "C": 1.6243659257888794
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 46,
+      "best0_is_parent_not_new_learning": false,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 9,
+          "total_tensors": 9,
+          "changed_elements": 109187,
+          "max_abs_change": 0.019926801323890686
+        },
+        "B": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 115469,
+          "max_abs_change": 0.0181465782225132
+        },
+        "C": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 86279,
+          "max_abs_change": 0.020084872841835022
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 1.1920928955078125e-07,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 1.1920928955078125e-07,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 5.960464477539063e-08,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.1846187114715576,
+        "valid_actions": 4774,
+        "current": 0.7536057233810425,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7518360614776611,
+        "utility": 0.7516017556190491,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 3,
+        "changed_location": 2,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 8,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.004389047622680664,
+        "utility_gain_against_c1": 0.003216564655303955
+      },
+      "peak_cuda_mib": 15079.76513671875,
+      "artifact_sha256": {
+        "config.json": "fec090244e4f5c6933057d00ac5525abe2d7e536de361d61beaa2f9134386529",
+        "completion.json": "e3b19bff561c45f00ab029d2206d444bea13a8f61bd61e5d966021ff0be3fb7a",
+        "metrics.json": "dc0b0c264ff94ea3f3d514cf5f6fbe8a73637e47685527509db2a71daacdb81d",
+        "train.jsonl": "46ab7fb7d5fb291d11f68fcf0c8a9e9d741b17c9adc4fbd0ec089f159018677f",
+        "best.pth": "a840219e1d362ac353ea13fae853a11d93505799f5bf7d6fbc2112e7b578a529",
+        "best_validation.npz": "d47b30e2f643912eb8c0bf561ddb5fb8c0592e043433385cdca0f4e654671ff3",
+        "training_completed.txt": "7576459b4a3ac6aac5ba92817c5e9608ba402a5a3af753a3f1a6230278af5a6a",
+        "job_completed.txt": "7576459b4a3ac6aac5ba92817c5e9608ba402a5a3af753a3f1a6230278af5a6a"
+      },
+      "learning_gain_claimed": false
+    },
+    "pairwise_lr5": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr5_full_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ],
+        [
+          4,
+          1,
+          10
+        ],
+        [
+          4,
+          3,
+          12
+        ],
+        [
+          5,
+          1,
+          13
+        ],
+        [
+          5,
+          3,
+          15
+        ],
+        [
+          6,
+          1,
+          16
+        ],
+        [
+          6,
+          3,
+          18
+        ],
+        [
+          7,
+          1,
+          19
+        ],
+        [
+          7,
+          3,
+          21
+        ],
+        [
+          8,
+          1,
+          22
+        ],
+        [
+          8,
+          3,
+          24
+        ],
+        [
+          9,
+          1,
+          25
+        ],
+        [
+          9,
+          3,
+          27
+        ],
+        [
+          10,
+          1,
+          28
+        ],
+        [
+          10,
+          3,
+          30
+        ],
+        [
+          11,
+          1,
+          31
+        ],
+        [
+          11,
+          3,
+          33
+        ],
+        [
+          12,
+          1,
+          34
+        ],
+        [
+          12,
+          3,
+          36
+        ],
+        [
+          13,
+          1,
+          37
+        ],
+        [
+          13,
+          3,
+          39
+        ],
+        [
+          14,
+          1,
+          40
+        ],
+        [
+          14,
+          3,
+          42
+        ],
+        [
+          15,
+          1,
+          43
+        ],
+        [
+          15,
+          3,
+          45
+        ],
+        [
+          16,
+          1,
+          46
+        ],
+        [
+          16,
+          3,
+          48
+        ],
+        [
+          17,
+          1,
+          49
+        ],
+        [
+          17,
+          3,
+          51
+        ],
+        [
+          18,
+          1,
+          52
+        ],
+        [
+          18,
+          3,
+          54
+        ],
+        [
+          19,
+          1,
+          55
+        ],
+        [
+          19,
+          3,
+          57
+        ],
+        [
+          20,
+          1,
+          58
+        ],
+        [
+          20,
+          3,
+          60
+        ],
+        [
+          21,
+          1,
+          61
+        ],
+        [
+          21,
+          3,
+          63
+        ],
+        [
+          22,
+          1,
+          64
+        ],
+        [
+          22,
+          3,
+          66
+        ],
+        [
+          23,
+          1,
+          67
+        ],
+        [
+          23,
+          3,
+          69
+        ],
+        [
+          24,
+          1,
+          70
+        ],
+        [
+          24,
+          3,
+          72
+        ],
+        [
+          25,
+          1,
+          73
+        ],
+        [
+          25,
+          3,
+          75
+        ],
+        [
+          26,
+          1,
+          76
+        ],
+        [
+          26,
+          3,
+          78
+        ],
+        [
+          27,
+          1,
+          79
+        ],
+        [
+          27,
+          3,
+          81
+        ],
+        [
+          28,
+          1,
+          82
+        ],
+        [
+          28,
+          3,
+          84
+        ],
+        [
+          29,
+          1,
+          85
+        ],
+        [
+          29,
+          3,
+          87
+        ],
+        [
+          30,
+          1,
+          88
+        ],
+        [
+          30,
+          3,
+          90
+        ],
+        [
+          31,
+          1,
+          91
+        ],
+        [
+          31,
+          3,
+          93
+        ],
+        [
+          32,
+          1,
+          94
+        ],
+        [
+          32,
+          3,
+          96
+        ],
+        [
+          33,
+          1,
+          97
+        ],
+        [
+          33,
+          3,
+          99
+        ],
+        [
+          34,
+          1,
+          100
+        ],
+        [
+          34,
+          3,
+          102
+        ],
+        [
+          35,
+          1,
+          103
+        ],
+        [
+          35,
+          3,
+          105
+        ],
+        [
+          36,
+          1,
+          106
+        ],
+        [
+          36,
+          3,
+          108
+        ],
+        [
+          37,
+          1,
+          109
+        ],
+        [
+          37,
+          3,
+          111
+        ],
+        [
+          38,
+          1,
+          112
+        ],
+        [
+          38,
+          3,
+          114
+        ],
+        [
+          39,
+          1,
+          115
+        ],
+        [
+          39,
+          3,
+          117
+        ],
+        [
+          40,
+          1,
+          118
+        ],
+        [
+          40,
+          3,
+          120
+        ],
+        [
+          41,
+          1,
+          121
+        ],
+        [
+          41,
+          3,
+          123
+        ],
+        [
+          42,
+          1,
+          124
+        ],
+        [
+          42,
+          3,
+          126
+        ],
+        [
+          43,
+          1,
+          127
+        ],
+        [
+          43,
+          3,
+          129
+        ],
+        [
+          44,
+          1,
+          130
+        ],
+        [
+          44,
+          3,
+          132
+        ],
+        [
+          45,
+          1,
+          133
+        ],
+        [
+          45,
+          3,
+          135
+        ],
+        [
+          46,
+          1,
+          136
+        ],
+        [
+          46,
+          3,
+          138
+        ],
+        [
+          47,
+          1,
+          139
+        ],
+        [
+          47,
+          3,
+          141
+        ],
+        [
+          48,
+          1,
+          142
+        ],
+        [
+          48,
+          3,
+          144
+        ],
+        [
+          49,
+          1,
+          145
+        ],
+        [
+          49,
+          3,
+          147
+        ],
+        [
+          50,
+          1,
+          148
+        ],
+        [
+          50,
+          3,
+          150
+        ],
+        [
+          51,
+          1,
+          151
+        ],
+        [
+          51,
+          3,
+          153
+        ],
+        [
+          52,
+          1,
+          154
+        ],
+        [
+          52,
+          3,
+          156
+        ],
+        [
+          53,
+          1,
+          157
+        ],
+        [
+          53,
+          3,
+          159
+        ],
+        [
+          54,
+          1,
+          160
+        ],
+        [
+          54,
+          3,
+          162
+        ],
+        [
+          55,
+          1,
+          163
+        ],
+        [
+          55,
+          3,
+          165
+        ],
+        [
+          56,
+          1,
+          166
+        ],
+        [
+          56,
+          3,
+          168
+        ],
+        [
+          57,
+          1,
+          169
+        ],
+        [
+          57,
+          3,
+          171
+        ],
+        [
+          58,
+          1,
+          172
+        ],
+        [
+          58,
+          3,
+          174
+        ],
+        [
+          59,
+          1,
+          175
+        ],
+        [
+          59,
+          3,
+          177
+        ],
+        [
+          60,
+          1,
+          178
+        ],
+        [
+          60,
+          3,
+          180
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.12469784915447235,
+        "B": 5.0002288818359375,
+        "C": 1.267313838005066
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.6775223016738892,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.76513671875,
+      "artifact_sha256": {
+        "config.json": "8019adfe5d14ffd79ce8e7b3f7c0ae1cdbe31e6b163735d00478d1e45cd4b87c",
+        "completion.json": "f7314e1f120ee59e18d35c901118bae8fd32767507727f30246174ddeb7c72d4",
+        "metrics.json": "79a97fafcd6b83d592c1b450296f16fe20a8d2861f4b6f8db40a65e1f77b6d1b",
+        "train.jsonl": "8da8f2f49d36c274b4cbbafbdc6268594023b21e166f566de49d6ae8ac70687a",
+        "best.pth": "9935da7a0fbcf02e5f4397813fd62e3e0966c74de868f72746f0467e02bc070d",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "ee9b4d05f7998af53c826447dfc1e8c55d6d067f610f5dd5d1a491bb236974e3",
+        "job_completed.txt": "ee9b4d05f7998af53c826447dfc1e8c55d6d067f610f5dd5d1a491bb236974e3"
+      },
+      "learning_gain_claimed": false
+    },
+    "budgeted_lr4": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_full_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ],
+        [
+          4,
+          1,
+          10
+        ],
+        [
+          4,
+          3,
+          12
+        ],
+        [
+          5,
+          1,
+          13
+        ],
+        [
+          5,
+          3,
+          15
+        ],
+        [
+          6,
+          1,
+          16
+        ],
+        [
+          6,
+          3,
+          18
+        ],
+        [
+          7,
+          1,
+          19
+        ],
+        [
+          7,
+          3,
+          21
+        ],
+        [
+          8,
+          1,
+          22
+        ],
+        [
+          8,
+          3,
+          24
+        ],
+        [
+          9,
+          1,
+          25
+        ],
+        [
+          9,
+          3,
+          27
+        ],
+        [
+          10,
+          1,
+          28
+        ],
+        [
+          10,
+          3,
+          30
+        ],
+        [
+          11,
+          1,
+          31
+        ],
+        [
+          11,
+          3,
+          33
+        ],
+        [
+          12,
+          1,
+          34
+        ],
+        [
+          12,
+          3,
+          36
+        ],
+        [
+          13,
+          1,
+          37
+        ],
+        [
+          13,
+          3,
+          39
+        ],
+        [
+          14,
+          1,
+          40
+        ],
+        [
+          14,
+          3,
+          42
+        ],
+        [
+          15,
+          1,
+          43
+        ],
+        [
+          15,
+          3,
+          45
+        ],
+        [
+          16,
+          1,
+          46
+        ],
+        [
+          16,
+          3,
+          48
+        ],
+        [
+          17,
+          1,
+          49
+        ],
+        [
+          17,
+          3,
+          51
+        ],
+        [
+          18,
+          1,
+          52
+        ],
+        [
+          18,
+          3,
+          54
+        ],
+        [
+          19,
+          1,
+          55
+        ],
+        [
+          19,
+          3,
+          57
+        ],
+        [
+          20,
+          1,
+          58
+        ],
+        [
+          20,
+          3,
+          60
+        ],
+        [
+          21,
+          1,
+          61
+        ],
+        [
+          21,
+          3,
+          63
+        ],
+        [
+          22,
+          1,
+          64
+        ],
+        [
+          22,
+          3,
+          66
+        ],
+        [
+          23,
+          1,
+          67
+        ],
+        [
+          23,
+          3,
+          69
+        ],
+        [
+          24,
+          1,
+          70
+        ],
+        [
+          24,
+          3,
+          72
+        ],
+        [
+          25,
+          1,
+          73
+        ],
+        [
+          25,
+          3,
+          75
+        ],
+        [
+          26,
+          1,
+          76
+        ],
+        [
+          26,
+          3,
+          78
+        ],
+        [
+          27,
+          1,
+          79
+        ],
+        [
+          27,
+          3,
+          81
+        ],
+        [
+          28,
+          1,
+          82
+        ],
+        [
+          28,
+          3,
+          84
+        ],
+        [
+          29,
+          1,
+          85
+        ],
+        [
+          29,
+          3,
+          87
+        ],
+        [
+          30,
+          1,
+          88
+        ],
+        [
+          30,
+          3,
+          90
+        ],
+        [
+          31,
+          1,
+          91
+        ],
+        [
+          31,
+          3,
+          93
+        ],
+        [
+          32,
+          1,
+          94
+        ],
+        [
+          32,
+          3,
+          96
+        ],
+        [
+          33,
+          1,
+          97
+        ],
+        [
+          33,
+          3,
+          99
+        ],
+        [
+          34,
+          1,
+          100
+        ],
+        [
+          34,
+          3,
+          102
+        ],
+        [
+          35,
+          1,
+          103
+        ],
+        [
+          35,
+          3,
+          105
+        ],
+        [
+          36,
+          1,
+          106
+        ],
+        [
+          36,
+          3,
+          108
+        ],
+        [
+          37,
+          1,
+          109
+        ],
+        [
+          37,
+          3,
+          111
+        ],
+        [
+          38,
+          1,
+          112
+        ],
+        [
+          38,
+          3,
+          114
+        ],
+        [
+          39,
+          1,
+          115
+        ],
+        [
+          39,
+          3,
+          117
+        ],
+        [
+          40,
+          1,
+          118
+        ],
+        [
+          40,
+          3,
+          120
+        ],
+        [
+          41,
+          1,
+          121
+        ],
+        [
+          41,
+          3,
+          123
+        ],
+        [
+          42,
+          1,
+          124
+        ],
+        [
+          42,
+          3,
+          126
+        ],
+        [
+          43,
+          1,
+          127
+        ],
+        [
+          43,
+          3,
+          129
+        ],
+        [
+          44,
+          1,
+          130
+        ],
+        [
+          44,
+          3,
+          132
+        ],
+        [
+          45,
+          1,
+          133
+        ],
+        [
+          45,
+          3,
+          135
+        ],
+        [
+          46,
+          1,
+          136
+        ],
+        [
+          46,
+          3,
+          138
+        ],
+        [
+          47,
+          1,
+          139
+        ],
+        [
+          47,
+          3,
+          141
+        ],
+        [
+          48,
+          1,
+          142
+        ],
+        [
+          48,
+          3,
+          144
+        ],
+        [
+          49,
+          1,
+          145
+        ],
+        [
+          49,
+          3,
+          147
+        ],
+        [
+          50,
+          1,
+          148
+        ],
+        [
+          50,
+          3,
+          150
+        ],
+        [
+          51,
+          1,
+          151
+        ],
+        [
+          51,
+          3,
+          153
+        ],
+        [
+          52,
+          1,
+          154
+        ],
+        [
+          52,
+          3,
+          156
+        ],
+        [
+          53,
+          1,
+          157
+        ],
+        [
+          53,
+          3,
+          159
+        ],
+        [
+          54,
+          1,
+          160
+        ],
+        [
+          54,
+          3,
+          162
+        ],
+        [
+          55,
+          1,
+          163
+        ],
+        [
+          55,
+          3,
+          165
+        ],
+        [
+          56,
+          1,
+          166
+        ],
+        [
+          56,
+          3,
+          168
+        ],
+        [
+          57,
+          1,
+          169
+        ],
+        [
+          57,
+          3,
+          171
+        ],
+        [
+          58,
+          1,
+          172
+        ],
+        [
+          58,
+          3,
+          174
+        ],
+        [
+          59,
+          1,
+          175
+        ],
+        [
+          59,
+          3,
+          177
+        ],
+        [
+          60,
+          1,
+          178
+        ],
+        [
+          60,
+          3,
+          180
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.1364341676235199,
+        "B": 16.597158432006836,
+        "C": 1.8524556159973145
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 28,
+      "best0_is_parent_not_new_learning": false,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 9,
+          "total_tensors": 9,
+          "changed_elements": 109187,
+          "max_abs_change": 0.011371428146958351
+        },
+        "B": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 115469,
+          "max_abs_change": 0.009730873629450798
+        },
+        "C": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 86279,
+          "max_abs_change": 0.011391740292310715
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 1.1920928955078125e-07,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 1.1920928955078125e-07,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 5.960464477539063e-08,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.4050782918930054,
+        "valid_actions": 4774,
+        "current": 0.7536057233810425,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7518267631530762,
+        "utility": 0.7515924572944641,
+        "c1_utility": 0.7483851909637451,
+        "pause": 0,
+        "search_triggered": 3,
+        "changed_location": 3,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 8,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.004389047622680664,
+        "utility_gain_against_c1": 0.003207266330718994
+      },
+      "peak_cuda_mib": 15079.26513671875,
+      "artifact_sha256": {
+        "config.json": "8f3baeeba8c280e01a96964a1727fb5b699dd2e2c4578100110e89b688e6e19e",
+        "completion.json": "91c3a40e88ebe0eeaeab67cf9b8514d35867ead0bf5b40fb93c4216eaa097c2e",
+        "metrics.json": "f29262e443c0916e61bc383624fe2a30a3602fde561673abc313ed90a43e5028",
+        "train.jsonl": "6829413188f90cdc922da57f8ee16166a746ed5cd7502398a7bc66a8bf77d23c",
+        "best.pth": "907fc6ef6337fdaffeac2ca70f543217d36046134b254171265bd3c76b7c752a",
+        "best_validation.npz": "a05c9cd591e276b16189a3eb5e8a057354e790bc77e69d84e92a6125e6a7c173",
+        "training_completed.txt": "7cc807923fedf932f61e01383e368e7f9e2353541680aebe3df48ff8fd90b2e0",
+        "job_completed.txt": "7cc807923fedf932f61e01383e368e7f9e2353541680aebe3df48ff8fd90b2e0"
+      },
+      "learning_gain_claimed": false
+    },
+    "budgeted_lr5": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr5_full_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ],
+        [
+          4,
+          1,
+          10
+        ],
+        [
+          4,
+          3,
+          12
+        ],
+        [
+          5,
+          1,
+          13
+        ],
+        [
+          5,
+          3,
+          15
+        ],
+        [
+          6,
+          1,
+          16
+        ],
+        [
+          6,
+          3,
+          18
+        ],
+        [
+          7,
+          1,
+          19
+        ],
+        [
+          7,
+          3,
+          21
+        ],
+        [
+          8,
+          1,
+          22
+        ],
+        [
+          8,
+          3,
+          24
+        ],
+        [
+          9,
+          1,
+          25
+        ],
+        [
+          9,
+          3,
+          27
+        ],
+        [
+          10,
+          1,
+          28
+        ],
+        [
+          10,
+          3,
+          30
+        ],
+        [
+          11,
+          1,
+          31
+        ],
+        [
+          11,
+          3,
+          33
+        ],
+        [
+          12,
+          1,
+          34
+        ],
+        [
+          12,
+          3,
+          36
+        ],
+        [
+          13,
+          1,
+          37
+        ],
+        [
+          13,
+          3,
+          39
+        ],
+        [
+          14,
+          1,
+          40
+        ],
+        [
+          14,
+          3,
+          42
+        ],
+        [
+          15,
+          1,
+          43
+        ],
+        [
+          15,
+          3,
+          45
+        ],
+        [
+          16,
+          1,
+          46
+        ],
+        [
+          16,
+          3,
+          48
+        ],
+        [
+          17,
+          1,
+          49
+        ],
+        [
+          17,
+          3,
+          51
+        ],
+        [
+          18,
+          1,
+          52
+        ],
+        [
+          18,
+          3,
+          54
+        ],
+        [
+          19,
+          1,
+          55
+        ],
+        [
+          19,
+          3,
+          57
+        ],
+        [
+          20,
+          1,
+          58
+        ],
+        [
+          20,
+          3,
+          60
+        ],
+        [
+          21,
+          1,
+          61
+        ],
+        [
+          21,
+          3,
+          63
+        ],
+        [
+          22,
+          1,
+          64
+        ],
+        [
+          22,
+          3,
+          66
+        ],
+        [
+          23,
+          1,
+          67
+        ],
+        [
+          23,
+          3,
+          69
+        ],
+        [
+          24,
+          1,
+          70
+        ],
+        [
+          24,
+          3,
+          72
+        ],
+        [
+          25,
+          1,
+          73
+        ],
+        [
+          25,
+          3,
+          75
+        ],
+        [
+          26,
+          1,
+          76
+        ],
+        [
+          26,
+          3,
+          78
+        ],
+        [
+          27,
+          1,
+          79
+        ],
+        [
+          27,
+          3,
+          81
+        ],
+        [
+          28,
+          1,
+          82
+        ],
+        [
+          28,
+          3,
+          84
+        ],
+        [
+          29,
+          1,
+          85
+        ],
+        [
+          29,
+          3,
+          87
+        ],
+        [
+          30,
+          1,
+          88
+        ],
+        [
+          30,
+          3,
+          90
+        ],
+        [
+          31,
+          1,
+          91
+        ],
+        [
+          31,
+          3,
+          93
+        ],
+        [
+          32,
+          1,
+          94
+        ],
+        [
+          32,
+          3,
+          96
+        ],
+        [
+          33,
+          1,
+          97
+        ],
+        [
+          33,
+          3,
+          99
+        ],
+        [
+          34,
+          1,
+          100
+        ],
+        [
+          34,
+          3,
+          102
+        ],
+        [
+          35,
+          1,
+          103
+        ],
+        [
+          35,
+          3,
+          105
+        ],
+        [
+          36,
+          1,
+          106
+        ],
+        [
+          36,
+          3,
+          108
+        ],
+        [
+          37,
+          1,
+          109
+        ],
+        [
+          37,
+          3,
+          111
+        ],
+        [
+          38,
+          1,
+          112
+        ],
+        [
+          38,
+          3,
+          114
+        ],
+        [
+          39,
+          1,
+          115
+        ],
+        [
+          39,
+          3,
+          117
+        ],
+        [
+          40,
+          1,
+          118
+        ],
+        [
+          40,
+          3,
+          120
+        ],
+        [
+          41,
+          1,
+          121
+        ],
+        [
+          41,
+          3,
+          123
+        ],
+        [
+          42,
+          1,
+          124
+        ],
+        [
+          42,
+          3,
+          126
+        ],
+        [
+          43,
+          1,
+          127
+        ],
+        [
+          43,
+          3,
+          129
+        ],
+        [
+          44,
+          1,
+          130
+        ],
+        [
+          44,
+          3,
+          132
+        ],
+        [
+          45,
+          1,
+          133
+        ],
+        [
+          45,
+          3,
+          135
+        ],
+        [
+          46,
+          1,
+          136
+        ],
+        [
+          46,
+          3,
+          138
+        ],
+        [
+          47,
+          1,
+          139
+        ],
+        [
+          47,
+          3,
+          141
+        ],
+        [
+          48,
+          1,
+          142
+        ],
+        [
+          48,
+          3,
+          144
+        ],
+        [
+          49,
+          1,
+          145
+        ],
+        [
+          49,
+          3,
+          147
+        ],
+        [
+          50,
+          1,
+          148
+        ],
+        [
+          50,
+          3,
+          150
+        ],
+        [
+          51,
+          1,
+          151
+        ],
+        [
+          51,
+          3,
+          153
+        ],
+        [
+          52,
+          1,
+          154
+        ],
+        [
+          52,
+          3,
+          156
+        ],
+        [
+          53,
+          1,
+          157
+        ],
+        [
+          53,
+          3,
+          159
+        ],
+        [
+          54,
+          1,
+          160
+        ],
+        [
+          54,
+          3,
+          162
+        ],
+        [
+          55,
+          1,
+          163
+        ],
+        [
+          55,
+          3,
+          165
+        ],
+        [
+          56,
+          1,
+          166
+        ],
+        [
+          56,
+          3,
+          168
+        ],
+        [
+          57,
+          1,
+          169
+        ],
+        [
+          57,
+          3,
+          171
+        ],
+        [
+          58,
+          1,
+          172
+        ],
+        [
+          58,
+          3,
+          174
+        ],
+        [
+          59,
+          1,
+          175
+        ],
+        [
+          59,
+          3,
+          177
+        ],
+        [
+          60,
+          1,
+          178
+        ],
+        [
+          60,
+          3,
+          180
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.12476924061775208,
+        "B": 4.996330261230469,
+        "C": 1.668593168258667
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7879676818847656,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.26513671875,
+      "artifact_sha256": {
+        "config.json": "e271f1ac021eb000e44e8ff23d8cc00423c6fcdae32ccf3a3af61f046d3de721",
+        "completion.json": "8faee303824e37c4053706904b35a8ba9113373032177c4194ede1167b8277f1",
+        "metrics.json": "d371b6953296f83e9525132907522542d79ba4a08e87a16c4a930d40a13a442c",
+        "train.jsonl": "eaab612da598edf1ed69e5e8fd7ca1f01da7302dc15911503d5dc3322c3e700b",
+        "best.pth": "18390b92fdcbc8da278b94c36215ba14d78bd17686cddb3cb6e5691da27ae205",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "c09cd97079c84069fcfea040b56cf7043b26747170192b49ce012704f7dfa052",
+        "job_completed.txt": "c09cd97079c84069fcfea040b56cf7043b26747170192b49ce012704f7dfa052"
+      },
+      "learning_gain_claimed": false
+    }
+  },
+  "limitations": [
+    "Best selection uses the same128 developer VAL queries.",
+    "Terminal update evidence is receipt/log based; retained-best differences are independently measured.",
+    "Both completeABC ranking arms match batch416; comparisons against the priorABC batch384 reference retain the batch limitation."
+  ],
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "TRAIN_embeddings_read": false,
+    "jobs_started": 0,
+    "weights_modified": false,
+    "runtime_seconds": 15.271
+  }
+}

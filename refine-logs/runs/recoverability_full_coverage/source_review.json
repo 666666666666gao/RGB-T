@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "stage": "experiment-bridge Phase 2.5 source review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "fork_turns": "none",
+    "spawn_metadata_confirmed_by_parent": true,
+    "policy": "C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md"
+  },
+  "scope": "Exactly four new collection source/plan files. Existing collector, runner, model sources and JSON receipts were read as supporting evidence. No later training/native pipeline files are approved by this review.",
+  "source_sha256": {
+    "refine-logs/runs/recoverability_full_coverage/prepare_jobs_cpu.py": "090f2570f005477c9a1e292da6bcf54d18813844caedfccbcfdb61a3b7dd8953",
+    "refine-logs/runs/recoverability_full_coverage/launch_collection.py": "9d6b317faa93bc21b37cd917b9c710663960dfa9af5cea6c211a21c1c12d2c8a",
+    "refine-logs/runs/recoverability_full_coverage/plan.json": "5a60575ff41c43c898db40d13147651a991ae0bc078f79a8daf04500d06c45f5",
+    "scripts/run_full_coverage_collect.sh": "bda6bcd89991427415029048e3eaa4fd0f101eb4172c960a5b72607f919eaa68"
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "verified": [
+    {
+      "check": "Exact original collector eligibility and deterministic one-query selection",
+      "evidence": "prepare_jobs_cpu.py:26-29 uses the identical finite, positive-area xyxy predicate as collect_recoverability.py:325. Its range(1,min(1025,n-3)) and valid[q:q+4] match collector line326 at max_prefix1024, so current GT and q+1/q+2/q+3 GT are valid and in range. It requires valid frame0 and a nonempty eligible list, then selects the upper middle eligible query. Sixteen stdlib fixtures check boundaries, invalid anchor/current/future masks and exact parity. Invalid anchor/no-query cases are rejected, never dropped."
+    },
+    {
+      "check": "Every immutable TRAIN/developer-VAL name and disjoint partitioning",
+      "evidence": "The preparer reads the accepted merged TRAIN config's root/cache/split, asserts881/98 split lengths and empty intersection, visits every sorted split name by direct lookup, and asserts output name-set equality and row counts. Missing names or ineligible videos stop preparation before a PASS acceptance receipt. It produces ordered221/220/220/220 TRAIN and25/25/24/24 VAL shards. The original collector independently validates each explicit job against its chosen partition and rejects duplicate jobs. Synthetic coverage/shard checks and split overlap/missing-name count guards pass. Actual reference paths from full_pairwise_lr4/config.json equal all corresponding collector defaults."
+    },
+    {
+      "check": "Receipt-selected teacher and compatible frozen ABC/C1 contract",
+      "evidence": "The exact preparer max-utility expression selects pairwise_lr4 epoch46 from actual_full_cpu_acceptance.json: utility0.7516017556190491. The receipt records all four arms PASS,60epochs,180updates,B416; selected teacher strict25-tensor load and all8 C1 tensors unchanged. Teacher best.pth receipt SHA is a840219e1d362ac353ea13fae853a11d93505799f5bf7d6fbc2112e7b578a529. Launcher validates that existing teacher digest before launch. Collector requires ABC_recoverability, strict model load, checkpoint threshold and frozen eval mode. Teacher is explicitly a developer-VAL selection, not a native-best claim."
+    },
+    {
+      "check": "Frozen complete GOLA/C1 and causal actual-GT labels",
+      "evidence": "Existing FrozenCandidateExtractor builds pretrained DINOv2, loads GOLA adapters/head with load assertions, and freezes the backbone. Collector freezes C1, motion and prefix modules. Prefix history is predicted through q-1; decision arrays are copied before future images/later GT. Current/history/motion/future supervision uses dataset boxes and IoU. Future-own actions branch the same parent, use private histories, and take three deployed tracker steps; model predictions are not substituted for dataset GT. The current collector SHA equals the existing full-acceptance receipt's collector SHA."
+    },
+    {
+      "check": "Runtime flags and one original collector per GPU queue",
+      "evidence": "Runner argv resolves to the existing collect_recoverability entry with batch-clips16,forward-batch64,max-prefix1024,seed42,prefix-model chosen teacher,future-policy own,prefix-write-verification action and exact per-partition jobs paths. --clips16 is only the pre-override positive argument: explicit jobs replace it and set args.clips to the shard length before model initialization. Each of four GPU runners executes TRAIN then VAL sequentially; run_temporal.sh selects the requested physical GPU and execs the collector. All shell flags exist in collector argparse."
+    },
+    {
+      "check": "Launch barriers and completion semantics",
+      "evidence": "Launcher requires same-family provisional source PASS, actual CPU preparation PASS with881/98/exact-name fields, teacher and runner digest checks, exact ordered shard JSON contents, absent eight output paths and absent launch receipt. Existing GPU memory-only check requires four idle GPUs. One Popen site in range(4) starts four queues; runner independently rejects existing output paths and stops on any failure. No retry/relaunch loop, training or native launch is introduced. The launch record says LAUNCHED_NOT_COMPLETED, and each job_completed.txt is written only after successful collector exit. Eight changed gate-field fixtures reject."
+    },
+    {
+      "check": "Prior sanity reuse and truthful coverage scope",
+      "evidence": "Existing actual M0 receipt has all four arms PASS atB416,3epochs9steps; actual full receipt has all four PASS atB416,60epochs180steps. Archived full_pairwise_lr4/config.json confirms old902/128 rows represented549/76 unique video names. The unchanged collection/model schema and planned881 TRAIN rows atB416 still imply3updates/epoch and180updates/60epochs. The new plan explicitly limits coverage to one eligible cached query per881/98 videos,1024-prefix capacity,three future steps,frozen pretrained backbone; it makes no all-frame,end-to-end or native-success claim."
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "E:/python.exe -I -B refine-logs/runs/recoverability_full_coverage/source_checks.py",
+      "exit_code": 0,
+      "result": "PASS;16 eligibility fixtures,3 partition fixtures,8 negative launch-gate fixtures, teacher/default-path/source checks; torch/numpy not imported."
+    },
+    {
+      "command": "E:/dcda6-main/Git/bin/bash.exe -n scripts/run_full_coverage_collect.sh",
+      "exit_code": 0,
+      "result": "Syntax only; executed by source_checks.py; no runner execution."
+    },
+    {
+      "command": "E:/dcda6-main/Git/bin/bash.exe -n scripts/run_temporal.sh",
+      "exit_code": 0,
+      "result": "Syntax only; executed by source_checks.py; no runner execution."
+    }
+  ],
+  "evidence_limitations": [
+    "This PASS is source-only. No actual dataset/cache/checkpoint, neural/GPU execution or SSH was performed in this review. It does not prove that all979 real videos have eligible GT, that any job launched, or that any new collection completed.",
+    "Actual CPU preparation must pass without dropping names; completed881/98 cache artifacts still require the planned independent actual-GT/history/schema/coverage CPU gate before training.",
+    "The same checkpoint is wired for prefix and future collection. Using that checkpoint for subsequent training initialization remains the plan's obligation; the preparer's init_same_as_prefix_and_future_teacher flag is not evidence of an executed training initialization.",
+    "Existing M0/FULL receipts establish historical completed training and schema evidence only. They do not establish new full-video fit completion, runtime memory behavior, new gradients or native metrics.",
+    "Teacher selection and later validation reuse developer-VAL information. These are development results, not independent benchmark results. All native/full-metric goals remain unmet by this source review."
+  ],
+  "execution": {
+    "SSH_calls": 0,
+    "GPU_calls": 0,
+    "neural_forward_calls": 0,
+    "actual_data_or_checkpoint_reads": 0,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "preparer_or_launcher_executed": false,
+    "implementation_files_modified": false,
+    "new_markdown_files": 0
+  },
+  "artifacts": [
+    "refine-logs/runs/recoverability_full_coverage/source_checks.py",
+    "refine-logs/runs/recoverability_full_coverage/source_checks.json",
+    "refine-logs/runs/recoverability_full_coverage/source_review.json"
+  ]
+}

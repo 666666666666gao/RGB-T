@@ -1,0 +1,859 @@
+{
+  "status": "PASS",
+  "all_four_lr_ranking_arms_passed": true,
+  "stage": "m0",
+  "batch_size": 416,
+  "epochs_per_arm": 3,
+  "optimizer_steps_per_arm": 9,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "accepted_at_cst": "2026-10-04T19:40:34.832812+08:00",
+  "scope": "Real training and retained-tensor CPU replay; complete ABC still executes. No continuous or native improvement claim.",
+  "source_review": "/data/gb/setup/best_policy_fit_source_review_20261004.json",
+  "source_staging": "/data/gb/setup/best_policy_fit_source_staging_20261004.json",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/__init__.py": "cad2ff60fbce0fb19134144996b7901ada3d941caa9190f99417d213b6170e17",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/abc_tracker.py": "3024b1f0092db7d5e8ffb41f6a9d90e2bd596e05ed6fb088decf909ae0097edf",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_dense_candidates.py": "ce2cf3c238524fdd8ea5f4a64fb2a1f6b0d9dcc1de61b837fd5c9a6c4df6e94e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_groundtruth.py": "7cf91338ebfc376f35bf6a4ae0ba7b51cbfd83dccf82643deb0a7841ea1ecaae",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_temporal_search.py": "f19beb619b8b7fa2d47ae6bde5ba8f0941f5fdaace015385ac049754e9daef9f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/audit_temporal_training.py": "6af194b636566f704a4e5c8db2b45ad2d3b2069852f53a586480d46e46bf12c7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/bounded_recovery.py": "20b3b710c777d8c00c0336cd9c7f402b8555bbe84bd952ce85a3f1208e0ce089",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/branch_utility.py": "b1f74dec1589e1c687b01ae02f59a0b0b1cd79a81ed607099d6dc92e710bf170",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/check_zero_residual_tracking.py": "1980e37539842fd76f09a224748f46eb497f3b63ae7c88d54ca0297e2493e5b7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_abc_metrics.py": "cc75ef35f74c0c34080964787328c45db495431ab6fe2b498ce16d70c0d1aea9",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_candidate_metrics.py": "ae88efa107728894b2322c3e9da50b72e1eefcd31e587dba2e5088255dd2c600",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_internal_abc.py": "4d7b3cf22838ec3dc89e9d4abed83414d600a131597d32e86111c7961a72dc3a",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/collect_temporal.py": "dcbb61f9efa52df25861b626c6cdd7dfc4bcebb7fb95ce94a9040b42e9a4abb5",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_candidate_policies.py": "a5877e7a303a211a71e875fa8a7efce18fa380ea4f6f347b698458d4f466073f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_internal_controls.py": "ea6a34f26c9edce4fd3686db3ab98f50700febc39d57a85c9cf5edef54fb10b4",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/compare_paused_updates.py": "2c9341378ddd5d801424aed29b3963249aa2b1408dba6fba524e2adb65cc1d8f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_abc.py": "12aee567510c51af1df9fd3a1a224e522cc80a32631b27a28894ba9f72d306bf",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_online.py": "75bb132df53528dea5ad6a2bf309e0520c7db2342e9f8915e23a87947fd92cad",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_abc_complete.py": "f4177b415e604d7f72701b51aee359923e5b11884f339f44d79a7f13a16dc01f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_core_diagnostics.py": "ab13765e76e046e4701febdeff4bc8f01aac52838f7c9cec6c32996160839bc7",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_dense_audits.py": "5f7e8a41c84aa1e40314d9b43543f8dc7ea5910e9e0edb12df84f726f579aa40",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/merge_recoverability_future_caches.py": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/monitor_core.py": "45f217e3647fbe3b8ac90d7364322f1aba5aefdd9f602b7b6b29470aac5dd90d",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/paired_sequence_bootstrap.py": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/plot_core_metrics.py": "e7b0230bc4652c4f264bcbd7455fd486da540f9a06cbdbf7b1db9380008629ec",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/probe_recovery.py": "997f84e9fd4afbb72c8f18cdba63108db7e59199c82d1d4338505efef368ad5f",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/temporal_modules.py": "e4455fd4a01ad2056c8e7986e68dfd5571f34fccca00693c179d2813a2a0991c",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_branch_utility.py": "92dd03b9338d94d8c018ed0001fd4f6b6816a8c920b5ef09830ac58c3619c00e",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_candidate.py": "68d84108a89a2ec863b827ee0bb5bb37548f5787627f51ca4b7a9427060f8210",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_temporal.py": "2e9e4754f587f456e1d3cd8922bed1b3d6b0b7b61478a50a99b66c96cb1faa13",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/scripts/run_recoverability_best_policy_fit.sh": "1497dbfe21843a2bb43b27157b07a15daaf277afa495313667c0719fead02ee3",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/audit/actual_best_policy_fit_cpu_audit.py": "5e9681caa8543ef05bfadb31de1315d8003ec2a27d31345f75bc598cd88d489d",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "/data/gb/GOLA/research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "/data/gb/GOLA/research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8"
+  },
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_best_policy_fit_20261004/research/recoverability_modules.py"
+  ],
+  "arms": {
+    "pairwise_lr4": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_m0_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.1057935506105423,
+        "B": 2.8395321369171143,
+        "C": 1.2591490745544434
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.6775223016738892,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.76513671875,
+      "artifact_sha256": {
+        "config.json": "92ca757c4180b0be33e6ac7699a0da41cfb5ab7a5beeb6e9d5a7059bb148aba9",
+        "completion.json": "a69bfa7123d9be8510de5ab81a266bfdad486cff81c6d1766cefe179bca68432",
+        "metrics.json": "0bd14460e79944db3378a8983b28c7d6a338a2d175239b3844bad93a97485bc9",
+        "train.jsonl": "6e5146c035058e979262139bda5ea6a183ba8f8c3a7e22424bd4dc6cf44c73b5",
+        "best.pth": "5eb108d82caf21fe8b8d8cf10ad61ad2a9a23e2020b26619d2b5e708cf1d7b62",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844",
+        "job_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844"
+      },
+      "learning_gain_claimed": false
+    },
+    "pairwise_lr5": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr5_m0_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.10481513291597366,
+        "B": 1.9352720975875854,
+        "C": 1.267313838005066
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.6775223016738892,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.76513671875,
+      "artifact_sha256": {
+        "config.json": "6ffa1c9b762ef68152d05fe657ed20cc95f28e2d4df0e5231cc4a6a343711979",
+        "completion.json": "9e7a0e42b1d6021cca760d8499315de6da1fd6d454147317f714d5dfc52987b1",
+        "metrics.json": "51944ce02c804e3da641a231d46bd4989011153168a3b8106ca8c03c695e1d13",
+        "train.jsonl": "56acc72709e72ab78d39f50ead32d817d8f4daa98d3e8b072a262c5c5e179012",
+        "best.pth": "a8e0b61b02ec44985e56217f4739b312fb36ff84bb79934c80bc6a47d15739d9",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844",
+        "job_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844"
+      },
+      "learning_gain_claimed": false
+    },
+    "budgeted_lr4": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_m0_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.10562122613191605,
+        "B": 2.834378480911255,
+        "C": 1.6365408897399902
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7879676818847656,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.26513671875,
+      "artifact_sha256": {
+        "config.json": "21108427ce1f6b25f87f033546bd2f9d614ff5b4cbb80b5b9facc5aa2bb599a6",
+        "completion.json": "83acd17ea21b3e9e68fb902e7e6d09ca9cc2a241317c8cd00dd470ebaf4e7ef3",
+        "metrics.json": "6b99ee624a92607bb143a627db08e39383423f4fe41780a695707017aae796c8",
+        "train.jsonl": "6901d609ab21e45b0f7c5e05d8d55c373099f058561ef08814cae8035cb9e25b",
+        "best.pth": "355a61f2db6d13a8d0ceed63a5d598b14c535d423f2eda1660cbb6ec566ff572",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844",
+        "job_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844"
+      },
+      "learning_gain_claimed": false
+    },
+    "budgeted_lr5": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr5_m0_20261004",
+      "frozen_modules": [],
+      "active_modules": [
+        "A",
+        "B",
+        "C"
+      ],
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "terminal_modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_frozen_weights_unchanged": {},
+      "terminal_update_evidence": "Source-linked real receipt and optimizer logs before best reload; no last weights retained.",
+      "max_module_gradient_norms": {
+        "A": 0.10495197772979736,
+        "B": 1.9350001811981201,
+        "C": 1.619704246520996
+      },
+      "trainable_parameters": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "C1_all8_retained_tensors_exact": true,
+      "strict25_tensor_CPU_load": true,
+      "epoch0_parent_VAL128_replay": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "all21_VAL128_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7879676818847656,
+        "valid_actions": 4774,
+        "current": 0.7492166757583618,
+        "c1_current": 0.7492166757583618,
+        "utility_before_search_cost": 0.7483960390090942,
+        "utility": 0.7483960390090942,
+        "c1_utility": 0.7483851909637451,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "peak_cuda_mib": 15079.26513671875,
+      "artifact_sha256": {
+        "config.json": "a052b885032ee6428084ffcf44b06e9cb948d86ff02089fcca9c3b653969bc58",
+        "completion.json": "c0c39f89d38968f7de276f447acaf3c66f0af3621b1e5140ae925cc38b3f67db",
+        "metrics.json": "15eeebbe8ac9077456054a3739392cf81c2307d9dcdef8850cc2ef003a6d5df0",
+        "train.jsonl": "f4095da264aae6d38e1746ff33c765c24df77e334c145d51961df21c7b4d74b5",
+        "best.pth": "b8c1c60f920a9c3d1669a859fca7731cbebe93d416213f6c32c1ebff0d14cbb3",
+        "best_validation.npz": "0a71011cc269b210d17130e479db52d7701b3b74de757b2902fc047bf17cc3bb",
+        "training_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844",
+        "job_completed.txt": "7e19f43bb8e25b11f7d4e7bc8149023381c836360aaa11a1791155957981a844"
+      },
+      "learning_gain_claimed": false
+    }
+  },
+  "limitations": [
+    "Best selection uses the same128 developer VAL queries.",
+    "Terminal update evidence is receipt/log based; retained-best differences are independently measured.",
+    "Both completeABC ranking arms match batch416; comparisons against the priorABC batch384 reference retain the batch limitation."
+  ],
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "TRAIN_embeddings_read": false,
+    "jobs_started": 0,
+    "weights_modified": false,
+    "runtime_seconds": 12.174
+  }
+}

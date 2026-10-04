@@ -1,0 +1,103 @@
+{
+  "observed_at_cst": "2026-10-04T19:06:27.348483+08:00",
+  "rows": [
+    {
+      "shard": "train0",
+      "gpu": 0,
+      "runner_pid": 4157261,
+      "clips": 296,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train0_rest_20261004.log",
+      "actual_handle": [
+        "4157273 Rl         25:09 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train0_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004"
+      ],
+      "completion_marker": false,
+      "progress": {
+        "completed_clips": 128,
+        "clips": 296,
+        "elapsed_seconds": 1362.71375004109,
+        "peak_cuda_mib": 4310.8310546875
+      },
+      "state": "RUNNING"
+    },
+    {
+      "shard": "train1",
+      "gpu": 1,
+      "runner_pid": 4157262,
+      "clips": 295,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train1_rest_20261004.log",
+      "actual_handle": [
+        "4157274 Rl         25:09 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train1_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004"
+      ],
+      "completion_marker": false,
+      "progress": {
+        "completed_clips": 144,
+        "clips": 295,
+        "elapsed_seconds": 1500.1744764680043,
+        "peak_cuda_mib": 4318.27880859375
+      },
+      "state": "RUNNING"
+    },
+    {
+      "shard": "validation",
+      "gpu": 2,
+      "runner_pid": 4157263,
+      "clips": 112,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_validation_rest_20261004.log",
+      "actual_handle": [],
+      "completion_marker": true,
+      "progress": {
+        "completed_clips": 112,
+        "clips": 112,
+        "elapsed_seconds": 1040.6815175469965,
+        "peak_cuda_mib": 4291.28564453125
+      },
+      "state": "COMPLETED",
+      "completion": {
+        "completed": true,
+        "clips": 112,
+        "partition": "validation",
+        "valid_actions": 4184,
+        "requested_extra_crops": 672,
+        "executed_extra_crops": 672,
+        "original_correct_queries": 102,
+        "original_failed_queries": 8,
+        "original_candidate_present_queries": 105,
+        "query_frames_after256": 20,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 1052.500095129013,
+        "peak_cuda_mib": 4291.28564453125,
+        "actual_prefix_counts_sum": [
+          135,
+          15,
+          32,
+          10898
+        ]
+      }
+    },
+    {
+      "shard": "train2",
+      "gpu": 3,
+      "runner_pid": 4157265,
+      "clips": 295,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train2_rest_20261004.log",
+      "actual_handle": [
+        "4157276 Rl         25:09 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train2_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004"
+      ],
+      "completion_marker": false,
+      "progress": {
+        "completed_clips": 144,
+        "clips": 295,
+        "elapsed_seconds": 1408.6984554068185,
+        "peak_cuda_mib": 4311.1787109375
+      },
+      "state": "RUNNING"
+    }
+  ],
+  "NN_restarts": 0,
+  "temperature_or_power_queries": false
+}

@@ -1,0 +1,61 @@
+{
+  "teacher_future_epoch": 4,
+  "validation_clips": 128,
+  "m0_epochs": 3,
+  "write_pair_calibration": false,
+  "status": "SOURCE_REVIEW_PENDING_NO_NEW_FITS_STARTED",
+  "seed": 42,
+  "write_verification": "action",
+  "arms": {
+    "budgeted_lr4": {
+      "ranking": "budgeted",
+      "lr": 0.0001,
+      "gpu": 2
+    },
+    "pairwise_lr5": {
+      "ranking": "pairwise",
+      "lr": 1E-05,
+      "gpu": 1
+    },
+    "pairwise_lr4": {
+      "ranking": "pairwise",
+      "lr": 0.0001,
+      "gpu": 0
+    },
+    "budgeted_lr5": {
+      "ranking": "budgeted",
+      "lr": 1E-05,
+      "gpu": 3
+    }
+  },
+  "m0_optimizer_steps": 9,
+  "model_selection": "One best fixedcheckpoint, full98 continuousprimary before both native tests; cachedgains notcompletion",
+  "private_source": "/data/gb/experiments/recoverability_best_policy_fit_20261004",
+  "search_supervision": "oracle",
+  "cache": "/data/gb/outputs/recoverability_best_policy_merged_20261004",
+  "checkpoint_retention": "best.pth only; best0parent copies retiredafteractualCPU audit/archive/no dependencies",
+  "teacher_prefix_epoch": 4,
+  "training_gate": "Actual completed902/128 dataGT/past/schema CPU PASS + source review PASS, M0beforefull",
+  "weight_decay": 0.0001,
+  "temperature_or_power_queries": false,
+  "batch_size": 416,
+  "no_automatic_video_evaluation": true,
+  "split": {
+    "validation": 98,
+    "train": 881
+  },
+  "model_and_trainer": "Exactly acceptedjointB41639research sources; no production code change",
+  "all_modules_active": [
+    "A",
+    "B",
+    "C"
+  ],
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "full_optimizer_steps": 180,
+  "scope": "OnlyLasHeR TRAINpartitions; RGBT234/nativeLasHeR after onefinalmethod selection",
+  "threshold": 0.03,
+  "train_clips": 902,
+  "purpose": "Align real bestold4 own prefix/future with old4 initialization; compare same architecture ranking and refinement step size",
+  "C1_frozen": true,
+  "full_epochs": 60
+}

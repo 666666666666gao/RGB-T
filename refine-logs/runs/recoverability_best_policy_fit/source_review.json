@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 fresh source review",
+  "reviewed_at_cst": "2026-10-04T19:29:51.409705+08:00",
+  "reviewer_agent": "/root/best_policy_fit_lr_source_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "runtime_model_attested": false,
+  "runtime_reasoning_effort_attested": false,
+  "scope": "Source-only review of the four-arm bestold4 own-policy refinement runner, real-fit CPU auditor, plan, memory monitor and operational staging/launch helpers. Only stdlib source/AST/scalar fixtures and Bash syntax/routing fragments were executed.",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "blocking_fixes_required": [],
+  "production_changes_required": false,
+  "source_findings": [
+    {
+      "topic": "Exact four-arm routing and unchanged training recipe",
+      "status": "PASS",
+      "evidence": "Plan, runner, auditor and external caller agree on pairwise_lr4=(pairwise,1e-4,GPU0), pairwise_lr5=(pairwise,1e-5,GPU1), budgeted_lr4=(budgeted,1e-4,GPU2), budgeted_lr5=(budgeted,1e-5,GPU3). Eight actual source shell-routing/argparse fixtures and eight source-evaluated caller argv fixtures agree on both stages and isolated output paths. All use B416, seed42, oracle search, action writes, no pair calibration, weight decay1e-4, threshold.03 and empty frozen_modules. Within each stage only the intended ranking/LR/output fields differ. The unchanged parser supplies the intended defaults."
+    },
+    {
+      "topic": "902/128 data gate and real four-arm M0 barrier",
+      "status": "PASS",
+      "evidence": "Every runner requires a PASS completed-cache gate with exact902/128 partitions, ordered jobs, actual current/history GT replay, schema/source checks and prefix/future epoch4, plus the source-review PASS. Full additionally requires all_four_lr_ranking_arms_passed, B416,3 epochs and9 optimizer steps. The gate producer requires both actual partition acceptances, completed shards, original job order, merged/source artifact checks and881/98 disjoint TRAIN sequence partitions. Three positive literal gate fixtures pass;19 missing/invalid/old-two-arm acceptance fixtures reject. The CPU auditor writes its all-four PASS only after all four actual run artifacts and final source/parent checks pass. Source PASS alone cannot open the full-fit barrier."
+    },
+    {
+      "topic": "Sanity/full execution and fresh old4 initialization",
+      "status": "PASS",
+      "evidence": "ceil(902/416)=3 updates per epoch gives M0=3 epochs/9 updates and full=60/180. Each stage calls the trainer with the same protected old4 parent path; full does not resume an M0 checkpoint. The trainer creates a fresh AdamW optimizer after strict parent loading. Runner completion markers follow successful trainer return. The external caller rejects existing launch metadata or any output directory before starting four assigned runners once, and records LAUNCHED_NOT_COMPLETED. Its nvidia-smi call reads memory only and checks all four assigned devices below500MiB; no temperature/power query appears."
+    },
+    {
+      "topic": "Source and configuration provenance",
+      "status": "PASS",
+      "evidence": "The local trainer/model exactly match the requested accepted SHA256 identities. The reviewed staging helper first checks the prior accepted source map, requires an absent new private tree and exactly39 old research Python files, copies each to the same relative path and verifies byte hashes, verifies the two new runner/auditor files against this review source_sha256 map, and carries the four protected main-source hashes into its final before/after check. Private CPU import paths are checked by the staging helper and runner. The real-fit auditor verifies the resulting complete source map before and after all arms, protected parent bytes before/after, parent epoch4, each config/receipt/checkpoint argument set, source cache configs, split membership and validation job order.",
+      "limit": "These are reviewed source requirements. This reviewer did not run staging/imports, attest remote bytes or certify the presence of any new actual acceptance artifact."
+    },
+    {
+      "topic": "25-state model, frozen C1 and terminal versus selected-best evidence",
+      "status": "PASS",
+      "evidence": "The unchanged model has8 C1 state tensors and17 ABC tensors (A9/B4/C4); its declared trainable parameter counts match A109187/B117133/C86791. C1 remains requires_grad=False and eval even when the model enters train mode. The auditor requires all25 checkpoint keys, exact eight-C1 equality, all three active parameter counts, expected log triplets, finite positive module gradients,9/180 total optimizer steps and terminal modules_changed for A/B/C. Trainer terminal changes are computed before reloading best. The audit separately measures retained-best changes against the old4 parent and labels terminal evidence as receipt/log based; it does not pretend that a terminal checkpoint was retained."
+    },
+    {
+      "topic": "Strict best-only selection and parent epoch0 interpretation",
+      "status": "PASS",
+      "evidence": "Trainer saves epoch0 and overwrites best.pth only on strictly larger held-out utility. The auditor chooses the first maximum across all epoch records, validates best and last metrics independently, permits only best.pth among retained .pth files, and requires selected-best0 to be unchanged across ABC plus the exact frozen C1 checks. For selected epoch>0 each active module must have changed tensors. Two tie-selection fixtures and12 passing/rejecting scalar state fixtures confirm these branches. best0_is_parent_not_new_learning is explicit and learning_gain_claimed remains false."
+    },
+    {
+      "topic": "All128 validation queries and21 saved fields",
+      "status": "PASS",
+      "evidence": "Both parent and selected-best replay pass the actual arm ranking into the accepted evaluator; the four routing fixtures confirm oracle/action/no-calibration settings. The audit checks exact validation job order, replay metrics with the inherited2e-6 tolerance, exactly21 saved fields of shape(128,), integer/boolean equality and float32-epsilon float agreement. For best0 it safely reuses the already replayed parent outputs after proving retained ABC/C1 equality. This is replay using the accepted evaluator, not a second independently implemented metric."
+    },
+    {
+      "topic": "GT and causality",
+      "status": "PASS",
+      "evidence": "The19 decision fields are disjoint from all five label fields; unchanged trainer.forward passes only decision fields and the selector reads only those fields. Current/future/history GT-derived supervision enters the objective and post-decision cached metrics. The cache gate depends on actual dataset-current/history GT replay and own-policy prefix/future epoch4 provenance. Future labels are source-linked frozen-own teacher outputs; no independent future neural rerun is claimed."
+    },
+    {
+      "topic": "Old assumptions removed; no automatic benchmark execution",
+      "status": "PASS",
+      "evidence": "The new auditor equals the accepted joint-B416 auditor after exactly the intended path, arm/LR, four-arm barrier, current-policy-to-best-policy cache, old25-to-old4 prefix/future and replay-ranking substitutions. No functional two-arm or old25 assumption remains. A/B/C remain active; only C1 is frozen. The memory monitor is exactly the accepted monitor with the launch/output label replacement and queries only GPU index/memory/utilization plus runner status. Runner, staging and launch scripts start no full98 or native evaluation. The plan keeps later model selection and continuous/native testing separate from cached-fit acceptance."
+    }
+  ],
+  "validation_counts": {
+    "python_sources_compiled": 10,
+    "bash_syntax_checks": 1,
+    "shell_and_argparse_arm_stage_cases": 8,
+    "external_launcher_argv_cases": 8,
+    "literal_gate_valid_cases": 3,
+    "literal_gate_rejection_cases": 19,
+    "invalid_arm_stage_rejections": 3,
+    "CPU_replay_routing_fixtures": 4,
+    "first_max_scalar_cases": 2,
+    "retained_best_state_scalar_cases": 12,
+    "local_research_sources_counted": 39,
+    "accepted_trainer_model_hashes_verified": 2,
+    "decision_fields": 19,
+    "label_fields": 5,
+    "evaluator_detail_fields": 21,
+    "actual_run_artifacts_loaded": 0
+  },
+  "source_fixture_execution": {
+    "status": "PASS",
+    "script": "refine-logs/runs/recoverability_best_policy_fit/source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_best_policy_fit/source_checks.json",
+    "command": "E:/python.exe refine-logs/runs/recoverability_best_policy_fit/source_checks.py",
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+    "execution_note": "The PATH Python shim failed before execution with No pyvenv.cfg file. The installed E:/python.exe completed the source checker. No reviewed source was changed."
+  },
+  "source_sha256": {
+    "scripts/run_recoverability_best_policy_fit.sh": "1497dbfe21843a2bb43b27157b07a15daaf277afa495313667c0719fead02ee3",
+    "refine-logs/runs/recoverability_best_policy_fit/actual_best_policy_fit_cpu_audit.py": "5e9681caa8543ef05bfadb31de1315d8003ec2a27d31345f75bc598cd88d489d",
+    "refine-logs/runs/recoverability_best_policy_fit/plan.json": "d0c52fdb21ef94ce10b77a67bbdf6749c9fee0e314274bd05673bdcbc39c7172",
+    "refine-logs/runs/recoverability_best_policy_fit/memory_monitor.py": "5fcfc3242e3f724fc6e305c85576b4f23146d7c2595710b9433006bb4a57084c",
+    "research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "research/temporal_modules.py": "e4455fd4a01ad2056c8e7986e68dfd5571f34fccca00693c179d2813a2a0991c",
+    "refine-logs/runs/recoverability_joint_b416/actual_joint_b416_fit_cpu_audit.py": "7acb5907106b7ded8785d278a543b1b088bc81dc9babb464536af9d830c143cc",
+    "refine-logs/runs/recoverability_joint_b416/memory_monitor.py": "d43945e8570365c9a0d24a22398e495a583f01ef58e38602945fbdfeb45fd576",
+    "refine-logs/runs/recoverability_joint_b416/source_staging.json": "29085ba6f6c53cf8cfcdf8069de0e78e322a20b480d044225e65f516ede5aa0b",
+    "refine-logs/runs/recoverability_best_policy/actual_completed_cache_gate_cpu.py": "e0e1834074045148b9639064260f07477891982102892f5c503e81dbd0bd0d54",
+    "refine-logs/runs/recoverability_best_policy/actual_partition_merge_cpu.py": "e6f19be11e5199bba231be2014943fc5a358adbbde8efbe7018bf61d6f262040",
+    "refine-logs/runs/recoverability_best_policy_fit/source_checks.py": "2de39ac31bd34233077651ccbe512e657871b21d819a11adf7910e10fd2f7625",
+    "refine-logs/runs/recoverability_best_policy_fit/source_checks.json": "9bfd72b6d7bb016c15c68a4e6108ca07a96f736c1cf7ca6be46a2e2b67438ca9",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/stage_best_policy_fit_20261004.py": "6858815cc7edd872df747ff9d1e29b37d64dcb7cc1f08cfe27640072de097ac1",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_best_policy_fit_20261004.py": "48af1c7ea9d62f9333699cbd4d0a03f9fc5c1e7e71aa39a9f86230767d3a4512"
+  },
+  "execution": {
+    "noNN": true,
+    "noSSH": true,
+    "noGPU": true,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "dataset_reads": 0,
+    "checkpoint_reads": 0,
+    "NPZ_reads": 0,
+    "actual_training_receipt_reads": 0,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "jobs_started": 0,
+    "native_test_reads": 0,
+    "temperature_or_power_queries": 0,
+    "operational_staging_or_launcher_executed": false,
+    "reviewed_files_modified": false,
+    "reviewer_files_written": [
+      "source_checks.py",
+      "source_checks.json",
+      "source_review.json"
+    ]
+  },
+  "runtime_context_from_parent_not_reverified": {
+    "validation": "128 completed; actual current/history GT CPU acceptance reported PASS",
+    "train": "902-query collection still in progress",
+    "new_fit_training_started": false
+  },
+  "pending_runtime_evidence": [
+    "Actual unchanged private staging and import-path acceptance.",
+    "Actual TRAIN902 completion/GT-schema-source CPU acceptance, then the completed902/128 cache gate.",
+    "All four real M0 fits and genuine all-four CPU replay/optimization acceptance before full fitting.",
+    "Fresh-parent60-epoch180-update full fits and actual full-fit CPU audits.",
+    "Later one-method selection and complete98 continuous evaluation before both native tests; no automatic evaluation here."
+  ],
+  "interpretation_limits": [
+    "Best selection and replay reuse the same128 developer validation queries; these are not full98 or native tracking results.",
+    "Terminal update evidence is source-linked receipt/log evidence; retained-best tensor differences are checked separately.",
+    "All four new arms match B416. Comparisons to the prior B384 reference still have the batch-size difference.",
+    "Source review certifies reviewed implementation logic only, with same-family provisional acceptance and no runtime model attestation."
+  ],
+  "actual_cache_complete_claimed": false,
+  "actual_M0_acceptance_claimed": false,
+  "actual_full_fit_acceptance_claimed": false,
+  "new_NN_started_claimed": false,
+  "learning_or_native_improvement_claimed": false,
+  "official_goal_completed": false
+}

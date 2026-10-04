@@ -1,0 +1,220 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase2.5 fresh SOURCEONLY review",
+  "reviewed_at_cst": "2026-10-04T22:06:30.062873+08:00",
+  "reviewer_agent": "/root/full_coverage_pipeline_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "runtime_attested": false,
+  "runtime_model_attested": false,
+  "runtime_reasoning_effort_attested": false,
+  "scope": "Final12 new full-coverage pipeline files: eight original Python tools, three shell runners and added complete_pipeline.py. Source/AST/JSON metadata and stdlib/Bash fixtures only.",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "blocking_fixes_required": [],
+  "production_changes_required": false,
+  "resolved_findings": [
+    {
+      "file": "refine-logs/runs/recoverability_full_coverage/memory_monitor.py",
+      "issue": "Repeated long-task GPU/process polling still used20seconds despite current AGENTS180-300second cadence.",
+      "minimal_fix": "Parent changed only time.sleep(20) to time.sleep(180).",
+      "verification": "Final AST fixture requires180 and final source hash is recorded."
+    }
+  ],
+  "source_findings": [
+    {
+      "topic": "Every-video current-teacher cache gate",
+      "status": "PASS",
+      "evidence": "Partition merge requires exact881/98 distinct query jobs and video-name equality with the disjoint TRAIN/developer-VAL split, exact four-shard ordered concatenation, per-shard completion, finite schema, complete valid-past frame order, actual dataset current/history IoU replay, and strict saved-array reload. Completed-cache gate binds both actual merge receipts, metadata and artifact checks. Current/history audit loop and geometry are AST-identical to the accepted original. Fourteen invalid in-memory completed-cache cases reject.",
+      "limit": "No new actual arrays or GT were read. Future labels retain the existing finite/range/provenance validation, with no independent future neural rerun."
+    },
+    {
+      "topic": "Correct epoch46 teacher and accepted sanity reuse",
+      "status": "PASS",
+      "evidence": "Existing actual_m0_cpu_acceptance.json and actual_full_cpu_acceptance.json report all four arms PASS at B416, respectively3/9 and60/180 epochs/updates. Metadata maximum developer VAL utility selects pairwise_lr4 epoch46, distinct from the prior native-best epoch4. All39 local research sources byte-match the accepted private tree. The new merge/gate/fit use prepared teacher path/epoch/hash consistently; new fit CLI only accepts full and directly uses60 epochs. No new M0 route is accepted.",
+      "limit": "Receipt metadata and source equality were checked; remote bytes, checkpoints and actual prior NN runs were not re-executed or independently attested by this reviewer."
+    },
+    {
+      "topic": "Four matched real60-epoch full fits",
+      "status": "PASS",
+      "evidence": "Bash routing and the unchanged trainer argparse agree on GPU0 pairwise1e-4, GPU1 pairwise1e-5, GPU2 budgeted1e-4 and GPU3 budgeted1e-5, each seed42/B416/60epochs, oracle search supervision, action write verification, no write-pair calibration, empty frozen_modules, weight_decay1e-4 and threshold.03. ceil(881/416)=3 yields180 optimizer steps. New outputs are absent before launch, full data/source/prior-sanity gates are required, and completion markers follow successful training return. Only intended ranking/LR/output settings differ."
+    },
+    {
+      "topic": "Frozen C1, completeABC and retained-best acceptance",
+      "status": "PASS",
+      "evidence": "The accepted trainer keeps all A/B/C active with109187/117133/86791=313111 trainable parameters; C1 is frozen. The new CPU auditor requires all25 strict checkpoint keys, exact eight-C1 tensor equality, positive finite module gradients, exact60-epoch log triplets and180 updates, terminal module-change receipts, and separately measured retained-best changes against the current teacher. Epoch0 remains a valid parent checkpoint and is explicitly labelled as no new learning. Only best.pth may remain. First strict maximum selection and retained epoch0/positive-epoch branches passed scalar fixtures. Terminal change evidence is produced before best reload."
+    },
+    {
+      "topic": "All98 developer-VAL replay without label inputs",
+      "status": "PASS",
+      "evidence": "Parent and retained-best are replayed on all98 actual developer-VAL cache queries using the accepted arm-specific evaluator, strict job order,2e-6 metric tolerance, all21 saved fields, exact discrete fields and float32-epsilon float agreement. Shape98 accepts while97/128 reject. Model forward only receives19 DECISION_FIELDS disjoint from the five supervision fields; oracle targets are training supervision and post-decision metrics.",
+      "limit": "These are reviewed runtime acceptance requirements, not a completed new CPU tensor replay. The same98 developer-VAL queries select epochs/arms; this is not native-test selection or an independent held-out final test."
+    },
+    {
+      "topic": "One selection and unchanged complete native evaluation",
+      "status": "PASS",
+      "evidence": "Native launcher requires actual four-arm60/180/B416 CPU PASS plus the881/98 cache gate, selects maximum best_validation.utility once in explicit first-tie order, verifies selected checkpoint bytes, and records one fixed checkpoint for both benchmarks. Existing selection, launch or output roots reject repetition. Eight source Bash routing fixtures cover exact disjoint LasHeR0..244 and RGBT2340..233 queues with max_frames0; each original GPU queue completes LasHeR then RGBT234. Private training import paths are separate from main GOLA inference through unchanged run_temporal.sh/evaluate_recoverability.py.",
+      "limit": "Protected main-source identities are recorded in prior actual acceptance and rechecked by the actual fit auditor; this source-only review does not attest remote main files or perform model execution."
+    },
+    {
+      "topic": "Exact full native union and output paths",
+      "status": "PASS",
+      "evidence": "Native merge is AST-identical to the accepted version except current review/selection/output paths. It requires all four true-complete shard markers, correct offsets/counts, ordered names, same checkpoint/head/root/policy, unrestricted frames and no validation subset, per-sequence visible/infrared/prediction lengths, finite4-column boxes, positive n-1 latencies and all timeline files. Only the exact245/220703 or234/116649 union is promoted to smoke_onlyFalse. Aggregated config output points to the actual merged predictions directory. Thirty invalid metadata cases plus seven invalid frame/latency cases reject. Hardlinks preserve prediction artifacts; no dataset files are moved."
+    },
+    {
+      "topic": "Actual-GT official metrics, attributes, curves and5000 bootstrap",
+      "status": "PASS",
+      "evidence": "Report runner invokes unchanged official core collectors on actual dataset GT for baseline/C1/full_coverage_complete, separate paired baseline and C1 reports,5000/seed42 bootstrap defaults, curve/attribute plots and the unchanged actual-GT mechanism collector. The independent native auditor is whole-AST identical to the accepted auditor except paths and variant label. It independently reproduces float32 rounding, inclusive centers/IoU, LasHeR initial/invalid-GT handling, RGBT234 RGB/TIR min-error/max-overlap, equal sequence weighting, every sequence/attribute/curve/overall metric and both5000-draw paired bootstrap results. Eight geometry expressions and bootstrap expressions match the prior actual audit.",
+      "limit": "No new report or actual GT was scored here. Detailed mechanism masses remain the original separate collector responsibility; concurrent latency is descriptive rather than an isolated speed comparison."
+    },
+    {
+      "topic": "Automatic fixed phase handoff without restarts",
+      "status": "PASS",
+      "evidence": "complete_pipeline.py waits for all eight original collection markers, runs TRAIN then VAL actual CPU merge and cache gate, launches exactly four full fits, waits for all actual markers, runs actual full CPU acceptance in the private cwd/PYTHONPATH, then selects/launches one complete native run and waits for both dataset markers per original GPU owner. Both native unions, official reports and independent CPU audits run in fixed sequence. Six stdlib fixtures verify completed-owner skipping,180-second polling, no process query when all groups are complete, failed/missing unfinished owner rejection, exact12-command phase order with explicit CPU/import environments, and duplicate progress-file rejection. No retry/except/fallback or extra NN diagnostic stage appears. Final progress explicitly leaves official_goal_completed false."
+    },
+    {
+      "topic": "Operational scope and monitoring",
+      "status": "PASS",
+      "evidence": "GPU checks use index/memory/utilization only. No power or temperature queries, dataset moves, production model/trainer/tracker/evaluator edits, test-set tuning or extra neural diagnostics are introduced. The memory monitor and automatic handoff now both use180-second waits."
+    }
+  ],
+  "source_fixture_execution": {
+    "status": "PASS",
+    "script": "refine-logs/runs/recoverability_full_coverage/pipeline_source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_full_coverage/pipeline_source_checks.json",
+    "command": "E:/python.exe -I -B refine-logs/runs/recoverability_full_coverage/pipeline_source_checks.py",
+    "counts": {
+      "python_compile": 15,
+      "bash_syntax": 4,
+      "exact_disjoint_full_shard_partition": 2,
+      "exact_native_cli_routing": 8,
+      "once_only_four_arm_selection_and_four_queue_launch_mock": 4,
+      "deterministic_first_arm_tie_selection": 1,
+      "duplicate_launch_rejected": 1,
+      "full_fit_selection_gate_rejection": 8,
+      "source_review_gate_rejection": 1,
+      "nonfree_gpu_mock_rejection": 1,
+      "literal_shell_gate_positive": 3,
+      "literal_shell_gate_rejection": 6,
+      "complete_merge_metadata_positive": 2,
+      "invalid_merge_metadata_rejection": 30,
+      "full_frame_finite_latency_metadata_positive": 1,
+      "invalid_full_frame_finite_latency_rejection": 7,
+      "prediction_latency_timeline_presence_positive": 1,
+      "missing_timeline_rejection": 1,
+      "native_geometry_expression_matches_prior_actual_audit": 8,
+      "paired_bootstrap_draws_match_prior_actual_audit": 1,
+      "paired_bootstrap_result_math_matches_prior_actual_audit": 1,
+      "independent_audit_calls_no_native_metric_functions": 1,
+      "aggregate_output_metadata_corrected": 1,
+      "existing_actual_all_four_receipt_metadata": 2,
+      "accepted_private_research_source_unchanged": 39,
+      "existing_receipt_current_best_teacher46": 1,
+      "accepted_native_source_unchanged": 7,
+      "native_whole_AST_only_declared_path_label_changes": 2,
+      "fit_replay_metric_state_helpers_unchanged": 3,
+      "full_training_counts_and_all_ABC_parameters": 1,
+      "training_labels_excluded_from_model_input": 1,
+      "real_full_epoch_loop_terminal_update_before_best_reload": 1,
+      "retained_first_max_epoch_scalar": 2,
+      "retained_best_vs_parent_state_branch": 12,
+      "exact_60_epoch_180_update_log_triplets": 1,
+      "all98_saved_field_shape_constraint": 3,
+      "four_matched_full_fit_Bash_and_argparse_routes": 4,
+      "new_M0_or_invalid_fit_route_rejected": 3,
+      "literal_full_fit_gate_positive": 4,
+      "literal_full_fit_gate_rejection": 16,
+      "complete_current_and_valid_past_GT_audit_AST_unchanged": 1,
+      "ordered_all_video_four_shard_positive_and_negative": 2,
+      "complete_cache_gate_metadata_positive": 1,
+      "invalid_complete_cache_gate_metadata_rejection": 14,
+      "four_full_fit_queues_and_one_metadata_monitor_mock": 1,
+      "memory_monitor180second_cadence": 1,
+      "original_owner_wait_skips_completed_queues_and_polls180": 1,
+      "all_completed_groups_require_no_process_query": 1,
+      "dead_unfinished_owner_rejected": 1,
+      "missing_unfinished_owner_ps_failure_propagates": 1,
+      "fixed_complete_handoff_command_order_and_CPU_private_import_paths": 1,
+      "duplicate_handoff_progress_rejected": 1
+    },
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+    "limits": "No real arrays, model import, checkpoint loading, ground-truth scoring, remote execution or new runtime acceptance."
+  },
+  "source_sha256": {
+    "scripts/run_full_coverage_native_complete.sh": "49cf4626fdad2d1f0027a715105b1cc2d31dbea32ed5c41d8b887fff657a088f",
+    "scripts/report_full_coverage_native_complete.sh": "d92d04da829cda25faf00f61729d3b7fa1d8a0d973effca9895f9dc72dd630ee",
+    "refine-logs/runs/recoverability_full_coverage/launch_native_complete.py": "00623142ae25260d7b8afbac41b034c2ff615b379fe3b7c8acf7b932f829c854",
+    "refine-logs/runs/recoverability_full_coverage/merge_native_complete.py": "aadb615221b686fe1702145f81ebf17943cd0210d58656a3901a925ddf911918",
+    "refine-logs/runs/recoverability_full_coverage/audit_native_complete_cpu.py": "68536fa9d2867c4cbf19d439561db2f233fdb380e333b8236b0bc0610d348533",
+    "scripts/run_full_coverage_fit.sh": "10a73163afad246384e91ec8db29cc661db5018fb0511b1f28e93e054ddda5bc",
+    "refine-logs/runs/recoverability_full_coverage/actual_partition_merge_cpu.py": "fe73587eae9de008eb645a1e3ed55ad2f81660c49059bd71d96ab6e01df71c8b",
+    "refine-logs/runs/recoverability_full_coverage/actual_completed_cache_gate_cpu.py": "19baf156e964f154009df27231da52421db48d92a5d9cd5c46756eaa2a631b6b",
+    "refine-logs/runs/recoverability_full_coverage/actual_full_fit_cpu_audit.py": "9ff68744b8808d52328566a47f11ba8d24327a2bbeaf4c77e725c392850876f1",
+    "refine-logs/runs/recoverability_full_coverage/launch_fit.py": "639a2c45c840b04730a87977a20db38105176a78cdb84cd85c9226f4ad808654",
+    "refine-logs/runs/recoverability_full_coverage/memory_monitor.py": "05164d7967f36eb62313d19cf6e8bf2a21a0fefec119ef9ae762709810346ba0",
+    "refine-logs/runs/recoverability_full_coverage/complete_pipeline.py": "dca9a4577b9798d7fdf2a982ccc5c12de400266d6f13b2137c5b159adbf964df"
+  },
+  "supporting_source_sha256": {
+    "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729",
+    "research/collect_core_metrics.py": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+    "research/collect_recoverability_metrics.py": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+    "research/paired_sequence_bootstrap.py": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+    "research/plot_core_metrics.py": "e7b0230bc4652c4f264bcbd7455fd486da540f9a06cbdbf7b1db9380008629ec",
+    "evaluation.py": "d09fafd64981dde3f86125e3df1f4aaa933683fcac244c805c3449a5f233792f"
+  },
+  "existing_metadata_reused": {
+    "source_staging": "refine-logs/runs/recoverability_best_policy_fit/source_staging.json",
+    "all_four_M0": "refine-logs/runs/recoverability_best_policy_fit/actual_m0_cpu_acceptance.json",
+    "all_four_full": "refine-logs/runs/recoverability_best_policy_fit/actual_full_cpu_acceptance.json",
+    "current_teacher_arm": "pairwise_lr4",
+    "current_teacher_epoch": 46,
+    "native_protocol_review": "refine-logs/runs/recoverability_best_policy_fit/native_source_review.json"
+  },
+  "execution": {
+    "torch_imported": false,
+    "numpy_imported": false,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "checkpoint_reads": 0,
+    "dataset_reads": 0,
+    "NPZ_reads": 0,
+    "NN_calls": 0,
+    "training_or_evaluation_jobs_started": 0,
+    "reviewed_source_files_modified": false,
+    "private_memory_read": false,
+    "noSSH": true,
+    "noGPU": true,
+    "noNN": true,
+    "operational_scripts_executed": false,
+    "reviewer_files_written": [
+      "pipeline_source_checks.py",
+      "pipeline_source_checks.json",
+      "pipeline_source_review.json"
+    ]
+  },
+  "runtime_context_from_parent_not_attested": {
+    "collection": "Parent reports actual881/98 eligibility CPU PASS and original four collection queues launched21:56:24; this reviewer did not query them.",
+    "new_training_and_native": "Actual subsequent completion is not established by this review."
+  },
+  "pending_runtime_evidence": [
+    "All eight actual original collector completions; both exact881/98 actual-GT/history/schema/ordered-job merges and complete cache gate.",
+    "Four actual60epoch180update fits with frozenC1/allABC and retained-best98 CPU acceptance.",
+    "One actual developer-VAL98 selection and unchanged fixed checkpoint for both complete native datasets.",
+    "Complete LasHeR245/220703 and RGBT234234/116649 predictions, official actual-GT metrics/attributes/curves/5000 paired bootstrap/mechanism reports and independent native CPU acceptance.",
+    "Result audit against the original all-five-metrics plus2-percentage-point goal."
+  ],
+  "interpretation_limits": [
+    "Source PASS only certifies reviewed implementation logic and fixtures; it is not actualNN/GT/runtime acceptance.",
+    "All881/98 video coverage means one eligible finite1024-history/3-future query per video, not all-frame training or end-to-end backbone optimization.",
+    "Training-seed variation is not estimated; one best checkpoint is permitted. Native bootstrap measures fixed-checkpoint sequence variation."
+  ],
+  "actual_new_cache_acceptance_claimed": false,
+  "actual_new_full_fit_acceptance_claimed": false,
+  "actual_new_native_complete_claimed": false,
+  "new_NN_started_by_reviewer": false,
+  "learning_or_native_improvement_claimed": false,
+  "official_goal_completed": false
+}

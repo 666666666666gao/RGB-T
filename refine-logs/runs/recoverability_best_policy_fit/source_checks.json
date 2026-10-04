@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "scope": "Source syntax, scalar shell routing, argparse, literal gates and AST fixtures only",
+  "compiled_python_sources": 10,
+  "bash_syntax": "PASS",
+  "accepted_trainer_model_hashes_exact": true,
+  "local_research_source_count": 39,
+  "auditor_equals_accepted_joint_with_intended_substitutions": true,
+  "memory_monitor_equals_accepted_joint_with_label_replacement": true,
+  "literal_guard_cases": [
+    {
+      "valid_passed": 1,
+      "missing_rejected": 1,
+      "invalid_fields_rejected": [
+        "status",
+        "matched_partitions",
+        "all_ordered_jobs_exact",
+        "all_GT_current_and_history_replayed",
+        "all_schema_and_sources_verified",
+        "prefix_epoch",
+        "future_epoch"
+      ]
+    },
+    {
+      "valid_passed": 1,
+      "missing_rejected": 1,
+      "invalid_fields_rejected": [
+        "status",
+        "review_independence",
+        "acceptance_status"
+      ]
+    },
+    {
+      "valid_passed": 1,
+      "missing_rejected": 1,
+      "invalid_fields_rejected": [
+        "status",
+        "all_four_lr_ranking_arms_passed",
+        "batch_size",
+        "optimizer_steps_per_arm",
+        "epochs_per_arm"
+      ]
+    }
+  ],
+  "literal_guard_valid_count": 3,
+  "literal_guard_rejection_count": 19,
+  "old_two_arm_acceptance_rejected": true,
+  "command_cases": [
+    {
+      "arm": "pairwise_lr4",
+      "gpu": 0,
+      "ranking": "pairwise",
+      "lr": 0.0001,
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "arm": "pairwise_lr4",
+      "gpu": 0,
+      "ranking": "pairwise",
+      "lr": 0.0001,
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    },
+    {
+      "arm": "pairwise_lr5",
+      "gpu": 1,
+      "ranking": "pairwise",
+      "lr": 1e-05,
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr5_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "arm": "pairwise_lr5",
+      "gpu": 1,
+      "ranking": "pairwise",
+      "lr": 1e-05,
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_best_policy_pairwise_lr5_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    },
+    {
+      "arm": "budgeted_lr4",
+      "gpu": 2,
+      "ranking": "budgeted",
+      "lr": 0.0001,
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "arm": "budgeted_lr4",
+      "gpu": 2,
+      "ranking": "budgeted",
+      "lr": 0.0001,
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    },
+    {
+      "arm": "budgeted_lr5",
+      "gpu": 3,
+      "ranking": "budgeted",
+      "lr": 1e-05,
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr5_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "arm": "budgeted_lr5",
+      "gpu": 3,
+      "ranking": "budgeted",
+      "lr": 1e-05,
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_best_policy_budgeted_lr5_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    }
+  ],
+  "command_case_count": 8,
+  "invalid_arm_stage_rejections": 3,
+  "external_launcher_source_argv_cases": 8,
+  "ranking_lr_factorial_only_expected_config_differences": true,
+  "ranking_cpu_replay_routes": 4,
+  "first_max_cases": 2,
+  "selected_best_state_cases": 12,
+  "decision_fields": 19,
+  "label_fields": 5,
+  "decision_label_fields_disjoint": true,
+  "selector_reads_only_decision_fields": true,
+  "evaluator_detail_fields": 21,
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "torch_imported": false,
+  "numpy_imported": false,
+  "NN_execution": false,
+  "SSH_calls": 0,
+  "GPU_calls": 0,
+  "actual_data_or_checkpoint_reads": 0,
+  "staging_or_launcher_executed": false,
+  "runtime_certification": false
+}

@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_independently_attested": false,
+  "fixture_scope": "Source AST and synthetic in-memory arithmetic/files only; not real CPU cache acceptance.",
+  "created_at_cst": "2026-10-04T19:10:53.969383+08:00",
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "checks": {
+    "compiled_source_files": 6,
+    "prior_main_sources_unchanged": [
+      "scripts/run_recoverability_best_policy_collect.sh",
+      "research/collect_recoverability.py",
+      "research/collect_rollouts.py",
+      "research/candidate_learning.py",
+      "research/recoverability_tracker.py",
+      "research/recoverability_modules.py",
+      "research/bounded_recovery.py",
+      "config/_dataset/train-lasher.yaml",
+      "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py",
+      "scripts/run_recoverability_best_policy_shard.sh"
+    ],
+    "exact_partition_jobs": {
+      "train": 902,
+      "validation": 128
+    },
+    "exact_source_count_maps": {
+      "train": [
+        [
+          "train_probe",
+          16
+        ],
+        [
+          "train0_rest",
+          296
+        ],
+        [
+          "train1_rest",
+          295
+        ],
+        [
+          "train2_rest",
+          295
+        ]
+      ],
+      "validation": [
+        [
+          "validation_probe",
+          16
+        ],
+        [
+          "validation_rest",
+          112
+        ]
+      ]
+    },
+    "split_counts": {
+      "train": 881,
+      "validation": 98
+    },
+    "decision_fields": [
+      "features",
+      "evidence",
+      "raw_score",
+      "boxes",
+      "instance_features",
+      "anchor_features",
+      "image_boxes",
+      "valid",
+      "c1_quality",
+      "original_choice",
+      "history_instance_descriptors",
+      "history_evidence",
+      "history_quality",
+      "history_boxes",
+      "history_frames",
+      "history_write",
+      "history_valid",
+      "motion_means",
+      "motion_log_weights"
+    ],
+    "label_fields": [
+      "current_iou",
+      "future_iou",
+      "wrong_update_fraction",
+      "action_valid",
+      "history_iou"
+    ],
+    "decision_label_separation": true,
+    "exact_iou_fixtures": 7,
+    "float32_storage_fixtures": 2000,
+    "float32_storage_max_iou_error": 1.0184344557018221e-05,
+    "iou_tolerance": 0.0001,
+    "history_source_loop_cases": [
+      {
+        "query": 1,
+        "right_aligned": true,
+        "frame_zero_retained": true
+      },
+      {
+        "query": 7,
+        "right_aligned": true,
+        "frame_zero_retained": true
+      },
+      {
+        "query": 8,
+        "right_aligned": true,
+        "frame_zero_retained": true
+      },
+      {
+        "query": 1023,
+        "right_aligned": true,
+        "frame_zero_retained": true
+      },
+      {
+        "query": 1024,
+        "right_aligned": true,
+        "frame_zero_retained": true
+      }
+    ],
+    "history_label_sentinel_fixture": [
+      -1.0,
+      1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "synthetic_full_gate_pass_cases": 1,
+    "synthetic_full_gate_rejections": [
+      "missing source review",
+      "failed source review",
+      "missing validation acceptance",
+      "missing train completed marker",
+      "incomplete collection",
+      "wrong accepted count",
+      "wrong teacher epoch",
+      "future inputs claimed",
+      "merged artifact changed",
+      "source artifact changed",
+      "current GT error too large",
+      "history GT error too large",
+      "past frames not exact",
+      "reordered original jobs",
+      "mismatched common seed",
+      "mismatched schema dtype",
+      "mismatched schema tail",
+      "cross-partition sequence leak",
+      "changed parent checkpoint hash"
+    ],
+    "exact_ordered_concat_and_reload_source_checks": true,
+    "gate_requires_final_partition_receipt": true
+  },
+  "source_sha256": {
+    "refine-logs/runs/recoverability_best_policy/actual_partition_merge_cpu.py": "e6f19be11e5199bba231be2014943fc5a358adbbde8efbe7018bf61d6f262040",
+    "refine-logs/runs/recoverability_best_policy/actual_completed_cache_gate_cpu.py": "e0e1834074045148b9639064260f07477891982102892f5c503e81dbd0bd0d54",
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "research/train_recoverability.py": "f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/train.json": "daef5da36693e6eb6b5bd4752cb161cf7f03c76a4be2a85f9ce10607e649b734",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_probe.json": "ec290d369d8afad81279f354c9c18cead2c577704004b53007f5383c514575bc",
+    "refine-logs/runs/recoverability_best_policy/jobs_train0_rest.json": "764b19239365833f65883c7e15c0e40021b1cb6ac27a94e67fe29a340f197eb0",
+    "refine-logs/runs/recoverability_best_policy/jobs_train1_rest.json": "19a9cff888b28dec4830c619b5437b8db22f0d5653f45f23d35eb693da5b1a59",
+    "refine-logs/runs/recoverability_best_policy/jobs_train2_rest.json": "5b8ccb6530de555a6de5048f1c6a6af78cf4f790de6267fb745534f95ca2253e",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/validation.json": "286080f408e73e7725d792c7777e2655a2e1c4ae14b1ff079e2e27b3d4314cb5",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_probe.json": "2532fe8c77a7cb5caa9fede5af9aca54384c35aa564354719f4c7475df7a735c",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_rest.json": "0f59687f471350595fb790e2c711739ab7f9e71ac0c47cb1ed2682726b31628f",
+    "refine-logs/runs/c1_seed42_split.json": "e3380d902cb760ef2a8bf1d7f408bff1a3b16bf62bf943cc157dedf96a1b5ef2",
+    "refine-logs/runs/recoverability_best_policy/probe_train/config.json": "6e4e7f20e80bf25f169dbedb3945596d79b958270b9da0265eaa43f6c8b11584",
+    "research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "trackit/core/operator/numpy/bbox/utility/image.py": "7011ecf384bde2b8266ff1ed459ab45d8fa2612181fe902f1e0f8a1a7c92bb03",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+    "refine-logs/runs/recoverability_best_policy/remote_MMOT_dataset.py": "f14a86549de6fb029801010a935ce194c773ffa2a87e28683695f003e6a9ed43",
+    "refine-logs/runs/recoverability_best_policy/remote_train_lasher.yaml": "219e29c7fa010b5b477fef1904b63c312004502f2fa460dabbeea32f81580ce7",
+    "refine-logs/runs/recoverability_best_policy/shard_source_review.json": "3edc0132179cdc716cd90371fe8ff552631a09ee24b6cd59880bfd29d7d79fcf",
+    "refine-logs/runs/recoverability_best_policy/merge_source_checks.py": "de5822ccc0743a986128d54fec2e6d150aa5db2bde78bb1163dab248b367561f"
+  },
+  "execution": {
+    "numpy_imported": false,
+    "torch_imported": false,
+    "dataset_reads": 0,
+    "checkpoint_reads": 0,
+    "actual_npz_reads": 0,
+    "actual_acceptance_receipt_reads": 0,
+    "collection_config_metadata_read": true,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "native_test_reads": 0,
+    "production_edits": false
+  }
+}
