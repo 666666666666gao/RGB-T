@@ -1,0 +1,72 @@
+{
+  "observed_at_cst": "2026-10-05T02:13:42.399851+08:00",
+  "runs": [
+    {
+      "gpu": 0,
+      "parts": {
+        "train": {
+          "marker": false,
+          "completed_clips": 256,
+          "clips": 440,
+          "elapsed_seconds": 1564.4398903483525,
+          "peak_cuda_mib": 4302.5849609375
+        },
+        "validation": {
+          "marker": false
+        }
+      },
+      "processes": "561748       1 Ss   bash /data/gb/setup/run_best_native_policy_collect_20261005.sh 0 full\n 561756  561748 Rl   /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_native_policy_jobs_train_gpu0_20261005.json --output /data/gb/outputs/recoverability_best_native_policy_collect_train_gpu0_20261005"
+    },
+    {
+      "gpu": 1,
+      "parts": {
+        "train": {
+          "marker": false,
+          "completed_clips": 256,
+          "clips": 440,
+          "elapsed_seconds": 1517.94808383286,
+          "peak_cuda_mib": 4296.86474609375
+        },
+        "validation": {
+          "marker": false
+        }
+      },
+      "processes": "561749       1 Ss   bash /data/gb/setup/run_best_native_policy_collect_20261005.sh 1 full\n 561759  561749 Rl   /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_native_policy_jobs_train_gpu1_20261005.json --output /data/gb/outputs/recoverability_best_native_policy_collect_train_gpu1_20261005"
+    },
+    {
+      "gpu": 2,
+      "parts": {
+        "train": {
+          "marker": false,
+          "completed_clips": 256,
+          "clips": 441,
+          "elapsed_seconds": 1551.6678669513203,
+          "peak_cuda_mib": 4304.056640625
+        },
+        "validation": {
+          "marker": false
+        }
+      },
+      "processes": "561750       1 Ss   bash /data/gb/setup/run_best_native_policy_collect_20261005.sh 2 full\n 561757  561750 Rl   /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_native_policy_jobs_train_gpu2_20261005.json --output /data/gb/outputs/recoverability_best_native_policy_collect_train_gpu2_20261005"
+    },
+    {
+      "gpu": 3,
+      "parts": {
+        "train": {
+          "marker": false,
+          "completed_clips": 256,
+          "clips": 441,
+          "elapsed_seconds": 1536.6294577908702,
+          "peak_cuda_mib": 4308.86474609375
+        },
+        "validation": {
+          "marker": false
+        }
+      },
+      "processes": "561752       1 Ss   bash /data/gb/setup/run_best_native_policy_collect_20261005.sh 3 full\n 561758  561752 Rl   /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_native_policy_jobs_train_gpu3_20261005.json --output /data/gb/outputs/recoverability_best_native_policy_collect_train_gpu3_20261005"
+    }
+  ],
+  "training_started": false,
+  "native_started": false,
+  "scope": "One read-only status observation requested by user; no launch/restart/settings"
+}

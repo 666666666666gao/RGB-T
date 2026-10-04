@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "review_type": "experiment-bridge Phase 2.5 fresh source-only collection review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "fork_turns": "none",
+    "attribution": "Supplied delegation metadata; underlying runtime was not independently attested.",
+    "runtime_attested": false,
+    "policy": "C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md"
+  },
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T01:44:17.299481+08:00",
+  "scope": "Exactly five new collection plan/source files. Existing collector, tracker, module, runner and accepted full-coverage source/metadata were read as dependencies. This review approves source preparation for the separate sanity and full collection stages only; it does not approve a training/native controller or establish an actual runtime pass.",
+  "reviewed_files_sha256": {
+    "refine-logs/runs/recoverability_best_native_policy/plan.json": "d4c7f9169d8c0fb820ec539ce6b26f691f5a3ec5c7a5d77a756546253b9b90f8",
+    "refine-logs/runs/recoverability_best_native_policy/prepare_jobs_cpu.py": "3ddf9af0f5e15345b34ad0f6995f63ff6a5e37a0c3511cca6c264bf9e2de8fe4",
+    "refine-logs/runs/recoverability_best_native_policy/launch_collection.py": "28dabb45d508fe9561c068ac1d70246de121fe99fe87ad272ddfdc81e82150e2",
+    "refine-logs/runs/recoverability_best_native_policy/audit_sanity_cpu.py": "bc7714a9b4ca44fca0c0d43ba0e2cf67ba5a6c423ed266c9c34cd905ddce3a8f",
+    "scripts/run_best_native_policy_collect.sh": "064a3c3fe3032359652850a4590eb385d93806f9ee89227b960b08156fa7dd9a"
+  },
+  "supporting_files_sha256": {
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+    "scripts/run_full_coverage_collect.sh": "bda6bcd89991427415029048e3eaa4fd0f101eb4172c960a5b72607f919eaa68",
+    "refine-logs/runs/recoverability_full_coverage/prepare_jobs_cpu.py": "090f2570f005477c9a1e292da6bcf54d18813844caedfccbcfdb61a3b7dd8953",
+    "refine-logs/runs/recoverability_full_coverage/actual_partition_merge_cpu.py": "fe73587eae9de008eb645a1e3ed55ad2f81660c49059bd71d96ab6e01df71c8b",
+    "refine-logs/runs/recoverability_full_coverage/merged_train/config.json": "23e8227139fb6b65ee3d55fa3a402887fc05e5a725f5d3f3b840b91ed1d0b507",
+    "refine-logs/runs/recoverability_full_coverage/merged_train/partition_cpu_acceptance.json": "54fac9e413735e9b046792cbec2a7b86cbfbc3726cf81b2ddcf206ad62a9d470",
+    "refine-logs/runs/recoverability_full_coverage/source_review.json": "887d9366804fad0d0e8ccccf0e081984eead5a841be9cd9c0e1f469606fcf334"
+  },
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "findings": [
+    {
+      "status": "CORRECT",
+      "subject": "Eligibility, split and new query counts",
+      "evidence": "prepare_jobs_cpu.py:15-32 checks 881 TRAIN and 98 developer-VAL names with no intersection. It uses the same finite positive-area xyxy frame0 and query..query+3 validity and range(1,min(1025,len(boxes)-3)) as the existing collector. Quarter indices len//4 and 3*len//4 are distinct for every eligible count>=2. Per-name counts and unique sequence/query pairs enforce 1762 TRAIN and 196 VAL queries."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Sharding and queue identity",
+      "evidence": "prepare_jobs_cpu.py:33-53 assigns each query once to the least accumulated query+128 workload, breaks ties deterministically by GPU index, and writes GPU/partition-specific jobs. Each sanity shard contains the shortest and longest query in that TRAIN shard. The shell runs TRAIN then VAL serially within each GPU; four launch processes use GPUs0..3 and unique logs/output paths. Sanity and full have separate launch records."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Exact collector contract and old4 teacher",
+      "evidence": "All wrapper arguments parse against the unchanged collector argparse definitions. Root/cache/split/pretrained/head/motion defaults equal the accepted full-coverage config. --jobs-file overrides the nominal --clips16 with its actual length. Batch16, forward64, prefix1024, seed42 and the fixed retained old4 path agree with the plan. The collector uses the same frozen prefix checkpoint for all own-policy continuation steps; the sanity audit requires both recorded checkpoint epochs to be4 and write verification action."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Causal inputs and GT geometry",
+      "evidence": "The unchanged collector copies decision arrays before future decode, labels current and three future actions from TRAIN-dataset GT, and creates a private history deque for each own-policy counterfactual. Existing DECISION_FIELDS excludes current/future/history IoU, motion_targets, wrong_update_fraction and action_valid. audit_sanity_cpu.py:33-42 computes standard xyxy intersection/union against dataset GT on valid candidates and requires history frames equal arange(query), which fits capacity1024 for all allowed queries."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Sanity and launch barriers",
+      "evidence": "launch_collection.py requires the provisional same-family source PASS and completed CPU-preparation PASS before GPU inventory or starts. Full launch also requires actual sanity CPU acceptance PASS. It validates all intended job counts and absent outputs before starting any queue. Both launcher and full shell require the sanity acceptance record. The CPU sanity audit requires all four completion markers, completed receipts, exact prepared jobs, eight finite actual rows, action masks, GT IoUs and causal history before writing PASS. set -euo pipefail and the post-collector completion marker prevent failed collection from appearing completed; full TRAIN failure prevents that GPU validation stage."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Disk budget",
+      "evidence": "The accepted prior schema contains30 arrays totaling6915440 uncompressed bytes/query. For1958 new queries the source requires29228346688 bytes (27.2210190892GiB): two full uncompressed copies for shards plus subsequent merge, and2GiB margin. Eight sanity rows add55323520 uncompressed bytes, which fit within that margin. Actual disk availability is asserted by the future CPU preparation, not established by this source review."
+    },
+    {
+      "status": "CORRECT",
+      "subject": "Scientific scope and holdout disclosure",
+      "evidence": "plan.json explicitly limits this iteration to two states/video, prefix1024, frozen GOLA/C1 and existing architecture. It discloses that previous native scores guided retained-old4 development and makes no untouched-test claim. No training or native-evaluation command is invoked by these collection files."
+    }
+  ],
+  "checks": [
+    {
+      "name": "All three Python files parse with Python3.8 grammar; plan JSON parses",
+      "status": "PASS"
+    },
+    {
+      "name": "Bash -n for scripts/run_best_native_policy_collect.sh",
+      "status": "PASS",
+      "runtime": "E:/dcda6-main/Git/bin/bash.exe"
+    },
+    {
+      "name": "Exact wrapper CLI parsed from collector argparse without importing collector/torch/numpy",
+      "status": "PASS",
+      "partitions": [
+        "sanity mapped to train",
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "name": "Exact eligibility and quartile expressions on synthetic sequence lengths6..1599 including an invalid GT frame",
+      "status": "PASS",
+      "all_eligible_count_quartiles_checked": "2..1024",
+      "actual_GT_reads": 0
+    },
+    {
+      "name": "Exact sharding AST with synthetic881 and98 names, two unique queries/name",
+      "status": "PASS",
+      "synthetic_train_shard_counts": [
+        441,
+        441,
+        440,
+        440
+      ],
+      "synthetic_validation_shard_counts": [
+        49,
+        50,
+        49,
+        48
+      ],
+      "note": "These are synthetic check counts; actual CPU preparation supplies actual shard counts."
+    },
+    {
+      "name": "Launcher AST executed with in-memory filesystem and mocked subprocess only",
+      "status": "PASS",
+      "cases": 17,
+      "positive_cases": 2,
+      "refusal_cases": 15,
+      "refusals": [
+        "source FAIL",
+        "wrong review independence",
+        "wrong provisional status",
+        "CPU preparation FAIL",
+        "CPU preparation coverage false",
+        "full missing actual sanity audit",
+        "full actual sanity audit FAIL",
+        "sanity already launched",
+        "full already launched",
+        "sanity output already exists",
+        "full validation output already exists",
+        "sanity jobs count mismatch",
+        "full validation jobs count mismatch",
+        "GPU occupied",
+        "missing one GPU"
+      ],
+      "actual_GPU_queries": 0,
+      "actual_process_starts": 0,
+      "actual_files_written": 0
+    },
+    {
+      "name": "Source attribution rechecked immediately before report write",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "No remote dataset, checkpoint or GPU was accessed by this reviewer. Actual eligibility counts, checkpoint identity/epoch, free space, memory usage and numerical sanity results require the separate real preparation/collection/audit stages.",
+    "The actual sanity audit independently replays current-query IoUs and checks causal history indices. It does not independently rerun future-policy labels; its scope states this explicitly. Full merged-cache acceptance remains required before subsequent training.",
+    "Two-query sanity collections establish the intended smoke scope after they actually pass. This source report establishes neither new batch16 runtime capacity nor model quality, and no native two-point target is met by this report.",
+    "Subsequent training, continuous developer-video checkpoint selection, native evaluation and any automatic continuation controller remain outside these five reviewed files."
+  ],
+  "execution": {
+    "SSH_calls": 0,
+    "GPU_calls": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "actual_GT_reads": 0,
+    "actual_checkpoint_reads": 0,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "actual_preparer_or_auditor_executed": false,
+    "actual_launcher_executed": false,
+    "launcher_executed_with_in_memory_mocks_only": true,
+    "implementation_files_modified": false,
+    "new_markdown_files": 0,
+    "only_written_artifact": "refine-logs/runs/recoverability_best_native_policy/source_review.json",
+    "local_python": "C:/Users/gb/AppData/Roaming/uv/python/cpython-3.12-windows-x86_64-none/python.exe",
+    "environment_note": "PATH python at E:/Scripts/python.exe failed before running the check because pyvenv.cfg is absent; checks then completed with an already installed explicit CPython interpreter."
+  }
+}

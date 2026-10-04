@@ -1,0 +1,18 @@
+{
+  "source": "/data/gb/outputs/recoverability_full_coverage_merged_20261004/own/train/samples.npz",
+  "execution": "CPU-only numpy read of actual TRAIN current_iou, future_iou, wrong_update_fraction and action_valid arrays",
+  "queries": 881,
+  "teacher_epoch": 46,
+  "legal_pause_actions": 1853,
+  "wrong_query_write_pairs_current_iou_below_point2": 50,
+  "wrong_pairs_pause_gt_gain_above_threshold_point03": 22,
+  "wrong_pairs_pause_advantage_quantiles_0_25_50_75_100": [-0.020285099744796753, 0.02499999850988388, 0.02500000037252903, 0.07528137788176537, 0.3368490934371948],
+  "correct_query_write_pairs_current_iou_at_least_point5": 1602,
+  "correct_pairs_pause_gt_gain_above_threshold_point03": 14,
+  "formula": "utility=.7*current_iou +.3*mean3_future_iou -.1*wrong_update_fraction; pause advantage=utility_pause-utility_write",
+  "finding": "In this actual cache, wrong high-score writes have few examples and median pause advantage .025 is below deployed .03 threshold. This limits supervision for update intervention; it is not proof of the sole cause of native degradation.",
+  "threshold_or_policy_changed": false,
+  "GPU_queries": 0,
+  "neural_forward_calls": 0,
+  "benchmark_test_reads": false
+}
