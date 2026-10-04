@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_date": "2026-10-04",
+  "reviewer_agent": "/root/warm_budgeted_initialization_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Delegator confirmed successful spawn invocation metadata; this is not independent verification of the underlying runtime model."
+  },
+  "scope": "Fresh experiment-bridge source review of the single warm-initialization factor, with actual CPU imports, checkpoint loads and sample inference. No training launch or accuracy claim.",
+  "readiness": "PASS for both authorized 3-epoch, 9-update B384 M0 arms. Full fits remain gated on the separate actual warm M0 acceptance JSON.",
+  "delegator_reported_launch_gate": {
+    "observation": "The delegator's launch entry checked for this review before it was written and stopped before any neural job was started.",
+    "independently_observed_by_reviewer": false,
+    "source_or_gate_bypass_changes": false
+  },
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "reviewed_files": [
+    "research/train_recoverability.py",
+    "research/recoverability_modules.py",
+    "research/candidate_learning.py (relevant head/import dependencies)",
+    "research/temporal_modules.py (relative geometry and dependencies)",
+    "research/evaluate_recoverability.py",
+    "research/collect_recoverability_metrics.py",
+    "scripts/run_recoverability_warm_budgeted_action_fit.sh",
+    "scripts/run_temporal.sh",
+    "refine-logs/runs/recoverability_budgeted_action/source_review.json",
+    "refine-logs/runs/recoverability_budgeted_action/cpu_loss_checks.py",
+    "refine-logs/runs/recoverability_budgeted_action/actual_m0_cpu_audit.py (relevant acceptance checks)",
+    "refine-logs/runs/recoverability_budgeted_action/actual_full_fit_cpu_audit.py (relevant acceptance checks)",
+    "/data/gb/experiments/recoverability_budgeted_action_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh",
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research",
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh",
+    "/data/gb/GOLA/research/recoverability_modules.py"
+  ],
+  "source_findings": [
+    "The designated old4 checkpoint is loaded with strict=True after constructing frozen C1 and before ABC initial snapshots or optimizer creation. All eight C1 tensors are explicitly checked against the requested C1 head.",
+    "Warm loading preserves requires_grad=False and eval behavior for C1. ABC remains trainable; this is a parameter warm start with a new AdamW optimizer, not a continuation of optimizer history.",
+    "The initial ABC snapshots are taken after the parent load. Therefore modules_changed measures terminal fit changes relative to old4, rather than merely detecting the warm load.",
+    "Initial parity is computed over actual supplied TRAIN and VAL batches. Fresh initialization still asserts parity; warm initialization records the measured boolean and the parent epoch without assuming parity.",
+    "All other CLI defaults, data loading, forward, evaluation, epoch-zero save, optimizer updates, strict-improvement checkpoint selection, best reload and completion logic are unchanged from the matched cold trainer.",
+    "Warm epoch0 means the loaded old4 parent (parent epoch4). The unchanged strict-improvement rule may correctly retain epoch0 if later held-out utility never improves. Terminal modules_changed does not claim that a retained epoch0 checkpoint learned new parameters.",
+    "Both teacher arms preserve the existing paired caches, seed42, B384, lr1e-4, weight_decay1e-4, threshold .03, oracle search supervision, budgeted action ranking, action write verification and disabled write-pair calibration.",
+    "M0 uses 3 epochs at ceil(902/384)=3 updates per epoch, for 9 updates. Full uses 60 epochs and 180 updates. Warm output paths and labels are distinct and the warm full guard requires PASS, both teachers, batch384 and 9 updates.",
+    "The runner changes to the private source directory before imports and training. Full98 evaluation deliberately returns to the unchanged main wrapper and forward classes.",
+    "Full98 reporting pairs each warm teacher arm against baseline, C1, protected old4 and the corresponding cold budgeted teacher predictions. All five existing reference runs have completed 98 sequences and 49,418 frames with the same split/root and no frame or sequence limits.",
+    "This is an internal full98 development stage. The unchanged full-native LasHeR/RGBT234 five-metric goal is not established by this source review."
+  ],
+  "verification": {
+    "local_remote_source_bytes_equal": {
+      "trainer_sha256": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+      "modules_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+      "runner_sha256": "222a5a6c257d469ef2547afbd4bc408c6d042b4cd2f5753e6bcfbddd9034971a"
+    },
+    "cold_to_warm_private_sources": {
+      "source_file_count_each": 39,
+      "same_relative_file_names": true,
+      "changed_files": [
+        "train_recoverability.py"
+      ],
+      "other_38_files_byte_exact": true
+    },
+    "main_frozen_sources_observed": {
+      "trainer_sha256": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+      "modules_sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+      "forward_classes_and_selector_AST_exact": true,
+      "private_main_relevant_dependencies_byte_exact": [
+        "candidate_learning.py",
+        "temporal_modules.py",
+        "recoverability_tracker.py",
+        "evaluate_recoverability.py",
+        "collect_recoverability_metrics.py",
+        "collect_recoverability.py"
+      ]
+    },
+    "trainer_static_checks": {
+      "remaining_cli_AST_exact_after_removing_init_argument": true,
+      "load_data_forward_evaluate_AST_exact": true,
+      "epoch0_save_training_loop_best_selection_and_completion_tail_byte_exact": true,
+      "local_git_diff_check": "PASS (existing LF/CRLF conversion warning only)"
+    },
+    "actual_CPU_checks": {
+      "status": "PASS",
+      "runtime_seconds": 11.713,
+      "execution": "Compiled and executed actual trainer initialization-through-optimizer AST segments on CPU; used the first16 existing VAL queries per teacher as the two parity inputs. No trainer main or optimizer step was executed.",
+      "imported_trainer": "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/train_recoverability.py",
+      "imported_modules": "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/recoverability_modules.py",
+      "parent": {
+        "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "epoch": 4,
+        "all25_state_tensors_loaded_exact": true,
+        "all8_C1_tensors_exact": true,
+        "ABC_state_tensor_counts": {
+          "A": 9,
+          "B": 4,
+          "C": 4
+        },
+        "ABC_changed_tensor_counts_vs_fresh": {
+          "A": 9,
+          "B": 4,
+          "C": 4
+        }
+      },
+      "fresh_path": {
+        "all25_state_tensors_bit_exact_vs_cold": true,
+        "all_forward_outputs_and_selector_fields_bit_exact_vs_cold": true,
+        "parity_on_tested_sample": true,
+        "deliberate_nonparity_rejected_by_actual_fresh_assert": true
+      },
+      "warm_path": {
+        "initial_snapshots_exact_to_parent": true,
+        "no_step_modules_changed": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "initial_checkpoint_epoch": 4,
+        "measured_initial_parity_on_tested_sample": true,
+        "changed_sample_actions": 0,
+        "sample_searches": 0,
+        "deliberate_nonparity_records_false_without_fresh_assert": true,
+        "all_forward_outputs_and_selector_fields_bit_exact_to_main_class_loaded_with_same_parent": true
+      },
+      "reproducibility": {
+        "decision_inputs_bit_exact_across_teacher_sample": true,
+        "CPU_RNG_after_initialization_bit_exact_cold_fresh_warm": true,
+        "next_CPU_shuffle902_bit_exact": true,
+        "new_AdamW_empty_state_and_identical_hyperparameters": true,
+        "ABC_trainable_tensor_count": 17,
+        "C1_requires_grad_false_and_eval_after_model_train": true
+      }
+    },
+    "runner_checks": {
+      "remote_bash_syntax": "PASS",
+      "actual_paired_cache_gate": "PASS",
+      "cache_partition_clips": {
+        "train": 902,
+        "validation": 128
+      },
+      "actual_full_guard_without_M0": "Correctly refuses with missing acceptance JSON before training",
+      "M0_acceptance_exists_at_review": false,
+      "acceptance_path": "/data/gb/setup/warm_budgeted_action_fit_m0_acceptance_20261004.json",
+      "completed_reference_sequences_each": 98,
+      "completed_reference_frames_each": 49418,
+      "no_sequence_or_frame_limits": true
+    }
+  },
+  "limits": [
+    "CPU inference checked the first16 VAL queries per teacher, not the complete TRAIN/VAL initial parity sweep. The actual M0 config must report its measured full-data value; sample parity must not be extrapolated.",
+    "The CPU RNG and next CPU permutation were checked. CUDA initialization and GPU execution were deliberately not performed; no GPU numerical-parity claim is made.",
+    "The loss implementation is byte-identical to the previously reviewed cold budgeted implementation. This review changes only initialization and does not re-estimate learning quality or accuracy.",
+    "Actual M0 gradients, optimizer steps, strict saved-checkpoint reload, and full-data initial metadata remain runtime acceptance work.",
+    "Cold budgeted checkpoints and deleted historical checkpoints were not read or restored."
+  ],
+  "reviewer_execution": {
+    "optimizer_steps": 0,
+    "GPU_initializations": 0,
+    "GPU_queries": 0,
+    "power_temperature_queries": 0,
+    "jobs_started": 0,
+    "process_signals": 0,
+    "TRAIN_embeddings_read": false,
+    "production_sources_modified": false,
+    "weights_modified": false,
+    "human_handoff_or_goal_modified": false,
+    "written_artifacts_only": [
+      "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/refine-logs/runs/recoverability_warm_budgeted_action/source_review.json",
+      "/data/gb/setup/warm_budgeted_action_source_review_20261004.json"
+    ]
+  }
+}

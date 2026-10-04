@@ -1,0 +1,527 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/budgeted_full_fit_acceptance",
+  "model_metadata": "Codex/GPT-6 family; exact runtime model/effort not independently exposed",
+  "audited_utc": "2026-10-04T04:25:21.117068+00:00",
+  "checker": "/data/gb/setup/budgeted_action_actual_full_fit_cpu_audit_20261004.py",
+  "checker_sha256": "03f696c45a38c230bdc47695e28dcb433d2d5bc1420046f4c3d273c40129d59f",
+  "blocking_findings": [],
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GPU_queries": 0,
+    "training": false,
+    "source_model_data_modified": false,
+    "job_commands_or_processes_changed": false,
+    "cuda_initialized": false,
+    "neural_forward": "Two128-query CPU evaluations plus two single-prefix CPU memory replays",
+    "TRAIN_embeddings_loaded": false,
+    "elapsed_seconds": 14.704405328258872
+  },
+  "scope": "Completed 60 epoch fits and actual CPU cached validation replay; full 98-sequence online accuracy remains separately pending.",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_budgeted_action_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_budgeted_action_20261004/research/train_recoverability.py": "557ed8c019ab61e4f1dc2aa34ed305418a1c3b8b560e3ff2ab6f59bfacfe2544",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93"
+  },
+  "prior_cache_audit": "/data/gb/setup/budgeted_action_actual_m0_cpu_audit_20261004.json",
+  "prior_cache_audit_sha256": "cd6c74116dd033224d31a24602d8255bb09964d96a463d85d947cc806c9456d5",
+  "cache_checks": {
+    "c1_train": {
+      "clips": 902,
+      "fields": 30,
+      "history_capacity": 1024,
+      "complete_causal_prefix_verified": true,
+      "current_and_history_iou_actual_loader_GT_recomputed": true,
+      "current_iou_max_abs_error_saved_float32_boxes": 2.2033249938990807e-06,
+      "history_iou_max_abs_error": 1.3584497771113035e-07,
+      "motion_GT_targets_exact": true,
+      "raw_GT_clipped_by_existing_loader": [
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 18,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            457.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            457.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 19,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 20,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        }
+      ],
+      "unchanged_prior_cache_metadata": true,
+      "future_label_boundary": "Future rollout boxes were not saved; GT label derivation verified in collector source and prior shard-to-merge evidence, no future NN rollout repeated."
+    },
+    "c1_validation": {
+      "clips": 128,
+      "fields": 30,
+      "history_capacity": 1024,
+      "complete_causal_prefix_verified": true,
+      "current_and_history_iou_actual_loader_GT_recomputed": true,
+      "current_iou_max_abs_error_saved_float32_boxes": 1.8622396358303206e-06,
+      "history_iou_max_abs_error": 1.1494536478195982e-07,
+      "motion_GT_targets_exact": true,
+      "raw_GT_clipped_by_existing_loader": [],
+      "unchanged_prior_cache_metadata": true,
+      "future_label_boundary": "Future rollout boxes were not saved; GT label derivation verified in collector source and prior shard-to-merge evidence, no future NN rollout repeated."
+    },
+    "own_train": {
+      "clips": 902,
+      "fields": 30,
+      "history_capacity": 1024,
+      "complete_causal_prefix_verified": true,
+      "current_and_history_iou_actual_loader_GT_recomputed": true,
+      "current_iou_max_abs_error_saved_float32_boxes": 2.2033249938990807e-06,
+      "history_iou_max_abs_error": 1.3584497771113035e-07,
+      "motion_GT_targets_exact": true,
+      "raw_GT_clipped_by_existing_loader": [
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 18,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            457.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            457.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 19,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "query": 18,
+          "frame": 20,
+          "raw_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            579.0
+          ],
+          "loader_xyxy": [
+            394.0,
+            430.0,
+            456.0,
+            576.0
+          ],
+          "image_size": [
+            960,
+            576
+          ]
+        }
+      ],
+      "unchanged_prior_cache_metadata": true,
+      "future_label_boundary": "Future rollout boxes were not saved; GT label derivation verified in collector source and prior shard-to-merge evidence, no future NN rollout repeated."
+    },
+    "own_validation": {
+      "clips": 128,
+      "fields": 30,
+      "history_capacity": 1024,
+      "complete_causal_prefix_verified": true,
+      "current_and_history_iou_actual_loader_GT_recomputed": true,
+      "current_iou_max_abs_error_saved_float32_boxes": 1.8622396358303206e-06,
+      "history_iou_max_abs_error": 1.1494536478195982e-07,
+      "motion_GT_targets_exact": true,
+      "raw_GT_clipped_by_existing_loader": [],
+      "unchanged_prior_cache_metadata": true,
+      "future_label_boundary": "Future rollout boxes were not saved; GT label derivation verified in collector source and prior shard-to-merge evidence, no future NN rollout repeated."
+    }
+  },
+  "arms": {
+    "c1": {
+      "root": "/data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_rows": 120,
+      "logged_steps": "First and third update per epoch; all 120 observed ABC gradient triplets finite and positive.",
+      "best_epoch": 25,
+      "all_61_epoch_metrics_and_selected_checkpoint_receipt_exact": true,
+      "frozen_C1_tensors_exact": 8,
+      "strict_CPU_load": true,
+      "ABC_best25_changes_vs_fresh_seed42": {
+        "A": {
+          "changed_tensors": 9,
+          "total_tensors": 9,
+          "changed_elements": 109187,
+          "max_abs_change": 0.009921208024024963
+        },
+        "B": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 115469,
+          "max_abs_change": 0.009106423705816269
+        },
+        "C": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 86279,
+          "max_abs_change": 0.010284175164997578
+        }
+      },
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "paired_control": "/data/gb/outputs/recoverability_future_c1_b384_full_20261004",
+      "config_differences_vs_pairwise": [
+        "output",
+        "action_ranking"
+      ],
+      "deleted_control_or_M0_weights_read_or_recreated": false,
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.4681553840637207,
+        "valid_actions": 4774,
+        "current": 0.7536264061927795,
+        "c1_current": 0.7492051124572754,
+        "utility_before_search_cost": 0.7517327070236206,
+        "utility": 0.7514983415603638,
+        "c1_utility": 0.7482289671897888,
+        "pause": 0,
+        "search_triggered": 3,
+        "changed_location": 3,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 8,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.00442129373550415,
+        "utility_gain_against_c1": 0.003269374370574951
+      },
+      "CPU_replay_128_queries": true,
+      "all_discrete_NPZ_decisions_exact": true,
+      "per_field_max_replay_abs_error": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "per_metric_max_replay_abs_error": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 5.960464477539063e-08,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "CPU_same_observation_incremental_memory_check": {
+        "job": [
+          "ab_bolster",
+          952,
+          "frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1"
+        ],
+        "commits_observed": 951,
+        "max_abs_error": 1.4901161193847656e-07,
+        "scope": "Same parameters and cached complete causal history; CPU arithmetic, not an independent visual or GPU trajectory replay."
+      },
+      "inference_snapshot": {
+        "completed_sequences": 98,
+        "expected_sequences": 98,
+        "latest_sequence": "yellowexcesicebook",
+        "accuracy_claimed": false,
+        "completion_receipt_present": true
+      },
+      "artifacts_sha256": {
+        "config.json": "7fa7d553e2c2dcfba0e10d31f7331dfc22e1a83f445bc53d2f007aee5cb2e956",
+        "completion.json": "fb726759b4353e246c1058f6a72ba5804255f3988f4666824241fe5fa65568a8",
+        "metrics.json": "c2f8bf28d6faea9fa9a333e9d53494f029d028c7640ec0936cdcac70e9b6afe5",
+        "train.jsonl": "064095812d18294e13c0cf3bf828d950488256946a95b240f32213bbb3145b94",
+        "best.pth": "accc79708340b08d122c667d35705d4511a97967355af1213ab9421b8fcf6ecf",
+        "best_validation.npz": "2d05f2c667f9efc986c28b0d9716fd53699ed3fa1c088f594b18136b1404b748"
+      }
+    },
+    "own": {
+      "root": "/data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "logged_rows": 120,
+      "logged_steps": "First and third update per epoch; all 120 observed ABC gradient triplets finite and positive.",
+      "best_epoch": 25,
+      "all_61_epoch_metrics_and_selected_checkpoint_receipt_exact": true,
+      "frozen_C1_tensors_exact": 8,
+      "strict_CPU_load": true,
+      "ABC_best25_changes_vs_fresh_seed42": {
+        "A": {
+          "changed_tensors": 9,
+          "total_tensors": 9,
+          "changed_elements": 109187,
+          "max_abs_change": 0.009911388158798218
+        },
+        "B": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 115469,
+          "max_abs_change": 0.009261496365070343
+        },
+        "C": {
+          "changed_tensors": 4,
+          "total_tensors": 4,
+          "changed_elements": 86279,
+          "max_abs_change": 0.010273757390677929
+        }
+      },
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "paired_control": "/data/gb/outputs/recoverability_future_own_b384_full_20261004",
+      "config_differences_vs_pairwise": [
+        "output",
+        "action_ranking"
+      ],
+      "deleted_control_or_M0_weights_read_or_recreated": false,
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.4617562294006348,
+        "valid_actions": 4774,
+        "current": 0.7536264061927795,
+        "c1_current": 0.7492051124572754,
+        "utility_before_search_cost": 0.7517572045326233,
+        "utility": 0.7515228390693665,
+        "c1_utility": 0.7482534646987915,
+        "pause": 0,
+        "search_triggered": 3,
+        "changed_location": 3,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 8,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.00442129373550415,
+        "utility_gain_against_c1": 0.003269374370574951
+      },
+      "CPU_replay_128_queries": true,
+      "all_discrete_NPZ_decisions_exact": true,
+      "per_field_max_replay_abs_error": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "per_metric_max_replay_abs_error": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 5.960464477539063e-08,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 0.0,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 5.960464477539063e-08,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "CPU_same_observation_incremental_memory_check": {
+        "job": [
+          "ab_bolster",
+          952,
+          "frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1"
+        ],
+        "commits_observed": 951,
+        "max_abs_error": 1.7136335372924805e-07,
+        "scope": "Same parameters and cached complete causal history; CPU arithmetic, not an independent visual or GPU trajectory replay."
+      },
+      "inference_snapshot": {
+        "completed_sequences": 98,
+        "expected_sequences": 98,
+        "latest_sequence": "yellowexcesicebook",
+        "accuracy_claimed": false,
+        "completion_receipt_present": true
+      },
+      "artifacts_sha256": {
+        "config.json": "1591d32c97312a02cebb78bd94b74ece53221cabeb25cf21ebf87fd3249e5344",
+        "completion.json": "b41186b15475c89c6803c722d3be3c5a967aabedb0728d4fe81b9d8361351774",
+        "metrics.json": "65e4694e9d2340a8a6ecb797a620b964a8c28884fd7daffaae3ab1fdd46af688",
+        "train.jsonl": "37ad268eb307d3d7bead877680437ac0934a0f1e05eb29c05c90f7c064315ca4",
+        "best.pth": "f1f2b3846d041e8ee3f63235a4f703e1ac90492c9c1ed889a57dfdfeae0805ad",
+        "best_validation.npz": "5ba00f4a2d63cff61fbb90f550cced3e2b9da3e3bb2d5e740982f29ee93a1492"
+      }
+    }
+  },
+  "all_inference_classes_unchanged_private_vs_main": true,
+  "label_boundary": "Current/history labels and query GT targets independently checked against actual loader GT. Future labels derive from GT at future frames in collector source; future trajectories were not rerun.",
+  "clipped_GT_actual_image": {
+    "path": "/data/wangwj/dataset/LasHeR/traingset/10phone_boy/visible/v018.jpg",
+    "width_height": [
+      960,
+      576
+    ]
+  },
+  "memory_training_deployment": {
+    "training": "Reconstructs A memory from anchor and all 1024 cached history slots, with valid/frame/write/gate masks; every sampled prefix observed from frame0 through query-1.",
+    "online": "Tracker.step passes persistent identity_memory to modules.decide; accept_observation incrementally applies the same encode, gate, verified-write and context-update rules.",
+    "motion_window": 8,
+    "ABC_DECISION_FIELDS_contain_persistent_memory": false,
+    "difference": "Training recomputes memory along fixed teacher observations; online observations and template writes follow the deployed model trajectory. Last8 refers to motion/search geometry, not truncated A history.",
+    "beyond_1024": "Training caches do not establish performance or numerical equivalence on prefixes longer than1024. No such long visual trajectory replay performed.",
+    "performance_cause_established": false
+  },
+  "checker_corrections": [
+    {
+      "issue": "Initial SSH alias wording interpreted literally as alias2027",
+      "fix": "Use actual configured Host2027; no remote job issue."
+    },
+    {
+      "issue": "Exploratory memory-mapped dataset constructor was passed a path",
+      "fix": "Used its existing .load(root,path) API; no data or production change."
+    },
+    {
+      "issue": "Raw GT was initially compared before existing loader clipping",
+      "fix": "Verified actual fit_in_image_size filter, loader boxes and image960x576 for10phone_boy; retained native evaluation GT unchanged."
+    }
+  ]
+}

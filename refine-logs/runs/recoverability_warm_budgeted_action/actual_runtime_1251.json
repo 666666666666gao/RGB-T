@@ -1,0 +1,108 @@
+{
+  "observed_cst": "2026-10-04T12:51:25.749742+08:00",
+  "scope": "Actual useful GPU memory and task progress; no temperature or power queries or changes",
+  "gpu": [
+    "0, 20654, 13",
+    "1, 851, 40",
+    "2, 20325, 100",
+    "3, 851, 36"
+  ],
+  "tasks": {
+    "c1": {
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004",
+      "training_completed": false,
+      "job_completed": false,
+      "last_train_record": {
+        "epoch": 3,
+        "step": 3,
+        "optimizer_steps": 9,
+        "loss": 1.8045504093170166,
+        "parts": {
+          "advantage": 0.05234752595424652,
+          "action_ranking": 0.12826068699359894,
+          "harm": 1.9115442037582397,
+          "quality": 0.8588835597038269,
+          "query_write_risk": 0.04840381070971489,
+          "future": 0.12907233834266663,
+          "memory_gate": 1.3467458486557007,
+          "margin_preservation": 0.0034168388228863478,
+          "identity_margin": 0.16206911206245422,
+          "search_value": 0.019502777606248856,
+          "search_success": 0.6397215127944946,
+          "candidate_absence": 0.7108071446418762,
+          "search_ranking": 1.7096413373947144
+        },
+        "module_gradient_norms": {
+          "A": 0.0765857845544815,
+          "B": 1.6093443632125854,
+          "C": 0.9093132615089417
+        },
+        "elapsed_seconds": 61.16109377425164,
+        "peak_cuda_mib": 14190.7080078125
+      },
+      "config_selected": {
+        "batch_size": 384,
+        "epochs": 60,
+        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "initial_checkpoint_epoch": 4,
+        "action_ranking": "budgeted",
+        "search_supervision": "oracle"
+      }
+    },
+    "own": {
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004",
+      "training_completed": false,
+      "job_completed": false,
+      "last_train_record": {
+        "epoch": 3,
+        "step": 1,
+        "optimizer_steps": 7,
+        "loss": 1.811488389968872,
+        "parts": {
+          "advantage": 0.05460873991250992,
+          "action_ranking": 0.12323161959648132,
+          "harm": 1.8903273344039917,
+          "quality": 0.8066732287406921,
+          "query_write_risk": 0.051187142729759216,
+          "future": 0.13286346197128296,
+          "memory_gate": 1.3785980939865112,
+          "margin_preservation": 0.002595901722088456,
+          "identity_margin": 0.1585196554660797,
+          "search_value": 0.018782172352075577,
+          "search_success": 0.6522205471992493,
+          "candidate_absence": 0.7626019716262817,
+          "search_ranking": 1.7220256328582764
+        },
+        "module_gradient_norms": {
+          "A": 0.0886385440826416,
+          "B": 0.6456226110458374,
+          "C": 0.8178042769432068
+        },
+        "elapsed_seconds": 49.56647161021829,
+        "peak_cuda_mib": 14191.0830078125
+      },
+      "config_selected": {
+        "batch_size": 384,
+        "epochs": 60,
+        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "initial_checkpoint_epoch": 4,
+        "action_ranking": "budgeted",
+        "search_supervision": "oracle"
+      }
+    },
+    "rgbt234_no_search": {
+      "root": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004",
+      "job_completed": false
+    },
+    "rgbt234_raw_write": {
+      "root": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004",
+      "job_completed": false
+    }
+  },
+  "processes": [
+    "3445163 3445161       53:57 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --disable-search --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004/predictions",
+    "3474854 3452353       38:04 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --unsafe-writes --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004/predictions",
+    "3541302 3541146       01:18 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_future_policy_merged_20261004/c1/train --validation /data/gb/outputs/recoverability_future_policy_merged_20261004/c1/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004",
+    "3541306 3541153       01:17 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_future_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_future_policy_merged_20261004/own/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004"
+  ]
+}

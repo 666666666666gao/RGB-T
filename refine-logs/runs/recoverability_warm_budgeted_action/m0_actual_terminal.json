@@ -1,0 +1,121 @@
+{
+  "observed_cst": "2026-10-04T12:41:52.826782+08:00",
+  "arms": {
+    "c1": {
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_m0_20261004",
+      "job_completed": "2026-10-04T12:39:44+08:00",
+      "completion": {
+        "completed": true,
+        "epochs": 3,
+        "optimizer_steps": 9,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09364770352840424,
+          "B": 1.6093443632125854,
+          "C": 1.5462045669555664
+        },
+        "frozen_c1_gradients_absent": true,
+        "peak_cuda_mib": 14191.0830078125,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.7977293729782104,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482689619064331,
+          "utility": 0.7482689619064331,
+          "c1_utility": 0.7482289671897888,
+          "pause": 1,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 3.999471664428711e-05
+        },
+        "strict_reload_metrics_equal": true
+      },
+      "metrics_epochs": 4,
+      "last_epoch": 3
+    },
+    "own": {
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_m0_20261004",
+      "job_completed": "2026-10-04T12:39:45+08:00",
+      "completion": {
+        "completed": true,
+        "epochs": 3,
+        "optimizer_steps": 9,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09372927993535995,
+          "B": 1.5902432203292847,
+          "C": 1.5313524007797241
+        },
+        "frozen_c1_gradients_absent": true,
+        "peak_cuda_mib": 14190.7080078125,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 128,
+          "loss": 1.7906224727630615,
+          "valid_actions": 4774,
+          "current": 0.7492051124572754,
+          "c1_current": 0.7492051124572754,
+          "utility_before_search_cost": 0.7482643127441406,
+          "utility": 0.7482643127441406,
+          "c1_utility": 0.7482534646987915,
+          "pause": 1,
+          "search_triggered": 0,
+          "changed_location": 0,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 10,
+          "c1_failed": 10,
+          "original_recall": 118,
+          "budget_recall": 118,
+          "missing_candidate_found": 0,
+          "wrong_update_fraction": 0.0078125,
+          "c1_wrong_update_fraction": 0.0078125,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": 1.0848045349121094e-05
+        },
+        "strict_reload_metrics_equal": true
+      },
+      "metrics_epochs": 4,
+      "last_epoch": 3
+    }
+  },
+  "active_nn_processes": [
+    {
+      "pid": 3445163,
+      "elapsed": "44:24",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --disable-search --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3474854,
+      "elapsed": "28:31",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --unsafe-writes --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004/predictions"
+    }
+  ],
+  "gpu_memory_utilization": [
+    "0, 349 MiB, 24576 MiB, 0 %",
+    "1, 851 MiB, 24576 MiB, 38 %",
+    "2, 20 MiB, 24576 MiB, 0 %",
+    "3, 851 MiB, 24576 MiB, 37 %"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "FULL_FITS_LAUNCHED",
+  "at_cst": "2026-10-04T12:50:03.776148+08:00",
+  "batch_size": 384,
+  "epochs": 60,
+  "expected_optimizer_updates": 180,
+  "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "init_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "M0_gate": "/data/gb/setup/warm_budgeted_action_fit_m0_acceptance_20261004.json",
+  "M0_gate_sha256": "dcfca995735d43cae13d195f88d89bef8c00fc67a94649b0fb1e545dcab6ef35",
+  "arms": [
+    {
+      "physical_gpu": 0,
+      "teacher": "c1",
+      "session": "warm_budgeted_action_c1_b384_full_20261004",
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004",
+      "pane_pid": 3541144,
+      "command": "bash /data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh 0 c1 full > /data/gb/setup/warm_budgeted_action_c1_b384_full_20261004.log 2>&1"
+    },
+    {
+      "physical_gpu": 2,
+      "teacher": "own",
+      "session": "warm_budgeted_action_own_b384_full_20261004",
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004",
+      "pane_pid": 3541151,
+      "command": "bash /data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh 2 own full > /data/gb/setup/warm_budgeted_action_own_b384_full_20261004.log 2>&1"
+    }
+  ],
+  "native_evaluations_preserved": [
+    3445163,
+    3474854
+  ],
+  "estimated_training_minutes": 22,
+  "post_training": "Full 98 internal video evaluation then paired CPU report against GOLA/C1/old4/matched cold budgeted",
+  "accuracy_gain_claimed": false
+}

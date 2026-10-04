@@ -23,6 +23,7 @@ def arguments():
     p.add_argument('--train', nargs='+', required=True)
     p.add_argument('--validation', required=True)
     p.add_argument('--c1-head', default='/data/gb/outputs/c1_initial_seed42/best.pth')
+    p.add_argument('--init-checkpoint', help='Continue the learned ABC modules from an existing checkpoint; C1 stays frozen.')
     p.add_argument('--output', required=True)
     p.add_argument('--epochs', type=int, default=30)
     p.add_argument('--batch-size', type=int, default=64)
@@ -154,17 +155,27 @@ def main():
     assert train_names <= set(split['train']) and val_names <= set(split['validation'])
     c1 = torch.load(args.c1_head, map_location='cpu', weights_only=False)
     model = RecoverabilityModules(c1).to(device)
+    initial_checkpoint_epoch = None
+    if args.init_checkpoint:
+        checkpoint = torch.load(args.init_checkpoint, map_location='cpu', weights_only=False)
+        assert checkpoint['module'] == 'ABC_recoverability'
+        model.load_state_dict(checkpoint['model'], strict=True)
+        assert all(torch.equal(value.cpu(), c1['head'][key]) for key, value in model.c1.state_dict().items())
+        initial_checkpoint_epoch = checkpoint['epoch']
     groups = {'A': model.memory, 'B': model.search, 'C': model.action}
     initial = {name: {key: value.detach().clone() for key, value in module.state_dict().items()}
                for name, module in groups.items()}
     model.eval()
+    initial_matches_c1 = True
     with torch.no_grad():
         for data in (train, validation):
             for start in range(0, len(data['valid']), args.batch_size):
                 batch = {key: value[start:start + args.batch_size] for key, value in data.items()}
                 chosen = select_actions(forward(model, batch), batch, args.threshold, args.write_verification)
-                assert torch.equal(chosen['flat_action'], batch['original_choice'].long() * 2)
-                assert not chosen['search_triggered'].any()
+                initial_matches_c1 &= (torch.equal(chosen['flat_action'], batch['original_choice'].long() * 2)
+                                       and not bool(chosen['search_triggered'].any()))
+    if not args.init_checkpoint:
+        assert initial_matches_c1
     parameters = [parameter for parameter in model.parameters() if parameter.requires_grad]
     optimizer = torch.optim.AdamW(parameters, lr=args.lr, weight_decay=args.weight_decay)
     out = Path(args.output)
@@ -172,7 +183,8 @@ def main():
     config = vars(args) | {'module': 'ABC_recoverability', 'train_clips': len(train_jobs),
                            'validation_clips': len(val_jobs), 'train_jobs': train_jobs, 'validation_jobs': val_jobs,
                            'source_configs': train_configs + val_configs,
-                           'decision_fields': DECISION_FIELDS, 'initial_all_choices_match_c1': True,
+                           'decision_fields': DECISION_FIELDS, 'initial_all_choices_match_c1': initial_matches_c1,
+                           'initial_checkpoint_epoch': initial_checkpoint_epoch,
                            'base_GOLA': 'full pretrained frozen visual extractor used by collector',
                            'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters()) for name, module in groups.items()},
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',

@@ -1,0 +1,37 @@
+{
+  "status": "M0_LAUNCHED",
+  "launched_cst": "2026-10-04T12:38:20.593952+08:00",
+  "source_review_sha256": "e2a43ef24b105f0424b4f0b672da1ea2f736f178e42748e0da87ac53014a69a2",
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "batch_size": 384,
+  "seed": 42,
+  "epochs": 3,
+  "optimizer_steps_per_arm": 9,
+  "principal_factor": "Initialize ABC from protected learned epoch4 instead of fresh frozen-C1-based modules; same budgeted loss/caches/other settings",
+  "arms": [
+    {
+      "gpu": 0,
+      "future_teacher": "c1",
+      "session": "warm_budgeted_action_c1_b384_m0_20261004",
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_m0_20261004",
+      "command": "exec bash /data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh 0 c1 m0 > /data/gb/setup/warm_budgeted_action_c1_b384_m0_20261004.log 2>&1"
+    },
+    {
+      "gpu": 2,
+      "future_teacher": "own",
+      "session": "warm_budgeted_action_own_b384_m0_20261004",
+      "output": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_m0_20261004",
+      "command": "exec bash /data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh 2 own m0 > /data/gb/setup/warm_budgeted_action_own_b384_m0_20261004.log 2>&1"
+    }
+  ],
+  "full_training_started": false,
+  "source_directory": "/data/gb/experiments/recoverability_warm_budgeted_action_20261004",
+  "main_source_modified": false,
+  "hardware_limits_changed": false,
+  "source_hashes": {
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/train_recoverability.py": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+    "scripts/run_recoverability_warm_budgeted_action_fit.sh": "222a5a6c257d469ef2547afbd4bc408c6d042b4cd2f5753e6bcfbddd9034971a"
+  }
+}

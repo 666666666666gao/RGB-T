@@ -1,0 +1,53 @@
+{
+  "observed_cst": "2026-10-04T12:15:53.812435+08:00",
+  "active_nn_processes": [
+    {
+      "pid": 3433177,
+      "elapsed": "25:03",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3433387,
+      "elapsed": "24:58",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3445163,
+      "elapsed": "18:25",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --disable-search --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3474854,
+      "elapsed": "02:32",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --unsafe-writes --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004/predictions"
+    }
+  ],
+  "progress": {
+    "recoverability_budgeted_action_c1_b384_full_20261004": {
+      "completed_sequences": 76,
+      "completed_frames": 40522,
+      "job_completed": false
+    },
+    "recoverability_budgeted_action_own_b384_full_20261004": {
+      "completed_sequences": 72,
+      "completed_frames": 36956,
+      "job_completed": false
+    },
+    "recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004": {
+      "completed_sequences": 88,
+      "completed_frames": 35204,
+      "job_completed": false
+    },
+    "recoverability_write_pair_native_rgbt234_raw_write_own_b384_full_20261004": {
+      "completed_sequences": 17,
+      "completed_frames": 4534,
+      "job_completed": false
+    }
+  },
+  "gpu_memory_utilization": [
+    "0, 1180 MiB, 24576 MiB, 35 %",
+    "1, 851 MiB, 24576 MiB, 40 %",
+    "2, 851 MiB, 24576 MiB, 40 %",
+    "3, 851 MiB, 24576 MiB, 37 %"
+  ]
+}

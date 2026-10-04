@@ -1,0 +1,459 @@
+{
+  "status": "PASS",
+  "both_teacher_arms_passed": true,
+  "batch_size": 384,
+  "optimizer_steps_per_arm": 9,
+  "epochs_per_arm": 3,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Delegator confirmed successful spawn invocation metadata; this is not independent verification of the underlying runtime model."
+  },
+  "accepted_at_cst": "2026-10-04T12:46:14.315089+08:00",
+  "scope": "Actual completed warm M0 CPU acceptance; permits separately authorized 60-epoch/180-update full fits but launches none. No online or native accuracy claim.",
+  "source_review": "/data/gb/setup/warm_budgeted_action_source_review_20261004.json",
+  "source_sha256": {
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/train_recoverability.py": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/scripts/run_recoverability_warm_budgeted_action_fit.sh": "222a5a6c257d469ef2547afbd4bc408c6d042b4cd2f5753e6bcfbddd9034971a",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158"
+  },
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_warm_budgeted_action_20261004/research/recoverability_modules.py"
+  ],
+  "parent_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_sha256_before_and_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "parent_epoch": 4,
+  "actual_roots": {
+    "c1": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_m0_20261004",
+    "own": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_m0_20261004"
+  },
+  "best_epochs": {
+    "c1": 0,
+    "own": 0
+  },
+  "arms": {
+    "c1": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_m0_20261004",
+      "completed_at": "2026-10-04T12:39:44+08:00",
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "actual_module_updates_vs_loaded_parent": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_update_evidence": "Unchanged audited trainer snapshots ABC after parent load; its terminal changed flags are true, with 9 AdamW updates and finite positive A/B/C gradients on all six logged first/last steps. Terminal weights are not separately retained.",
+      "max_module_gradient_norms": {
+        "A": 0.09364770352840424,
+        "B": 1.6093443632125854,
+        "C": 1.5462045669555664
+      },
+      "C1_frozen_runtime_and_all8_retained_tensors_exact": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "strict25_tensor_CPU_load": true,
+      "config_initial_checkpoint_epoch": 4,
+      "config_full_TRAIN_VAL_initial_parity": false,
+      "CPU_initial_VAL128_parity": false,
+      "epoch0_metrics_reproduced_from_parent_on_VAL128": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 1.1920928955078125e-07,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_ABC_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "all4_epoch_metrics_and_strict_best_selection_exact": true,
+      "all21_cached_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 1.1920928955078125e-07,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 5.960464477539063e-08,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 5.960464477539063e-08
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7977293729782104,
+        "valid_actions": 4774,
+        "current": 0.7492051124572754,
+        "c1_current": 0.7492051124572754,
+        "utility_before_search_cost": 0.7482689619064331,
+        "utility": 0.7482689619064331,
+        "c1_utility": 0.7482289671897888,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 3.999471664428711e-05
+      },
+      "epoch_utility": [
+        0.7482689619064331,
+        0.7482289671897888,
+        0.7479164600372314,
+        0.7473759055137634
+      ],
+      "artifact_sha256": {
+        "config.json": "f3944fd053078423bdb50422aa2bef9788fc928de9d67ac4e743edbaa10a7e6e",
+        "completion.json": "3f1a0274483969b39a32ddc9f841f2656c1a16bea25218dd00ad3d02d7399610",
+        "metrics.json": "2d912a608ab82b18001813f185a9e1fed8675c795f4afc02ea9f34fbaf19629e",
+        "train.jsonl": "b89fad72691f3f10366d0449207b81b3c88744c3aa2229cb20602fcedb4075fe",
+        "best.pth": "d067f672a95fb7b2329277ef7907833186ab4b9d0ac42c0e150c067b56d1b213",
+        "best_validation.npz": "544d94d721975ec4597d448eb96a343d3efe558717acb8d30e54044fbadd88ce",
+        "training_completed.txt": "971e09928813d0f3b1ca8c7ec43f9eb73dba273ec1bf35e7bf20355eddc02a0e",
+        "job_completed.txt": "971e09928813d0f3b1ca8c7ec43f9eb73dba273ec1bf35e7bf20355eddc02a0e"
+      },
+      "learning_gain_claimed": false
+    },
+    "own": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_m0_20261004",
+      "completed_at": "2026-10-04T12:39:45+08:00",
+      "epochs": 3,
+      "optimizer_steps": 9,
+      "logged_step_triplets": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          1,
+          7
+        ],
+        [
+          3,
+          3,
+          9
+        ]
+      ],
+      "actual_module_updates_vs_loaded_parent": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "terminal_update_evidence": "Unchanged audited trainer snapshots ABC after parent load; its terminal changed flags are true, with 9 AdamW updates and finite positive A/B/C gradients on all six logged first/last steps. Terminal weights are not separately retained.",
+      "max_module_gradient_norms": {
+        "A": 0.09372927993535995,
+        "B": 1.5902432203292847,
+        "C": 1.5313524007797241
+      },
+      "C1_frozen_runtime_and_all8_retained_tensors_exact": true,
+      "ABC_parameter_counts": {
+        "A": 109187,
+        "B": 117133,
+        "C": 86791
+      },
+      "strict25_tensor_CPU_load": true,
+      "config_initial_checkpoint_epoch": 4,
+      "config_full_TRAIN_VAL_initial_parity": false,
+      "CPU_initial_VAL128_parity": false,
+      "epoch0_metrics_reproduced_from_parent_on_VAL128": true,
+      "initial_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 1.1920928955078125e-07,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 0.0,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_epoch": 0,
+      "best0_is_parent_not_new_learning": true,
+      "selected_best_ABC_changes_vs_parent": {
+        "A": {
+          "changed_tensors": 0,
+          "total_tensors": 9,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "B": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        },
+        "C": {
+          "changed_tensors": 0,
+          "total_tensors": 4,
+          "changed_elements": 0,
+          "max_abs_change": 0.0
+        }
+      },
+      "all4_epoch_metrics_and_strict_best_selection_exact": true,
+      "all21_cached_fields_CPU_reproduced": true,
+      "per_field_max_abs_errors": {
+        "current": 0.0,
+        "c1_current": 0.0,
+        "utility_before_search_cost": 5.960464477539063e-08,
+        "utility": 5.960464477539063e-08,
+        "c1_utility": 5.960464477539063e-08,
+        "flat_action": 0.0,
+        "region": 0.0,
+        "candidate": 0.0,
+        "pause": 0.0,
+        "searched_region": 0.0,
+        "search_triggered": 0.0,
+        "changed_location": 0.0,
+        "rescued": 0.0,
+        "harmed": 0.0,
+        "failed": 0.0,
+        "c1_failed": 0.0,
+        "original_recall": 0.0,
+        "budget_recall": 0.0,
+        "missing_candidate_found": 0.0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0
+      },
+      "best_metric_max_abs_errors": {
+        "clips": 0,
+        "loss": 0.0,
+        "valid_actions": 0,
+        "current": 1.1920928955078125e-07,
+        "c1_current": 1.1920928955078125e-07,
+        "utility_before_search_cost": 0.0,
+        "utility": 0.0,
+        "c1_utility": 0.0,
+        "pause": 0,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 0,
+        "c1_failed": 0,
+        "original_recall": 0,
+        "budget_recall": 0,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0,
+        "c1_wrong_update_fraction": 0.0,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 0.0
+      },
+      "best_validation": {
+        "clips": 128,
+        "loss": 1.7906224727630615,
+        "valid_actions": 4774,
+        "current": 0.7492051124572754,
+        "c1_current": 0.7492051124572754,
+        "utility_before_search_cost": 0.7482643127441406,
+        "utility": 0.7482643127441406,
+        "c1_utility": 0.7482534646987915,
+        "pause": 1,
+        "search_triggered": 0,
+        "changed_location": 0,
+        "rescued": 0,
+        "harmed": 0,
+        "failed": 10,
+        "c1_failed": 10,
+        "original_recall": 118,
+        "budget_recall": 118,
+        "missing_candidate_found": 0,
+        "wrong_update_fraction": 0.0078125,
+        "c1_wrong_update_fraction": 0.0078125,
+        "current_gain_against_c1": 0.0,
+        "utility_gain_against_c1": 1.0848045349121094e-05
+      },
+      "epoch_utility": [
+        0.7482643127441406,
+        0.7482534646987915,
+        0.7480190992355347,
+        0.7475566864013672
+      ],
+      "artifact_sha256": {
+        "config.json": "b65bed835c4201a3ca2cf248a2f79bf73212c2161cc6f6b4453e6712968097b5",
+        "completion.json": "22b115cd14b387700d902bf05a97058a6890c85d947c3d117b7a328b7a874fff",
+        "metrics.json": "bf6acf0d9e461539bb8ce014090f21c10b6ca2ace28f77a06c9576a1be09a871",
+        "train.jsonl": "f3728432ef749b9da10c80aefa92ae1d4aebe242a19563eebb6b1ceee4767cce",
+        "best.pth": "65323790ddddc4bc27d39ca080d4fd1870c74ac5ea31a160833dec7748ac3cd6",
+        "best_validation.npz": "ba028460cf2377d1c3177a5da59194bf04eef622a55f7421621db41e768fa7f7",
+        "training_completed.txt": "c04b07ece85b4821666e0734021e3b5fd480fab9f355129676115a8e9c8e2115",
+        "job_completed.txt": "c04b07ece85b4821666e0734021e3b5fd480fab9f355129676115a8e9c8e2115"
+      },
+      "learning_gain_claimed": false
+    }
+  },
+  "learning_gain_claimed": false,
+  "full_gate": {
+    "blocked_before_actual_acceptance": true,
+    "requires_real_both_teacher_PASS_batch384_9updates": true,
+    "acceptance_path": "/data/gb/setup/warm_budgeted_action_fit_m0_acceptance_20261004.json"
+  },
+  "limitations": [
+    "Epoch0 and selected-best numerical replay covers all128 VAL queries per teacher. The config's complete TRAIN+VAL initial parity is recorded; TRAIN embeddings were not reread.",
+    "Terminal ABC changes are evidenced by the source-linked runtime receipt and real logged optimization; selected-best parameter differences are independently computed from retained tensors.",
+    "GPU numerical outputs are compared on CPU using the existing 2e-6 scalar-metric tolerance and float32-epsilon row tolerance; all discrete fields must match exactly."
+  ],
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "TRAIN_embeddings_read": false,
+    "jobs_started": 0,
+    "weights_modified": false,
+    "deleted_or_other_M0_weights_read": false,
+    "production_source_modified": false,
+    "runtime_seconds": 6.061
+  }
+}

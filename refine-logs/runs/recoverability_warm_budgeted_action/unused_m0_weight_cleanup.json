@@ -1,0 +1,31 @@
+{
+  "status": "COMPLETE",
+  "at_cst": "2026-10-04T12:52:04.842225+08:00",
+  "files_deleted": 2,
+  "bytes_reclaimed": 3465832,
+  "deleted": [
+    {
+      "path": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "d067f672a95fb7b2329277ef7907833186ab4b9d0ac42c0e150c067b56d1b213",
+      "reason": "Audited best0 duplicates protected parent tensors; full fits initialize directly from protected parent, not M0. All logs metrics cached outputs retained."
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_m0_20261004/best.pth",
+      "bytes": 1732916,
+      "sha256": "65323790ddddc4bc27d39ca080d4fd1870c74ac5ea31a160833dec7748ac3cd6",
+      "reason": "Audited best0 duplicates protected parent tensors; full fits initialize directly from protected parent, not M0. All logs metrics cached outputs retained."
+    }
+  ],
+  "cumulative_files": 61,
+  "cumulative_bytes": 88197816,
+  "protected_inputs": [
+    "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+    "/data/gb/outputs/c1_initial_seed42/best.pth",
+    "/data/gb/outputs/abc_joint_v1_seed42/last.pth"
+  ],
+  "live_full_weights_not_touched": true,
+  "M0_independent_audit_PASS": true,
+  "no_active_M0_weight_consumers": true
+}

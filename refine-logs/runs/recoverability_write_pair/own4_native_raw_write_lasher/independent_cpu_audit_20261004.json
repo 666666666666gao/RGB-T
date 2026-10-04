@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/budgeted_full_fit_acceptance",
+  "model_metadata": "Codex/GPT-6 family; exact runtime model/effort not independently exposed",
+  "audited_utc": "2026-10-04T04:25:08.791880+00:00",
+  "checker": "/data/gb/setup/budgeted_action_actual_full_fit_cpu_audit_20261004.py",
+  "checker_sha256": "03f696c45a38c230bdc47695e28dcb433d2d5bc1420046f4c3d273c40129d59f",
+  "blocking_findings": [],
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GPU_queries": 0,
+    "training": false,
+    "source_model_data_modified": false,
+    "job_commands_or_processes_changed": false,
+    "neural_forward": false,
+    "elapsed_seconds": 2.2488597999326885
+  },
+  "scope": "Completed LasHeR raw_write control; actual GT and all four variants independently rescored with NumPy.",
+  "root": "/data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004",
+  "dataset": "lasher",
+  "actual_GT": "/data/wangwj/dataset/LasHeR/testingset",
+  "sequences": 245,
+  "frames": 220703,
+  "completeness": "All980 predictions and all980 receipt frame counts checked; all245 candidate diagnostic NPZ control-action arrays checked.",
+  "packaged_GT_equals_actual_GT": true,
+  "native_arithmetic": "float32 rounded predictions; GT initial row included; strict centers and inclusive IoU; GT any coordinate<=0 maps to-1; NPR/PR <= threshold, SR > threshold; equal sequence weights.",
+  "native_invalid_prediction_size_replacements": 0,
+  "native_metric_function_calls": 0,
+  "all_980_native_sequence_triples_exact": true,
+  "all_19_attributes_and_mean_curves_per_variant_exact": true,
+  "native_overall_percent": {
+    "baseline": {
+      "NPR": 73.10197299993155,
+      "PR": 76.59844897037928,
+      "SR": 61.03742534859602
+    },
+    "c1": {
+      "NPR": 74.15451765370953,
+      "PR": 77.86097272569167,
+      "SR": 61.951313680271845
+    },
+    "write_pair_reference_own_b384": {
+      "NPR": 74.45735525847881,
+      "PR": 78.09777783730206,
+      "SR": 62.12706332333795
+    },
+    "write_pair_raw_write_own_b384": {
+      "NPR": 74.40392021797591,
+      "PR": 78.06472964004844,
+      "SR": 62.114274061309594
+    }
+  },
+  "paired_5000_seed42_bootstrap_exact": {
+    "baseline": {
+      "NPR": {
+        "mean_delta_percentage_points": 1.3019472180443643,
+        "percentile_95_interval_percentage_points": [
+          0.5064569017897559,
+          2.193387488698901
+        ],
+        "improved_sequences": 62,
+        "worsened_sequences": 53,
+        "tied_sequences": 130
+      },
+      "PR": {
+        "mean_delta_percentage_points": 1.4662806696691237,
+        "percentile_95_interval_percentage_points": [
+          0.5869156994712657,
+          2.448096912821425
+        ],
+        "improved_sequences": 65,
+        "worsened_sequences": 51,
+        "tied_sequences": 129
+      },
+      "SR": {
+        "mean_delta_percentage_points": 1.076848712713579,
+        "percentile_95_interval_percentage_points": [
+          0.4478859778490068,
+          1.773338870247047
+        ],
+        "improved_sequences": 70,
+        "worsened_sequences": 53,
+        "tied_sequences": 122
+      }
+    },
+    "c1": {
+      "NPR": {
+        "mean_delta_percentage_points": 0.24940256426637203,
+        "percentile_95_interval_percentage_points": [
+          -0.8158562693247985,
+          1.351641549844363
+        ],
+        "improved_sequences": 45,
+        "worsened_sequences": 25,
+        "tied_sequences": 175
+      },
+      "PR": {
+        "mean_delta_percentage_points": 0.2037569143567708,
+        "percentile_95_interval_percentage_points": [
+          -1.0072194703340922,
+          1.4325307312328468
+        ],
+        "improved_sequences": 46,
+        "worsened_sequences": 30,
+        "tied_sequences": 169
+      },
+      "SR": {
+        "mean_delta_percentage_points": 0.16296038103774327,
+        "percentile_95_interval_percentage_points": [
+          -0.7172989972428504,
+          1.0777462678687986
+        ],
+        "improved_sequences": 51,
+        "worsened_sequences": 29,
+        "tied_sequences": 165
+      }
+    },
+    "write_pair_reference_own_b384": {
+      "NPR": {
+        "mean_delta_percentage_points": -0.05343504050289883,
+        "percentile_95_interval_percentage_points": [
+          -0.16945954802809612,
+          0.03008343035304326
+        ],
+        "improved_sequences": 12,
+        "worsened_sequences": 7,
+        "tied_sequences": 226
+      },
+      "PR": {
+        "mean_delta_percentage_points": -0.03304819725361152,
+        "percentile_95_interval_percentage_points": [
+          -0.1483179410252452,
+          0.04253554815788778
+        ],
+        "improved_sequences": 8,
+        "worsened_sequences": 7,
+        "tied_sequences": 230
+      },
+      "SR": {
+        "mean_delta_percentage_points": -0.012789262028361429,
+        "percentile_95_interval_percentage_points": [
+          -0.09753566129972213,
+          0.04800264612916919
+        ],
+        "improved_sequences": 19,
+        "worsened_sequences": 17,
+        "tied_sequences": 209
+      }
+    }
+  },
+  "observed_extra_search_control_counters": {
+    "extra_searches_requested": 5286,
+    "extra_visual_forwards": 5286,
+    "template_updates": 85543,
+    "paused_query_writes": 0,
+    "changed_candidate_indices": 302
+  },
+  "config_differences_vs_full": [
+    "output",
+    "unsafe_writes",
+    "bootstrap_training_future_policy"
+  ],
+  "control_scope": "Forces query template writes at raw_score>.84 regardless of learned pause; does not disable learned search or A memory.",
+  "descriptive_config_change": "bootstrap_training_future_policy changed wording only; verified actual strings, same checkpoint and remaining execution configuration.",
+  "checker_corrections": [
+    {
+      "issue": "First no_search audit config assertion omitted changed bootstrap_training_future_policy description",
+      "observed": "All980 native triples/attributes/curves already passed before assertion.",
+      "fix": "Include this exact descriptive string difference. No production change and no metric tolerance relaxation."
+    }
+  ],
+  "uncertainty_scope": "Paired sequence uncertainty for fixed checkpoints, not training-seed variation.",
+  "artifacts_sha256": {
+    "predictions/inference_config.json": "4775585a3702d8550d337344a953ceb8baea9daccd2af065a0b37c5794757516",
+    "predictions/inference_completion.json": "fb10898713c80e14df4b79e745aa5257c6ccd3e1bfdf9926627c71ebcbbbd9f3",
+    "core_report/full_report.json": "aade944f365b16a6ec77e2b7bb0f4a787218dd37fe190ee287ac8b015db81b1e",
+    "core_report/per_sequence.csv": "af60027998734305a3132e205cf35fe8f563edda669e7d9de6fee039c58455d8"
+  }
+}
