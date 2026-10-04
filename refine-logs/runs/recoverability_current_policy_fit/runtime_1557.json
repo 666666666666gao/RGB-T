@@ -1,0 +1,80 @@
+{
+  "observed_at": "2026-10-04T15:57:21.404995+08:00",
+  "live_handles": [
+    "3817842 3817836       33:40 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
+    "3835526 3835386       23:31 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/c1/validation --batch-size 384 --epochs 60 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
+    "3872913 3835380       02:39 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
+    "3872964 3835392       02:38 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
+    "3872976 3835399       02:37 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/predictions"
+  ],
+  "fits": [
+    {
+      "mode": "oracle",
+      "policy": "c1",
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004",
+      "training_complete": true,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 60,
+        "step": 3,
+        "optimizer_steps": 180,
+        "loss": 1.276638388633728
+      },
+      "cached_best_epoch": 33,
+      "cached_best_utility": 0.7396875619888306,
+      "cached_initial_utility": 0.7383785247802734
+    },
+    {
+      "mode": "oracle",
+      "policy": "own",
+      "root": "/data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004",
+      "training_complete": true,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 60,
+        "step": 3,
+        "optimizer_steps": 180,
+        "loss": 1.2697739601135254
+      },
+      "cached_best_epoch": 57,
+      "cached_best_utility": 0.7414530515670776,
+      "cached_initial_utility": 0.7412313222885132
+    },
+    {
+      "mode": "selector",
+      "policy": "c1",
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004",
+      "training_complete": false,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 57,
+        "step": 1,
+        "optimizer_steps": 169,
+        "loss": 1.309269905090332
+      },
+      "cached_best_epoch": 39,
+      "cached_best_utility": 0.7395312786102295,
+      "cached_initial_utility": 0.7383785247802734
+    },
+    {
+      "mode": "selector",
+      "policy": "own",
+      "root": "/data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004",
+      "training_complete": true,
+      "job_complete": false,
+      "latest_update": {
+        "epoch": 60,
+        "step": 3,
+        "optimizer_steps": 180,
+        "loss": 1.220705509185791
+      },
+      "cached_best_epoch": 40,
+      "cached_best_utility": 0.7426351308822632,
+      "cached_initial_utility": 0.7412313222885132
+    }
+  ],
+  "completion_queue": {
+    "phase": "WAIT_ALL4_TRAINING_COMPLETIONS",
+    "observed_at": "2026-10-04T15:23:41.950793+08:00"
+  }
+}

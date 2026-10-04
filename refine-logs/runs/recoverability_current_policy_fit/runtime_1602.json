@@ -1,0 +1,70 @@
+{
+  "observed_at": "2026-10-04T16:02:28.986638+08:00",
+  "phase": {
+    "phase": "WAIT_ALL4_FULL98_REPORTS",
+    "observed_at": "2026-10-04T16:00:10.106134+08:00"
+  },
+  "live_handles": [
+    "3817842 3817836       38:47 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_completion_review/queue_current_policy_completion_audits.py",
+    "3872913 3835380       07:46 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_c1_b384_full_20261004/predictions",
+    "3872964 3835392       07:45 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_fit_own_b384_full_20261004/predictions",
+    "3872976 3835399       07:44 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_own_b384_full_20261004/predictions",
+    "3880000 3835386       03:56 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_current_policy_selector_fit_c1_b384_full_20261004/predictions"
+  ],
+  "fits": [
+    {
+      "mode": "oracle",
+      "policy": "c1",
+      "training_complete": true,
+      "job_complete": false,
+      "optimizer_steps": 180,
+      "best_epoch": 33,
+      "predicted_sequence_files": 13
+    },
+    {
+      "mode": "oracle",
+      "policy": "own",
+      "training_complete": true,
+      "job_complete": false,
+      "optimizer_steps": 180,
+      "best_epoch": 57,
+      "predicted_sequence_files": 13
+    },
+    {
+      "mode": "selector",
+      "policy": "c1",
+      "training_complete": true,
+      "job_complete": false,
+      "optimizer_steps": 180,
+      "best_epoch": 39,
+      "predicted_sequence_files": 10
+    },
+    {
+      "mode": "selector",
+      "policy": "own",
+      "training_complete": true,
+      "job_complete": false,
+      "optimizer_steps": 180,
+      "best_epoch": 40,
+      "predicted_sequence_files": 13
+    }
+  ],
+  "actual_full_fit_audits": {
+    "current_policy_fit": {
+      "status": "PASS",
+      "best_epochs": {
+        "c1": 33,
+        "own": 57
+      },
+      "both_teacher_arms_passed": true
+    },
+    "current_policy_selector_fit": {
+      "status": "PASS",
+      "best_epochs": {
+        "c1": 39,
+        "own": 40
+      },
+      "both_teacher_arms_passed": true
+    }
+  }
+}
