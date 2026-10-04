@@ -3,14 +3,14 @@
   "review_independence": "same-family",
   "acceptance_status": "provisional",
   "phase": "experiment-bridge Phase2.5 fresh SOURCEONLY review",
-  "reviewed_at_cst": "2026-10-04T22:06:30.062873+08:00",
+  "reviewed_at_cst": "2026-10-04T22:10:17.819559+08:00",
   "reviewer_agent": "/root/full_coverage_pipeline_review",
   "requested_model": "gpt-6-astra",
   "requested_reasoning_effort": "max",
   "runtime_attested": false,
   "runtime_model_attested": false,
   "runtime_reasoning_effort_attested": false,
-  "scope": "Final12 new full-coverage pipeline files: eight original Python tools, three shell runners and added complete_pipeline.py. Source/AST/JSON metadata and stdlib/Bash fixtures only.",
+  "scope": "Final12 new repository pipeline files plus two bounded external staging/controller-launch helpers. Source/AST/JSON metadata and stdlib/Bash/PowerShell fixtures only; SCP, process lookup and Popen were mocked.",
   "blocking_issues": [],
   "nonblocking_issues": [],
   "blocking_fixes_required": [],
@@ -78,6 +78,12 @@
       "topic": "Operational scope and monitoring",
       "status": "PASS",
       "evidence": "GPU checks use index/memory/utilization only. No power or temperature queries, dataset moves, production model/trainer/tracker/evaluator edits, test-set tuning or extra neural diagnostics are introduced. The memory monitor and automatic handoff now both use180-second waits."
+    },
+    {
+      "topic": "Fixed operational staging and one controller launch",
+      "status": "PASS",
+      "evidence": "PowerShell7.6.6 parses the stager and an in-memory SCP sink confirms exactly13 distinct copies: the12 reviewed sources plus review JSON, all under2027:/data/gb/setup; reviewed hashes are checked before each source copy, and no production destination is used. All downstream controller script names are among those staged. The launcher requires same-family/provisional source PASS and exact reviewed controller bytes, checks the original four collector runner PIDs/command names, rejects an existing controller launch/progress record, and starts one controller in the main GOLA cwd. Mock fixtures reject duplicate launch, wrong original handles and mismatching reviewed controller bytes.",
+      "limit": "No real SCP, SSH, process observation, controller start or deployment occurred during this reviewer check. The stager was executed only with SCP replaced by a local recording function."
     }
   ],
   "source_fixture_execution": {
@@ -137,7 +143,13 @@
       "dead_unfinished_owner_rejected": 1,
       "missing_unfinished_owner_ps_failure_propagates": 1,
       "fixed_complete_handoff_command_order_and_CPU_private_import_paths": 1,
-      "duplicate_handoff_progress_rejected": 1
+      "duplicate_handoff_progress_rejected": 1,
+      "operational_controller_launcher_python_compile": 1,
+      "PowerShell_stager_parse_and13_mock_SCP_setup_only_routes": 1,
+      "reviewed_controller_once_original_four_handles_mock": 1,
+      "duplicate_operational_controller_launch_rejected": 1,
+      "wrong_original_runner_handle_rejected": 1,
+      "unreviewed_controller_bytes_rejected": 1
     },
     "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
     "limits": "No real arrays, model import, checkpoint loading, ground-truth scoring, remote execution or new runtime acceptance."
@@ -188,12 +200,13 @@
     "noSSH": true,
     "noGPU": true,
     "noNN": true,
-    "operational_scripts_executed": false,
     "reviewer_files_written": [
       "pipeline_source_checks.py",
       "pipeline_source_checks.json",
       "pipeline_source_review.json"
-    ]
+    ],
+    "unmocked_operational_scripts_executed": false,
+    "operational_helper_control_flow": "Local fixture sinks only; no SCP/SSH/Popen operation was dispatched."
   },
   "runtime_context_from_parent_not_attested": {
     "collection": "Parent reports actual881/98 eligibility CPU PASS and original four collection queues launched21:56:24; this reviewer did not query them.",
@@ -216,5 +229,9 @@
   "actual_new_native_complete_claimed": false,
   "new_NN_started_by_reviewer": false,
   "learning_or_native_improvement_claimed": false,
-  "official_goal_completed": false
+  "official_goal_completed": false,
+  "operational_helper_sha256": {
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/stage_full_coverage_pipeline.ps1": "9cf3490cdfcb100106de372553ac125496bc48444b17a3a32ddd8916546a7f0e",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_full_coverage_controller_20261004.py": "b3a30c364fc9242aab1f17299782215708d9078d31714b977384ea124512761d"
+  }
 }
