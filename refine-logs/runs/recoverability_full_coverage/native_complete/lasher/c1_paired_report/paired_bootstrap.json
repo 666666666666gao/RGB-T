@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/c1_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/recoverability_full_coverage_native_full_20261004/lasher/c1_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "c1",
+        "full_coverage_complete"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": -0.9530794766745461,
+          "percentile_95_interval_percentage_points": [
+            -2.467082333515402,
+            0.5560510633438257
+          ],
+          "improved_sequences": 67,
+          "worsened_sequences": 85,
+          "tied_sequences": 93
+        },
+        "PR": {
+          "mean_delta_percentage_points": -1.2410470114711698,
+          "percentile_95_interval_percentage_points": [
+            -2.915556147515428,
+            0.4013132146045862
+          ],
+          "improved_sequences": 64,
+          "worsened_sequences": 88,
+          "tied_sequences": 93
+        },
+        "SR": {
+          "mean_delta_percentage_points": -0.9792908278150875,
+          "percentile_95_interval_percentage_points": [
+            -2.2520968301773707,
+            0.2793419557524941
+          ],
+          "improved_sequences": 65,
+          "worsened_sequences": 102,
+          "tied_sequences": 78
+        }
+      }
+    }
+  }
+}

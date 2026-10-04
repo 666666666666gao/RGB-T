@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 fresh source-only review",
+  "reviewed_at_cst": "2026-10-05T01:05:25.955920+08:00",
+  "reviewer_agent": "/root/full_native_zero_area_review",
+  "actual_model": "gpt-6-astra",
+  "actual_reasoning_effort": "max",
+  "runtime_attested": false,
+  "model_attribution": "Parent-supplied reviewer launch configuration; model and effort are not independently runtime-attested.",
+  "scope": "Only the CPU acceptance change from strictly positive to nonnegative tracking-box dimensions, plus its explanatory comment.",
+  "source_sha256": {
+    "refine-logs/runs/recoverability_full_coverage/audit_native_complete_cpu.py": "2912db2357c9855bde592521d3ceabe6bb7abc689be763db9dd53617ea6e4941"
+  },
+  "previous_reviewed_source_sha256": "68536fa9d2867c4cbf19d439561db2f233fdb380e333b8236b0bc0610d348533",
+  "blocking_issues": [],
+  "production_changes_required": false,
+  "conclusion": "Accepting the witnessed zero-area boxes is correct. They remain in all frame denominators. Positive-area targets give zero intersection and IoU 0. Native precision center errors remain unchanged; they are not manually forced to failure.",
+  "checks": {
+    "python_3_8_AST_and_in_memory_compile": "PASS",
+    "only_comment_and_one_Gt_to_GtE_change_vs_reviewed_git_source": "PASS",
+    "all_other_AST_including_GT_masks_full_lengths_attributes_and_5000_seed42_bootstrap_unchanged": "PASS",
+    "eight_geometry_expressions_match_original_audit_AST": "PASS",
+    "bootstrap_draws_and_result_math_match_original_audit_AST": "PASS",
+    "current_production_collect_core_metrics_unchanged_vs_prior_review": "PASS",
+    "synthetic_positive_target_zero_area_IoU_zero_cases": 18,
+    "synthetic_positive_area_controls": 2,
+    "nonnegative_dimension_predicate_cases": 6,
+    "zero_IoU_fails_all_original_strict_SR_thresholds": "PASS",
+    "no_frame_drop_clamp_output_repair_or_metric_rule_change": "PASS"
+  },
+  "diagnosis_artifact_evidence": {
+    "path": "refine-logs/runs/recoverability_full_coverage/actual_zero_area_box_diagnosis.json",
+    "scope": "Existing diagnosis JSON only; raw prediction files were not independently re-inspected in this review.",
+    "lasher": {
+      "sequences": 245,
+      "raw_nonpositive_tracking_boxes": 10,
+      "quantized_zero_size_tracking_boxes": 10,
+      "quantized_negative_size_tracking_boxes": 0
+    },
+    "rgbt234": {
+      "sequences": 234,
+      "raw_nonpositive_tracking_boxes": 0,
+      "quantized_zero_size_tracking_boxes": 0,
+      "quantized_negative_size_tracking_boxes": 0
+    },
+    "retained_examples_finite_nonnegative_and_zero_area": 8
+  },
+  "nonblocking_issues": [
+    {
+      "file": "refine-logs/runs/recoverability_full_coverage/pipeline_source_checks.py:388-395",
+      "severity": "WARN",
+      "issue": "The historical whole-AST equality fixture rejects this intentional predicate change; its operands were checked without running the full fixture.",
+      "resolution": "This focused review proves that reverting only this predicate restores exact prior AST identity. Preserve the historical review and do not present it as a fresh PASS for the changed source."
+    }
+  ],
+  "execution": {
+    "python_executable": "E:\\python.exe",
+    "stdlib_only": true,
+    "numpy_imported": false,
+    "torch_imported": false,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "SSH_calls": 0,
+    "jobs_started": 0,
+    "actual_dataset_GT_reads": 0,
+    "actual_GT_or_native_replay_run": false,
+    "raw_prediction_files_modified": false,
+    "metric_files_modified": false,
+    "reviewed_source_modified": false
+  },
+  "pending_runtime_evidence": "Root must run retained-prediction CPU acceptance for both datasets and finish remaining CPU reporting. This source PASS is not actual native/GT acceptance."
+}

@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "completed_at_cst": "2026-10-05T01:19:03.793443+08:00",
+  "original_CPU_controller_and_watcher_terminated": true,
+  "all_original_native_predictions_completed_before_CPU_fix": true,
+  "actual_GT_native_audit_status": {
+    "lasher": "PASS",
+    "rgbt234": "PASS"
+  },
+  "native_metric_math_source": "installed_rgbt_metrics_source_20261005.txt",
+  "final_CPU_auditor_sha256": "f885fd091d7a242151fa0ab10026bd2939f51b0785e0ddee224b8c7db7e26206",
+  "raw_prediction_files_modified": false,
+  "neural_jobs_restarted": false,
+  "completed_original_training": {
+    "arms": 4,
+    "epochs_each": 60,
+    "optimizer_steps_each": 180
+  },
+  "final_native_evaluation": {
+    "sequences": 479,
+    "frames": 337352,
+    "same_checkpoint_epoch": 59
+  },
+  "selected_new_weight_removed_after_negative_complete_evaluation": true,
+  "retained_formal_best_weight": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "retained_formal_best_metrics_actual_source_sha256": {
+    "refine-logs/runs/recoverability_write_pair/own4_native_lasher/core_report/full_report.json": "330572d44de0ebd6ed3f4a34b24eea42ff75fc4378db2c7d056d218645d50ce3",
+    "refine-logs/runs/recoverability_write_pair/own4_native_rgbt234/core_report/full_report.json": "3c04df8185a7efbc547ebae95ef15f1842a978b7b0982d7b9307dcb097610aec"
+  },
+  "cleanup": {
+    "status": "REMOVED_VERIFIED",
+    "files": [
+      {
+        "path": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004/best.pth",
+        "bytes": 1732916,
+        "sha256": "cb5f4d52026d99292bb3a4b31be6ac8d7f32e4bbd876cb2f14919630f5d66460",
+        "reason": "New-round native selection underperformed retained old4 on all five metrics."
+      },
+      {
+        "path": "/data/gb/outputs/recoverability_full_coverage_budgeted_lr4_full_20261004/best.pth",
+        "bytes": 1732916,
+        "sha256": "d94df7f121b4f8bf39bc05dbc36e518b24f6d0ebca0cf71405c0a721ea242172",
+        "reason": "Unselected lower developer-VAL utility within the completed new round."
+      }
+    ],
+    "file_count": 2,
+    "total_bytes": 3465832,
+    "protected_sha256": {
+      "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62",
+      "/data/gb/outputs/c1_initial_seed42/best.pth": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+      "/data/gb/outputs/abc_joint_v1_seed42/last.pth": "da217b7005672a0dbaa8b988cafd014d70fe0960cd02739ac0a418623b2e8a91",
+      "/data/gb/GOLA/pretrained_models/gola_b224.bin": "6339efe9f98a130b3279afe43e51b7dd4c1fb7352917c2aa385ab00a978d8a69",
+      "/data/gb/cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+      "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth": "a840219e1d362ac353ea13fae853a11d93505799f5bf7d6fbc2112e7b578a529",
+      "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_full_20261004/best.pth": "907fc6ef6337fdaffeac2ca70f543217d36046134b254171265bd3c76b7c752a"
+    },
+    "formal_best_retained": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "formal_best_metrics_percent": {
+      "lasher": {
+        "PR": 78.09777783730206,
+        "NPR": 74.45735525847881,
+        "SR": 62.12706332333795
+      },
+      "rgbt234": {
+        "MPR": 92.13340500935078,
+        "MSR": 69.57809745628578
+      }
+    },
+    "actual_fit_and_two_full_native_audits_passed": true,
+    "all_report_and_training_export_hashes_verified": true,
+    "no_live_exact_weight_path_references": true,
+    "original_controllers_and_queues_closed": true,
+    "raw_training_metrics_predictions_reports_kept": true,
+    "local_73_file_export_hash_verification_passed_before_cleanup": true,
+    "completed_at_cst": "2026-10-05T01:17:27.837188+08:00",
+    "protected_before_after_exact": true,
+    "cumulative_removed_weight_count": 92,
+    "cumulative_removed_nominal_bytes": 141918212
+  },
+  "goal_result": "ACTIVE_UNMET"
+}

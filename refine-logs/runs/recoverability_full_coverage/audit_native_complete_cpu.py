@@ -66,10 +66,15 @@ for variant, run in runs.items():
     curves = {metric: [] for metric in thresholds}
     for name in names:
         prediction = np.loadtxt(pred / (name + '.txt'), dtype=np.float32, ndmin=2).round(0)
-        assert prediction.shape == (lengths[name], 4) and np.isfinite(prediction).all() and (prediction[1:, 2:] > 0).all()
+        # Preserve all raw output rows; LasHeR's official scorer handles zero-area boxes below.
+        assert prediction.shape == (lengths[name], 4) and np.isfinite(prediction).all() and (prediction[1:, 2:] >= 0).all()
         if dataset == 'lasher':
             target = gt[name]['target']
             prediction[0] = target[0]
+            # Match NPR/PR/SR_LasHeR on this in-memory copy, without changing prediction files.
+            for frame in range(1, len(target)):
+                if (prediction[frame, 2:] <= 0).any():
+                    prediction[frame] = prediction[frame - 1].copy()
             error, normalized, overlap = geometry(prediction, target)
             values = {'PR': error, 'NPR': normalized, 'SR': overlap}
             for value in values.values():

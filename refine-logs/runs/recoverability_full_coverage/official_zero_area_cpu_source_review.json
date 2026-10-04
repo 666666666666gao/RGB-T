@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 focused source-only re-review after actual CPU mismatch",
+  "reviewer_agent": "/root/full_native_zero_area_review",
+  "review_context": "Same reviewer resumed for a new review of corrected source and newly supplied official-source evidence.",
+  "reviewed_at_cst": "2026-10-05T01:14:00.010211+08:00",
+  "actual_model": "gpt-6-astra",
+  "actual_reasoning_effort": "max",
+  "runtime_attested": false,
+  "model_attribution": "Parent-supplied reviewer launch configuration; not independently runtime-attested.",
+  "scope": "LasHeR in-memory native preprocessing for witnessed nonnegative zero-area tracking boxes. No actual GT/native replay or operational execution.",
+  "source_sha256": {
+    "refine-logs/runs/recoverability_full_coverage/audit_native_complete_cpu.py": "f885fd091d7a242151fa0ab10026bd2939f51b0785e0ddee224b8c7db7e26206"
+  },
+  "official_source": {
+    "archive": "refine-logs/runs/recoverability_full_coverage/installed_rgbt_metrics_source_20261005.txt",
+    "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382",
+    "parent_reported_installed_path": "/data/gb/envs/gola/lib/python3.10/site-packages/rgbt/metrics/metrics.py",
+    "reviewed_classes": {
+      "NPR": {
+        "initialize_line": 338,
+        "loop_line": 346
+      },
+      "PR_LasHeR": {
+        "initialize_line": 296,
+        "loop_line": 304
+      },
+      "SR_LasHeR": {
+        "initialize_line": 253,
+        "loop_line": 261
+      }
+    }
+  },
+  "conclusion": "PASS within the finite four-column, complete-length, nonnegative tracking-dimension domain enforced by the auditor. First-frame initialization followed by sequential previous-box copying matches the installed LasHeR NPR, PR and SR preprocessing, including consecutive zero-area frames. Exact-length acceptance makes the official length slice a no-op. The RGB-T234 branch and all metric arithmetic remain unchanged.",
+  "blocking_issues": [],
+  "production_changes_required": false,
+  "checks": {
+    "python_3_8_AST_and_in_memory_compile": "PASS",
+    "only_nonnegative_assertion_plus_LasHeR_repair_loop_and_comments_vs_prior_git_source": "PASS",
+    "geometry_GT_masks_full_length_attributes_thresholds_and_5000_seed42_bootstrap_AST_unchanged": "PASS",
+    "official_three_preprocessing_loops_AST_identical": "PASS",
+    "actual_candidate_and_official_preprocessing_AST_executed_on_synthetic_rows": true,
+    "synthetic_sequences": 6,
+    "candidate_vs_each_official_metric_comparisons": 18,
+    "production_NPR_PR_SR_repeated_preprocessing_idempotence_cases": 6,
+    "old_direct_scoring_preprocessing_differs_on_zero_box_fixtures": 4,
+    "raw_fixture_rows_and_frame_counts_preserved": "PASS",
+    "RGBT234_branch_unchanged": "PASS",
+    "no_prediction_file_write_added": "PASS"
+  },
+  "prior_review_correction": {
+    "prior_review": "refine-logs/runs/recoverability_full_coverage/zero_area_cpu_source_review.json",
+    "historical_exact_copy": "refine-logs/runs/recoverability_full_coverage/zero_area_cpu_source_review_historical_20261005_010525.json",
+    "original_bytes_preserved": true,
+    "superseded_scope": "The earlier PASS is not evidence of native LasHeR zero-area equivalence.",
+    "error": "The last review proved only the raw inclusive IoU geometry and incorrectly applied direct-zero-IoU scoring to native LasHeR. It did not inspect the official sequential preprocessing, so that conclusion did not represent native scoring.",
+    "trigger_from_parent_not_replayed_by_reviewer": "Actual retained-prediction CPU acceptance rejected boyride2path PR.",
+    "lesson": "Verify benchmark-specific preprocessing from installed evaluator source before inferring scoring behavior from geometry alone."
+  },
+  "nonblocking_issues": [
+    {
+      "file": "refine-logs/runs/recoverability_full_coverage/pipeline_source_checks.py:388-395",
+      "severity": "WARN",
+      "issue": "Historical whole-AST identity fixture intentionally no longer matches the added official preprocessing and predicate change. It was not rerun or edited; this focused new record supersedes it for these changes."
+    }
+  ],
+  "execution": {
+    "stdlib_only": true,
+    "numpy_imported": false,
+    "torch_imported": false,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "SSH_calls": 0,
+    "jobs_started": 0,
+    "actual_GT_reads": 0,
+    "raw_prediction_reads": 0,
+    "actual_GT_or_native_replay_run": false,
+    "audit_source_modified": false,
+    "historical_fixture_modified": false,
+    "raw_prediction_files_modified": false,
+    "metric_files_modified": false
+  },
+  "pending_runtime_evidence": "Root must rerun retained-prediction CPU acceptance and remaining CPU reports. Source PASS is not runtime acceptance."
+}
