@@ -1,0 +1,623 @@
+{
+  "observed_at_cst": "2026-10-05T06:08:01.843579+08:00",
+  "controller_processes": "632884       1 Ss      03:40:16 /data/gb/envs/gola/bin/python -u /data/gb/setup/best_native_policy_complete_pipeline_20261005.py\n1011031  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_best/predictions\n1011032  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_best/predictions\n1011033  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_best/predictions\n1011034  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_best/predictions",
+  "progress": {
+    "stage": "FULL98_best",
+    "observed_at_cst": "2026-10-05T06:04:14.619696+08:00",
+    "automatic_restarts": 0,
+    "poll_interval_seconds": 180,
+    "official_goal_completed": false,
+    "runs": [
+      {
+        "gpu": 0,
+        "pid": 1011031,
+        "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu0_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.evaluate_recoverability",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/traingset",
+          "--model",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth",
+          "--validation-split",
+          "/data/gb/outputs/c1_initial_seed42/split.json",
+          "--write-verification",
+          "action",
+          "--seed",
+          "42",
+          "--max-frames",
+          "0",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_best/predictions"
+        ]
+      },
+      {
+        "gpu": 1,
+        "pid": 1011032,
+        "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu1_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.evaluate_recoverability",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/traingset",
+          "--model",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth",
+          "--validation-split",
+          "/data/gb/outputs/c1_initial_seed42/split.json",
+          "--write-verification",
+          "action",
+          "--seed",
+          "42",
+          "--max-frames",
+          "0",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_best/predictions"
+        ]
+      },
+      {
+        "gpu": 2,
+        "pid": 1011033,
+        "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu2_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.evaluate_recoverability",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/traingset",
+          "--model",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth",
+          "--validation-split",
+          "/data/gb/outputs/c1_initial_seed42/split.json",
+          "--write-verification",
+          "action",
+          "--seed",
+          "42",
+          "--max-frames",
+          "0",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_best/predictions"
+        ]
+      },
+      {
+        "gpu": 3,
+        "pid": 1011034,
+        "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu3_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.evaluate_recoverability",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/traingset",
+          "--model",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth",
+          "--validation-split",
+          "/data/gb/outputs/c1_initial_seed42/split.json",
+          "--write-verification",
+          "action",
+          "--seed",
+          "42",
+          "--max-frames",
+          "0",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_best/predictions"
+        ]
+      }
+    ],
+    "GPU_memory_before_launch_mib": {
+      "0": 349,
+      "1": 20,
+      "2": 20,
+      "3": 20
+    }
+  },
+  "runs_actual": [
+    {
+      "gpu": 0,
+      "pid": 1011031,
+      "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu0_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.evaluate_recoverability",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/traingset",
+        "--model",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth",
+        "--validation-split",
+        "/data/gb/outputs/c1_initial_seed42/split.json",
+        "--write-verification",
+        "action",
+        "--seed",
+        "42",
+        "--max-frames",
+        "0",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_best/predictions"
+      ],
+      "actual_process": "1011031  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/continuous_best/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"4two\", \"sequence_index\": 8, \"sequences\": 98, \"frames\": 184, \"elapsed_seconds\": 6.832547087222338, \"stats\": {\"template_updates\": 113, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"9whitegirl\", \"sequence_index\": 9, \"sequences\": 98, \"frames\": 124, \"elapsed_seconds\": 4.819631164893508, \"stats\": {\"template_updates\": 98, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 5, \"extra_visual_forwards\": 5, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 1, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"Aboydownbike\", \"sequence_index\": 10, \"sequences\": 98, \"frames\": 986, \"elapsed_seconds\": 31.678188433870673, \"stats\": {\"template_updates\": 247, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 25, \"extra_visual_forwards\": 25, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 17, \"paused_query_writes\": 1, \"max_motion_history\": 8}}"
+      ]
+    },
+    {
+      "gpu": 1,
+      "pid": 1011032,
+      "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu1_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.evaluate_recoverability",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/traingset",
+        "--model",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth",
+        "--validation-split",
+        "/data/gb/outputs/c1_initial_seed42/split.json",
+        "--write-verification",
+        "action",
+        "--seed",
+        "42",
+        "--max-frames",
+        "0",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_best/predictions"
+      ],
+      "actual_process": "1011032  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/continuous_best/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"4two\", \"sequence_index\": 8, \"sequences\": 98, \"frames\": 184, \"elapsed_seconds\": 7.135481683537364, \"stats\": {\"template_updates\": 113, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"9whitegirl\", \"sequence_index\": 9, \"sequences\": 98, \"frames\": 124, \"elapsed_seconds\": 4.836564941331744, \"stats\": {\"template_updates\": 98, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 5, \"extra_visual_forwards\": 5, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 1, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"Aboydownbike\", \"sequence_index\": 10, \"sequences\": 98, \"frames\": 986, \"elapsed_seconds\": 31.78335318295285, \"stats\": {\"template_updates\": 247, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 24, \"extra_visual_forwards\": 24, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 17, \"paused_query_writes\": 1, \"max_motion_history\": 8}}"
+      ]
+    },
+    {
+      "gpu": 2,
+      "pid": 1011033,
+      "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu2_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.evaluate_recoverability",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/traingset",
+        "--model",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth",
+        "--validation-split",
+        "/data/gb/outputs/c1_initial_seed42/split.json",
+        "--write-verification",
+        "action",
+        "--seed",
+        "42",
+        "--max-frames",
+        "0",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_best/predictions"
+      ],
+      "actual_process": "1011033  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/continuous_best/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"4two\", \"sequence_index\": 8, \"sequences\": 98, \"frames\": 184, \"elapsed_seconds\": 7.413921820465475, \"stats\": {\"template_updates\": 113, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"9whitegirl\", \"sequence_index\": 9, \"sequences\": 98, \"frames\": 124, \"elapsed_seconds\": 5.143580900505185, \"stats\": {\"template_updates\": 98, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 3, \"extra_visual_forwards\": 3, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 1, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"Aboydownbike\", \"sequence_index\": 10, \"sequences\": 98, \"frames\": 986, \"elapsed_seconds\": 32.98288110783324, \"stats\": {\"template_updates\": 247, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 15, \"extra_visual_forwards\": 15, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 12, \"paused_query_writes\": 1, \"max_motion_history\": 8}}"
+      ]
+    },
+    {
+      "gpu": 3,
+      "pid": 1011034,
+      "log": "/data/gb/setup/best_native_policy_FULL98_best_gpu3_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.evaluate_recoverability",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/traingset",
+        "--model",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth",
+        "--validation-split",
+        "/data/gb/outputs/c1_initial_seed42/split.json",
+        "--write-verification",
+        "action",
+        "--seed",
+        "42",
+        "--max-frames",
+        "0",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_best/predictions"
+      ],
+      "actual_process": "1011034  632884 Rsl        03:47 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/continuous_best/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"4two\", \"sequence_index\": 8, \"sequences\": 98, \"frames\": 184, \"elapsed_seconds\": 6.900946126785129, \"stats\": {\"template_updates\": 113, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"9whitegirl\", \"sequence_index\": 9, \"sequences\": 98, \"frames\": 124, \"elapsed_seconds\": 4.873406282160431, \"stats\": {\"template_updates\": 98, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 5, \"extra_visual_forwards\": 5, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 1, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"Aboydownbike\", \"sequence_index\": 10, \"sequences\": 98, \"frames\": 986, \"elapsed_seconds\": 31.81041435431689, \"stats\": {\"template_updates\": 225, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 32, \"extra_visual_forwards\": 32, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 19, \"paused_query_writes\": 3, \"max_motion_history\": 8}}"
+      ]
+    }
+  ],
+  "actual_existing_receipts": {
+    "cache_gate": {
+      "status": "PASS",
+      "matched_partitions": {
+        "train": 1762,
+        "validation": 196
+      },
+      "all_ordered_jobs_exact": true,
+      "all_GT_current_and_history_replayed": true,
+      "all_schema_and_sources_verified": true,
+      "prefix_epoch": 4,
+      "future_epoch": 4,
+      "all881_98_video_names_exact": true,
+      "teacher_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "partition_acceptance_sha256": {
+        "train": "307d57f823d717486191e50a7553e4757c9929a23245b785672a8348a387b34d",
+        "validation": "d2b0f6ed08919fffd5dc804892d9f31fc84813ac0b250892dd21ec5505a0388f"
+      },
+      "completed_at_cst": "2026-10-05T03:32:46.044969+08:00",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional",
+      "execution": {
+        "GPU_queries": 0,
+        "neural_forward_calls": 0,
+        "optimizer_steps": 0,
+        "native_test_reads": false
+      },
+      "training_started": false,
+      "official_goal_completed": false,
+      "next_gate": "Actual three-epoch new-data capacity M0 before full60epoch B384 completeABC fit",
+      "future_label_scope": "Source-linked actual frozenown-policy teacher labels; no independent future-neural rerun."
+    },
+    "m0_fit_CPU": {
+      "status": "PASS",
+      "stage": "m0",
+      "all_four_full_fits_CPU_passed": true,
+      "epochs_per_arm": 3,
+      "optimizer_steps_per_arm": 15,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "validation_queries": 196,
+      "arms": {
+        "pairwise_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.80527006788179
+        },
+        "pairwise_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.43084730301052
+        },
+        "budgeted_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 1,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.9383450159803
+        },
+        "budgeted_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.76601138804108
+        }
+      },
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "accepted_at_cst": "2026-10-05T03:36:16.453459+08:00"
+    },
+    "full_fit_CPU": {
+      "status": "PASS",
+      "stage": "full",
+      "all_four_full_fits_CPU_passed": true,
+      "epochs_per_arm": 60,
+      "optimizer_steps_per_arm": 300,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "validation_queries": 196,
+      "arms": {
+        "pairwise_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 4,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 2297.1320104510523
+        },
+        "pairwise_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 39,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 2834.2050187289715
+        },
+        "budgeted_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 59,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 2293.2087856181897
+        },
+        "budgeted_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 50,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 2299.238568136003
+        }
+      },
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "accepted_at_cst": "2026-10-05T04:25:05.537933+08:00"
+    }
+  },
+  "GPU_queries": 0,
+  "new_jobs_started": 0,
+  "neural_forward_calls_by_observer": 0
+}

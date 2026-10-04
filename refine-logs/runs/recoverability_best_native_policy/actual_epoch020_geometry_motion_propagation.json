@@ -1,0 +1,105 @@
+{
+  "status": "ACTUAL_WRONG_SELECTED_POSITION_PROPAGATES_TO_NEXT_MOTION_REFERENCE",
+  "computed_at_cst": "2026-10-05T06:07:28.865083+08:00",
+  "sequence": "waiterontheothersideofwindow",
+  "checkpoint_epoch": 20,
+  "rows": {
+    "pairwise_lr4": {
+      "frame_zero_based": 13,
+      "chosen_box_xyxy": [
+        634.1751096687017,
+        232.54002937160112,
+        737.5752373195073,
+        314.3364042874109
+      ],
+      "next_frame_forecast_reference_xyxy": [
+        634.1751098632812,
+        232.54002380371094,
+        737.5752563476562,
+        314.3363952636719
+      ],
+      "max_abs_coordinate_difference": 1.902814892673632e-05,
+      "selected_raw_score": 0.15584777295589447,
+      "appearance_template_updated": false,
+      "prior_template_frame": 5
+    },
+    "pairwise_lr5": {
+      "frame_zero_based": 13,
+      "chosen_box_xyxy": [
+        600.5422488549841,
+        251.49573375058935,
+        672.7450279484569,
+        335.30571245194915
+      ],
+      "next_frame_forecast_reference_xyxy": [
+        600.542236328125,
+        251.4957275390625,
+        672.7450561523438,
+        335.30572509765625
+      ],
+      "max_abs_coordinate_difference": 2.8203886813571444e-05,
+      "selected_raw_score": 0.2372223138809204,
+      "appearance_template_updated": false,
+      "prior_template_frame": 5
+    },
+    "budgeted_lr4": {
+      "frame_zero_based": 13,
+      "chosen_box_xyxy": [
+        600.5422488549841,
+        251.49573375058935,
+        672.7450279484569,
+        335.30571245194915
+      ],
+      "next_frame_forecast_reference_xyxy": [
+        600.542236328125,
+        251.4957275390625,
+        672.7450561523438,
+        335.30572509765625
+      ],
+      "max_abs_coordinate_difference": 2.8203886813571444e-05,
+      "selected_raw_score": 0.2372223138809204,
+      "appearance_template_updated": false,
+      "prior_template_frame": 5
+    },
+    "budgeted_lr5": {
+      "frame_zero_based": 13,
+      "chosen_box_xyxy": [
+        600.5422488549841,
+        251.49573375058935,
+        672.7450279484569,
+        335.30571245194915
+      ],
+      "next_frame_forecast_reference_xyxy": [
+        600.542236328125,
+        251.4957275390625,
+        672.7450561523438,
+        335.30572509765625
+      ],
+      "max_abs_coordinate_difference": 2.8203886813571444e-05,
+      "selected_raw_score": 0.2372223138809204,
+      "appearance_template_updated": false,
+      "prior_template_frame": 5
+    }
+  },
+  "source_facts": [
+    {
+      "path": "research/bounded_recovery.py",
+      "lines": "113-122",
+      "fact": "Selected box is assigned; cropping provider updates with this box."
+    },
+    {
+      "path": "trackit/runner/evaluation/common/siamfc_search_region_cropping_params_provider/simple.py",
+      "lines": "48-57",
+      "fact": "Update accepts any valid intersecting predicted box; predicted_confidence is unused."
+    },
+    {
+      "path": "research/recoverability_tracker.py",
+      "lines": "145-150",
+      "fact": "Selected box and C1 quality are appended to the eight-frame motion history even when appearance write is false."
+    }
+  ],
+  "neural_calls": 0,
+  "GPU_queries": 0,
+  "source_or_model_changed": false,
+  "limitation": "Numerically proves wrong frame13 position enters frame14 forecast reference without an appearance update. Does not prove motion-state gating or alternate hypotheses improve metrics; requires same-budget causal control."
+}
