@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "deployment_approved": true,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer": {
+    "agent": "/root/best_native_policy_final_report_review",
+    "requested_routing": {
+      "model": "gpt-6-astra",
+      "reasoning_effort": "max",
+      "fork_turns": "none"
+    },
+    "attribution": "Routing values are the parameters requested in the parent task, not an independent attestation of the underlying runtime.",
+    "runtime_attested": false,
+    "policy": "C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md"
+  },
+  "scope": {
+    "phase": "experiment-bridge Phase 2.5",
+    "source_files": [
+      "refine-logs/runs/recoverability_best_native_policy/merge_complete_goal_report.py"
+    ],
+    "intended_execution": "Root CPU-only follow-up after the existing controller has actually completed both native benchmark reports and independent native CPU acceptances.",
+    "pipeline_re_reviewed": false,
+    "experiment_or_runtime_acceptance_claimed": false
+  },
+  "blocking_code_issues": [],
+  "checks": [
+    {
+      "status": "PASS",
+      "topic": "Current cache and full-fit schema",
+      "evidence": "Paths and keys match cache_gate_cpu.py and audit_fit_cpu.py: 1762 TRAIN/196 developerVAL, exact 881/98 video coverage, all_four_full_fits_CPU_passed, 60 epochs, 300 updates and batch 384. Legacy all_four_lr_ranking_arms_passed, selected_arm input, best0 flag, per-arm best_epoch and best.pth-only binding are absent."
+    },
+    {
+      "status": "PASS",
+      "topic": "Selected learned weight provenance",
+      "evidence": "The selected checkpoint parent identifies the accepted training arm, and its actual filename indexes that arm's checkpoints. This supports epoch_020.pth, epoch_040.pth, epoch_060.pth and positive cached best.pth. Epoch must match selected_best_epoch and be positive; A/B/C must all change, C1 remain exact and cached CPU replay pass. The current controller selects among positive retained epochs using all 98 continuous developer videos and actual GT mean IoU. No fixed best.pth assumption remains. The existing checksum is recorded at report export as provenance."
+    },
+    {
+      "status": "PASS",
+      "topic": "Complete native evidence and unchanged helpers",
+      "evidence": "The native root, best_native_policy_complete variant and independent CPU receipt fields match the actual producer source. Existing native_report and uncertainty functions are reused without modification. Both 245/220703 and 234/116649 datasets must finish with the same selected checkpoint, full-frame configurations and exact independently accepted native values. Both baseline and C1 comparisons require original 5000-draw, seed-42 paired results, matching metrics/attributes/curves and all four nonempty PNG/PDF plot files. Both native and mechanism completion markers are required."
+    },
+    {
+      "status": "PASS",
+      "topic": "Five goals and honest export",
+      "evidence": "Original aliases PR/NPR/SR and MPR/MSR are preserved. Each unrounded model-minus-complete-GOLA value must be at least two percentage points. C1 differences are descriptive. The merger exports five acceptance rows, 1437 per-sequence rows and 93 attribute rows, preserves original reports, and reports ACTIVE_UNMET for any failed goal. All-five success still requires the root completion audit and never changes system goal status. No multiple-seed gate was added."
+    },
+    {
+      "status": "PASS",
+      "topic": "Source execution boundary",
+      "evidence": "Only stdlib and the existing stdlib report helpers are imported. The script performs no scoring, neural forward, optimizer, remote or GPU call. It writes only a new complete_report directory and refuses an existing one. Mechanism, developer reuse, concurrent-I/O timing and unfinished broader experiments remain explicitly limited."
+    }
+  ],
+  "local_integration_proof": {
+    "status": "PASS",
+    "script": "C:/Users/gb/.codex_tmp/gola_best_native_goal_report_review_checks_20261005.py",
+    "receipt": "C:/Users/gb/.codex_tmp/gola_best_native_goal_report_review_checks_20261005.json",
+    "command": "E:/python.exe -I -B C:/Users/gb/.codex_tmp/gola_best_native_goal_report_review_checks_20261005.py",
+    "full_merger_cases_passed": 4,
+    "filenames": [
+      "epoch_020.pth",
+      "epoch_040.pth",
+      "epoch_060.pth",
+      "best.pth"
+    ],
+    "provenance_rejections_passed": [
+      "epoch_zero",
+      "wrong_selected_epoch",
+      "unchanged_A",
+      "C1_changed",
+      "cached_replay_failed"
+    ],
+    "original_numeric_artifacts_preserved": [
+      "five acceptance rows",
+      "1437 per-sequence rows",
+      "93 attribute rows",
+      "all native curves",
+      "all native overall and attribute metrics",
+      "both baseline/C1 paired intervals"
+    ],
+    "limits": "Previous completed round's actual archived numeric reports are unchanged; only variant/path/epoch metadata and new-run gate/training/selection contracts are virtual fixtures. This proves source integration and preservation of an actual negative result, not current-round training completion, prediction quality or independent recomputation. No mock metric scores were generated."
+  },
+  "execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "jobs_started": 0,
+    "current_checkpoint_reads": 0,
+    "raw_dataset_reads": 0,
+    "metric_scores_synthesized": false,
+    "system_goal_status_changed": false,
+    "reviewed_source_files_modified": false
+  },
+  "actual_new_native_metrics_claimed": false,
+  "official_goal_completed": false,
+  "pending": "Source approval only. Root execution remains dependent on actual completion of both native benchmark reports and independent CPU acceptances. The all-five +2 goal still requires the root completion audit.",
+  "resolved_findings": [
+    {
+      "file": "refine-logs/runs/recoverability_best_native_policy/merge_complete_goal_report.py",
+      "line": 85,
+      "issue": "The scope says ABC was trained on 1762 TRAIN and 196 developerVAL states. The reviewed producer contract distinguishes optimization on 1762 TRAIN states from evaluation on 196 developerVAL states; the generated report should preserve that distinction.",
+      "minimal_fix": "Change only 'trained60epochs/300updates on1762 TRAIN and196 developerVAL states' to 'trained60epochs/300updates on1762 TRAIN states and evaluated on196 developerVAL states'.",
+      "impact": "Report wording accuracy; no metric, checkpoint mapping, or execution defect was found.",
+      "resolution": "Parent changed line 85 to explicitly distinguish training on 1762 TRAIN states from evaluation on 196 developerVAL states. The exact requested wording and final source syntax were verified locally."
+    }
+  ],
+  "source_sha256": {
+    "refine-logs/runs/recoverability_best_native_policy/merge_complete_goal_report.py": "c1ea80d0639cf98f5c14722321aa5511738ee733921dae3bfdc8e02abbc40786"
+  },
+  "final_correction_verification": {
+    "status": "PASS",
+    "scope_line": 85,
+    "syntax_compile": "PASS",
+    "final_source_hash_matches_parent_requested_version": true,
+    "scope": "Text-only follow-up verification; previous source integration evidence retained. No new experiment or native-metric execution."
+  },
+  "reviewed_at_cst": "2026-10-05T02:56:55.177461+08:00"
+}
