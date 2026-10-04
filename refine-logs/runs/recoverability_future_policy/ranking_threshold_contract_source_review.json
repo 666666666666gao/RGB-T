@@ -1,0 +1,205 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-04T08:44:36.355860+08:00",
+  "scope": "Source and pure CPU arithmetic diagnosis only; current matched C1/own future-teacher experiment remains unchanged.",
+  "blocking_findings": [],
+  "current_experiment_blocked": false,
+  "source": {
+    "path": "research/recoverability_modules.py",
+    "sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "locations": {
+      "final_scores": 164,
+      "extra_cost": 170,
+      "strict_selection": 210,
+      "pairwise_hinge": 279,
+      "objective_passes_final_scores": 303
+    }
+  },
+  "diagnosis": {
+    "mathematical_boundary_gap": {
+      "severity": "WARN",
+      "established": true,
+      "condition": "For an eligible action a versus keep k, utility[a]-utility[k]>.05, both actions legal and regions compatible, the positive weighted pair term is relu(.03-(S[a]-S[k])).",
+      "consequence": "Zero pairwise hinge permits S[a]-S[k]==.03. Deployment in action mode requires strict S[a]>S[k]+.03, so zero ranking loss alone does not guarantee intervention. Other objective terms may still push the scores; total-objective optimality is not asserted.",
+      "actual_cpu_counterexample": "Original source functions, original/extra candidate available, positive utility gap .1: float32 net gap0.029999999329447746 gives ranking loss0 and selects keep. Next float32 value0.030000001192092896 gives ranking loss0 and selects the candidate.",
+      "empirical_boundary_occurrence": "No actual deployed equality event has been established. The22 audited events are strictly below the boundary even at their optimistic upper bounds."
+    },
+    "cost_and_harm_contract": {
+      "missing_extra_cost_mismatch": false,
+      "explanation": "objective passes output['scores'] to pairwise ranking. These final scores already include extra-region .01 cost, relative harm penalty and relative write-risk term. Training does not compare a cost-free score to a cost-charged deployment score.",
+      "definitions": {
+        "A": "stored predicted_advantage[a] = raw_advantage[a]-raw_advantage[keep_regular]",
+        "H": ".1*max(harm[a]-harm[keep_regular],0), nonnegative",
+        "R": ".025*(action_risk[a]-keep_risk), may be negative when avoiding a risky write",
+        "C": ".01 if action is in an extra region, otherwise0"
+      },
+      "final_score": "S[a]=A-H-R-C; S[keep_regular]=0 in the current action-verification mode.",
+      "zero_hinge_condition": "A >= .03+H+R+C for the qualifying keep-versus-action pair.",
+      "deployment_condition": "A > .03+H+R+C, additionally requiring candidate/region availability.",
+      "extra_clean_example": "A=.04 with H=R=0 and C=.01 yields float32 net score exactly the .03 threshold: zero hinge, no strict intervention. The .01 cost is already compensated by this training condition."
+    },
+    "actual_internal_evidence": {
+      "source_artifact": "/data/gb/setup/write_pair_own4_internal_reintroduced_score_bound_20261004.json",
+      "source_artifact_sha256": "3c880c9f8ef02bf3c034cb7423b27e746747f71c4a29893572e4b516c9baff2e",
+      "independently_verified_report": "refine-logs/runs/recoverability_future_policy/internal_reintroduced_score_bound_cpu_review.json",
+      "internal_sequences": 98,
+      "total_frames": 49418,
+      "tracking_steps": 49320,
+      "reintroduced_correct_events": 22,
+      "selected_correctly": 0,
+      "maximum_correct_legal_score_upper_bound": 0.010153165087103844,
+      "float32_deployment_threshold": 0.029999999329447746,
+      "minimum_margin_below_threshold": 0.019846834242343903,
+      "all22_keep_raw_at_or_below_084": true,
+      "implication": "Here keep_risk=0 and H,R>=0, so each correct extra-action score is at most storedAdv-.01. Their output advantages are insufficient even under the optimistic bound. Changing only > to >= cannot select any of these22 correct candidates.",
+      "quality_relative_keep_events": 9,
+      "quality_interpretation": "In9/22 events max predicted current_quality among GT-correct candidates exceeds keep_quality and .7*quality_gap>.03. This indicates differing evidence in the quality and relative-advantage heads. Quality is not directly substituted into the deployed score, and future utility/wrong-write targets also affect the learned advantage.",
+      "limits": "This does not establish a unique cause, show the pairwise utility-gap>.05 training condition holds for those held-out events, prove correct candidates beat every incorrect candidate under quality ranking, or predict dynamic tracking gains."
+    }
+  },
+  "decision": {
+    "action": "Record diagnosis only and continue the existing matched future-teacher collection/merge/M0 gates.",
+    "source_change_proposed": false,
+    "comparator_change_proposed": false,
+    "threshold_change_proposed": false,
+    "loss_change_proposed": false,
+    "new_training_variant_proposed": false,
+    "architecture_change_proposed": false,
+    "rationale": "A source boundary counterexample is real, but the current observed failures lie far below that boundary and there is no observed equality failure. It does not justify extra branches or changes under the workspace minimal-change rule.",
+    "current_two_arm_protocol": "Preserved until closed; this report neither launches nor grants acceptance to any NN run."
+  },
+  "cpu_witness": {
+    "status": "PASS",
+    "observed_cst": "2026-10-04T08:44:36.355860+08:00",
+    "source_path": "/data/gb/GOLA/research/recoverability_modules.py",
+    "source_sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "source_functions_executed": [
+      "ranking_supervision_loss",
+      "select_actions"
+    ],
+    "cpu_cases": [
+      {
+        "location": "original",
+        "case": "audited_optimistic_cap",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.010153165087103844,
+        "extra_cost_already_in_score": 0,
+        "pairwise_ranking_loss": 0.0019846835639327765,
+        "selected_flat_action": 0,
+        "preferred_flat_action": 2,
+        "selected_keep": true,
+        "candidate_available": true,
+        "strict_comparison": false
+      },
+      {
+        "location": "original",
+        "case": "exact_float32_hinge_margin",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.029999999329447746,
+        "extra_cost_already_in_score": 0,
+        "pairwise_ranking_loss": 0,
+        "selected_flat_action": 0,
+        "preferred_flat_action": 2,
+        "selected_keep": true,
+        "candidate_available": true,
+        "strict_comparison": false
+      },
+      {
+        "location": "original",
+        "case": "next_float32_above_margin",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.030000001192092896,
+        "extra_cost_already_in_score": 0,
+        "pairwise_ranking_loss": 0,
+        "selected_flat_action": 2,
+        "preferred_flat_action": 2,
+        "selected_keep": false,
+        "candidate_available": true,
+        "strict_comparison": true
+      },
+      {
+        "location": "extra",
+        "case": "audited_optimistic_cap",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.010153165087103844,
+        "extra_cost_already_in_score": 0.009999999776482582,
+        "pairwise_ranking_loss": 0.0019846835639327765,
+        "selected_flat_action": 0,
+        "preferred_flat_action": 10,
+        "selected_keep": true,
+        "candidate_available": true,
+        "strict_comparison": false
+      },
+      {
+        "location": "extra",
+        "case": "exact_float32_hinge_margin",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.029999999329447746,
+        "extra_cost_already_in_score": 0.009999999776482582,
+        "pairwise_ranking_loss": 0,
+        "selected_flat_action": 0,
+        "preferred_flat_action": 10,
+        "selected_keep": true,
+        "candidate_available": true,
+        "strict_comparison": false
+      },
+      {
+        "location": "extra",
+        "case": "next_float32_above_margin",
+        "utility_gap": 0.10000000149011612,
+        "final_net_score_gap": 0.030000001192092896,
+        "extra_cost_already_in_score": 0.009999999776482582,
+        "pairwise_ranking_loss": 0,
+        "selected_flat_action": 10,
+        "preferred_flat_action": 10,
+        "selected_keep": false,
+        "candidate_available": true,
+        "strict_comparison": true
+      }
+    ],
+    "clean_extra_boundary": {
+      "raw_advantage": 0.03999999910593033,
+      "cost": 0.009999999776482582,
+      "net_score": 0.029999999329447746,
+      "equals_hinge_margin_and_deployment_threshold": true
+    },
+    "threshold_float32": 0.029999999329447746,
+    "next_float32_above": 0.030000001192092896,
+    "actual_score_audit_path": "/data/gb/setup/write_pair_own4_internal_reintroduced_score_bound_20261004.json",
+    "actual_score_audit_sha256": "3c880c9f8ef02bf3c034cb7423b27e746747f71c4a29893572e4b516c9baff2e",
+    "actual_22_event_upper_bound_max": 0.010153165087103844,
+    "comparison_operator_only_change_cannot_rescue_any_of_22": true,
+    "attribution": "Reviewer-designed synthetic pure-function CPU witness; not model inference, training, an experiment outcome, or a counterfactual tracking rollout.",
+    "execution": {
+      "python": "/data/gb/envs/gola/bin/python",
+      "torch": "2.5.1+cu118",
+      "CUDA_VISIBLE_DEVICES": "",
+      "cuda_initialized_before": false,
+      "cuda_initialized_after": false,
+      "nn_instances": 0,
+      "nn_forward": 0,
+      "nn_backward": 0,
+      "optimizer_steps": 0,
+      "source_file_writes": 0,
+      "remote_file_writes": 0,
+      "signals": 0
+    }
+  },
+  "reviewer_actions": {
+    "model_instances": 0,
+    "nn_forward": 0,
+    "nn_backward": 0,
+    "optimizer_steps": 0,
+    "gpu_calls": 0,
+    "cuda_initialized": false,
+    "source_modifications": 0,
+    "process_signals": 0,
+    "remote_file_writes": 0,
+    "formal_test_annotations_read": false,
+    "only_local_output": "refine-logs/runs/recoverability_future_policy/ranking_threshold_contract_source_review.json"
+  }
+}

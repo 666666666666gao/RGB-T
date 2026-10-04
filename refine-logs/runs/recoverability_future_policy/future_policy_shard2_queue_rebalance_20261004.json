@@ -1,0 +1,41 @@
+{
+  "changed_cst": "2026-10-04T08:01:35.483444+08:00",
+  "reason": "Transfer only unstarted own shard2 from delayed GPU1 to GPU2 after actual C1 shard3 completion; same queries/source/settings/output",
+  "cancelled_waiting_session": "future_policy_queue_gpu1_20261004",
+  "cancelled_waiting_pane_pid": 2926820,
+  "cancelled_waiting_script_pid": 2926822,
+  "lasher_and_all_active_nn_untouched": true,
+  "new_waiters": [
+    {
+      "session": "future_policy_queue_gpu1_c1_shard2_20261004",
+      "args": [
+        "bash",
+        "/data/gb/setup/future_policy_review_source/queue_recoverability_future_collection.sh",
+        "1",
+        "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt",
+        "2",
+        "c1"
+      ],
+      "log": "/data/gb/setup/future_policy_queue_gpu1_c1_shard2_20261004.log",
+      "pane": "3022118 bash"
+    },
+    {
+      "session": "future_policy_queue_gpu2_own_shard2_20261004",
+      "args": [
+        "bash",
+        "/data/gb/setup/future_policy_review_source/queue_recoverability_future_collection.sh",
+        "2",
+        "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/job_completed.txt",
+        "2",
+        "own"
+      ],
+      "log": "/data/gb/setup/future_policy_queue_gpu2_own_shard2_20261004.log",
+      "pane": "3022124 bash"
+    }
+  ],
+  "same_shard2_policies": [
+    "c1",
+    "own"
+  ],
+  "poll_seconds": 240
+}

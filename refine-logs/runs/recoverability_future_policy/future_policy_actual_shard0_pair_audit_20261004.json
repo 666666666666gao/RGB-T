@@ -1,0 +1,43 @@
+{
+  "observed_cst": "2026-10-04T07:59:30.222520+08:00",
+  "status": "PASS",
+  "scope": "Actual completed shard0 only, both future teachers TRAIN+validation; not all16 inputs or training acceptance",
+  "partition_results": {
+    "train": {
+      "clips": 225,
+      "field_count": 30,
+      "all_non_future_arrays_exact": true,
+      "label_differences": {
+        "future_iou": {
+          "different_elements": 1270,
+          "max_absolute_difference": 0.9877115488052368
+        },
+        "wrong_update_fraction": {
+          "different_elements": 8,
+          "max_absolute_difference": 0.5
+        }
+      },
+      "valid_actions": 8247
+    },
+    "validation": {
+      "clips": 32,
+      "field_count": 30,
+      "all_non_future_arrays_exact": true,
+      "label_differences": {
+        "future_iou": {
+          "different_elements": 183,
+          "max_absolute_difference": 0.9567554593086243
+        },
+        "wrong_update_fraction": {
+          "different_elements": 1,
+          "max_absolute_difference": 0.25
+        }
+      },
+      "valid_actions": 1198
+    }
+  },
+  "cpu_only": true,
+  "full_merge_executed": false,
+  "training_started": false,
+  "official_goal_completed": false
+}

@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "SELECTED_EPOCH4_CONTROLS_COMPLETE; BOTH_NATIVE_FULL_TESTS_ACTIVE; MATCHED_FUTURE_TEACHER_COLLECTION_ACTIVE",
+      "status": "BOTH_NATIVE_FULL_COMPLETE; MATCHED_FUTURE_TEACHER_COLLECTION_ACTIVE; NEW_B384_FIT_NOT_STARTED",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -47,7 +47,7 @@
       ],
       "acceptance": "Matched-state and matched-budget evidence shows more newly recovered correct candidates actually selected and sustained, without offsetting harm to originally correct tracking. Change one principal factor per comparison; do not expand architecture solely to reduce regression MSE.",
       "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
-      "active_controls": "All3 original98/49418 completed; no_search TXT exact; identity TXT+NPZ exact; raw_write -0.225148pp vs selected4 CI[-0.659613,0.001939]. Both native full tests same locked best4 active.",
+      "active_controls": "All3 original98/49418 completed; no_search TXT exact; identity TXT+NPZ exact; raw_write -0.225148pp vs selected4 CI[-0.659613,0.001939]. Both locked best4 native datasets fully completed; all5 point estimates above GOLA, all5 below +2 targets. Las vs GOLA CIs positive; RGB CIs contain0.",
       "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
       "factorial_control": "Fixedown42epoch25 full98 seqIoU: gated+search.710787459, gated+no-search.715721431, rawwrite+search.725831009, rawwrite+no-search.734630322. Bestcontrol stillGOLA-.864819pp CI[-2.400222,.226310]. Searchremoval+gated +.493397pp CI[.003042,1.095799]. Rawtemplate control affects actualtemplate only; selectorandmemoryverification unchanged.",
       "search_supervision_change": "Completed sourcePASS+fourM0+allfourB256full training and98videoreports. Selector target selectedinitialization twice, continuousoracle trainedmodels belowGOLA. No benefit established; pairwise competition supervision now independentnextfactor, architecture/inference unchanged.",
@@ -524,7 +524,7 @@
         "best_internal_ci_contains_zero": true
       },
       "current_future_teacher_factor": {
-        "status": "SHARD0_TWO_ARMS_LIVE; C1_SHARD1_STARTED_AFTER_RGB_NATIVE_COMPLETE; OTHER_SHARDS_QUEUED",
+        "status": "10/16 collection outputs complete at08:52:58; GPU0ownTRAIN1=116/226, GPU1C1TRAIN2=88/225, GPU2ownTRAIN2=51/225. Full merger and freshM0/fit still NOT executed.",
         "started_cst": "2026-10-04T07:02:07+08:00",
         "train_queries": 902,
         "validation_queries": 128,
@@ -549,7 +549,46 @@
         "full_goal_completed": false,
         "cpu_merger_source": "Independent source/helperPASS and deployedCPU-only; actualall16merge NOTexecuted",
         "fit_runner_source": "Independent source/API/CPU PASS, deployed07:54; no actualcachemerge or newM0/full run",
-        "fit_runner_review": "refine-logs/runs/recoverability_future_policy/fit_runner_source_review.json"
+        "fit_runner_review": "refine-logs/runs/recoverability_future_policy/fit_runner_source_review.json",
+        "actual_shard0_pair_gate": "PASS225TRAIN/32VAL all28nonfuture arrays exact; onlyfuturelabels differ; nofullmerge/training",
+        "actual_shard0_target_impact": "Oraclebestactions differ2/225TRAIN,0/32VAL; >.05intervene/extra-region labels unchanged. Diagnostic, no online result.",
+        "production_source_transition": "PASS 08:39:08; both native markers complete and original NN PIDs gone;4 reviewed production files now exact local/private source; no optimizer launched.",
+        "actual_automatic_m0_queue": {
+          "observed_cst": "2026-10-04T08:53:43.213192+08:00",
+          "status": "ACTUAL_QUEUE_LAUNCHED_WAITING_ALL16_DATA",
+          "session": "future_policy_fit_m0_queue_20261004",
+          "pane_pid": 3117159,
+          "source_sha256": "b2276d26e5e22905f5b9d4c8f0cf746725d1c801fa3457d5f5241abcb51adbb2",
+          "fit_gpu_by_policy": {
+            "c1": 0,
+            "own": 2
+          },
+          "batch_size": 384,
+          "m0_epochs": 3,
+          "m0_optimizer_steps": 9,
+          "full_fit_launched": false,
+          "fit_m0_acceptance_written": false,
+          "paired_cache_exists": false,
+          "review_status": "PASS same-family/provisional",
+          "log": "/data/gb/setup/future_policy_fit_m0_queue_20261004.log"
+        }
+      },
+      "actual_native_no_search_control": {
+        "observed_cst": "2026-10-04T09:03:36.729863+08:00",
+        "status": "ACTUAL_NATIVE_NO_SEARCH_NN_LAUNCHED",
+        "physical_gpu": 3,
+        "session": "write_pair_native_lasher_no_search_own_b384_full_20261004",
+        "pane_pid": 3134344,
+        "nn_process": "3134348 3134346 Rl+  /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --disable-search --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_lasher_no_search_own_b384_full_20261004/predictions",
+        "source_sha256": "95fdb074e13607bcee5a539abe6a8ef9ce5454145d351904f9847bc5b4bc51f1",
+        "checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "dataset": "lasher",
+        "expected_sequences": 245,
+        "expected_frames": 220703,
+        "completed": false,
+        "scope": "Only extra visual search disabled; motion head remains, not complete B-off",
+        "review": "PASS same-family/provisional",
+        "full_goal_completed": false
       }
     },
     {
@@ -614,7 +653,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Actual RGB native complete and GPU0 queue advanced to collection. Original Las native continues; source-held production4 remains old. All future shards must finish and CPU paired merge pass before freshB384 M0/full.",
+    "queued_successor": "All four GPUs currently run or advance through remaining serial paired supervision collection. After all16 actual completions, reviewed CPU merger must pass, then fresh two-arm B384 3epoch/9update M0 and independent acceptance before60epoch/180update fit.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -627,10 +666,10 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "RGBT234 full234/116649 complete07:33:52; current C1 future teacher TRAIN shard1, then own shard1",
-      "GPU1": "Original LasHeR native155/245,152947frames at07:42; then C1+own future teacher shard2",
-      "GPU2": "Future C1 train/val shard0; then C1 shard3",
-      "GPU3": "Future own train/val shard0; then own shard3"
+      "GPU0": "own TRAIN/VAL shard1; afterall16+merge, c1 B384M0",
+      "GPU1": "C1 TRAIN/VAL shard2",
+      "GPU2": "own TRAIN/VAL shard2; afterall16+merge, own B384M0",
+      "GPU3": "Actual complete Las no_search locked epoch4 control PID3134348, launched09:03:36;245/220703 full pipeline"
     },
     "gpu_memory_request": {
       "status": "REAL_B384_FITS_COMPLETE; CURRENT_SERIAL_NATIVE_AND_LABEL_COLLECTION; NEXT_FIT_BATCH384_PLANNED",
@@ -654,7 +693,7 @@
       "temperature_power_constraints_enabled": false,
       "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json"
     },
-    "next_check_cst": "2026-10-04T07:58:00+08:00",
+    "next_check_cst": "2026-10-04T09:12:00+08:00",
     "checkpoint_cleanup_total": {
       "files": 51,
       "bytes": 70869872,
@@ -812,6 +851,182 @@
       "full_goal_completed": false,
       "lasher_native_complete": false,
       "independent_cpu_audit": "PASS same-family/provisional;702prediction-GTpairs,12attributes,curves exact;both5000CI exact;234mechanismNPZ reconciled"
+    },
+    "actual_internal_reintroduced_score_diagnosis": "Independent actualCPU PASS all22 score caps below strict .03; rawKeep<=.84 all22, maxcap .010153165. Quality favors correct vs keep9/22; onlyinternal diagnosis, no model changes.",
+    "current_native_lasher": {
+      "observed_cst": "2026-10-04T08:39:08.092229+08:00",
+      "completion_cst": "2026-10-04T08:33:02+08:00",
+      "dataset": "lasher",
+      "sequences": 245,
+      "frames": 220703,
+      "native_metrics": {
+        "baseline": {
+          "NPR": 73.10197299993155,
+          "PR": 76.59844897037928,
+          "SR": 61.03742534859602
+        },
+        "c1": {
+          "NPR": 74.15451765370953,
+          "PR": 77.86097272569167,
+          "SR": 61.951313680271845
+        },
+        "write_pair_reference_own_b384": {
+          "NPR": 74.45735525847881,
+          "PR": 78.09777783730206,
+          "SR": 62.12706332333795
+        }
+      },
+      "checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "all_actual_ground_truth_verified": true,
+      "paired": {
+        "GOLA": {
+          "sequences": 245,
+          "compared_variants": [
+            "baseline",
+            "write_pair_reference_own_b384"
+          ],
+          "metrics": {
+            "NPR": {
+              "mean_delta_percentage_points": 1.3553822585472632,
+              "percentile_95_interval_percentage_points": [
+                0.5743719297427444,
+                2.257188552774057
+              ],
+              "improved_sequences": 65,
+              "worsened_sequences": 55,
+              "tied_sequences": 125
+            },
+            "PR": {
+              "mean_delta_percentage_points": 1.4993288669227354,
+              "percentile_95_interval_percentage_points": [
+                0.6386692574459123,
+                2.4883270622190854
+              ],
+              "improved_sequences": 67,
+              "worsened_sequences": 53,
+              "tied_sequences": 125
+            },
+            "SR": {
+              "mean_delta_percentage_points": 1.0896379747419405,
+              "percentile_95_interval_percentage_points": [
+                0.47134036992119793,
+                1.7893276252357615
+              ],
+              "improved_sequences": 76,
+              "worsened_sequences": 65,
+              "tied_sequences": 104
+            }
+          }
+        },
+        "C1": {
+          "sequences": 245,
+          "compared_variants": [
+            "c1",
+            "write_pair_reference_own_b384"
+          ],
+          "metrics": {
+            "NPR": {
+              "mean_delta_percentage_points": 0.30283760476927096,
+              "percentile_95_interval_percentage_points": [
+                -0.7599370573970231,
+                1.4091468093229447
+              ],
+              "improved_sequences": 47,
+              "worsened_sequences": 31,
+              "tied_sequences": 167
+            },
+            "PR": {
+              "mean_delta_percentage_points": 0.23680511161038226,
+              "percentile_95_interval_percentage_points": [
+                -0.963782421635176,
+                1.468284496170736
+              ],
+              "improved_sequences": 48,
+              "worsened_sequences": 34,
+              "tied_sequences": 163
+            },
+            "SR": {
+              "mean_delta_percentage_points": 0.17574964306610472,
+              "percentile_95_interval_percentage_points": [
+                -0.6998269652539915,
+                1.0985064663365778
+              ],
+              "improved_sequences": 61,
+              "worsened_sequences": 41,
+              "tied_sequences": 143
+            }
+          }
+        }
+      },
+      "mechanism": {
+        "counters": {
+          "tracking_frames": 220458,
+          "valid_tracking_frames": 219925,
+          "candidate_evaluations": 1059681,
+          "local_candidate_recalled_frames": 163989,
+          "budget_candidate_recalled_frames": 164963,
+          "local_missing_frames": 55936,
+          "missing_correct_candidates_reintroduced": 974,
+          "reintroduced_candidates_selected_correctly": 2,
+          "c1_same_state_failed_frames": 48976,
+          "c1_same_state_correct_frames": 155835,
+          "selected_failed_frames": 48936,
+          "changed_candidate_indices": 303,
+          "valid_changed_candidate_indices": 299,
+          "same_state_rescues": 69,
+          "same_state_harms": 43,
+          "same_state_iou_improvements": 121,
+          "same_state_iou_degradations": 76,
+          "requested_extra_searches": 5281,
+          "extra_visual_forwards": 5281,
+          "searches_without_new_correct_candidate": 4304,
+          "requested_extra_area_sum_pixels_squared": 2843078639.9505253,
+          "template_updates": 84570,
+          "known_template_updates": 84525,
+          "wrong_template_updates_localization_proxy": 7790,
+          "paused_query_writes": 245,
+          "known_paused_query_writes": 245,
+          "wrong_query_writes_prevented_localization_proxy": 28,
+          "correct_query_writes_prevented": 210,
+          "known_active_template_frames": 219867,
+          "wrong_active_template_frames_localization_proxy": 18952,
+          "memory_rgb_target_write_known_mass": 48579.84965056181,
+          "memory_rgb_target_write_wrong_mass": 4477.084165692329,
+          "memory_rgb_target_read_known_mass": 219877.52044991346,
+          "memory_rgb_target_read_wrong_mass": 14545.448436819262,
+          "memory_tir_target_write_known_mass": 48564.78564184904,
+          "memory_tir_target_write_wrong_mass": 4475.988832652569,
+          "memory_tir_target_read_known_mass": 219872.5328791343,
+          "memory_tir_target_read_wrong_mass": 15140.48763867888,
+          "candidate_quality_squared_error_sum": 27627.931267324857,
+          "known_candidate_evaluations": 1057101
+        },
+        "rates": {
+          "local_recall": 0.745658747300216,
+          "budget_recall": 0.750087529839718,
+          "missing_candidate_reintroduction_rate": 0.01741275743707094,
+          "wrong_template_write_rate": 0.09216208222419403,
+          "misintervention_rate_on_correct_same_state_c1": 0.0002759328777232329
+        },
+        "memory_target_localization_provenance": {
+          "rgb_target_write_wrong_mass_fraction": 0.09215928410434167,
+          "rgb_target_read_wrong_mass_fraction": 0.06615250348037563,
+          "tir_target_write_wrong_mass_fraction": 0.09216531636032876,
+          "tir_target_read_wrong_mass_fraction": 0.06886029573781155
+        },
+        "recovery_rate": 0.9055900621118013,
+        "median_recovery_delay_frames": 16.0,
+        "efficiency": {
+          "instrumented_tracking_fps": 23.966149050964585,
+          "latency_p50_ms": 36.54326149262488,
+          "latency_p95_ms": 69.46152024902403,
+          "peak_cuda_allocated_mib": 447.4345703125,
+          "peak_cuda_reserved_mib": 488.0
+        }
+      },
+      "full_goal_completed": false,
+      "lasher_native_complete": true,
+      "independent_cpu_audit": "PASS same-family/provisional;735 prediction-GT metric triples,19attributes,all curves exact;both5000CI exact;245mechanismNPZ/5778interventions reconciled"
     }
   },
   "model_selection": {
@@ -822,5 +1037,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T07:54:57.3597592+08:00"
+  "updated_cst": "2026-10-04T09:05:24.8100876+08:00"
 }

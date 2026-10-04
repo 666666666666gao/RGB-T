@@ -1,0 +1,175 @@
+{
+  "observed_cst": "2026-10-04T08:39:08.092229+08:00",
+  "completion_cst": "2026-10-04T08:33:02+08:00",
+  "dataset": "lasher",
+  "sequences": 245,
+  "frames": 220703,
+  "native_metrics": {
+    "baseline": {
+      "NPR": 73.10197299993155,
+      "PR": 76.59844897037928,
+      "SR": 61.03742534859602
+    },
+    "c1": {
+      "NPR": 74.15451765370953,
+      "PR": 77.86097272569167,
+      "SR": 61.951313680271845
+    },
+    "write_pair_reference_own_b384": {
+      "NPR": 74.45735525847881,
+      "PR": 78.09777783730206,
+      "SR": 62.12706332333795
+    }
+  },
+  "checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "all_actual_ground_truth_verified": true,
+  "paired": {
+    "GOLA": {
+      "sequences": 245,
+      "compared_variants": [
+        "baseline",
+        "write_pair_reference_own_b384"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 1.3553822585472632,
+          "percentile_95_interval_percentage_points": [
+            0.5743719297427444,
+            2.257188552774057
+          ],
+          "improved_sequences": 65,
+          "worsened_sequences": 55,
+          "tied_sequences": 125
+        },
+        "PR": {
+          "mean_delta_percentage_points": 1.4993288669227354,
+          "percentile_95_interval_percentage_points": [
+            0.6386692574459123,
+            2.4883270622190854
+          ],
+          "improved_sequences": 67,
+          "worsened_sequences": 53,
+          "tied_sequences": 125
+        },
+        "SR": {
+          "mean_delta_percentage_points": 1.0896379747419405,
+          "percentile_95_interval_percentage_points": [
+            0.47134036992119793,
+            1.7893276252357615
+          ],
+          "improved_sequences": 76,
+          "worsened_sequences": 65,
+          "tied_sequences": 104
+        }
+      }
+    },
+    "C1": {
+      "sequences": 245,
+      "compared_variants": [
+        "c1",
+        "write_pair_reference_own_b384"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 0.30283760476927096,
+          "percentile_95_interval_percentage_points": [
+            -0.7599370573970231,
+            1.4091468093229447
+          ],
+          "improved_sequences": 47,
+          "worsened_sequences": 31,
+          "tied_sequences": 167
+        },
+        "PR": {
+          "mean_delta_percentage_points": 0.23680511161038226,
+          "percentile_95_interval_percentage_points": [
+            -0.963782421635176,
+            1.468284496170736
+          ],
+          "improved_sequences": 48,
+          "worsened_sequences": 34,
+          "tied_sequences": 163
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.17574964306610472,
+          "percentile_95_interval_percentage_points": [
+            -0.6998269652539915,
+            1.0985064663365778
+          ],
+          "improved_sequences": 61,
+          "worsened_sequences": 41,
+          "tied_sequences": 143
+        }
+      }
+    }
+  },
+  "mechanism": {
+    "counters": {
+      "tracking_frames": 220458,
+      "valid_tracking_frames": 219925,
+      "candidate_evaluations": 1059681,
+      "local_candidate_recalled_frames": 163989,
+      "budget_candidate_recalled_frames": 164963,
+      "local_missing_frames": 55936,
+      "missing_correct_candidates_reintroduced": 974,
+      "reintroduced_candidates_selected_correctly": 2,
+      "c1_same_state_failed_frames": 48976,
+      "c1_same_state_correct_frames": 155835,
+      "selected_failed_frames": 48936,
+      "changed_candidate_indices": 303,
+      "valid_changed_candidate_indices": 299,
+      "same_state_rescues": 69,
+      "same_state_harms": 43,
+      "same_state_iou_improvements": 121,
+      "same_state_iou_degradations": 76,
+      "requested_extra_searches": 5281,
+      "extra_visual_forwards": 5281,
+      "searches_without_new_correct_candidate": 4304,
+      "requested_extra_area_sum_pixels_squared": 2843078639.9505253,
+      "template_updates": 84570,
+      "known_template_updates": 84525,
+      "wrong_template_updates_localization_proxy": 7790,
+      "paused_query_writes": 245,
+      "known_paused_query_writes": 245,
+      "wrong_query_writes_prevented_localization_proxy": 28,
+      "correct_query_writes_prevented": 210,
+      "known_active_template_frames": 219867,
+      "wrong_active_template_frames_localization_proxy": 18952,
+      "memory_rgb_target_write_known_mass": 48579.84965056181,
+      "memory_rgb_target_write_wrong_mass": 4477.084165692329,
+      "memory_rgb_target_read_known_mass": 219877.52044991346,
+      "memory_rgb_target_read_wrong_mass": 14545.448436819262,
+      "memory_tir_target_write_known_mass": 48564.78564184904,
+      "memory_tir_target_write_wrong_mass": 4475.988832652569,
+      "memory_tir_target_read_known_mass": 219872.5328791343,
+      "memory_tir_target_read_wrong_mass": 15140.48763867888,
+      "candidate_quality_squared_error_sum": 27627.931267324857,
+      "known_candidate_evaluations": 1057101
+    },
+    "rates": {
+      "local_recall": 0.745658747300216,
+      "budget_recall": 0.750087529839718,
+      "missing_candidate_reintroduction_rate": 0.01741275743707094,
+      "wrong_template_write_rate": 0.09216208222419403,
+      "misintervention_rate_on_correct_same_state_c1": 0.0002759328777232329
+    },
+    "memory_target_localization_provenance": {
+      "rgb_target_write_wrong_mass_fraction": 0.09215928410434167,
+      "rgb_target_read_wrong_mass_fraction": 0.06615250348037563,
+      "tir_target_write_wrong_mass_fraction": 0.09216531636032876,
+      "tir_target_read_wrong_mass_fraction": 0.06886029573781155
+    },
+    "recovery_rate": 0.9055900621118013,
+    "median_recovery_delay_frames": 16.0,
+    "efficiency": {
+      "instrumented_tracking_fps": 23.966149050964585,
+      "latency_p50_ms": 36.54326149262488,
+      "latency_p95_ms": 69.46152024902403,
+      "peak_cuda_allocated_mib": 447.4345703125,
+      "peak_cuda_reserved_mib": 488.0
+    }
+  },
+  "full_goal_completed": false,
+  "lasher_native_complete": true,
+  "independent_cpu_audit": "PASS same-family/provisional;735 prediction-GT metric triples,19attributes,all curves exact;both5000CI exact;245mechanismNPZ/5778interventions reconciled"
+}

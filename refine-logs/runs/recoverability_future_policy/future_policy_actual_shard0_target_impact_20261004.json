@@ -1,0 +1,73 @@
+{
+  "observed_cst": "2026-10-04T08:03:23.229543+08:00",
+  "scope": "Actual shard0 GT-labelled frozen-teacher action targets; oracle diagnostics only, not deployed performance",
+  "formula": ".7 currentIoU + .3 mean3futureIoU - .1 wrong_update_fraction; .01 per extra crop",
+  "partitions": {
+    "train": {
+      "clips": 225,
+      "valid_actions": 8247,
+      "clips_with_any_utility_difference": 165,
+      "legal_actions_with_utility_difference": 514,
+      "max_legal_utility_difference": 0.28045743703842163,
+      "oracle_best_flat_action_changed": 2,
+      "oracle_intervene_gt05_label_changed": 0,
+      "oracle_extra_region_gt05_labels_changed": 0,
+      "teacher_summaries": {
+        "c1": {
+          "mean_oracle_gain": 0.06338627636432648,
+          "intervene_gt05_queries": 67,
+          "extra_best_actions": 140
+        },
+        "own": {
+          "mean_oracle_gain": 0.06332942098379135,
+          "intervene_gt05_queries": 67,
+          "extra_best_actions": 139
+        }
+      },
+      "changed_best_actions": [
+        {
+          "sequence": "darkleftboy2left",
+          "query_frame": 766,
+          "c1_best_action": 12,
+          "own_best_action": 66,
+          "c1_gain": 0.6078301072120667,
+          "own_gain": 0.5904070734977722
+        },
+        {
+          "sequence": "girlback",
+          "query_frame": 555,
+          "c1_best_action": 56,
+          "own_best_action": 4,
+          "c1_gain": 0.09857534617185593,
+          "own_gain": 0.10443779081106186
+        }
+      ]
+    },
+    "validation": {
+      "clips": 32,
+      "valid_actions": 1198,
+      "clips_with_any_utility_difference": 28,
+      "legal_actions_with_utility_difference": 79,
+      "max_legal_utility_difference": 0.27455511689186096,
+      "oracle_best_flat_action_changed": 0,
+      "oracle_intervene_gt05_label_changed": 0,
+      "oracle_extra_region_gt05_labels_changed": 0,
+      "teacher_summaries": {
+        "c1": {
+          "mean_oracle_gain": 0.04578569531440735,
+          "intervene_gt05_queries": 9,
+          "extra_best_actions": 19
+        },
+        "own": {
+          "mean_oracle_gain": 0.04433658719062805,
+          "intervene_gt05_queries": 9,
+          "extra_best_actions": 19
+        }
+      },
+      "changed_best_actions": []
+    }
+  },
+  "nn_forward": 0,
+  "optimizer_updates": 0,
+  "official_goal_completed": false
+}

@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-04T08:49:03.035279+08:00",
+  "scope": "Source gate for one deliberate activation of the24-line all-shards -> actual CPU merge -> two existing B384 M0 queue. Not a claim that full collection, merge or M0 has completed.",
+  "reviewed_script": "scripts/queue_recoverability_future_fit_m0.sh",
+  "source_sha256": "b2276d26e5e22905f5b9d4c8f0cf746725d1c801fa3457d5f5241abcb51adbb2",
+  "source_bytes": {
+    "bytes": 1015,
+    "carriage_returns": 0,
+    "line_feeds": 24,
+    "sha256": "B2276D26E5E22905F5B9D4C8F0CF746725D1C801FA3457D5F5241ABCB51ADBB2"
+  },
+  "prerequisites_sha256": {
+    "research/merge_recoverability_future_caches.py": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "scripts/run_recoverability_future_fit.sh": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386",
+    "scripts/run_temporal.sh": "f39430bb02b71dd9e62fad808aec428297b323c0197aafc3361ce71bc2a05729",
+    "research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e"
+  },
+  "verdict_zh": "PASS，零阻断。16个真实分片成功marker是CPU合并的前置条件，既有合并器再验证实际数据并写paired gate；随后仅在GPU0/2各启动既定新鲜B384、3epoch、9更新M0一次。两臂成功退出后才写终态marker，既不自动fullfit，也不制造M0 acceptance。",
+  "checks": {
+    "syntax": {
+      "check": "exact_local_queue_bash_n_only",
+      "exit_code": 0,
+      "sha256_before": "B2276D26E5E22905F5B9D4C8F0CF746725D1C801FA3457D5F5241ABCB51ADBB2",
+      "sha256_after": "B2276D26E5E22905F5B9D4C8F0CF746725D1C801FA3457D5F5241ABCB51ADBB2",
+      "queue_executed": false,
+      "transport": "Exact local LF-only source piped via SSH to bash -n; transport CR removal did not change source because its CR count is0."
+    },
+    "data_dependency": "Loops cover c1/own x train/validation x shard0..3:16 distinct exact existing collection output markers. Each is waited for with read-only test-f and sleep240. Merger is invoked once, foreground, after all markers are present.",
+    "actual_merge_gate": "Unchanged reviewed merger independently loads and validates all16 completed caches, ordered902/128 manifests,881/98 split membership, matched prefix/source parameters, model identity and all28 non-future arrays before any merged output write; four fresh roots are written and NPZ reloaded. Final paired_cache_gate.json is emitted only after completion.",
+    "fit_gate": "Unchanged fit runner reads actual paired_cache_gate.json and requires PASS, exact non-future arrays and train902/validation128. Queue does not bypass this check or write its own substitute result.",
+    "invocation_match": [
+      {
+        "gpu": 0,
+        "teacher": "c1",
+        "stage": "m0",
+        "runner": "scripts/run_recoverability_future_fit.sh",
+        "run_root": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004",
+        "log": "/data/gb/setup/future_policy_fit_c1_m0_20261004.log"
+      },
+      {
+        "gpu": 2,
+        "teacher": "own",
+        "stage": "m0",
+        "runner": "scripts/run_recoverability_future_fit.sh",
+        "run_root": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004",
+        "log": "/data/gb/setup/future_policy_fit_own_m0_20261004.log"
+      }
+    ],
+    "recipe": "Existing runner: fresh C1 initialization, batch384,seed42,oracle search,pairwise action ranking,action write verification,write-pair calibration absent/defaultfalse,3epochs.902 rows give3 optimizer updates per epoch including the134-row tail, hence9 per arm.",
+    "gpu_mapping": "Queue sets CUDA_VISIBLE_DEVICES empty only for CPU merge and inherited CPU prechecks. run_temporal.sh overwrites it with the explicit0/2 argument and sets CUDA_DEVICE_ORDER=PCI_BUS_ID before execing warm Python. Same device convention as the reviewed collection runner.",
+    "gpu_predecessors": {
+      "gpu0": "RGB native -> c1 shard1(train+validation) -> own shard1(train+validation). All16 gate includes the final own validation shard1 marker.",
+      "gpu2": "c1 shard0 -> c1 shard3 -> own shard2 after the reviewed rebalance. All16 gate includes the final own validation shard2 marker.",
+      "conclusion": "Existing foreground collectors return before their markers are written. Therefore the gate is downstream of all scheduled collection NN work on0/2; no same-queue collection/M0 overlap is introduced. No unrelated GPU process inspection was performed."
+    },
+    "fresh_output_and_uniqueness": "CPU directly verified merged root, both M0 run roots, terminal both-M0 marker and M0 acceptance do not exist at review time. Queue has one merger call and one invocation per teacher, no loop/retry/relaunch around M0. Merger exist_ok=False and fit test!-e reject pre-existing roots. Review applies to the requested single queue activation.",
+    "completion_semantics": "set-euo-pipefail plus foreground merge prevents M0 launch after merge failure. Saved c1_pid/own_pid identify the two launched children. The terminal date is written only after both wait commands return0.",
+    "no_full_or_fabricated_acceptance": "Both stages are literal m0. No full invocation, acceptance JSON write, evaluator call, automatic fallback, model/source edit or process signal exists in this queue. Full runner retains the separate manually reviewed both-arm M0 acceptance gate.",
+    "source_transition": "Actual RGB/Las native terminal markers match07:33:52/08:33:02 and precede recorded08:39:08 transition. Current four production source hashes match the already reviewed 'after' hashes. Historical PID absence was reported by root; reviewer did not query processes and the transition JSON itself contains no PID snapshot."
+  },
+  "failure_semantics_notes": [
+    "If a shard never produces its success marker, this queue keeps waiting every240seconds; it does not treat progress or partial files as completion.",
+    "If wait on c1 fails, set-e exits before the second wait and no both-M0 marker is written. The already launched own arm is not automatically cancelled. If own fails first, the script still waits for c1 before observing own's nonzero status. This is honest failure propagation, not a false paired success; no extra trap or branch is proposed.",
+    "If merge succeeds but a M0 later fails, the fresh merged cache remains. Blindly rerunning this same queue would fail its initial existing-cache test; any rescue must inspect the actual failure and use the existing review process. No retry is hidden."
+  ],
+  "actual_cpu_receipt": {
+    "status": "PASS",
+    "observed_cst": "2026-10-04T08:49:03.035279+08:00",
+    "fresh_paths": {
+      "/data/gb/outputs/recoverability_future_policy_merged_20261004": true,
+      "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004": true,
+      "/data/gb/outputs/recoverability_future_own_b384_m0_20261004": true,
+      "/data/gb/setup/future_policy_both_fit_m0_completed_20261004.txt": true,
+      "/data/gb/setup/future_policy_fit_m0_acceptance_20261004.json": true
+    },
+    "actual_native_markers": {
+      "rgbt234": {
+        "path": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/job_completed.txt",
+        "completed": "2026-10-04T07:33:52+08:00"
+      },
+      "lasher": {
+        "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt",
+        "completed": "2026-10-04T08:33:02+08:00"
+      }
+    },
+    "transition_receipt": {
+      "observed_cst": "2026-10-04T08:39:08.227697+08:00",
+      "native_closed": {
+        "lasher": "2026-10-04T08:33:02+08:00",
+        "rgbt234": "2026-10-04T07:33:52+08:00"
+      },
+      "before": {
+        "research/train_recoverability.py": "0e0f1ad10521903e096823eb72924ada1970474d8ab21fa09a1f6b18cb56a713",
+        "research/collect_recoverability.py": "384edc0e795f3f92292e96f1091e2802c43b2c830c7069f4f9636bda737fdbd6",
+        "research/evaluate_recoverability.py": "d061c766e2683383a4cf0821ffcbaa17903b7036005e5a477850c5274deea777",
+        "research/recoverability_tracker.py": "b1ee16a734ba359c3006df7ceacf3ef22a7a5e790681dfe79f184a53248021fd"
+      },
+      "after": {
+        "research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93",
+        "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+        "research/evaluate_recoverability.py": "08a1d2c548cf68410a769cf7eaf72f5727b16df6a409f14d55c8b7e91a75b7a8",
+        "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e"
+      },
+      "source_from": "already independently reviewed private source",
+      "training_started": false,
+      "status": "PASS_REVIEWED_SOURCE_TRANSITION_AFTER_BOTH_NATIVE_CLOSED"
+    },
+    "production_after_hashes_match": true,
+    "manifest_shard_counts": {
+      "train": [
+        225,
+        226,
+        225,
+        226
+      ],
+      "validation": [
+        32,
+        32,
+        32,
+        32
+      ]
+    },
+    "wait_marker_count": 16,
+    "exact_wait_markers": [
+      "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_train_shard1_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_train_shard2_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_train_shard3_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_validation_shard1_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_validation_shard2_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_train_shard0_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_train_shard1_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_train_shard2_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_train_shard3_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_validation_shard1_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_validation_shard2_20261004/job_completed.txt",
+      "/data/gb/outputs/recoverability_future_own_validation_shard3_20261004/job_completed.txt"
+    ],
+    "merger_compile_only": "PASS",
+    "merger_sha256": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "fit_runner_sha256": "8456b05017d467fee646c9cec603ac4ccc45d3c12eea29784825983a555b6386",
+    "updates_per_epoch": 3,
+    "m0_epochs": 3,
+    "m0_updates_per_arm": 9,
+    "queue_execution": false,
+    "merger_main_execution": false,
+    "nn_execution": false,
+    "gpu_query": false,
+    "process_query": false,
+    "process_signals": false,
+    "remote_file_writes": false
+  },
+  "gate_boundary": {
+    "allowed_by_source_gate": "One deployment/activation of this exact queue under the existing experiment plan; it will wait for real data and run only the two existing M0 arms.",
+    "actual_merge_done_by_reviewer": false,
+    "m0_done_by_reviewer": false,
+    "m0_acceptance_granted": false,
+    "fullfit_granted": false,
+    "human_document_modified": false
+  },
+  "reviewer_actions": {
+    "queue_launch": false,
+    "merger_main": false,
+    "nn_forward": 0,
+    "model_instances": 0,
+    "optimizer_updates": 0,
+    "gpu_queries": 0,
+    "process_queries": 0,
+    "process_signals": 0,
+    "source_edits": 0,
+    "remote_file_writes": 0,
+    "only_local_output": "refine-logs/runs/recoverability_future_policy/queue_fit_m0_source_review.json"
+  }
+}

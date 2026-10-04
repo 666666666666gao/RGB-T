@@ -1,0 +1,349 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/recoverability_online_review",
+  "review_context": "Continuing independent reviewer; direct artifact/source reads and independent CPU recomputation. No new fresh-context reviewer was spawned.",
+  "reviewer_model_metadata": {
+    "model_family": "Codex/GPT-6",
+    "exact_model_id": null,
+    "exact_model_id_note": "The current reviewer host does not expose an independently verifiable exact model identifier.",
+    "requested_reasoning_effort": "max",
+    "actual_reasoning_effort_not_independently_exposed": true
+  },
+  "audited_utc": "2026-10-04T00:43:10.555668+00:00",
+  "scope": "Selected reference-own B384 epoch 4, complete LasHeR native result only",
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "neural_network_forward_executed": false,
+    "training_executed": false,
+    "source_files_modified": false,
+    "experiment_processes_started_restarted_or_terminated": false,
+    "remote_write_scope": "Only the requested independent_cpu_audit_20261004.json after successful CPU audit",
+    "note": "Short CPU audit processes only; no experiment process or GPU job changed."
+  },
+  "run_root": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004",
+  "dataset": "lasher",
+  "actual_gt_root": "/data/wangwj/dataset/LasHeR/testingset",
+  "checkpoint": {
+    "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "bytes": 1732916,
+    "selected_epoch": 4,
+    "training_seed": 42,
+    "batch_size": 384,
+    "train_completion_verified": true,
+    "strict_reload_training_receipt": true,
+    "current_file_hash_matches_requested": true
+  },
+  "completeness": {
+    "sequences": 245,
+    "frames": 220703,
+    "tracking_frames_excluding_initialization": 220458,
+    "valid_noninitial_diagnostic_frames": 219925,
+    "all_three_prediction_sequence_sets_exact": true,
+    "all_receipt_records_and_prediction_lengths_match_actual_gt": true,
+    "packaged_native_gt_equals_actual_gt_all_sequences": true,
+    "markers": {
+      "report_completed.txt": "2026-10-04T08:33:02+08:00",
+      "job_completed.txt": "2026-10-04T08:33:02+08:00",
+      "mechanism_report/recoverability_metrics_completed.txt": "full GT localization and mechanism diagnostics completed; native accuracy separate"
+    }
+  },
+  "native_protocol": {
+    "ground_truth": "Actual init.txt in all 245 sequence directories; float32 equality with original toolkit packaged GT verified for every row",
+    "prediction_loading": "float32 and numpy round(0), matching installed rgbt loader",
+    "numpy_version": "2.1.3",
+    "call_order": "NPR then PR then SR",
+    "initial_frame": "GT replaces first prediction and remains in native denominator",
+    "invalid_predicted_sizes": "Original toolkit copies preceding prediction for nonpositive width/height before scoring; replacements persist across native metric calls",
+    "actual_invalid_prediction_replacements": {
+      "baseline": 0,
+      "c1": 0,
+      "write_pair_reference_own_b384": 0
+    },
+    "nonpositive_gt_coordinate_rule": "Any GT coordinate <=0 sets native error/IoU to -1. These rows remain in denominator; NPR/PR count them within all nonnegative thresholds, SR does not count them as success.",
+    "nonpositive_gt_coordinate_frames": 1260,
+    "diagnostic_nonpositive_size_frames": 533,
+    "NPR": "Euclidean center distance after separately dividing each center coordinate by GT width/height plus 1e-8, equal sequence mean at threshold 0.2",
+    "PR": "Euclidean center distance, equal sequence mean at 20 pixels",
+    "SR": "Inclusive-width IoU > each of 21 thresholds linspace(0,1,21); mean over thresholds and sequences",
+    "not_mean_raw_iou": true
+  },
+  "native_recomputation": {
+    "implementation": "Independent NumPy arithmetic, not collector or native metric function calls",
+    "overall_percent": {
+      "baseline": {
+        "NPR": 73.10197299993155,
+        "PR": 76.59844897037928,
+        "SR": 61.03742534859602
+      },
+      "c1": {
+        "NPR": 74.15451765370953,
+        "PR": 77.86097272569167,
+        "SR": 61.951313680271845
+      },
+      "write_pair_reference_own_b384": {
+        "NPR": 74.45735525847881,
+        "PR": 78.09777783730206,
+        "SR": 62.12706332333795
+      }
+    },
+    "all_735_sequence_metric_triples_exact": true,
+    "max_absolute_difference_percentage_points": 0,
+    "all_19_attributes_per_variant_exact": true,
+    "all_mean_curves_and_thresholds_exact": true,
+    "official_report_deltas_percentage_points": {
+      "baseline": {
+        "NPR": 1.355382258547266,
+        "PR": 1.499328866922781,
+        "SR": 1.0896379747419331
+      },
+      "c1": {
+        "NPR": 0.30283760476928023,
+        "PR": 0.2368051116103942,
+        "SR": 0.17574964306610497
+      }
+    }
+  },
+  "paired_bootstrap": {
+    "iterations": 5000,
+    "seed": 42,
+    "all_report_fields_exact": true,
+    "resampling": "Equal-weight paired sequences with shared draws across native metrics; fixed checkpoints, not training-seed variation",
+    "results": {
+      "baseline": {
+        "NPR": {
+          "mean_delta_percentage_points": 1.3553822585472632,
+          "percentile_95_interval_percentage_points": [
+            0.5743719297427444,
+            2.257188552774057
+          ],
+          "improved_sequences": 65,
+          "worsened_sequences": 55,
+          "tied_sequences": 125
+        },
+        "PR": {
+          "mean_delta_percentage_points": 1.4993288669227354,
+          "percentile_95_interval_percentage_points": [
+            0.6386692574459123,
+            2.4883270622190854
+          ],
+          "improved_sequences": 67,
+          "worsened_sequences": 53,
+          "tied_sequences": 125
+        },
+        "SR": {
+          "mean_delta_percentage_points": 1.0896379747419405,
+          "percentile_95_interval_percentage_points": [
+            0.47134036992119793,
+            1.7893276252357615
+          ],
+          "improved_sequences": 76,
+          "worsened_sequences": 65,
+          "tied_sequences": 104
+        }
+      },
+      "c1": {
+        "NPR": {
+          "mean_delta_percentage_points": 0.30283760476927096,
+          "percentile_95_interval_percentage_points": [
+            -0.7599370573970231,
+            1.4091468093229447
+          ],
+          "improved_sequences": 47,
+          "worsened_sequences": 31,
+          "tied_sequences": 167
+        },
+        "PR": {
+          "mean_delta_percentage_points": 0.23680511161038226,
+          "percentile_95_interval_percentage_points": [
+            -0.963782421635176,
+            1.468284496170736
+          ],
+          "improved_sequences": 48,
+          "worsened_sequences": 34,
+          "tied_sequences": 163
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.17574964306610472,
+          "percentile_95_interval_percentage_points": [
+            -0.6998269652539915,
+            1.0985064663365778
+          ],
+          "improved_sequences": 61,
+          "worsened_sequences": 41,
+          "tied_sequences": 143
+        }
+      }
+    }
+  },
+  "plot_artifacts": [
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/baseline_paired_report/official_curves.png",
+      "bytes": 139194
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/baseline_paired_report/official_curves.pdf",
+      "bytes": 20768
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/baseline_paired_report/attribute_deltas.png",
+      "bytes": 53445
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/baseline_paired_report/attribute_deltas.pdf",
+      "bytes": 19220
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/c1_paired_report/official_curves.png",
+      "bytes": 127342
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/c1_paired_report/official_curves.pdf",
+      "bytes": 20708
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/c1_paired_report/attribute_deltas.png",
+      "bytes": 50997
+    },
+    {
+      "path": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/c1_paired_report/attribute_deltas.pdf",
+      "bytes": 19251
+    }
+  ],
+  "mechanism_scope": {
+    "native_accuracy_completed_false_expected": true,
+    "raw_mean_iou_independently_recomputed_for_all_three_variants": true,
+    "raw_mean_iou_bootstrap_exact": true,
+    "sequence_mean_iou": {
+      "baseline": 0.6222666792297047,
+      "c1": 0.6316255989397273,
+      "write_pair_reference_own_b384": 0.6334231738506916
+    },
+    "baseline_peak_memory_missing_and_null_verified": true
+  },
+  "efficiency_descriptive_only": {
+    "baseline": {
+      "instrumented_tracking_fps": 22.875141018069908,
+      "latency_p50_ms": 44.8796022683382,
+      "latency_p95_ms": 64.53703506849706,
+      "peak_cuda_allocated_mib": null,
+      "peak_cuda_reserved_mib": null
+    },
+    "c1": {
+      "instrumented_tracking_fps": 35.039434278192985,
+      "latency_p50_ms": 29.16539367288351,
+      "latency_p95_ms": 31.382511975243688,
+      "peak_cuda_allocated_mib": 439.50146484375,
+      "peak_cuda_reserved_mib": 490
+    },
+    "write_pair_reference_own_b384": {
+      "instrumented_tracking_fps": 23.966149050964585,
+      "latency_p50_ms": 36.54326149262488,
+      "latency_p95_ms": 69.46152024902403,
+      "peak_cuda_allocated_mib": 447.4345703125,
+      "peak_cuda_reserved_mib": 488
+    }
+  },
+  "source_checks": {
+    "research/collect_core_metrics.py": {
+      "sha256": "fee14cc7192c5382b89ccbc8068bf56d5c1167a72ae91864f414de0299305eda",
+      "matches_previously_reviewed_local_source": true
+    },
+    "research/paired_sequence_bootstrap.py": {
+      "sha256": "fba35ca0a5bcefa9a90c8419cd145f9fec2314f4d6bc32ddbf55cd70448042df",
+      "matches_previously_reviewed_local_source": true
+    },
+    "research/collect_recoverability_metrics.py": {
+      "sha256": "e3898e3d97494f36778b7d3ed93f94e18afd9ebc59adc8b3ba0bf26f07a1b553",
+      "matches_previously_reviewed_local_source": true
+    },
+    "research/collect_abc_metrics.py": {
+      "sha256": "cc75ef35f74c0c34080964787328c45db495431ab6fe2b498ce16d70c0d1aea9",
+      "matches_previously_reviewed_local_source": true
+    },
+    "evaluation.py": {
+      "sha256": "d09fafd64981dde3f86125e3df1f4aaa933683fcac244c805c3449a5f233792f",
+      "matches_previously_reviewed_local_source": true
+    }
+  },
+  "blocking_findings": [],
+  "interpretation": {
+    "native_point_estimates_positive_against_both_references": true,
+    "all_three_native_95_intervals_against_baseline_above_zero": true,
+    "all_three_native_95_intervals_against_c1_include_zero": true,
+    "all_native_gains_against_baseline_below_two_percentage_points": true,
+    "claim_limit": "This fixed checkpoint improves all three LasHeR native point estimates over GOLA and C1; paired sequence intervals exclude zero against GOLA but include zero against C1. None of the LasHeR gains reaches +2 percentage points. This is not training-seed uncertainty."
+  },
+  "mechanism_reconciliation": {
+    "all_245_npz_and_actual_gt_recomputed": true,
+    "all_counter_fields_exact_against_per_sequence_and_summary": true,
+    "four_runtime_counters_exact_against_all_245_receipts": true,
+    "prior_template_source_chain_causal_and_boxes_consistent": true,
+    "valid_candidate_budget_at_most_10": true,
+    "unknown_gt_excluded_from_localization_counts_and_memory_labels": true,
+    "memory_target_read_write_localization_provenance_mass_recomputed": true,
+    "intervention_rows": 5778,
+    "every_intervention_csv_field_exact": true,
+    "all_ten_current_quality_calibration_bins_exact": true,
+    "all_frozen_motion_statistics_independently_recomputed_exact": true,
+    "motion_joint_trajectories": 219355,
+    "motion_valid_forecasts_by_horizon": [
+      219925,
+      219680,
+      219435
+    ],
+    "max_history_frames": 8,
+    "max_pending_observed": 5,
+    "counters": {
+      "tracking_frames": 220458,
+      "valid_tracking_frames": 219925,
+      "candidate_evaluations": 1059681,
+      "local_candidate_recalled_frames": 163989,
+      "budget_candidate_recalled_frames": 164963,
+      "local_missing_frames": 55936,
+      "missing_correct_candidates_reintroduced": 974,
+      "reintroduced_candidates_selected_correctly": 2,
+      "c1_same_state_failed_frames": 48976,
+      "c1_same_state_correct_frames": 155835,
+      "selected_failed_frames": 48936,
+      "changed_candidate_indices": 303,
+      "valid_changed_candidate_indices": 299,
+      "same_state_rescues": 69,
+      "same_state_harms": 43,
+      "same_state_iou_improvements": 121,
+      "same_state_iou_degradations": 76,
+      "requested_extra_searches": 5281,
+      "extra_visual_forwards": 5281,
+      "searches_without_new_correct_candidate": 4304,
+      "requested_extra_area_sum_pixels_squared": 2843078639.9505253,
+      "template_updates": 84570,
+      "known_template_updates": 84525,
+      "wrong_template_updates_localization_proxy": 7790,
+      "paused_query_writes": 245,
+      "known_paused_query_writes": 245,
+      "wrong_query_writes_prevented_localization_proxy": 28,
+      "correct_query_writes_prevented": 210,
+      "known_active_template_frames": 219867,
+      "wrong_active_template_frames_localization_proxy": 18952,
+      "memory_rgb_target_write_known_mass": 48579.84965056181,
+      "memory_rgb_target_write_wrong_mass": 4477.084165692329,
+      "memory_rgb_target_read_known_mass": 219877.52044991346,
+      "memory_rgb_target_read_wrong_mass": 14545.448436819262,
+      "memory_tir_target_write_known_mass": 48564.78564184904,
+      "memory_tir_target_write_wrong_mass": 4475.988832652569,
+      "memory_tir_target_read_known_mass": 219872.5328791343,
+      "memory_tir_target_read_wrong_mass": 15140.48763867888,
+      "candidate_quality_squared_error_sum": 27627.931267324857,
+      "known_candidate_evaluations": 1057101
+    },
+    "rates": {
+      "local_recall": 0.745658747300216,
+      "budget_recall": 0.750087529839718,
+      "missing_candidate_reintroduction_rate": 0.01741275743707094,
+      "wrong_template_write_rate": 0.09216208222419403,
+      "misintervention_rate_on_correct_same_state_c1": 0.0002759328777232329
+    }
+  }
+}

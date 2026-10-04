@@ -1,0 +1,100 @@
+{
+  "observed_at": "2026-10-04T08:37:01.493082+08:00",
+  "jobs": {
+    "recoverability_write_pair_native_lasher_own_b384_full_20261004": {
+      "exists": true,
+      "job_completed": true,
+      "report_completed": true,
+      "predictions/progress.jsonl": {
+        "sequence": "yellowskirt",
+        "sequence_index": 245,
+        "sequences": 245,
+        "frames": 361,
+        "elapsed_seconds": 11.64469387056306,
+        "stats": {
+          "template_updates": 269,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 1,
+          "extra_visual_forwards": 1,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 2,
+          "max_motion_history": 8
+        }
+      },
+      "files": [
+        "report_completed.txt",
+        "job_completed.txt",
+        "baseline_paired_report/official_curves.pdf",
+        "baseline_paired_report/official_curves.png",
+        "baseline_paired_report/attribute_deltas.png",
+        "baseline_paired_report/paired_bootstrap.json",
+        "baseline_paired_report/per_attribute.csv",
+        "baseline_paired_report/full_report.json",
+        "baseline_paired_report/attribute_deltas.pdf",
+        "baseline_paired_report/overall.csv",
+        "baseline_paired_report/per_sequence.csv",
+        "core_report/per_attribute.csv",
+        "core_report/full_report.json",
+        "core_report/overall.csv",
+        "core_report/per_sequence.csv",
+        "mechanism_report/full_recoverability_report.json",
+        "mechanism_report/recoverability_metrics_completed.txt",
+        "mechanism_report/interventions.csv",
+        "mechanism_report/per_sequence.csv",
+        "c1_paired_report/official_curves.pdf",
+        "c1_paired_report/official_curves.png",
+        "c1_paired_report/attribute_deltas.png",
+        "c1_paired_report/paired_bootstrap.json",
+        "c1_paired_report/per_attribute.csv",
+        "c1_paired_report/full_report.json",
+        "c1_paired_report/attribute_deltas.pdf",
+        "c1_paired_report/overall.csv",
+        "c1_paired_report/per_sequence.csv"
+      ]
+    },
+    "recoverability_future_c1_train_shard1_20261004": {
+      "exists": true,
+      "job_completed": true,
+      "report_completed": false
+    },
+    "recoverability_future_c1_validation_shard1_20261004": {
+      "exists": true,
+      "job_completed": true,
+      "report_completed": false
+    },
+    "recoverability_future_c1_train_shard2_20261004": {
+      "exists": true,
+      "job_completed": false,
+      "report_completed": false
+    },
+    "recoverability_future_c1_train_shard3_20261004": {
+      "exists": true,
+      "job_completed": false,
+      "report_completed": false
+    },
+    "recoverability_future_c1_validation_shard3_20261004": {
+      "exists": false,
+      "job_completed": false,
+      "report_completed": false
+    },
+    "recoverability_future_own_train_shard1_20261004": {
+      "exists": true,
+      "job_completed": false,
+      "report_completed": false
+    },
+    "recoverability_future_own_train_shard2_20261004": {
+      "exists": false,
+      "job_completed": false,
+      "report_completed": false
+    },
+    "recoverability_future_own_train_shard3_20261004": {
+      "exists": true,
+      "job_completed": false,
+      "report_completed": false
+    }
+  },
+  "processes": "    PID STAT     ELAPSED COMMAND\n3012813 R+         40:23 [python]\n3012814 Rl+        40:23 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_future_own_train_shard3_20261004\n",
+  "gpu": "0, 1260, 37\n1, 929, 19\n2, 921, 0\n3, 925, 0\n",
+  "sessions": "future_policy_queue_gpu0_20261004: 1 windows (created Sun Oct  4 07:08:38 2026)\nfuture_policy_queue_gpu1_c1_shard2_20261004: 1 windows (created Sun Oct  4 08:01:35 2026)\nfuture_policy_queue_gpu2_20261004: 1 windows (created Sun Oct  4 07:08:38 2026)\nfuture_policy_queue_gpu2_own_shard2_20261004: 1 windows (created Sun Oct  4 08:01:35 2026)\nfuture_policy_queue_gpu3_20261004: 1 windows (created Sun Oct  4 07:08:38 2026)\n"
+}

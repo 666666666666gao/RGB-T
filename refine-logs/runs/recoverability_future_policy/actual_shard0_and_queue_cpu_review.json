@@ -1,0 +1,657 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-04T08:13:51.642946+08:00",
+  "scope": "Independent read-only CPU review of the actual completed c1/own TRAIN/validation shard0 caches and the recorded shard2 queue rebalance. No complete merge, model execution, training acceptance or deployed tracking accuracy claim.",
+  "skill": "C:/Users/gb/.codex/skills/experiment-bridge/SKILL.md Phase 2.5; C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md",
+  "requested_report_path": "refine-logs/runs/recoverability_future_policy/actual_shard0_and_queue_cpu_review.json",
+  "verdict_zh": "PASS，零阻断。真实首分片两臂的28个非未来字段逐字段dtype/shape/value完全一致；原action_utility的CPU Torch运算复现全部计数和两个变化的oracle动作。队列调整后2教师×4分片各覆盖一次。只确认首分片离线监督标签和记录中的调度映射，未确认全量缓存合并或新训练。",
+  "evidence_method": {
+    "source": "Directly read production recoverability_modules.py and compiled only its exact action_utility and search_supervision_targets AST function nodes. Neither RecoverabilityModules nor the source module was imported or instantiated.",
+    "arrays": "Independently loaded all30 fields from each of the four completed shard0 samples.npz files. Checked completed markers/receipts, exact planned job order, finite arrays, legal regular/pause masks, causal history, matched configs and all28 non-future fields before CPU Torch calculations.",
+    "utility": "Original float32 Torch formula: .7*current_iou[...,None]+.3*future_iou.mean(-1)-.1*wrong_update_fraction.",
+    "offline_oracle_diagnostic": "Mask illegal actions, deduct .01 from extra-region action utility once, and choose maximal net utility. Reference is original-region original_choice regular action; gain is oracle net utility minus reference. This GT-derived diagnostic is not a deployed policy prediction or tracking metric.",
+    "actual_training_search_labels": "Executed original search_supervision_targets(mode='oracle') with output=None. Its region_gain is gross utility relative to the original regular reference; .01 is not subtracted inside this helper. Checked gross .05 threshold labels separately from the net oracle diagnostic.",
+    "queue": "Read reviewed local queue/runner sources, verified matching deployed private-source SHA, and combined prior reviewed retained invocations with the two exact replacement invocations recorded in the rebalance JSON. Expanded all8 teacher/shard tasks,16 output roots and actual job manifests.",
+    "process_history_boundary": "Old waiter cancellation and active-NN preservation are root-recorded facts in the rebalance receipt. Reviewer did not signal, relaunch, inspect /proc, query GPU state or reread runtime progress; this is a static invocation/recorded-history review."
+  },
+  "source_sha256": {
+    "research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "research/merge_recoverability_future_caches.py": "cfa789262e6afdf958315cecbef118171df05a11710cdb28a3c7de408523b030",
+    "scripts/queue_recoverability_future_collection.sh": "a6b7735a0947cfc1d60038e1f450b4051f3e5e10812f614975530511b75e1e20",
+    "scripts/run_recoverability_future_collection.sh": "a1d66dfe29d686450eac2813fb08740d28919e7b4d86f761b7e606b0e672c311"
+  },
+  "findings": [
+    {
+      "severity": "INFO",
+      "finding": "All root-reported clip/action/count/changed-job claims are exactly reproduced. TRAIN225 has165 queries/514 legal actions with changed utility and2 changed net-oracle best actions; validation32 has28 queries/79 legal actions and0 changed best actions. Gross region and net intervention .05 binary labels have0 flips."
+    },
+    {
+      "severity": "INFO",
+      "finding": "TRAIN own mean oracle gain is 0.06332941353321075 in original CPU Torch arithmetic versus0.06332942098379135 in the root diagnostic; absolute difference7.450580596923828e-9. All reported other floating comparisons are exact. This float32 reduction rounding difference changes no label or count; original numbers are preserved in the receipt, not described as bitwise-equal summaries."
+    },
+    {
+      "severity": "INFO",
+      "finding": "The original gross search region_gain argmax changes for1 TRAIN query and0 validation queries. Therefore unchanged .05 binary labels do not mean all training targets are unchanged: regression utility and potentially search ranking classes differ."
+    },
+    {
+      "severity": "INFO",
+      "finding": "GPU0: RGB completion -> c1 shard1 -> own shard1. GPU1: Las completion -> c1 shard2. GPU2: c1 shard0 -> c1 shard3 -> own shard2. GPU3: own shard0 -> own shard3. The replacement removes the old GPU1 c1/own shard2 queue according to the rebalance record. Every same-GPU predecessor is a final validation marker after that shard's train and validation, and policy calls are foreground/sequential."
+    },
+    {
+      "severity": "INFO",
+      "finding": "Manifest coverage is902TRAIN and128validation jobs per teacher, with TRAIN shard sizes225/226/225/226 and validation32/32/32/32. This checks intended complete coverage and uniqueness, not completion of the other shards."
+    }
+  ],
+  "actual_cpu_receipt": {
+    "observed_cst": "2026-10-04T08:13:51.642946+08:00",
+    "status": "PASS",
+    "cpu_execution": {
+      "python": "/data/gb/envs/gola/bin/python",
+      "torch_version": "2.5.1+cu118",
+      "cuda_visible_devices": "",
+      "cuda_initialized_before": false,
+      "torch_threads": 1,
+      "loaded_functions": [
+        "action_utility",
+        "search_supervision_targets"
+      ],
+      "module_imported": false,
+      "nn_instances": 0,
+      "nn_forward": 0,
+      "nn_backward": 0,
+      "optimizer_steps": 0,
+      "cuda_initialized_after": false
+    },
+    "source_sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "partitions": {
+      "train": {
+        "roots": {
+          "c1": "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+          "own": "/data/gb/outputs/recoverability_future_own_train_shard0_20261004"
+        },
+        "markers": {
+          "c1": "2026-10-04T07:47:47+08:00",
+          "own": "2026-10-04T07:47:49+08:00"
+        },
+        "completions": {
+          "c1": {
+            "completed": true,
+            "clips": 225,
+            "partition": "train",
+            "valid_actions": 8247,
+            "requested_extra_crops": 1350,
+            "executed_extra_crops": 1349,
+            "original_correct_queries": 186,
+            "original_failed_queries": 26,
+            "original_candidate_present_queries": 190,
+            "query_frames_after256": 59,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2731.559723247774,
+            "peak_cuda_mib": 518.5244140625,
+            "actual_prefix_counts_sum": [
+              942,
+              38,
+              108,
+              19485
+            ]
+          },
+          "own": {
+            "completed": true,
+            "clips": 225,
+            "partition": "train",
+            "valid_actions": 8247,
+            "requested_extra_crops": 1350,
+            "executed_extra_crops": 1349,
+            "original_correct_queries": 186,
+            "original_failed_queries": 26,
+            "original_candidate_present_queries": 190,
+            "query_frames_after256": 59,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2733.542307007592,
+            "peak_cuda_mib": 522.9140625,
+            "actual_prefix_counts_sum": [
+              942,
+              38,
+              108,
+              19485
+            ]
+          }
+        },
+        "all_30_fields_shape_dtype_equal": true,
+        "non_future_fields": [
+          "action_valid",
+          "anchor_features",
+          "boxes",
+          "c1_quality",
+          "current_iou",
+          "evidence",
+          "features",
+          "history_boxes",
+          "history_descriptors",
+          "history_evidence",
+          "history_frames",
+          "history_instance_descriptors",
+          "history_iou",
+          "history_quality",
+          "history_valid",
+          "history_write",
+          "image_boxes",
+          "instance_features",
+          "modality_features",
+          "motion_log_weights",
+          "motion_means",
+          "motion_targets",
+          "original_choice",
+          "prefix_counts",
+          "raw_score",
+          "region_executed",
+          "requested_extra_crop_area",
+          "valid"
+        ],
+        "all_arrays_finite": true,
+        "same_ordered_jobs_and_source_parameters": true,
+        "source_parameters": {
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "prefix_write_verification": "action",
+          "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+          "root": "/data/wangwj/dataset/LasHeR",
+          "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+          "regions": [
+            "original",
+            "anchor_local",
+            "anchor_widened",
+            "anchor_fixed_offset",
+            "anchor_motion_0",
+            "anchor_motion_1",
+            "anchor_motion_2"
+          ],
+          "pretrained": "pretrained_models/gola_b224.bin",
+          "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+          "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+          "max_prefix": 1024,
+          "batch_clips": 1,
+          "forward_batch": 1,
+          "seed": 42,
+          "future_horizon": 3
+        },
+        "label_differences": {
+          "future_iou": {
+            "different_elements": 1270,
+            "max_absolute_difference": 0.9877115488052368
+          },
+          "wrong_update_fraction": {
+            "different_elements": 8,
+            "max_absolute_difference": 0.5
+          }
+        },
+        "torch_target_impact": {
+          "clips": 225,
+          "valid_actions": 8247,
+          "clips_with_any_utility_difference": 165,
+          "legal_actions_with_utility_difference": 514,
+          "max_legal_utility_difference": 0.28045743703842163,
+          "oracle_best_flat_action_changed": 2,
+          "oracle_intervene_gt05_label_changed": 0,
+          "oracle_extra_region_gt05_labels_changed": 0,
+          "teacher_summaries": {
+            "c1": {
+              "mean_oracle_gain": 0.06338627636432648,
+              "intervene_gt05_queries": 67,
+              "extra_best_actions": 140
+            },
+            "own": {
+              "mean_oracle_gain": 0.06332941353321075,
+              "intervene_gt05_queries": 67,
+              "extra_best_actions": 139
+            }
+          },
+          "changed_best_actions": [
+            {
+              "sequence": "darkleftboy2left",
+              "query_frame": 766,
+              "c1_best_action": 12,
+              "own_best_action": 66,
+              "c1_gain": 0.6078301072120667,
+              "own_gain": 0.5904070734977722
+            },
+            {
+              "sequence": "girlback",
+              "query_frame": 555,
+              "c1_best_action": 56,
+              "own_best_action": 4,
+              "c1_gain": 0.09857534617185593,
+              "own_gain": 0.10443779081106186
+            }
+          ]
+        },
+        "root_count_and_job_claims_exact": true,
+        "floating_comparison_atol": 1e-7,
+        "floating_comparisons": [
+          {
+            "field": "train.max_legal_utility_difference",
+            "torch": 0.28045743703842163,
+            "reported": 0.28045743703842163,
+            "abs_difference": 0
+          },
+          {
+            "field": "train.teacher_summaries.c1.mean_oracle_gain",
+            "torch": 0.06338627636432648,
+            "reported": 0.06338627636432648,
+            "abs_difference": 0
+          },
+          {
+            "field": "train.teacher_summaries.own.mean_oracle_gain",
+            "torch": 0.06332941353321075,
+            "reported": 0.06332942098379135,
+            "abs_difference": 7.450580596923828e-9
+          },
+          {
+            "field": "train.changed_best_actions[0].c1_gain",
+            "torch": 0.6078301072120667,
+            "reported": 0.6078301072120667,
+            "abs_difference": 0
+          },
+          {
+            "field": "train.changed_best_actions[0].own_gain",
+            "torch": 0.5904070734977722,
+            "reported": 0.5904070734977722,
+            "abs_difference": 0
+          },
+          {
+            "field": "train.changed_best_actions[1].c1_gain",
+            "torch": 0.09857534617185593,
+            "reported": 0.09857534617185593,
+            "abs_difference": 0
+          },
+          {
+            "field": "train.changed_best_actions[1].own_gain",
+            "torch": 0.10443779081106186,
+            "reported": 0.10443779081106186,
+            "abs_difference": 0
+          }
+        ],
+        "additional_source_label_crosschecks": {
+          "gross_region_gt05_any_query_changed": 0,
+          "gross_region_argmax_changed": 1,
+          "net_extra_region_gt05_changed": 0,
+          "current_iou_search_success_targets_exact": true
+        },
+        "all_28_non_future_arrays_dtype_shape_value_exact": true
+      },
+      "validation": {
+        "roots": {
+          "c1": "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004",
+          "own": "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004"
+        },
+        "markers": {
+          "c1": "2026-10-04T07:53:35+08:00",
+          "own": "2026-10-04T07:53:51+08:00"
+        },
+        "completions": {
+          "c1": {
+            "completed": true,
+            "clips": 32,
+            "partition": "validation",
+            "valid_actions": 1198,
+            "requested_extra_crops": 192,
+            "executed_extra_crops": 192,
+            "original_correct_queries": 27,
+            "original_failed_queries": 3,
+            "original_candidate_present_queries": 28,
+            "query_frames_after256": 7,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 341.8630554578267,
+            "peak_cuda_mib": 518.23681640625,
+            "actual_prefix_counts_sum": [
+              33,
+              5,
+              5,
+              4013
+            ]
+          },
+          "own": {
+            "completed": true,
+            "clips": 32,
+            "partition": "validation",
+            "valid_actions": 1198,
+            "requested_extra_crops": 192,
+            "executed_extra_crops": 192,
+            "original_correct_queries": 27,
+            "original_failed_queries": 3,
+            "original_candidate_present_queries": 28,
+            "query_frames_after256": 7,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 356.0940900677815,
+            "peak_cuda_mib": 522.62646484375,
+            "actual_prefix_counts_sum": [
+              33,
+              5,
+              5,
+              4013
+            ]
+          }
+        },
+        "all_30_fields_shape_dtype_equal": true,
+        "non_future_fields": [
+          "action_valid",
+          "anchor_features",
+          "boxes",
+          "c1_quality",
+          "current_iou",
+          "evidence",
+          "features",
+          "history_boxes",
+          "history_descriptors",
+          "history_evidence",
+          "history_frames",
+          "history_instance_descriptors",
+          "history_iou",
+          "history_quality",
+          "history_valid",
+          "history_write",
+          "image_boxes",
+          "instance_features",
+          "modality_features",
+          "motion_log_weights",
+          "motion_means",
+          "motion_targets",
+          "original_choice",
+          "prefix_counts",
+          "raw_score",
+          "region_executed",
+          "requested_extra_crop_area",
+          "valid"
+        ],
+        "all_arrays_finite": true,
+        "same_ordered_jobs_and_source_parameters": true,
+        "source_parameters": {
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "prefix_write_verification": "action",
+          "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+          "root": "/data/wangwj/dataset/LasHeR",
+          "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+          "regions": [
+            "original",
+            "anchor_local",
+            "anchor_widened",
+            "anchor_fixed_offset",
+            "anchor_motion_0",
+            "anchor_motion_1",
+            "anchor_motion_2"
+          ],
+          "pretrained": "pretrained_models/gola_b224.bin",
+          "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+          "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+          "max_prefix": 1024,
+          "batch_clips": 1,
+          "forward_batch": 1,
+          "seed": 42,
+          "future_horizon": 3
+        },
+        "label_differences": {
+          "future_iou": {
+            "different_elements": 183,
+            "max_absolute_difference": 0.9567554593086243
+          },
+          "wrong_update_fraction": {
+            "different_elements": 1,
+            "max_absolute_difference": 0.25
+          }
+        },
+        "torch_target_impact": {
+          "clips": 32,
+          "valid_actions": 1198,
+          "clips_with_any_utility_difference": 28,
+          "legal_actions_with_utility_difference": 79,
+          "max_legal_utility_difference": 0.27455511689186096,
+          "oracle_best_flat_action_changed": 0,
+          "oracle_intervene_gt05_label_changed": 0,
+          "oracle_extra_region_gt05_labels_changed": 0,
+          "teacher_summaries": {
+            "c1": {
+              "mean_oracle_gain": 0.04578569531440735,
+              "intervene_gt05_queries": 9,
+              "extra_best_actions": 19
+            },
+            "own": {
+              "mean_oracle_gain": 0.04433658719062805,
+              "intervene_gt05_queries": 9,
+              "extra_best_actions": 19
+            }
+          },
+          "changed_best_actions": []
+        },
+        "root_count_and_job_claims_exact": true,
+        "floating_comparison_atol": 1e-7,
+        "floating_comparisons": [
+          {
+            "field": "validation.max_legal_utility_difference",
+            "torch": 0.27455511689186096,
+            "reported": 0.27455511689186096,
+            "abs_difference": 0
+          },
+          {
+            "field": "validation.teacher_summaries.c1.mean_oracle_gain",
+            "torch": 0.04578569531440735,
+            "reported": 0.04578569531440735,
+            "abs_difference": 0
+          },
+          {
+            "field": "validation.teacher_summaries.own.mean_oracle_gain",
+            "torch": 0.04433658719062805,
+            "reported": 0.04433658719062805,
+            "abs_difference": 0
+          }
+        ],
+        "additional_source_label_crosschecks": {
+          "gross_region_gt05_any_query_changed": 0,
+          "gross_region_argmax_changed": 0,
+          "net_extra_region_gt05_changed": 0,
+          "current_iou_search_success_targets_exact": true
+        },
+        "all_28_non_future_arrays_dtype_shape_value_exact": true
+      }
+    },
+    "claimed_artifacts": {
+      "/data/gb/setup/future_policy_actual_shard0_pair_audit_20261004.json": "831dba34a7a9aabbcbe9ef8ebe44d9336cbcaca25b6e0bfaceab300c55cfb59c",
+      "/data/gb/setup/future_policy_actual_shard0_target_impact_20261004.json": "a1f8bb8e7491a92876025d45a2a9293079eab6b28cad411feb3ec474e76af878",
+      "/data/gb/setup/future_policy_shard2_queue_rebalance_20261004.json": "afe8ebad87094fd3d199ad46cceb1253a61a8298f54196e5fef6246c991b0c43"
+    },
+    "queue_review": {
+      "status": "PASS",
+      "reviewed_queue_sha256": "a6b7735a0947cfc1d60038e1f450b4051f3e5e10812f614975530511b75e1e20",
+      "reviewed_runner_sha256": "a1d66dfe29d686450eac2813fb08740d28919e7b4d86f761b7e606b0e672c311",
+      "actual_rebalance_receipt": {
+        "changed_cst": "2026-10-04T08:01:35.483444+08:00",
+        "reason": "Transfer only unstarted own shard2 from delayed GPU1 to GPU2 after actual C1 shard3 completion; same queries/source/settings/output",
+        "cancelled_waiting_session": "future_policy_queue_gpu1_20261004",
+        "cancelled_waiting_pane_pid": 2926820,
+        "cancelled_waiting_script_pid": 2926822,
+        "lasher_and_all_active_nn_untouched": true,
+        "new_waiters": [
+          {
+            "session": "future_policy_queue_gpu1_c1_shard2_20261004",
+            "args": [
+              "bash",
+              "/data/gb/setup/future_policy_review_source/queue_recoverability_future_collection.sh",
+              "1",
+              "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt",
+              "2",
+              "c1"
+            ],
+            "log": "/data/gb/setup/future_policy_queue_gpu1_c1_shard2_20261004.log",
+            "pane": "3022118 bash"
+          },
+          {
+            "session": "future_policy_queue_gpu2_own_shard2_20261004",
+            "args": [
+              "bash",
+              "/data/gb/setup/future_policy_review_source/queue_recoverability_future_collection.sh",
+              "2",
+              "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/job_completed.txt",
+              "2",
+              "own"
+            ],
+            "log": "/data/gb/setup/future_policy_queue_gpu2_own_shard2_20261004.log",
+            "pane": "3022124 bash"
+          }
+        ],
+        "same_shard2_policies": [
+          "c1",
+          "own"
+        ],
+        "poll_seconds": 240
+      },
+      "retained_invocations": [
+        {
+          "gpu": 0,
+          "wait_marker": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/job_completed.txt",
+          "shard": 1,
+          "policies": [
+            "c1",
+            "own"
+          ]
+        },
+        {
+          "gpu": 2,
+          "wait_marker": "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004/job_completed.txt",
+          "shard": 3,
+          "policies": [
+            "c1"
+          ]
+        },
+        {
+          "gpu": 3,
+          "wait_marker": "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004/job_completed.txt",
+          "shard": 3,
+          "policies": [
+            "own"
+          ]
+        }
+      ],
+      "replacement_invocations": [
+        {
+          "gpu": 1,
+          "wait_marker": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt",
+          "shard": 2,
+          "policies": [
+            "c1"
+          ]
+        },
+        {
+          "gpu": 2,
+          "wait_marker": "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/job_completed.txt",
+          "shard": 2,
+          "policies": [
+            "own"
+          ]
+        }
+      ],
+      "expanded_tasks": [
+        {
+          "policy": "c1",
+          "shard": 0,
+          "gpu": 2,
+          "predecessor": "already started original shard0"
+        },
+        {
+          "policy": "own",
+          "shard": 0,
+          "gpu": 3,
+          "predecessor": "already started original shard0"
+        },
+        {
+          "policy": "c1",
+          "shard": 1,
+          "gpu": 0,
+          "predecessor": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/job_completed.txt"
+        },
+        {
+          "policy": "own",
+          "shard": 1,
+          "gpu": 0,
+          "predecessor": "/data/gb/outputs/recoverability_future_c1_validation_shard1_20261004/job_completed.txt"
+        },
+        {
+          "policy": "c1",
+          "shard": 3,
+          "gpu": 2,
+          "predecessor": "/data/gb/outputs/recoverability_future_c1_validation_shard0_20261004/job_completed.txt"
+        },
+        {
+          "policy": "own",
+          "shard": 3,
+          "gpu": 3,
+          "predecessor": "/data/gb/outputs/recoverability_future_own_validation_shard0_20261004/job_completed.txt"
+        },
+        {
+          "policy": "c1",
+          "shard": 2,
+          "gpu": 1,
+          "predecessor": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/job_completed.txt"
+        },
+        {
+          "policy": "own",
+          "shard": 2,
+          "gpu": 2,
+          "predecessor": "/data/gb/outputs/recoverability_future_c1_validation_shard3_20261004/job_completed.txt"
+        }
+      ],
+      "policy_shard_pairs_exactly_once": true,
+      "unique_partition_outputs": 16,
+      "same_gpu_predecessor_links": true,
+      "per_policy_jobs": {
+        "train": 902,
+        "validation": 128
+      },
+      "manifest_shard_counts": {
+        "train": [
+          225,
+          226,
+          225,
+          226
+        ],
+        "validation": [
+          32,
+          32,
+          32,
+          32
+        ]
+      },
+      "old_queue_cancelled_and_active_nn_untouched": "Recorded by root receipt; reviewer did not signal or re-query processes. Mapping uniqueness assumes the recorded retirement of the replaced old waiter.",
+      "runtime_progress_queried": false
+    },
+    "full_merge_executed": false,
+    "training_executed": false,
+    "remote_file_writes": false
+  },
+  "reviewer_actions": {
+    "remote_reads": true,
+    "cpu_torch_arithmetic": true,
+    "cuda_initialized": false,
+    "model_instantiation": false,
+    "nn_forward": 0,
+    "nn_backward": 0,
+    "optimizer_updates": 0,
+    "complete_merger_main_executed": false,
+    "training_executed": false,
+    "deployment": false,
+    "process_signals": false,
+    "source_edits": false,
+    "remote_file_writes": false,
+    "only_local_output": "refine-logs/runs/recoverability_future_policy/actual_shard0_and_queue_cpu_review.json"
+  },
+  "remaining_gate": "All16 real partition outputs must complete and pass the existing CPU merger before matched B384 sanity. This review does not grant new training/full execution or establish performance improvements.",
+  "review_harness_note": "An initial metadata-only read requested receipt.json and received FileNotFoundError; the actual established schema is completion.json. The read command was corrected to that existing filename. No experiment failure, fallback or source change resulted."
+}
