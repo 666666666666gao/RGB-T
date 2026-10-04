@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "same_family_provisional": true,
+  "runtime_attested": false,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-05T06:20:11.713824+08:00",
+  "reviewer": {
+    "agent": "/root/best_native_policy_final_cpu_continuation_review",
+    "attribution": "Fresh source review under experiment-bridge Phase 2.5. Exact model backend and reasoning effort are not independently runtime-attested."
+  },
+  "inspected_source_paths": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\final_cpu_continuation.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\complete_pipeline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\merge_complete_goal_report.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\audit_native_complete_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\goal_report_source_review.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\merge_abc_complete.py"
+  ],
+  "concrete_findings": [],
+  "blocking_code_issues": [],
+  "checks": [
+    {
+      "status": "PASS",
+      "topic": "Known original controller and timing",
+      "evidence": "final_cpu_continuation.py:14-43 binds the supplied original PID 632884, verifies the observed FULL98_best startup stage, sleeps until 2026-10-05 07:30 CST, then polls at 180 seconds. It does not restart or modify the original controller."
+    },
+    {
+      "status": "PASS",
+      "topic": "Original readiness ordering",
+      "evidence": "complete_pipeline.py:151-175 runs both complete native benchmarks, then each report and independent native CPU audit with check=True, writes the original five-metric complete_core_report.json, and only then emits COMPLETE_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY. The wrapper requires that exact stage, completed original report with five rows, and PASS from both independent_native_cpu_acceptance.json files before continuing."
+    },
+    {
+      "status": "PASS",
+      "topic": "Single CPU-only continuation",
+      "evidence": "final_cpu_continuation.py:9 and :44-45 require CUDA_VISIBLE_DEVICES empty and the GOLA working directory. The only non-ps subprocess is the already reviewed /data/gb/setup/best_native_policy_merge_complete_goal_report_20261005.py, called once outside the wait loop with check=True. Existing continuation receipt or complete_report output rejects another sequential launch. The supplied operator contract gives this one wrapper ownership of the merger."
+    },
+    {
+      "status": "PASS",
+      "topic": "Output contracts and completion receipt",
+      "evidence": "The wrapper output path, completed/official_tracking_accuracy flags, acceptance.metrics list, selected_checkpoint, goal_result and complete_core_report_completed.txt match merge_complete_goal_report.py:78-104. Success is written only after merger success and the completed output marker. Original-controller termination before ready raises; termination after ready is accepted."
+    },
+    {
+      "status": "PASS",
+      "topic": "Previously approved merger preserved",
+      "evidence": "The current merger bytes match the existing PASS goal_report_source_review.json digest. Its existing checks retain full 245/220703 and 234/116649 coverage, all five metrics, 19+12 attributes, curves, paired 5000 seed-42 results and independent native CPU receipts. No original controller, wrapper or merger source was edited."
+    }
+  ],
+  "local_control_flow_validation": {
+    "status": "PASS",
+    "syntax_sources_compiled_without_execution": [
+      "final_cpu_continuation.py",
+      "complete_pipeline.py",
+      "merge_complete_goal_report.py"
+    ],
+    "cases_passed": [
+      "Wait until 07:30, poll at 180 seconds, then merge once after ready even when original PID has exited.",
+      "Merge once after ready while original PID is still alive.",
+      "Original PID stops before ready: fail without a merger call.",
+      "One required native CPU acceptance fails: fail without a merger call.",
+      "Merger returns failure: do not write a successful continuation receipt.",
+      "Existing continuation receipt: reject a duplicate launch before polling or merging."
+    ],
+    "method": "Execute the unmodified wrapper in an in-memory environment with virtual files, clock, ps and merger responses. No metric scores were synthesized; only structural JSON fields were supplied.",
+    "actual_experiment_or_merger_run": false,
+    "runtime_attested": false
+  },
+  "execution": {
+    "SSH_calls": 0,
+    "live_job_queries": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "actual_merger_executions": 0,
+    "source_files_modified": false,
+    "only_file_written": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\final_cpu_continuation_source_review.json"
+  },
+  "limits": "Source approval only. The supplied 06:08 FULL98_best observation was not refreshed. Current native completion, CPU acceptance and goal success remain unclaimed; the queued wrapper must obtain actual readiness before executing the merger."
+}
