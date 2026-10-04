@@ -6142,7 +6142,23 @@
           "oracle_c1": 33
         },
         "actual_full98_status": "RUNNING_ALL4; NO_COMPLETE_REPORT_OR_ACCURACY_CONCLUSION",
-        "best_cached_epoch_is_not_full_video_selection": true
+        "best_cached_epoch_is_not_full_video_selection": true,
+        "actual_cache_opportunity_diagnosis": {
+          "scope": "Matched cached TRAIN-heldout queries only; checkpoint selection data, not independent continuous/native confirmation.",
+          "actual_extra_correct_candidate_selected_at_iou_point5": 0,
+          "path": "refine-logs/runs/recoverability_current_policy_fit/actual_cached_opportunity_diagnosis.json",
+          "next_action_dependency": "Wait real full98/CPU/fourfactor closure before performance attribution or a new architecture.",
+          "improved_queries_each": 1,
+          "declined_queries": {
+            "selector_own": 1,
+            "oracle_own": 0,
+            "selector_c1": 1,
+            "oracle_c1": 1
+          },
+          "queries": 128,
+          "extra_correct_candidate_queries_available": 8,
+          "observed_at": "2026-10-04T16:24:07.792846+08:00"
+        }
       }
     },
     {
@@ -7118,5 +7134,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04 16:10:18"
+  "updated_cst": "2026-10-04 16:30:19"
 }
