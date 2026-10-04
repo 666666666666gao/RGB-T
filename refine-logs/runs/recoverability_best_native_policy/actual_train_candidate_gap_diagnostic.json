@@ -1,0 +1,81 @@
+{
+  "status": "TRAIN_ONLY_GT_ORACLE_DIAGNOSTIC",
+  "computed_at_cst": "2026-10-05T04:00:40.119411+08:00",
+  "queries": 1762,
+  "video_names": 881,
+  "ground_truth_label_evidence": "Already accepted cache GT replay; this calculation reuses current_iou labels, without new neural or GT annotation replay.",
+  "correct_threshold": 0.5,
+  "failure_threshold": 0.2,
+  "choice_source": "Frozen C1 original-region choice under old4 own-policy prefixes",
+  "split_of_180_original_choice_failures": {
+    "selected_failed_but_local_correct": 32,
+    "selected_failed_local_missing_but_extra_correct": 44,
+    "selected_failed_all7_regions_missing": 104
+  },
+  "query_mean_iou": {
+    "original_C1_choice_under_own_prefix": 0.7214803669430425,
+    "GT_oracle_best_original5": 0.7386522738555833,
+    "GT_oracle_best_all7_regions35_candidates": 0.8080751460043462
+  },
+  "correct_query_counts": {
+    "original_choice": 1505,
+    "GT_oracle_original5": 1540,
+    "GT_oracle_all7": 1643
+  },
+  "original_correct_query_localization": {
+    "original_choice_correct_but_below_08_iou": 525,
+    "best_original5_correct_but_below_08_iou": 551
+  },
+  "regional_GT_oracle_counts": [
+    {
+      "region": "original",
+      "correct_queries": 1540,
+      "best_all7_region_ties_first_by_declared_order": 478
+    },
+    {
+      "region": "anchor_local",
+      "correct_queries": 1589,
+      "best_all7_region_ties_first_by_declared_order": 256
+    },
+    {
+      "region": "anchor_widened",
+      "correct_queries": 1376,
+      "best_all7_region_ties_first_by_declared_order": 202
+    },
+    {
+      "region": "anchor_fixed_offset",
+      "correct_queries": 150,
+      "best_all7_region_ties_first_by_declared_order": 11
+    },
+    {
+      "region": "anchor_motion_0",
+      "correct_queries": 1109,
+      "best_all7_region_ties_first_by_declared_order": 244
+    },
+    {
+      "region": "anchor_motion_1",
+      "correct_queries": 1588,
+      "best_all7_region_ties_first_by_declared_order": 241
+    },
+    {
+      "region": "anchor_motion_2",
+      "correct_queries": 1589,
+      "best_all7_region_ties_first_by_declared_order": 330
+    }
+  ],
+  "limitations": [
+    "Only TRAIN selected queries, not native PR/NPR/SR/MPR/MSR or full continuous videos.",
+    "The GT oracle knows the answer; the deployed selector does not.",
+    "Collection executes six additional regions offline. This union is a diagnostic ceiling, not the realized one-extra-forward budgeted policy.",
+    "IoU threshold labels measure target localization, not complete distractor semantic identity."
+  ],
+  "execution": {
+    "live_training_or_controller_logs_read": false,
+    "validation_or_native_test_reads": false,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "new_jobs_started": 0,
+    "model_or_predictions_modified": false
+  }
+}

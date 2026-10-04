@@ -1,0 +1,500 @@
+{
+  "observed_at_cst": "2026-10-05T04:15:01.806106+08:00",
+  "controller_processes": "632884       1 Ss      01:47:16 /data/gb/envs/gola/bin/python -u /data/gb/setup/best_native_policy_complete_pipeline_20261005.py\n 752209  632884 Zs         38:44 [python] <defunct>\n 752210  632884 Ssl        38:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005\n 752211  632884 Zs         38:44 [python] <defunct>\n 752212  632884 Rsl        38:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+  "progress": {
+    "stage": "FULL_ABC_TRAINING",
+    "observed_at_cst": "2026-10-05T03:36:17.046957+08:00",
+    "automatic_restarts": 0,
+    "poll_interval_seconds": 180,
+    "official_goal_completed": false,
+    "runs": [
+      {
+        "gpu": 0,
+        "pid": 752209,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu0_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "0.0001",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "pairwise",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005"
+        ]
+      },
+      {
+        "gpu": 1,
+        "pid": 752210,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu1_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "1e-05",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "pairwise",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005"
+        ]
+      },
+      {
+        "gpu": 2,
+        "pid": 752211,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu2_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "0.0001",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "budgeted",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005"
+        ]
+      },
+      {
+        "gpu": 3,
+        "pid": 752212,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu3_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "1e-05",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "budgeted",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005"
+        ]
+      }
+    ],
+    "GPU_memory_before_launch_mib": {
+      "0": 349,
+      "1": 20,
+      "2": 20,
+      "3": 20
+    }
+  },
+  "runs_actual": [
+    {
+      "gpu": 0,
+      "pid": 752209,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu0_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "0.0001",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "pairwise",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005"
+      ],
+      "actual_process": "752209  632884 Zs         38:44 [python] <defunct>",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 60, \"step\": 5, \"optimizer_steps\": 300, \"loss\": 1.053019642829895, \"parts\": {\"advantage\": 0.01774606667459011, \"action_ranking\": 0.0059577361680567265, \"harm\": 0.4297559857368469, \"quality\": 0.7395761013031006, \"query_write_risk\": 0.009576995857059956, \"future\": 0.08056540787220001, \"memory_gate\": 1.2701373100280762, \"margin_preservation\": 0.01226872019469738, \"identity_margin\": 0.12442123889923096, \"search_value\": 0.007036578841507435, \"search_success\": 0.43718400597572327, \"candidate_absence\": 0.39087218046188354, \"search_ranking\": 1.0953855514526367}, \"module_gradient_norms\": {\"A\": 0.19211597740650177, \"B\": 11.507713317871094, \"C\": 0.20099303126335144}, \"elapsed_seconds\": 2295.4455161602236, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 60, \"clips\": 196, \"loss\": 1.1484639644622803, \"valid_actions\": 7251, \"current\": 0.7529932260513306, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7541360259056091, \"utility\": 0.7534727454185486, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 13, \"changed_location\": 7, \"rescued\": 1, \"harmed\": 1, \"failed\": 12, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 182, \"missing_candidate_found\": 6, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.001953303813934326, \"utility_gain_against_c1\": 0.0013868212699890137}",
+        "COMPLETED {\"completed\": true, \"epochs\": 60, \"optimizer_steps\": 300, \"modules_changed\": {\"A\": true, \"B\": true, \"C\": true}, \"max_module_gradient_norms\": {\"A\": 0.385127454996109, \"B\": 27.736446380615234, \"C\": 1.8930951356887817}, \"frozen_modules\": [], \"frozen_module_weights_unchanged\": {}, \"frozen_c1_gradients_absent\": true, \"elapsed_seconds\": 2297.1320104510523, \"peak_cuda_mib\": 19192.75048828125, \"best_epoch\": 4, \"best_validation\": {\"clips\": 196, \"loss\": 1.609131932258606, \"valid_actions\": 7251, \"current\": 0.7557485699653625, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7567404508590698, \"utility\": 0.7558221220970154, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 18, \"changed_location\": 7, \"rescued\": 2, \"harmed\": 1, \"failed\": 10, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.004708647727966309, \"utility_gain_against_c1\": 0.0037361979484558105}, \"strict_reload_metrics_equal\": true, \"last_validation\": {\"clips\": 196, \"loss\": 1.1484639644622803, \"valid_actions\": 7251, \"current\": 0.7529932260513306, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7541360259056091, \"utility\": 0.7534727454185486, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 13, \"changed_location\": 7, \"rescued\": 1, \"harmed\": 1, \"failed\": 12, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 182, \"missing_candidate_found\": 6, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.001953303813934326, \"utility_gain_against_c1\": 0.0013868212699890137}, \"retained_weights\": [\"best.pth\", \"epoch_020.pth\", \"epoch_040.pth\", \"epoch_060.pth\"], \"official_tracking_accuracy\": false}"
+      ]
+    },
+    {
+      "gpu": 1,
+      "pid": 752210,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu1_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "1e-05",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "pairwise",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005"
+      ],
+      "actual_process": "752210  632884 Ssl        38:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 46, \"step\": 5, \"optimizer_steps\": 230, \"loss\": 1.4711142778396606, \"parts\": {\"advantage\": 0.03870674595236778, \"action_ranking\": 0.00841439887881279, \"harm\": 2.043257236480713, \"quality\": 0.9024921655654907, \"query_write_risk\": 0.042089495807886124, \"future\": 0.11726699024438858, \"memory_gate\": 1.2886097431182861, \"margin_preservation\": 0.0047720931470394135, \"identity_margin\": 0.14288045465946198, \"search_value\": 0.007194248028099537, \"search_success\": 0.5725616216659546, \"candidate_absence\": 0.3380661606788635, \"search_ranking\": 1.1411985158920288}, \"module_gradient_norms\": {\"A\": 0.06336669623851776, \"B\": 4.936268329620361, \"C\": 1.222476840019226}, \"elapsed_seconds\": 2282.089778739959, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 46, \"clips\": 196, \"loss\": 1.5885374546051025, \"valid_actions\": 7251, \"current\": 0.7533310055732727, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7541519403457642, \"utility\": 0.7532845139503479, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 17, \"changed_location\": 8, \"rescued\": 2, \"harmed\": 1, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.002291083335876465, \"utility_gain_against_c1\": 0.00119858980178833}",
+        "TRAIN {\"epoch\": 47, \"step\": 1, \"optimizer_steps\": 231, \"loss\": 1.5446594953536987, \"parts\": {\"advantage\": 0.03813330456614494, \"action_ranking\": 0.008881787769496441, \"harm\": 1.9600188732147217, \"quality\": 0.8655156493186951, \"query_write_risk\": 0.041996490210294724, \"future\": 0.11858917027711868, \"memory_gate\": 1.3281713724136353, \"margin_preservation\": 0.0038933386094868183, \"identity_margin\": 0.14570662379264832, \"search_value\": 0.007792862597852945, \"search_success\": 0.589480459690094, \"candidate_absence\": 0.4597405195236206, \"search_ranking\": 1.4271522760391235}, \"module_gradient_norms\": {\"A\": 0.07048159092664719, \"B\": 7.351375579833984, \"C\": 1.1735663414001465}, \"elapsed_seconds\": 2293.43524189014, \"peak_cuda_mib\": 19192.75048828125}"
+      ]
+    },
+    {
+      "gpu": 2,
+      "pid": 752211,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu2_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "0.0001",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "budgeted",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005"
+      ],
+      "actual_process": "752211  632884 Zs         38:44 [python] <defunct>",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 60, \"step\": 5, \"optimizer_steps\": 300, \"loss\": 1.1124533414840698, \"parts\": {\"advantage\": 0.017635704949498177, \"action_ranking\": 0.0839867815375328, \"harm\": 0.44427165389060974, \"quality\": 0.7508182525634766, \"query_write_risk\": 0.009579954668879509, \"future\": 0.07937870919704437, \"memory_gate\": 1.269828200340271, \"margin_preservation\": 0.010242452844977379, \"identity_margin\": 0.1245589405298233, \"search_value\": 0.005145316943526268, \"search_success\": 0.4477969706058502, \"candidate_absence\": 0.39066317677497864, \"search_ranking\": 0.9782553315162659}, \"module_gradient_norms\": {\"A\": 0.25219449400901794, \"B\": 11.177600860595703, \"C\": 0.1856885701417923}, \"elapsed_seconds\": 2291.5296927611344, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 60, \"clips\": 196, \"loss\": 1.1689226627349854, \"valid_actions\": 7251, \"current\": 0.7529932260513306, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7541360259056091, \"utility\": 0.7536258101463318, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 10, \"changed_location\": 7, \"rescued\": 1, \"harmed\": 1, \"failed\": 12, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.001953303813934326, \"utility_gain_against_c1\": 0.0015398859977722168}",
+        "COMPLETED {\"completed\": true, \"epochs\": 60, \"optimizer_steps\": 300, \"modules_changed\": {\"A\": true, \"B\": true, \"C\": true}, \"max_module_gradient_norms\": {\"A\": 0.803422749042511, \"B\": 40.86048889160156, \"C\": 1.8717548847198486}, \"frozen_modules\": [], \"frozen_module_weights_unchanged\": {}, \"frozen_c1_gradients_absent\": true, \"elapsed_seconds\": 2293.2087856181897, \"peak_cuda_mib\": 19192.75048828125, \"best_epoch\": 59, \"best_validation\": {\"clips\": 196, \"loss\": 1.1592978239059448, \"valid_actions\": 7251, \"current\": 0.756325364112854, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7569411993026733, \"utility\": 0.7564309239387512, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 10, \"changed_location\": 7, \"rescued\": 2, \"harmed\": 1, \"failed\": 10, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.005285441875457764, \"utility_gain_against_c1\": 0.00434499979019165}, \"strict_reload_metrics_equal\": true, \"last_validation\": {\"clips\": 196, \"loss\": 1.1689226627349854, \"valid_actions\": 7251, \"current\": 0.7529932260513306, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7541360259056091, \"utility\": 0.7536258101463318, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 10, \"changed_location\": 7, \"rescued\": 1, \"harmed\": 1, \"failed\": 12, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.001953303813934326, \"utility_gain_against_c1\": 0.0015398859977722168}, \"retained_weights\": [\"best.pth\", \"epoch_020.pth\", \"epoch_040.pth\", \"epoch_060.pth\"], \"official_tracking_accuracy\": false}"
+      ]
+    },
+    {
+      "gpu": 3,
+      "pid": 752212,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu3_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "1e-05",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "budgeted",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005"
+      ],
+      "actual_process": "752212  632884 Rsl        38:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 60, \"step\": 1, \"optimizer_steps\": 296, \"loss\": 1.6236642599105835, \"parts\": {\"advantage\": 0.03222532570362091, \"action_ranking\": 0.09513082355260849, \"harm\": 2.007901668548584, \"quality\": 0.884849488735199, \"query_write_risk\": 0.04033574461936951, \"future\": 0.10804382711648941, \"memory_gate\": 1.2920169830322266, \"margin_preservation\": 0.004184552934020758, \"identity_margin\": 0.1434008926153183, \"search_value\": 0.00668113911524415, \"search_success\": 0.5294133424758911, \"candidate_absence\": 0.31736183166503906, \"search_ranking\": 1.6226005554199219}, \"module_gradient_norms\": {\"A\": 0.05351124331355095, \"B\": 5.047712802886963, \"C\": 1.4449684619903564}, \"elapsed_seconds\": 2268.01086318586, \"peak_cuda_mib\": 19192.75048828125}",
+        "TRAIN {\"epoch\": 60, \"step\": 5, \"optimizer_steps\": 300, \"loss\": 1.576448917388916, \"parts\": {\"advantage\": 0.028182631358504295, \"action_ranking\": 0.0957564190030098, \"harm\": 1.917536973953247, \"quality\": 0.8787002563476562, \"query_write_risk\": 0.04025539755821228, \"future\": 0.11570318043231964, \"memory_gate\": 1.3145922422409058, \"margin_preservation\": 0.004260294605046511, \"identity_margin\": 0.14349330961704254, \"search_value\": 0.007635559421032667, \"search_success\": 0.5579474568367004, \"candidate_absence\": 0.48297449946403503, \"search_ranking\": 1.2634676694869995}, \"module_gradient_norms\": {\"A\": 0.06406290829181671, \"B\": 7.126977920532227, \"C\": 1.268898606300354}, \"elapsed_seconds\": 2297.4944958938286, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 60, \"clips\": 196, \"loss\": 1.6651439666748047, \"valid_actions\": 7251, \"current\": 0.7524955868721008, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7532880306243896, \"utility\": 0.7525737285614014, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 14, \"changed_location\": 8, \"rescued\": 2, \"harmed\": 1, \"failed\": 12, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.0014556646347045898, \"utility_gain_against_c1\": 0.0004878044128417969}"
+      ]
+    }
+  ],
+  "actual_existing_receipts": {
+    "cache_gate": {
+      "status": "PASS",
+      "matched_partitions": {
+        "train": 1762,
+        "validation": 196
+      },
+      "all_ordered_jobs_exact": true,
+      "all_GT_current_and_history_replayed": true,
+      "all_schema_and_sources_verified": true,
+      "prefix_epoch": 4,
+      "future_epoch": 4,
+      "all881_98_video_names_exact": true,
+      "teacher_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "partition_acceptance_sha256": {
+        "train": "307d57f823d717486191e50a7553e4757c9929a23245b785672a8348a387b34d",
+        "validation": "d2b0f6ed08919fffd5dc804892d9f31fc84813ac0b250892dd21ec5505a0388f"
+      },
+      "completed_at_cst": "2026-10-05T03:32:46.044969+08:00",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional",
+      "execution": {
+        "GPU_queries": 0,
+        "neural_forward_calls": 0,
+        "optimizer_steps": 0,
+        "native_test_reads": false
+      },
+      "training_started": false,
+      "official_goal_completed": false,
+      "next_gate": "Actual three-epoch new-data capacity M0 before full60epoch B384 completeABC fit",
+      "future_label_scope": "Source-linked actual frozenown-policy teacher labels; no independent future-neural rerun."
+    },
+    "m0_fit_CPU": {
+      "status": "PASS",
+      "stage": "m0",
+      "all_four_full_fits_CPU_passed": true,
+      "epochs_per_arm": 3,
+      "optimizer_steps_per_arm": 15,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "validation_queries": 196,
+      "arms": {
+        "pairwise_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.80527006788179
+        },
+        "pairwise_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.43084730301052
+        },
+        "budgeted_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 1,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.9383450159803
+        },
+        "budgeted_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.76601138804108
+        }
+      },
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "accepted_at_cst": "2026-10-05T03:36:16.453459+08:00"
+    }
+  },
+  "GPU_queries": 0,
+  "new_jobs_started": 0,
+  "neural_forward_calls_by_observer": 0
+}

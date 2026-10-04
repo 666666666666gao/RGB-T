@@ -1,0 +1,36 @@
+{
+  "status": "TRAIN_ONLY_CURRENT_BOX_GEOMETRY_DIAGNOSTIC",
+  "computed_at_cst": "2026-10-05T04:04:52.539596+08:00",
+  "queries": 1762,
+  "current_stored_GT_replayed_iou_max_error": 2.6694419720252327e-06,
+  "all7_missing_original_failed_queries": 104,
+  "of_those_any_valid_proposal_center_inside_GT_box": 27,
+  "of_those_all7_best_iou_below02": 73,
+  "original_correct_query_iou_05_to_08": 525,
+  "within_that_subset": {
+    "median_absolute_center_error_as_fraction_of_GT_width_height": [
+      0.0639507587139423,
+      0.03993745472120202
+    ],
+    "median_predicted_width_height_over_GT": [
+      0.9670583089192708,
+      0.9919588163301543
+    ],
+    "both_center_errors_at_most_01_GT_dimension": 309,
+    "both_width_height_ratios_within_09_11": 95
+  },
+  "interpretation_boundary": "Geometric overlap and box-size evidence only; a center inside GT does not independently identify the candidate as the correct instance. This does not prove a learned refiner would help.",
+  "limits": [
+    "TRAIN stored current-query GT only; no future labels used for this calculation.",
+    "Not native SR/PR, full-video performance, crop coverage or an implemented improvement.",
+    "No candidate box or policy was modified."
+  ],
+  "execution": {
+    "live_training_or_controller_logs_read": false,
+    "validation_or_native_test_reads": false,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "new_jobs_started": 0
+  }
+}

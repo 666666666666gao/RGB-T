@@ -1,0 +1,78 @@
+{
+  "status": "ALL4_FULL60_300_CPU_PASS_FULL98_SELECTION_RUNNING",
+  "recorded_at_cst": "2026-10-05T05:11:08.787326+08:00",
+  "actual_full_training_CPU_accepted_at_cst": "2026-10-05T04:25:05.537933+08:00",
+  "training_type": "All new A/B/C optimized; full pretrained GOLA-B and C1 frozen; not all-frame sampling or backbone end-to-end retraining.",
+  "train_queries": 1762,
+  "validation_queries": 196,
+  "batch_size": 384,
+  "arms": {
+    "pairwise_lr4": {
+      "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005",
+      "completed_epochs": 60,
+      "optimizer_steps": 300,
+      "cached_best_epoch": 4,
+      "all_retained_checkpoint_ABC_changed": true,
+      "all_retained_checkpoint_C1_exact": true,
+      "all_retained_checkpoint_CPU_replay_passed": true,
+      "peak_cuda_allocated_gib": 18.742920398712158,
+      "elapsed_seconds": 2297.1320104510523,
+      "epoch020_full98_sequence_mean_iou": 0.7256798161881709
+    },
+    "pairwise_lr5": {
+      "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005",
+      "completed_epochs": 60,
+      "optimizer_steps": 300,
+      "cached_best_epoch": 39,
+      "all_retained_checkpoint_ABC_changed": true,
+      "all_retained_checkpoint_C1_exact": true,
+      "all_retained_checkpoint_CPU_replay_passed": true,
+      "peak_cuda_allocated_gib": 18.742920398712158,
+      "elapsed_seconds": 2834.2050187289715,
+      "epoch020_full98_sequence_mean_iou": 0.7315419043765427
+    },
+    "budgeted_lr4": {
+      "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005",
+      "completed_epochs": 60,
+      "optimizer_steps": 300,
+      "cached_best_epoch": 59,
+      "all_retained_checkpoint_ABC_changed": true,
+      "all_retained_checkpoint_C1_exact": true,
+      "all_retained_checkpoint_CPU_replay_passed": true,
+      "peak_cuda_allocated_gib": 18.742920398712158,
+      "elapsed_seconds": 2293.2087856181897,
+      "epoch020_full98_sequence_mean_iou": 0.72781702091127
+    },
+    "budgeted_lr5": {
+      "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+      "completed_epochs": 60,
+      "optimizer_steps": 300,
+      "cached_best_epoch": 50,
+      "all_retained_checkpoint_ABC_changed": true,
+      "all_retained_checkpoint_C1_exact": true,
+      "all_retained_checkpoint_CPU_replay_passed": true,
+      "peak_cuda_allocated_gib": 18.742920398712158,
+      "elapsed_seconds": 2299.238568136003,
+      "epoch020_full98_sequence_mean_iou": 0.7304041882121898
+    }
+  },
+  "actual_controller_pid": 632884,
+  "actual_observed_stage": "FULL98_epoch_040",
+  "last_actual_stage_observation_cst": "2026-10-05T05:08:33.953347+08:00",
+  "epoch020_all4_full98_complete": true,
+  "full98_sequences_per_checkpoint": 98,
+  "full98_frames_per_checkpoint": 49418,
+  "full_GOLA_internal_sequence_mean_iou": 0.74327850697,
+  "all_epoch020_below_GOLA_internal": true,
+  "selected_checkpoint_available": false,
+  "new_native_metrics_completed": false,
+  "goal_all_five_plus_two_achieved": false,
+  "scope_limit": "Internal complete-video IoU is not LasHeR SR; repeatedly used developer videos. TRAIN oracle/geometry diagnostics do not establish deployed gains.",
+  "source_evidence": [
+    "actual_training_observation_0415.json",
+    "actual_training_observation_0430.json",
+    "actual_training_observation_0508.json",
+    "actual_full98_epoch020_scores.json"
+  ],
+  "new_GPU_jobs_started_by_this_summary": 0
+}
