@@ -1,0 +1,264 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T14:53:37.517868+08:00",
+  "reviewer_agent": "/root/current_policy_fit_source_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Delegator reports successful requested spawn metadata. Independent context, same model family; no independent certification of the underlying runtime model.",
+    "review_turn": "Explicit follow-up to the existing independent-context review agent; no new runtime-model certification."
+  },
+  "blocking_issues": [],
+  "scope": "SOURCE ONLY: four-cell phase coordinator. Actual control flow exercised with temporary paths and mocked subprocess/sleep calls; no real merge, M0 audit, tmux session or training launch.",
+  "readiness": "Source PASS for the specified one-shot coordinator launch with CUDA_VISIBLE_DEVICES empty and PYTHONPATH PRIVATE:main. Runtime collection, merge, M0 and full results remain pending.",
+  "non_blocking_issues": [],
+  "source_findings": [
+    "The queue requires its own PASS/same-family/provisional review before creating a fresh pipeline directory. It waits for the exact sixteen current-policy job_completed markers, polling at 240 seconds; no current shard or collection process is modified.",
+    "After all sixteen terminal markers, the reviewed CPU merger must exit successfully and its real paired-cache gate must report PASS, equal nonfuture arrays and exactly 902 TRAIN / 128 VAL. No M0 is launched before this point.",
+    "The four cells map oracle/C1 to GPU0, selector/C1 to GPU1, oracle/own to GPU2 and selector/own to GPU3. Each command names the matching reviewed isolated runner, unique stage-specific tmux session, log and output root; each runner explicitly exports its assigned CUDA device.",
+    "The queue waits for all four actual M0 job_completed markers, then executes the unchanged oracle and scoped selector CPU audits in PRIVATE. These subprocesses inherit the explicitly specified empty CUDA_VISIBLE_DEVICES and PRIVATE:main PYTHONPATH; no per-helper GPU environment is introduced.",
+    "Both audits must exit successfully and both real acceptance records must report PASS, both teacher arms, batch384, 9 optimizer steps and parent epoch4 before any full launch. A successful oracle audit alone does not launch full fits.",
+    "Full stage commands start fresh 60-epoch/180-update runs using the runner old4 initialization. They neither resume M0 checkpoints nor change the recipe. The coordinator exits after recording full launch, not after full training/evaluation completion.",
+    "Existing full98 reference predictions are complete and independent of all four newly running outputs. The runner handles evaluation/reporting after each full fit; later result acceptance remains separate."
+  ],
+  "verification": {
+    "local_remote_queue_sha256": "6fb260368f857ac80be1f84fa21cd1cb0b9542ebdb9682d319b2f88b666a60ce",
+    "python_AST_parse": "PASS",
+    "actual_CPU_program_fixtures": {
+      "status": "PASS_CPU_QUEUE_CONTROL_FIXTURES",
+      "source_sha256": "6fb260368f857ac80be1f84fa21cd1cb0b9542ebdb9682d319b2f88b666a60ce",
+      "cases": {
+        "success": {
+          "outcome": "success",
+          "simulated_M0_launches": 4,
+          "simulated_full_launches": 4,
+          "sleep_requests_seconds": [
+            240,
+            240
+          ],
+          "events": [
+            {
+              "kind": "merge"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "c1",
+              "gpu": 0,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "c1",
+              "gpu": 1,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "own",
+              "gpu": 2,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "own",
+              "gpu": 3,
+              "stage": "m0"
+            },
+            {
+              "kind": "audit",
+              "helper": "actual_m0_cpu_audit.py"
+            },
+            {
+              "kind": "audit",
+              "helper": "selector_actual_m0_cpu_audit.py"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "c1",
+              "gpu": 0,
+              "stage": "full"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "c1",
+              "gpu": 1,
+              "stage": "full"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "own",
+              "gpu": 2,
+              "stage": "full"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "own",
+              "gpu": 3,
+              "stage": "full"
+            }
+          ]
+        },
+        "merge_failure": {
+          "outcome": "blocked_before_full",
+          "simulated_M0_launches": 0,
+          "simulated_full_launches": 0,
+          "sleep_requests_seconds": [
+            240
+          ],
+          "events": [
+            {
+              "kind": "merge"
+            }
+          ]
+        },
+        "selector_audit_failure": {
+          "outcome": "blocked_before_full",
+          "simulated_M0_launches": 4,
+          "simulated_full_launches": 0,
+          "sleep_requests_seconds": [
+            240,
+            240
+          ],
+          "events": [
+            {
+              "kind": "merge"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "c1",
+              "gpu": 0,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "c1",
+              "gpu": 1,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "own",
+              "gpu": 2,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "own",
+              "gpu": 3,
+              "stage": "m0"
+            },
+            {
+              "kind": "audit",
+              "helper": "actual_m0_cpu_audit.py"
+            },
+            {
+              "kind": "audit",
+              "helper": "selector_actual_m0_cpu_audit.py"
+            }
+          ]
+        },
+        "selector_bad_receipt": {
+          "outcome": "blocked_before_full",
+          "simulated_M0_launches": 4,
+          "simulated_full_launches": 0,
+          "sleep_requests_seconds": [
+            240,
+            240
+          ],
+          "events": [
+            {
+              "kind": "merge"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "c1",
+              "gpu": 0,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "c1",
+              "gpu": 1,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "oracle",
+              "policy": "own",
+              "gpu": 2,
+              "stage": "m0"
+            },
+            {
+              "kind": "launch",
+              "mode": "selector",
+              "policy": "own",
+              "gpu": 3,
+              "stage": "m0"
+            },
+            {
+              "kind": "audit",
+              "helper": "actual_m0_cpu_audit.py"
+            },
+            {
+              "kind": "audit",
+              "helper": "selector_actual_m0_cpu_audit.py"
+            }
+          ]
+        }
+      },
+      "scope": "Actual source control flow with only /data/gb path constants redirected to temporary fixture roots. All subprocess and sleep calls mocked. Synthetic receipts are fixture-only and removed with temporary directories.",
+      "actual_tmux_commands": 0,
+      "actual_merges": 0,
+      "actual_M0_audits": 0,
+      "actual_training_launches": 0,
+      "CUDA_initialized": false,
+      "GPU_queries": 0
+    },
+    "selector_source_review": "/data/gb/setup/current_policy_selector_fit_source_review_20261004.json",
+    "oracle_source_review": "/data/gb/setup/current_policy_fit_source_review_20261004.json"
+  },
+  "required_launch_environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONPATH": "/data/gb/experiments/recoverability_current_policy_fit_20261004:/data/gb/GOLA",
+    "audit_cwd": "/data/gb/experiments/recoverability_current_policy_fit_20261004",
+    "provenance": "Explicitly confirmed by root in the review task and follow-up; mocked fixture supplied the same inherited environment structure. Actual coordinator has not been launched by reviewer."
+  },
+  "prepared_paths": {
+    "coordinator": "/data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py",
+    "source_review": "/data/gb/setup/current_policy_four_fit_queue_source_review_20261004.json",
+    "future_pipeline_state": "/data/gb/setup/current_policy_four_fit_pipeline_20261004/state.json"
+  },
+  "limits": [
+    "All queue fixture subprocesses and sleeps were mocked. Success and failure receipts existed only in temporary CPU_FIXTURE directories, and are not actual M0 acceptance.",
+    "The success case exercised sixteen-marker wait, merge, four M0 launches, both audits and four full launches in order. Merge failure, selector-audit failure and a rejected selector receipt all prevented any full launch.",
+    "No actual training M0, full fit, complete-cache merge or native accuracy is accepted by this source receipt."
+  ],
+  "reviewer_execution": {
+    "actual_tmux_commands": 0,
+    "actual_merges": 0,
+    "actual_M0_audits": 0,
+    "actual_training_launches": 0,
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "source_patches": 0,
+    "git_staged_or_pushed": false
+  }
+}

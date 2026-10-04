@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "OLD4_ALL5_POSITIVE_BELOW_PLUS2; COLD_AND_WARM_BUDGETED_NEGATIVE_CLOSED; CURRENT_POLICY_RECOLLECTION_RUNNING_ON_ALL4",
+      "status": "OLD4_ALL5_POSITIVE_BELOW_PLUS2; COLD_AND_WARM_NEGATIVE_CLOSED; CURRENT_POLICY_COLLECTION_ON_ALL4; FOUR_FIT_COORDINATOR_WAITING",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -5553,7 +5553,7 @@
           "metrics_improvement_claimed": false
         },
         "short_M0_state_distribution_shift_proven": false,
-        "status": "ACTUAL_MATCHED_M0_PASS; ALL_SHARDS_QUEUED_AND_RUNNING_ON_GPU0_1_2_3",
+        "status": "Actual4 original collection sessions progressed to final TRAIN shards2/3; first TRAIN and VAL shards terminal. New16-artifact merge and actual training remain incomplete.",
         "actual_full_launch": {
           "status": "ACTUAL_MATCHED_FULL_COLLECTION_TWO_CARDS_LAUNCHED",
           "at_cst": "2026-10-04T13:39:47.361958+08:00",
@@ -5634,72 +5634,294 @@
           "all_four_gpus_have_meaningful_tasks": true
         },
         "actual_runtime": {
-          "observed_at": "2026-10-04T13:51:11.995668+08:00",
-          "gpu": "0, 1258 MiB, 25 %\n1, 923 MiB, 40 %\n2, 931 MiB, 41 %\n3, 925 MiB, 39 %",
-          "compute_processes": "3494704, 312 MiB\n3644333, 906 MiB\n3630071, 900 MiB\n3644334, 908 MiB\n3630072, 902 MiB",
-          "progress": {
-            "0": {
-              "policy": "c1",
-              "shard": 1,
-              "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard1_20261004",
-              "job_completed": false,
-              "progress": {
-                "completed_clips": 19,
-                "clips": 226,
-                "elapsed_seconds": 194.888757430017,
-                "peak_cuda_mib": 512.97900390625
-              }
-            },
-            "1": {
-              "policy": "c1",
-              "shard": 0,
-              "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
-              "job_completed": false,
-              "progress": {
-                "completed_clips": 51,
+          "observed_at": "2026-10-04T14:50:35.214669+08:00",
+          "panes": [
+            "current_policy_recollection_c1_shards02_20261004\t3630057\t0",
+            "current_policy_recollection_c1_shards13_20261004\t3644319\t0",
+            "current_policy_recollection_own_shards02_20261004\t3630065\t0",
+            "current_policy_recollection_own_shards13_20261004\t3644327\t0"
+          ],
+          "gpu": "0, 1250, 39\n1, 929, 31\n2, 925, 43\n3, 931, 33",
+          "compute_apps": "3494704, 312\n3730091, 898\n3717552, 906\n3735701, 902\n3720390, 908",
+          "collector_handles": [
+            "3717552 3717550       22:46 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard2.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy c1 --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_c1_train_shard2_20261004",
+            "3720390 3720388       21:21 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard2.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_own_train_shard2_20261004",
+            "3730091 3730089       16:02 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy c1 --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_c1_train_shard3_20261004",
+            "3735701 3735699       12:50 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_own_train_shard3_20261004"
+          ],
+          "parts": [
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 225,
                 "clips": 225,
-                "elapsed_seconds": 676.2847667420283,
-                "peak_cuda_mib": 518.5244140625
+                "elapsed_seconds": 2516.1357157137245
               }
             },
-            "2": {
-              "policy": "own",
-              "shard": 1,
-              "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard1_20261004",
-              "job_completed": false,
-              "progress": {
-                "completed_clips": 18,
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard1_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 226,
                 "clips": 226,
-                "elapsed_seconds": 189.70520283607766,
-                "peak_cuda_mib": 518.2314453125
+                "elapsed_seconds": 2439.8522459883243
               }
             },
-            "3": {
-              "policy": "own",
-              "shard": 0,
-              "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004",
-              "job_completed": false,
-              "progress": {
-                "completed_clips": 50,
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard2_20261004",
+              "completed": false,
+              "progress.json": {
+                "completed_clips": 117,
                 "clips": 225,
-                "elapsed_seconds": 667.4535674322397,
-                "peak_cuda_mib": 522.9140625
+                "elapsed_seconds": 1350.7906007389538
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard3_20261004",
+              "completed": false,
+              "progress.json": {
+                "completed_clips": 94,
+                "clips": 226,
+                "elapsed_seconds": 952.9769934490323
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_validation_shard0_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 32,
+                "clips": 32,
+                "elapsed_seconds": 321.9822093411349
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_c1_validation_shard1_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 32,
+                "clips": 32,
+                "elapsed_seconds": 325.11536194197834
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 225,
+                "clips": 225,
+                "elapsed_seconds": 2563.3705200189725
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard1_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 226,
+                "clips": 226,
+                "elapsed_seconds": 2585.577779449057
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard2_20261004",
+              "completed": false,
+              "progress.json": {
+                "completed_clips": 107,
+                "clips": 225,
+                "elapsed_seconds": 1266.7157136416063
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard3_20261004",
+              "completed": false,
+              "progress.json": {
+                "completed_clips": 71,
+                "clips": 226,
+                "elapsed_seconds": 758.7382499538362
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_validation_shard0_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 32,
+                "clips": 32,
+                "elapsed_seconds": 360.1845802580938
+              }
+            },
+            {
+              "root": "/data/gb/outputs/recoverability_current_policy_own_validation_shard1_20261004",
+              "completed": true,
+              "progress.json": {
+                "completed_clips": 32,
+                "clips": 32,
+                "elapsed_seconds": 371.42727370606735
               }
             }
-          },
-          "collector_processes": [
-            "3630057 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
-            "3630059 3630057       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
-            "3630065 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
-            "3630067 3630065       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
-            "3644319 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
-            "3644321 3644319       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
-            "3644327 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1",
-            "3644329 3644327       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1"
           ]
         },
         "training_started": false,
-        "training_approval_scope": "Collection-only actual M0 acceptance; training requires its separate source review and real M0."
+        "training_approval_scope": "Collection-only actual M0 acceptance; training requires its separate source review and real M0.",
+        "actual_train_shard0_state_shift": {
+          "status": "ACTUAL_MATCHED_TRAIN_SHARD0_DIAGNOSTIC_COMPLETE",
+          "observed_at": "2026-10-04T14:30:18.250806+08:00",
+          "scope": "225 matched TRAIN queries only; incomplete 902-query collection, no validation or native test reads",
+          "input_roots": [
+            "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+            "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
+            "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004"
+          ],
+          "matched_nonfuture_arrays_exact": true,
+          "nonfuture_array_count": 28,
+          "decision_field_changed_query_counts": {
+            "features": 38,
+            "evidence": 38,
+            "raw_score": 38,
+            "boxes": 38,
+            "instance_features": 38,
+            "anchor_features": 0,
+            "image_boxes": 38,
+            "valid": 13,
+            "c1_quality": 38,
+            "original_choice": 1,
+            "history_instance_descriptors": 69,
+            "history_evidence": 69,
+            "history_quality": 69,
+            "history_boxes": 69,
+            "history_frames": 0,
+            "history_write": 28,
+            "history_valid": 0,
+            "motion_means": 45,
+            "motion_log_weights": 44
+          },
+          "history_changed_queries": 69,
+          "local_visual_candidates_changed_queries": 35,
+          "prefix_counter_columns": [
+            "extra_visual_forwards",
+            "changed_candidate_indices",
+            "paused_query_writes",
+            "template_updates"
+          ],
+          "prefix_counter_sums": {
+            "old4": [
+              942,
+              38,
+              108,
+              19485
+            ],
+            "own25": [
+              1414,
+              598,
+              0,
+              20090
+            ]
+          },
+          "local_c1_quality_under_each_prefix": {
+            "old4_prefix": {
+              "known_queries": 225,
+              "mean_iou": 0.6992717981338501,
+              "failed_queries": 26,
+              "correct_queries": 186
+            },
+            "own25_prefix": {
+              "known_queries": 225,
+              "mean_iou": 0.7046176195144653,
+              "failed_queries": 24,
+              "correct_queries": 187
+            }
+          },
+          "future_label_differences_between_current_teachers": {
+            "future_iou": {
+              "different_elements": 2008,
+              "max_absolute_difference": 0.9877115488052368
+            },
+            "wrong_update_fraction": {
+              "different_elements": 15,
+              "max_absolute_difference": 0.5
+            }
+          },
+          "limits": "Input differences include changed motion proposals as well as history. History and local-candidate counts are reported separately. Query IoU is a prefix-state diagnostic, not independent model tracking accuracy or causal intervention benefit.",
+          "neural_inference_runs": 0,
+          "gpu_queries": 0,
+          "runtime_seconds": 15.673874901141971
+        }
+      },
+      "current_policy_fit_factor": {
+        "status": "REVIEWED_COORDINATOR_RUNNING_WAITING_FOR_ALL16_COLLECTION_ARTIFACTS",
+        "source_review": "refine-logs/runs/recoverability_current_policy_fit/source_review.json",
+        "selector_source_review": "refine-logs/runs/recoverability_current_policy_fit/selector_source_review.json",
+        "queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/queue_source_review.json",
+        "actual_queue_launch": {
+          "status": "SOURCE_GATED_COORDINATOR_LIVE_WAITING",
+          "launched_at": "2026-10-04T14:55:45.9379+08:00",
+          "session": "current_policy_four_fit_pipeline_20261004",
+          "pane": "3767976\t0",
+          "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004.log",
+          "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data/gb/experiments/recoverability_current_policy_fit_20261004:/data/gb/GOLA OMP_NUM_THREADS=4 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py > /data/gb/setup/current_policy_four_fit_pipeline_20261004.log 2>&1",
+          "source_reviews_passed": true,
+          "main_model_source_unchanged": true,
+          "collection_complete": false,
+          "actual_m0_started": false,
+          "full_training_started": false,
+          "actual_m0_acceptance_complete": false,
+          "poll_seconds": 240,
+          "verified_at": "2026-10-04T14:56:07.381522+08:00",
+          "actual_phase": {
+            "phase": "WAIT_COMPLETE_COLLECTION",
+            "observed_at": "2026-10-04T14:55:45.961392+08:00",
+            "completed_artifacts": 8,
+            "expected_artifacts": 16
+          },
+          "coordinator_handle": "3767978 3767976       00:22 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py"
+        },
+        "architecture_changed": false,
+        "active_main_model_source_changed": false,
+        "train_queries": 902,
+        "validation_queries": 128,
+        "seed": 42,
+        "batch_size": 384,
+        "initialization_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "initialization_epoch": 4,
+        "data_prefix_checkpoint": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+        "data_prefix_epoch": 25,
+        "collection_is_dataset_replacement_not_dagger_aggregation": true,
+        "cells": [
+          {
+            "search_supervision": "oracle",
+            "future_policy": "c1",
+            "gpu": 0
+          },
+          {
+            "search_supervision": "selector",
+            "future_policy": "c1",
+            "gpu": 1
+          },
+          {
+            "search_supervision": "oracle",
+            "future_policy": "own",
+            "gpu": 2
+          },
+          {
+            "search_supervision": "selector",
+            "future_policy": "own",
+            "gpu": 3
+          }
+        ],
+        "controlled_comparisons": "Oracle pair changes only collected policy state versus previous warm fits. Selector counterparts use identical data, initialization, architecture, seed and training budget; only existing search supervision changes oracle to realized selector utility.",
+        "m0_epochs": 3,
+        "m0_updates_per_cell": 9,
+        "full_epochs": 60,
+        "full_updates_per_cell": 180,
+        "m0_training_started": false,
+        "actual_m0_acceptance_completed": false,
+        "full_training_started": false,
+        "full_launch_gate": "All16 terminal collections; strict matched902/128 CPU merge; all4 actual M0 completions; both independent CPU M0 replay receipts PASS. Full fits initialize old4 freshly, not M0 weights.",
+        "queue_poll_seconds": 240,
+        "expected_collection_complete_cst": "2026-10-04 15:20–15:25 (estimate from actual stages; not completion evidence)",
+        "source_review_attribution": "Fresh gpt-6-astra/max requested and accepted; independent-context, same-family provisional review. CPU source checks and mocked queue fixtures are not real M0 training.",
+        "initial_import_failure": "Missing research.candidate_learning in newly staged private package; resolved by copying36 unchanged accepted dependencies. Actual isolated CPU imports and39-file parity passed; no fallback or model-source change.",
+        "selector_target_scope": "Actual current selector forced-region utility from paired teacher labels; detaches choices, does not let ground-truth labels select actions. Existing oracle remains only the paired control; zero-gain M0 CPU fixtures do not prove accuracy.",
+        "promotion_policy": "Select one best checkpoint only after complete internal-video evidence and full native LasHeR/RGBT234 evaluation; allfive baseline+2 target unchanged."
       }
     },
     {
@@ -5778,28 +6000,28 @@
     },
     "gpu_assignment_current": [
       {
-        "gpu": 0,
-        "task": "current-policy matched C1 continuation collection, shards1 then3",
-        "pid": 3644333,
-        "session": "current_policy_recollection_c1_shards13_20261004"
+        "task": "current-policy C1 collection TRAIN3 then VAL3",
+        "pid": 3730091,
+        "session": "current_policy_recollection_c1_shards13_20261004",
+        "gpu": 0
       },
       {
-        "gpu": 1,
-        "task": "current-policy matched C1 continuation collection, shards0 then2",
-        "pid": 3630071,
-        "session": "current_policy_recollection_c1_shards02_20261004"
+        "task": "current-policy C1 collection TRAIN2 then VAL2",
+        "pid": 3717552,
+        "session": "current_policy_recollection_c1_shards02_20261004",
+        "gpu": 1
       },
       {
-        "gpu": 2,
-        "task": "current-policy matched own continuation collection, shards1 then3",
-        "pid": 3644334,
-        "session": "current_policy_recollection_own_shards13_20261004"
+        "task": "current-policy own collection TRAIN3 then VAL3",
+        "pid": 3735701,
+        "session": "current_policy_recollection_own_shards13_20261004",
+        "gpu": 2
       },
       {
-        "gpu": 3,
-        "task": "current-policy matched own continuation collection, shards0 then2",
-        "pid": 3630072,
-        "session": "current_policy_recollection_own_shards02_20261004"
+        "task": "current-policy own collection TRAIN2 then VAL2",
+        "pid": 3720390,
+        "session": "current_policy_recollection_own_shards02_20261004",
+        "gpu": 3
       }
     ],
     "gpu_memory_request": {
@@ -5838,75 +6060,214 @@
         "GPU2": 851,
         "GPU3": 851
       },
-      "status": "Completed fits used batch384, about20GB nvidia memory per training GPU; current four serial collection tasks need about0.9GB per process. Next fits retain B384; B512 long fit OOM is preserved and not repeated unchanged.",
+      "status": "Actual B384 warm training used20,325–20,654MiB/card. Current serial collection usesabout0.9GB/process; four upcoming M0/full cells retain useful B384. B512 long-fit OOM not retried unchanged; no memory padding, temperature or power controls.",
       "actual_latest_observation": {
-        "observed_at": "2026-10-04T13:51:11.995668+08:00",
-        "gpu": "0, 1258 MiB, 25 %\n1, 923 MiB, 40 %\n2, 931 MiB, 41 %\n3, 925 MiB, 39 %",
-        "compute_processes": "3494704, 312 MiB\n3644333, 906 MiB\n3630071, 900 MiB\n3644334, 908 MiB\n3630072, 902 MiB",
-        "progress": {
-          "0": {
-            "policy": "c1",
-            "shard": 1,
-            "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard1_20261004",
-            "job_completed": false,
-            "progress": {
-              "completed_clips": 19,
-              "clips": 226,
-              "elapsed_seconds": 194.888757430017,
-              "peak_cuda_mib": 512.97900390625
-            }
-          },
-          "1": {
-            "policy": "c1",
-            "shard": 0,
-            "output": "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
-            "job_completed": false,
-            "progress": {
-              "completed_clips": 51,
+        "observed_at": "2026-10-04T14:50:35.214669+08:00",
+        "panes": [
+          "current_policy_recollection_c1_shards02_20261004\t3630057\t0",
+          "current_policy_recollection_c1_shards13_20261004\t3644319\t0",
+          "current_policy_recollection_own_shards02_20261004\t3630065\t0",
+          "current_policy_recollection_own_shards13_20261004\t3644327\t0"
+        ],
+        "gpu": "0, 1250, 39\n1, 929, 31\n2, 925, 43\n3, 931, 33",
+        "compute_apps": "3494704, 312\n3730091, 898\n3717552, 906\n3735701, 902\n3720390, 908",
+        "collector_handles": [
+          "3717552 3717550       22:46 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard2.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy c1 --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_c1_train_shard2_20261004",
+          "3720390 3720388       21:21 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard2.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_own_train_shard2_20261004",
+          "3730091 3730089       16:02 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy c1 --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_c1_train_shard3_20261004",
+          "3735701 3735699       12:50 /data/gb/envs/gola/bin/python -u /data/gb/setup/future_policy_review_source/run_isolated_recoverability_collection.py --source-directory /data/gb/setup/future_policy_review_source --partition train --jobs-file /data/gb/setup/recoverability_future_policy_jobs_20261004/train_shard3.json --prefix-model /data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth --prefix-write-verification action --future-policy own --batch-clips 1 --forward-batch 1 --max-prefix 1024 --seed 42 --output /data/gb/outputs/recoverability_current_policy_own_train_shard3_20261004"
+        ],
+        "parts": [
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 225,
               "clips": 225,
-              "elapsed_seconds": 676.2847667420283,
-              "peak_cuda_mib": 518.5244140625
+              "elapsed_seconds": 2516.1357157137245
             }
           },
-          "2": {
-            "policy": "own",
-            "shard": 1,
-            "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard1_20261004",
-            "job_completed": false,
-            "progress": {
-              "completed_clips": 18,
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard1_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 226,
               "clips": 226,
-              "elapsed_seconds": 189.70520283607766,
-              "peak_cuda_mib": 518.2314453125
+              "elapsed_seconds": 2439.8522459883243
             }
           },
-          "3": {
-            "policy": "own",
-            "shard": 0,
-            "output": "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004",
-            "job_completed": false,
-            "progress": {
-              "completed_clips": 50,
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard2_20261004",
+            "completed": false,
+            "progress.json": {
+              "completed_clips": 117,
               "clips": 225,
-              "elapsed_seconds": 667.4535674322397,
-              "peak_cuda_mib": 522.9140625
+              "elapsed_seconds": 1350.7906007389538
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_train_shard3_20261004",
+            "completed": false,
+            "progress.json": {
+              "completed_clips": 94,
+              "clips": 226,
+              "elapsed_seconds": 952.9769934490323
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_validation_shard0_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 32,
+              "clips": 32,
+              "elapsed_seconds": 321.9822093411349
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_c1_validation_shard1_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 32,
+              "clips": 32,
+              "elapsed_seconds": 325.11536194197834
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 225,
+              "clips": 225,
+              "elapsed_seconds": 2563.3705200189725
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard1_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 226,
+              "clips": 226,
+              "elapsed_seconds": 2585.577779449057
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard2_20261004",
+            "completed": false,
+            "progress.json": {
+              "completed_clips": 107,
+              "clips": 225,
+              "elapsed_seconds": 1266.7157136416063
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_train_shard3_20261004",
+            "completed": false,
+            "progress.json": {
+              "completed_clips": 71,
+              "clips": 226,
+              "elapsed_seconds": 758.7382499538362
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_validation_shard0_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 32,
+              "clips": 32,
+              "elapsed_seconds": 360.1845802580938
+            }
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_current_policy_own_validation_shard1_20261004",
+            "completed": true,
+            "progress.json": {
+              "completed_clips": 32,
+              "clips": 32,
+              "elapsed_seconds": 371.42727370606735
             }
           }
-        },
-        "collector_processes": [
-          "3630057 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
-          "3630059 3630057       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 1 c1 2) > /data/gb/setup/current_policy_recollection_c1_shards02_20261004.log 2>&1",
-          "3630065 2794987       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
-          "3630067 3630065       11:25 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 0 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 3 own 2) > /data/gb/setup/current_policy_recollection_own_shards02_20261004.log 2>&1",
-          "3644319 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
-          "3644321 3644319       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 0 c1 3) > /data/gb/setup/current_policy_recollection_c1_shards13_20261004.log 2>&1",
-          "3644327 2794987       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1",
-          "3644329 3644327       03:28 bash -c (bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 1 && bash /data/gb/GOLA/scripts/run_recoverability_current_policy_collection.sh 2 own 3) > /data/gb/setup/current_policy_recollection_own_shards13_20261004.log 2>&1"
         ]
       },
-      "all_four_gpus_active": true
+      "all_four_gpus_active": true,
+      "current_four_fit_plan": {
+        "status": "REVIEWED_COORDINATOR_RUNNING_WAITING_FOR_ALL16_COLLECTION_ARTIFACTS",
+        "source_review": "refine-logs/runs/recoverability_current_policy_fit/source_review.json",
+        "selector_source_review": "refine-logs/runs/recoverability_current_policy_fit/selector_source_review.json",
+        "queue_source_review": "refine-logs/runs/recoverability_current_policy_fit/queue_source_review.json",
+        "actual_queue_launch": {
+          "status": "SOURCE_GATED_COORDINATOR_LIVE_WAITING",
+          "launched_at": "2026-10-04T14:55:45.9379+08:00",
+          "session": "current_policy_four_fit_pipeline_20261004",
+          "pane": "3767976\t0",
+          "log": "/data/gb/setup/current_policy_four_fit_pipeline_20261004.log",
+          "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data/gb/experiments/recoverability_current_policy_fit_20261004:/data/gb/GOLA OMP_NUM_THREADS=4 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py > /data/gb/setup/current_policy_four_fit_pipeline_20261004.log 2>&1",
+          "source_reviews_passed": true,
+          "main_model_source_unchanged": true,
+          "collection_complete": false,
+          "actual_m0_started": false,
+          "full_training_started": false,
+          "actual_m0_acceptance_complete": false,
+          "poll_seconds": 240,
+          "verified_at": "2026-10-04T14:56:07.381522+08:00",
+          "actual_phase": {
+            "phase": "WAIT_COMPLETE_COLLECTION",
+            "observed_at": "2026-10-04T14:55:45.961392+08:00",
+            "completed_artifacts": 8,
+            "expected_artifacts": 16
+          },
+          "coordinator_handle": "3767978 3767976       00:22 /data/gb/envs/gola/bin/python -u /data/gb/setup/current_policy_fit_review/queue_recoverability_current_policy_fit.py"
+        },
+        "architecture_changed": false,
+        "active_main_model_source_changed": false,
+        "train_queries": 902,
+        "validation_queries": 128,
+        "seed": 42,
+        "batch_size": 384,
+        "initialization_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "initialization_epoch": 4,
+        "data_prefix_checkpoint": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+        "data_prefix_epoch": 25,
+        "collection_is_dataset_replacement_not_dagger_aggregation": true,
+        "cells": [
+          {
+            "search_supervision": "oracle",
+            "future_policy": "c1",
+            "gpu": 0
+          },
+          {
+            "search_supervision": "selector",
+            "future_policy": "c1",
+            "gpu": 1
+          },
+          {
+            "search_supervision": "oracle",
+            "future_policy": "own",
+            "gpu": 2
+          },
+          {
+            "search_supervision": "selector",
+            "future_policy": "own",
+            "gpu": 3
+          }
+        ],
+        "controlled_comparisons": "Oracle pair changes only collected policy state versus previous warm fits. Selector counterparts use identical data, initialization, architecture, seed and training budget; only existing search supervision changes oracle to realized selector utility.",
+        "m0_epochs": 3,
+        "m0_updates_per_cell": 9,
+        "full_epochs": 60,
+        "full_updates_per_cell": 180,
+        "m0_training_started": false,
+        "actual_m0_acceptance_completed": false,
+        "full_training_started": false,
+        "full_launch_gate": "All16 terminal collections; strict matched902/128 CPU merge; all4 actual M0 completions; both independent CPU M0 replay receipts PASS. Full fits initialize old4 freshly, not M0 weights.",
+        "queue_poll_seconds": 240,
+        "expected_collection_complete_cst": "2026-10-04 15:20–15:25 (estimate from actual stages; not completion evidence)",
+        "source_review_attribution": "Fresh gpt-6-astra/max requested and accepted; independent-context, same-family provisional review. CPU source checks and mocked queue fixtures are not real M0 training.",
+        "initial_import_failure": "Missing research.candidate_learning in newly staged private package; resolved by copying36 unchanged accepted dependencies. Actual isolated CPU imports and39-file parity passed; no fallback or model-source change.",
+        "selector_target_scope": "Actual current selector forced-region utility from paired teacher labels; detaches choices, does not let ground-truth labels select actions. Existing oracle remains only the paired control; zero-gain M0 CPU fixtures do not prove accuracy.",
+        "promotion_policy": "Select one best checkpoint only after complete internal-video evidence and full native LasHeR/RGBT234 evaluation; allfive baseline+2 target unchanged."
+      }
     },
-    "next_check_cst": "2026-10-04 14:23:00",
+    "next_check_cst": "2026-10-04 15:15–15:20; observe near estimated final collection completion, then estimate M0/full fit completion from actual launch time. Coordinator polls dependency markers every240 seconds.",
     "checkpoint_cleanup_total": {
       "files": 62,
       "bytes": 89930732,
@@ -6323,5 +6684,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04 13:55:55"
+  "updated_cst": "2026-10-04 14:56:23"
 }

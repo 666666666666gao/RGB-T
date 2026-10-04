@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_cst": "2026-10-04T14:53:37.517868+08:00",
+  "reviewer_agent": "/root/current_policy_fit_source_review",
+  "reviewer_invocation": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fork_turns": "none",
+    "invocation_accepted": true,
+    "provenance": "Delegator reports successful requested spawn metadata. Independent context, same model family; no independent certification of the underlying runtime model.",
+    "review_turn": "Explicit follow-up to the existing independent-context review agent; no new runtime-model certification."
+  },
+  "blocking_issues": [],
+  "scope": "SOURCE ONLY: existing selector search supervision on the same new current-policy data, old4 initialization and unchanged architecture/loss implementation. No actual new M0, full fit or accuracy acceptance.",
+  "readiness": "Source PASS for the selector/C1 and selector/own M0 cells after the real complete matched-cache gate. Full fits remain gated on real paired selector M0 acceptance and, in the four-cell coordinator, both oracle and selector M0 acceptances.",
+  "non_blocking_issues": [
+    {
+      "file": "research/recoverability_modules.py:search_supervision_targets docstring",
+      "finding": "The existing docstring says the continuation teacher is frozen C1. The actual function is label-agnostic and reads the supplied paired cache labels, which are C1 or own25 in this factor.",
+      "impact": "Documentation only; recorded source_configs and cache provenance identify the real teacher. Frozen model sources were not edited."
+    }
+  ],
+  "source_findings": [
+    "The selector runner is exactly the oracle runner after changing only its source-review path, M0-acceptance path, output/report labels and search-supervision argument. Private source, single current TRAIN cache, matched VAL cache, old4 parent, seed42, B384, epochs, optimizer settings, action ranking, action write verification and full98 references are unchanged.",
+    "The selector actual-M0 audit is exactly the oracle audit after changing only its review/acceptance paths, runner basename, new M0 output stem and selector supervision in replay/config checks. No oracle runner or acceptance path remains. Shared PRIVATE/cache paths intentionally remain common.",
+    "All strict old4 initialization, frozen eight-C1-tensor checks, actual 3-epoch/9-update runtime evidence, ABC parameter changes, initial 128-VAL replay, selected-best 21-field replay, source equality and missing/open full-gate checks are preserved. Epoch0 means parent weights and is not called learning gain.",
+    "The selector target first forces no extra search and selects a legal model-scored local action. For each of six extra regions it forces exactly that search and uses the same detached selector over local plus that region. Selection depends on scores, valid actions, write eligibility and threshold, never GT labels.",
+    "GT utility is gathered only after those model choices. The target gain is gross selected utility minus the local selected utility; invalid extra regions yield zero. Success reflects the selected action current IoU at least .5 when the extra region has a candidate. It is selector-realizable supervision, not an oracle-region upper bound.",
+    "The target function is under torch.no_grad. Gross gain contains no extra .01 subtraction. Deployed search subtracts .01 in its region score; extra action scores already include their existing search penalty, and reported realized utility charges .01 per actual triggered extra visual search, including searches that keep the local candidate. These existing definitions are unchanged.",
+    "Only search_value, search_success and search_ranking losses take the switched target. All other objective parts remain bit-exact on the tested genuine samples. No network, forward/selector, frozen-C1 or other loss code changed.",
+    "Each full98 report uses completed GOLA, C1, global old4 and its matched original-warm predictions. It does not depend on another newly running cell. No formal dataset evaluation or global promotion is started by these scripts."
+  ],
+  "verification": {
+    "local_remote_source_bytes_equal": {
+      "trainer_sha256": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+      "modules_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+      "runner_sha256": "e56b6211d49b5e459ace8ec4d45320d0e33dd939d4cdb18443a5ed98447a9beb",
+      "m0_audit_sha256": "f202d03a0383e41425582a33b33b00505f9f69c7bfaeca040cdb720e251deb13"
+    },
+    "runner_exact_scoped_replacements": true,
+    "audit_exact_scoped_replacements": true,
+    "python_AST_parse": "PASS",
+    "remote_bash_syntax": "PASS",
+    "actual_CPU_checks": {
+      "status": "PASS_CPU_SELECTOR_SOURCE_CHECKS",
+      "sample_checks": {
+        "c1": {
+          "existing_collection_M0_rows": 2,
+          "six_extra_regions_checked": true,
+          "actual_targets_equal_manual_legal_local_vs_one_extra_selection": true,
+          "targets_detached_despite_gradient_enabled_model_output": true,
+          "GT_label_perturbation_does_not_change_selector_actions": true,
+          "other_objective_parts_exact_between_oracle_and_selector": true,
+          "changed_target_components_only": [
+            "search_ranking",
+            "search_success",
+            "search_value"
+          ],
+          "sample_nonzero_gross_gain_elements": 0,
+          "sample_max_abs_gross_gain": 0.0
+        },
+        "own": {
+          "existing_collection_M0_rows": 2,
+          "six_extra_regions_checked": true,
+          "actual_targets_equal_manual_legal_local_vs_one_extra_selection": true,
+          "targets_detached_despite_gradient_enabled_model_output": true,
+          "GT_label_perturbation_does_not_change_selector_actions": true,
+          "other_objective_parts_exact_between_oracle_and_selector": true,
+          "changed_target_components_only": [
+            "search_ranking",
+            "search_success",
+            "search_value"
+          ],
+          "sample_nonzero_gross_gain_elements": 0,
+          "sample_max_abs_gross_gain": 0.0
+        }
+      },
+      "actual_missing_selector_M0_acceptance_rejected": true,
+      "source_sha256": {
+        "trainer_sha256": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+        "modules_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+        "runner_sha256": "e56b6211d49b5e459ace8ec4d45320d0e33dd939d4cdb18443a5ed98447a9beb",
+        "m0_audit_sha256": "f202d03a0383e41425582a33b33b00505f9f69c7bfaeca040cdb720e251deb13"
+      },
+      "execution": {
+        "CUDA_initialized": false,
+        "GPU_queries": 0,
+        "optimizer_steps": 0,
+        "neural_jobs_started": 0,
+        "weights_modified": false,
+        "runtime_seconds": 4.911
+      },
+      "limits": "Actual CPU source behavior on the existing two-query collection M0 per teacher. No complete new cache, new training M0, full fit, learning gain or tracking accuracy acceptance."
+    },
+    "unchanged_primary_source_review": "/data/gb/setup/current_policy_fit_source_review_20261004.json",
+    "existing_reference_availability_evidence": {
+      "baseline": {
+        "root": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions",
+        "complete_sequences": 98,
+        "complete_frames": 49418
+      },
+      "c1": {
+        "root": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions",
+        "complete_sequences": 98,
+        "complete_frames": 49418
+      },
+      "global_old4": {
+        "root": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions",
+        "complete_sequences": 98,
+        "complete_frames": 49418
+      },
+      "matched_original_warm_c1": {
+        "root": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004/predictions",
+        "complete_sequences": 98,
+        "complete_frames": 49418
+      },
+      "matched_original_warm_own": {
+        "root": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/predictions",
+        "complete_sequences": 98,
+        "complete_frames": 49418
+      }
+    }
+  },
+  "prepared_paths": {
+    "runner": "/data/gb/experiments/recoverability_current_policy_fit_20261004/scripts/run_recoverability_current_policy_selector_fit.sh",
+    "actual_M0_audit": "/data/gb/setup/current_policy_fit_review/selector_actual_m0_cpu_audit.py",
+    "source_review": "/data/gb/setup/current_policy_selector_fit_source_review_20261004.json",
+    "future_actual_acceptance": "/data/gb/setup/current_policy_selector_fit_m0_acceptance_20261004.json"
+  },
+  "limits": [
+    "CPU math checks use only the two genuine existing collection M0 TRAIN queries per teacher. Both sample payloads have zero realized gross gains, and no distribution-wide benefit is inferred.",
+    "The new selector actual-M0 helper was syntax/source reviewed and byte checked, not executed. Its actual acceptance file was absent and the extracted real full guard rejected it.",
+    "The root-executed 225-query TRAIN shard0 state diagnostic is separate partial-data evidence, not this reviewer executing it or establishing any training/native accuracy.",
+    "No completed new full collection, new GPU M0/full training or accuracy is claimed."
+  ],
+  "reviewer_execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "actual_training_launches": 0,
+    "weights_modified": false,
+    "model_sources_modified": false,
+    "runner_or_helper_patches": 0,
+    "git_staged_or_pushed": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "status": "PASS_CPU_SELECTOR_SOURCE_CHECKS",
+  "sample_checks": {
+    "c1": {
+      "existing_collection_M0_rows": 2,
+      "six_extra_regions_checked": true,
+      "actual_targets_equal_manual_legal_local_vs_one_extra_selection": true,
+      "targets_detached_despite_gradient_enabled_model_output": true,
+      "GT_label_perturbation_does_not_change_selector_actions": true,
+      "other_objective_parts_exact_between_oracle_and_selector": true,
+      "changed_target_components_only": [
+        "search_ranking",
+        "search_success",
+        "search_value"
+      ],
+      "sample_nonzero_gross_gain_elements": 0,
+      "sample_max_abs_gross_gain": 0.0
+    },
+    "own": {
+      "existing_collection_M0_rows": 2,
+      "six_extra_regions_checked": true,
+      "actual_targets_equal_manual_legal_local_vs_one_extra_selection": true,
+      "targets_detached_despite_gradient_enabled_model_output": true,
+      "GT_label_perturbation_does_not_change_selector_actions": true,
+      "other_objective_parts_exact_between_oracle_and_selector": true,
+      "changed_target_components_only": [
+        "search_ranking",
+        "search_success",
+        "search_value"
+      ],
+      "sample_nonzero_gross_gain_elements": 0,
+      "sample_max_abs_gross_gain": 0.0
+    }
+  },
+  "actual_missing_selector_M0_acceptance_rejected": true,
+  "source_sha256": {
+    "trainer_sha256": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+    "modules_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "runner_sha256": "e56b6211d49b5e459ace8ec4d45320d0e33dd939d4cdb18443a5ed98447a9beb",
+    "m0_audit_sha256": "f202d03a0383e41425582a33b33b00505f9f69c7bfaeca040cdb720e251deb13"
+  },
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "neural_jobs_started": 0,
+    "weights_modified": false,
+    "runtime_seconds": 4.911
+  },
+  "limits": "Actual CPU source behavior on the existing two-query collection M0 per teacher. No complete new cache, new training M0, full fit, learning gain or tracking accuracy acceptance."
+}

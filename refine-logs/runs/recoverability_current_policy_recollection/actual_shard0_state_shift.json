@@ -1,0 +1,83 @@
+{
+  "status": "ACTUAL_MATCHED_TRAIN_SHARD0_DIAGNOSTIC_COMPLETE",
+  "observed_at": "2026-10-04T14:30:18.250806+08:00",
+  "scope": "225 matched TRAIN queries only; incomplete 902-query collection, no validation or native test reads",
+  "input_roots": [
+    "/data/gb/outputs/recoverability_future_c1_train_shard0_20261004",
+    "/data/gb/outputs/recoverability_current_policy_c1_train_shard0_20261004",
+    "/data/gb/outputs/recoverability_current_policy_own_train_shard0_20261004"
+  ],
+  "matched_nonfuture_arrays_exact": true,
+  "nonfuture_array_count": 28,
+  "decision_field_changed_query_counts": {
+    "features": 38,
+    "evidence": 38,
+    "raw_score": 38,
+    "boxes": 38,
+    "instance_features": 38,
+    "anchor_features": 0,
+    "image_boxes": 38,
+    "valid": 13,
+    "c1_quality": 38,
+    "original_choice": 1,
+    "history_instance_descriptors": 69,
+    "history_evidence": 69,
+    "history_quality": 69,
+    "history_boxes": 69,
+    "history_frames": 0,
+    "history_write": 28,
+    "history_valid": 0,
+    "motion_means": 45,
+    "motion_log_weights": 44
+  },
+  "history_changed_queries": 69,
+  "local_visual_candidates_changed_queries": 35,
+  "prefix_counter_columns": [
+    "extra_visual_forwards",
+    "changed_candidate_indices",
+    "paused_query_writes",
+    "template_updates"
+  ],
+  "prefix_counter_sums": {
+    "old4": [
+      942,
+      38,
+      108,
+      19485
+    ],
+    "own25": [
+      1414,
+      598,
+      0,
+      20090
+    ]
+  },
+  "local_c1_quality_under_each_prefix": {
+    "old4_prefix": {
+      "known_queries": 225,
+      "mean_iou": 0.6992717981338501,
+      "failed_queries": 26,
+      "correct_queries": 186
+    },
+    "own25_prefix": {
+      "known_queries": 225,
+      "mean_iou": 0.7046176195144653,
+      "failed_queries": 24,
+      "correct_queries": 187
+    }
+  },
+  "future_label_differences_between_current_teachers": {
+    "future_iou": {
+      "different_elements": 2008,
+      "max_absolute_difference": 0.9877115488052368
+    },
+    "wrong_update_fraction": {
+      "different_elements": 15,
+      "max_absolute_difference": 0.5
+    }
+  },
+  "limits": "Input differences include changed motion proposals as well as history. History and local-candidate counts are reported separately. Query IoU is a prefix-state diagnostic, not independent model tracking accuracy or causal intervention benefit.",
+  "neural_inference_runs": 0,
+  "gpu_queries": 0,
+  "runtime_seconds": 15.673874901141971
+}

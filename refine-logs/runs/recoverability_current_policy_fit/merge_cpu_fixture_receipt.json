@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "candidate_sha256": "e959173265fa1ce5391b379e9061baa08a1df278fa4e4d4537c1002ee1abd386",
+  "unexpected_acceptances": [],
+  "checks": {
+    "four_shards_ordered_exact_concatenation": "PASS",
+    "actual_m0_future_only_difference_accepted": {
+      "future_iou": {
+        "different_elements": 24,
+        "max_absolute_difference": 0.9088212847709656
+      },
+      "wrong_update_fraction": {
+        "different_elements": 0,
+        "max_absolute_difference": 0.0
+      }
+    },
+    "both_future_label_fields_may_differ": "PASS",
+    "changed_decision_input": "REJECTED_AS_REQUIRED",
+    "mismatched_future_dtype": "REJECTED_AS_REQUIRED",
+    "missing_actual_completion_marker": "REJECTED_AS_REQUIRED",
+    "actual_main_partial_input_writes_no_output": "PASS",
+    "actual_main_wrong_ordered_jobs_writes_no_output": "PASS",
+    "different_expected_job_order": "REJECTED_AS_REQUIRED",
+    "different_serial_execution_config": "REJECTED_AS_REQUIRED",
+    "invalid_regular_action_mask": "REJECTED_AS_REQUIRED",
+    "trainer_required_config_root": "REJECTED_AS_REQUIRED",
+    "trainer_required_config_cache": "REJECTED_AS_REQUIRED",
+    "trainer_required_config_split": "REJECTED_AS_REQUIRED",
+    "trainer_required_config_regions": "REJECTED_AS_REQUIRED"
+  },
+  "fixture_scope": "Actual two-row CLI M0 NPZ payloads copied into four one-row shards with synthetic CPU_FIXTURE_ONLY job IDs. Tests program behavior only; no collection/benchmark completion is claimed.",
+  "source_array_roots": {
+    "c1": "/data/gb/outputs/recoverability_current_policy_m0_20261004/c1",
+    "own": "/data/gb/outputs/recoverability_current_policy_m0_20261004/own"
+  },
+  "full_merge_main_executed": "negative incomplete/wrong-job fixtures only; positive complete collection pending",
+  "nn_imports": 0,
+  "nn_forward": 0,
+  "gpu_work": 0,
+  "existing_outputs_changed": false,
+  "process_signals": 0
+}

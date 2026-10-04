@@ -1,0 +1,89 @@
+{
+  "status": "PASS_CPU_SOURCE_PREPARATION",
+  "source_sha256": {
+    "trainer_sha256": "209eb01c562a9181af34e618d05db0ebdd2933e0317878f6b42f8c8db85f18d5",
+    "modules_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "runner_sha256": "906ba8b46e245c90844d2a45985f32f06dbea658fdbbc04b42f9762743e1352c",
+    "merge_sha256": "e959173265fa1ce5391b379e9061baa08a1df278fa4e4d4537c1002ee1abd386",
+    "m0_audit_sha256": "1d281b444647fe27951cb762b2be42150c962c1a38a6c5644b4b397c7837c54e"
+  },
+  "isolated_research_files": 39,
+  "all39_exact_to_accepted_warm_private_sources": true,
+  "main_model_source_hashes_unchanged": true,
+  "all_forward_classes_and_select_actions_AST_exact_to_main": true,
+  "trainer_loss_hparams_and_init_unchanged_from_warm": true,
+  "actual_import_paths": [
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/train_recoverability.py",
+    "/data/gb/experiments/recoverability_current_policy_fit_20261004/research/recoverability_modules.py"
+  ],
+  "protected_checkpoints": {
+    "training_parent": {
+      "path": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "epoch": 4,
+      "sha256_before_after": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72"
+    },
+    "data_prefix": {
+      "path": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+      "epoch": 25,
+      "sha256_before_after": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62"
+    },
+    "strict25_tensor_load": true,
+    "frozen8_C1_tensors_exact": true,
+    "ABC_trainable_tensors": 17
+  },
+  "sample_source_checks": {
+    "c1": {
+      "existing_collection_M0_rows": 2,
+      "all_forward_outputs_exact_to_frozen_main_class": true,
+      "all_selector_fields_exact_to_frozen_main_selector": true,
+      "new_training_or_accuracy_evidence": false
+    },
+    "own": {
+      "existing_collection_M0_rows": 2,
+      "all_forward_outputs_exact_to_frozen_main_class": true,
+      "all_selector_fields_exact_to_frozen_main_selector": true,
+      "new_training_or_accuracy_evidence": false
+    }
+  },
+  "full98_existing_reference_checks": {
+    "baseline": {
+      "root": "/data/gb/outputs/abc_internal_validation_v1/baseline/predictions",
+      "complete_sequences": 98,
+      "complete_frames": 49418
+    },
+    "c1": {
+      "root": "/data/gb/outputs/abc_internal_validation_v1/c1/predictions",
+      "complete_sequences": 98,
+      "complete_frames": 49418
+    },
+    "global_old4": {
+      "root": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions",
+      "complete_sequences": 98,
+      "complete_frames": 49418
+    },
+    "matched_original_warm_c1": {
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_c1_b384_full_20261004/predictions",
+      "complete_sequences": 98,
+      "complete_frames": 49418
+    },
+    "matched_original_warm_own": {
+      "root": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/predictions",
+      "complete_sequences": 98,
+      "complete_frames": 49418
+    }
+  },
+  "actual_new_M0_acceptance_missing_and_guard_refused": true,
+  "new_cache_gate_missing": true,
+  "new_M0_and_full_roots_absent": true,
+  "execution": {
+    "CUDA_initialized": false,
+    "GPU_queries": 0,
+    "optimizer_steps": 0,
+    "jobs_started": 0,
+    "production_sources_modified": false,
+    "deleted_weights_read": false,
+    "weights_modified": false,
+    "elapsed_seconds": 5.407
+  },
+  "limits": "Existing two-query collection M0 inputs check source behavior only. Complete new cache merge, actual 3-epoch/9-update fits, M0 acceptance and full98 accuracy remain pending."
+}
