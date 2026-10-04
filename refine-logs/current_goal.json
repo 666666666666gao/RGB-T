@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Original controller632884 waits for all4 original TRAIN/VAL collections, then new-data M0, full60epoch ABC training, full98 continuous selection and both full native datasets. Actual new training is not started at 03:15:35.",
+    "queued_successor": "Original controller632884 actually entered completed-collection TRAIN/VAL GT CPU merge at03:27:02; new-data M0 then full60epoch ABC training, full98 continuous selection and both full native datasets remain queued. No new training observed at03:30.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6404,57 +6404,39 @@
     "gpu_assignment_current": [
       {
         "gpu": 0,
-        "runner_pid": 561748,
-        "child_pid": 561756,
-        "child_state": "Rl",
-        "partition": "train",
-        "last_completed_clips": 440,
-        "full_train_count": 440,
-        "phase_supported_by_collector_source": "After full progress, samples.npz compressed export before completion receipt.",
-        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
+        "completed_original_collection_runner_pid": 561748,
+        "original_TRAIN_VAL_collection_completed": true,
+        "next_fit_arm": "pairwise_lr4",
+        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
+        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
+        "new_fit_started_at_this_observation": false
       },
       {
         "gpu": 1,
-        "runner_pid": 561749,
-        "child_pid": 561759,
-        "child_state": "Rl",
-        "partition": "train",
-        "last_completed_clips": 440,
-        "full_train_count": 440,
-        "phase_supported_by_collector_source": "After full progress, samples.npz compressed export before completion receipt.",
-        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
+        "completed_original_collection_runner_pid": 561749,
+        "original_TRAIN_VAL_collection_completed": true,
+        "next_fit_arm": "pairwise_lr5",
+        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
+        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
+        "new_fit_started_at_this_observation": false
       },
       {
         "gpu": 2,
-        "runner_pid": 561750,
-        "child_pid": 561757,
-        "child_state": "Rl",
-        "partition": "train",
-        "last_completed_clips": 432,
-        "full_train_count": 441,
-        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
+        "completed_original_collection_runner_pid": 561750,
+        "original_TRAIN_VAL_collection_completed": true,
+        "next_fit_arm": "budgeted_lr4",
+        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
+        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
+        "new_fit_started_at_this_observation": false
       },
       {
         "gpu": 3,
-        "runner_pid": 561752,
-        "child_pid": 716170,
-        "child_state": "Rl",
-        "partition": "validation",
-        "preceding_actual_train_completion": {
-          "completed": true,
-          "clips": 441,
-          "elapsed_seconds": 5293.0566265038215,
-          "original_correct_queries": 370,
-          "original_failed_queries": 47,
-          "original_candidate_present_queries": 379,
-          "actual_prefix_counts_sum": [
-            1201,
-            87,
-            172,
-            44125
-          ]
-        },
-        "observed_at_cst": "2026-10-05T03:15:35.571022+08:00"
+        "completed_original_collection_runner_pid": 561752,
+        "original_TRAIN_VAL_collection_completed": true,
+        "next_fit_arm": "budgeted_lr5",
+        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
+        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
+        "new_fit_started_at_this_observation": false
       }
     ],
     "gpu_memory_request": {
@@ -7120,7 +7102,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T03:17:28.784077+08:00",
+  "updated_cst": "2026-10-05T03:37:01.786534+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -7936,17 +7918,17 @@
     }
   },
   "current_best_native_policy_iteration": {
-    "status": "LIVE_COLLECTION_CONTINUATION_QUEUED_NOT_TRAINING_YET",
+    "status": "ALL8_COLLECTIONS_COMPLETE_ACTUAL_GT_CPU_MERGE",
     "plan": "refine-logs/runs/recoverability_best_native_policy/plan.json",
     "pipeline_launch": "refine-logs/runs/recoverability_best_native_policy/actual_pipeline_launch.json",
     "controller_pid": 632884,
     "first_remote_completion_check_cst": "2026-10-05T03:00:00+08:00",
-    "next_goal_check_cst": "2026-10-05T03:30:00+08:00",
+    "next_goal_check_cst": "2026-10-05T03:45:00+08:00",
     "poll_interval_seconds": 180,
     "goal_performance_achieved": false,
-    "last_actual_observation_cst": "2026-10-05T03:15:35.571022+08:00",
-    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_milestone_observation_0315.json",
-    "train_collected": 1753,
+    "last_actual_observation_cst": "2026-10-05T03:30:01.554581+08:00",
+    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_milestone_observation_0330.json",
+    "train_collected": 1762,
     "train_total": 1762,
     "validation_total": 196,
     "new_training_started": false,
@@ -7955,6 +7937,10 @@
     "final_report_executed": false,
     "phase_diagnostic": "refine-logs/runs/recoverability_best_native_policy/actual_collection_phase_diagnostic_0315.json",
     "first_validation_collection_started": true,
-    "first_validation_gpu": 3
+    "first_validation_gpu": 3,
+    "collection_completed_receipts": "refine-logs/runs/recoverability_best_native_policy/actual_full_collection_completion.json",
+    "validation_collected": 196,
+    "all8_collection_markers_passed": true,
+    "sole_local_observer_started_session": 96616
   }
 }
