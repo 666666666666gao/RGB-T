@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Original controller632884 actually entered completed-collection TRAIN/VAL GT CPU merge at03:27:02; new-data M0 then full60epoch ABC training, full98 continuous selection and both full native datasets remain queued. No new training observed at03:30.",
+    "queued_successor": "Original632884 controller actually running four full60epoch/300update ABC fits since03:36:17; full98 continuous positive-checkpoint selection and both native benchmarks follow actual full-fit CPU acceptance.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6404,39 +6404,75 @@
     "gpu_assignment_current": [
       {
         "gpu": 0,
-        "completed_original_collection_runner_pid": 561748,
-        "original_TRAIN_VAL_collection_completed": true,
-        "next_fit_arm": "pairwise_lr4",
-        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
-        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
-        "new_fit_started_at_this_observation": false
+        "pid": 752209,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu0_20261005.log",
+        "output": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005",
+        "epoch": 13,
+        "optimizer_steps": 65,
+        "peak_cuda_mib": 19192.75048828125,
+        "peak_cuda_gib": 18.742920398712158,
+        "module_gradient_norms": {
+          "A": 0.06123647838830948,
+          "B": 5.495436668395996,
+          "C": 1.7512463331222534
+        },
+        "elapsed_seconds": 496.4769562734291,
+        "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
+        "phase": "FULL_ABC_TRAINING"
       },
       {
         "gpu": 1,
-        "completed_original_collection_runner_pid": 561749,
-        "original_TRAIN_VAL_collection_completed": true,
-        "next_fit_arm": "pairwise_lr5",
-        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
-        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
-        "new_fit_started_at_this_observation": false
+        "pid": 752210,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu1_20261005.log",
+        "output": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005",
+        "epoch": 12,
+        "optimizer_steps": 56,
+        "peak_cuda_mib": 19192.75048828125,
+        "peak_cuda_gib": 18.742920398712158,
+        "module_gradient_norms": {
+          "A": 0.06685265898704529,
+          "B": 0.3296452760696411,
+          "C": 1.1003139019012451
+        },
+        "elapsed_seconds": 487.4091811780818,
+        "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
+        "phase": "FULL_ABC_TRAINING"
       },
       {
         "gpu": 2,
-        "completed_original_collection_runner_pid": 561750,
-        "original_TRAIN_VAL_collection_completed": true,
-        "next_fit_arm": "budgeted_lr4",
-        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
-        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
-        "new_fit_started_at_this_observation": false
+        "pid": 752211,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu2_20261005.log",
+        "output": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005",
+        "epoch": 13,
+        "optimizer_steps": 65,
+        "peak_cuda_mib": 19192.75048828125,
+        "peak_cuda_gib": 18.742920398712158,
+        "module_gradient_norms": {
+          "A": 0.06353192776441574,
+          "B": 8.005474090576172,
+          "C": 1.680830478668213
+        },
+        "elapsed_seconds": 495.34746475238353,
+        "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
+        "phase": "FULL_ABC_TRAINING"
       },
       {
         "gpu": 3,
-        "completed_original_collection_runner_pid": 561752,
-        "original_TRAIN_VAL_collection_completed": true,
-        "next_fit_arm": "budgeted_lr5",
-        "last_observed_phase": "COLLECTION_COMPLETE_ACTUAL_GT_CPU_MERGE",
-        "observed_at_cst": "2026-10-05T03:30:01.554581+08:00",
-        "new_fit_started_at_this_observation": false
+        "pid": 752212,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu3_20261005.log",
+        "output": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+        "epoch": 13,
+        "optimizer_steps": 65,
+        "peak_cuda_mib": 19192.75048828125,
+        "peak_cuda_gib": 18.742920398712158,
+        "module_gradient_norms": {
+          "A": 0.06816601008176804,
+          "B": 9.294028282165527,
+          "C": 1.2189040184020996
+        },
+        "elapsed_seconds": 496.5289871580899,
+        "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
+        "phase": "FULL_ABC_TRAINING"
       }
     ],
     "gpu_memory_request": {
@@ -7102,7 +7138,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T03:37:01.786534+08:00",
+  "updated_cst": "2026-10-05T03:50:21.320428+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -7918,20 +7954,20 @@
     }
   },
   "current_best_native_policy_iteration": {
-    "status": "ALL8_COLLECTIONS_COMPLETE_ACTUAL_GT_CPU_MERGE",
+    "status": "FULL_ABC_TRAINING_ACTUALLY_RUNNING",
     "plan": "refine-logs/runs/recoverability_best_native_policy/plan.json",
     "pipeline_launch": "refine-logs/runs/recoverability_best_native_policy/actual_pipeline_launch.json",
     "controller_pid": 632884,
     "first_remote_completion_check_cst": "2026-10-05T03:00:00+08:00",
-    "next_goal_check_cst": "2026-10-05T03:45:00+08:00",
+    "next_goal_check_cst": "2026-10-05T04:15:00+08:00",
     "poll_interval_seconds": 180,
     "goal_performance_achieved": false,
-    "last_actual_observation_cst": "2026-10-05T03:30:01.554581+08:00",
-    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_milestone_observation_0330.json",
+    "last_actual_observation_cst": "2026-10-05T03:45:01.839590+08:00",
+    "actual_observation": "refine-logs/runs/recoverability_best_native_policy/actual_training_observation_0345.json",
     "train_collected": 1762,
     "train_total": 1762,
     "validation_total": 196,
-    "new_training_started": false,
+    "new_training_started": true,
     "final_report_source_review": "refine-logs/runs/recoverability_best_native_policy/goal_report_source_review.json",
     "final_report_deployment": "refine-logs/runs/recoverability_best_native_policy/actual_goal_report_deployment.json",
     "final_report_executed": false,
@@ -7941,6 +7977,12 @@
     "collection_completed_receipts": "refine-logs/runs/recoverability_best_native_policy/actual_full_collection_completion.json",
     "validation_collected": 196,
     "all8_collection_markers_passed": true,
-    "sole_local_observer_started_session": 96616
+    "sole_local_observer_started_session": 28095,
+    "actual_training_summary": "refine-logs/runs/recoverability_best_native_policy/actual_full_training_started_summary.json",
+    "full_training_started_cst": "2026-10-05T03:36:17.046957+08:00",
+    "new_data_cache_GT_gate": "PASS",
+    "all4_capacity_3epoch_15update_CPU_gate": "PASS",
+    "full60epoch_CPU_gate": "NOT_COMPLETED",
+    "all4_peak_cuda_allocated_gib": 18.742920398712158
   }
 }

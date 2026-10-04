@@ -1,0 +1,500 @@
+{
+  "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
+  "controller_processes": "632884       1 Ss      01:17:16 /data/gb/envs/gola/bin/python -u /data/gb/setup/best_native_policy_complete_pipeline_20261005.py\n 752209  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 0.0001 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005\n 752210  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005\n 752211  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 0.0001 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005\n 752212  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+  "progress": {
+    "stage": "FULL_ABC_TRAINING",
+    "observed_at_cst": "2026-10-05T03:36:17.046957+08:00",
+    "automatic_restarts": 0,
+    "poll_interval_seconds": 180,
+    "official_goal_completed": false,
+    "runs": [
+      {
+        "gpu": 0,
+        "pid": 752209,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu0_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "0.0001",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "pairwise",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005"
+        ]
+      },
+      {
+        "gpu": 1,
+        "pid": 752210,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu1_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "1e-05",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "pairwise",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005"
+        ]
+      },
+      {
+        "gpu": 2,
+        "pid": 752211,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu2_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "0.0001",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "budgeted",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005"
+        ]
+      },
+      {
+        "gpu": 3,
+        "pid": 752212,
+        "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu3_20261005.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.train_recoverability",
+          "--train",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "--validation",
+          "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "--batch-size",
+          "384",
+          "--epochs",
+          "60",
+          "--retain-epochs",
+          "20",
+          "40",
+          "60",
+          "--lr",
+          "1e-05",
+          "--seed",
+          "42",
+          "--search-supervision",
+          "selector",
+          "--action-ranking",
+          "budgeted",
+          "--write-verification",
+          "action",
+          "--init-checkpoint",
+          "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "--output",
+          "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005"
+        ]
+      }
+    ],
+    "GPU_memory_before_launch_mib": {
+      "0": 349,
+      "1": 20,
+      "2": 20,
+      "3": 20
+    }
+  },
+  "runs_actual": [
+    {
+      "gpu": 0,
+      "pid": 752209,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu0_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "0.0001",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "pairwise",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005"
+      ],
+      "actual_process": "752209  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 0.0001 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 13, \"step\": 1, \"optimizer_steps\": 61, \"loss\": 1.438533067703247, \"parts\": {\"advantage\": 0.024771083146333694, \"action_ranking\": 0.010482664220035076, \"harm\": 1.5157639980316162, \"quality\": 0.8288271427154541, \"query_write_risk\": 0.024878544732928276, \"future\": 0.10529126226902008, \"memory_gate\": 1.3045247793197632, \"margin_preservation\": 0.002563775284215808, \"identity_margin\": 0.15088608860969543, \"search_value\": 0.009488021023571491, \"search_success\": 0.4633389115333557, \"candidate_absence\": 0.3669918477535248, \"search_ranking\": 1.695438265800476}, \"module_gradient_norms\": {\"A\": 0.05849362909793854, \"B\": 6.109848976135254, \"C\": 1.800101637840271}, \"elapsed_seconds\": 467.2963186460547, \"peak_cuda_mib\": 19192.75048828125}",
+        "TRAIN {\"epoch\": 13, \"step\": 5, \"optimizer_steps\": 65, \"loss\": 1.3818202018737793, \"parts\": {\"advantage\": 0.025093646720051765, \"action_ranking\": 0.009661568328738213, \"harm\": 1.3823646306991577, \"quality\": 0.7968997955322266, \"query_write_risk\": 0.02273281291127205, \"future\": 0.11547894775867462, \"memory_gate\": 1.3036754131317139, \"margin_preservation\": 0.0023043982218950987, \"identity_margin\": 0.14908328652381897, \"search_value\": 0.00873957946896553, \"search_success\": 0.47303417325019836, \"candidate_absence\": 0.41726550459861755, \"search_ranking\": 1.5217500925064087}, \"module_gradient_norms\": {\"A\": 0.06123647838830948, \"B\": 5.495436668395996, \"C\": 1.7512463331222534}, \"elapsed_seconds\": 496.4769562734291, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 13, \"clips\": 196, \"loss\": 1.4799511432647705, \"valid_actions\": 7251, \"current\": 0.7499153017997742, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7511300444602966, \"utility\": 0.7507218718528748, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 8, \"changed_location\": 8, \"rescued\": 0, \"harmed\": 1, \"failed\": 13, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": -0.0011246204376220703, \"utility_gain_against_c1\": -0.0013640522956848145}"
+      ]
+    },
+    {
+      "gpu": 1,
+      "pid": 752210,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu1_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "1e-05",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "pairwise",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005"
+      ],
+      "actual_process": "752210  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 11, \"step\": 5, \"optimizer_steps\": 55, \"loss\": 1.3184611797332764, \"parts\": {\"advantage\": 0.06259354203939438, \"action_ranking\": 0.007739663124084473, \"harm\": 2.16922664642334, \"quality\": 0.9235460758209229, \"query_write_risk\": 0.04908367246389389, \"future\": 0.11943319439888, \"memory_gate\": 1.289351224899292, \"margin_preservation\": 0.0020635456312447786, \"identity_margin\": 0.16352596879005432, \"search_value\": 0.0010890994453802705, \"search_success\": 0.6548253893852234, \"candidate_absence\": 0.3865160644054413, \"search_ranking\": 0.0}, \"module_gradient_norms\": {\"A\": 0.054262660443782806, \"B\": 0.3329430818557739, \"C\": 1.1163533926010132}, \"elapsed_seconds\": 476.8023849329911, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 11, \"clips\": 196, \"loss\": 1.6864601373672485, \"valid_actions\": 7251, \"current\": 0.7523692846298218, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7534797787666321, \"utility\": 0.7534797787666321, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 0, \"changed_location\": 4, \"rescued\": 0, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 176, \"missing_candidate_found\": 0, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.0013293623924255371, \"utility_gain_against_c1\": 0.0013938546180725098}",
+        "TRAIN {\"epoch\": 12, \"step\": 1, \"optimizer_steps\": 56, \"loss\": 1.323168158531189, \"parts\": {\"advantage\": 0.06213095784187317, \"action_ranking\": 0.007375226356089115, \"harm\": 2.1416659355163574, \"quality\": 0.8780333995819092, \"query_write_risk\": 0.049150701612234116, \"future\": 0.11716824769973755, \"memory_gate\": 1.3236128091812134, \"margin_preservation\": 0.0024341887328773737, \"identity_margin\": 0.15743103623390198, \"search_value\": 0.0010491969296708703, \"search_success\": 0.6565459370613098, \"candidate_absence\": 0.4383072257041931, \"search_ranking\": 0.0}, \"module_gradient_norms\": {\"A\": 0.06685265898704529, \"B\": 0.3296452760696411, \"C\": 1.1003139019012451}, \"elapsed_seconds\": 487.4091811780818, \"peak_cuda_mib\": 19192.75048828125}"
+      ]
+    },
+    {
+      "gpu": 2,
+      "pid": 752211,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu2_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "0.0001",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "budgeted",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005"
+      ],
+      "actual_process": "752211  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 0.0001 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 13, \"step\": 1, \"optimizer_steps\": 61, \"loss\": 1.4850318431854248, \"parts\": {\"advantage\": 0.02647198922932148, \"action_ranking\": 0.08979665488004684, \"harm\": 1.5769574642181396, \"quality\": 0.8360962271690369, \"query_write_risk\": 0.0267463568598032, \"future\": 0.10563001036643982, \"memory_gate\": 1.3048925399780273, \"margin_preservation\": 0.0030830821488052607, \"identity_margin\": 0.14762230217456818, \"search_value\": 0.010692383162677288, \"search_success\": 0.44997337460517883, \"candidate_absence\": 0.3689436912536621, \"search_ranking\": 1.459503412246704}, \"module_gradient_norms\": {\"A\": 0.05847291275858879, \"B\": 6.066999435424805, \"C\": 1.7136778831481934}, \"elapsed_seconds\": 466.1722003640607, \"peak_cuda_mib\": 19192.75048828125}",
+        "TRAIN {\"epoch\": 13, \"step\": 5, \"optimizer_steps\": 65, \"loss\": 1.5135962963104248, \"parts\": {\"advantage\": 0.026860034093260765, \"action_ranking\": 0.1002764031291008, \"harm\": 1.445132851600647, \"quality\": 0.8033531904220581, \"query_write_risk\": 0.02457258105278015, \"future\": 0.11569821834564209, \"memory_gate\": 1.3040980100631714, \"margin_preservation\": 0.002764469012618065, \"identity_margin\": 0.1459423005580902, \"search_value\": 0.01068551279604435, \"search_success\": 0.46111512184143066, \"candidate_absence\": 0.4194222390651703, \"search_ranking\": 1.6492122411727905}, \"module_gradient_norms\": {\"A\": 0.06353192776441574, \"B\": 8.005474090576172, \"C\": 1.680830478668213}, \"elapsed_seconds\": 495.34746475238353, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 13, \"clips\": 196, \"loss\": 1.5888463258743286, \"valid_actions\": 7251, \"current\": 0.7499153017997742, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7511300444602966, \"utility\": 0.7507218718528748, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 8, \"changed_location\": 8, \"rescued\": 0, \"harmed\": 1, \"failed\": 13, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 180, \"missing_candidate_found\": 4, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": -0.0011246204376220703, \"utility_gain_against_c1\": -0.0013640522956848145}"
+      ]
+    },
+    {
+      "gpu": 3,
+      "pid": 752212,
+      "log": "/data/gb/setup/best_native_policy_FULL_ABC_TRAINING_gpu3_20261005.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.train_recoverability",
+        "--train",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "--validation",
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+        "--batch-size",
+        "384",
+        "--epochs",
+        "60",
+        "--retain-epochs",
+        "20",
+        "40",
+        "60",
+        "--lr",
+        "1e-05",
+        "--seed",
+        "42",
+        "--search-supervision",
+        "selector",
+        "--action-ranking",
+        "budgeted",
+        "--write-verification",
+        "action",
+        "--init-checkpoint",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "--output",
+        "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005"
+      ],
+      "actual_process": "752212  632884 Ssl        08:44 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --batch-size 384 --epochs 60 --retain-epochs 20 40 60 --lr 1e-05 --seed 42 --search-supervision selector --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005",
+      "latest_log_lines": [
+        "TRAIN {\"epoch\": 13, \"step\": 1, \"optimizer_steps\": 61, \"loss\": 1.4259556531906128, \"parts\": {\"advantage\": 0.06413774937391281, \"action_ranking\": 0.10839641839265823, \"harm\": 2.1689651012420654, \"quality\": 0.9146779179573059, \"query_write_risk\": 0.05000075325369835, \"future\": 0.11839325726032257, \"memory_gate\": 1.3146628141403198, \"margin_preservation\": 0.0027044552844017744, \"identity_margin\": 0.15990130603313446, \"search_value\": 0.0007725055911578238, \"search_success\": 0.6504629254341125, \"candidate_absence\": 0.3916449546813965, \"search_ranking\": 0.0}, \"module_gradient_norms\": {\"A\": 0.061462339013814926, \"B\": 0.33898213505744934, \"C\": 1.332364797592163}, \"elapsed_seconds\": 467.32434057770297, \"peak_cuda_mib\": 19192.75048828125}",
+        "TRAIN {\"epoch\": 13, \"step\": 5, \"optimizer_steps\": 65, \"loss\": 1.7482545375823975, \"parts\": {\"advantage\": 0.06311673671007156, \"action_ranking\": 0.10966388136148453, \"harm\": 2.085240125656128, \"quality\": 0.884194016456604, \"query_write_risk\": 0.04956928640604019, \"future\": 0.12580130994319916, \"memory_gate\": 1.3150800466537476, \"margin_preservation\": 0.002771628787741065, \"identity_margin\": 0.1567482352256775, \"search_value\": 0.0009734926861710846, \"search_success\": 0.6509838700294495, \"candidate_absence\": 0.4611923396587372, \"search_ranking\": 1.6508264541625977}, \"module_gradient_norms\": {\"A\": 0.06816601008176804, \"B\": 9.294028282165527, \"C\": 1.2189040184020996}, \"elapsed_seconds\": 496.5289871580899, \"peak_cuda_mib\": 19192.75048828125}",
+        "VALIDATION {\"epoch\": 13, \"clips\": 196, \"loss\": 1.7895113229751587, \"valid_actions\": 7251, \"current\": 0.7523692846298218, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7534797787666321, \"utility\": 0.7534797787666321, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 0, \"changed_location\": 4, \"rescued\": 0, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 176, \"missing_candidate_found\": 0, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.0013293623924255371, \"utility_gain_against_c1\": 0.0013938546180725098}"
+      ]
+    }
+  ],
+  "actual_existing_receipts": {
+    "cache_gate": {
+      "status": "PASS",
+      "matched_partitions": {
+        "train": 1762,
+        "validation": 196
+      },
+      "all_ordered_jobs_exact": true,
+      "all_GT_current_and_history_replayed": true,
+      "all_schema_and_sources_verified": true,
+      "prefix_epoch": 4,
+      "future_epoch": 4,
+      "all881_98_video_names_exact": true,
+      "teacher_checkpoint_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "partition_acceptance_sha256": {
+        "train": "307d57f823d717486191e50a7553e4757c9929a23245b785672a8348a387b34d",
+        "validation": "d2b0f6ed08919fffd5dc804892d9f31fc84813ac0b250892dd21ec5505a0388f"
+      },
+      "completed_at_cst": "2026-10-05T03:32:46.044969+08:00",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional",
+      "execution": {
+        "GPU_queries": 0,
+        "neural_forward_calls": 0,
+        "optimizer_steps": 0,
+        "native_test_reads": false
+      },
+      "training_started": false,
+      "official_goal_completed": false,
+      "next_gate": "Actual three-epoch new-data capacity M0 before full60epoch B384 completeABC fit",
+      "future_label_scope": "Source-linked actual frozenown-policy teacher labels; no independent future-neural rerun."
+    },
+    "m0_fit_CPU": {
+      "status": "PASS",
+      "stage": "m0",
+      "all_four_full_fits_CPU_passed": true,
+      "epochs_per_arm": 3,
+      "optimizer_steps_per_arm": 15,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "validation_queries": 196,
+      "arms": {
+        "pairwise_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.80527006788179
+        },
+        "pairwise_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.43084730301052
+        },
+        "budgeted_lr4": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 1,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.9383450159803
+        },
+        "budgeted_lr5": {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_m0_20261005",
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "all_C1_tensors_exact": true,
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19192.75048828125,
+          "elapsed_seconds": 115.76601138804108
+        }
+      },
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "accepted_at_cst": "2026-10-05T03:36:16.453459+08:00"
+    }
+  },
+  "GPU_queries": 0,
+  "new_jobs_started": 0,
+  "neural_forward_calls_by_observer": 0
+}
