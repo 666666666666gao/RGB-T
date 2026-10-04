@@ -1,0 +1,25 @@
+{
+  "status": "LAUNCHED",
+  "launched_cst": "2026-10-04T11:19:04.099839+08:00",
+  "stage": "actual3epoch9updateM0",
+  "batch_size": 384,
+  "source_review": "PASS same-family/provisional",
+  "source_directory": "/data/gb/experiments/recoverability_budgeted_action_20261004",
+  "production_source_unchanged": true,
+  "arms": [
+    {
+      "gpu": 0,
+      "policy": "c1",
+      "session": "budgeted_action_c1_b384_m0_20261004",
+      "runner_command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 0 c1 m0 > /data/gb/setup/budgeted_action_c1_b384_m0_20261004.log 2>&1",
+      "output": "/data/gb/outputs/recoverability_budgeted_action_c1_b384_m0_20261004"
+    },
+    {
+      "gpu": 2,
+      "policy": "own",
+      "session": "budgeted_action_own_b384_m0_20261004",
+      "runner_command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 2 own m0 > /data/gb/setup/budgeted_action_own_b384_m0_20261004.log 2>&1",
+      "output": "/data/gb/outputs/recoverability_budgeted_action_own_b384_m0_20261004"
+    }
+  ]
+}

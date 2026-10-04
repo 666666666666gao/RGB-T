@@ -1,0 +1,40 @@
+{
+  "observed_cst": "2026-10-04T11:20:03.908966+08:00",
+  "gpu_memory": "0, 20654 MiB, 24576 MiB, 100 %\n1, 851 MiB, 24576 MiB, 37 %\n2, 20325 MiB, 24576 MiB, 100 %\n3, 851 MiB, 24576 MiB, 35 %",
+  "processes": [
+    "3376688       00:55 Sl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_future_policy_merged_20261004/c1/train --validation /data/gb/outputs/recoverability_future_policy_merged_20261004/c1/validation --batch-size 384 --epochs 3 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --output /data/gb/outputs/recoverability_budgeted_action_c1_b384_m0_20261004",
+    "3376692       00:55 Sl+  /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_future_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_future_policy_merged_20261004/own/validation --batch-size 384 --epochs 3 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --output /data/gb/outputs/recoverability_budgeted_action_own_b384_m0_20261004"
+  ],
+  "m0": {
+    "c1": {
+      "output_exists": true,
+      "completed": false,
+      "latest_training": {
+        "epoch": 2,
+        "optimizer_steps": 4,
+        "loss": 1.9564049243927002,
+        "module_gradient_norms": {
+          "A": 0.0806923434138298,
+          "B": 0.8772639632225037,
+          "C": 0.9663260579109192
+        },
+        "peak_cuda_mib": 14191.0830078125
+      }
+    },
+    "own": {
+      "output_exists": true,
+      "completed": false,
+      "latest_training": {
+        "epoch": 2,
+        "optimizer_steps": 4,
+        "loss": 1.9454721212387085,
+        "module_gradient_norms": {
+          "A": 0.08069250732660294,
+          "B": 0.8268282413482666,
+          "C": 0.9541478157043457
+        },
+        "peak_cuda_mib": 14190.7080078125
+      }
+    }
+  }
+}

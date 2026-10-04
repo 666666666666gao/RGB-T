@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "review_date": "2026-10-04",
+  "scope": "Concrete action-ranking objective and isolated fit runner; fresh diagnostic reviewer then re-review after the actual launch-path defect was repaired.",
+  "readiness": "Ready for the authorized actual 3-epoch/9-update B384 M0 in both teacher arms. Full fits still require the existing actual M0 acceptance record. No accuracy claim.",
+  "reviewed_files": [
+    "research/recoverability_modules.py",
+    "research/train_recoverability.py",
+    "scripts/run_recoverability_budgeted_action_fit.sh",
+    "scripts/run_recoverability_future_fit.sh (matched comparator)",
+    "scripts/run_temporal.sh (existing execution environment)",
+    "refine-logs/runs/recoverability_budgeted_action/cpu_loss_checks.py",
+    "refine-logs/runs/recoverability_budgeted_action/cpu_loss_checks.json"
+  ],
+  "blocking_issues": [],
+  "resolved_blocking_issues": [
+    {
+      "issue": "The first runner started in /data/gb/GOLA. sys.path[0] overrode the private PYTHONPATH and selected the old research package.",
+      "observed": "CPU-only find_spec resolved /data/gb/GOLA/research/__init__.py; the training-source assertion would fail.",
+      "fix": "cd private_source before source import and training; cd /data/gb/GOLA before the existing full evaluation wrapper.",
+      "verification": "Actual repaired imports resolved both trainer and modules in /data/gb/experiments/recoverability_budgeted_action_20261004/research. CUDA was not initialized."
+    }
+  ],
+  "source_findings": [
+    "New budgeted_winner_loss matches the agreed seven-set, threshold-shifted GT winner versus highest predicted legal nonwinner hinge. Natural mean over every query and all seven sets.",
+    "GT labels are used only in the objective. Existing DECISION_FIELDS, model classes, inference/select_actions, search supervision and old ranking helper are unchanged.",
+    "Prediction scores already include the .01 extra-action bias; the helper subtracts it once only from GT utility. Both target and predicted decision scores receive the unchanged .03 nonkeep offset.",
+    "GT best_value <=0 explicitly selects regular keep, preserving strict intervention semantics.",
+    "The helper uses the MASKED rival max value. Actual singleton original-only sets therefore yield relu(-inf)=0 without a fabricated illegal rival or fallback branch.",
+    "Each set contains original plus at most one extra region, masked by exact action_valid. Illegal and incompatible extra candidates do not become rivals.",
+    "The old pairwise helper remains unchanged, and budgeted mode is selected only through the new objective branch and trainer CLI choice.",
+    "All other losses retain the existing matched-comparator settings. In particular, write_pair_calibration remains disabled in both future-policy comparator and new runner.",
+    "Both teacher arms retain the matched cache, seed42, B384, 3-epoch/9-update M0 and 60-epoch/180-update full settings. Frozen C1, optimizer, native threshold and full-video checkpoint policy are unchanged.",
+    "Runner restores CUDA_DEVICE_ORDER=PCI_BUS_ID and existing LD_LIBRARY_PATH, OMP, Torch/cache/TMP/CUBLAS settings; full evaluation uses the unchanged main-repository wrapper."
+  ],
+  "verification": {
+    "local_remote_runner_text_equal": true,
+    "local_remote_checked_function_text_equal": {
+      "select_actions": true,
+      "budgeted_winner_loss": true,
+      "ranking_supervision_loss": true,
+      "objective": true
+    },
+    "actual_private_import_paths": [
+      "/data/gb/experiments/recoverability_budgeted_action_20261004/research/recoverability_modules.py",
+      "/data/gb/experiments/recoverability_budgeted_action_20261004/research/train_recoverability.py"
+    ],
+    "remote_main_to_private_AST_changes": {
+      "module_changed": [
+        "objective"
+      ],
+      "module_added": [
+        "budgeted_winner_loss"
+      ],
+      "trainer_changed": [
+        "arguments"
+      ]
+    },
+    "remote_bash_syntax": "PASS bash -n",
+    "local_diff_whitespace": "PASS git diff --check",
+    "implementation_CPU_checks": {
+      "source": "refine-logs/runs/recoverability_budgeted_action/cpu_loss_checks.json",
+      "inspected_script_and_result": true,
+      "passed": [
+        "+.04 local benefit has candidate gradient -1 and a step crosses strict .03",
+        "+.02 unnecessary switch has candidate gradient +1 and a step suppresses it",
+        "+.035 gross extra action becomes +.025 net and preserves keep",
+        "exact .03 selects keep while .030001 selects intervention target",
+        "actual singleton shape has zero loss and finite zero gradients",
+        "a different extra region's .9 to 1.9 score change has no cross-budget effect",
+        "old model classes, select/actions/utility/search/ranking/write-pair helpers have identical ASTs"
+      ]
+    },
+    "independent_saved_score_replay": {
+      "status": "PASS_ACTUAL_DEPLOYED_HELPER_CPU_ONLY_REPLAY",
+      "remote_main_to_private_changed_module_objects": [
+        "objective"
+      ],
+      "added_module_objects": [
+        "budgeted_winner_loss"
+      ],
+      "trainer_only_changed_object": "arguments",
+      "results": {
+        "old_own4": {
+          "query_indices": [
+            16,
+            38,
+            84
+          ],
+          "loss_per_query": [
+            0.11287672072649002,
+            0.631450355052948,
+            0.19484677910804749
+          ],
+          "independent_scalar_expected": [
+            0.1128767267481557,
+            0.6314503516629338,
+            0.194846785100443
+          ],
+          "combined_loss": 0.31305795907974243,
+          "score_gradients_finite": true,
+          "illegal_action_score_gradients_zero": true
+        },
+        "new_own55": {
+          "query_indices": [
+            16,
+            38,
+            84
+          ],
+          "loss_per_query": [
+            0.05511242523789406,
+            0.7606245279312134,
+            0.27216678857803345
+          ],
+          "independent_scalar_expected": [
+            0.05511242740388427,
+            0.7606244826316834,
+            0.2721668034845165
+          ],
+          "combined_loss": 0.3626345694065094,
+          "score_gradients_finite": true,
+          "illegal_action_score_gradients_zero": true
+        }
+      },
+      "scope": "Stored scores and GT utility from three detailed VAL queries per checkpoint; no models or neural-network forwards; score-tensor backward only; no optimizer or GPU",
+      "cuda_initialized": false
+    }
+  },
+  "non_blocking_limitations": [
+    "Loss/design PASS is not actual M0 completion or evidence of improved full-video/native accuracy.",
+    "Both completed future-policy full98 runs remain negative relative to old own4. Retain old own4 as the protected best, and compare the new loss to the matched future-policy objective controls.",
+    "Keep cases remain 4981/6314 own TRAIN budget sets. No positive-only filtering, 50:50 reweighting, threshold changes or quality-argmax policy was introduced.",
+    "Candidate-relative cost in the target intentionally matches the unchanged selector. Actual full-video validation must still charge .01 whenever search runs, including cases that keep a local candidate.",
+    "The independent saved-score replay used three detailed development queries per checkpoint and scalar score-tensor backward only; no model forward, optimizer, embeddings or CUDA. It is an arithmetic check, not an accuracy estimate.",
+    "Existing timm import deprecation warning is unrelated and requires no change for this experiment."
+  ],
+  "evidence_design": "refine-logs/runs/recoverability_future_policy/budgeted_action_objective_design_review_20261004.json",
+  "reviewer_execution": {
+    "neural_network_forwards": 0,
+    "optimizer_steps": 0,
+    "embeddings_read": false,
+    "gpu_queries": 0,
+    "process_signals": 0,
+    "production_source_or_weights_modified": false
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "scope": "CPU loss and unchanged forward checks; no NN, GPU, or performance claim",
+  "module_path": "/data/gb/experiments/recoverability_budgeted_action_20261004/research/recoverability_modules.py",
+  "old_forward_and_helpers_ast_exact": [
+    "InstanceMemory",
+    "RecoverabilityModules",
+    "select_actions",
+    "action_utility",
+    "search_supervision_targets",
+    "ranking_supervision_loss",
+    "write_pair_supervision_loss"
+  ],
+  "checks": {
+    "beneficial_local": {
+      "loss": 0.03999999165534973,
+      "candidate_gradient": -1.0,
+      "score_after_one_gradient_step": 0.1
+    },
+    "unnecessary_switch": {
+      "loss": 0.04000000283122063,
+      "candidate_gradient": 1.0,
+      "score_after_one_gradient_step": -0.04000000000000001
+    },
+    "extra_cost_preserves_keep": {
+      "loss": 0.005000000353902578,
+      "gradient": 0.1428571492433548
+    },
+    "strict_threshold_0.03": {
+      "loss": 0.029999999329447746,
+      "gradient": 1.0
+    },
+    "strict_threshold_0.030001": {
+      "loss": 0.030000999569892883,
+      "gradient": -1.0
+    },
+    "actual_original_singleton_has_no_fake_rival": {
+      "loss": 0.0,
+      "finite_zero_gradient": true
+    },
+    "incompatible_extra_regions_do_not_compete": {
+      "loss": 0.027142856270074844,
+      "gradient_exactly_unchanged": true
+    }
+  }
+}

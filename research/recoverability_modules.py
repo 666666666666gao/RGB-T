@@ -260,6 +260,29 @@ def search_supervision_targets(output, data, mode='oracle', threshold=.03, write
     return torch.stack(gains, 1), torch.stack(successes, 1)
 
 
+def budgeted_winner_loss(scores, utility, action_valid, reference, keep, threshold):
+    """Teach the deployed winner against its current rival within each search budget."""
+    batch, region_count, candidates, actions = scores.shape
+    scores, values, legal = scores.flatten(1), utility.flatten(1), action_valid.flatten(1)
+    rows = torch.arange(batch, device=scores.device)
+    indices = torch.arange(scores.shape[1], device=scores.device)
+    regions = indices // (candidates * actions)
+    nonkeep = indices[None] != (keep * actions)[:, None]
+    decision_scores = scores - threshold * nonkeep
+    decision_values = (values - reference[:, None] - .01 * (regions > 0)[None]
+                       - threshold * nonkeep)
+    losses = []
+    for region in range(region_count):
+        available = legal & ((regions == 0) | (regions == region))[None]
+        best_value, winner = decision_values.masked_fill(~available, -torch.inf).max(1)
+        winner = torch.where(best_value > 0, winner, keep * actions)
+        rivals = available & (indices[None] != winner[:, None])
+        rival_score, rival = decision_scores.masked_fill(~rivals, -torch.inf).max(1)
+        regret = decision_values[rows, winner] - decision_values[rows, rival]
+        losses.append(F.relu(regret + rival_score - decision_scores[rows, winner]))
+    return torch.stack(losses, 1).mean()
+
+
 def ranking_supervision_loss(scores, utility, action_valid, reference, mode='reference'):
     if mode == 'reference':
         delta = utility - reference[:, None, None, None]
@@ -301,7 +324,11 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
     harmful = (delta < -.05) | ((current[rows, 0, keep, None, None, None] >= .5) & (current[..., None] < .2))
     advantage_loss = F.smooth_l1_loss(output['advantage'][action_valid], delta[action_valid])
     harm_loss = F.binary_cross_entropy_with_logits(output['harm_logits'][action_valid], harmful.float()[action_valid])
-    ranking_loss = ranking_supervision_loss(output['scores'], utility, action_valid, reference, action_ranking)
+    if action_ranking == 'budgeted':
+        ranking_loss = budgeted_winner_loss(output['scores'], utility, action_valid, reference,
+                                           keep, threshold)
+    else:
+        ranking_loss = ranking_supervision_loss(output['scores'], utility, action_valid, reference, action_ranking)
     quality_loss = F.binary_cross_entropy_with_logits(output['quality_logits'][valid], current[valid])
     write_risk = ((data['raw_score'] > .84) & (current < .2)).float()
     risk_loss = F.binary_cross_entropy_with_logits(output['write_risk_logits'][valid], write_risk[valid])

@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "BOTH_NATIVE_BEST4_COMPLETE_ALL5_POSITIVE_BELOW_PLUS2; BOTH_MATCHED_B384_FULL_FITS60_EPOCHS180_UPDATES_COMPLETE; FULL98_EVAL_ACTIVE",
+      "status": "OLD4_FORMAL_ALL5_POSITIVE_BELOW_PLUS2; TEACHER_FULL98_NEGATIVE_CLOSED; BUDGETED_ACTION_TWO_REAL_FULL_FITS_ACTIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -524,7 +524,7 @@
         "best_internal_ci_contains_zero": true
       },
       "current_future_teacher_factor": {
-        "status": "Matched fresh full60epoch180update fits complete; C1teacher selectedepoch56, ownteacher55. Both ABC runtimechanged/frozenC1/strictreloadPASS. Automatic original98 full continuous evaluations active on GPU0/2; actual GT final reports pending.",
+        "status": "CLOSED_ACTUAL_BOTH_FULL98_NEGATIVE; NOT_PROMOTED",
         "started_cst": "2026-10-04T07:02:07+08:00",
         "train_queries": 902,
         "validation_queries": 128,
@@ -1023,7 +1023,129 @@
           "boundary": "Same own4-prefix/own4-future VAL; different original training caches. Fixed-state diagnostic only, not native or continuous performance.",
           "record": "refine-logs/runs/recoverability_future_policy/actual_val_decision_margin_probe.json",
           "sha256": "e52c0d87cbb07b007082d441212c901f31a85dc1a60d398c6678677fd57301a1"
-        }
+        },
+        "actual_full98_completed": {
+          "arms": {
+            "c1": {
+              "completed": true,
+              "sequences": 98,
+              "frames": 49418,
+              "valid_frames": 49233,
+              "sequence_mean_iou": 0.7303885065523488,
+              "frame_mean_iou": 0.6598358505355507,
+              "failure_event_count": 215,
+              "recovery_rate": 0.9302325581395349,
+              "median_delay": 12.0,
+              "extra_visual_forwards": 4192,
+              "reintroduced": 251,
+              "reintroduced_selected": 32,
+              "rescues": 115,
+              "harms": 101,
+              "changes": 897,
+              "paired": {
+                "future_c1_b384_vs_baseline": {
+                  "mean_iou_delta_percentage_points": -1.2890000418440883,
+                  "paired_sequence_95_ci": [
+                    -3.1360225407178977,
+                    0.07679702019069802
+                  ],
+                  "improved_sequences": 20,
+                  "worsened_sequences": 25,
+                  "tied_sequences": 53,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                },
+                "future_c1_b384_vs_c1": {
+                  "mean_iou_delta_percentage_points": -0.9051655049190787,
+                  "paired_sequence_95_ci": [
+                    -2.9214712551708684,
+                    0.7237109068862265
+                  ],
+                  "improved_sequences": 24,
+                  "worsened_sequences": 23,
+                  "tied_sequences": 51,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                },
+                "future_c1_b384_vs_write_pair_reference_own_b384": {
+                  "mean_iou_delta_percentage_points": -1.5517596409393044,
+                  "paired_sequence_95_ci": [
+                    -3.49575570202191,
+                    -0.16730149489861942
+                  ],
+                  "improved_sequences": 20,
+                  "worsened_sequences": 32,
+                  "tied_sequences": 46,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                }
+              },
+              "report": "refine-logs/runs/recoverability_future_policy/full98/c1/report/full_recoverability_report.json"
+            },
+            "own": {
+              "completed": true,
+              "sequences": 98,
+              "frames": 49418,
+              "valid_frames": 49233,
+              "sequence_mean_iou": 0.728054728373752,
+              "frame_mean_iou": 0.6533752790018282,
+              "failure_event_count": 228,
+              "recovery_rate": 0.9342105263157895,
+              "median_delay": 11.0,
+              "extra_visual_forwards": 3824,
+              "reintroduced": 232,
+              "reintroduced_selected": 27,
+              "rescues": 106,
+              "harms": 94,
+              "changes": 968,
+              "paired": {
+                "future_own_b384_vs_baseline": {
+                  "mean_iou_delta_percentage_points": -1.5223778597037634,
+                  "paired_sequence_95_ci": [
+                    -3.4333861341345027,
+                    -0.1292947738100984
+                  ],
+                  "improved_sequences": 22,
+                  "worsened_sequences": 22,
+                  "tied_sequences": 54,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                },
+                "future_own_b384_vs_c1": {
+                  "mean_iou_delta_percentage_points": -1.1385433227787538,
+                  "paired_sequence_95_ci": [
+                    -3.101539440432435,
+                    0.3553298825197236
+                  ],
+                  "improved_sequences": 23,
+                  "worsened_sequences": 23,
+                  "tied_sequences": 52,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                },
+                "future_own_b384_vs_write_pair_reference_own_b384": {
+                  "mean_iou_delta_percentage_points": -1.7851374587989794,
+                  "paired_sequence_95_ci": [
+                    -3.7653612600063413,
+                    -0.33220564074868514
+                  ],
+                  "improved_sequences": 21,
+                  "worsened_sequences": 30,
+                  "tied_sequences": 47,
+                  "bootstrap_resamples": 5000,
+                  "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+                }
+              },
+              "report": "refine-logs/runs/recoverability_future_policy/full98/own/report/full_recoverability_report.json"
+            }
+          },
+          "audit_status": "PASS actualGTCPU same-family/provisional",
+          "audit": "refine-logs/runs/recoverability_future_policy/actual_full98_cpu_audit.json",
+          "audit_sha256": "a1447d6bdec26ba5f390912c5f7dd9b6ce65a4cdcc5cade7bec9728e36599dc8",
+          "all_gt_metrics_and_six5000paired_intervals_exact": true,
+          "native_or_full_goal_completed": false
+        },
+        "weights_retention_after_audit": "Both negative full teacher weights deleted after actual complete GT/CPU audits and dependency proof; all predictions/metrics/NPZ kept as matched pairwise controls. Global selectedold4 and currentnewfull outputs protected."
       },
       "actual_native_no_search_control": {
         "observed_cst": "2026-10-04T09:03:36.729863+08:00",
@@ -1059,6 +1181,75 @@
         "completed": false,
         "full_goal_completed": false,
         "scope": "Fixed epoch4 full native coupled raw-write control, not template-only or training"
+      },
+      "current_budgeted_action_factor": {
+        "status": "ACTUAL_M0_CPU_ACCEPTED; BOTH_FRESH60EPOCH180UPDATE_B384_FITS_LIVE",
+        "factor": "action-ranking pairwise to budgeted; other objectives, forward, inference, .03threshold and actual1extra budget unchanged",
+        "comparison": "same902TRAIN128VAL and C1/own futureteacher matched grid; reuse actual completed pairwise controls",
+        "loss": "Plain mean of seven original-only/original-plus-one-extra sets. Strict threshold and cost aligned GT winner versus current predicted legal rival, regret margin; keep cases retained without extra class weights.",
+        "source_directory": "/data/gb/experiments/recoverability_budgeted_action_20261004",
+        "production_source_frozen_while_native_controls_run": true,
+        "source_review": "refine-logs/runs/recoverability_budgeted_action/source_review.json",
+        "cpu_checks": "refine-logs/runs/recoverability_budgeted_action/cpu_loss_checks.json",
+        "actual_launch": "refine-logs/runs/recoverability_budgeted_action/m0_launch.json",
+        "actual_initial_runtime": "refine-logs/runs/recoverability_budgeted_action/m0_initial_runtime.json",
+        "batch_size": 384,
+        "seed": 42,
+        "m0_epochs": 3,
+        "m0_updates": 9,
+        "full_epochs": 60,
+        "full_updates": 180,
+        "full_started": true,
+        "full_goal_completed": false,
+        "actual_M0_cpu_audit": {
+          "status": "PASS same-family/provisional",
+          "record": "refine-logs/runs/recoverability_budgeted_action/actual_m0_cpu_audit.json",
+          "sha256": "cd6c74116dd033224d31a24602d8255bb09964d96a463d85d947cc806c9456d5",
+          "both_best_epoch": 0,
+          "performance_gain_established": false,
+          "acceptance": "refine-logs/runs/recoverability_budgeted_action/actual_m0_acceptance.json"
+        },
+        "actual_full_launch": {
+          "status": "LAUNCHED",
+          "launched_cst": "2026-10-04T11:29:49.921453+08:00",
+          "epochs": 60,
+          "optimizer_steps_per_arm": 180,
+          "batch_size": 384,
+          "seed": 42,
+          "factor": "pairwise to budgeted action ranking; matched teacher grid; otherwise unchanged",
+          "actual_M0_acceptance_sha256": "0209ae2a9ac6ccb619b9a5e061bac1ff1154de1c38531c1f90eefe3eebf7a290",
+          "actual_M0_cpu_audit_sha256": "cd6c74116dd033224d31a24602d8255bb09964d96a463d85d947cc806c9456d5",
+          "production_sources_unchanged": {
+            "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+            "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93"
+          },
+          "arms": [
+            {
+              "gpu": 0,
+              "future_teacher": "c1",
+              "session": "budgeted_action_c1_b384_full_20261004",
+              "command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 0 c1 full > /data/gb/setup/budgeted_action_c1_b384_full_20261004.log 2>&1",
+              "output": "/data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004",
+              "fresh_from_frozen_C1": true,
+              "M0_weights_consumed": false
+            },
+            {
+              "gpu": 2,
+              "future_teacher": "own",
+              "session": "budgeted_action_own_b384_full_20261004",
+              "command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 2 own full > /data/gb/setup/budgeted_action_own_b384_full_20261004.log 2>&1",
+              "output": "/data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004",
+              "fresh_from_frozen_C1": true,
+              "M0_weights_consumed": false
+            }
+          ],
+          "native_original_handles_live": [
+            3225109,
+            3134348
+          ],
+          "evaluation_after_fit": "Actual98fullvideos, GTmetrics and paired5000CI againstGOLA,C1,old4 and matched pairwise teacher"
+        },
+        "actual_full_runtime": "refine-logs/runs/recoverability_budgeted_action/full_fit_initial_runtime.json"
       }
     },
     {
@@ -1136,13 +1327,13 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "new C1teacher epoch56 full98 internal inference PID3276222",
-      "GPU1": "fixed own4 native Las raw-write full245/220703 PID3225109",
-      "GPU2": "new ownteacher epoch55 full98 internal inference PID3276172",
-      "GPU3": "fixed own4 native Las no-search full245/220703 PID3134348"
+      "GPU0": "budgetedaction C1teacher actualB38460/180 training PID3396195",
+      "GPU1": "selectedold4 native Las raw-write PID3225109",
+      "GPU2": "budgetedaction ownteacher actualB38460/180 training PID3396196",
+      "GPU3": "selectedold4 native Las no-search PID3134348"
     },
     "gpu_memory_request": {
-      "status": "BOTH_REAL_B38460_EPOCH180_UPDATE_FITS_COMPLETE; ALL4_NOW_SERIAL_FULL_VIDEO_EVALUATIONS",
+      "status": "ACTUAL_TWO_B384_TRAINERS_20GB100PERCENT_PLUS_TWO_NATIVE_EVALUATORS",
       "policy": "Use actual batch384 training to occupy useful GPU memory; previous real B384 fits reached about21GB/card; batch512 long training OOM. Current new M0 peak allocation14190.2788MiB. Serial evaluation stays unchanged; no allocation padding or temperature/power controls.",
       "batch_size": 384,
       "sanity_epochs": 3,
@@ -1169,7 +1360,7 @@
         "GPU3": 851
       },
       "latest_fullfit_allocated_peak_mib": 14190.64404296875,
-      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_future_policy/full_fit_initial_runtime.json",
+      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_budgeted_action/m0_initial_runtime.json",
       "latest_user_preference": "Use more GPU memory for useful work. Actual B384 training uses about20GB/card; B512 epoch3 OOM prevents unchanged retry. Four serial evaluators currently active; do not alter causal video evaluation or allocate padding.",
       "current_observed_cst": "2026-10-04T10:48:07+08:00",
       "current_evaluation_nvidia_mib_by_gpu": {
@@ -1179,13 +1370,13 @@
         "GPU3": 851
       }
     },
-    "next_check_cst": "2026-10-04T10:50:00+08:00 near estimated new full98 end; 240second interval when polling",
+    "next_check_cst": "2026-10-04T11:48:00+08:00 near20minute fullfit end; same original handles, no restart. Full98 follows automatically and takes roughly30min.",
     "checkpoint_cleanup_total": {
-      "files": 53,
-      "bytes": 74335320,
+      "files": 57,
+      "bytes": 81266408,
       "receipt": "refine-logs/runs/recoverability_write_pair/unselected_weight_cleanup_completed.json",
       "active_inputs_preserved": true,
-      "latest_receipt": "refine-logs/runs/recoverability_future_policy/unused_m0_weight_cleanup.json"
+      "latest_receipt": "refine-logs/runs/recoverability_budgeted_action/unused_weight_cleanup.json"
     },
     "current_native_rgbt234": {
       "observed_cst": "2026-10-04T07:45:54.642846+08:00",
@@ -1532,36 +1723,52 @@
     },
     "checkpoint_cleanup_latest": {
       "status": "COMPLETE",
-      "observed_cst": "2026-10-04T10:34:03.509105+08:00",
+      "observed_cst": "2026-10-04T11:31:30.933171+08:00",
       "deleted": [
         {
-          "path": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004/best.pth",
-          "bytes": 1732724,
-          "sha256": "1c22212246d04475bff470e38f0f2cfe691a9e9bf71cc9e59ef248984fe24f2a",
-          "epoch": 0,
-          "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+          "path": "/data/gb/outputs/recoverability_budgeted_action_c1_b384_m0_20261004/best.pth",
+          "bytes": 1732788,
+          "sha256": "a5acc7341dc988e8dc5d3d847e6692339fa566e5e9cad2e1723214c0a2165862",
+          "kind": "M0",
+          "reason": "Accepted initialization-only M0; fresh60ep fit consumes frozenC1, neverM0 weights"
         },
         {
-          "path": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004/best.pth",
+          "path": "/data/gb/outputs/recoverability_budgeted_action_own_b384_m0_20261004/best.pth",
+          "bytes": 1732788,
+          "sha256": "338f727e810395f7e92a686ccc582103d1a5fe680e447c15fde832a600b51c50",
+          "kind": "M0",
+          "reason": "Accepted initialization-only M0; fresh60ep fit consumes frozenC1, neverM0 weights"
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_future_c1_b384_full_20261004/best.pth",
           "bytes": 1732724,
-          "sha256": "87993ae0471b56b3f91c96d27c181d74dbd94e33ec2c31c6f9d6c7d625144b11",
-          "epoch": 0,
-          "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+          "sha256": "29c2df4fd85ee818910d43ffaac5ce9830d8675036f3a35e743f33330528a9e9",
+          "kind": "negative_full",
+          "reason": "Both full98 actualGT and pairedCI worse than protected selectedold4; actualaudit and fixedscorediagnosis complete; newranking fit references retained predictions only, not thisweight"
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_future_own_b384_full_20261004/best.pth",
+          "bytes": 1732788,
+          "sha256": "284928fa3f097b633842f531ad520f8415fe9238f23ea6a99b192bcd53c95c82",
+          "kind": "negative_full",
+          "reason": "Both full98 actualGT and pairedCI worse than protected selectedold4; actualaudit and fixedscorediagnosis complete; newranking fit references retained predictions only, not thisweight"
         }
       ],
-      "files_deleted": 2,
-      "bytes_reclaimed": 3465448,
-      "protected_weights": [
+      "files_deleted": 4,
+      "bytes_reclaimed": 6931088,
+      "protected_all_exist": true,
+      "protected_existing_inputs": [
         "/data/gb/GOLA/pretrained_models/gola_b224.bin",
         "/data/gb/outputs/c1_initial_seed42/best.pth",
         "/data/gb/outputs/abc_joint_v1_seed42/last.pth",
-        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-        "/data/gb/outputs/recoverability_future_c1_b384_full_20261004/best.pth",
-        "/data/gb/outputs/recoverability_future_own_b384_full_20261004/best.pth"
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
       ],
-      "protected_all_exist": true,
-      "raw_metrics_deleted": false,
-      "current_eval_or_model_source_changed": false
+      "live_full_fit_output_weights_not_touched": [
+        "/data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004/best.pth",
+        "/data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004/best.pth"
+      ],
+      "all_predictions_metrics_NPZ_logs_audits_retained": true,
+      "both_original_native_processes_untouched": true
     }
   },
   "model_selection": {
@@ -1572,5 +1779,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T10:51:00+08:00"
+  "updated_cst": "2026-10-04T11:34:42+08:00"
 }

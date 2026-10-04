@@ -1,0 +1,459 @@
+{
+  "status": "PASS_DESIGN_PROVISIONAL_IMPLEMENTATION_NOT_YET_REVIEWED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_date": "2026-10-04",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning_effort": "max",
+  "scope": "Fresh-context review of existing action objective, trainer decision/label boundary and saved actual-label/VAL probe artifacts. No training, models, embeddings, GPUs, live processes, production source, weights, or gates changed by this reviewer.",
+  "source_artifacts": [
+    "research/recoverability_modules.py:183-213 select_actions",
+    "research/recoverability_modules.py:216-218 action_utility",
+    "research/recoverability_modules.py:263-279 existing ranking_supervision_loss",
+    "research/recoverability_modules.py:291-355 objective",
+    "research/train_recoverability.py:45-81 label masks and forward input whitelist",
+    "research/train_recoverability.py:140-180 split isolation, ABC groups and checkpoint selection",
+    "refine-logs/current_goal.json S2 work_order/acceptance and model_selection only",
+    "refine-logs/runs/recoverability_future_policy/actual_val_decision_margin_probe.py",
+    "refine-logs/runs/recoverability_future_policy/actual_val_decision_margin_probe.json selected summaries and three detailed queries only",
+    "refine-logs/runs/recoverability_future_policy/actual_label_diagnostic.json selected arm summaries",
+    "C:/Users/gb/.agents/skills/shared-references/local-codex-policy.md"
+  ],
+  "diagnosis": [
+    {
+      "finding": "Existing pairwise ranking allocates most static utility-gap weight to comparisons that cannot cause a useful intervention.",
+      "evidence": "Own TRAIN has 158216 qualifying pairs. 90.290079% of their label-gap weight orders two actions both with net gain <= .03; only .810636% directly compares a worthwhile action against keep.",
+      "boundary": "These are static label weights, not a measurement of active post-fit gradients. Useful negative/keep comparisons remain necessary."
+    },
+    {
+      "finding": "The .05 gross-gap cutoff removes some deployment-relevant winner-versus-keep supervision.",
+      "evidence": "Own TRAIN: 140 of 1333 beneficial budget-set winners fail the direct keep-pair cutoff; 34 of 350 positive queries have no qualifying winner-versus-keep comparison in any set. VAL: 22/133 sets and 9/45 queries respectively."
+    },
+    {
+      "finding": "The fixed .03 hinge does not require a beneficial action to clear the strict > .03 intervention rule by a calibrated utility margin.",
+      "evidence": "Source hinge is relu(.03 - predicted_gap), while selection requires best_score > baseline + .03. Gross labels also omit the extra-action .01 bias already in scores.",
+      "boundary": "This mismatch is not claimed as the sole explanation; two missed VAL cases already have negative gross predicted advantage."
+    },
+    {
+      "finding": "There are trainable positive labels, so missing positives and tanh saturation are unsupported diagnoses.",
+      "evidence": "Own TRAIN has 1842 legal net>.05 actions and 82 newly reintroduced-correct queries with legal positive actions. Saved own55 VAL correct-extra scores .01952823, -.13649772, -.06807640 correspond to true net gains .14360322, .79924500, .30300173. All 18 forced-region choices in these three queries keep; none has a tanh score ceiling near .03."
+    },
+    {
+      "finding": "Keep protection must remain in the next loss.",
+      "evidence": "Own TRAIN budget-set targets are 1333 interventions and 4981 keeps. Parent-reported new full98 runs increase recoveries and selection but also harms and reduce sequence IoU compared with old own4.",
+      "boundary": "Current formal full98 results were received from the parent; this reviewer did not independently read those result files."
+    }
+  ],
+  "current_loss_evidence": {
+    "status": "PASS_CPU_LABEL_ONLY_ALIGNMENT_DIAGNOSTIC",
+    "npz_members_read": [
+      "current_iou",
+      "future_iou",
+      "wrong_update_fraction",
+      "valid",
+      "action_valid",
+      "original_choice",
+      "raw_score"
+    ],
+    "torch_imported": true,
+    "torch_use": "CPU scalar labels only; no models or neural networks",
+    "cuda_initialized": false,
+    "utility_dtype": "float32 exact torch operations as source",
+    "source_changes": 0,
+    "gpu_queries": 0,
+    "arrays": {
+      "own/train": {
+        "queries": 902,
+        "legal_actions": 32990,
+        "positive_net_gt003_actions": 2276,
+        "positive_net_gt005_actions": 1842,
+        "gross_delta_nonpositive_actions": 28272,
+        "gross_delta_positive_actions": 4718,
+        "gross_delta_positive_initial_smoothL1_abs_gradient_fraction": 0.05766879394650459,
+        "pair_count": 158216,
+        "pair_weight_sum": 55406.19499560073,
+        "pair_categories": {
+          "neither_side_worth_intervention": {
+            "pair_count": 140718,
+            "weight_fraction": 0.9029007913931483
+          },
+          "winner_can_intervene": {
+            "pair_count": 17498,
+            "weight_fraction": 0.09709920860685169
+          },
+          "keep_as_better_action": {
+            "pair_count": 20650,
+            "weight_fraction": 0.1455187201178528
+          },
+          "intervention_beats_keep": {
+            "pair_count": 2018,
+            "weight_fraction": 0.008106360078629067
+          },
+          "one_budget_winner_as_better_action": {
+            "pair_count": 9709,
+            "weight_fraction": 0.06052498326946413
+          }
+        },
+        "budget_sets": {
+          "count": 6314,
+          "positive_winner_sets": 1333,
+          "keep_sets": 4981,
+          "positive_winner_queries": 350,
+          "extra_winner_sets": 939,
+          "pause_winner_sets": 17,
+          "positive_winner_sets_directly_compared_to_keep": 1193,
+          "positive_winner_sets_excluded_from_direct_keep_pair": 140,
+          "positive_winner_queries_never_directly_compared_to_keep": 34,
+          "positive_winner_sets_gross_utility_argmax_disagrees_due_cost": 29,
+          "positive_winner_exact_tie_sets": 15,
+          "per_region_positive_sets": [
+            85,
+            233,
+            199,
+            121,
+            208,
+            240,
+            247
+          ],
+          "missing_found_queries": 82,
+          "missing_found_positive_sets": 452,
+          "minimum_legal_actions": 1,
+          "maximum_legal_actions": 13,
+          "sets_with_fewer_than_2_legal_actions": 5,
+          "minimum_legal_actions_by_region": [
+            1,
+            6,
+            6,
+            6,
+            5,
+            6,
+            6
+          ]
+        }
+      },
+      "own/validation": {
+        "queries": 128,
+        "legal_actions": 4774,
+        "positive_net_gt003_actions": 242,
+        "positive_net_gt005_actions": 178,
+        "gross_delta_nonpositive_actions": 4162,
+        "gross_delta_positive_actions": 612,
+        "gross_delta_positive_initial_smoothL1_abs_gradient_fraction": 0.036673665046691895,
+        "pair_count": 26119,
+        "pair_weight_sum": 9402.635242931545,
+        "pair_categories": {
+          "neither_side_worth_intervention": {
+            "pair_count": 24247,
+            "weight_fraction": 0.9283183338698793
+          },
+          "winner_can_intervene": {
+            "pair_count": 1872,
+            "weight_fraction": 0.07168166613012075
+          },
+          "keep_as_better_action": {
+            "pair_count": 3447,
+            "weight_fraction": 0.14051981248403628
+          },
+          "intervention_beats_keep": {
+            "pair_count": 207,
+            "weight_fraction": 0.004692526425751284
+          },
+          "one_budget_winner_as_better_action": {
+            "pair_count": 1046,
+            "weight_fraction": 0.04360668592131664
+          }
+        },
+        "budget_sets": {
+          "count": 896,
+          "positive_winner_sets": 133,
+          "keep_sets": 763,
+          "positive_winner_queries": 45,
+          "extra_winner_sets": 107,
+          "pause_winner_sets": 1,
+          "positive_winner_sets_directly_compared_to_keep": 111,
+          "positive_winner_sets_excluded_from_direct_keep_pair": 22,
+          "positive_winner_queries_never_directly_compared_to_keep": 9,
+          "positive_winner_sets_gross_utility_argmax_disagrees_due_cost": 3,
+          "positive_winner_exact_tie_sets": 0,
+          "per_region_positive_sets": [
+            5,
+            26,
+            21,
+            8,
+            23,
+            23,
+            27
+          ],
+          "missing_found_queries": 3,
+          "missing_found_positive_sets": 15,
+          "minimum_legal_actions": 1,
+          "maximum_legal_actions": 12,
+          "sets_with_fewer_than_2_legal_actions": 1,
+          "minimum_legal_actions_by_region": [
+            1,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ]
+        }
+      },
+      "c1/train": {
+        "queries": 902,
+        "legal_actions": 32990,
+        "positive_net_gt003_actions": 2274,
+        "positive_net_gt005_actions": 1845,
+        "gross_delta_nonpositive_actions": 28284,
+        "gross_delta_positive_actions": 4706,
+        "gross_delta_positive_initial_smoothL1_abs_gradient_fraction": 0.057049550116062164,
+        "pair_count": 158721,
+        "pair_weight_sum": 57819.3713096194,
+        "pair_categories": {
+          "neither_side_worth_intervention": {
+            "pair_count": 141369,
+            "weight_fraction": 0.9047607953588482
+          },
+          "winner_can_intervene": {
+            "pair_count": 17352,
+            "weight_fraction": 0.09523920464115178
+          },
+          "keep_as_better_action": {
+            "pair_count": 20642,
+            "weight_fraction": 0.14246558206589285
+          },
+          "intervention_beats_keep": {
+            "pair_count": 2014,
+            "weight_fraction": 0.007850781520760006
+          },
+          "one_budget_winner_as_better_action": {
+            "pair_count": 9524,
+            "weight_fraction": 0.058775279993754856
+          }
+        },
+        "budget_sets": {
+          "count": 6314,
+          "positive_winner_sets": 1313,
+          "keep_sets": 5001,
+          "positive_winner_queries": 348,
+          "extra_winner_sets": 935,
+          "pause_winner_sets": 17,
+          "positive_winner_sets_directly_compared_to_keep": 1161,
+          "positive_winner_sets_excluded_from_direct_keep_pair": 152,
+          "positive_winner_queries_never_directly_compared_to_keep": 35,
+          "positive_winner_sets_gross_utility_argmax_disagrees_due_cost": 26,
+          "positive_winner_exact_tie_sets": 14,
+          "per_region_positive_sets": [
+            81,
+            233,
+            197,
+            119,
+            206,
+            235,
+            242
+          ],
+          "missing_found_queries": 82,
+          "missing_found_positive_sets": 439,
+          "minimum_legal_actions": 1,
+          "maximum_legal_actions": 13,
+          "sets_with_fewer_than_2_legal_actions": 5,
+          "minimum_legal_actions_by_region": [
+            1,
+            6,
+            6,
+            6,
+            5,
+            6,
+            6
+          ]
+        }
+      },
+      "c1/validation": {
+        "queries": 128,
+        "legal_actions": 4774,
+        "positive_net_gt003_actions": 238,
+        "positive_net_gt005_actions": 174,
+        "gross_delta_nonpositive_actions": 4166,
+        "gross_delta_positive_actions": 608,
+        "gross_delta_positive_initial_smoothL1_abs_gradient_fraction": 0.03515045717358589,
+        "pair_count": 26164,
+        "pair_weight_sum": 9882.459384899586,
+        "pair_categories": {
+          "neither_side_worth_intervention": {
+            "pair_count": 24314,
+            "weight_fraction": 0.930441960880577
+          },
+          "winner_can_intervene": {
+            "pair_count": 1850,
+            "weight_fraction": 0.0695580391194231
+          },
+          "keep_as_better_action": {
+            "pair_count": 3447,
+            "weight_fraction": 0.1366027948739342
+          },
+          "intervention_beats_keep": {
+            "pair_count": 203,
+            "weight_fraction": 0.004348572490584676
+          },
+          "one_budget_winner_as_better_action": {
+            "pair_count": 1046,
+            "weight_fraction": 0.04297386885082245
+          }
+        },
+        "budget_sets": {
+          "count": 896,
+          "positive_winner_sets": 133,
+          "keep_sets": 763,
+          "positive_winner_queries": 45,
+          "extra_winner_sets": 107,
+          "pause_winner_sets": 1,
+          "positive_winner_sets_directly_compared_to_keep": 111,
+          "positive_winner_sets_excluded_from_direct_keep_pair": 22,
+          "positive_winner_queries_never_directly_compared_to_keep": 9,
+          "positive_winner_sets_gross_utility_argmax_disagrees_due_cost": 3,
+          "positive_winner_exact_tie_sets": 0,
+          "per_region_positive_sets": [
+            5,
+            26,
+            21,
+            8,
+            23,
+            23,
+            27
+          ],
+          "missing_found_queries": 3,
+          "missing_found_positive_sets": 15,
+          "minimum_legal_actions": 1,
+          "maximum_legal_actions": 12,
+          "sets_with_fewer_than_2_legal_actions": 1,
+          "minimum_legal_actions_by_region": [
+            1,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ]
+        }
+      }
+    },
+    "elapsed_seconds": 0.13217082479968667
+  },
+  "saved_probe_arithmetic": [
+    {
+      "query": 16,
+      "sequence": "motobesidescar",
+      "current_pair_loss": 0.010668437832846373,
+      "active_pair_weight_fraction": 0.21357154099526957,
+      "direct_benefit_vs_keep_weight_fraction": 0.019930505049808766,
+      "direct_benefit_vs_keep_loss_fraction": 0.06833167342103313,
+      "strongest_GT_winner_set": {
+        "extra_region": 6,
+        "target_action": 64,
+        "target_net": 0.14360322058200836,
+        "target_score": 0.019528230652213097,
+        "target_is_keep": false,
+        "target_vs_keep_calibration_deficit": 0.12407498992979527,
+        "hardest_rival": 66,
+        "regret_hinge": 0.33092435635626316
+      },
+      "note": "regret_hinge in raw arithmetic probe used a loss-augmented rival; that variant was NOT selected for implementation."
+    },
+    {
+      "query": 38,
+      "sequence": "Aboydownbike",
+      "current_pair_loss": 0.07861170278696168,
+      "active_pair_weight_fraction": 0.45166211933813055,
+      "direct_benefit_vs_keep_weight_fraction": 0.14909279702122563,
+      "direct_benefit_vs_keep_loss_fraction": 0.45973877722613443,
+      "strongest_GT_winner_set": {
+        "extra_region": 4,
+        "target_action": 44,
+        "target_net": 0.7992449998855591,
+        "target_score": -0.13649772107601166,
+        "target_is_keep": false,
+        "target_vs_keep_calibration_deficit": 0.9357427209615707,
+        "hardest_rival": 40,
+        "regret_hinge": 0.9478059560060501
+      },
+      "note": "regret_hinge in raw arithmetic probe used a loss-augmented rival; that variant was NOT selected for implementation."
+    },
+    {
+      "query": 84,
+      "sequence": "ab_mototurn",
+      "current_pair_loss": 0.04030346376285871,
+      "active_pair_weight_fraction": 0.2960177828060882,
+      "direct_benefit_vs_keep_weight_fraction": 0.09900336696727775,
+      "direct_benefit_vs_keep_loss_fraction": 0.42213642920717886,
+      "strongest_GT_winner_set": {
+        "extra_region": 2,
+        "target_action": 20,
+        "target_net": 0.30300173163414,
+        "target_score": -0.06807640194892883,
+        "target_is_keep": false,
+        "target_vs_keep_calibration_deficit": 0.37107813358306885,
+        "hardest_rival": 0,
+        "regret_hinge": 0.37107813358306885
+      },
+      "note": "regret_hinge in raw arithmetic probe used a loss-augmented rival; that variant was NOT selected for implementation."
+    }
+  ],
+  "proposed_one_factor": {
+    "principal_change": "Replace only the action-ranking term with a per-budget-set GT winner versus highest predicted legal nonwinner hinge.",
+    "fixed": "Same own4-prefix/own-future TRAIN902 and VAL128, frozen full GOLA/C1, A/B/C architecture and all other losses including advantage SmoothL1, harm/risk/quality, memory and oracle search auxiliaries; existing disabled write-pair-calibration setting stays disabled. Same seed, epochs, batch, optimizer, validation selection and retained-checkpoint policy. Fixed .03 inference threshold, .01 search charging, action write-verification and one-extra-region budget.",
+    "budget_sets": "For each query use seven masks: original only, then original plus region r for each r=1..6. Exact action_valid mask; no two distinct extra regions coexist.",
+    "target_definition": "k = original regular keep. net[a] = U[a]-U[k]-.01*1[region(a)>0]. v[a] = net[a]-.03*1[a!=k], v[k]=0. Let y be the legal argmax net if max net > .03, otherwise explicitly k; this implements keep-on-boundary.",
+    "prediction_definition": "d[a] = output.scores[a]-.03*1[a!=k]. In the current action-verification configuration scores[k]=0. Do not subtract the .01 extra-region charge again from output.scores.",
+    "rival_definition": "r is the highest predicted d among legal actions other than y inside that set. Use predicted-score argmax, not loss-augmented argmax and not GT-best rival.",
+    "loss": "relu((v[y]-v[r]) + d[r]-d[y]); mean over the seven sets, then queries; retain coefficient 1 replacing current ranking_loss.",
+    "singleton_definition": "Actual data has 5 TRAIN and 1 VAL singleton original-only sets in each arm. Keep the masked rival max VALUE (-inf with no rival), gather only the finite GT rival value, then relu(-inf)=0. Gathering an unmasked rival score after argmax would fabricate a competitor. No fallback or extra branch is necessary.",
+    "normalization": "Natural per-query/set mean; report intervention-target and keep-target losses separately. No 50:50 class reweighting in the first comparison.",
+    "why_minimal": "Changes training supervision only; no temperature, new inference gate, architecture, quality rerank, candidate expansion, teacher recollection or extra search.",
+    "candidate_comparator": "Use the already completed own-future seed42 pairwise run as the matched objective comparator if all other settings match. Old own4 stays the protected best model and a performance reference; it is not the matched causal comparator because its training prefix/cache differ."
+  },
+  "required_checks_before_deployment": [
+    "Source review must confirm only ranking mode/implementation and its trainer plumbing change, with old pairwise branch numerically unchanged.",
+    "A legal positive net +.04 action with zero scores must receive gradient that lifts it across strict .03; a no-benefit keep set with a wrongly positive action must push the rival down.",
+    "The actual singleton case must produce finite zero loss and zero gradient; masks must exclude invalid actions and incompatible extra regions from both target and rival.",
+    "Cost must be present once in scores and once in the GT definition, not subtracted twice from predictions; GT labels remain solely in objective.",
+    "A/B/C runtime changes, frozen C1, finite updates and strict reload remain required in existing actual M0.",
+    "Only a completed continuous-video comparison can establish progress; cached utility, classification loss or recovered-candidate counts alone are insufficient."
+  ],
+  "blocking_accuracy_and_leakage_concerns": [
+    {
+      "status": "BLOCKS_ACCURACY_CLAIM_NOT_TRAINING_DESIGN",
+      "issue": "The five native +2pp targets remain unmet. Current completed future-teacher full98 runs are negative; do not promote either or claim this unrun objective improves accuracy."
+    },
+    {
+      "status": "BLOCKS_IMPLEMENTATION_IF_VIOLATED",
+      "issue": "GT winner selection or masking must never enter forward/select_actions/search input. No all70-action softmax or target winner across multiple extra regions; each budget target must be formed after its legal mask."
+    },
+    {
+      "status": "BLOCKS_IMPLEMENTATION_IF_VIOLATED",
+      "issue": "Actual singleton sets need zero loss naturally; unmasked gathered rival scores can create phantom illegal competitors."
+    },
+    {
+      "status": "BLOCKS_CAUSAL_CLAIM",
+      "issue": "Comparing the new objective to old own4 alone confounds objective with prefix/continuation data. Keep current matched teacher/data settings fixed for the objective comparison."
+    },
+    {
+      "status": "BLOCKS_UTILITY_INTERPRETATION",
+      "issue": "The target uses the existing extra-candidate score bias to match the fixed selector. In actual rollout validation, any triggered search costs .01 even when a local action wins. Do not describe within-set candidate-cost labels as an exact reoptimized sunk-cost search policy or change the validation charging."
+    },
+    {
+      "status": "LIMITATION",
+      "issue": "The same-family review and all diagnostic decisions are provisional. Reusing held-out development cases for diagnosis makes them development evidence, not a new untouched final test."
+    }
+  ],
+  "no_leakage_found_in_inspected_current_code": "Trainer forward passes only DECISION_FIELDS; LABEL_FIELDS include future/GT arrays but are used by objective/evaluation. Search reads region0 candidate summaries plus causal history/motion. Train/VAL names are asserted disjoint. Offline per-set label enumeration does not authorize using unseen extra-region embeddings to choose search online.",
+  "boundary_notes": [
+    "Static pair-weight fractions do not prove optimization causality. Actual own55 detailed query losses remain nonzero (.0106684, .0786117, .0403035), so the old ranking objective is not uniformly blind to these misses.",
+    "TRAIN has 15 beneficial exact-tie sets in own and 14 in c1; use the existing deterministic argmax convention and explicit keep-on-threshold policy rather than claiming unique winners everywhere.",
+    "The initial coordinate SmoothL1 gradient fractions describe absolute target-coordinate derivatives at zero, not measured shared-parameter training gradients.",
+    "Initial NumPy arithmetic mixed a float64 .01 cost and shifted six threshold counts; final retained audit recomputed source float32 utility and cost exactly, reproducing 1842 own /1845 c1 TRAIN actions over .05. No data changed.",
+    "A first SSH attempt used the supplied string ssh2027 and failed before remote execution. Correct existing SSH alias 2027 was supplied by the parent; subsequent diagnostics completed.",
+    "No production patch or GPU job was performed by this diagnostic reviewer; proposed implementation requires its own subsequent source review."
+  ]
+}

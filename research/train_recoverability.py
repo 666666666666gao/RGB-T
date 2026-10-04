@@ -31,8 +31,8 @@ def arguments():
     p.add_argument('--threshold', type=float, default=.03)
     p.add_argument('--search-supervision', choices=('oracle', 'selector'), default='oracle',
                    help='Region utility upper bound, or detached deployed-selector marginal utility.')
-    p.add_argument('--action-ranking', choices=('reference', 'pairwise'), default='reference',
-                   help='Relative-to-keep sign margin, or utility-weighted ordering of coexisting action pairs.')
+    p.add_argument('--action-ranking', choices=('reference', 'pairwise', 'budgeted'), default='reference',
+                   help='Keep sign margin, coexisting pair ordering, or budgeted winner versus current rival.')
     p.add_argument('--write-verification', choices=('identity', 'action'), default='identity')
     p.add_argument('--write-pair-calibration', action='store_true',
                    help='Calibrate net pause-versus-write score differences on writable candidates.')

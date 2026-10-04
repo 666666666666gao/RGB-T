@@ -1,0 +1,40 @@
+{
+  "status": "LAUNCHED",
+  "launched_cst": "2026-10-04T11:29:49.921453+08:00",
+  "epochs": 60,
+  "optimizer_steps_per_arm": 180,
+  "batch_size": 384,
+  "seed": 42,
+  "factor": "pairwise to budgeted action ranking; matched teacher grid; otherwise unchanged",
+  "actual_M0_acceptance_sha256": "0209ae2a9ac6ccb619b9a5e061bac1ff1154de1c38531c1f90eefe3eebf7a290",
+  "actual_M0_cpu_audit_sha256": "cd6c74116dd033224d31a24602d8255bb09964d96a463d85d947cc806c9456d5",
+  "production_sources_unchanged": {
+    "/data/gb/GOLA/research/recoverability_modules.py": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+    "/data/gb/GOLA/research/train_recoverability.py": "4b1327a541d426aeade308e4fc3d7c8e3110e35dae4612c11b93029783fd4e93"
+  },
+  "arms": [
+    {
+      "gpu": 0,
+      "future_teacher": "c1",
+      "session": "budgeted_action_c1_b384_full_20261004",
+      "command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 0 c1 full > /data/gb/setup/budgeted_action_c1_b384_full_20261004.log 2>&1",
+      "output": "/data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004",
+      "fresh_from_frozen_C1": true,
+      "M0_weights_consumed": false
+    },
+    {
+      "gpu": 2,
+      "future_teacher": "own",
+      "session": "budgeted_action_own_b384_full_20261004",
+      "command": "exec bash /data/gb/experiments/recoverability_budgeted_action_20261004/scripts/run_recoverability_budgeted_action_fit.sh 2 own full > /data/gb/setup/budgeted_action_own_b384_full_20261004.log 2>&1",
+      "output": "/data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004",
+      "fresh_from_frozen_C1": true,
+      "M0_weights_consumed": false
+    }
+  ],
+  "native_original_handles_live": [
+    3225109,
+    3134348
+  ],
+  "evaluation_after_fit": "Actual98fullvideos, GTmetrics and paired5000CI againstGOLA,C1,old4 and matched pairwise teacher"
+}
