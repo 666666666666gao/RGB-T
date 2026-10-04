@@ -1,0 +1,164 @@
+{
+  "observed_at": "2026-10-04T11:59:25.962184+08:00",
+  "scope": "Actual GPU memory/profile and original job handles; no model or profiling instrumentation modifications",
+  "gpu_memory_utilization_csv": [
+    "0, 1180 MiB, 24576 MiB, 35 %",
+    "1, 851 MiB, 24576 MiB, 31 %",
+    "2, 851 MiB, 24576 MiB, 38 %",
+    "3, 851 MiB, 24576 MiB, 39 %"
+  ],
+  "active_evaluation_processes": [
+    {
+      "pid": 3225109,
+      "elapsed": "02:03:57",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --unsafe-writes --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3433177,
+      "elapsed": "08:35",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_budgeted_action_own_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3433387,
+      "elapsed": "08:30",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --model /data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004/best.pth --validation-split /data/gb/outputs/c1_initial_seed42/split.json --write-verification action --seed 42 --output /data/gb/outputs/recoverability_budgeted_action_c1_b384_full_20261004/predictions"
+    },
+    {
+      "pid": 3445163,
+      "elapsed": "01:57",
+      "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --disable-search --write-verification action --seed 42 --output /data/gb/outputs/recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004/predictions"
+    }
+  ],
+  "training": {
+    "c1": {
+      "completed": true,
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "best_epoch": 25,
+      "peak_cuda_mib": 14191.0830078125,
+      "modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_c1_gradients_absent": true,
+      "strict_reload_metrics_equal": true,
+      "retained_weights": [
+        "best.pth"
+      ]
+    },
+    "own": {
+      "completed": true,
+      "epochs": 60,
+      "optimizer_steps": 180,
+      "best_epoch": 25,
+      "peak_cuda_mib": 14190.7080078125,
+      "modules_changed": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "frozen_c1_gradients_absent": true,
+      "strict_reload_metrics_equal": true,
+      "retained_weights": [
+        "best.pth"
+      ]
+    }
+  },
+  "progress": {
+    "recoverability_budgeted_action_c1_b384_full_20261004": {
+      "completed_sequences": 13,
+      "progress_last": {
+        "sequence": "ab_mototurn",
+        "sequence_index": 13,
+        "sequences": 98,
+        "frames": 65,
+        "elapsed_seconds": 2.127769695594907,
+        "stats": {
+          "template_updates": 49,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 3,
+          "extra_visual_forwards": 3,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_completed": false
+    },
+    "recoverability_budgeted_action_own_b384_full_20261004": {
+      "completed_sequences": 13,
+      "progress_last": {
+        "sequence": "ab_mototurn",
+        "sequence_index": 13,
+        "sequences": 98,
+        "frames": 65,
+        "elapsed_seconds": 2.1898793005384505,
+        "stats": {
+          "template_updates": 49,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 2,
+          "extra_visual_forwards": 2,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_completed": false
+    },
+    "recoverability_write_pair_native_lasher_raw_write_own_b384_full_20261004": {
+      "completed_sequences": 210,
+      "progress_last": {
+        "sequence": "rightgirltakingcup",
+        "sequence_index": 210,
+        "sequences": 245,
+        "frames": 668,
+        "elapsed_seconds": 26.51186190964654,
+        "stats": {
+          "template_updates": 4,
+          "max_pending_per_branch": 4,
+          "extra_searches_requested": 66,
+          "extra_visual_forwards": 66,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 6,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_completed": false
+    },
+    "recoverability_write_pair_native_rgbt234_no_search_own_b384_full_20261004": {
+      "completed_sequences": 12,
+      "progress_last": {
+        "sequence": "biketwo",
+        "sequence_index": 12,
+        "sequences": 234,
+        "frames": 333,
+        "elapsed_seconds": 10.072494552005082,
+        "stats": {
+          "template_updates": 10,
+          "max_pending_per_branch": 5,
+          "extra_searches_requested": 0,
+          "extra_visual_forwards": 0,
+          "skipped_empty_extra_regions": 0,
+          "changed_candidate_indices": 0,
+          "paused_query_writes": 0,
+          "max_motion_history": 8
+        }
+      },
+      "job_completed": false
+    }
+  },
+  "instrumentation_changelog": [],
+  "batch_size": 384,
+  "actual_training_nvidia_memory_mib": [
+    20654,
+    20325
+  ],
+  "prior_batch_512_long_training_oom_epoch": 3,
+  "no_padding_or_power_temperature_actions": true,
+  "best_model_unchanged": "recoverability_write_pair_reference_own_b384_full_20261004/epoch4; new full98 pending",
+  "goal_status": "ACTIVE_UNMET"
+}

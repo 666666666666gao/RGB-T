@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "OLD4_FORMAL_ALL5_POSITIVE_BELOW_PLUS2; TEACHER_FULL98_NEGATIVE_CLOSED; BUDGETED_ACTION_TWO_REAL_FULL_FITS_ACTIVE",
+      "status": "OLD4_FORMAL_ALL5_POSITIVE_BELOW_PLUS2; TEACHER_FULL98_NEGATIVE_CLOSED; BUDGETED_FULL_TRAINING_DONE_FULL98_ACTIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -1183,7 +1183,7 @@
         "scope": "Fixed epoch4 full native coupled raw-write control, not template-only or training"
       },
       "current_budgeted_action_factor": {
-        "status": "ACTUAL_M0_CPU_ACCEPTED; BOTH_FRESH60EPOCH180UPDATE_B384_FITS_LIVE",
+        "status": "BOTH_60_EPOCH_180_UPDATE_FITS_COMPLETE_EPOCH25_FULL98_ACTIVE",
         "factor": "action-ranking pairwise to budgeted; other objectives, forward, inference, .03threshold and actual1extra budget unchanged",
         "comparison": "same902TRAIN128VAL and C1/own futureteacher matched grid; reuse actual completed pairwise controls",
         "loss": "Plain mean of seven original-only/original-plus-one-extra sets. Strict threshold and cost aligned GT winner versus current predicted legal rival, regret margin; keep cases retained without extra class weights.",
@@ -1249,7 +1249,45 @@
           ],
           "evaluation_after_fit": "Actual98fullvideos, GTmetrics and paired5000CI againstGOLA,C1,old4 and matched pairwise teacher"
         },
-        "actual_full_runtime": "refine-logs/runs/recoverability_budgeted_action/full_fit_initial_runtime.json"
+        "actual_full_runtime": "refine-logs/runs/recoverability_budgeted_action/full_fit_initial_runtime.json",
+        "full_training_completed": true,
+        "actual_full_training_completion": {
+          "c1": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 180,
+            "best_epoch": 25,
+            "peak_cuda_mib": 14191.0830078125,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "frozen_c1_gradients_absent": true,
+            "strict_reload_metrics_equal": true,
+            "retained_weights": [
+              "best.pth"
+            ]
+          },
+          "own": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 180,
+            "best_epoch": 25,
+            "peak_cuda_mib": 14190.7080078125,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "frozen_c1_gradients_absent": true,
+            "strict_reload_metrics_equal": true,
+            "retained_weights": [
+              "best.pth"
+            ]
+          }
+        },
+        "actual_training_receipts": "refine-logs/runs/recoverability_budgeted_action/full_fit/{c1,own}/completion.json"
       }
     },
     {
@@ -1314,7 +1352,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "All four GPUs currently run or advance through remaining serial paired supervision collection. After all16 actual completions, reviewed CPU merger must pass, then fresh two-arm B384 3epoch/9update M0 and independent acceptance before60epoch/180update fit.",
+    "queued_successor": "RGBT234 raw-write on GPU1 after original LasHeR raw-write job_completed; 240-second guard poll. No duplicate NN or new training.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -1327,13 +1365,13 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "budgetedaction C1teacher actualB38460/180 training PID3396195",
-      "GPU1": "selectedold4 native Las raw-write PID3225109",
-      "GPU2": "budgetedaction ownteacher actualB38460/180 training PID3396196",
-      "GPU3": "selectedold4 native Las no-search PID3134348"
+      "GPU0": "budgeted C1teacher epoch25 full98 evaluation PID3433387",
+      "GPU1": "selectedold4 LasHeR raw-write PID3225109; RGBT234 raw-write queued behind its actual job_completed",
+      "GPU2": "budgeted ownteacher epoch25 full98 evaluation PID3433177",
+      "GPU3": "selectedold4 RGBT234 no-search PID3445163"
     },
     "gpu_memory_request": {
-      "status": "ACTUAL_TWO_B384_TRAINERS_20GB100PERCENT_PLUS_TWO_NATIVE_EVALUATORS",
+      "status": "B384_FULL_TRAINING_COMPLETE_FOUR_ACTUAL_SERIAL_EVALUATORS",
       "policy": "Use actual batch384 training to occupy useful GPU memory; previous real B384 fits reached about21GB/card; batch512 long training OOM. Current new M0 peak allocation14190.2788MiB. Serial evaluation stays unchanged; no allocation padding or temperature/power controls.",
       "batch_size": 384,
       "sanity_epochs": 3,
@@ -1354,15 +1392,15 @@
       "temperature_power_constraints_enabled": false,
       "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json",
       "latest_actual_nvidia_mib_by_gpu": {
-        "GPU0": 20654,
+        "GPU0": 1180,
         "GPU1": 851,
-        "GPU2": 20325,
+        "GPU2": 851,
         "GPU3": 851
       },
-      "latest_fullfit_allocated_peak_mib": 14190.64404296875,
-      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_budgeted_action/m0_initial_runtime.json",
-      "latest_user_preference": "Use more GPU memory for useful work. Actual B384 training uses about20GB/card; B512 epoch3 OOM prevents unchanged retry. Four serial evaluators currently active; do not alter causal video evaluation or allocate padding.",
-      "current_observed_cst": "2026-10-04T10:48:07+08:00",
+      "latest_fullfit_allocated_peak_mib": 14191.0830078125,
+      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_budgeted_action/memory_request_actual_runtime_20261004_1159.json",
+      "latest_user_preference": "Use useful real memory: maintain accepted B384 training (about20GB/card). B512 epoch3 OOM; do not retry unchanged or pad allocation. Current four jobs are serial video evaluations.",
+      "current_observed_cst": "2026-10-04T11:59:25.962184+08:00",
       "current_evaluation_nvidia_mib_by_gpu": {
         "GPU0": 1180,
         "GPU1": 851,
@@ -1370,7 +1408,7 @@
         "GPU3": 851
       }
     },
-    "next_check_cst": "2026-10-04T11:48:00+08:00 near20minute fullfit end; same original handles, no restart. Full98 follows automatically and takes roughly30min.",
+    "next_check_cst": "2026-10-04T12:18:00+08:00 near expected full98 end; inspect original evaluator handles and actual complete-video progress; poll 180-300s only as needed.",
     "checkpoint_cleanup_total": {
       "files": 57,
       "bytes": 81266408,
@@ -1769,6 +1807,22 @@
       ],
       "all_predictions_metrics_NPZ_logs_audits_retained": true,
       "both_original_native_processes_untouched": true
+    },
+    "native_lasher_no_search_completed": {
+      "completed_cst": "2026-10-04T11:50:03+08:00",
+      "sequences": 245,
+      "frames": 220703,
+      "PR": 78.07735138059034,
+      "NPR": 74.43635304486548,
+      "SR": 62.10963366098705,
+      "scope": "Extra visual search disabled; not full B-off",
+      "evidence": "refine-logs/runs/recoverability_write_pair/own4_native_no_search_lasher"
+    },
+    "current_native_rgbt234_controls": {
+      "no_search": "RUNNING GPU3 PID3445163",
+      "raw_write": "QUEUED GPU1 after actual LasHeR raw-write completion",
+      "checkpoint": "selected old4; same as both completed formal datasets",
+      "goal_unmet": true
     }
   },
   "model_selection": {
@@ -1779,5 +1833,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T11:34:42+08:00"
+  "updated_cst": "2026-10-04 12:03"
 }
