@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "scope": "Source-only exact AST interfaces, manifests and mocked Bash control flow",
+  "actual_probe_acceptance": false,
+  "runtime_independently_attested": false,
+  "source_sha256": {
+    "scripts/run_recoverability_best_policy_collect.sh": "dd02cb1e3455ae755dedf4c32fbec6787c68b81fe9cc5ec50f7d08cd51eb32c2",
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/bounded_recovery.py": "20b3b710c777d8c00c0336cd9c7f402b8555bbe84bd952ce85a3f1208e0ce089",
+    "config/_dataset/train-lasher.yaml": "dd692d6646cb08d7ae546b175611e117c5167d7078ae10b56763af3d48de82e9",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+    "refine-logs/runs/recoverability_best_policy/actual_probe_cpu_audit.py": "dde2711ce0c665bdc56d7b7faa07a3d6dac5d90137e76805b5aa87f30393df0c",
+    "refine-logs/runs/recoverability_best_policy/actual_policy_alignment_metadata.json": "e2b2eee4af9ed80bfd328d14239fc0874c309b21192253611bf7a7f87a2a3a02",
+    "refine-logs/runs/recoverability_best_policy/plan.json": "c99a2cfb71ca3e512da97bd763fedc6529f6e8edcd012e5dceca8e8bb7453037",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_probe.json": "ec290d369d8afad81279f354c9c18cead2c577704004b53007f5383c514575bc",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_rest.json": "d757846ecc69d77ab9f8d7a0df87ac0727ea4e26243561ae6af9a59c001974d7",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_probe.json": "2532fe8c77a7cb5caa9fede5af9aca54384c35aa564354719f4c7475df7a735c",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_rest.json": "0f59687f471350595fb790e2c711739ab7f9e71ac0c47cb1ed2682726b31628f",
+    "scripts/run_recoverability_best_policy_shard.sh": "cd53f3a14db51b7c9264e4d242d2f9ac79a4c8ae3a07f31a98fbf32fdb717ae7",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/train.json": "daef5da36693e6eb6b5bd4752cb161cf7f03c76a4be2a85f9ce10607e649b734",
+    "refine-logs/runs/recoverability_write_pair/future_policy_jobs/validation.json": "286080f408e73e7725d792c7777e2655a2e1c4ae14b1ff079e2e27b3d4314cb5",
+    "refine-logs/runs/recoverability_best_policy/source_review.json": "8e89693d070872687e23055af74caa5e234363ac1029cb9c4b638505fe88db34",
+    "refine-logs/runs/recoverability_best_policy/shard_plan.json": "c4ffec6baaf7db4b1b760532f99925b994d9056543cd9b077c3b824de7e635f3",
+    "refine-logs/runs/recoverability_best_policy/jobs_train0_rest.json": "764b19239365833f65883c7e15c0e40021b1cb6ac27a94e67fe29a340f197eb0",
+    "refine-logs/runs/recoverability_best_policy/jobs_train1_rest.json": "19a9cff888b28dec4830c619b5437b8db22f0d5653f45f23d35eb693da5b1a59",
+    "refine-logs/runs/recoverability_best_policy/jobs_train2_rest.json": "5b8ccb6530de555a6de5048f1c6a6af78cf4f790de6267fb745534f95ca2253e",
+    "refine-logs/runs/recoverability_best_policy/shard_source_checks.py": "e742901ce15b0986d52f55b86c5e7d10b56d5063d32e3618df4fb3a8e342095f"
+  },
+  "prior_review_bound_sources_unchanged": [
+    "scripts/run_recoverability_best_policy_collect.sh",
+    "research/collect_recoverability.py",
+    "research/collect_rollouts.py",
+    "research/candidate_learning.py",
+    "research/recoverability_tracker.py",
+    "research/recoverability_modules.py",
+    "research/bounded_recovery.py",
+    "config/_dataset/train-lasher.yaml",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py",
+    "refine-logs/runs/recoverability_best_policy/actual_probe_cpu_audit.py",
+    "refine-logs/runs/recoverability_best_policy/actual_policy_alignment_metadata.json",
+    "refine-logs/runs/recoverability_best_policy/plan.json",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_probe.json",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_rest.json",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_probe.json",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_rest.json"
+  ],
+  "python_compile": "PASS",
+  "bash_syntax": "PASS",
+  "job_cases": [
+    {
+      "shard": "train0",
+      "GPU_argument": 0,
+      "partition": "train",
+      "clips_before_jobs_override": 16,
+      "clips_after_exact_jobs_override": 296,
+      "ordered_jobs_exact": true,
+      "output": "/data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
+      "eligibility_scope": "Synthetic source-interface fixture; no actual dataset read"
+    },
+    {
+      "shard": "train1",
+      "GPU_argument": 1,
+      "partition": "train",
+      "clips_before_jobs_override": 16,
+      "clips_after_exact_jobs_override": 295,
+      "ordered_jobs_exact": true,
+      "output": "/data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
+      "eligibility_scope": "Synthetic source-interface fixture; no actual dataset read"
+    },
+    {
+      "shard": "train2",
+      "GPU_argument": 3,
+      "partition": "train",
+      "clips_before_jobs_override": 16,
+      "clips_after_exact_jobs_override": 295,
+      "ordered_jobs_exact": true,
+      "output": "/data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
+      "eligibility_scope": "Synthetic source-interface fixture; no actual dataset read"
+    },
+    {
+      "shard": "validation",
+      "GPU_argument": 2,
+      "partition": "validation",
+      "clips_before_jobs_override": 16,
+      "clips_after_exact_jobs_override": 112,
+      "ordered_jobs_exact": true,
+      "output": "/data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
+      "eligibility_scope": "Synthetic source-interface fixture; no actual dataset read"
+    }
+  ],
+  "ordered_full_train_902_recomposition_exact": true,
+  "ordered_full_validation_128_recomposition_exact": true,
+  "probe_and_rest_pairs_all_unique_disjoint": true,
+  "train_validation_sequence_sets_disjoint": true,
+  "distinct_jobs_paths_and_output_roots": true,
+  "guard_cases": [
+    {
+      "valid_accepted": true,
+      "invalid_fields_rejected": [
+        "status",
+        "review_independence",
+        "acceptance_status"
+      ],
+      "missing_receipt_rejected": true
+    },
+    {
+      "valid_accepted": true,
+      "invalid_fields_rejected": [
+        "status",
+        "both_partitions_passed",
+        "prefix_epoch",
+        "future_teacher_is_global_best",
+        "clips_per_partition"
+      ],
+      "missing_receipt_rejected": true
+    }
+  ],
+  "shell_cases": [
+    {
+      "case": "train0",
+      "returncode": 0,
+      "collector_calls": 1,
+      "marker_calls": 1
+    },
+    {
+      "case": "train1",
+      "returncode": 0,
+      "collector_calls": 1,
+      "marker_calls": 1
+    },
+    {
+      "case": "train2",
+      "returncode": 0,
+      "collector_calls": 1,
+      "marker_calls": 1
+    },
+    {
+      "case": "validation",
+      "returncode": 0,
+      "collector_calls": 1,
+      "marker_calls": 1
+    },
+    {
+      "case": "source_gate_failure",
+      "returncode": 1,
+      "collector_calls": 0,
+      "marker_calls": 0
+    },
+    {
+      "case": "actual_acceptance_gate_failure",
+      "returncode": 1,
+      "collector_calls": 0,
+      "marker_calls": 0
+    },
+    {
+      "case": "existing_output",
+      "returncode": 1,
+      "collector_calls": 0,
+      "marker_calls": 0
+    },
+    {
+      "case": "invalid_shard",
+      "returncode": 1,
+      "collector_calls": 0,
+      "marker_calls": 0
+    },
+    {
+      "case": "collector_nonzero",
+      "returncode": 7,
+      "collector_calls": 1,
+      "marker_calls": 0
+    }
+  ],
+  "completed_marker_requires_collector_exit_zero": true,
+  "execution": {
+    "torch_imported": false,
+    "numpy_imported": false,
+    "dataset_reads": 0,
+    "checkpoint_reads": 0,
+    "native_test_reads": 0,
+    "actual_probe_outputs_read": false,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "new_weights": 0,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "production_edits": false
+  },
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]"
+}

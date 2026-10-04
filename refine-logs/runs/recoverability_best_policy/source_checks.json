@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "scope": "Source-only syntax, exact job interface and in-memory gate fixtures",
+  "actual_probe_acceptance": false,
+  "python_compile": "PASS",
+  "bash_syntax": "PASS",
+  "job_cases": [
+    {
+      "partition": "train",
+      "stage": "probe",
+      "clips_after_exact_jobs_override": 16,
+      "ordered_jobs_exact": true,
+      "dataset_eligibility": "synthetic source interface fixture only"
+    },
+    {
+      "partition": "train",
+      "stage": "rest",
+      "clips_after_exact_jobs_override": 886,
+      "ordered_jobs_exact": true,
+      "dataset_eligibility": "synthetic source interface fixture only"
+    },
+    {
+      "partition": "validation",
+      "stage": "probe",
+      "clips_after_exact_jobs_override": 16,
+      "ordered_jobs_exact": true,
+      "dataset_eligibility": "synthetic source interface fixture only"
+    },
+    {
+      "partition": "validation",
+      "stage": "rest",
+      "clips_after_exact_jobs_override": 112,
+      "ordered_jobs_exact": true,
+      "dataset_eligibility": "synthetic source interface fixture only"
+    }
+  ],
+  "partition_sequence_sets_disjoint": true,
+  "guard_cases": [
+    {
+      "valid_accepted": true,
+      "missing_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "review_independence",
+        "acceptance_status"
+      ]
+    },
+    {
+      "valid_accepted": true,
+      "missing_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "both_partitions_passed",
+        "prefix_epoch",
+        "future_teacher_is_global_best",
+        "clips_per_partition"
+      ]
+    }
+  ],
+  "both_actual_checkpoint_epochs_required_4": true,
+  "decision_fields_count": 19,
+  "decision_label_fields_disjoint": true,
+  "neural_forward_calls": 0,
+  "optimizer_steps": 0,
+  "deployment_preflight": {
+    "YAML_CRLF_to_LF_bytes_exact": true,
+    "local_YAML_bytes": 655,
+    "remote_YAML_bytes": 632,
+    "remote_YAML_sha256": "219e29c7fa010b5b477fef1904b63c312004502f2fa460dabbeea32f81580ce7",
+    "MMOT_dataset_CRLF_to_LF_bytes_exact": true,
+    "MMOT_dataset_full_AST_equal": true,
+    "local_MMOT_dataset_bytes": 8759,
+    "remote_MMOT_dataset_bytes": 8571,
+    "remote_MMOT_dataset_sha256": "f14a86549de6fb029801010a935ce194c773ffa2a87e28683695f003e6a9ed43",
+    "launcher_compile": "PASS",
+    "launcher_sha256": "7525151b2b740492d0e1145169d58afb8abe6e1138e3908c3014ead988a5c3ad",
+    "launcher_binds_remote_YAML_exact_bytes": true,
+    "launcher_binds_remote_MMOT_dataset_exact_bytes": true,
+    "inference_symbols_exist_in_local_reviewed_source": [
+      "InstanceMemory",
+      "RecoverabilityModules",
+      "select_actions",
+      "DECISION_FIELDS"
+    ],
+    "source_guards_precede_GPU_query_and_launch": true,
+    "launcher_executed": false,
+    "remote_inference_AST_independently_replayed_by_reviewer": false
+  },
+  "torch_imported": false,
+  "numpy_imported": false,
+  "dataset_read": false,
+  "ssh_used": false,
+  "GPU_queries": 0,
+  "runtime_certification": false,
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]"
+}

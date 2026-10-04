@@ -1,0 +1,89 @@
+{
+  "status": "RUNNING_VERIFIED",
+  "verified_at_cst": "2026-10-04T18:42:48.531863+08:00",
+  "all_four_owned_neural_processes_live": true,
+  "runs": [
+    {
+      "shard": "train0",
+      "gpu": 0,
+      "runner_pid": 4157261,
+      "clips": 296,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train0_rest_20261004.log",
+      "actual_nn_pid": 4157273,
+      "actual_handle": "4157273 4157261       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train0_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train0_rest_20261004",
+      "configuration_sha256": "7cc3ce04f380577b4a7ec7f7c7d24499806ada5632ded39395f9e6b35f18f9d1",
+      "actual_gpu_env_exact": true,
+      "configuration_epoch4_prefix_and_future": true
+    },
+    {
+      "shard": "train1",
+      "gpu": 1,
+      "runner_pid": 4157262,
+      "clips": 295,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train1_rest_20261004.log",
+      "actual_nn_pid": 4157274,
+      "actual_handle": "4157274 4157262       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train1_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train1_rest_20261004",
+      "configuration_sha256": "aaa499940a98672e59848f7fe0cba63987f65595e4301fead8a22e706eb3851b",
+      "actual_gpu_env_exact": true,
+      "configuration_epoch4_prefix_and_future": true
+    },
+    {
+      "shard": "validation",
+      "gpu": 2,
+      "runner_pid": 4157263,
+      "clips": 112,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_validation_rest_20261004.log",
+      "actual_nn_pid": 4157275,
+      "actual_handle": "4157275 4157263       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition validation --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_validation_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_validation_rest_20261004",
+      "configuration_sha256": "9652cbf8292136be66cb7c14eaef7c1723f412b9026d8c21bede763906f6c68b",
+      "actual_gpu_env_exact": true,
+      "configuration_epoch4_prefix_and_future": true
+    },
+    {
+      "shard": "train2",
+      "gpu": 3,
+      "runner_pid": 4157265,
+      "clips": 295,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train2_rest_20261004.log",
+      "actual_nn_pid": 4157276,
+      "actual_handle": "4157276 4157265       01:30 /data/gb/envs/gola/bin/python -u -m research.collect_recoverability --root /data/wangwj/dataset/LasHeR --partition train --clips 16 --batch-clips 16 --forward-batch 64 --max-prefix 1024 --seed 42 --prefix-model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --future-policy own --prefix-write-verification action --jobs-file /data/gb/setup/best_policy_jobs_train2_rest_20261004.json --output /data/gb/outputs/recoverability_best_policy_collect_train2_rest_20261004",
+      "configuration_sha256": "851861fc2c8c5b3955001e7079ac05ff118ad7f8ac03a056989962493931d7a8",
+      "actual_gpu_env_exact": true,
+      "configuration_epoch4_prefix_and_future": true
+    }
+  ],
+  "gpu_memory_snapshot": [
+    {
+      "gpu": 0,
+      "memory_used_mib": 1498,
+      "memory_total_mib": 24576,
+      "utilization_percent": 35
+    },
+    {
+      "gpu": 1,
+      "memory_used_mib": 1159,
+      "memory_total_mib": 24576,
+      "utilization_percent": 30
+    },
+    {
+      "gpu": 2,
+      "memory_used_mib": 1199,
+      "memory_total_mib": 24576,
+      "utilization_percent": 39
+    },
+    {
+      "gpu": 3,
+      "memory_used_mib": 5109,
+      "memory_total_mib": 24576,
+      "utilization_percent": 39
+    }
+  ],
+  "temperature_or_power_queries": false,
+  "next_check_cst": "2026-10-04 19:00:00",
+  "estimate": "Actual16 probes needed198/141 seconds; VAL112 ~17-25minutes, eachTRAIN295-296 ~45-75minutes. Estimates only; update fromfirstactualbatch.",
+  "scope": "Launch verification only; remaining collections are not complete or accepted."
+}

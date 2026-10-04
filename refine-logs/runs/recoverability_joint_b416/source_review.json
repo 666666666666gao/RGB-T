@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_date": "2026-10-04",
+  "reviewer_agent": "/root/joint_b416_source_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model_runtime_independently_attested": false,
+  "scope": "Fresh source-only experiment-bridge Phase 2.5 review of the exact complete-ABC B416 budgeted/pairwise runner, real-fit CPU auditor and plan; no actual runtime acceptance",
+  "reviewed_sources": [
+    "scripts/run_recoverability_joint_b416.sh",
+    "refine-logs/runs/recoverability_joint_b416/actual_joint_b416_fit_cpu_audit.py",
+    "refine-logs/runs/recoverability_joint_b416/plan.json",
+    "research/train_recoverability.py",
+    "research/recoverability_modules.py"
+  ],
+  "findings": [],
+  "blocking_fixes_required": [],
+  "checks": [
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_module_freeze/source_staging.json",
+      "result": "Current trainer and model bytes match the existing accepted module-freeze staging identities exactly: trainer f1089cf0d8e8ebbc2d1f83ac60bff0267edd4aa6c1c3c717829393e4d7622474 and model 082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa. The new auditor equals the accepted freeze auditor after only the intended path, arm, replay-ranking and interpretation substitutions. Existing source/parent checks remain intact; no production edit or new binding scheme was introduced."
+    },
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_joint_b416.sh:26",
+      "result": "Both arms use complete ABC with an empty frozen-modules list, frozen C1, the same protected old4 initialization, own902 TRAIN/128 validation cache, seed42, B416, oracle search supervision and action write verification. Parser execution confirms lr and weight decay 1e-4, threshold .03, no pair calibration and no prefer-last-prefix behavior. The two command configurations differ only in action_ranking and output. Three optimizer steps per epoch give M0 3 epochs/9 updates and full 60 epochs/180 updates. GPU0/3 are recorded in the plan; actual device availability and caller assignments remain deployment responsibilities."
+    },
+    {
+      "status": "PASS",
+      "source": "scripts/run_recoverability_joint_b416.sh:10",
+      "result": "The paired-cache and same-family provisional source-review receipts are checked before training. Full requires the actual both-ranking-arms M0 acceptance with B416, 3 epochs and 9 updates per arm. Literal execution accepts valid receipts and rejects missing receipts or each incorrect required field. A source-only PASS does not satisfy the M0 gate. Existing output directories prevent a repeated run; private cwd/PYTHONPATH and explicit import-path assertions bind training to the new private source. Completion markers are written only after successful training, and the runner starts no 98-video evaluation."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_joint_b416/actual_joint_b416_fit_cpu_audit.py:16",
+      "result": "Private source, review, staging, M0 acceptance, full-audit and both stage/arm output paths are consistently renamed to joint_b416. The CPU auditor keeps empty CUDA_VISIBLE_DEVICES/private-cwd/import-path checks, CPU tensor loading, disabled autograd, CUDA-uninitialized assertions, the exact protected-parent identity, and before/after verification of the existing staging source map. The unchanged same-parent 25-state-tensor and eight-C1-tensor checks are retained."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_joint_b416/actual_joint_b416_fit_cpu_audit.py:79",
+      "result": "Both the initial-parent and selected-best CPU evaluations pass the actual variant into replay, which explicitly supplies action_ranking=ranking. The audit also requires cfg.action_ranking to equal that variant. The complete 128-query validation job order, matching initial/best metrics and all 21 saved arrays remain checked, with exact integer/boolean equality and the established float32-epsilon float tolerance. This is CPU replay through the accepted evaluator, not an independent metric implementation."
+    },
+    {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_joint_b416/actual_joint_b416_fit_cpu_audit.py:105",
+      "result": "Both empty frozen lists make A/B/C active. The auditor requires all three parameter counts, actual expected logs and optimizer totals, finite positive recorded module gradients, positive maximum gradients, and terminal modules_changed for every group. It retains exact cache/config/job provenance checks, disjoint 881/98 sequence partitions, own-policy epoch25 prefixes, the same C1 head and 902/128 cached queries. Final acceptance is written only after both arms and the concluding source/parent checks pass."
+    },
+    {
+      "status": "PASS",
+      "source": "research/train_recoverability.py:251",
+      "result": "The trainer saves epoch0 before updates and replaces best only on strictly greater utility. The auditor selects the first maximum over the full epoch history and checks selected/last metrics and checkpoint arguments. Best0 must remain exactly the parent across ABC and C1; nonzero selected best must show changes in each active ABC group. Terminal update claims come from source-linked receipts/logs computed before best reload, while selected-best tensor differences are measured separately. The record explicitly identifies best0 as parent initialization without claiming new learning."
+    },
+    {
+      "status": "PASS",
+      "source": "research/train_recoverability.py:83",
+      "result": "No inference behavior changes. Only DECISION_FIELDS enter the model, those fields are disjoint from LABEL_FIELDS, and select_actions reads only decision fields. Budgeted versus pairwise changes the training ranking objective and corresponding evaluation loss; the deployed selector has no ranking-mode branch. Current/future dataset labels are used for supervision and cached evaluation after decisions, never for the action decision."
+    }
+  ],
+  "source_fixture_execution": {
+    "status": "PASS",
+    "script": "refine-logs/runs/recoverability_joint_b416/source_checks.py",
+    "receipt": "refine-logs/runs/recoverability_joint_b416/source_checks.json",
+    "execution": "CPython 3.13.12, standard library only; Git Bash syntax check",
+    "bash_syntax": "PASS",
+    "auditor_python_compile": "PASS",
+    "literal_guard_cases": 3,
+    "ranking_stage_command_cases": 4,
+    "both_ranking_replay_routes": "PASS",
+    "first_max_ties_and_best0_vs_trained_state_cases": "PASS",
+    "torch_imported": false,
+    "numpy_imported": false,
+    "neural_execution": false,
+    "ssh_used": false,
+    "gpu_used": false,
+    "production_sources_edited_by_reviewer": false
+  },
+  "interpretation_limits": [
+    "The paired B416 complete-ABC arms control batch size and recipe except action ranking. Comparisons to the prior B384 joint-ABC reference still retain that batch-size limitation.",
+    "Best selection and replay use the same 128 developer validation queries; these cached metrics are not complete 98-video or native tracking results.",
+    "Terminal module changes are receipt/log evidence tied to the accepted source; only retained-best tensor differences are directly remeasured. No terminal weights are retained."
+  ],
+  "pending_runtime_evidence": [
+    "Actual new private staging/import-path verification and preservation of the existing source bindings",
+    "Both real B416 M0 fits and the resulting genuine CPU tensor/log/all21-field acceptance receipt",
+    "Fresh full 60-epoch/180-update fits and actual full-fit CPU audits",
+    "Any later complete 98-video or same-checkpoint native metric evaluation"
+  ],
+  "runtime_certification": false,
+  "deployment_success_claimed": false,
+  "M0_success_claimed": false,
+  "full_fit_success_claimed": false,
+  "learning_or_native_improvement_claimed": false
+}

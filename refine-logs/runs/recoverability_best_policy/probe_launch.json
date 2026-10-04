@@ -1,0 +1,48 @@
+{
+  "status": "LAUNCHED_NOT_ACCEPTED",
+  "launched_at_cst": "2026-10-04T18:33:17.008231+08:00",
+  "stage": "probe",
+  "runs": [
+    {
+      "partition": "train",
+      "gpu": 1,
+      "runner_pid": 4142969,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train_probe_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_train_probe_20261004.log"
+    },
+    {
+      "partition": "validation",
+      "gpu": 2,
+      "runner_pid": 4142971,
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_validation_probe_20261004",
+      "log": "/data/gb/setup/recoverability_best_policy_collect_validation_probe_20261004.log"
+    }
+  ],
+  "source_review_sha256": "8e89693d070872687e23055af74caa5e234363ac1029cb9c4b638505fe88db34",
+  "same_reviewed_collector_sources": true,
+  "frozen_main_model_used": true,
+  "same_inference_model_AST_symbols": [
+    "InstanceMemory",
+    "RecoverabilityModules",
+    "select_actions",
+    "DECISION_FIELDS"
+  ],
+  "parent_sha256": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+  "stage_source_sha256": {
+    "/data/gb/setup/run_recoverability_best_policy_collect_20261004.sh": "dd02cb1e3455ae755dedf4c32fbec6787c68b81fe9cc5ec50f7d08cd51eb32c2",
+    "/data/gb/setup/best_policy_probe_actual_cpu_audit_20261004.py": "dde2711ce0c665bdc56d7b7faa07a3d6dac5d90137e76805b5aa87f30393df0c",
+    "/data/gb/setup/best_policy_jobs_train_probe_20261004.json": "ec290d369d8afad81279f354c9c18cead2c577704004b53007f5383c514575bc",
+    "/data/gb/setup/best_policy_jobs_train_rest_20261004.json": "d757846ecc69d77ab9f8d7a0df87ac0727ea4e26243561ae6af9a59c001974d7",
+    "/data/gb/setup/best_policy_jobs_validation_probe_20261004.json": "2532fe8c77a7cb5caa9fede5af9aca54384c35aa564354719f4c7475df7a735c",
+    "/data/gb/setup/best_policy_jobs_validation_rest_20261004.json": "0f59687f471350595fb790e2c711739ab7f9e71ac0c47cb1ed2682726b31628f"
+  },
+  "memory_before_mib": {
+    "0": 349,
+    "1": 20,
+    "2": 20,
+    "3": 20
+  },
+  "queries_per_partition": 16,
+  "source_scope": "No architecture/tracker/collector modification; actual probes before rest.",
+  "temperature_or_power_queries": false
+}

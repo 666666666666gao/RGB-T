@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "both_partitions_passed": true,
+  "clips_per_partition": 16,
+  "prefix_epoch": 4,
+  "future_teacher_is_global_best": true,
+  "accepted_at_cst": "2026-10-04T18:39:34.961556+08:00",
+  "arms": {
+    "train": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_train_probe_20261004",
+      "clips": 16,
+      "past_causal": true,
+      "GT_current_iou_max_error": 7.838719938701999e-07,
+      "changed_queries_against_same16_own25": {
+        "history_boxes": 6,
+        "image_boxes": 16,
+        "current_iou": 16,
+        "future_iou": 16,
+        "prefix_counts": 9
+      },
+      "completion": {
+        "completed": true,
+        "clips": 16,
+        "partition": "train",
+        "valid_actions": 583,
+        "requested_extra_crops": 96,
+        "executed_extra_crops": 95,
+        "original_correct_queries": 15,
+        "original_failed_queries": 1,
+        "original_candidate_present_queries": 15,
+        "query_frames_after256": 6,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 198.48401178233325,
+        "peak_cuda_mib": 4295.4140625,
+        "actual_prefix_counts_sum": [
+          79,
+          1,
+          4,
+          2046
+        ]
+      },
+      "artifact_sha256": {
+        "config.json": "6e4e7f20e80bf25f169dbedb3945596d79b958270b9da0265eaa43f6c8b11584",
+        "completion.json": "582b2810dcb5610d4efa118d7a1aebaa4d1a80383c0c5f411b2e07adcf1a8dd6",
+        "samples.npz": "75fc8810e60f0f7a6fd4eaaf93900b32cec105f0d511f14d7763fcf4d52205e9",
+        "job_completed.txt": "360604abcadfed25b7cfa7f2cc14eb8c8ea7a3a9223a55accc9d90c52868663a"
+      }
+    },
+    "validation": {
+      "status": "PASS",
+      "root": "/data/gb/outputs/recoverability_best_policy_collect_validation_probe_20261004",
+      "clips": 16,
+      "past_causal": true,
+      "GT_current_iou_max_error": 1.482874723457428e-06,
+      "changed_queries_against_same16_own25": {
+        "history_boxes": 4,
+        "image_boxes": 16,
+        "current_iou": 16,
+        "future_iou": 16,
+        "prefix_counts": 4
+      },
+      "completion": {
+        "completed": true,
+        "clips": 16,
+        "partition": "validation",
+        "valid_actions": 590,
+        "requested_extra_crops": 96,
+        "executed_extra_crops": 96,
+        "original_correct_queries": 13,
+        "original_failed_queries": 2,
+        "original_candidate_present_queries": 13,
+        "query_frames_after256": 1,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 141.16347637632862,
+        "peak_cuda_mib": 4288.29345703125,
+        "actual_prefix_counts_sum": [
+          11,
+          3,
+          3,
+          788
+        ]
+      },
+      "artifact_sha256": {
+        "config.json": "896697815130ae8d4d50203a3d4ec4606d5b1593ddf54105f3b12f6c73f6e310",
+        "completion.json": "f176833cf727f9311ea214c022fc198263b9ee7f5db6672b851e3f8749420784",
+        "samples.npz": "986002bed2b901fca34d462e0d42123af9a7bd08def7b7495ab5a16acbba85cc",
+        "job_completed.txt": "3c949f2c724d68afa12a8a6515cb72a8e7c084f1f976e4a514d7cbbbab7d4d1a"
+      }
+    }
+  },
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "scope": "Actual32 TRAIN-partition collection probe and currentGT replay; no method improvement or native result claim.",
+  "execution": {
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "GPU_queries": 0,
+    "native_test_reads": false,
+    "runtime_seconds": 1.7144069760106504
+  }
+}

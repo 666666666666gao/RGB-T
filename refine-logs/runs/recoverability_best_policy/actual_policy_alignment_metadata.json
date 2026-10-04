@@ -1,0 +1,45 @@
+{
+  "status": "VERIFIED_DIFFERENT_PREFIX_FUTURE_TEACHER_AND_ACTUAL_INIT_POLICY",
+  "observed_at_cst": "2026-10-04T18:09:35.283041+08:00",
+  "current_global_best_init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_epoch": 4,
+  "cache_prefix_checkpoint": "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth",
+  "prefix_epoch": 25,
+  "cache_future_mode": "own",
+  "future_teacher_is_same_as_prefix": true,
+  "ABC_changed_tensor_counts": {
+    "A": 9,
+    "B": 4,
+    "C": 4,
+    "C1": 0
+  },
+  "checkpoint_sha256": {
+    "global_best": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+    "prefix_teacher": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62"
+  },
+  "not_a_proven_failure_cause": true,
+  "next_comparison": "Same explicitqueries and collector, currentglobalold4 prefix and own future, versus existingown25 cache; first16 perpartition probe before remainder",
+  "CUDA_initialized": false,
+  "GPU_queries": 0,
+  "native_test_data_read": false,
+  "source_options": {
+    "root": "/data/wangwj/dataset/LasHeR",
+    "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+    "pretrained": "pretrained_models/gola_b224.bin",
+    "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+    "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+    "max_prefix": 1024
+  },
+  "explicit_job_counts": {
+    "train": {
+      "probe": 16,
+      "rest": 886,
+      "total": 902
+    },
+    "validation": {
+      "probe": 16,
+      "rest": 112,
+      "total": 128
+    }
+  }
+}

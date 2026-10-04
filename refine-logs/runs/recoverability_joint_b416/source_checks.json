@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "Source syntax, accepted-source comparison, literal gates, parser/routing and scalar fixtures only",
+  "bash_syntax": "PASS",
+  "python_compile": "PASS",
+  "production_sources_equal_accepted_freeze_staging": true,
+  "auditor_exact_intended_substitutions": true,
+  "guard_cases": [
+    {
+      "valid_passed": true,
+      "missing_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "all_non_future_arrays_exact",
+        "matched_partitions"
+      ]
+    },
+    {
+      "valid_passed": true,
+      "missing_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "review_independence",
+        "acceptance_status"
+      ]
+    },
+    {
+      "valid_passed": true,
+      "missing_rejected": true,
+      "invalid_fields_rejected": [
+        "status",
+        "both_ranking_arms_passed",
+        "batch_size",
+        "optimizer_steps_per_arm",
+        "epochs_per_arm"
+      ]
+    }
+  ],
+  "command_cases": [
+    {
+      "ranking": "budgeted",
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_joint_b416_budgeted_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "ranking": "budgeted",
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_joint_b416_budgeted_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    },
+    {
+      "ranking": "pairwise",
+      "stage": "m0",
+      "root": "/data/gb/outputs/recoverability_joint_b416_pairwise_m0_20261004",
+      "epochs": 3,
+      "optimizer_steps": 9
+    },
+    {
+      "ranking": "pairwise",
+      "stage": "full",
+      "root": "/data/gb/outputs/recoverability_joint_b416_pairwise_full_20261004",
+      "epochs": 60,
+      "optimizer_steps": 180
+    }
+  ],
+  "both_replays_use_actual_arm_ranking": true,
+  "only_ranking_and_output_differ_between_arms": true,
+  "strict_first_max_and_best0_vs_trained_state_cases": "PASS",
+  "decision_label_fields_disjoint": true,
+  "selector_reads_only_decision_fields": true,
+  "evaluator_detail_fields": 21,
+  "python_version": "3.13.12 (main, Feb  3 2026, 22:53:26) [MSC v.1944 64 bit (AMD64)]",
+  "torch_imported": false,
+  "numpy_imported": false,
+  "neural_execution": false,
+  "ssh_used": false,
+  "gpu_used": false,
+  "runtime_certification": false
+}

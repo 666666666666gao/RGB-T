@@ -1,0 +1,29 @@
+{
+  "validation_clips": 128,
+  "write_verification": "action",
+  "full_steps": 180,
+  "m0_steps": 9,
+  "search_supervision": "oracle",
+  "seed": 42,
+  "purpose": "Match fullABC atbatch416 to freezecontrols and compare budgeted versus priorbest pairwise ranking without architecture changes",
+  "batch_size": 416,
+  "status": "SOURCE_REVIEW_PENDING",
+  "gpu_assignments": {
+    "budgeted": 0,
+    "pairwise": 3
+  },
+  "teacher": "own",
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "full_epochs": 60,
+  "m0_epochs": 3,
+  "source": "/data/gb/experiments/recoverability_joint_b416_20261004",
+  "frozen_runs_must_continue_unchanged": true,
+  "temperature_or_power_queries": false,
+  "all_trainable_modules": [
+    "A",
+    "B",
+    "C"
+  ],
+  "code_changes": "Runner/auditor only; trainer/model same accepted source",
+  "train_clips": 902
+}

@@ -1,0 +1,185 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "experiment-bridge Phase 2.5 fresh source-only review after one concrete interface fix",
+  "reviewer_routing": {
+    "agent_task": "/root/best_policy_collect_source_review",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "fresh_context": true,
+    "actual_model_independently_attested": false,
+    "actual_reasoning_effort_independently_attested": false,
+    "runtime_independently_attested": false,
+    "attribution": "Fresh Codex-family reviewer. Requested routing is recorded; the reviewer has no separate runtime model attestation."
+  },
+  "scope": "Local runner, CPU auditor, plan, alignment metadata, all four explicit-job files and unchanged collector/source interfaces. No actual NN, SSH, GPU, dataset, checkpoint or probe-output execution in this review.",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "resolved_blocking_issues": [
+    {
+      "issue": "The four jobs files initially contained bare lists, but the unchanged collector reads json.loads(...)[\"jobs\"], which would raise TypeError before collection.",
+      "evidence": "research/collect_recoverability.py:335 and the original four jobs files read during this review.",
+      "fix": "Root wrapped all four lists as {\"jobs\": [...]} and changed actual_probe_cpu_audit.py:36 to select ['jobs']. No main collector change.",
+      "verification": "Re-read corrected files, then executed the collector's exact AST jobs block on all four local files. Ordered queries match the prior full job lists exactly; rest counts become 886 and 112."
+    }
+  ],
+  "source_findings": [
+    {
+      "topic": "Experiment factor and scope",
+      "verdict": "Correct",
+      "evidence": "Runner supplies protected old4 checkpoint, future-policy own and action write verification. Existing collector strictly loads that checkpoint for learned prefixes and reuses that same model for own futures. Plan and alignment metadata state only a verified policy difference, with no proven failure cause or gain. Collection saves no weights."
+    },
+    {
+      "topic": "Same queries, split and runtime options",
+      "verdict": "Correct",
+      "evidence": "train probe16+rest886 exactly equals prior ordered902; validation probe16+rest112 exactly equals prior ordered128; all query pairs unique and partition sequence sets disjoint. Parser checks confirm root/cache/pretrained/head/motion defaults, max-prefix1024, batch-clips16, forward-batch64 and seed42. Explicit jobs override --clips16 by length at collector:334-343. Runtime auditor requires actual881/98 split and actual config equality with the old cache."
+    },
+    {
+      "topic": "GT coordinates and saved candidate boxes",
+      "verdict": "Correct source path",
+      "evidence": "config/_dataset/train-lasher.yaml standardizes XYXY/Continuous; MMOT memory-mapped frames return the stored bounding-box row. collect_rollouts.py:63-76 and collect_recoverability.py:75-81 decode and clip candidates to image coordinates. collector:212 saves the same boxes at float32; collector:233 computes current IoU from those source boxes and query GT. bounded_recovery.py:113 copies a chosen box, so later actions do not rewrite the saved source. Auditor:64-71 independently recomputes continuous XYXY intersection/union and compares only valid candidates at 1e-4 tolerance.",
+      "limit": "Exact remote cache metadata and actual probe arrays were not read by this source-only reviewer; root's actual CPU replay remains required."
+    },
+    {
+      "topic": "Valid and invalid actions",
+      "verdict": "Correct",
+      "evidence": "Missing extra regions retain zero arrays and valid=false. Current labels and future actions iterate np.flatnonzero(valid); regular actions are valid exactly for candidate-valid entries; pause actions additionally require raw_score>.84. The actual auditor checks both action-valid identities and masks invalid candidates from current-GT replay. The collector requires a valid original regular action at line284."
+    },
+    {
+      "topic": "Causal inputs and own-policy continuation",
+      "verdict": "Correct source path",
+      "evidence": "All19 DECISION_FIELDS exclude GT labels and motion_targets. Collector copies decision arrays before label/future processing; history is predicted through query-1. Actual auditor requires finite arrays and history_valid timestamps below query with maximum query-1. Each own action receives a private history deque and copied stats, commits via deployed accept_observation, and executes three deployed step calls; identity and motion updates return new tensors, and branch updates copy parent state."
+    },
+    {
+      "topic": "Deployment gates",
+      "verdict": "Correct",
+      "evidence": "Runner requires source PASS/same-family/provisional before neural launch. Rest additionally requires the actual CPU acceptance receipt with both_partitions_passed, prefix_epoch4, global-best future teacher and16 clips per partition. The actual auditor explicitly requires prefix_checkpoint_epoch==future_checkpoint_epoch==4 for both completed partitions, exact same16 job order and protected checkpoint SHA before emitting that receipt. Missing or invalid gate fields fail before CUDA export/collector launch. Output existence check prevents accidental overwrite."
+    },
+    {
+      "topic": "GPU routing and protected runs",
+      "verdict": "Correct within caller-supplied routing",
+      "evidence": "Plan assigns train toGPU1 and validation toGPU2. Runner selects only its supplied CUDA_VISIBLE_DEVICES and contains no stop, restart, cleanup or hardware-control commands. Root must use those planned arguments; GPU0/3 joint-B416 fits are outside this runner's actions."
+    }
+  ],
+  "checks": {
+    "receipt": "refine-logs/runs/recoverability_best_policy/source_checks.json",
+    "script": "refine-logs/runs/recoverability_best_policy/source_checks.py",
+    "status": "PASS",
+    "python_compile": "PASS",
+    "bash_syntax": "PASS",
+    "exact_collector_job_interface_cases": 4,
+    "gate_valid_cases": 2,
+    "gate_missing_receipt_rejections": 2,
+    "gate_invalid_field_rejections": 8,
+    "main_collector_and_related_production_git_diff_exit_code": 0,
+    "fixture_scope": "Source and in-memory synthetic interface/gate fixtures only. This is not actual probe acceptance or numerical dataset replay.",
+    "deployment_source_addendum": "PASS: both real CRLF/LF differences normalize byte-exactly; MMOT whole AST equal; launcher compiles and binds both remote raw copies, real symbol names and source gates before launch."
+  },
+  "source_sha256": {
+    "scripts/run_recoverability_best_policy_collect.sh": "dd02cb1e3455ae755dedf4c32fbec6787c68b81fe9cc5ec50f7d08cd51eb32c2",
+    "research/collect_recoverability.py": "a1a62cf88ce86ae15be906ada5e7c9c0435b72cc690f346915cff08de1c0f697",
+    "research/collect_rollouts.py": "d05319af5ef7b70890532e6112665318f5978713592247253927cb1216aad426",
+    "research/candidate_learning.py": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+    "research/recoverability_tracker.py": "60287e5b6610866309ac40c7e72778a55674004924dc3e5a6559627de53f966e",
+    "research/recoverability_modules.py": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+    "research/bounded_recovery.py": "20b3b710c777d8c00c0336cd9c7f402b8555bbe84bd952ce85a3f1208e0ce089",
+    "config/_dataset/train-lasher.yaml": "dd692d6646cb08d7ae546b175611e117c5167d7078ae10b56763af3d48de82e9",
+    "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+    "refine-logs/runs/recoverability_best_policy/actual_policy_alignment_metadata.json": "e2b2eee4af9ed80bfd328d14239fc0874c309b21192253611bf7a7f87a2a3a02",
+    "refine-logs/runs/recoverability_best_policy/actual_probe_cpu_audit.py": "dde2711ce0c665bdc56d7b7faa07a3d6dac5d90137e76805b5aa87f30393df0c",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_probe.json": "ec290d369d8afad81279f354c9c18cead2c577704004b53007f5383c514575bc",
+    "refine-logs/runs/recoverability_best_policy/jobs_train_rest.json": "d757846ecc69d77ab9f8d7a0df87ac0727ea4e26243561ae6af9a59c001974d7",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_probe.json": "2532fe8c77a7cb5caa9fede5af9aca54384c35aa564354719f4c7475df7a735c",
+    "refine-logs/runs/recoverability_best_policy/jobs_validation_rest.json": "0f59687f471350595fb790e2c711739ab7f9e71ac0c47cb1ed2682726b31628f",
+    "refine-logs/runs/recoverability_best_policy/plan.json": "c99a2cfb71ca3e512da97bd763fedc6529f6e8edcd012e5dceca8e8bb7453037",
+    "refine-logs/runs/recoverability_best_policy/source_checks.json": "bfb7e438280f314d06977a6d817272ad16ab8e6e050a5b7ac2b676e1e02ba070",
+    "refine-logs/runs/recoverability_best_policy/source_checks.py": "2f3db0a4fad359eaf7e5366999d4b9b7650e8b22a9d11c97d92db7833fdfcb86",
+    "refine-logs/runs/recoverability_best_policy/remote_train_lasher.yaml": "219e29c7fa010b5b477fef1904b63c312004502f2fa460dabbeea32f81580ce7",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_best_policy_probe_20261004.py": "7525151b2b740492d0e1145169d58afb8abe6e1138e3908c3014ead988a5c3ad",
+    "refine-logs/runs/recoverability_best_policy/remote_MMOT_dataset.py": "f14a86549de6fb029801010a935ce194c773ffa2a87e28683695f003e6a9ed43"
+  },
+  "next_gate": "Root may stage these reviewed sources and run16 TRAIN plus16 validation probes on planned GPU1/2. Remainder886/112 remains blocked until actual_probe_cpu_audit.py succeeds on both real probe outputs and writes the actual acceptance receipt.",
+  "execution": {
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "dataset_reads": 0,
+    "checkpoint_loads": 0,
+    "actual_probe_outputs_read": false,
+    "new_weights": 0,
+    "production_edits_by_reviewer": false,
+    "actual_probe_acceptance": false
+  },
+  "deployment_source_addendum": {
+    "status": "PASS",
+    "reviewed_at_cst": "2026-10-04T18:30:20.214358+08:00",
+    "prior_review_sha256": "d4e4218c8ce7ca36926d9b64e5a055bd32eede7f609db50adfd9c7ad5a21375a",
+    "scope": "Downloaded remote YAML and MMOT Python source bytes plus local deployment launcher source only. Neither remote launch nor remote inference-model AST comparison was executed by this reviewer.",
+    "YAML": {
+      "local_path": "config/_dataset/train-lasher.yaml",
+      "remote_copy_path": "refine-logs/runs/recoverability_best_policy/remote_train_lasher.yaml",
+      "local_bytes": 655,
+      "remote_bytes": 632,
+      "local_CRLF_count": 23,
+      "remote_LF_count": 23,
+      "local_sha256": "dd692d6646cb08d7ae546b175611e117c5167d7078ae10b56763af3d48de82e9",
+      "remote_sha256": "219e29c7fa010b5b477fef1904b63c312004502f2fa460dabbeea32f81580ce7",
+      "raw_bytes_equal": false,
+      "CRLF_to_LF_bytes_equal": true,
+      "only_difference": "All 23 CRLF line endings in the local file are LF in the remote file; no other byte difference.",
+      "semantic_effect": "None. Both define the same LasHeR TRAIN-only XYXY/Continuous annotation standard and filters.",
+      "production_file_changed": false
+    },
+    "launcher": {
+      "path": "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_best_policy_probe_20261004.py",
+      "sha256": "7525151b2b740492d0e1145169d58afb8abe6e1138e3908c3014ead988a5c3ad",
+      "compile": "PASS",
+      "executed_by_reviewer": false,
+      "remote_YAML_binding": "Binds the server YAML raw bytes to source_sha256[refine-logs/runs/recoverability_best_policy/remote_train_lasher.yaml], retaining separate local and remote hashes.",
+      "inference_symbols": [
+        "InstanceMemory",
+        "RecoverabilityModules",
+        "select_actions",
+        "DECISION_FIELDS"
+      ],
+      "symbol_name_check": "PASS: all four symbols exist in local reviewed source; the real class name is RecoverabilityModules.",
+      "guard_order": "Exact staged-source, five research-source, YAML, MMOT dataset and frozen-model checks plus four-symbol AST comparison precede GPU memory query and neural launch.",
+      "GPU_assignment": "Only train GPU1 and validation GPU2 probe launches; GPU0/3 are never launched, stopped or modified.",
+      "remote_MMOT_dataset_binding": "Binds the server MMOT dataset.py raw bytes to source_sha256[refine-logs/runs/recoverability_best_policy/remote_MMOT_dataset.py], retaining separate local and remote hashes."
+    },
+    "frozen_main_model": {
+      "remote_path": "/data/gb/GOLA/research/recoverability_modules.py",
+      "frozen_remote_sha256": "371269db053cdbd38b510557e213f1acfb9c6427e6eabd2df5685c59bdfbb158",
+      "local_reviewed_sha256": "082945bc2742c046dc75439ec41e2d37e209974d4afc72a8f1cbb5b096824aaa",
+      "whole_source_bytes_equal": false,
+      "required_equivalence": "AST equality for InstanceMemory, RecoverabilityModules, select_actions and DECISION_FIELDS; whole-file equality is not claimed.",
+      "root_reported_actual_inference_AST_equivalence": true,
+      "reviewer_independently_reexecuted_remote_AST_comparison": false,
+      "launcher_rechecks_before_launch": true,
+      "production_source_changed": false
+    },
+    "source_checks_receipt": "refine-logs/runs/recoverability_best_policy/source_checks.json",
+    "remaining_gate": "Actual 16+16 probe collection and root CPU acceptance are still required before rest.",
+    "updated_at_cst": "2026-10-04T18:32:48.007135+08:00",
+    "previous_addendum_review_sha256": "f9b2c2b89479d347dfdaa2bb4b73a5f3546e41e8852fa05b8f8dbc2221c0fadf",
+    "MMOT_dataset": {
+      "local_path": "trackit/datasets/MMOT/specialization/memory_mapped/dataset.py",
+      "remote_copy_path": "refine-logs/runs/recoverability_best_policy/remote_MMOT_dataset.py",
+      "local_bytes": 8759,
+      "remote_bytes": 8571,
+      "local_CRLF_count": 188,
+      "remote_LF_count": 188,
+      "local_sha256": "0013e24cda260a9c3abcbfed76385efde4b6186c65e1f1c41df87ee2c65f5caf",
+      "remote_sha256": "f14a86549de6fb029801010a935ce194c773ffa2a87e28683695f003e6a9ed43",
+      "raw_bytes_equal": false,
+      "CRLF_to_LF_bytes_equal": true,
+      "full_Python_AST_equal": true,
+      "only_difference": "All 188 CRLF line endings in the local file are LF in the remote file; no other byte difference.",
+      "semantic_effect": "None. Dataset frame access and stored GT bounding-box layout are unchanged.",
+      "production_source_changed": false
+    },
+    "root_reported_other_five_research_sources_strict_sha_pass": true
+  }
+}
