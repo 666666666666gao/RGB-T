@@ -1,0 +1,544 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewer_agent": "/root/recoverability_online_review",
+  "reviewed_utc": "2026-10-04T02:21:10.418545+00:00",
+  "scope": "Independent CPU-only small-label recomputation of the latest four merged TRAIN/validation diagnostics. Source inspected; only seven named NPZ members read once per archive. No NN, embedding arrays, formal test data, training or queue mutation.",
+  "inputs": {
+    "root": "/data/gb/outputs/recoverability_future_policy_merged_20261004",
+    "diagnostic_script": "/data/gb/setup/future_policy_label_diagnostic_20261004.py",
+    "diagnostic_script_sha256": "878da111bb6da6db51ce1ea5827920a61370a85e033bfaa35637a57da6ba97f0",
+    "diagnostic_json": "/data/gb/setup/future_policy_actual_label_diagnostic_20261004.json",
+    "diagnostic_json_sha256": "221bdc0254da3ab068b43f9f3a98682b774f40d280d8eeeb54e4ccd955544558",
+    "local_remote_script_and_record_match": true,
+    "label_members_read": [
+      "current_iou",
+      "future_iou",
+      "wrong_update_fraction",
+      "valid",
+      "action_valid",
+      "original_choice",
+      "raw_score"
+    ],
+    "total_decoded_label_array_bytes": 3116780,
+    "archives_read": 4,
+    "queries_per_teacher": 1030,
+    "ordered_train_validation_split_disjoint": true,
+    "unique_train_queries": 902,
+    "unique_validation_queries": 128
+  },
+  "schema_and_source_checks": {
+    "shapes_finite_ranges_verified": true,
+    "regular_legal_exactly_valid": true,
+    "pause_legal_exactly_valid_and_raw_above084": true,
+    "original_regular_keep_legal_all_queries": true,
+    "wrong_update_fraction_is_quarters": true,
+    "future_horizon": 3,
+    "source_utility": "0.7 current_iou + 0.3 mean(three future IoUs) - 0.1 wrong_update_fraction",
+    "wrong_update_denominator": "query plus 3 future frames, divided by 4",
+    "relative_reference": "Original-region stored original_choice with regular action (pause=0), same state and same teacher",
+    "search_cost": ".01 per chosen extra region; no charge for original-region action",
+    "strict_oracle": "Max over legal cached actions. Select maximum only if net > .03, otherwise original regular keep; deterministic first flat index on exact tie.",
+    "flat_action_index": "region*10 + candidate*2 + pause",
+    "pause_gain": "Utility(pause)-Utility(regular) for the same writable spatial candidate; current IoU and region cost cancel.",
+    "source_phase_boundary": "C1 future teacher changes query template write and follows 3 frozen C1 steps. Own future teacher commits deployed template/identity/motion state and follows 3 frozen own-policy steps; both have identical query labels/masks here."
+  },
+  "recomputed": {
+    "c1": {
+      "train": {
+        "queries": 902,
+        "labels_loaded_nbytes": 1364726,
+        "shapes": {
+          "current_iou": [
+            902,
+            7,
+            5
+          ],
+          "future_iou": [
+            902,
+            7,
+            5,
+            2,
+            3
+          ],
+          "wrong_update_fraction": [
+            902,
+            7,
+            5,
+            2
+          ],
+          "valid": [
+            902,
+            7,
+            5
+          ],
+          "action_valid": [
+            902,
+            7,
+            5,
+            2
+          ],
+          "original_choice": [
+            902
+          ],
+          "raw_score": [
+            902,
+            7,
+            5
+          ]
+        },
+        "dtypes": {
+          "current_iou": "float32",
+          "future_iou": "float32",
+          "wrong_update_fraction": "float32",
+          "valid": "bool",
+          "action_valid": "bool",
+          "original_choice": "int64",
+          "raw_score": "float32"
+        },
+        "summary_recomputed": {
+          "queries": 902,
+          "valid_candidates": 31255,
+          "valid_actions": 32990,
+          "strict_oracle_threshold": 0.03,
+          "max_positive_pause_gain": 0.3668779730796814,
+          "keep_failed_queries": 206,
+          "keep_correct_queries": 668,
+          "local_missing_queries": 222,
+          "local_missing_with_extra_correct_queries": 82,
+          "among_missing_found_with_correct_extra_net_gt_003": 82,
+          "positive_net_gt_005_actions": 1845,
+          "queries_with_positive_net_gt_005": 281,
+          "harmful_current_actions_with_positive_net_gt_005": 0,
+          "queries_with_harmful_current_positive_net_gt_005": 0,
+          "unthresholded_net_oracle_changed_location_queries": 580,
+          "net_oracle_changed_location_queries": 348,
+          "net_oracle_rescue_queries": 75,
+          "net_oracle_harm_queries": 0,
+          "legal_pause_actions": 1735,
+          "legal_pause_gain_above_003": 147,
+          "legal_pause_gain_below_minus003": 13,
+          "keep_raw_above084_queries": 422
+        },
+        "all_query_records_verified": 902,
+        "strict_changed_action_queries": 348,
+        "strict_pause_only_keep_queries": 0,
+        "strict_kept_original_regular_below_or_equal_003_queries": 554,
+        "best_net_exact_tie_queries": 56,
+        "oracle_current_transition_rows_keep_cols_oracle_failed_intermediate_correct": [
+          [
+            81,
+            50,
+            75
+          ],
+          [
+            0,
+            10,
+            18
+          ],
+          [
+            0,
+            0,
+            668
+          ]
+        ],
+        "all_legal_keep_correct_to_failed_actions": 8516,
+        "those_harmful_actions_with_net_above_0": 0,
+        "those_harmful_actions_with_net_above_003": 0,
+        "float32_numpy_precision_check": {
+          "selected_action_differences": 0,
+          "selected_location_differences": 0,
+          "threshold_decision_differences": 0,
+          "not_an_NN_or_GPU_witness": true
+        }
+      },
+      "validation": {
+        "queries": 128,
+        "labels_loaded_nbytes": 193664,
+        "shapes": {
+          "current_iou": [
+            128,
+            7,
+            5
+          ],
+          "future_iou": [
+            128,
+            7,
+            5,
+            2,
+            3
+          ],
+          "wrong_update_fraction": [
+            128,
+            7,
+            5,
+            2
+          ],
+          "valid": [
+            128,
+            7,
+            5
+          ],
+          "action_valid": [
+            128,
+            7,
+            5,
+            2
+          ],
+          "original_choice": [
+            128
+          ],
+          "raw_score": [
+            128,
+            7,
+            5
+          ]
+        },
+        "dtypes": {
+          "current_iou": "float32",
+          "future_iou": "float32",
+          "wrong_update_fraction": "float32",
+          "valid": "bool",
+          "action_valid": "bool",
+          "original_choice": "int64",
+          "raw_score": "float32"
+        },
+        "summary_recomputed": {
+          "queries": 128,
+          "valid_candidates": 4445,
+          "valid_actions": 4774,
+          "strict_oracle_threshold": 0.03,
+          "max_positive_pause_gain": 0.18972661942243577,
+          "keep_failed_queries": 10,
+          "keep_correct_queries": 115,
+          "local_missing_queries": 10,
+          "local_missing_with_extra_correct_queries": 3,
+          "among_missing_found_with_correct_extra_net_gt_003": 3,
+          "positive_net_gt_005_actions": 174,
+          "queries_with_positive_net_gt_005": 31,
+          "harmful_current_actions_with_positive_net_gt_005": 0,
+          "queries_with_harmful_current_positive_net_gt_005": 0,
+          "unthresholded_net_oracle_changed_location_queries": 79,
+          "net_oracle_changed_location_queries": 45,
+          "net_oracle_rescue_queries": 5,
+          "net_oracle_harm_queries": 0,
+          "legal_pause_actions": 329,
+          "legal_pause_gain_above_003": 28,
+          "legal_pause_gain_below_minus003": 0,
+          "keep_raw_above084_queries": 70
+        },
+        "all_query_records_verified": 128,
+        "strict_changed_action_queries": 45,
+        "strict_pause_only_keep_queries": 0,
+        "strict_kept_original_regular_below_or_equal_003_queries": 83,
+        "best_net_exact_tie_queries": 2,
+        "oracle_current_transition_rows_keep_cols_oracle_failed_intermediate_correct": [
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            115
+          ]
+        ],
+        "all_legal_keep_correct_to_failed_actions": 1366,
+        "those_harmful_actions_with_net_above_0": 0,
+        "those_harmful_actions_with_net_above_003": 0,
+        "float32_numpy_precision_check": {
+          "selected_action_differences": 0,
+          "selected_location_differences": 0,
+          "threshold_decision_differences": 0,
+          "not_an_NN_or_GPU_witness": true
+        }
+      }
+    },
+    "own": {
+      "train": {
+        "queries": 902,
+        "labels_loaded_nbytes": 1364726,
+        "shapes": {
+          "current_iou": [
+            902,
+            7,
+            5
+          ],
+          "future_iou": [
+            902,
+            7,
+            5,
+            2,
+            3
+          ],
+          "wrong_update_fraction": [
+            902,
+            7,
+            5,
+            2
+          ],
+          "valid": [
+            902,
+            7,
+            5
+          ],
+          "action_valid": [
+            902,
+            7,
+            5,
+            2
+          ],
+          "original_choice": [
+            902
+          ],
+          "raw_score": [
+            902,
+            7,
+            5
+          ]
+        },
+        "dtypes": {
+          "current_iou": "float32",
+          "future_iou": "float32",
+          "wrong_update_fraction": "float32",
+          "valid": "bool",
+          "action_valid": "bool",
+          "original_choice": "int64",
+          "raw_score": "float32"
+        },
+        "summary_recomputed": {
+          "queries": 902,
+          "valid_candidates": 31255,
+          "valid_actions": 32990,
+          "strict_oracle_threshold": 0.03,
+          "max_positive_pause_gain": 0.3668779730796814,
+          "keep_failed_queries": 206,
+          "keep_correct_queries": 668,
+          "local_missing_queries": 222,
+          "local_missing_with_extra_correct_queries": 82,
+          "among_missing_found_with_correct_extra_net_gt_003": 82,
+          "positive_net_gt_005_actions": 1842,
+          "queries_with_positive_net_gt_005": 282,
+          "harmful_current_actions_with_positive_net_gt_005": 0,
+          "queries_with_harmful_current_positive_net_gt_005": 0,
+          "unthresholded_net_oracle_changed_location_queries": 583,
+          "net_oracle_changed_location_queries": 350,
+          "net_oracle_rescue_queries": 74,
+          "net_oracle_harm_queries": 0,
+          "legal_pause_actions": 1735,
+          "legal_pause_gain_above_003": 147,
+          "legal_pause_gain_below_minus003": 13,
+          "keep_raw_above084_queries": 422
+        },
+        "all_query_records_verified": 902,
+        "strict_changed_action_queries": 350,
+        "strict_pause_only_keep_queries": 0,
+        "strict_kept_original_regular_below_or_equal_003_queries": 552,
+        "best_net_exact_tie_queries": 54,
+        "oracle_current_transition_rows_keep_cols_oracle_failed_intermediate_correct": [
+          [
+            81,
+            51,
+            74
+          ],
+          [
+            0,
+            10,
+            18
+          ],
+          [
+            0,
+            0,
+            668
+          ]
+        ],
+        "all_legal_keep_correct_to_failed_actions": 8516,
+        "those_harmful_actions_with_net_above_0": 0,
+        "those_harmful_actions_with_net_above_003": 0,
+        "float32_numpy_precision_check": {
+          "selected_action_differences": 0,
+          "selected_location_differences": 0,
+          "threshold_decision_differences": 0,
+          "not_an_NN_or_GPU_witness": true
+        }
+      },
+      "validation": {
+        "queries": 128,
+        "labels_loaded_nbytes": 193664,
+        "shapes": {
+          "current_iou": [
+            128,
+            7,
+            5
+          ],
+          "future_iou": [
+            128,
+            7,
+            5,
+            2,
+            3
+          ],
+          "wrong_update_fraction": [
+            128,
+            7,
+            5,
+            2
+          ],
+          "valid": [
+            128,
+            7,
+            5
+          ],
+          "action_valid": [
+            128,
+            7,
+            5,
+            2
+          ],
+          "original_choice": [
+            128
+          ],
+          "raw_score": [
+            128,
+            7,
+            5
+          ]
+        },
+        "dtypes": {
+          "current_iou": "float32",
+          "future_iou": "float32",
+          "wrong_update_fraction": "float32",
+          "valid": "bool",
+          "action_valid": "bool",
+          "original_choice": "int64",
+          "raw_score": "float32"
+        },
+        "summary_recomputed": {
+          "queries": 128,
+          "valid_candidates": 4445,
+          "valid_actions": 4774,
+          "strict_oracle_threshold": 0.03,
+          "max_positive_pause_gain": 0.18972661942243577,
+          "keep_failed_queries": 10,
+          "keep_correct_queries": 115,
+          "local_missing_queries": 10,
+          "local_missing_with_extra_correct_queries": 3,
+          "among_missing_found_with_correct_extra_net_gt_003": 3,
+          "positive_net_gt_005_actions": 178,
+          "queries_with_positive_net_gt_005": 31,
+          "harmful_current_actions_with_positive_net_gt_005": 0,
+          "queries_with_harmful_current_positive_net_gt_005": 0,
+          "unthresholded_net_oracle_changed_location_queries": 79,
+          "net_oracle_changed_location_queries": 45,
+          "net_oracle_rescue_queries": 5,
+          "net_oracle_harm_queries": 0,
+          "legal_pause_actions": 329,
+          "legal_pause_gain_above_003": 28,
+          "legal_pause_gain_below_minus003": 0,
+          "keep_raw_above084_queries": 70
+        },
+        "all_query_records_verified": 128,
+        "strict_changed_action_queries": 45,
+        "strict_pause_only_keep_queries": 0,
+        "strict_kept_original_regular_below_or_equal_003_queries": 83,
+        "best_net_exact_tie_queries": 2,
+        "oracle_current_transition_rows_keep_cols_oracle_failed_intermediate_correct": [
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            115
+          ]
+        ],
+        "all_legal_keep_correct_to_failed_actions": 1366,
+        "those_harmful_actions_with_net_above_0": 0,
+        "those_harmful_actions_with_net_above_003": 0,
+        "float32_numpy_precision_check": {
+          "selected_action_differences": 0,
+          "selected_location_differences": 0,
+          "threshold_decision_differences": 0,
+          "not_an_NN_or_GPU_witness": true
+        }
+      }
+    }
+  },
+  "teacher_comparison": {
+    "train": {
+      "same_ordered_queries": true,
+      "same_query_spatial_and_legality_arrays": {
+        "current_iou": true,
+        "valid": true,
+        "action_valid": true,
+        "original_choice": true,
+        "raw_score": true
+      },
+      "valid_future_iou_scalar_changes": 4717,
+      "queries_with_changed_future_labels": 629,
+      "valid_wrong_update_fraction_changes": 49,
+      "queries_with_changed_wrong_update_labels": 26,
+      "strict_oracle_action_changes_between_teachers": 12,
+      "strict_oracle_location_changes_between_teachers": 12
+    },
+    "validation": {
+      "same_ordered_queries": true,
+      "same_query_spatial_and_legality_arrays": {
+        "current_iou": true,
+        "valid": true,
+        "action_valid": true,
+        "original_choice": true,
+        "raw_score": true
+      },
+      "valid_future_iou_scalar_changes": 745,
+      "queries_with_changed_future_labels": 101,
+      "valid_wrong_update_fraction_changes": 4,
+      "queries_with_changed_wrong_update_labels": 4,
+      "strict_oracle_action_changes_between_teachers": 0,
+      "strict_oracle_location_changes_between_teachers": 0
+    }
+  },
+  "verification": {
+    "all_2060_query_label_records_match": true,
+    "all_reported_summary_fields_match": true,
+    "maximum_absolute_float_error": 0.0,
+    "exact_mismatches": []
+  },
+  "limits": [
+    "All six cached extra regions are inspected by this GT oracle. This is a retrospective per-query utility upper bound over recorded legal actions, not the deployed one-extra-forward policy, an online accuracy, or a prediction of retrained-model performance.",
+    "The GT oracle charges .01 to its chosen extra region. It does not charge all six label-collection forwards, predict the online search trigger, or evaluate identical actual search budgets.",
+    "Strict changed-location counts exclude pause-only actions at the original keep box. Unthresholded 580/583 TRAIN and 79 validation location changes remain separately labeled upper-bound counts.",
+    "Rescue means keep current IoU<.2 and oracle current IoU>=.5; harm means keep current IoU>=.5 and oracle current IoU<.2. Zero severe harms does not mean no IoU degradations or no drops below .5; transition matrices retain intermediate outcomes.",
+    "82 TRAIN and 3 validation local-missing recoveries describe the spatial candidate coverage that is exactly shared between teachers. They do not measure teacher rollout quality or online candidate acquisition.",
+    "No conflicting legal action with net>.05 was observed under the defined severe-harm test. This finite sample does not prove absence of other risks or learned miscalibration.",
+    "TRAIN902/validation128 are sampled query states within the original 881/98 training-video partition. They are not full-video counts, independent training seeds, or native-test results.",
+    "Both teachers share the frozen learned epoch4 query prefix; changing future policy compares continuation labels, not C1 versus own online-prefix performance.",
+    "Arithmetic independently recomputed from saved label values, with float64 diagnostic math. Actual GT/NN continuation generation was source-checked and previously gated, not rerun in this review."
+  ],
+  "reviewer_actions": {
+    "NN_imports": 0,
+    "NN_forward": 0,
+    "GPU_runs": 0,
+    "embedding_arrays_read": 0,
+    "original_16_shard_arrays_reloaded": 0,
+    "production_source_edits": 0,
+    "training_or_process_mutations": 0,
+    "raw_diagnostic_changes": 0,
+    "machine_review_JSON_copies": 2
+  }
+}

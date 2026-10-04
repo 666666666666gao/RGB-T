@@ -37,7 +37,7 @@
     },
     {
       "id": "S2_realizable_search_selection_update",
-      "status": "BOTH_NATIVE_COMPLETE_ALL5_POSITIVE_BELOW_PLUS2; PAIRED_CACHE_AND_ACTUAL_M0_CPU_PASS; MATCHED_B384_FULL_FITS_ACTIVE",
+      "status": "BOTH_NATIVE_BEST4_COMPLETE_ALL5_POSITIVE_BELOW_PLUS2; BOTH_MATCHED_B384_FULL_FITS60_EPOCHS180_UPDATES_COMPLETE; FULL98_EVAL_ACTIVE",
       "work_order": [
         "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
         "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
@@ -524,7 +524,7 @@
         "best_internal_ci_contains_zero": true
       },
       "current_future_teacher_factor": {
-        "status": "All16 source collections and exact paired902TRAIN128VAL merge PASS; both real B384 M0s3epochs9updates independentCPU acceptance PASS; fresh matched full60epochs180updates on GPU0c1/GPU2own actually launched10:02:24.",
+        "status": "Matched fresh full60epoch180update fits complete; C1teacher selectedepoch56, ownteacher55. Both ABC runtimechanged/frozenC1/strictreloadPASS. Automatic original98 full continuous evaluations active on GPU0/2; actual GT final reports pending.",
         "started_cst": "2026-10-04T07:02:07+08:00",
         "train_queries": 902,
         "validation_queries": 128,
@@ -723,6 +723,306 @@
             3134348
           ],
           "official_goal_completed": false
+        },
+        "actual_GT_label_diagnostic": {
+          "status": "PASS_OFFLINE_LABELS_ONLY_INDEPENDENT_CPU_REVIEW",
+          "review_independence": "same-family",
+          "acceptance_status": "provisional",
+          "train_queries": 902,
+          "validation_queries": 128,
+          "train_local_missing": 222,
+          "train_missing_reintroduced": 82,
+          "all82_correct_extra_actions_net_above003": true,
+          "validation_local_missing": 10,
+          "validation_missing_reintroduced": 3,
+          "all3_correct_extra_actions_net_above003": true,
+          "strict_oracle_train_rescues": [
+            75,
+            74
+          ],
+          "strict_oracle_validation_rescues": [
+            5,
+            5
+          ],
+          "strict_oracle_harms_all": 0,
+          "teacher_changed_future_queries_train": 629,
+          "teacher_changed_future_queries_validation": 101,
+          "teacher_changed_strict_oracle_location_train": 12,
+          "teacher_changed_strict_oracle_location_validation": 0,
+          "diagnostic": "refine-logs/runs/recoverability_future_policy/actual_label_diagnostic.json",
+          "diagnostic_sha256": "221bdc0254da3ab068b43f9f3a98682b774f40d280d8eeeb54e4ccd955544558",
+          "review": "refine-logs/runs/recoverability_future_policy/actual_label_diagnostic_cpu_review.json",
+          "review_sha256": "815f3081000e6d2f25f000e4c11ffea0222c5281fef790adfe73370cd7113db5",
+          "meaning": "Available recovery labels are not absent and do not reward severe current harm in this data; validation covers only3 missing/reintroduced states. Still need full continuous videos. GTmax across6cached extra regions is an upper bound, not deployable one-forward recovery.",
+          "new_model_performance_claim": false
+        },
+        "actual_completed_full_training": {
+          "c1": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 180,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10846714675426483,
+              "B": 13.96657943725586,
+              "C": 2.615239143371582
+            },
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 1243.0998281748034,
+            "peak_cuda_mib": 14190.64404296875,
+            "best_epoch": 56,
+            "best_validation": {
+              "clips": 128,
+              "loss": 1.1734129190444946,
+              "valid_actions": 4774,
+              "current": 0.754052996635437,
+              "c1_current": 0.7492051124572754,
+              "utility_before_search_cost": 0.7522084712982178,
+              "utility": 0.7515053749084473,
+              "c1_utility": 0.7482289671897888,
+              "pause": 0,
+              "search_triggered": 9,
+              "changed_location": 3,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 7,
+              "c1_failed": 10,
+              "original_recall": 118,
+              "budget_recall": 118,
+              "missing_candidate_found": 0,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": 0.004847884178161621,
+              "utility_gain_against_c1": 0.0032764077186584473
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 128,
+              "loss": 1.1708766222000122,
+              "valid_actions": 4774,
+              "current": 0.7528958320617676,
+              "c1_current": 0.7492051124572754,
+              "utility_before_search_cost": 0.7512352466583252,
+              "utility": 0.7502977848052979,
+              "c1_utility": 0.7482289671897888,
+              "pause": 1,
+              "search_triggered": 12,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 9,
+              "c1_failed": 10,
+              "original_recall": 118,
+              "budget_recall": 118,
+              "missing_candidate_found": 0,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": 0.0036907196044921875,
+              "utility_gain_against_c1": 0.002068817615509033
+            },
+            "retained_weights": [
+              "best.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "own": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 180,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10773993283510208,
+              "B": 14.03406810760498,
+              "C": 2.610682725906372
+            },
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 1241.3535765190609,
+            "peak_cuda_mib": 14190.64404296875,
+            "best_epoch": 55,
+            "best_validation": {
+              "clips": 128,
+              "loss": 1.181112289428711,
+              "valid_actions": 4774,
+              "current": 0.754052996635437,
+              "c1_current": 0.7492051124572754,
+              "utility_before_search_cost": 0.7522330284118652,
+              "utility": 0.7516080141067505,
+              "c1_utility": 0.7482534646987915,
+              "pause": 0,
+              "search_triggered": 8,
+              "changed_location": 3,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 7,
+              "c1_failed": 10,
+              "original_recall": 118,
+              "budget_recall": 118,
+              "missing_candidate_found": 0,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": 0.004847884178161621,
+              "utility_gain_against_c1": 0.0033545494079589844
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 128,
+              "loss": 1.1641669273376465,
+              "valid_actions": 4774,
+              "current": 0.7528958320617676,
+              "c1_current": 0.7492051124572754,
+              "utility_before_search_cost": 0.7512619495391846,
+              "utility": 0.750402569770813,
+              "c1_utility": 0.7482534646987915,
+              "pause": 1,
+              "search_triggered": 11,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 9,
+              "c1_failed": 10,
+              "original_recall": 118,
+              "budget_recall": 118,
+              "missing_candidate_found": 0,
+              "wrong_update_fraction": 0.0078125,
+              "c1_wrong_update_fraction": 0.0078125,
+              "current_gain_against_c1": 0.0036907196044921875,
+              "utility_gain_against_c1": 0.0021491050720214844
+            },
+            "retained_weights": [
+              "best.pth"
+            ],
+            "official_tracking_accuracy": false
+          }
+        },
+        "actual_full98_and_native_live": {
+          "observed_cst": "2026-10-04T10:35:33.380173+08:00",
+          "runs": {
+            "future_c1": {
+              "pid": 3276222,
+              "handle_live": true,
+              "completed_sequences": 16,
+              "expected_sequences": 98,
+              "completed_frames": 18897,
+              "tracking_seconds": 702.8457903852686,
+              "last_sequence": "aboy_1202",
+              "inference_complete": false
+            },
+            "future_own": {
+              "pid": 3276172,
+              "handle_live": true,
+              "completed_sequences": 13,
+              "expected_sequences": 98,
+              "completed_frames": 11530,
+              "tracking_seconds": 461.70634609274566,
+              "last_sequence": "ab_mototurn",
+              "inference_complete": false
+            },
+            "native_no_search": {
+              "pid": 3134348,
+              "handle_live": true,
+              "completed_sequences": 117,
+              "expected_sequences": 245,
+              "completed_frames": 110006,
+              "tracking_seconds": 5452.543016451877,
+              "last_sequence": "catbrownback2bush",
+              "inference_complete": false
+            },
+            "native_raw_write": {
+              "pid": 3225109,
+              "handle_live": true,
+              "completed_sequences": 79,
+              "expected_sequences": 245,
+              "completed_frames": 65639,
+              "tracking_seconds": 2360.0903082299046,
+              "last_sequence": "boy2buildings",
+              "inference_complete": false
+            }
+          }
+        },
+        "unused_m0_weight_cleanup": {
+          "status": "COMPLETE",
+          "observed_cst": "2026-10-04T10:34:03.509105+08:00",
+          "deleted": [
+            {
+              "path": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004/best.pth",
+              "bytes": 1732724,
+              "sha256": "1c22212246d04475bff470e38f0f2cfe691a9e9bf71cc9e59ef248984fe24f2a",
+              "epoch": 0,
+              "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+            },
+            {
+              "path": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004/best.pth",
+              "bytes": 1732724,
+              "sha256": "87993ae0471b56b3f91c96d27c181d74dbd94e33ec2c31c6f9d6c7d625144b11",
+              "epoch": 0,
+              "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+            }
+          ],
+          "files_deleted": 2,
+          "bytes_reclaimed": 3465448,
+          "protected_weights": [
+            "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+            "/data/gb/outputs/c1_initial_seed42/best.pth",
+            "/data/gb/outputs/abc_joint_v1_seed42/last.pth",
+            "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+            "/data/gb/outputs/recoverability_future_c1_b384_full_20261004/best.pth",
+            "/data/gb/outputs/recoverability_future_own_b384_full_20261004/best.pth"
+          ],
+          "protected_all_exist": true,
+          "raw_metrics_deleted": false,
+          "current_eval_or_model_source_changed": false
+        },
+        "actual_val_decision_margin_probe": {
+          "status": "PASS_ACTUAL_CPU_FIXED_STATE_DIAGNOSTIC",
+          "observed_cst": "2026-10-04T10:42:18+08:00",
+          "queries": 128,
+          "model_epoch": 55,
+          "selection": {
+            "changed_location": 3,
+            "pause": 0,
+            "search_triggered": 8,
+            "selected_extra": 3,
+            "selected_correct_after_missing_recall": 0,
+            "oracle_positive_queries_intervened": 3,
+            "mean_gt_net_gain_vs_keep": 0.003354518674314022
+          },
+          "missing_cases": [
+            {
+              "sequence": "motobesidescar",
+              "frame": 18,
+              "gt_best_correct_extra_net": 0.14360322058200836,
+              "model_best_correct_extra_score": 0.019528230652213097,
+              "forced_all6_keep": true
+            },
+            {
+              "sequence": "Aboydownbike",
+              "frame": 345,
+              "gt_best_correct_extra_net": 0.7992449998855591,
+              "model_best_correct_extra_score": -0.13649772107601166,
+              "forced_all6_keep": true
+            },
+            {
+              "sequence": "ab_mototurn",
+              "frame": 24,
+              "gt_best_correct_extra_net": 0.30300173163414,
+              "model_best_correct_extra_score": -0.06807640194892883,
+              "forced_all6_keep": true
+            }
+          ],
+          "positive_tanh_saturation_rejected": true,
+          "CPU_GPU_all_choices_exact": true,
+          "source_or_threshold_changed": false,
+          "boundary": "Same own4-prefix/own4-future VAL; different original training caches. Fixed-state diagnostic only, not native or continuous performance.",
+          "record": "refine-logs/runs/recoverability_future_policy/actual_val_decision_margin_probe.json",
+          "sha256": "e52c0d87cbb07b007082d441212c901f31a85dc1a60d398c6678677fd57301a1"
         }
       },
       "actual_native_no_search_control": {
@@ -836,13 +1136,13 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "GPU0": "future C1 teacher fresh B384 60epoch/180update fit; then full98",
-      "GPU1": "fixed own4 native Las raw-write full245/220703",
-      "GPU2": "future own4 teacher fresh B38460epoch/180update fit; then full98",
-      "GPU3": "fixed own4 native Las no-search full245/220703"
+      "GPU0": "new C1teacher epoch56 full98 internal inference PID3276222",
+      "GPU1": "fixed own4 native Las raw-write full245/220703 PID3225109",
+      "GPU2": "new ownteacher epoch55 full98 internal inference PID3276172",
+      "GPU3": "fixed own4 native Las no-search full245/220703 PID3134348"
     },
     "gpu_memory_request": {
-      "status": "MATCHED_FRESH_FULL_B384_FITS_ACTIVE_GPU0_GPU2; GPU1_GPU3_FULL_NATIVE_CONTROLS_ACTIVE",
+      "status": "BOTH_REAL_B38460_EPOCH180_UPDATE_FITS_COMPLETE; ALL4_NOW_SERIAL_FULL_VIDEO_EVALUATIONS",
       "policy": "Use actual batch384 training to occupy useful GPU memory; previous real B384 fits reached about21GB/card; batch512 long training OOM. Current new M0 peak allocation14190.2788MiB. Serial evaluation stays unchanged; no allocation padding or temperature/power controls.",
       "batch_size": 384,
       "sanity_epochs": 3,
@@ -869,14 +1169,23 @@
         "GPU3": 851
       },
       "latest_fullfit_allocated_peak_mib": 14190.64404296875,
-      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_future_policy/full_fit_initial_runtime.json"
+      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_future_policy/full_fit_initial_runtime.json",
+      "latest_user_preference": "Use more GPU memory for useful work. Actual B384 training uses about20GB/card; B512 epoch3 OOM prevents unchanged retry. Four serial evaluators currently active; do not alter causal video evaluation or allocate padding.",
+      "current_observed_cst": "2026-10-04T10:48:07+08:00",
+      "current_evaluation_nvidia_mib_by_gpu": {
+        "GPU0": 1180,
+        "GPU1": 851,
+        "GPU2": 851,
+        "GPU3": 851
+      }
     },
-    "next_check_cst": "2026-10-04T10:20:00+08:00 near estimated fit end; 240second polling when needed",
+    "next_check_cst": "2026-10-04T10:50:00+08:00 near estimated new full98 end; 240second interval when polling",
     "checkpoint_cleanup_total": {
-      "files": 51,
-      "bytes": 70869872,
+      "files": 53,
+      "bytes": 74335320,
       "receipt": "refine-logs/runs/recoverability_write_pair/unselected_weight_cleanup_completed.json",
-      "active_inputs_preserved": true
+      "active_inputs_preserved": true,
+      "latest_receipt": "refine-logs/runs/recoverability_future_policy/unused_m0_weight_cleanup.json"
     },
     "current_native_rgbt234": {
       "observed_cst": "2026-10-04T07:45:54.642846+08:00",
@@ -1220,6 +1529,39 @@
       "inference_changed": false,
       "meaning": "Naive quality argmax harms normal frames; subset recognition does not justify online deployment.",
       "record": "refine-logs/runs/recoverability_future_policy/internal_quality_vs_action_full98_cpu_diagnostic.json"
+    },
+    "checkpoint_cleanup_latest": {
+      "status": "COMPLETE",
+      "observed_cst": "2026-10-04T10:34:03.509105+08:00",
+      "deleted": [
+        {
+          "path": "/data/gb/outputs/recoverability_future_c1_b384_m0_20261004/best.pth",
+          "bytes": 1732724,
+          "sha256": "1c22212246d04475bff470e38f0f2cfe691a9e9bf71cc9e59ef248984fe24f2a",
+          "epoch": 0,
+          "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_future_own_b384_m0_20261004/best.pth",
+          "bytes": 1732724,
+          "sha256": "87993ae0471b56b3f91c96d27c181d74dbd94e33ec2c31c6f9d6c7d625144b11",
+          "epoch": 0,
+          "reason": "Completed accepted M0 initialization-only checkpoint; full fit started fresh from C1 and consumes only its own best. No future or current job consumes M0 best. Runtime audit, config, all metrics and best_validation retained."
+        }
+      ],
+      "files_deleted": 2,
+      "bytes_reclaimed": 3465448,
+      "protected_weights": [
+        "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+        "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "/data/gb/outputs/abc_joint_v1_seed42/last.pth",
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "/data/gb/outputs/recoverability_future_c1_b384_full_20261004/best.pth",
+        "/data/gb/outputs/recoverability_future_own_b384_full_20261004/best.pth"
+      ],
+      "protected_all_exist": true,
+      "raw_metrics_deleted": false,
+      "current_eval_or_model_source_changed": false
     }
   },
   "model_selection": {
@@ -1230,5 +1572,5 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-04T10:05:36.7645651+08:00"
+  "updated_cst": "2026-10-04T10:51:00+08:00"
 }
