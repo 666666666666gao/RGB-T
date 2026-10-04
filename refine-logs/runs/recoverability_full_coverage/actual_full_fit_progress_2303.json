@@ -1,0 +1,209 @@
+{
+  "observed_at_cst": "2026-10-04T23:03:42.425366+08:00",
+  "stage": "full",
+  "rows": [
+    {
+      "arm": "pairwise_lr4",
+      "gpu": 0,
+      "runner_pid": 318499,
+      "root": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004",
+      "log": "/data/gb/setup/recoverability_full_coverage_pairwise_lr4_full_20261004.log",
+      "state": "RUNNING",
+      "actual_child_handles": "318570 Sl         03:55 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/train --validation /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/validation --batch-size 416 --epochs 60 --lr 1e-4 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth --output /data/gb/outputs/recoverability_full_coverage_pairwise_lr4_full_20261004",
+      "configured_batch": 416,
+      "ranking": "pairwise",
+      "lr": 0.0001,
+      "latest_step": {
+        "epoch": 10,
+        "step": 3,
+        "optimizer_steps": 30,
+        "loss": 1.2615890502929688,
+        "parts": {
+          "advantage": 0.02537917159497738,
+          "action_ranking": 0.01177854835987091,
+          "harm": 0.5461261868476868,
+          "quality": 0.7406973838806152,
+          "query_write_risk": 0.020326808094978333,
+          "future": 0.112270288169384,
+          "memory_gate": 1.3105987310409546,
+          "margin_preservation": 0.0042778742499649525,
+          "identity_margin": 0.135499507188797,
+          "search_value": 0.022310908883810043,
+          "search_success": 0.5041782855987549,
+          "candidate_absence": 0.35858550667762756,
+          "search_ranking": 1.7589294910430908
+        },
+        "module_gradient_norms": {
+          "A": 0.08150552958250046,
+          "B": 9.229229927062988,
+          "C": 0.3016079068183899
+        },
+        "elapsed_seconds": 203.1648545176722,
+        "peak_cuda_mib": 14909.68798828125
+      },
+      "completion_marker": false,
+      "completion": null
+    },
+    {
+      "arm": "pairwise_lr5",
+      "gpu": 1,
+      "runner_pid": 318500,
+      "root": "/data/gb/outputs/recoverability_full_coverage_pairwise_lr5_full_20261004",
+      "log": "/data/gb/setup/recoverability_full_coverage_pairwise_lr5_full_20261004.log",
+      "state": "RUNNING",
+      "actual_child_handles": "318558 Sl         03:55 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/train --validation /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/validation --batch-size 416 --epochs 60 --lr 1e-5 --seed 42 --search-supervision oracle --action-ranking pairwise --write-verification action --init-checkpoint /data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth --output /data/gb/outputs/recoverability_full_coverage_pairwise_lr5_full_20261004",
+      "configured_batch": 416,
+      "ranking": "pairwise",
+      "lr": 1e-05,
+      "latest_step": {
+        "epoch": 11,
+        "step": 1,
+        "optimizer_steps": 31,
+        "loss": 1.2037791013717651,
+        "parts": {
+          "advantage": 0.021874744445085526,
+          "action_ranking": 0.007141276728361845,
+          "harm": 0.5179556012153625,
+          "quality": 0.7582358121871948,
+          "query_write_risk": 0.009507974609732628,
+          "future": 0.08911500126123428,
+          "memory_gate": 1.2822401523590088,
+          "margin_preservation": 0.0026912877801805735,
+          "identity_margin": 0.14896951615810394,
+          "search_value": 0.015055817551910877,
+          "search_success": 0.4206494688987732,
+          "candidate_absence": 0.344929039478302,
+          "search_ranking": 1.7082641124725342
+        },
+        "module_gradient_norms": {
+          "A": 0.04274061322212219,
+          "B": 2.2887346744537354,
+          "C": 0.5443897843360901
+        },
+        "elapsed_seconds": 211.28896387666464,
+        "peak_cuda_mib": 14909.68798828125
+      },
+      "completion_marker": false,
+      "completion": null
+    },
+    {
+      "arm": "budgeted_lr4",
+      "gpu": 2,
+      "runner_pid": 318501,
+      "root": "/data/gb/outputs/recoverability_full_coverage_budgeted_lr4_full_20261004",
+      "log": "/data/gb/setup/recoverability_full_coverage_budgeted_lr4_full_20261004.log",
+      "state": "RUNNING",
+      "actual_child_handles": "318566 Rl         03:55 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/train --validation /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/validation --batch-size 416 --epochs 60 --lr 1e-4 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth --output /data/gb/outputs/recoverability_full_coverage_budgeted_lr4_full_20261004",
+      "configured_batch": 416,
+      "ranking": "budgeted",
+      "lr": 0.0001,
+      "latest_step": {
+        "epoch": 11,
+        "step": 1,
+        "optimizer_steps": 31,
+        "loss": 1.2707083225250244,
+        "parts": {
+          "advantage": 0.020342407748103142,
+          "action_ranking": 0.09653232246637344,
+          "harm": 0.46816593408584595,
+          "quality": 0.75362229347229,
+          "query_write_risk": 0.008431456983089447,
+          "future": 0.08455690741539001,
+          "memory_gate": 1.277710199356079,
+          "margin_preservation": 0.0036008483730256557,
+          "identity_margin": 0.1442495733499527,
+          "search_value": 0.014874333515763283,
+          "search_success": 0.4019593894481659,
+          "candidate_absence": 0.3260892331600189,
+          "search_ranking": 1.7079741954803467
+        },
+        "module_gradient_norms": {
+          "A": 0.034033484756946564,
+          "B": 2.4433610439300537,
+          "C": 0.11675956845283508
+        },
+        "elapsed_seconds": 211.19288823613897,
+        "peak_cuda_mib": 14909.09423828125
+      },
+      "completion_marker": false,
+      "completion": null
+    },
+    {
+      "arm": "budgeted_lr5",
+      "gpu": 3,
+      "runner_pid": 318502,
+      "root": "/data/gb/outputs/recoverability_full_coverage_budgeted_lr5_full_20261004",
+      "log": "/data/gb/setup/recoverability_full_coverage_budgeted_lr5_full_20261004.log",
+      "state": "RUNNING",
+      "actual_child_handles": "318562 Rl         03:55 /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/train --validation /data/gb/outputs/recoverability_full_coverage_merged_20261004/own/validation --batch-size 416 --epochs 60 --lr 1e-5 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --init-checkpoint /data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth --output /data/gb/outputs/recoverability_full_coverage_budgeted_lr5_full_20261004",
+      "configured_batch": 416,
+      "ranking": "budgeted",
+      "lr": 1e-05,
+      "latest_step": {
+        "epoch": 11,
+        "step": 1,
+        "optimizer_steps": 31,
+        "loss": 1.295945644378662,
+        "parts": {
+          "advantage": 0.021839508786797523,
+          "action_ranking": 0.09921331703662872,
+          "harm": 0.5185799598693848,
+          "quality": 0.7583394050598145,
+          "query_write_risk": 0.009520985186100006,
+          "future": 0.08910100162029266,
+          "memory_gate": 1.2822327613830566,
+          "margin_preservation": 0.0027129382360726595,
+          "identity_margin": 0.148899644613266,
+          "search_value": 0.015055135823786259,
+          "search_success": 0.42065390944480896,
+          "candidate_absence": 0.3448900282382965,
+          "search_ranking": 1.7082589864730835
+        },
+        "module_gradient_norms": {
+          "A": 0.04276357218623161,
+          "B": 2.2879974842071533,
+          "C": 0.5618296265602112
+        },
+        "elapsed_seconds": 212.1517896950245,
+        "peak_cuda_mib": 14909.09423828125
+      },
+      "completion_marker": false,
+      "completion": null
+    }
+  ],
+  "gpu_memory_snapshot": [
+    [
+      0,
+      21462,
+      24576,
+      100
+    ],
+    [
+      1,
+      21135,
+      24576,
+      35
+    ],
+    [
+      2,
+      21099,
+      24576,
+      15
+    ],
+    [
+      3,
+      21097,
+      24576,
+      77
+    ]
+  ],
+  "measured_device_peak_mib": {
+    "0": 21462,
+    "1": 21133,
+    "2": 21099,
+    "3": 21097
+  },
+  "NN_restarts": 0,
+  "temperature_or_power_queries": false,
+  "tracking_improvement_claimed": false
+}
