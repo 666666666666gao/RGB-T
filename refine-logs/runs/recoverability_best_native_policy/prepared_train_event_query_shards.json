@@ -1,0 +1,57 @@
+{
+  "status": "PREPARED_TRAIN_EVENT_QUERY_INPUTS_ONLY",
+  "prepared_at_cst": "2026-10-05T06:56:30.930959+08:00",
+  "source": "actual_train_event_query_eligibility_proposal.json",
+  "partitions": [
+    {
+      "gpu": 0,
+      "jobs_file": "prepared_train_event_jobs_gpu0.json",
+      "queries": 179,
+      "prefix_frame_sum_cost_proxy": 53067,
+      "min_query_frame": 6,
+      "max_query_frame": 783
+    },
+    {
+      "gpu": 1,
+      "jobs_file": "prepared_train_event_jobs_gpu1.json",
+      "queries": 179,
+      "prefix_frame_sum_cost_proxy": 52860,
+      "min_query_frame": 4,
+      "max_query_frame": 774
+    },
+    {
+      "gpu": 2,
+      "jobs_file": "prepared_train_event_jobs_gpu2.json",
+      "queries": 179,
+      "prefix_frame_sum_cost_proxy": 52671,
+      "min_query_frame": 4,
+      "max_query_frame": 764
+    },
+    {
+      "gpu": 3,
+      "jobs_file": "prepared_train_event_jobs_gpu3.json",
+      "queries": 179,
+      "prefix_frame_sum_cost_proxy": 52486,
+      "min_query_frame": 3,
+      "max_query_frame": 760
+    }
+  ],
+  "partition_rule": "Sort descending by query time then sequence; deal round-robin to four equal query-count partitions.",
+  "new_event_queries": 716,
+  "retained_original_TRAIN_queries": 1762,
+  "combined_TRAIN_queries": 2478,
+  "VALIDATION_queries_unchanged": 196,
+  "future_teacher_checkpoint": "UNSELECTED_REQUIRES_CURRENT_LOCKED_TRAINING_AND_NATIVE_CHAIN_CLOSEOUT",
+  "existing_collector_input_contract": "research.collect_recoverability --jobs-file accepts unique {sequence,query_frame} jobs and validates names/GT eligibility in the selected partition.",
+  "union_exact_all716_unique_jobs": true,
+  "collection_started": false,
+  "optimization_started": false,
+  "neural_calls": 0,
+  "GPU_queries": 0,
+  "limits": [
+    "GT eligibility was established by the preceding TRAIN-only actual memmap audit, not rerun by this JSON partitioning.",
+    "The query-time sum is only a prefix workload proxy; it excludes current-region and future-action visual forwards.",
+    "No teacher, architecture, training configuration or next experiment is selected by this preparation.",
+    "Close the current full native report before deciding a new data-only collection/training iteration."
+  ]
+}

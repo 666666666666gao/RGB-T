@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "same_family_provisional": true,
+  "runtime_attested": false,
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "reviewed_at_cst": "2026-10-05T06:56:25.249382+08:00",
+  "target_source": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\retire_unselected_full_weights_cpu.py",
+  "scope": "Source correctness and existing authoritative local evidence only. This review does not authorize neural jobs or source changes.",
+  "verdict": "Correct for the recorded post-selection stage. No blocking defects found. The exact fifteen unselected full-fit weights have no remaining reader in the original controller, its native benchmark commands, or the scheduled final report merger.",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "concrete_issues": [],
+  "inspected_sources": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\retire_unselected_full_weights_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\complete_pipeline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\merge_complete_goal_report.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\final_cpu_continuation.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\audit_fit_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\score_full98_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\retire_m0_weights_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\merge_native_complete.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\audit_native_complete_cpu.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\scripts\\run_best_native_policy_native_complete.sh",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\scripts\\report_best_native_policy_complete.sh",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\scripts\\run_temporal.sh",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\evaluate_recoverability.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\merge_abc_complete.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\collect_core_metrics.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\collect_recoverability_metrics.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\paired_sequence_bootstrap.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\research\\plot_core_metrics.py"
+  ],
+  "inspected_evidence": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_training_observation_0643.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_training_observation_0430.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_full_training_completed_summary.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\recoverability_best_native_policy\\actual_m0_weights_retirement_completed.json"
+  ],
+  "authoritative_saved_state": {
+    "observed_at_cst": "2026-10-05T06:43:01.883205+08:00",
+    "controller_pid": 632884,
+    "controller_stage": "BOTH_COMPLETE_NATIVE_BENCHMARKS",
+    "full_fit_CPU_accepted_at_cst": "2026-10-05T04:25:05.537933+08:00",
+    "epochs_per_arm": 60,
+    "optimizer_steps_per_arm": 300,
+    "positive_full98_candidates": 16,
+    "selection_completed_at_cst": "2026-10-05T06:37:17.469113+08:00",
+    "selected_checkpoint": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth",
+    "selected_epoch": 40,
+    "selected_sequence_mean_iou": 0.7339718956709874,
+    "both_native_datasets_same_fixed_checkpoint": true,
+    "four_saved_actual_native_children_use_only_selected_new_weight": true,
+    "completed_prior_M0_cleanup_file_count": 8,
+    "prior_M0_cleanup_repeated": false,
+    "note": "These are already-written observations and receipts, not a new live-process or remote-filesystem attestation."
+  },
+  "source_contracts": [
+    {
+      "source": "retire_unselected_full_weights_cpu.py:9-31",
+      "contract": "Requires CPU-only environment, absent own cleanup receipts, accepted full60/300 fits, completed M0 retirement, positive epoch40 selection of the exact budgeted_lr4/epoch_040.pth path, exactly sixteen unique candidates, original owner632884 alive, and stage BOTH_COMPLETE_NATIVE_BENCHMARKS before building any deletion list."
+    },
+    {
+      "source": "retire_unselected_full_weights_cpu.py:33-55",
+      "contract": "Each root must resolve to one of the four exact dated full-fit directories. Each directory must contain exactly best.pth plus epoch020/040/060. Every receipt checkpoint must have changed ABC, exact C1 and passed cached CPU replay; its saved full98 score must match model, epoch and score, cover98 sequences/49418 frames, and attest actual TRAIN GT without native-test data. The sixteen paths must equal the candidate set. Only the selected path is excluded, leaving exactly fifteen targets."
+    },
+    {
+      "source": "retire_unselected_full_weights_cpu.py:50-78; actual_m0_weights_retirement_completed.json:56-80",
+      "contract": "All target digests must match the existing M0 retirement protection receipt. Removing the exact fifteen target keys from its24-entry protection map leaves precisely the selected checkpoint plus the existing8 legacy weights. These9 are checked before and after deletion. Only targets are unlinked; no recursive deletion, metadata deletion, prediction deletion, NN invocation, GPU query or controller modification is present. The M0 cleanup is read as historical evidence and is never executed."
+    },
+    {
+      "source": "complete_pipeline.py:90-145; audit_fit_cpu.py:46-87; score_full98_cpu.py:15-40",
+      "contract": "Training and all checkpoint tensor/replay audits precede selection. Each candidate is appended only after its full98 visual pass completes and its actual-GT CPU scorer returns successfully. Selection is written only after all retained checkpoint waves finish. The recorded16 candidates match all16 audited positive checkpoints, including cached best epochs4/39/59/50. No completed fit audit or full98 evaluation is scheduled again after the recorded native stage."
+    },
+    {
+      "source": "complete_pipeline.py:147-175; scripts/run_best_native_policy_native_complete.sh:5-28; research/evaluate_recoverability.py:21-24,95-111",
+      "contract": "Remaining native workers capture selection.checkpoint once and pass that same model to LasHeR and then RGBT234. The evaluator opens the selected new model, protected C1/motion weights and pretrained GOLA resources; it does not reopen unselected training checkpoints or checkpoint initialization paths. The original controller then consumes native predictions and reports rather than any unselected weight."
+    },
+    {
+      "source": "merge_native_complete.py:15-94; scripts/report_best_native_policy_complete.sh:14-36; audit_native_complete_cpu.py:19-134; research/collect_core_metrics.py:98-211; research/collect_recoverability_metrics.py:155-200",
+      "contract": "Native shard merge, official scoring, mechanism statistics, bootstrap, plots and independent CPU acceptance read saved predictions, timelines, latency arrays, ground truth, inference configurations and reports. A model path in these configurations is metadata, not an unselected checkpoint load."
+    },
+    {
+      "source": "final_cpu_continuation.py:33-53; merge_complete_goal_report.py:17-32,35-104; research/merge_abc_complete.py:14-46",
+      "contract": "The scheduled final continuation waits for the original complete-report stage and both CPU acceptances, then invokes the final merger once. The merger consumes the saved full-fit receipt and selection, but its only checkpoint-file existence/read/hash operation is on selection.checkpoint. The imported report helpers read JSON/CSV artifacts only. Keeping the selected checkpoint and all metadata therefore preserves this scheduled dependency."
+    }
+  ],
+  "exact_retention_scope": {
+    "target_count": 15,
+    "target_paths": [
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/best.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_020.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_060.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/best.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_020.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_040.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr5_full_20261005/epoch_060.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/best.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_020.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_040.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr4_full_20261005/epoch_060.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/best.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_020.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_040.pth",
+      "/data/gb/outputs/recoverability_best_native_policy_pairwise_lr5_full_20261005/epoch_060.pth"
+    ],
+    "protected_count": 9,
+    "protected_sha256_from_existing_M0_receipt": {
+      "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth": "b5f021df02d32f6b16f0855b117bf715fb64bb7bdbdcd2b5e78deca043206211",
+      "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+      "/data/gb/outputs/recoverability_warm_budgeted_action_own_b384_full_20261004/best.pth": "a1ce56f4c7fa9137483de6c70c430165f1a265e726ac1bed56d02aa32a659e62",
+      "/data/gb/outputs/c1_initial_seed42/best.pth": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+      "/data/gb/outputs/abc_joint_v1_seed42/last.pth": "da217b7005672a0dbaa8b988cafd014d70fe0960cd02739ac0a418623b2e8a91",
+      "/data/gb/GOLA/pretrained_models/gola_b224.bin": "6339efe9f98a130b3279afe43e51b7dd4c1fb7352917c2aa385ab00a978d8a69",
+      "/data/gb/cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+      "/data/gb/outputs/recoverability_best_policy_pairwise_lr4_full_20261004/best.pth": "a840219e1d362ac353ea13fae853a11d93505799f5bf7d6fbc2112e7b578a529",
+      "/data/gb/outputs/recoverability_best_policy_budgeted_lr4_full_20261004/best.pth": "907fc6ef6337fdaffeac2ca70f543217d36046134b254171265bd3c76b7c752a"
+    },
+    "metadata_and_full98_predictions_preserved": true,
+    "prior_M0_weights_not_targets": true
+  },
+  "unselected_weight_dependency_after_full98_selection": {
+    "would_break_original_future_chain": false,
+    "remaining_reader_of_any_target": false,
+    "selected_weight_required_for_later_RGBT234_and_final_export": true,
+    "selected_weight_is_protected": true
+  },
+  "validation": {
+    "AST_parse": "PASS",
+    "saved_candidate_set_vs_exact_four_roots": "PASS",
+    "saved_fit_receipt_schema_and_all16_epochs_vs_selection": "PASS",
+    "saved_max_IoU_selection_matches_budgeted_lr4_epoch40": "PASS",
+    "prior24_protected_minus15_targets_equals_selected_plus8_legacy": "PASS",
+    "saved_native_child_command_paths": "PASS",
+    "source_edited": false,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "cleanup_source_executed": false,
+    "live_remote_state_reverified": false,
+    "model_or_training_source_changes_authorized": false
+  },
+  "limitation": "Source-only same-family provisional PASS. Execution must satisfy the cleanup script existing runtime assertions. No weight existence, current process state, successful deletion or final native accuracy is newly attested by this review."
+}
