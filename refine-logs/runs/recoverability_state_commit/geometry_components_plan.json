@@ -1,0 +1,69 @@
+{
+  "status": "SOURCE_PASS_SINGLE_TRAIN_QUERY_NOT_DEPLOYED_OR_EXECUTED",
+  "question": "At the same actual old4 TRAIN prestate, isolate whether a C1 reference changes future outcomes through search cropping, motion-history coordinates or both.",
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "source": "research/probe_geometry_commit.py --geometry-reference C1_components",
+  "source_evidence": "Completed matched C1 control altered search and motion together; velocity_search kept history fixed but changed the reference strategy. Neither isolates motion-only versus same C1 search-only effects. Current output always enters motion history even when appearance is paused.",
+  "controls": [
+    "raw actual old4 query decision and pause",
+    "C1 search box only",
+    "C1 current motion-history coordinates only",
+    "C1 search box plus motion-history coordinates"
+  ],
+  "held_fixed": "Query output, actual old4 query pause, template, RGB/TIR identity memory, motion-memory tensor, history timestamps and qualities; all future steps same frozen old4 policy.",
+  "time": "One query intervention; actual future q+1..q+32, never indefinitely freeze position or rewrite past output.",
+  "GT": "Only initialization GT enters inference; TRAIN prelaunch eligibility and offline actual GT outcomes. No query/future GT action input.",
+  "data": "Actual old4/C1 query box differs only at AQmanfromdarktrees:q228 among the existing88 matched TRAIN states. Execute four components at this one predeclared TRAIN state, not88 repeated neural rollouts.",
+  "horizons": [
+    3,
+    32
+  ],
+  "sanity_job": {
+    "sequence": "AQmanfromdarktrees",
+    "query_frame": 228,
+    "event_id": "AQmanfromdarktrees:old4failure:225",
+    "source_event_frame": 225,
+    "event_offset": 3,
+    "cached_event_role": "recovered32",
+    "cached_failure_start_written": false,
+    "sampling_role": "Closed old4 TRAIN prefix event label; actual new query outcome and eligibility require NN observation"
+  },
+  "sanity_requires": "Real NN; query output/appearance/memory/time-quality invariants all pass and sampled query has an actually different C1 box.",
+  "full_shards": [
+    {
+      "gpu": 0,
+      "queries": 22,
+      "estimated_forward_steps": 9088
+    },
+    {
+      "gpu": 1,
+      "queries": 22,
+      "estimated_forward_steps": 9099
+    },
+    {
+      "gpu": 2,
+      "queries": 22,
+      "estimated_forward_steps": 9088
+    },
+    {
+      "gpu": 3,
+      "queries": 22,
+      "estimated_forward_steps": 9075
+    }
+  ],
+  "aggregation": "One matched-state causal case only. No population bootstrap or full24-event gain claimed. Existing88 event strata and write opportunities stay authoritative.",
+  "cost": "One real query,228-prefix plus4x32future steps, on GPU0. No full88 NN rerun or filler multi-GPU work.",
+  "server_root": "/data/gb/outputs/recoverability_geometry_components_train88_20261005",
+  "limits": "C1 reference is not verified identity. Does not implement trusted-state reconstruction, new motion-memory update policy, independent RGB/TIR write gates, or native tracking accuracy.",
+  "goal": "ACTIVE_UNMET allfive baseline+2; do not rerun closed 420fits or negative geometry-head training unchanged.",
+  "existing_88_query_inventory": {
+    "queries": 88,
+    "events": 24,
+    "different_C1_keep_queries": 1,
+    "same_C1_keep_queries": 87,
+    "actual_write_pairs": 41
+  },
+  "full_shards_status": "CANCELLED_BEFORE_DEPLOYMENT_NO_ADDITIONAL_NN",
+  "source_review": "refine-logs/runs/recoverability_state_commit/geometry_components_source_review.json",
+  "NN_executed": false
+}

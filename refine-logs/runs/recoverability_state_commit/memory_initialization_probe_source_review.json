@@ -1,0 +1,149 @@
+{
+  "status": "FAIL",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T20:50:54.398545+08:00",
+  "scope": "Fresh local source-only review of the proposed memory initialization probe and its research premise. No network, SSH, GPU query, neural execution, NumPy/Torch import, installation, or scientific-source edit by this reviewer.",
+  "plan": "refine-logs/runs/recoverability_state_commit/memory_initialization_probe_plan.json",
+  "reviewed_source": "research/probe_memory_initialization.py",
+  "conclusion": "The callback is mechanically consistent as an artificial last-eight-observation memory truncation audit, after the diagnostic mask fix. The proposed explanation of a main-training versus online initialization mismatch is contradicted by the actual protected old4 training configuration and source. Do not deploy this plan as a test of that explanation.",
+  "deployment_decision": "DO_NOT_DEPLOY_CURRENT_RESEARCH_PREMISE",
+  "blocking_findings": [
+    {
+      "id": "B1",
+      "severity": "BLOCKING_RESEARCH_PREMISE",
+      "title": "Reset8 does not reproduce protected old4 main-training identity-memory initialization",
+      "locations": [
+        "refine-logs/runs/recoverability_state_commit/memory_initialization_probe_plan.json: source_evidence and controls",
+        "research/probe_memory_initialization.py:25,32-40,48-50",
+        "refine-logs/runs/recoverability_write_pair/full_fit/reference_own/config.json:10,5192,6385,7578,8773,10048",
+        "research/collect_recoverability.py:54-71,102-103,124-132,307,326,399",
+        "research/train_recoverability.py:48-84",
+        "research/recoverability_modules.py:68-82,131-135,143-146"
+      ],
+      "evidence": "The actual full_fit/reference_own/config.json output exactly names the protected old4 B384 run. All five actual source_configs use max_prefix=1024 and history_capacity_covers_prefix=true. Their maximum query indices are 1000,996,985,1000,952, so the complete frame0..query-1 history fits. The collector uses deque(maxlen=args.max_prefix), allocates history_instance_descriptors with shape (capacity,2,768), right-aligns the whole retained prefix, and saves these arrays with np.stack without an eight-step truncation. load_data copies the entire saved history tensor and only indexes samples. InstanceMemory.history initializes from the anchor and loops over past.shape[1], masking padding and frame0; only search_decision slices the last eight motion-history entries. Therefore the main identity-memory forward already replays the complete cached prefix from its anchor.",
+      "impact": "Any persistent-versus-reset8 difference measures deliberately discarding older observations at the query. It cannot establish the claimed loss of pre-window identity state during main training, explain prior native regressions through that mechanism, or justify a training initialization fix.",
+      "minimum_fix": "Correct the plan source_evidence and training-equivalence claim, and stop this planned neural run as evidence for the asserted training defect. No scientific-source defensive logic is required. Keeping the unexecuted callback as an explicitly artificial truncation diagnostic would be a different research question, not validation of this rejected premise."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "title": "Score-difference maximum included absent and padded candidate outputs",
+      "resolution": "Parent changed only the diagnostic calculation. Current research/probe_memory_initialization.py:62-67 broadcasts audit_data.valid over both score channels and takes the maximum on those valid candidate outputs. This excludes unobserved candidate slots; action selection was already masked. Exact current source was re-read and AST-parsed."
+    }
+  ],
+  "non_blocking_findings": [],
+  "mechanical_checks": [
+    {
+      "topic": "Live observation replay and tensor masks",
+      "result": "PASS_SOURCE_ONLY",
+      "evidence": "The deque stores at most eight actual accepted noninitial observations: encoded descriptor (1,2,128), evidence (1,10), quality (1), actual template-write Boolean, and cloned pre-update identity memory (1,4,2,128). The descriptor conversion matches RecoverabilityTracker.accept_observation: half then float before encode. Replay uses the same per-sensor probability>=.5 target commit together with the actual write flag and observed=True for context slots. Replaying from recent[0] pre-update memory reconstructs precisely the retained sequence of update operations; the numerical allclose assertion uses atol=1e-6 and rtol=1e-6 and records maximum absolute error. Its runtime success has not been measured."
+    },
+    {
+      "topic": "State isolation and causal prefix reuse",
+      "result": "PASS_SOURCE_ONLY",
+      "evidence": "Each replay clones its start and InstanceMemory.update returns a new tensor. Neither replay state is assigned to tracker.identity_memory. Recomputed decide/select_actions calls do not mutate the tracker or model. The original parent accept_observation is called once, after the audit, and subsequent prefix frames follow the original parent. Grouping by sequence processes each prefix once through its maximum requested frame. The inherited modules are eval and frozen; no optimizer or weight save exists."
+    },
+    {
+      "topic": "Actual candidate pool and parent selection parity",
+      "result": "PASS_SOURCE_ONLY_WITH_SCOPE_LIMIT",
+      "evidence": "audit_data retains the exact dictionary returned by original_inputs, so the parent insert_region updates remain visible when accept_observation runs. Parent and reset decisions share all current features, valid flags, motion inputs, thresholds and action-write semantics. The full-state flat action must equal the actual accepted candidate/pause, identified by existing selected_index exact unique valid-box matching. select_actions preserves candidate/write/search eligibility. When reset proposes a different unobserved search region, that region remains unavailable; reset_iou is only re-selection on available actual evidence and is not the output of a newly executed reset-policy search."
+    },
+    {
+      "topic": "Box precision",
+      "result": "PASS_SOURCE_ONLY",
+      "evidence": "When flat candidate index is unchanged, both controls use the original boxes[choice] double-precision coordinates. A pause-only change therefore cannot manufacture an IoU delta by converting the same box to float32. Changed candidates use their existing model-input coordinates."
+    },
+    {
+      "topic": "TRAIN selection, dataset paths and GT separation",
+      "result": "PASS_SOURCE_AND_JSON",
+      "evidence": "Independently parsed 88 unique predeclared query/event keys in 24 TRAIN sequences, disjoint from developer validation, and matched them exactly to the five existing legacy event files. Defaults match all legacy parent/C1/motion/dataset/cache paths. Sequence enumeration uses the memory-mapped index; images use paths(sequence,frame), not raw filename sorting. Only frame0 GT initializes inference. Current query GT and cached event role are read into result rows after the full causal prefix decisions; they never enter replay, decide or select_actions."
+    },
+    {
+      "topic": "Short prefixes and equality controls",
+      "result": "PASS_SOURCE_AND_JSON",
+      "evidence": "rightbottle-gai:q7,q8,q9 contain 6,7,8 live noninitial observations. In those cases the retained observations cover the complete prefix, so reset and faithful replay start from the same initial memory and equality is expected. A reset-memory difference must not be required for every query. Their history_count values correctly remain variable; there is no need for an extra branch."
+    },
+    {
+      "topic": "Existing spatial labels",
+      "result": "PASS_NO_CHANGE_NEEDED",
+      "evidence": "recoverability_modules.py:337-344 already maps IoU>=.5 to target, IoU==0 to spatial non-target, and 0<IoU<.5 to unknown. This review found no low-positive-IoU-as-negative label defect and proposes no label modification."
+    }
+  ],
+  "actual_old4_training_configuration": {
+    "path": "refine-logs/runs/recoverability_write_pair/full_fit/reference_own/config.json",
+    "output": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004",
+    "batch_size": 384,
+    "train_clips": 902,
+    "validation_clips": 128,
+    "source_configs": [
+      {
+        "output": "/data/gb/outputs/recoverability_train_s42_20261003",
+        "partition": "train",
+        "clips": 256,
+        "max_prefix": 1024,
+        "history_capacity_covers_prefix": true,
+        "minimum_query": 1,
+        "maximum_query": 1000
+      },
+      {
+        "output": "/data/gb/outputs/recoverability_train_s43_20261003",
+        "partition": "train",
+        "clips": 256,
+        "max_prefix": 1024,
+        "history_capacity_covers_prefix": true,
+        "minimum_query": 1,
+        "maximum_query": 996
+      },
+      {
+        "output": "/data/gb/outputs/recoverability_train_s44_20261003",
+        "partition": "train",
+        "clips": 256,
+        "max_prefix": 1024,
+        "history_capacity_covers_prefix": true,
+        "minimum_query": 2,
+        "maximum_query": 985
+      },
+      {
+        "output": "/data/gb/outputs/recoverability_own_policy_train_20261003",
+        "partition": "train",
+        "clips": 274,
+        "max_prefix": 1024,
+        "history_capacity_covers_prefix": true,
+        "minimum_query": 4,
+        "maximum_query": 1000
+      },
+      {
+        "output": "/data/gb/outputs/recoverability_own_policy_validation_20261003",
+        "partition": "validation",
+        "clips": 128,
+        "max_prefix": 1024,
+        "history_capacity_covers_prefix": true,
+        "minimum_query": 6,
+        "maximum_query": 952
+      }
+    ],
+    "raw_old4_training_npz_loaded_by_reviewer": false,
+    "history_shape_evidence": "1024 time slots follow directly from the actual configs and allocation/save/load source; this is not a newly measured NumPy tensor receipt."
+  },
+  "executed_checks": {
+    "interpreter": "E:/python.exe -X utf8",
+    "ast_parse": "PASS using Python 3.8 grammar for seven reviewed Python files, including the exact corrected probe source; no scientific module import",
+    "json_checks": "88 unique queries, 24 sequences/events, exact prior query/event membership, TRAIN membership and split disjointness, legacy fixed-path agreement, and five old4 full-prefix source_configs",
+    "grouped_prefix_steps": 5906,
+    "gpu_or_neural_execution": false,
+    "numpy_or_torch_execution": false,
+    "remote_state_verified": false
+  },
+  "sanity_status": "CANCELLED_SOURCE_ONLY; no deployment or neural execution. Retain the unexecuted probe and plan as a rejected research-premise record.",
+  "claim_limits": [
+    "No new memory parity or action parity runtime result.",
+    "No changed-prefix experiment, future rollout, continuous tracking score, native accuracy or gain claim.",
+    "An artificial truncation effect would not establish a defect in full-prefix main training."
+  ],
+  "failure_kind": "FAIL_PREMISE"
+}

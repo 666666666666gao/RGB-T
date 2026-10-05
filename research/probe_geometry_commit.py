@@ -28,6 +28,9 @@ CONTROLS = (('raw', False, False), ('pause', True, False),
 def controls(reference):
     if reference == 'C1':
         return CONTROLS
+    if reference == 'C1_components':
+        return (('raw', False, False), ('search_C1', False, True),
+                ('motion_C1', False, True), ('search_motion_C1', False, True))
     assert reference == 'velocity_search'
     return (('raw', False, False), ('pause', True, False),
             ('search_velocity', False, True), ('pause_search_velocity', True, True))
@@ -93,30 +96,45 @@ def probe(sequence, job, extractor, modules, motion, device, args, threshold):
     keep_box, keep_quality = original[2][original[3]].copy(), float(original[1][original[3]])
     shadows, rows = [], []
     for name, pause, geometry_changed in controls(args.geometry_reference):
+        if args.geometry_reference == 'C1_components':
+            pause = bool(query.last_decision['pause'])
         shadow = private_state(parent)
         shadow.frame = q
         branch, write, _, _ = shadow.accept_observation(image, selected, pause)
         assert np.array_equal(branch.box, query_box)
+        change_search = geometry_changed and name != 'motion_C1'
+        change_motion = geometry_changed and (args.geometry_reference == 'C1' or name in ('motion_C1', 'search_motion_C1'))
         if geometry_changed:
-            geometry_c1 = args.geometry_reference == 'C1'
+            geometry_c1 = args.geometry_reference in ('C1', 'C1_components')
             requested = keep_box if geometry_c1 else next_search_prediction(parent.history, parent.branch.search_box, q + 1)
-            provider = SiamFCCroppingParameterSimpleProvider(4., 10.)
-            provider.initialize(parent.branch.search_box)
-            provider.update(float(original[0]['raw_score'][0, original[3]]) if geometry_c1 else 0., requested,
-                            np.array((image.shape[-1], image.shape[-2])))
-            branch.search_box = provider.cached_bbox.copy()
-            if geometry_c1:
-                shadow.history[-1] = (keep_box.copy(), q, keep_quality)
+            if change_search:
+                provider = SiamFCCroppingParameterSimpleProvider(4., 10.)
+                provider.initialize(parent.branch.search_box)
+                provider.update(float(original[0]['raw_score'][0, original[3]]) if geometry_c1 else 0., requested,
+                                np.array((image.shape[-1], image.shape[-2])))
+                branch.search_box = provider.cached_bbox.copy()
+            if change_motion:
+                # Component control changes coordinates only, retaining time and quality.
+                observed_quality = keep_quality if args.geometry_reference == 'C1' else shadow.history[-1][2]
+                shadow.history[-1] = (keep_box.copy(), q, observed_quality)
         else:
             assert np.array_equal(branch.search_box, query.branch.search_box)
-        reference = keep_box if geometry_changed and args.geometry_reference == 'C1' else query_box
+        reference = keep_box if change_motion else query_box
         assert shadow.history[-1][1] == q and np.array_equal(shadow.history[-1][0], reference)
         shadows.append(shadow)
-        rows.append({'name': name, 'pause': pause, 'geometry_c1': geometry_changed and args.geometry_reference == 'C1',
-                     'requested_reference_matched_exactly': not geometry_changed or bool(np.array_equal(branch.search_box, requested)),
+        rows.append({'name': name, 'pause': pause, 'geometry_c1': geometry_changed and args.geometry_reference in ('C1', 'C1_components'),
+                     'requested_reference_matched_exactly': not change_search or bool(np.array_equal(branch.search_box, requested)),
                      'boxes': [branch.box.copy()], 'writes': [bool(write)],
                      'search': [branch.search_box.copy()], 'motion': [shadow.history[-1][0].copy()],
                      'extra': [int(query.last_decision['extra_executed'])]})
+    if args.geometry_reference == 'C1_components':
+        for shadow in shadows:
+            assert torch.equal(shadow.identity_memory, shadows[0].identity_memory)
+            assert torch.equal(shadow.motion_memory, shadows[0].motion_memory)
+            assert torch.equal(shadow.branch.template, shadows[0].branch.template)
+            assert [e[1:] for e in shadow.history] == [e[1:] for e in shadows[0].history]
+        assert np.array_equal(shadows[2].branch.search_box, shadows[0].branch.search_box)
+        assert all(np.array_equal(a[0], b[0]) for a, b in zip(shadows[1].history, shadows[0].history))
     if args.geometry_reference == 'velocity_search':
         for raw_index, predicted_index in [(0, 2), (1, 3)]:
             raw, predicted = shadows[raw_index], shadows[predicted_index]
@@ -158,16 +176,18 @@ def probe(sequence, job, extractor, modules, motion, device, args, threshold):
         for key, value in [('boxes_xyxy', boxes), ('iou', overlap), ('writes', writes),
                            ('search_xyxy', row['search']), ('motion_xyxy', row['motion'])]:
             arrays[row['name'] + '_' + key] = np.asarray(value)
+    search_row = rows[1] if args.geometry_reference == 'C1_components' else rows[2]
     return {'event_id': job['event_id'], 'sequence': sequence.get_name(), 'query_frame': q,
             'selected_matches_C1_keep': bool(np.array_equal(query_box, keep_box)),
             'query_raw_write_eligible': float(selected[0]['raw_score'][0, selected[3]]) > .84,
             'actual_policy_query_pause': bool(query.last_decision['pause']),
-            'C1_keep_is_valid_search_reference': bool(np.array_equal(rows[2]['search'][0], keep_box)) if args.geometry_reference == 'C1' else None,
+            'C1_keep_is_valid_search_reference': (bool(np.array_equal(rows[1]['search'][0], keep_box)) if args.geometry_reference == 'C1_components' else
+                                                bool(np.array_equal(rows[2]['search'][0], keep_box)) if args.geometry_reference == 'C1' else None),
             'geometry_reference': args.geometry_reference,
-            'query_search_reference_different': bool(not np.array_equal(rows[2]['search'][0], rows[0]['search'][0])),
+            'query_search_reference_different': bool(not np.array_equal(search_row['search'][0], rows[0]['search'][0])),
             'query_motion_reference_different': bool(not np.array_equal(rows[2]['motion'][0], rows[0]['motion'][0])),
-            'query_requested_reference_matched_exactly': rows[2]['requested_reference_matched_exactly'],
-            'query_search_reference_center_shift_pixels': float(np.linalg.norm((rows[2]['search'][0][:2] + rows[2]['search'][0][2:] - rows[0]['search'][0][:2] - rows[0]['search'][0][2:]) / 2)),
+            'query_requested_reference_matched_exactly': search_row['requested_reference_matched_exactly'],
+            'query_search_reference_center_shift_pixels': float(np.linalg.norm((search_row['search'][0][:2] + search_row['search'][0][2:] - rows[0]['search'][0][:2] - rows[0]['search'][0][2:]) / 2)),
             'query_visual_work_shared_once': True, 'controls': results}, arrays
 
 
@@ -213,7 +233,7 @@ def main():
     p.add_argument('--horizons', type=int, nargs='+', default=[3, 32])
     p.add_argument('--write-verification', choices=['identity', 'action'], required=True)
     p.add_argument('--seed', type=int, default=42)
-    p.add_argument('--geometry-reference', choices=['C1', 'velocity_search'], default='C1')
+    p.add_argument('--geometry-reference', choices=['C1', 'velocity_search', 'C1_components'], default='C1')
     args = p.parse_args()
     assert min(args.horizons) > 0 and len(set(args.horizons)) == len(args.horizons)
     split = json.loads(Path(args.split).read_text())
@@ -254,7 +274,7 @@ def main():
     (out / 'config.json').write_text(json.dumps(vars(args) | {'jobs': jobs, 'checkpoint_epoch': saved['epoch'],
         'scope': 'TRAIN matched-prestate diagnostic; no training or native benchmark',
         'query_output_unchanged': True, 'geometry_reference': args.geometry_reference,
-        'geometry_scope': 'C1 changes query search and motion reference; velocity_search changes ONLY next search reference using past centers and real times. Neither is verified identity.',
+        'geometry_scope': 'C1 changes query search and motion reference; velocity_search changes ONLY next search reference using past centers and real times; C1_components separates query search box and motion-history coordinates with actual old4 pause, appearance, memories, time and quality held fixed. None is verified identity.',
         'future_policy': 'same frozen checkpoint normal deployed step', 'GT_role': 'initialization, TRAIN prelaunch eligibility, and offline outcomes; no GT action inputs'}, indent=2) + '\n')
     summaries = []
     for index, job in enumerate(jobs):

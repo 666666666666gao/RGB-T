@@ -1,0 +1,31 @@
+{
+  "status": "CANCELLED_BEFORE_DEPLOYMENT_INCORRECT_RESEARCH_PREMISE",
+  "question": "Does resetting persistent A memory to the anchor before an eight-observation training window change decisions at the same actual old4 TRAIN state?",
+  "source_evidence": [
+    "RecoverabilityModules.forward calls InstanceMemory.history, which initializes memory from the anchor before replaying cached recent observations",
+    "RecoverabilityTracker incrementally updates identity_memory for the full prefix and passes it to modules.decide",
+    "Main cached training does not carry the compressed memory state from before the eight-frame window",
+    "The new geometry head used saved actual prefix memory, so this question concerns main ABC training, not proof of the new commit head's failure cause"
+  ],
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "data": "Same88 predeclared TRAIN query states in24sequences, no98developer ornative-test queries",
+  "smallest_change": "Read-only tracker audit with a bounded deque of the last8 live encoded observations, write flags and their pre-update memory snapshots. Parent boxes, writes, motion and search remain unchanged.",
+  "controls": [
+    "Actual persistent memory and actual query selector",
+    "Replay the same encoded observations from the actual pre-window memory; must recover the persistent state within1e-6",
+    "Replay the same observations from an anchor-only memory, matching the training initialization mechanism"
+  ],
+  "precision": "When the selected candidate index is unchanged, retain the actual double-precision query box for both controls; no floating-point-only IoU differences counted as candidate improvements.",
+  "evaluation": "Fixed actual candidate pool, weights and current evidence. Record memory/score differences, reselect/write/search proposal changes and current GT IoU only after decisions. No alternate visual search or continuous tracking score claimed.",
+  "sanity": "First one predeclared TRAIN query (lowerfoam2throw:q19), real NN forward and faithful-replay/actual-action invariants. Then all88 grouped by sequence so each causal prefix is read only once; four disjoint groups balanced by maxqueryframe NN work.",
+  "GT": "Only first annotation initializes inference. Query GT used after decisions for offline labels. No future GT input or future rollout.",
+  "limits": "Live encoded observations isolate initialization; they are not a bytewise reproduction of batched training projection kernels. Different pooled search proposals cannot be scored without new visual evidence. A mismatch alone does not prove performance loss.",
+  "goal": "ACTIVE_UNMET originalall3mainbaseline+2; no new training or weaker completion criterion",
+  "do_not_change": "The current spatial label rule already makes0<IoU<.5 unknown since25d87ec5(2026-10-03). Do not repeat the previously suspected low-IoU negative-label modification.",
+  "updated_at_cst": "2026-10-05T20:51:44.508059+08:00",
+  "source_deployed": false,
+  "neural_forwards": 0,
+  "optimizer_updates": 0,
+  "corrected_source_evidence": "Protected old4 five source configs all use max_prefix=1024 with complete-prefix capacity. Query maxima1000/996/985/1000/952 all fit. InstanceMemory.history replays the full cached dimension; only motion/search inputs slice last8. An artificial reset8 would not reproduce main training.",
+  "disposition": "Keep undeployed source and failed review as transparent proposal history; do not launch artificial truncation or retrain on this premise."
+}

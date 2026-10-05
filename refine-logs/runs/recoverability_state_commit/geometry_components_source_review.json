@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-05T21:01:27.131521+08:00",
+  "reviewer_agent": "/root/geometry_components_source_review",
+  "reviewer_attribution": "Fresh Codex reviewer; served backend model and reasoning-effort metadata not independently attested by this agent.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_scope": "Source-only review of the revised single-query C1_components probe and launcher; not independent experiment acceptance.",
+  "runtime_attested": false,
+  "sources": [
+    "research/probe_geometry_commit.py",
+    "research/recoverability_tracker.py",
+    "research/bounded_recovery.py",
+    "research/recoverability_modules.py",
+    "research/temporal_modules.py",
+    "research/candidate_learning.py",
+    "research/collect_recoverability.py",
+    "trackit/runner/evaluation/common/siamfc_search_region_cropping_params_provider/simple.py",
+    "trackit/core/operator/numpy/bbox/utility/image.py",
+    "scripts/run_temporal.sh",
+    "refine-logs/runs/recoverability_state_commit/geometry_components_plan.json",
+    "refine-logs/runs/recoverability_state_commit/geometry_components_sanity_jobs.json",
+    "refine-logs/runs/recoverability_state_commit/launch_geometry_components.py"
+  ],
+  "unresolved_blockers": [],
+  "required_source_fixes": [],
+  "findings": [
+    {
+      "topic": "Matched query and factor isolation",
+      "verdict": "PASS",
+      "evidence": "probe_geometry_commit.py:83-137 runs the actual frozen old4 prefix and query once, clones the same pre-query state, and replays the selected observation with actual old4 pause for all four controls. Raw preserves actual query output/search. search_C1 changes only the provider-approved search box. motion_C1 changes only current history box coordinates, retaining selected quality and time. search_motion_C1 combines these changes. Template and both memory tensors are compared at the query boundary."
+    },
+    {
+      "topic": "State isolation and causal future",
+      "verdict": "PASS",
+      "evidence": "private_state clones mutable boxes, deques, identity memory and motion memory. Branch.copy creates private deque containers; shared templates/masks are read or replaced rather than mutated. Memory updates return new tensors. All future q+1..q+32 steps run the same frozen deployed policy. Parent box/search/history/memory invariants are checked after rollout. No optimizer or new checkpoint is created."
+    },
+    {
+      "topic": "TRAIN path and GT boundary",
+      "verdict": "PASS",
+      "evidence": "Launcher reuses the completed epoch4 old4 config: LasHeR TRAIN cache, original 881/98 split, old4 model, pretrained GOLA/C1 and fixed motion model; action verification, seed42 and H3/H32 match. main checks TRAIN membership, disjoint splits, frame availability and GT eligibility before model loading. Only initialization GT enters tracker construction; query/future GT is not passed to action selection, state commits or future steps. Outcomes are calculated after rollouts against actual dataset boxes."
+    },
+    {
+      "topic": "Legacy C1 and velocity_search behavior",
+      "verdict": "PASS",
+      "evidence": "Compared working source to HEAD. Legacy control tuples are identical. QueryTracker, private_state, outcome, next_search_prediction and event_summary are AST-identical. Changed branch predicates retain C1 search+motion substitution with C1 quality and velocity_search search-only substitution; legacy result indexing and provider semantics are retained."
+    },
+    {
+      "topic": "Existing 88-state inventory and reduced scope",
+      "verdict": "PASS",
+      "evidence": "Read the five completed matched_velocity_train88_old4 events.json files locally: 88 unique queries, same prepared TRAIN jobs, 24 events, eight events in each normal/persistent33/recovered32 stratum, 41 raw-score write opportunities. Exactly one query has selected_matches_C1_keep=false: AQmanfromdarktrees:q228. All five completed configs record epoch4. The new launcher executes only that one query; full shards are explicitly cancelled."
+    },
+    {
+      "topic": "Why the other 87 controls are identical",
+      "verdict": "PASS_SOURCE_INFERENCE_ONLY",
+      "evidence": "When keep_box equals actual query_box, _advance and the search control initialize the provider from the same parent.search_box and pass the same box and image dimensions. Provider.update ignores confidence and uses the same clipping/validity rules, so both search states are identical even when the proposed box is rejected. Motion substitution writes identical coordinates while retaining actual time and quality. All four post-query inference states therefore coincide; this is a source consequence of existing observed equality, not 87 new NN rollouts or measured new future outcomes."
+    },
+    {
+      "topic": "Logging, summaries and execution gate",
+      "verdict": "PASS",
+      "evidence": "The probe preserves actual per-control output, search, motion, writes and GT arrays and H3/H32 outcomes. The documented motion array semantics distinguish query commit from later forecast references. Query search/motion difference flags select the correct component rows. Single-event event_summary has unit weight; the revised plan makes no 24-event gain or population bootstrap claim. The launcher requires this source PASS, runs one GPU0 query, requires process success/COMPLETE/one differing query, and writes sanity_execution only after success. Runtime assertions must still execute before any runtime acceptance."
+    }
+  ],
+  "checks_actually_executed": [
+    "Local Python stdlib AST parsing of probe and revised launcher.",
+    "Local AST extraction and execution of controls only, plus old/new branch predicate truth table; no tracker/model import.",
+    "Local JSON inventory, exact prepared88 job matching, duplicate checks, 881-TRAIN/98-validation membership checks and role counts.",
+    "Local completed-record audit of 87 equal boxes, one differing box and 41 raw-score write opportunities.",
+    "Direct source inspection of provider, state copies, model/memory update operations, inference calls, launcher paths and summary semantics."
+  ],
+  "reviewer_execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "images_decoded": 0,
+    "optimizer_updates": 0,
+    "checkpoints_created": 0,
+    "deployments": 0,
+    "packages_installed": 0,
+    "subagents_spawned": 0,
+    "source_files_modified": false
+  },
+  "limitations": [
+    "The new one-query neural sanity/rollout has not been executed or attested by this reviewer.",
+    "The selected single TRAIN case is a component diagnostic; it cannot establish a population benefit, all24-event effect or native benchmark gain.",
+    "C1 keep is a reference candidate from the same old4 prestate, not verified identity or a separately tracked C1 trajectory.",
+    "Fixed query appearance/memory invariants concern the intervention boundary; future branch states may naturally diverge under the same policy.",
+    "The main allfive baseline+2 objective remains unmet; this source PASS is not experiment acceptance."
+  ]
+}
