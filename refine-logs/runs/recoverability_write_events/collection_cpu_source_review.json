@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T22:20:30+08:00",
+  "reviewer": {
+    "agent": "/root/write_event_cpu_audit_review",
+    "role": "Fresh delegated Codex source reviewer",
+    "backend_identity": "Not independently runtime-attested"
+  },
+  "review_scope": "Read-only source and saved local metadata review of the corrected CPU audit. No execution of the audit, collectors, SSH, NN, CUDA or training.",
+  "reviewed_file": "refine-logs/runs/recoverability_write_events/audit_collection_cpu.py",
+  "blocking": [],
+  "nonblocking": [],
+  "resolved_blocking_findings": [
+    {
+      "id": "R1",
+      "problem": "The initial audit compared complete event dictionaries with config.jobs, although the collector saves only sequence and query_frame.",
+      "evidence": [
+        "research/collect_recoverability.py:367 constructs config.jobs from sequence/query_frame only.",
+        "refine-logs/runs/recoverability_write_events/gpu0_jobs.json includes event_id, episode_start and other event metadata.",
+        "refine-logs/runs/recoverability_write_events/actual_start_metadata/sanity_gpu0/config.json confirms the actual saved two-key job format."
+      ],
+      "resolution": "The executor changed audit lines 71-72 to an ordered sequence/query_frame projection, while retaining expected event dictionaries for event-level output.",
+      "verification": "Corrected source reread; ordered comparison now matches the collector schema."
+    },
+    {
+      "id": "R2",
+      "problem": "The initial audit required job_completed.txt, but this collection path never creates that marker.",
+      "evidence": [
+        "research/collect_recoverability.py:390-416 writes config.json, progress.json, samples.npz and completion.json, with no job_completed.txt.",
+        "scripts/run_temporal.sh execs the collector; recoverability_write_events/launch_collection.py does not create a full-collection marker.",
+        "The existing observe_write_episode_collection_20261005.py waits for the original PIDs to become terminal and then validates completion.json; it does not create a marker."
+      ],
+      "resolution": "The executor removed the inherited marker assertion. The corrected audit reads the existing config/completion/samples artifacts and checks completed, partition and exact counts.",
+      "verification": "Corrected source reread. The existing local observer record reports all four original jobs terminal and complete, with counts 24/25/25/24 at 2026-10-05T22:09:59.744231+08:00. This reviewer did not repeat that runtime observation."
+    }
+  ],
+  "source_checks": [
+    {
+      "check": "Actual cache schema and common configuration",
+      "result": "PASS",
+      "evidence": "Audit lines 63-65 and 77-90 check old4 epoch4, own-policy futures, action write verification, H3, exact field names, dtypes and all non-batch dimensions. collect_recoverability.py:367-387 writes every common key, including history_descriptor_storage and future_execution. recoverability_best_native_policy/merge_partition_cpu.py retains configs[0] when writing the 1762-query base config, so these keys remain present. Its source enforces max_prefix=1024, batch_clips=16, forward_batch=64 and seed=42; the audit compares them to that base."
+    },
+    {
+      "check": "Query and history IoU against actual TRAIN GT",
+      "result": "PASS",
+      "evidence": "Audit loads the LasHeR training memory-mapped dataset from base root/cache, looks up each TRAIN sequence, and compares image_boxes with the query's dataset bounding box to tolerance 1e-4. It checks the exact causal history frame sequence, recomputes every valid-GT history IoU, and requires -1 labels where historical GT is invalid. These operations match collect_recoverability.py:218-234 and the original train-events CPU audit."
+    },
+    {
+      "check": "NumPy broadcasting and masks",
+      "result": "PASS",
+      "evidence": "Query boxes have shape (7,5,4) and the query target has shape (4), yielding one IoU per candidate. History boxes and targets both have shape (H,4), yielding aligned per-frame IoUs. current_iou[...,None] has shape (N,7,5,1), future_iou.mean(-1) and wrong_update_fraction have shape (N,7,5,2), so utility broadcasts only across the action axis. Masking future_iou by action_valid retains all three future labels for each legal action."
+    },
+    {
+      "check": "All writable candidate pairs and pause utility direction",
+      "result": "PASS",
+      "evidence": "Collector lines 235-254 use pause=0 for the normal query action and pause=1 for suppressing a query write; pause=1 exists exactly for valid candidates with raw_score>.84. The audit verifies this equality and sums the full (N,7,5) mask, covering all regions and candidates. Its utility is the same .7*current+.3*mean(future)-.1*wrong_update_fraction expression as recoverability_modules.py:216-218, and pause_delta=utility[...,1]-utility[...,0] matches write_pair_supervision_loss at lines 305-310. Positive, negative and equal counts use a consistent 1e-6 tolerance and must sum to all pairs. original_candidate_write_pairs is specifically the C1 original-choice subset; candidate_write_pairs is the all-candidate total."
+    },
+    {
+      "check": "Events are not inflated by candidate-pair multiplicity",
+      "result": "PASS",
+      "evidence": "Audit lines 44-50 require exactly 98 distinct sequence/query pairs and 98 distinct event IDs, matching prepared eligible queries and excluding all prior 2478 queries. It appends one event-level record per expected query, while candidate-pair counts remain nested counts. The output explicitly states that candidate pairs are not independent events."
+    },
+    {
+      "check": "TRAIN boundary, existing data and future-label scope",
+      "result": "PASS",
+      "evidence": "The audit checks the 881/98 disjoint TRAIN/developer-validation sequence split, base1762, prior2478, validation196 and new98. Only new TRAIN samples and actual TRAIN GT are audited; no native TEST dataset or predictions are read. Its sole write is the new collection_cpu_acceptance.json, leaving prior caches and validation unchanged. Combined TRAIN count 2576 equals 2478+98. Future IoUs remain saved own-policy H3 labels with finite/range and source checks; the receipt explicitly disclaims independent future neural replay, native accuracy and proof of causal write damage."
+    }
+  ],
+  "execution": {
+    "audit_executed": false,
+    "tests_executed": false,
+    "raw_npz_runtime_validation_performed": false,
+    "ssh_calls": 0,
+    "neural_forward_calls": 0,
+    "cuda_calls": 0,
+    "optimizer_steps": 0,
+    "native_test_reads": false,
+    "business_source_modified_by_reviewer": false,
+    "files_written_by_reviewer": [
+      "refine-logs/runs/recoverability_write_events/collection_cpu_source_review.json"
+    ]
+  },
+  "conclusion": "The two concrete source/artifact mismatches were corrected and reread. No remaining blocking or nonblocking source defects found within the requested scope. This is provisional source acceptance; actual CPU audit completion remains a separate runtime result."
+}

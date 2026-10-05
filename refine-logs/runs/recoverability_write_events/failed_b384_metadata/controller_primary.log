@@ -1,0 +1,7 @@
+{"stage": "M0_FOUR_GPU_ABC_TRAINING_RUNNING", "at_cst": "2026-10-05T22:25:27.421733+08:00", "pid": 2598954, "automatic_restarts": 0, "official_metrics_completed": false, "children": [{"pid": 2598981, "gpu": 0, "arm": "pairwise_lr4", "log": "/data/gb/setup/write_events_m0_gpu0_20261005.log", "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_m0_20261005", "expected_epochs": 3, "expected_optimizer_steps": 21}, {"pid": 2598982, "gpu": 1, "arm": "budgeted_lr4", "log": "/data/gb/setup/write_events_m0_gpu1_20261005.log", "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_m0_20261005", "expected_epochs": 3, "expected_optimizer_steps": 21}, {"pid": 2598984, "gpu": 2, "arm": "pairwise_lr5", "log": "/data/gb/setup/write_events_m0_gpu2_20261005.log", "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_m0_20261005", "expected_epochs": 3, "expected_optimizer_steps": 21}, {"pid": 2598985, "gpu": 3, "arm": "budgeted_lr5", "log": "/data/gb/setup/write_events_m0_gpu3_20261005.log", "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_m0_20261005", "expected_epochs": 3, "expected_optimizer_steps": 21}]}
+Traceback (most recent call last):
+  File "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_training.py", line 90, in <module>
+    main()
+  File "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_training.py", line 77, in main
+    assert code == 0, (arm['arm'], code, str(log))
+AssertionError: ('pairwise_lr4', 1, '/data/gb/setup/write_events_m0_gpu0_20261005.log')

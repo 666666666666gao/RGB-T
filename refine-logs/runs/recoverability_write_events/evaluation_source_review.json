@@ -1,0 +1,176 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer_agent": "/root/write_event_complete_evaluation_review",
+  "reviewer_model_metadata": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "model_family": "Codex/GPT-6",
+    "exact_runtime_model_and_effort_independently_attested": false
+  },
+  "reviewed_at_cst": "2026-10-05T22:37:01.528460+08:00",
+  "scope": "Fresh source review of seven evaluation files and directly consumed schemas. Final verdict applies to the corrected B336, 60-epoch, 480-update plan. It does not attest training, inference, new native metrics, or the pending B336 capacity rescue.",
+  "reviewed_files": [
+    "evaluation_pipeline.py",
+    "run_native_complete.sh",
+    "report_native_complete.sh",
+    "merge_native_complete.py",
+    "audit_native_complete_cpu.py",
+    "merge_complete_goal_report.py",
+    "score_full98_cpu.py"
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "resolved_findings": [
+    {
+      "file": "evaluation_pipeline.py",
+      "line": 65,
+      "initial_defect": "The initial B384 evaluation source waited on write_events_complete_fit_progress_20261005.json, but its actual training controller wrote write_events_fit_progress_20261005.json; reading the nonexistent file would stop evaluation before waiting.",
+      "resolution": "Coordinator corrected the initial dependency. After the actual B384 capacity failure, the current evaluation and B336 training producer both name write_events_b336_fit_progress_20261005.json and FOUR_COMPLETE_480UPDATE_ABC_FITS_READY_FOR_FULL_VIDEO_SELECTION.",
+      "source_rechecked": true
+    }
+  ],
+  "checks": {
+    "training_dependencies": {
+      "status": "PASS",
+      "launch_receipt": "actual_training_b336_launch.json",
+      "launch_pid_key": "pid",
+      "upstream_state": "/data/gb/setup/write_events_b336_fit_progress_20261005.json",
+      "upstream_terminal_stage": "FOUR_COMPLETE_480UPDATE_ABC_FITS_READY_FOR_FULL_VIDEO_SELECTION",
+      "acceptance_files": [
+        "/data/gb/setup/write_events_b336_m0_fit_cpu_acceptance_20261005.json",
+        "/data/gb/setup/write_events_b336_full_fit_cpu_acceptance_20261005.json"
+      ],
+      "detail": "The coordinator checks the actual launch PID while waiting, then requires full and M0 CPU PASS before evaluation/retirement. Producer names, terminal stage, acceptance schemas, and 480-step assertions match. It no longer consumes original B384 PID 2598954.",
+      "plan": {
+        "arms": 4,
+        "batch_size": 336,
+        "train_queries": 2576,
+        "validation_queries": 196,
+        "full_epochs": 60,
+        "optimizer_steps_per_arm": 480,
+        "retained_epochs": [
+          4,
+          20,
+          60
+        ],
+        "cached_best_candidate": true
+      }
+    },
+    "full98_developer_selection": {
+      "status": "PASS",
+      "sequences": 98,
+      "frames": 49418,
+      "detail": "Four sequential candidate slots, up to four workers each, evaluate positive retained epochs 4/20/60 and cached best; duplicate arm/epoch and epoch-zero copies are skipped. All frames of the original developer split are required. Raw saved XYWH predictions are scored against actual TRAIN GT using valid-frame sequence mean IoU, excluding initialization; highest equal-weight sequence mean IoU wins in declared order. The source explicitly distinguishes this diagnostic from LasHeR SR and native-test checkpoint selection."
+    },
+    "fixed_checkpoint_and_complete_native_coverage": {
+      "status": "PASS",
+      "lasher": {
+        "sequences": 245,
+        "frames": 220703,
+        "offsets": [
+          0,
+          62,
+          123,
+          184
+        ],
+        "counts": [
+          62,
+          61,
+          61,
+          61
+        ]
+      },
+      "rgbt234": {
+        "sequences": 234,
+        "frames": 116649,
+        "offsets": [
+          0,
+          59,
+          118,
+          176
+        ],
+        "counts": [
+          59,
+          59,
+          58,
+          58
+        ]
+      },
+      "detail": "Selection is saved before either native dataset starts. Four workers read that same checkpoint and process both full datasets with max_frames=0. Merge requires all shard completion markers, exact ordered sequence union, all actual visible/infrared frames, prediction and latency lengths, fixed checkpoint/epoch, no native validation split, and identical configuration. Partial shards are promoted only after complete-union validation."
+    },
+    "four_variant_report_dimensions": {
+      "status": "PASS",
+      "variants": [
+        "baseline",
+        "c1",
+        "old4",
+        "write_events_complete"
+      ],
+      "per_sequence_rows": 1916,
+      "attribute_rows": 124,
+      "acceptance_metrics": 5,
+      "detail": "Collector arguments, independent audit run mapping, all paired loops, merger variants, four-way CSV lengths, 19 LasHeR/12 RGBT234 attributes per variant, and baseline/C1/new acceptance unpacking agree. Goal acceptance remains the five required +2 percentage-point gains against baseline; old4 comparison is retained in complete native and paired reports."
+    },
+    "native_actual_gt_arithmetic": {
+      "status": "PASS",
+      "detail": "The collector uses original rgbt metrics and verifies evaluator GT against actual dataset files. The independent arithmetic remains unchanged from the successfully completed train_events audit: float32 native prediction rounding, LasHeR initialization replacement and previous-box inheritance for zero-area rows, inclusive-width centers/IoU, native thresholds, sequence averaging, attributes and complete curves. RGBT234 uses actual visible/infrared GT with minimum center error and maximum overlap. Prediction files are not rewritten. Historical CPU acceptance is evidence for the inherited arithmetic, not a new runtime recomputation."
+    },
+    "all_three_paired_bootstraps": {
+      "status": "PASS",
+      "references": [
+        "baseline",
+        "c1",
+        "old4"
+      ],
+      "iterations": 5000,
+      "seed": 42,
+      "detail": "Each reference/new pair gets its own two-variant report and 5000-resample seed42 paired sequence bootstrap. Independent CPU reconstruction uses the same sorted sequence names, shared draws across metrics, deltas and 2.5/97.5 percentiles, then requires exact metric equality. The merger checks all three pairs against the four-variant report and independent audit."
+    },
+    "distinct_collection_namespaces": {
+      "status": "PASS",
+      "transition_716": "/data/gb/setup/train_events_full_cpu_acceptance_20261005.json",
+      "new_write_episode_98": "/data/gb/outputs/recoverability_write_events_collection_20261005/collection_cpu_acceptance.json",
+      "detail": "The original 716-transition gate correctly retains the train_events namespace and new_clips field. The distinct write-event gate has new_queries=98, combined_train_queries=2576, TRAIN-only/current-and-history GT verification, and unchanged prior2478/developer196 fields; its local actual acceptance is PASS. The training producer checks this gate before producing the training acceptance consumed here."
+    },
+    "old4_paths_and_preservation": {
+      "status": "PASS",
+      "lasher_predictions": "/data/gb/outputs/recoverability_write_pair_native_lasher_own_b384_full_20261004/predictions",
+      "rgbt234_predictions": "/data/gb/outputs/recoverability_write_pair_native_rgbt234_own_b384_full_20261004/predictions",
+      "detail": "Both paths exactly match existing local exported old4 inference configurations. Local old4 completion summaries, complete native reports and CPU audit PASS records establish historical full245/234 coverage. Existing old4 metrics and files are read only; the source never relabels a new candidate as old4 or deletes its checkpoint."
+    },
+    "temporary_weight_retirement": {
+      "status": "PASS",
+      "detail": "M0 owned weights are retired only after complete training and CPU consumers. Full-fit unselected weights are retired after all full98 candidate inference and CPU scoring, retaining the selected exact path for both native datasets and final report. Targets come from current acceptance checkpoints and must be .pth files in direct /data/gb/outputs/recoverability_write_events_* directories. Old4, C1, pretrained GOLA and frozen motion dependencies are outside that target set. No recursive cleanup or retry machinery is added."
+    },
+    "execution_order_and_failures": {
+      "status": "PASS",
+      "detail": "Dependency wait -> M0/full CPU gates -> four full98 slots -> fixed selection -> four native workers covering both datasets -> merge/report/independent CPU audit for each dataset -> all-five summary. Nonzero subprocesses stop the coordinator; automatic_restarts stays zero. CPU scorers run with CUDA_VISIBLE_DEVICES empty. No source path declares the entire research goal completed."
+    }
+  },
+  "validation_performed": [
+    "AST parsing passed for all five current Python evaluation files.",
+    "bash -n passed for both current shell evaluation files using the installed Git Bash.",
+    "Local stdlib checks passed for four-arm B336/60-epoch/480-step plan arithmetic and current producer-consumer paths/stage strings.",
+    "Local actual collection schema checks passed for 98 new queries, 2576 combined queries, TRAIN-only GT and unchanged prior2478/developer196.",
+    "Local old4 LasHeR245/220703 and RGBT234234/116649 report dimensions, native reference paths, complete summaries and CPU audit PASS records checked.",
+    "Inherited train_events complete native CPU PASS records and original716 gate schema checked; namespace-normalized diff confirms unchanged native metric arithmetic and full98 scorer."
+  ],
+  "runtime_limitations": [
+    "No SSH, server filesystem inspection, dataset scoring, model forward, CUDA initialization, training launch, or experiment process control was performed in this review.",
+    "The B336 launch receipt and subsequent training/full98/native results must be produced by their actual workers. Their future success is not implied by source PASS.",
+    "The local old4 exports used here include historical reports and summaries; this review does not re-read remote prediction bytes or regenerate old4 scores.",
+    "Full98 developer data are reused for checkpoint selection. Fixed-checkpoint bootstrap does not establish training-seed stability or eliminate development influence from historical native outcomes."
+  ],
+  "execution": {
+    "business_source_edits": 0,
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "automatic_restarts": 0,
+    "review_output_files_written": 1
+  }
+}

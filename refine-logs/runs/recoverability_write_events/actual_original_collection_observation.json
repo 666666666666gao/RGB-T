@@ -1,0 +1,167 @@
+{
+  "snapshots": [
+    {
+      "observed_at_cst": "2026-10-05T22:05:59.125973+08:00",
+      "parts": [
+        {
+          "gpu": 0,
+          "pid": 2555092,
+          "live": true,
+          "expected_clips": 24,
+          "completion": null,
+          "terminal_log_tail": null
+        },
+        {
+          "gpu": 1,
+          "pid": 2555147,
+          "live": true,
+          "expected_clips": 25,
+          "completion": null,
+          "terminal_log_tail": null
+        },
+        {
+          "gpu": 2,
+          "pid": 2555132,
+          "live": true,
+          "expected_clips": 25,
+          "completion": null,
+          "terminal_log_tail": null
+        },
+        {
+          "gpu": 3,
+          "pid": 2555193,
+          "live": true,
+          "expected_clips": 24,
+          "completion": null,
+          "terminal_log_tail": null
+        }
+      ],
+      "all_terminal": false,
+      "all_complete": false
+    },
+    {
+      "observed_at_cst": "2026-10-05T22:09:59.744231+08:00",
+      "parts": [
+        {
+          "gpu": 0,
+          "pid": 2555092,
+          "live": false,
+          "expected_clips": 24,
+          "completion": {
+            "completed": true,
+            "clips": 24,
+            "partition": "train",
+            "valid_actions": 883,
+            "requested_extra_crops": 144,
+            "executed_extra_crops": 144,
+            "original_correct_queries": 0,
+            "original_failed_queries": 24,
+            "original_candidate_present_queries": 3,
+            "query_frames_after256": 14,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 423.1339482180774,
+            "peak_cuda_mib": 4299.40869140625,
+            "actual_prefix_counts_sum": [
+              42,
+              3,
+              20,
+              6017
+            ]
+          },
+          "terminal_log_tail": "/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nPROGRESS {\"completed_clips\": 16, \"clips\": 24, \"elapsed_seconds\": 346.9175858423114, \"peak_cuda_mib\": 4299.40869140625}\nPROGRESS {\"completed_clips\": 24, \"clips\": 24, \"elapsed_seconds\": 420.02222038432956, \"peak_cuda_mib\": 4299.40869140625}\nCOMPLETED {\"completed\": true, \"clips\": 24, \"partition\": \"train\", \"valid_actions\": 883, \"requested_extra_crops\": 144, \"executed_extra_crops\": 144, \"original_correct_queries\": 0, \"original_failed_queries\": 24, \"original_candidate_present_queries\": 3, \"query_frames_after256\": 14, \"decision_input_contains_future\": false, \"official_tracking_accuracy\": false, \"elapsed_seconds\": 423.1339482180774, \"peak_cuda_mib\": 4299.40869140625, \"actual_prefix_counts_sum\": [42, 3, 20, 6017]}\n"
+        },
+        {
+          "gpu": 1,
+          "pid": 2555147,
+          "live": false,
+          "expected_clips": 25,
+          "completion": {
+            "completed": true,
+            "clips": 25,
+            "partition": "train",
+            "valid_actions": 913,
+            "requested_extra_crops": 150,
+            "executed_extra_crops": 150,
+            "original_correct_queries": 0,
+            "original_failed_queries": 25,
+            "original_candidate_present_queries": 1,
+            "query_frames_after256": 15,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 428.1101588080637,
+            "peak_cuda_mib": 4316.5478515625,
+            "actual_prefix_counts_sum": [
+              142,
+              4,
+              9,
+              6207
+            ]
+          },
+          "terminal_log_tail": "10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nPROGRESS {\"completed_clips\": 16, \"clips\": 25, \"elapsed_seconds\": 356.10658443532884, \"peak_cuda_mib\": 4316.5478515625}\nPROGRESS {\"completed_clips\": 25, \"clips\": 25, \"elapsed_seconds\": 424.94713730039075, \"peak_cuda_mib\": 4316.5478515625}\nCOMPLETED {\"completed\": true, \"clips\": 25, \"partition\": \"train\", \"valid_actions\": 913, \"requested_extra_crops\": 150, \"executed_extra_crops\": 150, \"original_correct_queries\": 0, \"original_failed_queries\": 25, \"original_candidate_present_queries\": 1, \"query_frames_after256\": 15, \"decision_input_contains_future\": false, \"official_tracking_accuracy\": false, \"elapsed_seconds\": 428.1101588080637, \"peak_cuda_mib\": 4316.5478515625, \"actual_prefix_counts_sum\": [142, 4, 9, 6207]}\n"
+        },
+        {
+          "gpu": 2,
+          "pid": 2555132,
+          "live": false,
+          "expected_clips": 25,
+          "completion": {
+            "completed": true,
+            "clips": 25,
+            "partition": "train",
+            "valid_actions": 917,
+            "requested_extra_crops": 150,
+            "executed_extra_crops": 150,
+            "original_correct_queries": 0,
+            "original_failed_queries": 25,
+            "original_candidate_present_queries": 2,
+            "query_frames_after256": 15,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 439.49493038095534,
+            "peak_cuda_mib": 4304.6259765625,
+            "actual_prefix_counts_sum": [
+              26,
+              4,
+              12,
+              6947
+            ]
+          },
+          "terminal_log_tail": "10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nPROGRESS {\"completed_clips\": 16, \"clips\": 25, \"elapsed_seconds\": 355.80326404888183, \"peak_cuda_mib\": 4304.6259765625}\nPROGRESS {\"completed_clips\": 25, \"clips\": 25, \"elapsed_seconds\": 436.2991789970547, \"peak_cuda_mib\": 4304.6259765625}\nCOMPLETED {\"completed\": true, \"clips\": 25, \"partition\": \"train\", \"valid_actions\": 917, \"requested_extra_crops\": 150, \"executed_extra_crops\": 150, \"original_correct_queries\": 0, \"original_failed_queries\": 25, \"original_candidate_present_queries\": 2, \"query_frames_after256\": 15, \"decision_input_contains_future\": false, \"official_tracking_accuracy\": false, \"elapsed_seconds\": 439.49493038095534, \"peak_cuda_mib\": 4304.6259765625, \"actual_prefix_counts_sum\": [26, 4, 12, 6947]}\n"
+        },
+        {
+          "gpu": 3,
+          "pid": 2555193,
+          "live": false,
+          "expected_clips": 24,
+          "completion": {
+            "completed": true,
+            "clips": 24,
+            "partition": "train",
+            "valid_actions": 880,
+            "requested_extra_crops": 144,
+            "executed_extra_crops": 144,
+            "original_correct_queries": 0,
+            "original_failed_queries": 24,
+            "original_candidate_present_queries": 2,
+            "query_frames_after256": 15,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 431.28088697372004,
+            "peak_cuda_mib": 4301.96875,
+            "actual_prefix_counts_sum": [
+              247,
+              5,
+              61,
+              5162
+            ]
+          },
+          "terminal_log_tail": "la/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nPROGRESS {\"completed_clips\": 16, \"clips\": 24, \"elapsed_seconds\": 358.0833969139494, \"peak_cuda_mib\": 4301.96875}\nPROGRESS {\"completed_clips\": 24, \"clips\": 24, \"elapsed_seconds\": 428.1428503198549, \"peak_cuda_mib\": 4301.96875}\nCOMPLETED {\"completed\": true, \"clips\": 24, \"partition\": \"train\", \"valid_actions\": 880, \"requested_extra_crops\": 144, \"executed_extra_crops\": 144, \"original_correct_queries\": 0, \"original_failed_queries\": 24, \"original_candidate_present_queries\": 2, \"query_frames_after256\": 15, \"decision_input_contains_future\": false, \"official_tracking_accuracy\": false, \"elapsed_seconds\": 431.28088697372004, \"peak_cuda_mib\": 4301.96875, \"actual_prefix_counts_sum\": [247, 5, 61, 5162]}\n"
+        }
+      ],
+      "all_terminal": true,
+      "all_complete": true
+    }
+  ],
+  "scope": "Original NN collection only; no re-launch, training or native metric."
+}

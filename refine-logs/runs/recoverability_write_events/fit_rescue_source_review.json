@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "review_level": "SOURCE_ONLY_RESCUE",
+  "review_type": "experiment-bridge sanity-failure rescue / second opinion",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "backend_identity_independently_attested": false,
+  "reviewed_date_cst": "2026-10-05",
+  "scope": "Local source and supplied original batch384 logs/configs/metrics/completion records; standard-library parsing and command/config checks only. No SSH, GPU query, neural execution, training restart or business-source edit by this reviewer.",
+  "conclusion": "SOURCE_ONLY PASS for the explicit batch336 capacity rescue. The actual batch384 GPU0 backward OOM is documented, and reducing all four arms to batch336 is a concrete, minimal change to reduce batch-dependent memory demand. Plan, actual CLI expressions, private package, training output/state/log names and CPU acceptance receipts agree. All four new M0 runs and their CPU audit must actually PASS before full training. This review does not establish that batch336 will fit or guarantee a memory upper bound.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "unresolved_blockers": [],
+  "required_fixes": [],
+  "resolved_findings": [
+    {
+      "issue": "The earlier batch384 source PASS was not evidence of sufficient runtime memory.",
+      "resolution": "Preserved the original failed-run sources and primary artifacts. The new controller requires this rescue review and runs a fresh four-arm M0 under a separate b336 namespace before full training. Actual batch336 capacity remains unverified.",
+      "evidence": [
+        "failed_b384_metadata/fit_source_review.json: runtime_attested=false and explicit capacity limitation",
+        "failed_b384_metadata/gpu0/primary.log:8-23",
+        "run_training.py: main review gate, m0/full ordering and CPU receipt gate"
+      ]
+    },
+    {
+      "issue": "Reducing the batch changes optimizer-update counts and invalidates the former 420-update budget description.",
+      "resolution": "The plan and execution/reporting interfaces explicitly use 24 M0 updates and 480 full updates. The CPU audit docstring was corrected during review from matched-update to completed fits; no audit logic changed.",
+      "evidence": [
+        "fit_plan.json: all four arms and capacity_correction",
+        "run_training.py: FOUR_COMPLETE_480UPDATE_ABC_FITS_READY_FOR_FULL_VIDEO_SELECTION",
+        "audit_fit_cpu.py: epoch/update arithmetic and corrected docstring"
+      ]
+    }
+  ],
+  "actual_batch384_diagnosis": {
+    "stage_outcome": "M0_FAILED_OVERALL_FULL_NOT_STARTED",
+    "failed_arm": "pairwise_lr4",
+    "failed_gpu": 0,
+    "failure_location": "train_recoverability.py line228 loss.backward(); torch autograd backward",
+    "exception": "torch.OutOfMemoryError",
+    "requested_allocation_gib": 2.25,
+    "reported_free_gib": 1.97,
+    "reported_gpu_capacity_gib": 23.68,
+    "reported_process_memory_including_non_pytorch_gib": 21.37,
+    "reported_pytorch_allocated_gib": 15.80,
+    "reported_pytorch_reserved_unallocated_gib": 5.21,
+    "other_reported_process_memory_mib": 312.51,
+    "last_logged_epoch": 2,
+    "last_logged_step": 1,
+    "last_logged_optimizer_steps": 8,
+    "exact_failed_minibatch_known": false,
+    "gpu0_metric_epochs": [0, 1],
+    "gpu0_completion_json_present": false,
+    "completed_original_arms": [
+      {"gpu": 1, "arm": "budgeted_lr4", "epochs": 3, "optimizer_steps": 21, "peak_cuda_mib": 20133.236328125, "elapsed_seconds": 166.12604846805334},
+      {"gpu": 2, "arm": "pairwise_lr5", "epochs": 3, "optimizer_steps": 21, "peak_cuda_mib": 20132.736328125, "elapsed_seconds": 166.97045043390244},
+      {"gpu": 3, "arm": "budgeted_lr5", "epochs": 3, "optimizer_steps": 21, "peak_cuda_mib": 20133.236328125, "elapsed_seconds": 166.76456142868847}
+    ],
+    "completed_receipts_exactly_equal_primary_COMPLETED_records": true,
+    "controller_terminal_observed_at_cst": "2026-10-05T22:29:28.994612+08:00",
+    "all_children_terminal_intake_at_cst": "2026-10-05T22:31:46.438772+08:00",
+    "all_original_children_terminal": true,
+    "full_outputs_exist": [],
+    "interpretation": "This is a demonstrated backward-allocation failure after real training progress, not an import, CLI or data-loading failure. The failed allocation exceeded the contemporaneous free memory and substantial reserved-but-unallocated memory was reported. These artifacts do not uniquely identify fragmentation, the exact allocating tensor, or a leak. They do not justify allocator changes or a claim that the resident cache alone caused the OOM."
+  },
+  "checks": {
+    "minimal_plan_diff": "PASS: direct old/new plan comparison found only per-arm batch_size, m0_optimizer_steps, full_optimizer_steps, output_m0 and output_full changes; top-level changes are stage, private_package and the explicit capacity_correction explanation. Data roots, 2576 TRAIN queries, 196 validation queries, seed42, four objective/LR arms, parent old4 checkpoint, all-ABC-trainable setting, supervision modes, epochs and retained epochs are unchanged.",
+    "capacity_change": "PASS as a source-level rescue: batch384 to336 reduces batch width by12.5 percent. The reused trainer indexes minibatches with this value and the model/objective intermediates are batch-dependent. Entire loaded TRAIN/validation tensors still reside on the requested device. No absolute peak-memory estimate or guarantee is inferred.",
+    "update_budget": "PASS: ceil(2576/336)=8; M0 3epochs=24 updates and full60epochs=480 updates per arm. This is a changed update budget relative to420, and all four arms share the same new budget. Full runs restart from the same declared old4 initialization, not from M0 weights.",
+    "actual_commands": "PASS: independently extracted the runner command AST and parsed all eight M0/full commands through the reused trainer's argparse function using only the standard library. Train/validation paths, batch336, epochs, retained epochs, LR, seed, ranking, selector search supervision, action write verification, initialization and output agree with the plan. Threshold.03, weight_decay1e-4, frozen_modules=[], and disabled optional calibration/prefer-last-prefix remain unchanged defaults.",
+    "source_and_loss_scope": "PASS: the current controller differs from archived batch384 only in explicit budget text, rescue-review input and b336 names. The existing CPU-staged trainer remains the specified private_trainer; the source_package is unchanged. No architecture, objective, data membership, optimizer implementation, allocator setting, automatic OOM retry, fallback or compatibility layer was introduced by this rescue.",
+    "trace_and_old_run_truth": "PASS: read original controller and all four primary logs plus configs, metrics and train.jsonl records. Each GPU1-3 completion.json equals its original COMPLETED log object and records3epochs/21updates. GPU0 has metrics for epochs0/1, logged updates1/7/8, the backward traceback, and no completion.json. The controller failed on GPU0 exit1; the terminal controller observation and later all-child-terminal intake agree. The intake lists no full outputs. The historical RUNNING state is not treated as evidence of current liveness.",
+    "namespace": "PASS: all eight fit outputs and private package carry b336. The controller uses write_events_b336_fit_progress_20261005.json; launcher uses write_events_b336_fit_launch_20261005.json and write_events_b336_fit_controller_20261005.log; each stage uses write_events_b336_{stage}_gpu{gpu}_20261005.log, write_events_b336_{stage}_fit_cpu_audit_20261005.log and write_events_b336_{stage}_fit_cpu_acceptance_20261005.json. The audit writer, runner reader, b336 observer and downstream fit-acceptance references match. Old batch384 run evidence remains separately archived.",
+    "full_gate": "PASS: stage order is m0 then full. All four fresh M0 child exit codes must be0, the CPU audit subprocess must exit successfully, and its b336 all_four_ABC_fits_passed PASS receipt must be read before the full stage begins. Three historical batch384 successes cannot satisfy this gate. No unchanged retry or automatic restart is present.",
+    "cpu_audit": "PASS: exact old/new diff is the receipt prefix plus docstring wording. Existing assertions recompute steps_per_epoch from the new plan, enforce24/480 actual updates, check every arm's exact config, all epoch metric rows, first/last minibatch log coordinates, finite positive ABC gradients, ABC weight changes, frozen C1, retained files, strict checkpoint reload and196-query CPU replay. Its receipt and controller use the identical b336 namespace.",
+    "resource_preflight": "PASS: unchanged checks require GPUs0-3 with more than20000MiB free, no Python compute process on those GPU UUIDs and more than10GiB disk free. These are preflight conditions, not proof of peak allocation. No power or temperature query was added."
+  },
+  "local_validation": {
+    "interpreter": "E:/python.exe -Xutf8",
+    "standard_library_only": true,
+    "python310_AST_parse": "PASS",
+    "all_eight_actual_command_expressions_argparse_check": "PASS",
+    "old_new_plan_diff": "PASS",
+    "old_new_runner_and_audit_diff": "PASS",
+    "primary_logs_and_completion_crosscheck": "PASS",
+    "review_helper_note": "The first local verification command stopped on the reviewer's Windows path-separator dictionary key before completing checks. Corrected path handling and reran the standard-library checks successfully. No experiment code was involved.",
+    "numpy_or_torch_imported": false,
+    "SSH_or_SCP_calls": 0,
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "optimizer_steps": 0,
+    "jobs_launched": 0,
+    "business_source_files_changed_by_reviewer": 0
+  },
+  "files_reviewed": [
+    "refine-logs/runs/recoverability_write_events/fit_plan.json",
+    "refine-logs/runs/recoverability_write_events/run_training.py",
+    "refine-logs/runs/recoverability_write_events/audit_fit_cpu.py",
+    "refine-logs/runs/recoverability_write_events/fit_source_review.json",
+    "refine-logs/runs/recoverability_write_events/actual_b384_capacity_failure_intake.json",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/fit_plan.json",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/run_training.py",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/audit_fit_cpu.py",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/fit_source_review.json",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/controller_primary.log",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/actual_original_training_observation.json",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/gpu0/primary.log,config.json,metrics.json,train.jsonl",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/gpu1/primary.log,config.json,completion.json,metrics.json,train.jsonl",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/gpu2/primary.log,config.json,completion.json,metrics.json,train.jsonl",
+    "refine-logs/runs/recoverability_write_events/failed_b384_metadata/gpu3/primary.log,config.json,completion.json,metrics.json,train.jsonl",
+    "refine-logs/runs/recoverability_train_events/train_fixed_epochs_private.py",
+    "research/recoverability_modules.py: relevant batch-dependent forward/objective and loss sections",
+    "refine-logs/runs/recoverability_write_events/evaluation_pipeline.py: upstream fit gate and names",
+    "refine-logs/runs/recoverability_write_events/run_native_complete.sh: changed budget references",
+    "refine-logs/runs/recoverability_write_events/merge_complete_goal_report.py: changed budget and fit-receipt references",
+    "../launch_write_event_training_b336_20261005.py",
+    "../observe_write_event_training_b336_20261005.py",
+    "../prepare_write_event_b336_rescue_20261005.py",
+    "../intake_write_event_capacity_failure_20261005.py"
+  ],
+  "limitations": [
+    "Batch336 has not been executed or runtime-attested by this reviewer. Actual four-arm M0 training plus CPU acceptance remains mandatory; no source review can supply the missing capacity evidence.",
+    "Even successful three-epoch M0 establishes observed capacity over those executed batches, not an absolute memory upper bound for every future batch. Full training still needs its own actual completion and CPU acceptance.",
+    "The remote private package, cached tensor bytes and checkpoints were not accessed; reviewed runtime facts are supplied local original artifacts. Review model/backend identity is not independently attested.",
+    "This is the focused capacity-rescue review. Subsequent full98 continuous selection, fixed-checkpoint native evaluation and official goal acceptance are not certified here."
+  ]
+}
