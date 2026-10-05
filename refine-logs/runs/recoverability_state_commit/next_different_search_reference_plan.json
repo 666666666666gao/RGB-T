@@ -1,0 +1,21 @@
+{
+  "status": "PLANNED_NOT_IMPLEMENTED_OR_NN_STARTED",
+  "prepared_at_cst": "2026-10-05T15:49:55.469163+08:00",
+  "evidence": [
+    "e3geometrydiff1/48",
+    "bestold4geometrydiff0/48",
+    "old4q187 selected andC1 bothIoU0; zeroC1comparison doesnotintervene inbadgeometry",
+    "Both48probes had4legalwritepairs and no32frame-unrecoveredstates"
+  ],
+  "actor": "retainedold4",
+  "minimal_next_control": "Keep currentoutput and motionhistory fixed; change ONLY nextsearch crop reference to time-advanced pastvelocity prediction. Use pastbox centers/timestamps only, widthheight from existingvalidsearchbox; existingprovider validity semantics. Search time advances to q+1, no indefiniteposition freeze.",
+  "purpose": "Test whether a genuinelydifferentnextsearch reference changes observations and persistentloss, separately frommotionhistory/template commits. This prediction is not claimed trustedidentity.",
+  "prerequisites": [
+    "Sourceimplementation and fresh review",
+    "Actualsmall NNsanity before4GPU eventrollouts",
+    "Audit actual differentgeometry/writepairs/recovered/unrecovered coverage; do not inflate eventunits"
+  ],
+  "sampling_work": "Inspect closed TRAINpolicy records for persistentfailure eventwindows; predeclare states before nextNN, keepnormal andrecoveringevents. No test-set tuning or reuseVALasTRAIN.",
+  "new_training": false,
+  "goal_status": "ACTIVE_UNMET"
+}
