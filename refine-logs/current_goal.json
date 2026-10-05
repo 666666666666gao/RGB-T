@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "Recoverable RGB-T tracking under unreliable observations: preserve bounded identity/candidate evidence, separate output from trusted search/motion and RGB/TIR commits, and optimize interventions by event-level future consequences. Complete pretrained GOLA-B/C1 and protectedold4; LasHeR/RGBT234 only; one best internally selected checkpoint, no3seedgate. Actual all4full60/480 fits and16full98 selection closed. Same locked newepoch4 native bothbenchmarks actuallycomplete with allfive metrics/31attributes/curves/paired intervals/GT replay; 20 predeclared masked TRAIN event diagnostics now actually closed and CPUchecked on releasedGPU3. Acceptance remains allfive native metrics>=full localGOLA+2pp; no source/diagnostic/training marker substitutes for formal metrics.",
+  "execution_objective": "在完整预训练GOLA-B及C1基础上，研究不可靠定位如何损害后续可恢复性；围绕有界身份/候选证据、可信几何驱动的多未来搜索、事件级延迟风险与分级状态提交完善A/B/C。正常、恢复和无法恢复状态按事件覆盖；搜索监督与合法写入动作对分别审计。先关闭已完成训练和候选的全量评测，再做同状态位置/运动提交最小因果对照，证据支持后训练升级模块。只做原地LasHeR/RGBT234；预先选定一个内部指标最好的seed/checkpoint/config并用于两个数据集，不要求三个seed同时超过。最终全部五项正式指标均须比本地完整GOLA-B提高至少2个百分点，同时给出全量序列、31属性、曲线、配对区间、恢复/损害/写入机制和完整推理成本。训练完成、缓存IoU或源码检查不能替代正式成绩。保护old4及必要依赖，仅清理已完成消费者后的无用权重；四卡用于必要工作，长任务按ETA后180–300秒检查；无需功率/温度控制。只维护一份人工交接文档，同步Desktop与服务器，并上传授权仓库。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -6379,7 +6379,7 @@
     "environment": "/data/gb/envs/gola",
     "use_four_gpus_when_useful": true,
     "poll_seconds": 240,
-    "checkpoint_retention": "All four negative full heads actually retired; 506280 bytes total. Old4 and required dependencies retained.",
+    "checkpoint_retention": "Protectedold4 and requiredGOLA/DINO/C1/frozenmotion dependencies retained. All owned unselected/failed/latestdominated write_events weights alreadyretired with original journals; latestepoch004 1735109bytes removed onlyafterallconsumers ended. This fixedweight control produces no newweights.",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
     "repository": "https://github.com/666666666666gao/RGB-T",
     "gpu_assignment_cst_20261003_2234": {
@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Reviewed CRLF-only native continuation uses same previously selected positiveepoch4 and runs all245+234/five metrics/31attrs/curves/3pairedrefs/actualGT. No training/full98 replay. Protectedold4 remains globalbest; final native result pending.",
+    "queued_successor": "Currentlyrunning reviewed gross-search fixedold4 bothnative245/234; parent3174168, fullworkers3175579-82 after8actualsanityPASS. Final5/31attributes/curves/3pairedrefs/GT replay automaticallyqueued. Do not restart closed write_events pipeline or retiredepoch004. SoleWindowsobserver37416 next06:04:38CST then240s; no newtraining or weight.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6403,24 +6403,28 @@
     },
     "gpu_assignment_current": [
       {
-        "pid": 2914369,
         "gpu": 0,
-        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu0_20261005.log"
+        "worker_pid": 3175579,
+        "log": "/data/gb/outputs/recoverability_search_gain_native_full_20261006/shards_gpu0.log",
+        "task": "Frame-balanced complete LasHeR thenRGBT234, sameold4/gross, no training"
       },
       {
-        "pid": 2914370,
         "gpu": 1,
-        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu1_20261005.log"
+        "worker_pid": 3175580,
+        "log": "/data/gb/outputs/recoverability_search_gain_native_full_20261006/shards_gpu1.log",
+        "task": "Frame-balanced complete LasHeR thenRGBT234, sameold4/gross, no training"
       },
       {
-        "pid": 2914371,
         "gpu": 2,
-        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu2_20261005.log"
+        "worker_pid": 3175581,
+        "log": "/data/gb/outputs/recoverability_search_gain_native_full_20261006/shards_gpu2.log",
+        "task": "Frame-balanced complete LasHeR thenRGBT234, sameold4/gross, no training"
       },
       {
-        "pid": 2914373,
         "gpu": 3,
-        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu3_20261005.log"
+        "worker_pid": 3175582,
+        "log": "/data/gb/outputs/recoverability_search_gain_native_full_20261006/shards_gpu3.log",
+        "task": "Frame-balanced complete LasHeR thenRGBT234, sameold4/gross, no training"
       }
     ],
     "gpu_memory_request": {
@@ -7180,7 +7184,30 @@
         "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
         "memory_used_mib": 20
       }
-    ]
+    ],
+    "gpu_assignment_previous_write_events_completed": [
+      {
+        "pid": 2914369,
+        "gpu": 0,
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu0_20261005.log"
+      },
+      {
+        "pid": 2914370,
+        "gpu": 1,
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu1_20261005.log"
+      },
+      {
+        "pid": 2914371,
+        "gpu": 2,
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu2_20261005.log"
+      },
+      {
+        "pid": 2914373,
+        "gpu": 3,
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu3_20261005.log"
+      }
+    ],
+    "queued_successor_previous_write_events_closed": "Reviewed CRLF-only native continuation uses same previously selected positiveepoch4 and runs all245+234/five metrics/31attrs/curves/3pairedrefs/actualGT. No training/full98 replay. Protectedold4 remains globalbest; final native result pending."
   },
   "model_selection": {
     "policy": "One best seed/checkpoint",
@@ -7190,7 +7217,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T05:24:27.336701+08:00",
+  "updated_cst": "2026-10-06T05:28:17.833024+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
