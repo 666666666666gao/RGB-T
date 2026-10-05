@@ -6379,7 +6379,7 @@
     "environment": "/data/gb/envs/gola",
     "use_four_gpus_when_useful": true,
     "poll_seconds": 240,
-    "checkpoint_retention": "Retain global metrics best old4 plus necessary frozen pretrained/teachers. Current16 positive full-fit candidates are temporary until original full98 selection; then original queue removes15 unselected weights. New native result determines promotion; never keep inferior weights only because training was newer.",
+    "checkpoint_retention": "Global bestold4 plus necessary pretrained/C1/motion dependencies. Only newe41head remains for active native and upcoming fixed-weight event-control consumers; unselected3heads actually retired379710B. Retire e41 after consumers close unless actual metrics justify promotion; never delete protectedold4.",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
     "repository": "https://github.com/666666666666gao/RGB-T",
     "gpu_assignment_cst_20261003_2234": {
@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Actual fit1423763 completed allfour420 updates and CPU strict acceptance11:20:42. Original evaluation1423909 owns16 full98 candidates, one checkpoint selection, unselected-weight cleanup and both native report chain. Do not restart old1320786/1366848.",
+    "queued_successor": "Previous1423763/1423909 and full98observer92874 are CLOSED. Original2205892/2205968/2206043/2206117 own native shards; CPU finisher2214595 observes those workers near ETA then builds both complete reports. One localobserver23101 reads ONLY that CPU finisher first18:56:41 then240s. Do not duplicate/restart. Event control source remains local pending native NN closure and real sanity.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6403,40 +6403,64 @@
     },
     "gpu_assignment_current": [
       {
+        "pid": 2205892,
         "gpu": 0,
-        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
-        "pid": 1298337,
-        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
-        "completed_clips": 16,
-        "total_clips": 179,
-        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
+        "command": [
+          "bash",
+          "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+          "0"
+        ],
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+        "commit_epoch": 41,
+        "launched_at_cst": "2026-10-05T18:09:41.284174+08:00",
+        "phase": "FIXED_E41_BOTH_NATIVE_DATASET_SHARDS_STARTED",
+        "fresh_NN_status_query": false
       },
       {
+        "pid": 2205968,
         "gpu": 1,
-        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
-        "pid": 1298338,
-        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
-        "completed_clips": 16,
-        "total_clips": 179,
-        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
+        "command": [
+          "bash",
+          "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+          "1"
+        ],
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+        "commit_epoch": 41,
+        "launched_at_cst": "2026-10-05T18:09:41.469823+08:00",
+        "phase": "FIXED_E41_BOTH_NATIVE_DATASET_SHARDS_STARTED",
+        "fresh_NN_status_query": false
       },
       {
+        "pid": 2206043,
         "gpu": 2,
-        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
-        "pid": 1298339,
-        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
-        "completed_clips": 16,
-        "total_clips": 179,
-        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
+        "command": [
+          "bash",
+          "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+          "2"
+        ],
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+        "commit_epoch": 41,
+        "launched_at_cst": "2026-10-05T18:09:41.652560+08:00",
+        "phase": "FIXED_E41_BOTH_NATIVE_DATASET_SHARDS_STARTED",
+        "fresh_NN_status_query": false
       },
       {
+        "pid": 2206117,
         "gpu": 3,
-        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
-        "pid": 1298340,
-        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
-        "completed_clips": 16,
-        "total_clips": 179,
-        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
+        "command": [
+          "bash",
+          "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+          "3"
+        ],
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+        "commit_epoch": 41,
+        "launched_at_cst": "2026-10-05T18:09:41.832295+08:00",
+        "phase": "FIXED_E41_BOTH_NATIVE_DATASET_SHARDS_STARTED",
+        "fresh_NN_status_query": false
       }
     ],
     "gpu_memory_request": {
@@ -7206,7 +7230,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T18:16:39.523202+08:00",
+  "updated_cst": "2026-10-05T18:54:41.630915+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -9574,6 +9598,52 @@
         "later_poll_seconds": 240
       },
       "next_causal_question": "Labels apply a single query intervention then H frozen-old4 steps; deployment re-intervenes every frame. Test fixed weights with the trained H continuation, no new loss/epochs first."
+    },
+    "event_continuation_control": {
+      "status": "LOCAL_IMPLEMENTED_SOURCE_PASS_PENDING_ORIGINAL_NATIVE_NN_CLOSURE_AND_REAL_SANITY",
+      "method": "Fixed e41 teacher-horizon continuation control",
+      "question": "Do repeated frame-policy commits explain part of the four cached-positive/full98-negative results when causal labels intervene only once and then run old4?",
+      "evidence": [
+        "research/probe_geometry_commit.py uses query intervention followed by frozen RecoverabilityTracker continuation",
+        "research/geometry_commit.py applies its learned head on each frame after two past observations",
+        "Four completed full98 fits mean IoU .689562/.711759/.679014/.687201, all below old4 .745906",
+        "Actual full98 per-sequence metadata records frequent geometry_reference_changed events"
+      ],
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+      "commit_epoch": 41,
+      "continuation_horizon": 3,
+      "execution": "Whenever the head chooses an action different from the old4 keep/pause action, allow this one query intervention, then let old4 normally search, select, write and append geometry on the next three arrived frames. On the fourth future frame re-enable the head.",
+      "unchanged": [
+        "checkpoint",
+        "candidate selection architecture",
+        "output box definition",
+        "raw/pause/velocity actions",
+        "threshold .03",
+        "memory budget",
+        "pretrained full GOLA and C1",
+        "future GT exclusion",
+        "past output immutability"
+      ],
+      "not_claimed": [
+        "The mismatch is the sole cause",
+        "Trusted geometry identity",
+        "Motion-history rollback",
+        "Arbitrary state restoration",
+        "RGB/TIR quality independently learned",
+        "Full881 retraining",
+        "Accuracy improvement before actual GT evaluation"
+      ],
+      "sanity": "TRAIN manatwhiteright first120 frames, only first GT initialization. On every triggered event compare each of the next3 frame outputs/search/template/identity/motion/history bitwise with a private RecoverabilityTracker cloned at the event end. Require at least one full event window. Never change weights or read future GT.",
+      "first_full_control": "After currently active fixed e41 native NN consumers close and sanity passes, use four nonoverlapping frame-balanced shards of the same98 developer videos. Compare actual TRAIN GT on complete98/49418 against already completed frame-policy e41, full GOLA/C1/old4. No native-test reselection or unchanged retraining.",
+      "selection_warning": "The98 developer videos and24 TRAIN events have already been used repeatedly; no untouched validation claim.",
+      "goal": "ACTIVE_UNMET; all three modules and five native metrics must ultimately meet baseline+2. This causal control does not redefine success.",
+      "source_review": "refine-logs/runs/recoverability_state_commit/geometry_event_continuation_source_review.json",
+      "updated_at_cst": "2026-10-05T18:54:41.630915+08:00",
+      "source_deployed_to_active_NN": false,
+      "real_NN_sanity_complete": false,
+      "full98_control_complete": false
     }
-  }
+  },
+  "current_execution_authority": "refine-logs/runs/recoverability_state_commit/selected_geometry_native_checkpoint.json and actual_geometry_gpu*_native_launch.json plus original CPU finisher2214595; obsolete older operation observations are historical."
 }

@@ -1,0 +1,45 @@
+{
+  "status": "LOCAL_IMPLEMENTED_SOURCE_PASS_PENDING_ORIGINAL_NATIVE_NN_CLOSURE_AND_REAL_SANITY",
+  "method": "Fixed e41 teacher-horizon continuation control",
+  "question": "Do repeated frame-policy commits explain part of the four cached-positive/full98-negative results when causal labels intervene only once and then run old4?",
+  "evidence": [
+    "research/probe_geometry_commit.py uses query intervention followed by frozen RecoverabilityTracker continuation",
+    "research/geometry_commit.py applies its learned head on each frame after two past observations",
+    "Four completed full98 fits mean IoU .689562/.711759/.679014/.687201, all below old4 .745906",
+    "Actual full98 per-sequence metadata records frequent geometry_reference_changed events"
+  ],
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+  "commit_epoch": 41,
+  "continuation_horizon": 3,
+  "execution": "Whenever the head chooses an action different from the old4 keep/pause action, allow this one query intervention, then let old4 normally search, select, write and append geometry on the next three arrived frames. On the fourth future frame re-enable the head.",
+  "unchanged": [
+    "checkpoint",
+    "candidate selection architecture",
+    "output box definition",
+    "raw/pause/velocity actions",
+    "threshold .03",
+    "memory budget",
+    "pretrained full GOLA and C1",
+    "future GT exclusion",
+    "past output immutability"
+  ],
+  "not_claimed": [
+    "The mismatch is the sole cause",
+    "Trusted geometry identity",
+    "Motion-history rollback",
+    "Arbitrary state restoration",
+    "RGB/TIR quality independently learned",
+    "Full881 retraining",
+    "Accuracy improvement before actual GT evaluation"
+  ],
+  "sanity": "TRAIN manatwhiteright first120 frames, only first GT initialization. On every triggered event compare each of the next3 frame outputs/search/template/identity/motion/history bitwise with a private RecoverabilityTracker cloned at the event end. Require at least one full event window. Never change weights or read future GT.",
+  "first_full_control": "After currently active fixed e41 native NN consumers close and sanity passes, use four nonoverlapping frame-balanced shards of the same98 developer videos. Compare actual TRAIN GT on complete98/49418 against already completed frame-policy e41, full GOLA/C1/old4. No native-test reselection or unchanged retraining.",
+  "selection_warning": "The98 developer videos and24 TRAIN events have already been used repeatedly; no untouched validation claim.",
+  "goal": "ACTIVE_UNMET; all three modules and five native metrics must ultimately meet baseline+2. This causal control does not redefine success.",
+  "source_review": "refine-logs/runs/recoverability_state_commit/geometry_event_continuation_source_review.json",
+  "updated_at_cst": "2026-10-05T18:54:41.630915+08:00",
+  "source_deployed_to_active_NN": false,
+  "real_NN_sanity_complete": false,
+  "full98_control_complete": false
+}

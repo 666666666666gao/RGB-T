@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "model_attribution": "Requested fresh reviewer route; the backend model and effort are not independently runtime-attested.",
+  "reviewer_agent": "/root/geometry_event_continuation_source_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T18:42:31.096883+08:00",
+  "scope": "Fresh source-only experiment-bridge review, expanded at the parent request to the explicit-stage event-control runner. Local AST, actual CLI AST, scalar boundary arithmetic and completed local JSON were checked. The reviewer changed only this report. No SSH, GPU query, neural execution, installation, remote deployment, weight write or active evaluator mutation.",
+  "plan": "refine-logs/runs/recoverability_state_commit/geometry_event_continuation_plan.json",
+  "reviewed_files": [
+    "research/geometry_commit_event.py",
+    "research/check_geometry_event_sanity.py",
+    "research/evaluate_recoverability.py: diff against HEAD",
+    "refine-logs/runs/recoverability_state_commit/geometry_event_pipeline.py"
+  ],
+  "reference_sources": [
+    "research/geometry_commit.py",
+    "research/recoverability_tracker.py",
+    "research/probe_geometry_commit.py: private_state, query intervention and future rollout",
+    "research/train_geometry_commit.py",
+    "research/bounded_recovery.py: Branch.copy and _advance",
+    "research/recoverability_modules.py: memory update",
+    "research/temporal_modules.py: memory update",
+    "research/collect_recoverability.py: InstanceExtractor",
+    "research/collect_rollouts.py: observe_actions",
+    "research/collect_candidate_metrics.py: ground_truth",
+    "research/collect_core_metrics.py: localization_quality",
+    "refine-logs/runs/recoverability_train_events/score_full98_cpu.py",
+    "refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+    "refine-logs/runs/recoverability_state_commit/native_pipeline.py: existing launch PID/receipt contract only",
+    "scripts/run_temporal.sh",
+    "refine-logs/runs/c1_seed42_split.json",
+    "refine-logs/runs/recoverability_state_commit/selected_geometry_native_checkpoint.json",
+    "refine-logs/runs/recoverability_state_commit/complete_geometry_fits/gpu1/config.json",
+    "refine-logs/runs/recoverability_state_commit/complete_geometry_fits/gpu1/completion.json",
+    "refine-logs/runs/recoverability_state_commit/full98_metadata/gpu1/continuous/predictions/inference_config.json",
+    "refine-logs/runs/recoverability_state_commit/full98_metadata/gpu1/continuous/predictions/inference_completion.json",
+    "refine-logs/runs/recoverability_state_commit/full98_metadata/gpu1/continuous/full98_selection_score.json"
+  ],
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "resolved_during_review": [
+    {
+      "id": "R1",
+      "file": "research/check_geometry_event_sanity.py:51",
+      "finding": "The original read_text().splitlines()[0] loaded the entire init.txt, including later annotations, despite the plan explicitly forbidding future-GT reads. Only the first line was used by the tracker, so this was a read-scope violation rather than evidence of future-GT model input.",
+      "minimal_fix_verified": "The executor replaced it with open() and labels.readline().strip(); the reviewer reread and AST-checked the final source."
+    },
+    {
+      "id": "R2",
+      "file": "research/check_geometry_event_sanity.py:81",
+      "finding": "The new runner passes a fresh BASE/sanity output, but no preceding runner stage created BASE. The original out.mkdir() would fail after the 120-frame computation on that first-run path.",
+      "minimal_fix_verified": "The executor changed only this call to out.mkdir(parents=True), retaining assert not out.exists(); final AST verifies parents=True."
+    },
+    {
+      "id": "R3",
+      "file": "refine-logs/runs/recoverability_state_commit/geometry_event_pipeline.py:127",
+      "finding": "The absolute-path scoring script imports research.*. cwd=ROOT alone does not place ROOT on script-mode sys.path, and the run_temporal.sh export is confined to its own child process. The caller therefore needs the repository PYTHONPATH.",
+      "minimal_fix_verified": "The scoring subprocess now uses env=os.environ | {PYTHONPATH: str(ROOT)}. Final AST verifies this exact environment expression, which retains the CPU stage CUDA_VISIBLE_DEVICES empty value."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Plan and frozen label policy",
+      "status": "PASS",
+      "evidence": "probe_geometry_commit.py:95-139 intervenes once at the query and advances RecoverabilityTracker for each arrived future image. train_geometry_commit.py:69-70 uses offsets 1..H, excluding query IoU from the future utility. Saved gpu1 fit metadata has H=3 and selected epoch 41 with the specified old4 parent. The new control changes continuation scheduling only."
+    },
+    {
+      "name": "Event trigger, dispatch and exact horizon",
+      "status": "PASS",
+      "evidence": "geometry_commit_event.py:17-25 compares the chosen commit action against the original old4 int(pause). A differing action at q sets q+H. RecoverabilityTracker.step increments the frame before accept_observation; the <= guard therefore directly calls RecoverabilityTracker.accept_observation on q+1 through q+H and returns to GeometryCommitTracker on q+H+1. The first-frame two-history guard leaves commit_action None at the event check and does not create a spurious event. Both geometry changes and legal appearance-only action differences trigger the window."
+    },
+    {
+      "name": "Normal old4 evolution inside the window",
+      "status": "PASS",
+      "evidence": "Only accept_observation dispatch changes during continuation. RecoverabilityTracker.step still searches the current arrived image, selects candidates and a pause action, and runs the ordinary _advance, template write rules, identity and motion memory updates, and history append. No image is skipped, past output rewritten, search box frozen or state restored. Existing GeometryCommitTracker action and geometry definitions remain unchanged."
+    },
+    {
+      "name": "Private teacher state and non-circular sanity",
+      "status": "PASS",
+      "evidence": "check_geometry_event_sanity.py:74-76 copies state and constructs an actual RecoverabilityTracker object, so teacher.step dispatches the base old4 methods rather than the event subclass. private_state separately copies the branch, boxes, deque containers, stats, history arrays, identity/motion tensors and template_source_box. Shared frozen networks and anchor/template tensors are read-only in the inspected path; _advance allocates new template tensors and both memory update functions return new tensors. Each teacher frame independently reruns inference on the same newly arrived image and comparisons cover output, search box, template, identity memory, motion memory and history. No expected state is copied from the event tracker after stepping."
+    },
+    {
+      "name": "Sanity scope and non-vacuous completion",
+      "status": "PASS",
+      "evidence": "Frame 0 initializes and range(1,120) tracks the next 119 actual images. Only readline supplies the initialization annotation. The sanity requires at least one completed event window and equality between matched teacher frames and the continuation counter, so zero triggered events cannot PASS. H3 timing is also checked independently from the real source guard/deadline scalar expressions in this review. This source review does not claim the real 120-frame test has run."
+    },
+    {
+      "name": "Default evaluator behavior and additive telemetry",
+      "status": "PASS",
+      "evidence": "The optional CLI defaults to frame. Existing invocations still dispatch RecoverabilityTracker or GeometryCommitTracker exactly as before; teacher_horizon requires a commit model and takes H from its saved training args. An actual arguments() AST comparison against HEAD preserved every prior CLI default. old4_continuation and old4_until_frame are post-step diagnostics; continuation-frame and event counters are serialized only for the new mode. GeometryCommitTracker resets commit_action each step and records the base pause action on skipped-head frames."
+    },
+    {
+      "name": "Prior native consumers and fixed checkpoint gate",
+      "status": "PASS",
+      "evidence": "geometry_event_pipeline.gate checks this review PASS and the selected gpu1/e41 head, then requires each of the four original native shell PIDs absent or zombie and both dataset success markers per GPU. run_geometry_native.sh emits each marker only after its synchronous evaluator returns successfully, and its tracked shell encloses both datasets. Every explicit new stage calls the gate. This is a source check of the barrier, not a new observation that current consumers are closed."
+    },
+    {
+      "name": "Sanity-first complete98 partitions and explicit launching",
+      "status": "PASS",
+      "evidence": "The runner starts only the explicitly requested stage. prepare requires a completed non-vacuous sanity and the saved complete98/49418 frame-policy record. It partitions the same sorted validation names using existing prediction lengths, without reading GT. launch uses max-frames=0, the fixed parent/head, teacher_horizon, action write verification and seed42, and assigns contiguous nonoverlapping offsets/counts to four GPUs. No training or native-test model selection is introduced."
+    },
+    {
+      "name": "Merge, actual-GT scoring and paired comparison",
+      "status": "PASS",
+      "evidence": "merge_score requires each new worker terminal, matching per-shard source counts, sequence order and model/continuation config, exact prediction/latency shapes and finite values, and a matching continuation timeline count. The union must be 98 unique videos/49418 frames before hard-linking. The merged smoke/config schema and --predictions/--model arguments match score_full98_cpu.py. That scorer reads real TRAIN annotations and uses the same existing localization_quality for both policies. The comparison aligns per-sequence IoU by name and computes 5000 seed42 paired sequence bootstrap draws in percentage points; it does not call this LasHeR SR or native accuracy."
+    }
+  ],
+  "executed_local_checks": {
+    "interpreter": "E:/python.exe",
+    "ast_compile": "PASS for the four primary reviewed files and the inspected Python tracker/trainer/state/scorer dependencies. Changed sanity and scorer invocation were recompiled after fixes.",
+    "actual_cli_defaults_against_HEAD": "PASS: all existing arguments unchanged; new commit_continuation default is frame; explicit teacher_horizon parses.",
+    "actual_scalar_guard_and_deadline": [
+      {
+        "query": 2,
+        "H": 3,
+        "base_frames": [
+          3,
+          4,
+          5
+        ],
+        "head_reenabled": 6
+      },
+      {
+        "query": 17,
+        "H": 3,
+        "base_frames": [
+          18,
+          19,
+          20
+        ],
+        "head_reenabled": 21
+      },
+      {
+        "query": 115,
+        "H": 3,
+        "base_frames": [
+          116,
+          117,
+          118
+        ],
+        "head_reenabled": 119
+      }
+    ],
+    "existing_supported_H32_boundary": "PASS for q=2,17,115 using the same real source expressions; no new experiment was proposed or run.",
+    "actual_completed_metadata": "PASS: the saved split, e41 configuration, selected checkpoint metadata, full98 completion and score contain the same 98 sequence identities, 49418 frames, old4 parent and H3.",
+    "actual_runner_partition_AST": [
+      {
+        "gpu": 0,
+        "offset": 0,
+        "count": 13,
+        "frames": 11530
+      },
+      {
+        "gpu": 1,
+        "offset": 13,
+        "count": 21,
+        "frames": 12843
+      },
+      {
+        "gpu": 2,
+        "offset": 34,
+        "count": 38,
+        "frames": 12583
+      },
+      {
+        "gpu": 3,
+        "offset": 72,
+        "count": 26,
+        "frames": 12462
+      }
+    ],
+    "partition_method": "Executed the actual cuts/loop/shards AST using local completed JSON and a stdlib cumulative sum; exact ordered nonoverlapping union 98/49418 passed.",
+    "actual_scorer_argparse_AST": "PASS for the runner --predictions and --model arguments.",
+    "final_fixes_AST": "PASS: initialization uses readline, sanity mkdir has parents=True, scorer environment explicitly adds repository PYTHONPATH while retaining inherited CPU visibility.",
+    "execution_limit": "No NumPy/Torch import, real-video execution or mocked neural test was used. These checks are source/stdlib evidence only."
+  },
+  "runtime_limits": [
+    "The real 120-frame manatwhiteright event/old4 sanity remains required before the full control.",
+    "The original four-GPU native consumers were not polled or modified by this review; their terminal gate must pass at actual execution.",
+    "The new 98-video predictions, actual-GT scores and paired interval have not been run or independently witnessed by this reviewer.",
+    "Repeatedly reused developer videos are not an untouched validation holdout. No accuracy improvement, sole-cause claim or full881 retraining claim follows from this source PASS.",
+    "A separate parent-reported native_pipeline import-path amendment is outside this report primary scope and is being reviewed separately."
+  ]
+}

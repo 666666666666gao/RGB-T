@@ -143,5 +143,44 @@
     "neural_forward_calls": 0,
     "optimizer_steps": 0
   },
-  "runtime_limits": "E:/python.exe lacks NumPy per supplied environment context. This review performed Python AST and stdlib existing-artifact interface checks only; it did not rerun native scoring, arithmetic/bootstrap audits, prepare/select/launch/merge/report/complete stages, or read current remote data/checkpoint bytes. The supplied negative full98 scores were not recomputed here. Successful new native metrics and acceptance remain contingent on real execution."
+  "runtime_limits": "E:/python.exe lacks NumPy per supplied environment context. This review performed Python AST and stdlib existing-artifact interface checks only; it did not rerun native scoring, arithmetic/bootstrap audits, prepare/select/launch/merge/report/complete stages, or read current remote data/checkpoint bytes. The supplied negative full98 scores were not recomputed here. Successful new native metrics and acceptance remain contingent on real execution.",
+  "supplemental_import_path_review": {
+    "status": "PASS",
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "runtime_attested": false,
+    "fresh_context": false,
+    "reviewed_at_cst": "2026-10-05T18:41:41.480671+08:00",
+    "scope": "Narrow continuation in the same review context: import sys and sys.path.insert(0,str(ROOT)) in native_pipeline.py for the existing absolute-script finish-coordinator invocation. No fresh-agent independence claim; no scientific evaluator changes reviewed in this supplement.",
+    "reviewed_file": "refine-logs/runs/recoverability_state_commit/native_pipeline.py",
+    "caller_inspected": "refine-logs/runs/recoverability_state_commit/finish_geometry_native_cpu.py:39-42",
+    "blocking_findings": [],
+    "non_blocking_findings": [],
+    "prior_review_gap": "The earlier source review did not explicitly verify that the absolute-script invocation makes the repository package root importable. The existing finish coordinator uses an absolute native_pipeline.py path, so cwd=ROOT alone does not establish that script sys.path contains ROOT. This supplement reviews the direct fix for that concrete invocation context.",
+    "evidence": [
+      "native_pipeline.py:13 now imports sys before it is used. Line17 defines ROOT as /data/gb/GOLA and line18 inserts its string at sys.path index0 during top-level initialization.",
+      "The insertion precedes stage dispatch and complete(), whose line184 imports research.merge_abc_complete. The requested module exists under ROOT/research/merge_abc_complete.py in the reviewed repository. The package root is therefore explicitly available for that deferred import during direct script execution.",
+      "The original finish coordinator launches native_pipeline.py as a new Python subprocess at each later stage. That child reads the script then, so the source fix applies without restarting the already sleeping coordinator or changing its inherited environment.",
+      "The change only establishes module lookup. The inspected model/data constants and complete() native_report/uncertainty call remain the existing reviewed code. No model decision, checkpoint selection, metric arithmetic, dataset access, worker launch or NN source change is introduced by these two lines.",
+      "The audit still imports installed rgbt directly; this fix requires no audit or scientific evaluator modification. The local evaluator event CLI mentioned by the parent is outside this narrow supplement and is not being attributed to the remote ongoing workers."
+    ],
+    "executed_checks": {
+      "current_pipeline_AST_parse": "PASS",
+      "AST_import_order": "PASS: sys import line13, ROOT assignment line17, path insertion line18, deferred research.merge_abc_complete import line184",
+      "path_insert_expression": "sys.path.insert(0, str(ROOT))",
+      "local_research_merge_abc_complete_module_exists": true,
+      "NumPy_or_scientific_modules_imported": false,
+      "pipeline_or_coordinator_executed": false,
+      "SSH_calls": 0,
+      "GPU_queries": 0,
+      "neural_forward_calls": 0,
+      "optimizer_steps": 0,
+      "source_edits_by_reviewer": 0
+    },
+    "conclusion": "PASS for the minimal module-path fix. No remaining concrete blocker within this change. The existing coordinator can read the corrected script when spawning its CPU stages; deployment, current remote process state and eventual native completion were not checked or attested."
+  },
+  "latest_review_context": "same existing reviewer context; source-only supplement; no new independent-context claim",
+  "latest_reviewed_at_cst": "2026-10-05T18:41:41.480671+08:00"
 }

@@ -10,10 +10,12 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 
 import numpy as np
 
 ROOT=Path('/data/gb/GOLA')
+sys.path.insert(0,str(ROOT))
 FOLDER=ROOT/'refine-logs/runs/recoverability_state_commit'
 FIT=Path('/data/gb/outputs/recoverability_geometry_commit_fit_20261005')
 BASE=Path('/data/gb/outputs/recoverability_geometry_commit_native_20261005')
