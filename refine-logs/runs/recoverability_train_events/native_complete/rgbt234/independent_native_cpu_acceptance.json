@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "dataset": "rgbt234",
+  "sequences": 234,
+  "frames": 116649,
+  "same_checkpoint": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/best.pth",
+  "native_overall_percent": {
+    "baseline": {
+      "MPR": 91.77885757450758,
+      "MSR": 69.2325931778893
+    },
+    "c1": {
+      "MPR": 91.81700889694795,
+      "MSR": 69.2340473415621
+    },
+    "best_native_policy_complete": {
+      "MPR": 91.00833072636945,
+      "MSR": 68.82779652261983
+    }
+  },
+  "paired_5000_seed42_bootstrap_exact": {
+    "baseline": {
+      "MPR": {
+        "mean_delta_percentage_points": -0.7705268481380765,
+        "percentile_95_interval_percentage_points": [
+          -2.4118510681780596,
+          0.8360565508865713
+        ],
+        "improved_sequences": 32,
+        "worsened_sequences": 47,
+        "tied_sequences": 155
+      },
+      "MSR": {
+        "mean_delta_percentage_points": -0.40479665526946745,
+        "percentile_95_interval_percentage_points": [
+          -1.3497257082906888,
+          0.568691263640608
+        ],
+        "improved_sequences": 33,
+        "worsened_sequences": 50,
+        "tied_sequences": 151
+      }
+    },
+    "c1": {
+      "MPR": {
+        "mean_delta_percentage_points": -0.8086781705785233,
+        "percentile_95_interval_percentage_points": [
+          -2.452072848078905,
+          0.815000820083091
+        ],
+        "improved_sequences": 32,
+        "worsened_sequences": 49,
+        "tied_sequences": 153
+      },
+      "MSR": {
+        "mean_delta_percentage_points": -0.40625081894227555,
+        "percentile_95_interval_percentage_points": [
+          -1.4241078784568482,
+          0.6013752282761555
+        ],
+        "improved_sequences": 35,
+        "worsened_sequences": 49,
+        "tied_sequences": 150
+      }
+    }
+  },
+  "all_actual_GT_sequence_metrics_attributes_and_curves_exact": true,
+  "native_metric_function_calls": 0,
+  "score_not_another_models_output": true,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "execution": {
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0
+  },
+  "scope": "Independent native metric arithmetic and paired bootstrap; detailed mechanism masses use the original separate collector."
+}

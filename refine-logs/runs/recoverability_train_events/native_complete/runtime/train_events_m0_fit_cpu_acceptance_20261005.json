@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "stage": "m0",
+  "all_four_ABC_fits_passed": true,
+  "arms": {
+    "base_pairwise": {
+      "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_m0_20261005",
+      "epochs": 3,
+      "optimizer_steps": 15,
+      "train_queries": 1762,
+      "checkpoints": {
+        "best.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        },
+        "epoch_003.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        }
+      },
+      "peak_cuda_mib": 17374.408203125,
+      "elapsed_seconds": 116.18142439704388
+    },
+    "aug_pairwise": {
+      "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_m0_20261005",
+      "epochs": 3,
+      "optimizer_steps": 21,
+      "train_queries": 2478,
+      "checkpoints": {
+        "best.pth": {
+          "epoch": 0,
+          "ABC_changed": {
+            "A": false,
+            "B": false,
+            "C": false
+          },
+          "cached_CPU_replay_pass": true
+        },
+        "epoch_003.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        }
+      },
+      "peak_cuda_mib": 19799.98779296875,
+      "elapsed_seconds": 161.73560011480004
+    },
+    "base_budgeted": {
+      "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_m0_20261005",
+      "epochs": 3,
+      "optimizer_steps": 15,
+      "train_queries": 1762,
+      "checkpoints": {
+        "best.pth": {
+          "epoch": 1,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        },
+        "epoch_003.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        }
+      },
+      "peak_cuda_mib": 17372.908203125,
+      "elapsed_seconds": 116.03320958698168
+    },
+    "aug_budgeted": {
+      "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_m0_20261005",
+      "epochs": 3,
+      "optimizer_steps": 21,
+      "train_queries": 2478,
+      "checkpoints": {
+        "best.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        },
+        "epoch_003.pth": {
+          "epoch": 3,
+          "ABC_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "cached_CPU_replay_pass": true
+        }
+      },
+      "peak_cuda_mib": 19799.48779296875,
+      "elapsed_seconds": 161.3863831218332
+    }
+  },
+  "validation_queries": 196,
+  "official_metrics_completed": false,
+  "CUDA_initialized": false,
+  "completed_at_cst": "2026-10-05T09:48:47.413058+08:00"
+}

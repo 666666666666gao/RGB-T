@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T15:14:52.618750+08:00",
+  "updated_cst": "2026-10-05T15:16:33.992657+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8256,8 +8256,8 @@
     "actual_user_status_receipt": "refine-logs/runs/recoverability_best_native_policy/actual_user_complete_training_metrics_status_20261005.json"
   },
   "current_train_event_data_iteration": {
-    "status": "BOTH_COMPLETE_NATIVE_BENCHMARKS_RUNNING",
-    "observed_at_cst": "2026-10-05T14:58:32.671959+08:00",
+    "status": "COMPLETE_FOUR420_ABC_FITS_FULL98_AND_BOTH_NATIVE_GT_ACCEPTED",
+    "observed_at_cst": "2026-10-05T15:12:41.042774+08:00",
     "collection_pid": 1297701,
     "fit_queue_pid": 1423763,
     "actual_sanity_GT_gate": "PASS",
@@ -8266,11 +8266,11 @@
     "combined_train_queries": 2478,
     "validation_queries": 196,
     "optimization_training_started": true,
-    "full_native_metrics_completed_this_new_iteration": false,
+    "full_native_metrics_completed_this_new_iteration": true,
     "first_expected_finish_check_cst": "2026-10-05T11:04:00.463143+08:00",
     "finish_estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
-    "next_required_work": "Original1423909 finishes both native reports; collect all5 and31attributes. TRAIN-only matched-state probe on already-finishedGPU0/3, source review+one-query sanity first.",
+    "next_required_work": "Audit actual best-weight retention and full objective; report all five even when negative. No new training launched by this delivery.",
     "source_review_scope": "Fresh source review was provisional; actual four capacity fits and allfour420 full fits now CPU accepted. Full98 selection and new native report are still pending.",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
@@ -8319,7 +8319,7 @@
       "plot_source": "refine-logs/runs/recoverability_train_events/plot_completed_training_history_cpu.py",
       "export_source": "refine-logs/runs/recoverability_train_events/export_completed_results_cpu.py",
       "local_collector_source": "refine-logs/runs/recoverability_train_events/collect_completed_results_local.py",
-      "actual_delivery_executed": false,
+      "actual_delivery_executed": true,
       "required_final_stage": "COMPLETE420_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY",
       "required_report": "/data/gb/outputs/recoverability_train_events_native_full_20261005/complete_report/complete_core_report.json",
       "contents": "Actual all-five/31 attributes/curves/paired intervals/mechanisms/GT acceptance/four420-update histories/full98 selection; no PTH or dataset transfer.",
@@ -8589,7 +8589,84 @@
       "old4_unchanged": true
     },
     "new_native_five_metrics_available": false,
-    "sole_native_report_observer": "wait_native_complete_local.py, native81844, first15:14 then300seconds"
+    "sole_native_report_observer": "wait_native_complete_local.py, native81844, first15:14 then300seconds",
+    "fullfit_CPU_accepted": true,
+    "actual_native_five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "baseline_percent": 76.59844897037928,
+        "c1_percent": 77.86097272569167,
+        "ABC_percent": 76.39163618225616,
+        "delta_vs_baseline_percentage_points": -0.20681278812311632,
+        "delta_vs_c1_percentage_points": -1.469336543435503,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false,
+        "paired_95_lower_percentage_points": -1.3129306417768212,
+        "paired_95_upper_percentage_points": 0.8375714064159442
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "baseline_percent": 73.10197299993155,
+        "c1_percent": 74.15451765370953,
+        "ABC_percent": 72.89943125217414,
+        "delta_vs_baseline_percentage_points": -0.20254174775740807,
+        "delta_vs_c1_percentage_points": -1.2550864015353937,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false,
+        "paired_95_lower_percentage_points": -1.250911022563159,
+        "paired_95_upper_percentage_points": 0.7706818637505405
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "baseline_percent": 61.03742534859602,
+        "c1_percent": 61.951313680271845,
+        "ABC_percent": 60.82485227988317,
+        "delta_vs_baseline_percentage_points": -0.21257306871284953,
+        "delta_vs_c1_percentage_points": -1.1264614003886777,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false,
+        "paired_95_lower_percentage_points": -1.0482730193427432,
+        "paired_95_upper_percentage_points": 0.5528128295203817
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "baseline_percent": 91.77885757450758,
+        "c1_percent": 91.81700889694795,
+        "ABC_percent": 91.00833072636945,
+        "delta_vs_baseline_percentage_points": -0.7705268481381324,
+        "delta_vs_c1_percentage_points": -0.8086781705785029,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false,
+        "paired_95_lower_percentage_points": -2.4118510681780596,
+        "paired_95_upper_percentage_points": 0.8360565508865713
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "baseline_percent": 69.2325931778893,
+        "c1_percent": 69.2340473415621,
+        "ABC_percent": 68.82779652261983,
+        "delta_vs_baseline_percentage_points": -0.4047966552694646,
+        "delta_vs_c1_percentage_points": -0.40625081894226867,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false,
+        "paired_95_lower_percentage_points": -1.3497257082906888,
+        "paired_95_upper_percentage_points": 0.568691263640608
+      }
+    ],
+    "actual_complete_native_report": "refine-logs/runs/recoverability_train_events/native_complete/complete_report/complete_core_report.json",
+    "all_ABC_trained_at_selected_positive_epoch": true,
+    "actual_original_native_owner_terminal": true,
+    "original_native_observer81844_status": "CLOSED_EXIT0_COMPLETE_ALL_NATIVE_REPORTS",
+    "best_historical_old4_replaced": false,
+    "actual_formal_extra_visual_forwards": {
+      "lasher": 0,
+      "rgbt234": 0
+    }
   },
   "research_core_problem": "在不可靠观测下，将当帧输出、搜索/运动几何参考和RGB/TIR身份提交分离，在固定预算中保留未来恢复机会。",
   "current_state_commit_refinement": {
