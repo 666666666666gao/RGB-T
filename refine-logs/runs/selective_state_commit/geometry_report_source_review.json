@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "scope": "STATE_COMMIT_GEOMETRY_CPU_REPORT_SOURCE",
+  "reviewer": "/root/selective_state_commit_source_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_verified": false,
+  "blocking": [],
+  "nonblocking": [],
+  "reviewed_sources": [
+    "research/collect_recoverability_metrics.py"
+  ],
+  "findings": [
+    "XYXY copied toXYWH and aligned same-frame GT, unknownGT excluded",
+    "Actual prior-template source tested; localized correctness doesnot assert semantic identity or no earlierwrongwrites",
+    "mode2 counters compared with actual tracker stats, pause actions distinguished from actual blocked highscore writes",
+    "Old inputs without selective fields preserve old numerical computations"
+  ],
+  "separate_CPU_runtime_scope": {
+    "status": "PASS_CPU_GEOMETRY_REPORT_INVARIANTS",
+    "synthetic_known_unknown_fixture": {
+      "state_regular_acceptance_frames": 1,
+      "state_paused_acceptance_frames": 1,
+      "state_geometry_holds": 2,
+      "known_geometry_commit_frames": 3,
+      "failed_committed_search_reference_frames_localization_proxy": 2,
+      "failed_committed_motion_frames_localization_proxy": 2,
+      "appearance_paused_failed_motion_frames_localization_proxy": 1,
+      "failed_output_correct_committed_motion_frames": 1,
+      "correct_output_failed_committed_motion_frames": 1,
+      "failed_motion_with_correct_active_template_source_frames_localization_proxy": 0
+    },
+    "actual_completed_legacy_sequence": "10rightblackboy",
+    "frames": 333,
+    "legacy_counters_bins_interventions_unchanged": true,
+    "synthetic_extension_of_real_trace_consistent": true,
+    "actual_new_selective_NN_runtime_verified": false,
+    "new_NN_forwards": 0,
+    "training_or_evaluation_replays": 0,
+    "active_process_or_GPU_queries": 0
+  }
+}

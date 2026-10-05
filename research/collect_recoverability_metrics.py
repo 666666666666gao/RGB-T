@@ -11,6 +11,30 @@ from .collect_candidate_metrics import ground_truth
 from .collect_core_metrics import EXPECTED, failure_events, localization_quality
 
 
+def state_commit_geometry(timeline, prediction, gt, dataset, selected, known_gt):
+    modes = timeline['state_commit_action']
+    assert modes.shape == known_gt.shape and np.isin(modes, (0, 1, 2)).all()
+    qualities = {}
+    for name, key in (('search', 'committed_search_reference'), ('motion', 'committed_motion_observation')):
+        boxes = xywh(timeline[key])
+        assert boxes.shape == prediction[1:].shape
+        quality, known = localization_quality(np.concatenate((prediction[:1], boxes)), gt, dataset)
+        assert np.array_equal(known[1:], known_gt)
+        qualities[name] = quality[1:]
+    motion_failed = known_gt & (qualities['motion'] < .2)
+    counts = {'state_regular_acceptance_frames': int((modes == 0).sum()),
+              'state_paused_acceptance_frames': int((modes == 1).sum()),
+              'state_geometry_holds': int((modes == 2).sum()),
+              'known_geometry_commit_frames': int(known_gt.sum()),
+              'failed_committed_search_reference_frames_localization_proxy': int((known_gt & (qualities['search'] < .2)).sum()),
+              'failed_committed_motion_frames_localization_proxy': int(motion_failed.sum()),
+              'appearance_paused_failed_motion_frames_localization_proxy': int((timeline['pause'] & motion_failed).sum()),
+              'failed_output_correct_committed_motion_frames': int((known_gt & (selected < .2) & (qualities['motion'] >= .5)).sum()),
+              'correct_output_failed_committed_motion_frames': int((known_gt & (selected >= .5) & motion_failed).sum()),
+              'failed_motion_with_correct_active_template_source_frames_localization_proxy': 0}
+    return counts, motion_failed
+
+
 def summarize(timeline, prediction, gt, dataset):
     timeline = {key: timeline[key] for key in timeline.files}
     n = len(prediction) - 1
@@ -64,6 +88,10 @@ def summarize(timeline, prediction, gt, dataset):
               'wrong_query_writes_prevented_localization_proxy': int((paused_writes & failed).sum()),
               'correct_query_writes_prevented': int((paused_writes & known_gt & (selected >= .5)).sum()),
               'known_active_template_frames': 0, 'wrong_active_template_frames_localization_proxy': 0}
+    commit_diagnostics = 'state_commit_action' in timeline
+    if commit_diagnostics:
+        geometry_counts, motion_failed = state_commit_geometry(timeline, prediction, gt, dataset, selected, known_gt)
+        counts.update(geometry_counts)
     for modality in ('rgb', 'tir'):
         for kind in ('target_write', 'target_read'):
             for label in ('known', 'wrong'):
@@ -80,6 +108,8 @@ def summarize(timeline, prediction, gt, dataset):
         if known_gt[index] and source_known:
             counts['known_active_template_frames'] += 1
             counts['wrong_active_template_frames_localization_proxy'] += int(source_quality < .2)
+            if commit_diagnostics and source_quality >= .5:
+                counts['failed_motion_with_correct_active_template_source_frames_localization_proxy'] += int(motion_failed[index])
         region, candidate = divmod(int(choice[index]), 5)
         selected_box = timeline['boxes_xyxy'][index, region, candidate]
         known, wrong = memory_labels(selected_box, frame, gt, dataset)
@@ -150,6 +180,7 @@ def main():
                               'harm_rescue': 'same-state frozen C1 selection versus chosen current box; not independent future-rollout causality',
                               'memory_mass': 'target slot EMA localization provenance and selected maximum-support source; normalized feature purity not asserted',
                               'template_pollution': 'actual pre-frame template source localization; unknownGT excluded; no semantic distractor labels',
+                              'state_commit_geometry': 'When selective-state fields exist: committed same-frame search reference and motion observation versus actual GT. Localization proxies, unknownGT excluded; correct active-template source does not imply no earlier wrong writes or causal recovery benefit.',
                               'motion': 'frozen bootstrap motion forecast, sensor-specific labels; not new motion model training',
                               'timing': 'instrumented tracking including decode/crop/update; concurrent-load comparisons descriptive'},
               'args': vars(args), 'variants': {}, 'paired': {}}
@@ -190,6 +221,9 @@ def main():
                 for counter, stat in (('template_updates', 'template_updates'), ('extra_visual_forwards', 'extra_visual_forwards'),
                                       ('changed_candidate_indices', 'changed_candidate_indices'), ('paused_query_writes', 'paused_query_writes')):
                     assert c[counter] == actual['stats'][stat]
+                if 'state_geometry_holds' in c:
+                    assert c['state_geometry_holds'] == actual['stats']['state_geometry_holds']
+                    c['state_commit_interventions'] = actual['stats']['state_commit_interventions']
                 counts.append(c)
                 motion.append(forecast)
                 bins.append(calibration)

@@ -52,3 +52,8 @@ Actual four-GPU query M0 PASS, full1789labels collecting original3338360. Origin
 ## 2026-10-06T07:45:41.497027+08:00 pre-fit endpoint-selection correction
 
 Actual waiting-only3351735 retired with no fit/children/updates. Replacement3423188 waits unchanged3338360 collection; no NN collection/training replay. Four full60 fits preserve cached-best and actual60endpoint, strictreloadboth. All eight candidates each full98/49418 in two4GPU waves; selectONE by developer sequenceIoU before samehead bothnative/all5/31attrs/4refs5000CIs. Retire11 own unused heads onlyafter all consumers. Recipe/data/model unchanged, no>=3positive-seed gate, targetall5GOLA+2 remainsUNMET.
+
+
+## 2026-10-06T07:57:55.811531+08:00 CPU mechanism-report coverage
+
+New selective fields aggregate actual same-frame GT search/motion geometry localization, mask unknownGT, couple motion failure to correct active appearance-template source, verify actual mode2 count. SourcePASS samefamily/provisional; four-state mask fixture and actual333frame legacy counters/bins/interventions PASS. Synthetic extension is not selective NN runtime or causal benefit. NN/train/eval replay0; current collectors/fit/native queue unchanged, all5+2UNMET.

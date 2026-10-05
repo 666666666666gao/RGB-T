@@ -1,6 +1,6 @@
 {
   "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
-  "updated_cst": "2026-10-06T07:45:41.497027+08:00",
+  "updated_cst": "2026-10-06T07:57:55.811531+08:00",
   "current_observed_state": {
     "stage": "FULL",
     "at_cst": "2026-10-06T06:56:15.809674+08:00",
@@ -143,5 +143,50 @@
     "optimizer_updates": 0,
     "training_children": 0,
     "at_cst": "2026-10-06T07:43:24.396648+08:00"
+  },
+  "planned_geometry_report": {
+    "source": "research/collect_recoverability_metrics.py",
+    "scope": "New diagnostic-field GT localization counts; no inference/training change",
+    "fields": [
+      "state_commit_action",
+      "committed_search_reference",
+      "committed_motion_observation"
+    ],
+    "metrics": [
+      "Mode0/1/2 counts",
+      "Known geometry denominator",
+      "Failed search/motion refs",
+      "Paused appearance yet failed motion",
+      "Failed output/correct motion",
+      "Correct output/failed motion",
+      "Failed motion while active appearance-template source localized correctly"
+    ],
+    "causality_claim": false,
+    "semantic_identity_claim": false,
+    "source_review": "PASS same-family/provisional",
+    "CPU_validation": {
+      "status": "PASS_CPU_GEOMETRY_REPORT_INVARIANTS",
+      "synthetic_known_unknown_fixture": {
+        "state_regular_acceptance_frames": 1,
+        "state_paused_acceptance_frames": 1,
+        "state_geometry_holds": 2,
+        "known_geometry_commit_frames": 3,
+        "failed_committed_search_reference_frames_localization_proxy": 2,
+        "failed_committed_motion_frames_localization_proxy": 2,
+        "appearance_paused_failed_motion_frames_localization_proxy": 1,
+        "failed_output_correct_committed_motion_frames": 1,
+        "correct_output_failed_committed_motion_frames": 1,
+        "failed_motion_with_correct_active_template_source_frames_localization_proxy": 0
+      },
+      "actual_completed_legacy_sequence": "10rightblackboy",
+      "frames": 333,
+      "legacy_counters_bins_interventions_unchanged": true,
+      "synthetic_extension_of_real_trace_consistent": true,
+      "actual_new_selective_NN_runtime_verified": false,
+      "new_NN_forwards": 0,
+      "training_or_evaluation_replays": 0,
+      "active_process_or_GPU_queries": 0
+    },
+    "actual_new_selective_NN_runtime_verified": false
   }
 }
