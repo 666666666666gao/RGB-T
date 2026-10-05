@@ -1,11 +1,11 @@
 {
-  "checked_at_cst": "2026-10-05T09:37:14.635029+08:00",
-  "server_observation_cst": "2026-10-05T09:09:43.523612+08:00",
-  "status": "PREVIOUS_TRAINING_AND_FULL_NATIVE_REPORT_COMPLETE; NEW716_COLLECTION_AND_COMPLETE420_FIT_EVALUATION_QUEUES_PENDING",
-  "active_project_training_processes": 0,
-  "active_project_collection_processes": 4,
-  "current_stage": "Last actual collection observation09:09:64/716 TRAIN states; actual fit waiter1320786; new evaluation waiter follows completed420 updates, full98 selection and both full native reports.",
-  "next_round_optimization_started": false,
+  "checked_at_cst": "2026-10-05T10:21:08.281082+08:00",
+  "server_observation_cst": "2026-10-05T10:15:49.084111+08:00",
+  "status": "PREVIOUS_FULL_NATIVE_METRICS_COMPLETE; NEW_ALL4_COMPLETE_ABC_OPTIMIZATION_ACTUALLY_RUNNING",
+  "active_project_training_processes": 4,
+  "active_project_collection_processes": 0,
+  "current_stage": "Full420 optimization after actual716GT+fourM0 acceptance; first all4 actual15/16 updates and ABC gradients confirmed10:15.",
+  "next_round_optimization_started": true,
   "training": {
     "arms": 4,
     "epochs_per_arm": 60,
@@ -109,59 +109,301 @@
     "training_restart": false
   },
   "new_iteration": {
-    "status": "ACTUAL_ALL4_NEW716_TRAIN_COLLECTION_RUNNING; MATCHED420_FULL_FIT_SUCCESSOR_LIVE_WAITING",
-    "observed_at_cst": "2026-10-05T09:09:43.523612+08:00",
+    "status": "ACTUAL_ALL4_COMPLETE420UPDATE_ABC_TRAINING_RUNNING_AFTER_CONFIRMED_LOG_COLLISION_RECOVERY",
+    "observed_at_cst": "2026-10-05T10:15:49.084111+08:00",
     "collection_pid": 1297701,
-    "fit_queue_pid": 1320786,
+    "fit_queue_pid": 1423763,
     "actual_sanity_GT_gate": "PASS",
     "new_queries": 716,
-    "completed_queries_at_last_observation": 64,
+    "completed_queries_at_last_observation": 716,
     "combined_train_queries": 2478,
     "validation_queries": 196,
-    "optimization_training_started": false,
+    "optimization_training_started": true,
     "full_native_metrics_completed_this_new_iteration": false,
-    "first_expected_finish_check_cst": "2026-10-05T09:46:00+08:00",
+    "first_expected_finish_check_cst": "2026-10-05T11:04:00.463143+08:00",
     "finish_estimate_scope": "First16 actual clips per GPU and weighted prefix-frame proxy; assumes105 future forwards/query, about09:49 collection, excludes NPZ compression/CPU audit/M0/full fits. Not a completion guarantee.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
-    "next_required_work": "Keep existing collection and fit controllers; collect sole09:46 observer, then wait full420 fits and full native report. Deliver native results even if negative; no cache-score substitution.",
+    "next_required_work": "Wait original new complete420 fits and actual CPU acceptance near11:04; same accepted evaluation successor then full98 selection and both full native reports. Deliver allfive even if negative; allfive+2 still required.",
     "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
-      "native_session_id": 20844,
-      "local_pid": 40576,
-      "actual_created_at_cst": "2026-10-05T09:14:19+08:00",
-      "actual_live_confirmed_by": "Windows Win32_Process commandline check matching exact observer script",
-      "first_remote_inspection_cst": "2026-10-05T09:46:00+08:00",
+      "native_session_id": 73271,
+      "local_pid": 16276,
+      "actual_created_at_cst": "2026-10-05T10:17:53.764480+08:00",
+      "actual_live_confirmed_by": "Windows Win32_Process exact observer commandline",
+      "first_remote_inspection_cst": "2026-10-05T11:04:00.463143+08:00",
       "poll_interval_seconds": 300,
-      "upstream_collection_pid": 1297701,
-      "upstream_fit_queue_pid": 1320786,
-      "source": "refine-logs/runs/recoverability_train_events/wait_capacity_and_full_start_local.py",
-      "scope": "Only read existing process states/progress and capacity receipts; no NN/optimization launch, restart, temperature or power query",
-      "historical_completed_observers_not_restarted": true
+      "source": "refine-logs/runs/recoverability_train_events/wait_complete420_acceptance_local.py",
+      "estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
+      "scope": "Read same complete-fit/evaluation owners, actual optimizer records and CPU acceptance; no restart/NN/power/temperature actions."
     },
-    "evaluation_queue_pid": 1366848,
+    "evaluation_queue_pid": 1423909,
     "evaluation_queue_started_at_cst": "2026-10-05T09:36:20.837801+08:00",
     "evaluation_queue_initial_stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
     "full_training_then_full_native_report_successor_actually_running": true,
-    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms."
+    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms.",
+    "collection_completed": true,
+    "actual_full716_GT_gate": "PASS",
+    "actual_four_capacity_fit_CPU_gate": "PASS",
+    "actual_full_training_child_pids": [
+      1423765,
+      1423766,
+      1423767,
+      1423768
+    ],
+    "actual_full_optimizer_steps_at_observation": {
+      "base_pairwise": 16,
+      "aug_pairwise": 15,
+      "base_budgeted": 16,
+      "aug_budgeted": 15
+    },
+    "all_ABC_nonzero_gradient_verified": true,
+    "previous_fit_queue_1320786": "Terminal FileExistsError before any full-training Popen; original collector log filenames collided.",
+    "previous_evaluation_queue_1366848": "Terminal missing-upstream assertion; not restarted.",
+    "old_sole_observer_20844": "Closed EXIT1 after actual missing1320786; correct failure detection, not timeout.",
+    "first_optimizer_observer_32700": "Closed EXIT0 after actual all4 updates and nonzero ABC gradients.",
+    "collection_or_capacity_repeated": false,
+    "fullfit_model_loss_config_changed": false
   },
   "completed_metrics_apply_to_previous_round_only": true,
   "latest_new_queue_start_observation": {
-    "observed_at_cst": "2026-10-05T09:36:51.262810+08:00",
-    "pid": 1366848,
-    "live": true,
-    "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1366848       1 Ss        31 python\n",
-    "state": {
+    "observed_at_cst": "2026-10-05T10:15:49.084111+08:00",
+    "fit": {
+      "stage": "FULL_FOUR_GPU_ABC_TRAINING_RUNNING",
+      "at_cst": "2026-10-05T10:12:47.446483+08:00",
+      "pid": 1423763,
+      "automatic_restarts": 0,
+      "official_metrics_completed": false,
+      "collection_repeated": false,
+      "capacity_training_repeated": false,
+      "children": [
+        {
+          "pid": 1423765,
+          "gpu": 0,
+          "arm": "base_pairwise",
+          "log": "/data/gb/setup/train_events_fit_full_gpu0_20261005.log",
+          "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005",
+          "expected_epochs": 84,
+          "expected_optimizer_steps": 420
+        },
+        {
+          "pid": 1423766,
+          "gpu": 1,
+          "arm": "aug_pairwise",
+          "log": "/data/gb/setup/train_events_fit_full_gpu1_20261005.log",
+          "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 420
+        },
+        {
+          "pid": 1423767,
+          "gpu": 2,
+          "arm": "base_budgeted",
+          "log": "/data/gb/setup/train_events_fit_full_gpu2_20261005.log",
+          "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005",
+          "expected_epochs": 84,
+          "expected_optimizer_steps": 420
+        },
+        {
+          "pid": 1423768,
+          "gpu": 3,
+          "arm": "aug_budgeted",
+          "log": "/data/gb/setup/train_events_fit_full_gpu3_20261005.log",
+          "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 420
+        }
+      ]
+    },
+    "evaluation": {
       "stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
-      "at_cst": "2026-10-05T09:36:20.861675+08:00",
-      "pid": 1366848,
+      "at_cst": "2026-10-05T10:12:48.652897+08:00",
+      "pid": 1423909,
       "automatic_restarts": 0,
       "system_goal_completed": false,
-      "upstream_pid": 1320786
+      "upstream_pid": 1423763
     },
-    "both_shells_bash_parse_PASS": true,
-    "old_collection_or_fit_model_progress_read": false,
-    "neural_forward_calls": 0,
-    "optimizer_steps": 0
+    "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1423763       1 Ss       181 python\n1423765 1423763 Sl       181 python\n1423766 1423763 Rl       181 python\n1423767 1423763 Sl       181 python\n1423768 1423763 Rl       181 python\n1423909       1 Ss       180 python\n",
+    "live_pids": [
+      1423763,
+      1423765,
+      1423766,
+      1423767,
+      1423768,
+      1423909
+    ],
+    "arms": [
+      {
+        "arm": "base_pairwise",
+        "gpu": 0,
+        "last_actual_optimizer_record": {
+          "epoch": 4,
+          "step": 1,
+          "optimizer_steps": 16,
+          "loss": 1.6789987087249756,
+          "parts": {
+            "advantage": 0.05227242782711983,
+            "action_ranking": 0.007986345328390598,
+            "harm": 2.0849246978759766,
+            "quality": 0.8976467251777649,
+            "query_write_risk": 0.04905448481440544,
+            "future": 0.12159624695777893,
+            "memory_gate": 1.3050225973129272,
+            "margin_preservation": 0.003777638543397188,
+            "identity_margin": 0.15067994594573975,
+            "search_value": 0.006547244731336832,
+            "search_success": 0.6061795353889465,
+            "candidate_absence": 0.37579578161239624,
+            "search_ranking": 1.9763282537460327
+          },
+          "module_gradient_norms": {
+            "A": 0.06285858899354935,
+            "B": 4.565570831298828,
+            "C": 1.127400279045105
+          },
+          "elapsed_seconds": 123.23176633100957,
+          "peak_cuda_mib": 17374.408203125
+        },
+        "config": {
+          "epochs": 84,
+          "batch_size": 384,
+          "lr": 0.0001,
+          "seed": 42,
+          "train_clips": 1762,
+          "validation_clips": 196,
+          "frozen_modules": [],
+          "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+        }
+      },
+      {
+        "arm": "aug_pairwise",
+        "gpu": 1,
+        "last_actual_optimizer_record": {
+          "epoch": 3,
+          "step": 1,
+          "optimizer_steps": 15,
+          "loss": 1.655425786972046,
+          "parts": {
+            "advantage": 0.04901940003037453,
+            "action_ranking": 0.012124815955758095,
+            "harm": 1.7348114252090454,
+            "quality": 0.7894197106361389,
+            "query_write_risk": 0.04684411734342575,
+            "future": 0.12078928202390671,
+            "memory_gate": 1.3788191080093384,
+            "margin_preservation": 0.002972056856378913,
+            "identity_margin": 0.159714475274086,
+            "search_value": 0.0021565305069088936,
+            "search_success": 0.6820375919342041,
+            "candidate_absence": 0.9285644292831421,
+            "search_ranking": 1.5924034118652344
+          },
+          "module_gradient_norms": {
+            "A": 0.0890461653470993,
+            "B": 7.264501571655273,
+            "C": 0.7452262043952942
+          },
+          "elapsed_seconds": 114.98508167779073,
+          "peak_cuda_mib": 19799.98779296875
+        },
+        "config": {
+          "epochs": 60,
+          "batch_size": 384,
+          "lr": 0.0001,
+          "seed": 42,
+          "train_clips": 2478,
+          "validation_clips": 196,
+          "frozen_modules": [],
+          "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+        }
+      },
+      {
+        "arm": "base_budgeted",
+        "gpu": 2,
+        "last_actual_optimizer_record": {
+          "epoch": 4,
+          "step": 1,
+          "optimizer_steps": 16,
+          "loss": 1.7384254932403564,
+          "parts": {
+            "advantage": 0.05484243854880333,
+            "action_ranking": 0.10929221659898758,
+            "harm": 2.097081184387207,
+            "quality": 0.8999500870704651,
+            "query_write_risk": 0.049807190895080566,
+            "future": 0.12233313918113708,
+            "memory_gate": 1.3050671815872192,
+            "margin_preservation": 0.004771021660417318,
+            "identity_margin": 0.14723362028598785,
+            "search_value": 0.0019247755408287048,
+            "search_success": 0.6226840019226074,
+            "candidate_absence": 0.379460871219635,
+            "search_ranking": 1.7429804801940918
+          },
+          "module_gradient_norms": {
+            "A": 0.0593411885201931,
+            "B": 2.98540997505188,
+            "C": 1.2634018659591675
+          },
+          "elapsed_seconds": 122.68631601706147,
+          "peak_cuda_mib": 17372.908203125
+        },
+        "config": {
+          "epochs": 84,
+          "batch_size": 384,
+          "lr": 0.0001,
+          "seed": 42,
+          "train_clips": 1762,
+          "validation_clips": 196,
+          "frozen_modules": [],
+          "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+        }
+      },
+      {
+        "arm": "aug_budgeted",
+        "gpu": 3,
+        "last_actual_optimizer_record": {
+          "epoch": 3,
+          "step": 1,
+          "optimizer_steps": 15,
+          "loss": 1.8641784191131592,
+          "parts": {
+            "advantage": 0.05307528376579285,
+            "action_ranking": 0.19726599752902985,
+            "harm": 1.7460863590240479,
+            "quality": 0.7910230159759521,
+            "query_write_risk": 0.04772966727614403,
+            "future": 0.1207835003733635,
+            "memory_gate": 1.3788857460021973,
+            "margin_preservation": 0.003424427704885602,
+            "identity_margin": 0.1578352153301239,
+            "search_value": 0.0016437271842733026,
+            "search_success": 0.6814249753952026,
+            "candidate_absence": 0.9282654523849487,
+            "search_ranking": 1.680952548980713
+          },
+          "module_gradient_norms": {
+            "A": 0.0887511745095253,
+            "B": 6.012878894805908,
+            "C": 0.6920590996742249
+          },
+          "elapsed_seconds": 114.84675641125068,
+          "peak_cuda_mib": 19799.48779296875
+        },
+        "config": {
+          "epochs": 60,
+          "batch_size": 384,
+          "lr": 0.0001,
+          "seed": 42,
+          "train_clips": 2478,
+          "validation_clips": 196,
+          "frozen_modules": [],
+          "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth"
+        }
+      }
+    ],
+    "power_or_temperature_queried": false,
+    "neural_forward_calls_by_observer": 0,
+    "optimizer_steps_by_observer": 0
   }
 }

@@ -1,0 +1,534 @@
+{
+  "observed_at_cst": "2026-10-05T09:51:02.329585+08:00",
+  "states": {
+    "train_events_collection": {
+      "stage": "NEW716_TRAIN_STATES_READY_FOR_CAPACITY_AND_COMPLETE_FIT",
+      "at_cst": "2026-10-05T09:43:11.538054+08:00",
+      "pid": 1297701,
+      "optimization_started": false,
+      "official_metrics_completed": false,
+      "full_train_queries": 2478,
+      "validation_queries": 196,
+      "next_stage": "Actual four-GPU capacity M0, then matched420update full ABC fits; no training launched by this collection controller."
+    },
+    "train_events_fit": {
+      "stage": "M0_ALL_FOUR_ACTUAL_TRAINING_AND_CPU_RELOAD_AUDIT_PASS",
+      "at_cst": "2026-10-05T09:48:48.007614+08:00",
+      "pid": 1320786,
+      "automatic_restarts": 0,
+      "official_metrics_completed": false,
+      "acceptance": {
+        "status": "PASS",
+        "stage": "m0",
+        "all_four_ABC_fits_passed": true,
+        "arms": {
+          "base_pairwise": {
+            "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_m0_20261005",
+            "epochs": 3,
+            "optimizer_steps": 15,
+            "train_queries": 1762,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              },
+              "epoch_003.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              }
+            },
+            "peak_cuda_mib": 17374.408203125,
+            "elapsed_seconds": 116.18142439704388
+          },
+          "aug_pairwise": {
+            "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_m0_20261005",
+            "epochs": 3,
+            "optimizer_steps": 21,
+            "train_queries": 2478,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 0,
+                "ABC_changed": {
+                  "A": false,
+                  "B": false,
+                  "C": false
+                },
+                "cached_CPU_replay_pass": true
+              },
+              "epoch_003.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              }
+            },
+            "peak_cuda_mib": 19799.98779296875,
+            "elapsed_seconds": 161.73560011480004
+          },
+          "base_budgeted": {
+            "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_m0_20261005",
+            "epochs": 3,
+            "optimizer_steps": 15,
+            "train_queries": 1762,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 1,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              },
+              "epoch_003.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              }
+            },
+            "peak_cuda_mib": 17372.908203125,
+            "elapsed_seconds": 116.03320958698168
+          },
+          "aug_budgeted": {
+            "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_m0_20261005",
+            "epochs": 3,
+            "optimizer_steps": 21,
+            "train_queries": 2478,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              },
+              "epoch_003.pth": {
+                "epoch": 3,
+                "ABC_changed": {
+                  "A": true,
+                  "B": true,
+                  "C": true
+                },
+                "cached_CPU_replay_pass": true
+              }
+            },
+            "peak_cuda_mib": 19799.48779296875,
+            "elapsed_seconds": 161.3863831218332
+          }
+        },
+        "validation_queries": 196,
+        "official_metrics_completed": false,
+        "CUDA_initialized": false,
+        "completed_at_cst": "2026-10-05T09:48:47.413058+08:00"
+      }
+    }
+  },
+  "collection_shards": [
+    {
+      "gpu": 0,
+      "progress": {
+        "completed_clips": 179,
+        "clips": 179,
+        "elapsed_seconds": 2712.1435254807584,
+        "peak_cuda_mib": 4331.8916015625
+      },
+      "completion": {
+        "completed": true,
+        "clips": 179,
+        "partition": "train",
+        "valid_actions": 6178,
+        "requested_extra_crops": 1074,
+        "executed_extra_crops": 1074,
+        "original_correct_queries": 10,
+        "original_failed_queries": 168,
+        "original_candidate_present_queries": 37,
+        "query_frames_after256": 88,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 2734.2990024387836,
+        "peak_cuda_mib": 4331.8916015625,
+        "actual_prefix_counts_sum": [
+          1837,
+          64,
+          30,
+          14029
+        ]
+      }
+    },
+    {
+      "gpu": 1,
+      "progress": {
+        "completed_clips": 179,
+        "clips": 179,
+        "elapsed_seconds": 2719.303636014927,
+        "peak_cuda_mib": 4325.93994140625
+      },
+      "completion": {
+        "completed": true,
+        "clips": 179,
+        "partition": "train",
+        "valid_actions": 6176,
+        "requested_extra_crops": 1074,
+        "executed_extra_crops": 1074,
+        "original_correct_queries": 16,
+        "original_failed_queries": 160,
+        "original_candidate_present_queries": 52,
+        "query_frames_after256": 88,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 2741.2789460108615,
+        "peak_cuda_mib": 4325.93994140625,
+        "actual_prefix_counts_sum": [
+          1636,
+          85,
+          51,
+          13586
+        ]
+      }
+    },
+    {
+      "gpu": 2,
+      "progress": {
+        "completed_clips": 179,
+        "clips": 179,
+        "elapsed_seconds": 2799.6186346770264,
+        "peak_cuda_mib": 4333.06982421875
+      },
+      "completion": {
+        "completed": true,
+        "clips": 179,
+        "partition": "train",
+        "valid_actions": 6210,
+        "requested_extra_crops": 1074,
+        "executed_extra_crops": 1074,
+        "original_correct_queries": 9,
+        "original_failed_queries": 167,
+        "original_candidate_present_queries": 36,
+        "query_frames_after256": 87,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 2821.2113936142996,
+        "peak_cuda_mib": 4333.06982421875,
+        "actual_prefix_counts_sum": [
+          1414,
+          59,
+          53,
+          12728
+        ]
+      }
+    },
+    {
+      "gpu": 3,
+      "progress": {
+        "completed_clips": 179,
+        "clips": 179,
+        "elapsed_seconds": 2707.7844742676243,
+        "peak_cuda_mib": 4330.7451171875
+      },
+      "completion": {
+        "completed": true,
+        "clips": 179,
+        "partition": "train",
+        "valid_actions": 6180,
+        "requested_extra_crops": 1074,
+        "executed_extra_crops": 1074,
+        "original_correct_queries": 10,
+        "original_failed_queries": 163,
+        "original_candidate_present_queries": 38,
+        "query_frames_after256": 87,
+        "decision_input_contains_future": false,
+        "official_tracking_accuracy": false,
+        "elapsed_seconds": 2729.781964818947,
+        "peak_cuda_mib": 4330.7451171875,
+        "actual_prefix_counts_sum": [
+          1372,
+          79,
+          65,
+          13190
+        ]
+      }
+    }
+  ],
+  "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n",
+  "live_pids": [],
+  "receipts": {
+    "full_cpu_acceptance": {
+      "status": "PASS",
+      "phase": "full",
+      "new_clips": 716,
+      "entries": [
+        {
+          "gpu": 0,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+          "clips": 179,
+          "current_GT_max_error": 2.784981451786628e-06,
+          "history_GT_max_error": 1.3584497771113035e-07,
+          "completion": {
+            "completed": true,
+            "clips": 179,
+            "partition": "train",
+            "valid_actions": 6178,
+            "requested_extra_crops": 1074,
+            "executed_extra_crops": 1074,
+            "original_correct_queries": 10,
+            "original_failed_queries": 168,
+            "original_candidate_present_queries": 37,
+            "query_frames_after256": 88,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2734.2990024387836,
+            "peak_cuda_mib": 4331.8916015625,
+            "actual_prefix_counts_sum": [
+              1837,
+              64,
+              30,
+              14029
+            ]
+          }
+        },
+        {
+          "gpu": 1,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+          "clips": 179,
+          "current_GT_max_error": 2.397368550233203e-06,
+          "history_GT_max_error": 1.0956209262058536e-07,
+          "completion": {
+            "completed": true,
+            "clips": 179,
+            "partition": "train",
+            "valid_actions": 6176,
+            "requested_extra_crops": 1074,
+            "executed_extra_crops": 1074,
+            "original_correct_queries": 16,
+            "original_failed_queries": 160,
+            "original_candidate_present_queries": 52,
+            "query_frames_after256": 88,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2741.2789460108615,
+            "peak_cuda_mib": 4325.93994140625,
+            "actual_prefix_counts_sum": [
+              1636,
+              85,
+              51,
+              13586
+            ]
+          }
+        },
+        {
+          "gpu": 2,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+          "clips": 179,
+          "current_GT_max_error": 2.2401152516282608e-06,
+          "history_GT_max_error": 1.1404370847678535e-07,
+          "completion": {
+            "completed": true,
+            "clips": 179,
+            "partition": "train",
+            "valid_actions": 6210,
+            "requested_extra_crops": 1074,
+            "executed_extra_crops": 1074,
+            "original_correct_queries": 9,
+            "original_failed_queries": 167,
+            "original_candidate_present_queries": 36,
+            "query_frames_after256": 87,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2821.2113936142996,
+            "peak_cuda_mib": 4333.06982421875,
+            "actual_prefix_counts_sum": [
+              1414,
+              59,
+              53,
+              12728
+            ]
+          }
+        },
+        {
+          "gpu": 3,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+          "clips": 179,
+          "current_GT_max_error": 1.8482197942093492e-06,
+          "history_GT_max_error": 1.1404370847678535e-07,
+          "completion": {
+            "completed": true,
+            "clips": 179,
+            "partition": "train",
+            "valid_actions": 6180,
+            "requested_extra_crops": 1074,
+            "executed_extra_crops": 1074,
+            "original_correct_queries": 10,
+            "original_failed_queries": 163,
+            "original_candidate_present_queries": 38,
+            "query_frames_after256": 87,
+            "decision_input_contains_future": false,
+            "official_tracking_accuracy": false,
+            "elapsed_seconds": 2729.781964818947,
+            "peak_cuda_mib": 4330.7451171875,
+            "actual_prefix_counts_sum": [
+              1372,
+              79,
+              65,
+              13190
+            ]
+          }
+        }
+      ],
+      "all_queries_TRAIN_only": true,
+      "base1762_and_validation196_unchanged": true,
+      "full_combined_train_queries": 2478,
+      "GT_current_and_all_valid_history_verified": true,
+      "decision_inputs_copied_before_future": true,
+      "official_metrics_completed": false,
+      "future_label_scope": "Actual frozen own-policy outputs: source-linked, finite/range checked; no independent future neural rerun.",
+      "execution": {
+        "new_neural_forward_calls": 0,
+        "optimizer_steps": 0,
+        "native_test_reads": false
+      },
+      "completed_at_cst": "2026-10-05T09:43:11.461194+08:00"
+    },
+    "m0_fit_cpu_acceptance": {
+      "status": "PASS",
+      "stage": "m0",
+      "all_four_ABC_fits_passed": true,
+      "arms": {
+        "base_pairwise": {
+          "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 15,
+          "train_queries": 1762,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 17374.408203125,
+          "elapsed_seconds": 116.18142439704388
+        },
+        "aug_pairwise": {
+          "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 21,
+          "train_queries": 2478,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 0,
+              "ABC_changed": {
+                "A": false,
+                "B": false,
+                "C": false
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19799.98779296875,
+          "elapsed_seconds": 161.73560011480004
+        },
+        "base_budgeted": {
+          "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 15,
+          "train_queries": 1762,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 1,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 17372.908203125,
+          "elapsed_seconds": 116.03320958698168
+        },
+        "aug_budgeted": {
+          "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 21,
+          "train_queries": 2478,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19799.48779296875,
+          "elapsed_seconds": 161.3863831218332
+        }
+      },
+      "validation_queries": 196,
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "completed_at_cst": "2026-10-05T09:48:47.413058+08:00"
+    }
+  }
+}

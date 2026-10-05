@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T09:37:14.635029+08:00",
+  "updated_cst": "2026-10-05T10:21:08.281082+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8256,40 +8256,60 @@
     "actual_user_status_receipt": "refine-logs/runs/recoverability_best_native_policy/actual_user_complete_training_metrics_status_20261005.json"
   },
   "current_train_event_data_iteration": {
-    "status": "ACTUAL_ALL4_NEW716_TRAIN_COLLECTION_RUNNING; MATCHED420_FULL_FIT_SUCCESSOR_LIVE_WAITING",
-    "observed_at_cst": "2026-10-05T09:09:43.523612+08:00",
+    "status": "ACTUAL_ALL4_COMPLETE420UPDATE_ABC_TRAINING_RUNNING_AFTER_CONFIRMED_LOG_COLLISION_RECOVERY",
+    "observed_at_cst": "2026-10-05T10:15:49.084111+08:00",
     "collection_pid": 1297701,
-    "fit_queue_pid": 1320786,
+    "fit_queue_pid": 1423763,
     "actual_sanity_GT_gate": "PASS",
     "new_queries": 716,
-    "completed_queries_at_last_observation": 64,
+    "completed_queries_at_last_observation": 716,
     "combined_train_queries": 2478,
     "validation_queries": 196,
-    "optimization_training_started": false,
+    "optimization_training_started": true,
     "full_native_metrics_completed_this_new_iteration": false,
-    "first_expected_finish_check_cst": "2026-10-05T09:46:00+08:00",
+    "first_expected_finish_check_cst": "2026-10-05T11:04:00.463143+08:00",
     "finish_estimate_scope": "First16 actual clips per GPU and weighted prefix-frame proxy; assumes105 future forwards/query, about09:49 collection, excludes NPZ compression/CPU audit/M0/full fits. Not a completion guarantee.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
-    "next_required_work": "Keep existing collection and fit controllers; collect sole09:46 observer, then wait full420 fits and full native report. Deliver native results even if negative; no cache-score substitution.",
+    "next_required_work": "Wait original new complete420 fits and actual CPU acceptance near11:04; same accepted evaluation successor then full98 selection and both full native reports. Deliver allfive even if negative; allfive+2 still required.",
     "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
-      "native_session_id": 20844,
-      "local_pid": 40576,
-      "actual_created_at_cst": "2026-10-05T09:14:19+08:00",
-      "actual_live_confirmed_by": "Windows Win32_Process commandline check matching exact observer script",
-      "first_remote_inspection_cst": "2026-10-05T09:46:00+08:00",
+      "native_session_id": 73271,
+      "local_pid": 16276,
+      "actual_created_at_cst": "2026-10-05T10:17:53.764480+08:00",
+      "actual_live_confirmed_by": "Windows Win32_Process exact observer commandline",
+      "first_remote_inspection_cst": "2026-10-05T11:04:00.463143+08:00",
       "poll_interval_seconds": 300,
-      "upstream_collection_pid": 1297701,
-      "upstream_fit_queue_pid": 1320786,
-      "source": "refine-logs/runs/recoverability_train_events/wait_capacity_and_full_start_local.py",
-      "scope": "Only read existing process states/progress and capacity receipts; no NN/optimization launch, restart, temperature or power query",
-      "historical_completed_observers_not_restarted": true
+      "source": "refine-logs/runs/recoverability_train_events/wait_complete420_acceptance_local.py",
+      "estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
+      "scope": "Read same complete-fit/evaluation owners, actual optimizer records and CPU acceptance; no restart/NN/power/temperature actions."
     },
-    "evaluation_queue_pid": 1366848,
+    "evaluation_queue_pid": 1423909,
     "evaluation_queue_started_at_cst": "2026-10-05T09:36:20.837801+08:00",
     "evaluation_queue_initial_stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
     "full_training_then_full_native_report_successor_actually_running": true,
-    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms."
+    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms.",
+    "collection_completed": true,
+    "actual_full716_GT_gate": "PASS",
+    "actual_four_capacity_fit_CPU_gate": "PASS",
+    "actual_full_training_child_pids": [
+      1423765,
+      1423766,
+      1423767,
+      1423768
+    ],
+    "actual_full_optimizer_steps_at_observation": {
+      "base_pairwise": 16,
+      "aug_pairwise": 15,
+      "base_budgeted": 16,
+      "aug_budgeted": 15
+    },
+    "all_ABC_nonzero_gradient_verified": true,
+    "previous_fit_queue_1320786": "Terminal FileExistsError before any full-training Popen; original collector log filenames collided.",
+    "previous_evaluation_queue_1366848": "Terminal missing-upstream assertion; not restarted.",
+    "old_sole_observer_20844": "Closed EXIT1 after actual missing1320786; correct failure detection, not timeout.",
+    "first_optimizer_observer_32700": "Closed EXIT0 after actual all4 updates and nonzero ABC gradients.",
+    "collection_or_capacity_repeated": false,
+    "fullfit_model_loss_config_changed": false
   }
 }

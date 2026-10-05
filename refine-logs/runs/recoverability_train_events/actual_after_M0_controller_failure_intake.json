@@ -1,0 +1,50 @@
+{
+  "at_cst": "2026-10-05T09:53:30.057412+08:00",
+  "original_owner_actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n",
+  "original_owner_ps_returncode": 1,
+  "tracebacks": {
+    "train_events_fit_controller_20261005.log": [
+      "Traceback (most recent call last):",
+      "  File \"/data/gb/GOLA/refine-logs/runs/recoverability_train_events/fit_pipeline.py\", line 98, in <module>",
+      "    main()",
+      "  File \"/data/gb/GOLA/refine-logs/runs/recoverability_train_events/fit_pipeline.py\", line 74, in main",
+      "    with log.open('x') as stream:",
+      "  File \"/data/gb/envs/gola/lib/python3.10/pathlib.py\", line 1119, in open",
+      "    return self._accessor.open(self, mode, buffering, encoding, errors,",
+      "FileExistsError: [Errno 17] File exists: '/data/gb/setup/train_events_full_gpu0_20261005.log'"
+    ],
+    "train_events_evaluation_controller_20261005.log": [
+      "Traceback (most recent call last):",
+      "  File \"/data/gb/GOLA/refine-logs/runs/recoverability_train_events/evaluation_pipeline.py\", line 137, in <module>",
+      "    main()",
+      "  File \"/data/gb/GOLA/refine-logs/runs/recoverability_train_events/evaluation_pipeline.py\", line 69, in main",
+      "    assert result.returncode == 0 and result.stdout.strip() and not result.stdout.strip().startswith('Z'), result",
+      "AssertionError: CompletedProcess(args=['ps', '-o', 'stat=', '-p', '1320786'], returncode=1, stdout='', stderr='')"
+    ]
+  },
+  "gpu_memory_used_only": "0, 349\n1, 20\n2, 20\n3, 20\n",
+  "full_launch_artifacts": [
+    {
+      "arm": "base_pairwise",
+      "output_exists": false,
+      "log_exists": true
+    },
+    {
+      "arm": "aug_pairwise",
+      "output_exists": false,
+      "log_exists": true
+    },
+    {
+      "arm": "base_budgeted",
+      "output_exists": false,
+      "log_exists": true
+    },
+    {
+      "arm": "aug_budgeted",
+      "output_exists": false,
+      "log_exists": true
+    }
+  ],
+  "new_neural_forwards": 0,
+  "new_optimizer_steps": 0
+}

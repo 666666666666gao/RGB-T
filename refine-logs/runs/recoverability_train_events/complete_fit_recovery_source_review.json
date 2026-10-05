@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "review_type": "experiment-bridge Phase 2.5 / RESCUE_ON_FAILURE fresh source review at the actual post-M0 full-fit boundary",
+  "reviewed_at_cst": "2026-10-05T10:12:09.380822+08:00",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "model_attribution": "Requested fresh native reviewer routing; backend execution is not independently attested.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "source_approval": true,
+  "scope": "Local source, saved evidence, AST compilation and isolated argparse inspection only. No SSH/SCP, GPU/job query, model execution, experiment launch, source edit or weight deletion by this reviewer.",
+  "reviewed_sources": [
+    "complete_fit_after_M0.py",
+    "evaluation_after_complete_fit.py",
+    "launch_complete_fit_after_M0_local.py",
+    "fit_pipeline.py",
+    "collection_pipeline.py",
+    "fit_plan.json",
+    "train_fixed_epochs_private.py",
+    "audit_fit_cpu.py",
+    "evaluation_pipeline.py",
+    "score_full98_cpu.py",
+    "run_native_complete.sh",
+    "report_native_complete.sh",
+    "merge_native_complete.py",
+    "audit_native_complete_cpu.py",
+    "merge_complete_goal_report.py",
+    "check_collection_fit_log_boundary_cpu.py"
+  ],
+  "external_helper": "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_complete_fit_after_M0_20261005.py",
+  "evidence": [
+    "actual_after_M0_controller_failure_intake.json",
+    "actual_collection_capacity_and_full_start_observation.json",
+    "actual_completed716_collection_summary.json",
+    "actual_log_boundary_CPU_regression.json",
+    "cpu_staging_trainer_source_review_corrected.json",
+    "evaluation_source_review.json"
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "resolved_failure": {
+    "cause": "Collection and original full-fit controllers both generated train_events_full_gpuN_20261005.log. Original fit failed at the first exclusive log.open(x), before any full-fit Popen.",
+    "actual_boundary": "Saved intake records all four full output directories absent, all four collector log paths present, original owners terminal, and evaluation failing on missing original fit PID1320786. Saved actual716 GT acceptance and all four three-epoch M0/CPU acceptance are PASS; this is not an observation timeout.",
+    "correction": "New controller starts only the four previously unstarted full fits, with train_events_fit_full_gpuN_20261005.log and a new controller state/log. Existing private package, accepted data, original fit/collection sources, logs, receipts and failure evidence remain intact.",
+    "regression": "Root-supplied actual CPU receipt is PASS. Reviewed fixture extracts the actual AST path expressions, reproduces FileExistsError with the original name, creates all four corrected names exclusively, and checks all four collector log contents unchanged. Reviewer inspected this fixture and receipt without replaying it."
+  },
+  "verified_properties": {
+    "entry_gate": "Both successor controllers require this fresh same-family/provisional PASS. Full-fit entry requires actual716 TRAIN-only/unchanged base1762/VAL196 acceptance, actual four-M0 acceptance, recorded original failure, existing private package, absent full-fit CPU receipt and all four full output directories absent.",
+    "full_training": "All four generated full command lists equal the original full-stage commands exactly. Base arms use84epochs x5 updates and augmented arms60epochs x7, all420; B384/lr1e-4/seed42, same retained old4 initialization, selector/action settings and empty frozen_modules. Fixed checkpoints align at140/280/420 updates. No collection, M0, package copy or source replacement is invoked.",
+    "data_and_model": "Same1762 or2478 TRAIN roots and196 developerVAL; loader verifies partitions/disjoint names and copies staged tensors to the target device only after CPU indexing. DECISION_FIELDS alone enter forward; current/future/history GT labels remain supervision. ABC remain trainable; fixed C1 is frozen and checked exactly by the accepted CPU auditor; GOLA features remain frozen. No native test selection is introduced.",
+    "completion_and_imports": "GPU fits use the accepted private package via cwd=private/PYTHONPATH=private:ROOT. The controller waits all four exit0, invokes unchanged audit_fit_cpu.py --stage full with CUDA hidden and the same imports, and emits readiness only after its actual PASS. All420 updates, retained weights, full epoch logs and cached CPU replay remain required.",
+    "evaluation_delta": "New evaluation source is exactly the accepted source with four substitutions: its state, fresh review, upstream launch receipt and upstream progress path. Its180-second wait tracks the new fit owner; it never restarts either failed original.",
+    "complete_native_report": "Unchanged chain scores positive checkpoints on all98/49418 developer frames, locks highest sequence mean IoU before testing, then uses that same checkpoint for245 LasHeR/220703 frames and234 RGBT234/116649 frames. Actual-GT five native metrics,19+12 attributes, curves,5000 paired seed42 bootstrap and mechanism reports remain required. Final merger requires1437 sequence and93 attribute rows and all five gains >=2 percentage points over GOLA; no three-seed gate or premature goal completion is added.",
+    "cleanup": "Unchanged bounded cleanup retires only the eight accepted current-run M0 weights after full-fit acceptance, then the15 unselected current-run full weights after full98 scoring and locked selection. Selected weight is retained through native reporting; retained old4, teachers/pretrained/C1 and all logs/raw metrics are outside these paths.",
+    "deployment": "Helper/archive are byte-identical. Structured SCP uploads only two new controllers, this review and the failure intake; existing same-bytes verification is retained. Fixed SSH Python payloads use shlex.quote and start each new CUDA-hidden CPU controller detached with DEVNULL stdin and distinct exclusive logs/states. New fit receipt is copied before the new evaluation launch checks the matching live fit owner/stage. No active training source, old log, original state or original receipt is overwritten."
+  },
+  "local_validation": {
+    "status": "PASS",
+    "python": "E:/python.exe",
+    "compiled_python_sources": 4,
+    "compiled_embedded_remote_payloads": 2,
+    "embedded_payload_quote_roundtrip": "PASS",
+    "isolated_trainer_argparse_invocations": 4,
+    "full_command_equality_checks": 4,
+    "evaluation_exact_four_substitutions": true,
+    "launcher_archive_byte_identical": true,
+    "torch_or_numpy_imported": false
+  },
+  "limitations": [
+    "Source approval is same-family provisional and does not independently attest remote runtime, current resources or private package bytes. Saved runtime evidence is identified as supplied evidence.",
+    "The full420 training, new CPU acceptance, full98 selection and all479 native reports remain runtime obligations; no new official accuracy or all-five-plus-two result is established here.",
+    "Future labels remain source-linked/finiteness checked without an extra visual neural replay. Developer videos are reused; fixed-checkpoint bootstrap is not independent multi-seed evidence."
+  ],
+  "review_actions": {
+    "SSH_SCP_calls": 0,
+    "GPU_job_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "experiment_launches": 0,
+    "source_edits": 0,
+    "weight_deletions": 0,
+    "report_files_written": 1
+  },
+  "conclusion": "PASS. The minimal successor fixes the demonstrated log namespace collision at the correct previously-unstarted full-fit boundary and preserves the complete training/native-report contract. No blocking or nonblocking source finding."
+}
