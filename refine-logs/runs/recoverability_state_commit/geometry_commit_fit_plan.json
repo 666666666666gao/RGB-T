@@ -1,0 +1,68 @@
+{
+  "status": "SOURCE_PASS_PROTOTYPE_FIT_SANITY_NOT_STARTED",
+  "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "parent_epoch": 4,
+  "frozen": "pretrained GOLA/C1 and existing old4 A/B/C; only new C state-submission head trains",
+  "evidence": {
+    "completed_matched_queries": 88,
+    "events": 24,
+    "actual_legal_write_pairs": 41,
+    "future32_geometry_minus_raw_event_mean_pp": 1.3200670323682475,
+    "future32_95_paired_event_interval_pp": [
+      -0.41517223896939015,
+      3.7151426705472774
+    ],
+    "future32_normal8_mean_pp": -0.41063459733271107,
+    "future32_persistent8_mean_pp": 4.823772185256943,
+    "interpretation": "A uniform override harms normal tracking; pooled benefit is concentrated in two persistent-failure events. Train selective intervention, then test continuous videos."
+  },
+  "smallest_change": "463 existing causal candidate/memory/history features ->64hidden ->4 commit scores. Zero final layer preserves old4. Current output and motion history stay selected; only next search reference and existing appearance pause are controlled.",
+  "features": "Saved decision_* and pre_query_identity_anchor/memory only; no GT or future outcome fields enter features.",
+  "sampling": "Same 24 TRAIN events, stratified cached normal/persistent33/recovered32; deterministic seed42 six train/two validation events per role, event/sequence disjoint 18/6; queries66/22. Correlated offsets receive inverse-event-query-count weights.",
+  "labels": "For each same-query commit action, frozen old4 future mean IoU minus lost_penalty times future IoU<.2 fraction. Query output common. Compare H3/H32 and penalty0/.1 separately.",
+  "actions": [
+    "raw",
+    "pause",
+    "search_velocity",
+    "pause_search_velocity"
+  ],
+  "decision": "Keep old4 query pause/regular action unless one legal action score exceeds it by .03. Pause legal only raw>.84; velocity requires two actual past centers. Time advances to next frame, never indefinitely freezes geometry.",
+  "sanity": "4 actual updates, frozen-parent exact and reload; real120-frame zero-initialization bitwise old4 output/search/template/memory/history parity on TRAIN manatwhiteright, no laterGT decision input.",
+  "full_prototype_fits": [
+    {
+      "gpu": 0,
+      "horizon": 3,
+      "lost_penalty": 0.0,
+      "epochs": 60,
+      "updates": 60
+    },
+    {
+      "gpu": 1,
+      "horizon": 3,
+      "lost_penalty": 0.1,
+      "epochs": 60,
+      "updates": 60
+    },
+    {
+      "gpu": 2,
+      "horizon": 32,
+      "lost_penalty": 0.0,
+      "epochs": 60,
+      "updates": 60
+    },
+    {
+      "gpu": 3,
+      "horizon": 32,
+      "lost_penalty": 0.1,
+      "epochs": 60,
+      "updates": 60
+    }
+  ],
+  "selection": "Save only one best checkpoint per fit, strict held-out equal-event utility improvement, epoch0 eligible; then full98 continuous developer-video selection against fullGOLA/C1/old4. Initial prototype only88states, never label it full881/end-to-end/backbone training.",
+  "native_acceptance": "Same selected commit head AND old4 parent must yield full479 sequences/337352framepairs on LasHeR+RGBT234, complete5 metrics/31attributes/curves/paired intervals. No new native gain claimed before report. Five baseline+2 remains goal; one bestseed allowed.",
+  "retention": "Retain protectedold4 and necessary pretrained/teachers; retire sanity/inferior head weights only after their consumers close. Never remove their completed evidence.",
+  "hardware": "2027 GPUs0-3; no power/temp constraints or queries. Small head fits use naturally small VRAM, no filler tensors; complete-video forward uses pretrainedbase.",
+  "goal_status": "ACTIVE_UNMET",
+  "validation_disclosure": "All24 events have already been inspected as causal diagnostics. The18/6 split is optimizer-held-out, not an unseen independent confirmation set.",
+  "updated_at_cst": "2026-10-05T16:51:58.207776+08:00"
+}

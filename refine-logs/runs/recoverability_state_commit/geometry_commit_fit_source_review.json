@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T16:51:14.592026+08:00",
+  "scope": "Fresh source-only review of the five specified files and existing related helpers, with local AST and actual cached JSON inspection. No source mutation, remote access, GPU query, neural execution, or package installation.",
+  "reviewed_files": [
+    "research/geometry_commit.py",
+    "research/train_geometry_commit.py",
+    "research/check_geometry_commit_sanity.py",
+    "research/evaluate_recoverability.py (optional commit-model diff)",
+    "refine-logs/runs/recoverability_state_commit/launch_geometry_commit_fit.py"
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "conclusion": "No concrete blocking correctness defect found in the proposed small-head prototype. Source is suitable for the planned real sanity stage. This verdict does not attest training, GPU availability, parity, continuous-video performance, or native gains.",
+  "checks": [
+    {
+      "topic": "Causal features and matched action semantics",
+      "result": "PASS",
+      "evidence": "geometry_commit.py:26-38 uses frozen candidate inputs plus 8 past history entries: 407+56=463 features. No GT, future IoU, cached event role, or future outcome enters the head. Tracker intervention runs after old4 selects the observed query candidate and before its normal commit. The same pre-query identity state is used in the cache and online path. next_search_prediction uses two past centers and the real next-frame time; runtime calculates it before appending the query observation and uses the same existing provider semantics as probe_geometry_commit.py:95-126. Frame 1, where only one past center exists, delegates unchanged."
+    },
+    {
+      "topic": "Output, state, and action masks",
+      "result": "PASS",
+      "evidence": "geometry_commit.py:52-58 masks pause actions by raw-write eligibility and retains the old4 pause/regular action unless a legal score improves by strictly more than .03. The zero final layer therefore keeps old4. geometry_commit.py:85-94 calls the existing accept_observation once, changes only branch.search_box for geometry actions, and preserves that query output and history entry. Appearance pause retains the existing template, target-identity and motion-memory commit rules. Later outputs can change after geometry or appearance intervention."
+    },
+    {
+      "topic": "Actual inputs and train-validation disjointness",
+      "result": "PASS",
+      "evidence": "Independently parsed all five actual events/config JSON files and prepared_velocity_train88_jobs.json: exact 88 unique query-key/event matches, 24 events in 24 distinct sequences, parts 1/22/22/22/21, old4 epoch 4, velocity_search, write_verification=action, horizons 3/32, COMPLETE files and all 88 NPZ files present. Reproduced seed42 split using the source algorithm: 18 train events in 18 sequences and 66 queries, 6 validation events in 6 other sequences and 22 queries, six/two events per normal, persistent33, recovered32 role. Cached actual policy pause is false for all 88; 41 rows are write-eligible and no keep action is illegal. JSON control query output IoUs are identical across the four controls and all future mean IoUs are finite. Existing actual_velocity_training_input_CPU_audit.json reports exactly one valid float32 selected-box match for every query; this review did not rerun its NumPy audit."
+    },
+    {
+      "topic": "Labels, loss, and checkpoint selection",
+      "result": "PASS",
+      "evidence": "train_geometry_commit.py:69-70 excludes the common query frame and uses precisely the requested future H3/H32 mean IoU minus penalty times IoU<.2 fraction. Ground truth is used only in saved supervision/outcomes. Lines 77-81 and 134-146 give each event total weight one, mask illegal pause labels, regress score differences to utility differences from the old4 action, and rank legal ordered pairs in the correct direction. Validation is excluded from the optimizer loss. Each full fit has one actual full-batch optimizer step per epoch for 60 requested steps; sanity requests four. Epoch0 is eligible and strict held-out equal-event gain improvement alone replaces best.pth. The frozen modules are checked exactly and the selected head is strictly reloaded and re-evaluated."
+    },
+    {
+      "topic": "Default evaluation and provenance",
+      "result": "PASS",
+      "evidence": "The optional evaluator branch leaves the RecoverabilityTracker default and existing argument values intact when --commit-model is absent. The enabled branch checks saved parent path, head module/features/threshold, learned/action mode, and incompatible parity/zero-init/unsafe-write options; it records the head epoch, parameter count, and commit action diagnostics. Existing scoring still requires later actual-GT collection. Continuous recurrent head application is correctly distinct from the single-query frozen-old4 continuation labels and requires the planned full-video acceptance."
+    },
+    {
+      "topic": "Sanity and launch sequencing",
+      "result": "PASS",
+      "evidence": "check_geometry_commit_sanity.py first requires the actual four-update sanity completion and strict head load, then compares a fresh zero head to old4 over initialization plus 119 real TRAIN steps, checking output/search/template/identity-memory/motion-memory/history parity and zero overrides. launch_geometry_commit_fit.py requires this source PASS, completed input caches and merged analysis; queries only device identity/free memory and compute processes, and rejects the selected GPU when a Python process occupies it or free memory is insufficient. Full launches require parity COMPLETE and the four-update frozen-parent receipt, map GPUs to exactly the four planned horizon/penalty pairs, and refuse reused output/receipt paths. Existing run_temporal.sh selects the matching CUDA device and execs the Python entry. No new runtime was executed by this reviewer."
+    },
+    {
+      "topic": "Metric and claim scope",
+      "result": "PASS",
+      "evidence": "The plan and fit metadata explicitly describe TRAIN88 small-head prototype training with frozen old4/C1, not full881, backbone, or end-to-end training. Saved native_accuracy is null. Actual TRAIN event evidence has H32 mean +1.320067pp with 11 up/13 down and concentration in two large cases, while H3 is -0.302102pp; it is not native performance evidence. Four head fits still require held-out selection, full98 continuous developer evaluation, and the same selected head plus fixed old4 parent on both complete native datasets before a gain claim."
+    }
+  ],
+  "executed_checks": {
+    "ast_parse": "PASS for all five reviewed Python files; no imports or neural execution",
+    "json_and_file_checks": "PASS for actual cache/config/job consistency, seeded event split, legal keep masks, finite future means, common query output IoU, and 88 corresponding NPZ files",
+    "gpu_or_neural_execution": false,
+    "numpy_tensor_or_gradient_execution": false,
+    "remote_availability_verified": false
+  },
+  "remaining_runtime_gates": [
+    "Actual four-update sanity fit with parameter-change, frozen-parent, and selected-head reload receipts.",
+    "Actual 120-frame zero-initialized old4 parity check before the four full prototype fits.",
+    "Actual four 60-update fits, followed by full98 developer-video selection and complete native actual-GT acceptance for one fixed selected head and old4 parent."
+  ]
+}

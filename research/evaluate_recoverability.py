@@ -35,14 +35,19 @@ def arguments():
     parser.add_argument('--write-verification', choices=('identity', 'action'), default='identity',
                         help='Fixed-weight control: action keeps learned regular/pause choice without an independent identity veto. Memory gates stay unchanged.')
     parser.add_argument('--seed', type=int, default=42)
+    parser.add_argument('--commit-model', help='Optional trained query search/appearance commit head; parent model stays fixed.')
     return parser.parse_args()
 
 
 @torch.inference_mode()
-def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold):
-    tracker = RecoverabilityTracker(extractor, modules, motion, read_pair(visible[0], infrared[0], device),
+def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head=None):
+    tracker_type, kwargs = RecoverabilityTracker, {}
+    if commit_head is not None:
+        from .geometry_commit import GeometryCommitTracker
+        tracker_type, kwargs = GeometryCommitTracker, {'commit_head':commit_head}
+    tracker = tracker_type(extractor, modules, motion, read_pair(visible[0], infrared[0], device),
                                     initial, threshold, args.policy, not args.disable_search, not args.unsafe_writes,
-                                    args.write_verification)
+                                    args.write_verification, **kwargs)
     anchors = [value.clone() for value in (tracker.anchor, tracker.identity_anchor, tracker.motion_anchor)]
     predictions, latencies, decisions = [initial.copy()], [], []
     for frame in range(1, len(visible)):
@@ -67,6 +72,8 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
     stats = {key: tracker.stats[key] for key in ('template_updates', 'max_pending_per_branch',
              'extra_searches_requested', 'extra_visual_forwards', 'skipped_empty_extra_regions',
              'changed_candidate_indices', 'paused_query_writes', 'max_motion_history')}
+    if commit_head is not None:
+        stats.update({key:tracker.stats[key] for key in ('geometry_commit_interventions','appearance_commit_overrides')})
     if args.parity_check:
         extractor.proposal_policy = 'peaks'
         reference_timeline = []
@@ -100,6 +107,17 @@ def main():
     if not args.zero_init:
         modules.load_state_dict(checkpoint['model'], strict=True)
     modules.eval().requires_grad_(False)
+    commit_head = None
+    if args.commit_model:
+        from .geometry_commit import GeometryCommitHead
+        commit = torch.load(args.commit_model,map_location='cpu',weights_only=False)
+        assert commit['module']=='geometry_commit' and commit['parent_model']==args.model
+        assert commit['features']==463 and commit['threshold']==.03
+        assert not args.parity_check and not args.zero_init and not args.unsafe_writes
+        assert args.policy=='learned' and args.write_verification=='action'
+        commit_head=GeometryCommitHead().to(device)
+        commit_head.load_state_dict(commit['head'],strict=True)
+        commit_head.eval().requires_grad_(False)
     motion_config = json.loads((Path(args.motion_run) / 'config.json').read_text())
     motion_checkpoint = torch.load(Path(args.motion_run) / 'last.pth', map_location='cpu', weights_only=False)
     assert motion_checkpoint['epoch'] == 30 and motion_config['c1_head'] == args.c1_head
@@ -138,6 +156,11 @@ def main():
                            'timing_excludes_initialization': True, 'timing_excludes_diagnostic_transfer_and_serialization': True,
                            'bootstrap_training_future_policy': 'frozen continuation policy recorded in training source_configs; not recomputed by this evaluator',
                            'initialization': 'init.txt first row' if args.dataset == 'lasher' else 'visible.txt first row'}
+    if commit_head is not None:
+        config.update(commit_head_epoch=commit['epoch'],
+                      new_commit_parameters=sum(p.numel() for p in commit_head.parameters()),
+                      commit_scope='Current output and motion history unchanged; learned query search-reference and appearance commits')
+        config['total_loaded_parameters_including_unused_frozen_motion_heads'] += config['new_commit_parameters']
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()
     torch.cuda.reset_peak_memory_stats(device)
@@ -153,7 +176,7 @@ def main():
             if args.max_frames:
                 visible, infrared = visible[:args.max_frames], infrared[:args.max_frames]
             assert len(visible) > 1
-            prediction, latency, decisions, stats = track(visible, infrared, initial, extractor, modules, motion, device, args, threshold)
+            prediction, latency, decisions, stats = track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head)
             assert np.isfinite(prediction).all() and np.isfinite(latency).all() and (latency > 0).all()
             np.savetxt(out / (sequence.name + '.txt'), prediction, delimiter='\t', fmt='%.3f')
             if args.parity_check:
