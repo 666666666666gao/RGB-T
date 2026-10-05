@@ -1,0 +1,54 @@
+{
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "jobs_file": "/data/gb/outputs/quality_geometry_query_controls_20261006/full_gpu1_jobs.json",
+  "model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "pretrained": "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+  "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+  "output": "/data/gb/outputs/quality_geometry_query_controls_20261006/full/gpu1",
+  "horizons": [
+    3,
+    32
+  ],
+  "scope": "Repeated-development internal validation subset of TRAIN-root; diagnostic, not native accuracy.",
+  "jobs": [
+    {
+      "sequence": "folddenumbrellainhand",
+      "event_id": "normal_1_45",
+      "event_kind": "normal",
+      "query_frame": 15,
+      "saved_baseline_index": 0,
+      "saved_quality_index": 13,
+      "total_frames": 151,
+      "legal_write_pair": false,
+      "known_future_labels_H32": 32
+    },
+    {
+      "sequence": "whiteatright",
+      "event_id": "failure_11_11",
+      "event_kind": "recovered_H32",
+      "query_frame": 11,
+      "saved_baseline_index": 0,
+      "saved_quality_index": 14,
+      "total_frames": 169,
+      "legal_write_pair": false,
+      "known_future_labels_H32": 32
+    },
+    {
+      "sequence": "boysumbrella",
+      "event_id": "failure_66_68",
+      "event_kind": "unrecovered_H32",
+      "query_frame": 68,
+      "saved_baseline_index": 0,
+      "saved_quality_index": 13,
+      "total_frames": 441,
+      "legal_write_pair": false,
+      "known_future_labels_H32": 32
+    }
+  ],
+  "new_training_steps": 0,
+  "future_policy": "same frozen parent",
+  "GT_role": "First-frame initialization and offline event/outcome labels only."
+}
