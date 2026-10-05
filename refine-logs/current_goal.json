@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T09:11:53.342311+08:00",
+  "updated_cst": "2026-10-05T09:37:14.635029+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -7993,35 +7993,7 @@
     },
     "selected_checkpoint_retention": "Evaluated epoch59 and unselected epoch3 retired after complete CPU/native acceptance and archive verification; retained formal best old4 and required pretrained/teacher weights."
   },
-  "delivery_priority_user_20261005": {
-    "request": "我需要完整训练完后完整的指标",
-    "current_training_type": "冻结完整预训练视觉底座和 C1，训练全部新增 A/B/C；不是全帧或端到端主干重训。",
-    "latest_closed_run": "All4 full60epochs/300updates complete and both native benchmarks actualGT CPU accepted; five metrics delivered.",
-    "current_live_evidence": "Current training, full98 selection and both full native metric reports completed.",
-    "next_chain": "Use the completed five-metric result to decide the next experiment; no new training launched by this report.",
-    "no_architecture_expansion_before_current_chain_closes": true,
-    "actual_continuation_launch": {
-      "status": "CONTINUATION_LAUNCHED_NOT_TRAINING_COMPLETED",
-      "controller_pid": 632884,
-      "log": "/data/gb/setup/best_native_policy_complete_pipeline_20261005.log",
-      "progress": {
-        "stage": "WAIT_CURRENT_FOUR_COLLECTION_QUEUES",
-        "observed_at_cst": "2026-10-05T02:27:45.381811+08:00",
-        "automatic_restarts": 0,
-        "poll_interval_seconds": 180,
-        "official_goal_completed": false,
-        "first_completion_check_cst": "2026-10-05T03:00:00+08:00"
-      },
-      "reviewed_source_files_exact": true,
-      "training_started": false,
-      "native_started": false,
-      "first_collection_completion_check_cst": "2026-10-05T03:00:00+08:00",
-      "poll_interval_seconds": 180,
-      "automatic_restarts": 0,
-      "launched_at_cst": "2026-10-05T02:27:46.355973+08:00"
-    },
-    "latest_actual_status_receipt": "refine-logs/runs/recoverability_best_native_policy/actual_user_complete_training_metrics_status_20261005.json"
-  },
+  "delivery_priority_user_20261005": "Always distinguish sampled-state ABC training from all-frame/end-to-end training, collection from optimization, and full98 developer IoU from both full native benchmarks. Deliver five complete native metrics and full evidence after training before claiming success.",
   "current_best_native_policy_iteration": {
     "status": "COMPLETE_FULL60_TRAINING_AND_BOTH_NATIVE_METRICS_VERIFIED",
     "plan": "refine-logs/runs/recoverability_best_native_policy/plan.json",
@@ -8298,7 +8270,7 @@
     "first_expected_finish_check_cst": "2026-10-05T09:46:00+08:00",
     "finish_estimate_scope": "First16 actual clips per GPU and weighted prefix-frame proxy; assumes105 future forwards/query, about09:49 collection, excludes NPZ compression/CPU audit/M0/full fits. Not a completion guarantee.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
-    "next_required_work": "After actual training, complete full98 continuous selection and both full native benchmark reports; five raw metrics all>=baseline+2 remains required",
+    "next_required_work": "Keep existing collection and fit controllers; collect sole09:46 observer, then wait full420 fits and full native report. Deliver native results even if negative; no cache-score substitution.",
     "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
@@ -8313,6 +8285,11 @@
       "source": "refine-logs/runs/recoverability_train_events/wait_capacity_and_full_start_local.py",
       "scope": "Only read existing process states/progress and capacity receipts; no NN/optimization launch, restart, temperature or power query",
       "historical_completed_observers_not_restarted": true
-    }
+    },
+    "evaluation_queue_pid": 1366848,
+    "evaluation_queue_started_at_cst": "2026-10-05T09:36:20.837801+08:00",
+    "evaluation_queue_initial_stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
+    "full_training_then_full_native_report_successor_actually_running": true,
+    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms."
   }
 }

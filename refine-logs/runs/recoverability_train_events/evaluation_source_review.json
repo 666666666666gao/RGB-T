@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "review_type": "experiment-bridge Phase 2.5 fresh source-only review of complete evaluation successor and detached deployment helper",
+  "reviewed_at_cst": "2026-10-05T09:33:42.980252+08:00",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "model_attribution": "Requested fresh reviewer routing; backend execution is not independently attested.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "source_approval": true,
+  "scope": "Local source, compilation, isolated argparse and JSON inspection only. No remote/NN/GPU/job queries or actions; existing collection1297701 and fit queue1320786 were untouched.",
+  "source_folder": "refine-logs/runs/recoverability_train_events",
+  "reviewed_files": [
+    "evaluation_pipeline.py",
+    "run_native_complete.sh",
+    "report_native_complete.sh",
+    "merge_native_complete.py",
+    "audit_native_complete_cpu.py",
+    "merge_complete_goal_report.py",
+    "score_full98_cpu.py",
+    "fit_plan.json",
+    "audit_fit_cpu.py",
+    "fit_pipeline.py",
+    "actual_fit_queue_launch.json",
+    "launch_evaluation_queue_local.py"
+  ],
+  "external_helper": "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_train_event_evaluation_queue_20261005.py",
+  "comparison_scope": "Accepted recoverability_best_native_policy complete_pipeline/merge_native_complete/audit_native_complete_cpu/merge_complete_goal_report/score_full98_cpu and scripts/run_best_native_policy_native_complete.sh/report_best_native_policy_complete.sh. Actual evaluator, collector, bootstrap, plotting, merger, training/GT receipt producers and716job JSONs inspected for interface consistency.",
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "checks": {
+    "phase_dependencies": "evaluation_pipeline.py:65-76 waits existing fit1320786 READY, then actual four-fit CPU PASS/420steps and M0 PASS. No collection/fit launch, restart or source modification.",
+    "selection": "evaluation_pipeline.py:84-117 evaluates positive base28/56/84 and augmented20/40/60 checkpoints at matched140/280/420updates, plus positive nonduplicate cachedbest. All98 TRAIN-developer videos/49418frames are scored against actualGT by sequence meanIoU. Highest score is locked before native tests; ties preserve declared order.",
+    "native_coverage": "run_native_complete.sh:5-26 uses that SAME checkpoint/seed42/action verification for exact four-shard coverage of LasHeR245/220703 and RGBT234234/116649. merge_native_complete.py verifies ordered unions, matching checkpoint/epoch/settings, every prediction/frame and completion markers before promoting full coverage.",
+    "metrics_and_GT": "Original collectors reuse baseline/C1 predictions and rescore all variants against actualGT. All19+12attributes, curves,5000 paired seed42 bootstrap versus each reference and mechanism reports are retained. Independent CPU arithmetic replays native metrics/attributes/curves and bootstrap; LasHeR zero-area handling stays on an in-memory copy.",
+    "unchanged_arithmetic": "score_full98_cpu.py is byte-identical to predecessor. Native merger/auditor differ only in campaign/review paths; report shell only in campaign root. Final merger changes paths,716transition gate and matched420metadata/schema; scoring/+2 arithmetic remains unchanged.",
+    "metadata_and_C1": "New output/checkpoints/ABC_changed/cached_CPU_replay_pass fields match audit_fit_cpu.py. No absent all_C1_tensors_exact field is required: the actual audit asserts every C1 tensor exact before PASS. Base84epochs/1762queries and augmented60/2478 all420steps, B384/lr1e-4/seed42, allABCtrained/frozenC1 and actual716GT gate are represented correctly.",
+    "imports_and_CUDA": "Coordinator/CPU children hide CUDA and use ROOT imports; inference children alone expose assigned GPUs. Existing fit CPU replay uses private:ROOT imports. New files do not overwrite the training package. Unchanged evaluator strictly reloads selected weights, freezes inference modules and tracks under inference_mode.",
+    "cleanup": "evaluation_pipeline.py:46-55,74-76,118-119 expands accepted plan receipts into exactly8 M0 files and15 unselected full files. All lie in the eight exact current-run output directories, with resolved-parent/prefix/.pth checks and no recursive deletion. M0 cleanup follows actualCPUacceptance; full cleanup follows all required continuous candidate scores and locked selection. Selected weight stays through finalreport; teacher/pretrained/C1/motion paths are disjoint.",
+    "final_report": "merge_complete_goal_report.py gates actualGT/full-fit/nativeCPU/pairedplot/mechanism acceptances, verifies1437sequence and93attribute rows, and produces PR/NPR/SR/MPR/MSR. Each must gain>=2 percentagepoints over original GOLA; allfive are required. JSON/CSV/completion marker precede terminal readiness; no system goal completion is asserted.",
+    "deployment_boundary": "External helper/archive are byte-identical. Fixed argv uploads exactly7new evaluation scripts+review, excluding active collection/fit sources. Existing same-bytes verification remains. Two embedded remote payloads compile and shlex.quote roundtrip. Absent state/receipt and exclusive log gate one detached CUDA-hidden waiter with fixedcwd/DEVNULLstdin; actual launch receipt follows. Helper was not executed."
+  },
+  "local_validation": {
+    "status": "PASS",
+    "python": "E:/python.exe (3.12.6)",
+    "python_sources_AST_and_compile": 9,
+    "embedded_remote_payloads_AST_and_compile": 2,
+    "Bash_syntax_scripts": 2,
+    "isolated_argparse_calls": {
+      "full98": 16,
+      "native": 8,
+      "report": 16
+    },
+    "exact_cleanup_counts": {
+      "M0": 8,
+      "unselected_full": 15,
+      "protected_overlap": 0
+    },
+    "prepared716query_frame_range": [
+      3,
+      783
+    ],
+    "torch_or_numpy_imported": false
+  },
+  "limitations": [
+    "Same-family provisional source approval only; no current remote state, dataset, checkpoint, prediction, actual execution or result is attested.",
+    "Actual420-step fit acceptance, full98 selection, all479 native predictions, CPU scoring, cleanup and final metrics remain runtime gates. No new accuracy or +2 result is established.",
+    "The716 collection gate independently verifies current/history GT; future labels remain source-linked and finite/range checked, without an independent future neural rerun.",
+    "Developer videos are reused; IoU selection is not an untouched holdout or official SR. Bootstrap is fixed-checkpoint sequence uncertainty; multiple training seeds are not required."
+  ],
+  "review_actions": {
+    "SSH_SCP_calls": 0,
+    "GPU_job_queries": 0,
+    "NN_optimizer_calls": 0,
+    "metric_replays": 0,
+    "launches": 0,
+    "source_edits": 0,
+    "weight_deletions": 0,
+    "report_files_written": 1
+  },
+  "conclusion": "PASS: no blocking or nonblocking source findings. The successor preserves actual-fit/full98/fixed-native dependencies, original actual-GT scoring, all-five+2 criteria and bounded current-run cleanup. Runtime acceptance remains pending."
+}

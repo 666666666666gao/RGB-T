@@ -1,10 +1,10 @@
 {
-  "checked_at_cst": "2026-10-05T08:44:28.220153+08:00",
-  "server_observation_cst": "2026-10-05T08:42:23.218561+08:00",
-  "status": "COMPLETE_TRAINING_AND_BOTH_FULL_NATIVE_METRICS",
+  "checked_at_cst": "2026-10-05T09:37:14.635029+08:00",
+  "server_observation_cst": "2026-10-05T09:09:43.523612+08:00",
+  "status": "PREVIOUS_TRAINING_AND_FULL_NATIVE_REPORT_COMPLETE; NEW716_COLLECTION_AND_COMPLETE420_FIT_EVALUATION_QUEUES_PENDING",
   "active_project_training_processes": 0,
-  "active_project_collection_processes": 0,
-  "current_stage": "Completed result delivery; 716 next-round TRAIN queries are prepared only",
+  "active_project_collection_processes": 4,
+  "current_stage": "Last actual collection observation09:09:64/716 TRAIN states; actual fit waiter1320786; new evaluation waiter follows completed420 updates, full98 selection and both full native reports.",
   "next_round_optimization_started": false,
   "training": {
     "arms": 4,
@@ -102,16 +102,66 @@
   "full_report": "refine-logs/runs/recoverability_best_native_policy/native_complete/complete_report/complete_core_report.json",
   "full_report_sha256": "860d21179810173d7d990f2a522c4217ef011e467e1dabe7b8d17cd8b024cd33",
   "full_report_created_at_cst": "2026-10-05T08:17:42.754229+08:00",
-  "gpu_memory_mib": {
-    "0": 349,
-    "1": 20,
-    "2": 20,
-    "3": 20
-  },
   "goal_status": "ACTIVE_UNMET",
   "execution": {
     "new_neural_forward_calls": 0,
     "new_optimizer_steps": 0,
     "training_restart": false
+  },
+  "new_iteration": {
+    "status": "ACTUAL_ALL4_NEW716_TRAIN_COLLECTION_RUNNING; MATCHED420_FULL_FIT_SUCCESSOR_LIVE_WAITING",
+    "observed_at_cst": "2026-10-05T09:09:43.523612+08:00",
+    "collection_pid": 1297701,
+    "fit_queue_pid": 1320786,
+    "actual_sanity_GT_gate": "PASS",
+    "new_queries": 716,
+    "completed_queries_at_last_observation": 64,
+    "combined_train_queries": 2478,
+    "validation_queries": 196,
+    "optimization_training_started": false,
+    "full_native_metrics_completed_this_new_iteration": false,
+    "first_expected_finish_check_cst": "2026-10-05T09:46:00+08:00",
+    "finish_estimate_scope": "First16 actual clips per GPU and weighted prefix-frame proxy; assumes105 future forwards/query, about09:49 collection, excludes NPZ compression/CPU audit/M0/full fits. Not a completion guarantee.",
+    "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
+    "next_required_work": "Keep existing collection and fit controllers; collect sole09:46 observer, then wait full420 fits and full native report. Deliver native results even if negative; no cache-score substitution.",
+    "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
+    "goal_status": "ACTIVE_UNMET",
+    "actual_local_observer": {
+      "native_session_id": 20844,
+      "local_pid": 40576,
+      "actual_created_at_cst": "2026-10-05T09:14:19+08:00",
+      "actual_live_confirmed_by": "Windows Win32_Process commandline check matching exact observer script",
+      "first_remote_inspection_cst": "2026-10-05T09:46:00+08:00",
+      "poll_interval_seconds": 300,
+      "upstream_collection_pid": 1297701,
+      "upstream_fit_queue_pid": 1320786,
+      "source": "refine-logs/runs/recoverability_train_events/wait_capacity_and_full_start_local.py",
+      "scope": "Only read existing process states/progress and capacity receipts; no NN/optimization launch, restart, temperature or power query",
+      "historical_completed_observers_not_restarted": true
+    },
+    "evaluation_queue_pid": 1366848,
+    "evaluation_queue_started_at_cst": "2026-10-05T09:36:20.837801+08:00",
+    "evaluation_queue_initial_stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
+    "full_training_then_full_native_report_successor_actually_running": true,
+    "evaluation_successor": "After all four actual420-update fits and CPU acceptance, score positive checkpoints on full98 continuous videos, lock one, run all479 native sequences, verify actualGT, export allfive/31attributes/curves/paired intervals/mechanisms."
+  },
+  "completed_metrics_apply_to_previous_round_only": true,
+  "latest_new_queue_start_observation": {
+    "observed_at_cst": "2026-10-05T09:36:51.262810+08:00",
+    "pid": 1366848,
+    "live": true,
+    "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1366848       1 Ss        31 python\n",
+    "state": {
+      "stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
+      "at_cst": "2026-10-05T09:36:20.861675+08:00",
+      "pid": 1366848,
+      "automatic_restarts": 0,
+      "system_goal_completed": false,
+      "upstream_pid": 1320786
+    },
+    "both_shells_bash_parse_PASS": true,
+    "old_collection_or_fit_model_progress_read": false,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0
   }
 }
