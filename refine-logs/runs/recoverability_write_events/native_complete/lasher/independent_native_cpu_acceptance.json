@@ -1,0 +1,138 @@
+{
+  "status": "PASS",
+  "dataset": "lasher",
+  "sequences": 245,
+  "frames": 220703,
+  "same_checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+  "native_overall_percent": {
+    "baseline": {
+      "NPR": 73.10197299993155,
+      "PR": 76.59844897037928,
+      "SR": 61.03742534859602
+    },
+    "c1": {
+      "NPR": 74.15451765370953,
+      "PR": 77.86097272569167,
+      "SR": 61.951313680271845
+    },
+    "old4": {
+      "NPR": 74.45735525847881,
+      "PR": 78.09777783730206,
+      "SR": 62.12706332333795
+    },
+    "write_events_complete": {
+      "NPR": 74.37328927462428,
+      "PR": 77.96396055116189,
+      "SR": 62.09222419935592
+    }
+  },
+  "paired_5000_seed42_bootstrap_exact": {
+    "baseline": {
+      "NPR": {
+        "mean_delta_percentage_points": 1.2713162746927462,
+        "percentile_95_interval_percentage_points": [
+          0.4838469865616733,
+          2.1543362769143832
+        ],
+        "improved_sequences": 62,
+        "worsened_sequences": 51,
+        "tied_sequences": 132
+      },
+      "PR": {
+        "mean_delta_percentage_points": 1.3655115807825777,
+        "percentile_95_interval_percentage_points": [
+          0.4967317043331983,
+          2.332448366501344
+        ],
+        "improved_sequences": 63,
+        "worsened_sequences": 52,
+        "tied_sequences": 130
+      },
+      "SR": {
+        "mean_delta_percentage_points": 1.054798850759892,
+        "percentile_95_interval_percentage_points": [
+          0.42720297937954677,
+          1.751458375172914
+        ],
+        "improved_sequences": 68,
+        "worsened_sequences": 54,
+        "tied_sequences": 123
+      }
+    },
+    "c1": {
+      "NPR": {
+        "mean_delta_percentage_points": 0.21877162091475397,
+        "percentile_95_interval_percentage_points": [
+          -0.8568692862274522,
+          1.3475828693236913
+        ],
+        "improved_sequences": 50,
+        "worsened_sequences": 33,
+        "tied_sequences": 162
+      },
+      "PR": {
+        "mean_delta_percentage_points": 0.1029878254702248,
+        "percentile_95_interval_percentage_points": [
+          -1.113899733210595,
+          1.3557047048054092
+        ],
+        "improved_sequences": 52,
+        "worsened_sequences": 32,
+        "tied_sequences": 161
+      },
+      "SR": {
+        "mean_delta_percentage_points": 0.14091051908405627,
+        "percentile_95_interval_percentage_points": [
+          -0.7470550260123576,
+          1.0753491901011667
+        ],
+        "improved_sequences": 57,
+        "worsened_sequences": 32,
+        "tied_sequences": 156
+      }
+    },
+    "old4": {
+      "NPR": {
+        "mean_delta_percentage_points": -0.084065983854517,
+        "percentile_95_interval_percentage_points": [
+          -0.3052291315400642,
+          0.14189794812677856
+        ],
+        "improved_sequences": 27,
+        "worsened_sequences": 27,
+        "tied_sequences": 191
+      },
+      "PR": {
+        "mean_delta_percentage_points": -0.13381728614015753,
+        "percentile_95_interval_percentage_points": [
+          -0.4456503028978572,
+          0.1599191717006663
+        ],
+        "improved_sequences": 25,
+        "worsened_sequences": 27,
+        "tied_sequences": 193
+      },
+      "SR": {
+        "mean_delta_percentage_points": -0.03483912398204843,
+        "percentile_95_interval_percentage_points": [
+          -0.24682292732912492,
+          0.19235778989815788
+        ],
+        "improved_sequences": 35,
+        "worsened_sequences": 37,
+        "tied_sequences": 173
+      }
+    }
+  },
+  "all_actual_GT_sequence_metrics_attributes_and_curves_exact": true,
+  "native_metric_function_calls": 0,
+  "score_not_another_models_output": true,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "execution": {
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0
+  },
+  "scope": "Independent native metric arithmetic and paired bootstrap; detailed mechanism masses use the original separate collector."
+}

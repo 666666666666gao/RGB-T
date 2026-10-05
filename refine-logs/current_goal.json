@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "Recoverable RGB-T tracking under unreliable observations: preserve bounded identity/candidate evidence, separate output from trusted search/motion and RGB/TIR commits, and optimize interventions by event-level future consequences. Complete pretrained GOLA-B/C1 and protectedold4; LasHeR/RGBT234 only; one best internally selected checkpoint, no3seedgate. Actual all4full60/480 fits and16full98 selection closed. Same locked newepoch4 native bothbenchmarks stillpending; 20 predeclared masked TRAIN event diagnostics now actually closed and CPUchecked on releasedGPU3. Acceptance remains allfive native metrics>=full localGOLA+2pp; no source/diagnostic/training marker substitutes for formal metrics.",
+  "execution_objective": "Recoverable RGB-T tracking under unreliable observations: preserve bounded identity/candidate evidence, separate output from trusted search/motion and RGB/TIR commits, and optimize interventions by event-level future consequences. Complete pretrained GOLA-B/C1 and protectedold4; LasHeR/RGBT234 only; one best internally selected checkpoint, no3seedgate. Actual all4full60/480 fits and16full98 selection closed. Same locked newepoch4 native bothbenchmarks actuallycomplete with allfive metrics/31attributes/curves/paired intervals/GT replay; 20 predeclared masked TRAIN event diagnostics now actually closed and CPUchecked on releasedGPU3. Acceptance remains allfive native metrics>=full localGOLA+2pp; no source/diagnostic/training marker substitutes for formal metrics.",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -7190,7 +7190,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T04:16:35.137551+08:00",
+  "updated_cst": "2026-10-06T04:35:13.840020+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11325,9 +11325,9 @@
       "GPU_queries": 0
     }
   },
-  "current_execution_authority": "Actual four completed60/480 fits +16 completedfull98; originalnative2914365 continues toward complete both245/234 actualGT reports. ReleasedGPU3 matched20event diagnostic3037178 actually terminalCPU_PASS; one file-backed soleobserver41976, native first04:14:34 then240s. Protectedold4 stillglobalbest; all5+2unmet.",
+  "current_execution_authority": "Actual four60/480 fits +16full98 +samecheckpoint bothnative245/234 allfive31attributes andGOLA/C1/old4 paired5000/actualGT audits closed. Masked20TRAIN diagnostic closednegative. No three-seed condition; protectedold4 remains. Main performancegoal status: ACTIVE_UNMET",
   "current_write_episode_supervision_iteration": {
-    "status": "ALL4_FULL60_480_AND16_FULL98_CLOSED_NATIVE_CRLF_RESUME_RUNNING",
+    "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
     "collection": {
       "status": "PASS",
       "new_queries": 98,
@@ -12539,7 +12539,112 @@
       "architecture_loss_unchanged": true,
       "capacity_correction": "Actual GPU0 backward required2.25GiB when1.97GiB free. Reduce batch384 to336. New all4 M0=24updates; full60epochs=480updates. Preserve actual3 completed priorM0 and GPU0 failure logs; no unchanged retry, no architecture/loss change, no claim of matching prior420 budget."
     },
-    "formal_metrics_new_round": null,
+    "formal_metrics_new_round": {
+      "completed": true,
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "baseline_percent": 76.59844897037928,
+          "c1_percent": 77.86097272569167,
+          "ABC_percent": 77.96396055116189,
+          "delta_vs_baseline_percentage_points": 1.3655115807826093,
+          "delta_vs_c1_percentage_points": 0.10298782547022256,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.4967317043331983,
+          "paired_95_upper_percentage_points": 2.332448366501344,
+          "old4_percent": 78.09777783730206,
+          "delta_vs_old4_percentage_points": -0.13381728614017163,
+          "paired_vs_old4_95_interval_percentage_points": [
+            -0.4456503028978572,
+            0.1599191717006663
+          ]
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "baseline_percent": 73.10197299993155,
+          "c1_percent": 74.15451765370953,
+          "ABC_percent": 74.37328927462428,
+          "delta_vs_baseline_percentage_points": 1.2713162746927367,
+          "delta_vs_c1_percentage_points": 0.218771620914751,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.4838469865616733,
+          "paired_95_upper_percentage_points": 2.1543362769143832,
+          "old4_percent": 74.45735525847881,
+          "delta_vs_old4_percentage_points": -0.08406598385452924,
+          "paired_vs_old4_95_interval_percentage_points": [
+            -0.3052291315400642,
+            0.14189794812677856
+          ]
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "baseline_percent": 61.03742534859602,
+          "c1_percent": 61.951313680271845,
+          "ABC_percent": 62.09222419935592,
+          "delta_vs_baseline_percentage_points": 1.0547988507599015,
+          "delta_vs_c1_percentage_points": 0.14091051908407337,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.42720297937954677,
+          "paired_95_upper_percentage_points": 1.751458375172914,
+          "old4_percent": 62.12706332333795,
+          "delta_vs_old4_percentage_points": -0.034839123982031595,
+          "paired_vs_old4_95_interval_percentage_points": [
+            -0.24682292732912492,
+            0.19235778989815788
+          ]
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "baseline_percent": 91.77885757450758,
+          "c1_percent": 91.81700889694795,
+          "ABC_percent": 91.7531321328836,
+          "delta_vs_baseline_percentage_points": -0.025725441623990264,
+          "delta_vs_c1_percentage_points": -0.06387676406436071,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": -1.2033011529833721,
+          "paired_95_upper_percentage_points": 1.2447733128624032,
+          "old4_percent": 92.13340500935078,
+          "delta_vs_old4_percentage_points": -0.3802728764671883,
+          "paired_vs_old4_95_interval_percentage_points": [
+            -0.9648630024667079,
+            0.062249096499980734
+          ]
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "baseline_percent": 69.2325931778893,
+          "c1_percent": 69.2340473415621,
+          "ABC_percent": 69.27255256728223,
+          "delta_vs_baseline_percentage_points": 0.03995938939293353,
+          "delta_vs_c1_percentage_points": 0.03850522572012949,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": -0.6511159970939616,
+          "paired_95_upper_percentage_points": 0.7917931823987869,
+          "old4_percent": 69.57809745628578,
+          "delta_vs_old4_percentage_points": -0.30554488900354215,
+          "paired_vs_old4_95_interval_percentage_points": [
+            -0.7437843485051079,
+            0.03083101434016181
+          ]
+        }
+      ],
+      "all_five_plus_two": false,
+      "new_dominated_by_old4_on_all_five": true,
+      "same_fixed_checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+      "all479_sequences_337352_frames_actual_GT_checked": true,
+      "bootstrap_scope": "5000 paired sequences at fixed checkpoint, not independent seeds or untouched final confirmation",
+      "source": "native_complete/complete_report/complete_core_report.json"
+    },
     "original_b336_training_launch": {
       "pid": 2626708,
       "controller_log": "/data/gb/setup/write_events_b336_fit_controller_20261005.log",
@@ -12562,7 +12667,7 @@
     "sole_training_observer_session": 54250,
     "first_training_observation_cst": "2026-10-05T22:46:36.152156+08:00",
     "new_full_training_completed": true,
-    "new_formal_report_completed": false,
+    "new_formal_report_completed": true,
     "actual_M0_CPU_acceptance": {
       "status": "PASS",
       "stage": "m0",
@@ -22127,6 +22232,251 @@
       "new_NN_forward_calls": 0,
       "new_observers_launched": 0
     },
-    "native_next_near_completion_check_cst": "2026-10-06T04:14:34+08:00"
+    "native_next_near_completion_check_cst": "2026-10-06T04:14:34+08:00",
+    "actual_complete_report_intake": {
+      "status": "PASS",
+      "file_count": 170,
+      "total_bytes": 15416881,
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "baseline_percent": 76.59844897037928,
+          "c1_percent": 77.86097272569167,
+          "ABC_percent": 77.96396055116189,
+          "delta_vs_baseline_percentage_points": 1.3655115807826093,
+          "delta_vs_c1_percentage_points": 0.10298782547022256,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.4967317043331983,
+          "paired_95_upper_percentage_points": 2.332448366501344
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "baseline_percent": 73.10197299993155,
+          "c1_percent": 74.15451765370953,
+          "ABC_percent": 74.37328927462428,
+          "delta_vs_baseline_percentage_points": 1.2713162746927367,
+          "delta_vs_c1_percentage_points": 0.218771620914751,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.4838469865616733,
+          "paired_95_upper_percentage_points": 2.1543362769143832
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "baseline_percent": 61.03742534859602,
+          "c1_percent": 61.951313680271845,
+          "ABC_percent": 62.09222419935592,
+          "delta_vs_baseline_percentage_points": 1.0547988507599015,
+          "delta_vs_c1_percentage_points": 0.14091051908407337,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": 0.42720297937954677,
+          "paired_95_upper_percentage_points": 1.751458375172914
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "baseline_percent": 91.77885757450758,
+          "c1_percent": 91.81700889694795,
+          "ABC_percent": 91.7531321328836,
+          "delta_vs_baseline_percentage_points": -0.025725441623990264,
+          "delta_vs_c1_percentage_points": -0.06387676406436071,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": -1.2033011529833721,
+          "paired_95_upper_percentage_points": 1.2447733128624032
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "baseline_percent": 69.2325931778893,
+          "c1_percent": 69.2340473415621,
+          "ABC_percent": 69.27255256728223,
+          "delta_vs_baseline_percentage_points": 0.03995938939293353,
+          "delta_vs_c1_percentage_points": 0.03850522572012949,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false,
+          "paired_95_lower_percentage_points": -0.6511159970939616,
+          "paired_95_upper_percentage_points": 0.7917931823987869
+        }
+      ],
+      "goal_result": "ACTIVE_UNMET",
+      "same_fixed_checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+      "actual_native_GT_audits_passed": true,
+      "neural_forward_calls": 0,
+      "optimizer_steps": 0,
+      "model_weights_exported": false
+    },
+    "actual_dominated_final_weight_retirement": {
+      "at_cst": "2026-10-06T04:32:10.229511+08:00",
+      "weight": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+      "bytes": 1735109,
+      "sha256": "b7a5dfb3009a8a29edcc63f32245c991ae666c40861c916ca14e0322489ca52c",
+      "status": "COMPLETE_ONE_DOMINATED_WEIGHT_RETIRED_PROTECTED_BEST_UNCHANGED",
+      "reason": "User requests only metric-best owned weight; current weight dominated by protectedold4 on all5native metrics and lowerfull98, allNN/CPUexport consumers closed.",
+      "protected_before": {
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "/data/gb/outputs/c1_initial_seed42/best.pth": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+        "/data/gb/outputs/abc_joint_v1_seed42/last.pth": "da217b7005672a0dbaa8b988cafd014d70fe0960cd02739ac0a418623b2e8a91",
+        "/data/gb/GOLA/pretrained_models/gola_b224.bin": "6339efe9f98a130b3279afe43e51b7dd4c1fb7352917c2aa385ab00a978d8a69",
+        "/data/gb/cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73"
+      },
+      "preserved_raw_predictions_GT_scores_logs_source": true,
+      "protected_after": {
+        "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth": "a165e06ffd8d0288d7db358359611d3ab1ed919941ff5fc2ccaa0cb14ddded72",
+        "/data/gb/outputs/c1_initial_seed42/best.pth": "1df9e94584caa91a5c2bae06f8270f0b99860aaf5352cfafa1f1da87f9c58bc4",
+        "/data/gb/outputs/abc_joint_v1_seed42/last.pth": "da217b7005672a0dbaa8b988cafd014d70fe0960cd02739ac0a418623b2e8a91",
+        "/data/gb/GOLA/pretrained_models/gola_b224.bin": "6339efe9f98a130b3279afe43e51b7dd4c1fb7352917c2aa385ab00a978d8a69",
+        "/data/gb/cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73"
+      }
+    },
+    "actual_closed_native_mechanism_summary": {
+      "lasher": {
+        "counters": {
+          "tracking_frames": 220458,
+          "valid_tracking_frames": 219925,
+          "candidate_evaluations": 1033042,
+          "local_candidate_recalled_frames": 163118,
+          "budget_candidate_recalled_frames": 163118,
+          "local_missing_frames": 56807,
+          "missing_correct_candidates_reintroduced": 0,
+          "reintroduced_candidates_selected_correctly": 0,
+          "c1_same_state_failed_frames": 49768,
+          "c1_same_state_correct_frames": 155081,
+          "selected_failed_frames": 49711,
+          "changed_candidate_indices": 371,
+          "valid_changed_candidate_indices": 366,
+          "same_state_rescues": 88,
+          "same_state_harms": 53,
+          "same_state_iou_improvements": 147,
+          "same_state_iou_degradations": 92,
+          "requested_extra_searches": 0,
+          "extra_visual_forwards": 0,
+          "searches_without_new_correct_candidate": 0,
+          "requested_extra_area_sum_pixels_squared": 0.0,
+          "template_updates": 85080,
+          "known_template_updates": 85032,
+          "wrong_template_updates_localization_proxy": 8132,
+          "paused_query_writes": 16,
+          "known_paused_query_writes": 16,
+          "wrong_query_writes_prevented_localization_proxy": 5,
+          "correct_query_writes_prevented": 10,
+          "known_active_template_frames": 219867,
+          "wrong_active_template_frames_localization_proxy": 19764,
+          "memory_rgb_target_write_known_mass": 48832.638526022434,
+          "memory_rgb_target_write_wrong_mass": 4669.908342063427,
+          "memory_rgb_target_read_known_mass": 219878.25086713315,
+          "memory_rgb_target_read_wrong_mass": 15497.278736507638,
+          "memory_tir_target_write_known_mass": 48810.1514800787,
+          "memory_tir_target_write_wrong_mass": 4668.142023384571,
+          "memory_tir_target_read_known_mass": 219872.480514468,
+          "memory_tir_target_read_wrong_mass": 16072.072241100084,
+          "candidate_quality_squared_error_sum": 26506.319122531113,
+          "known_candidate_evaluations": 1030479
+        },
+        "rates": {
+          "local_recall": 0.7416983062407639,
+          "budget_recall": 0.7416983062407639,
+          "missing_candidate_reintroduction_rate": 0.0,
+          "wrong_template_write_rate": 0.09563458462696396,
+          "misintervention_rate_on_correct_same_state_c1": 0.0003417568883357729
+        },
+        "efficiency": {
+          "instrumented_tracking_fps": 15.284909963011424,
+          "latency_p50_ms": 64.87967888824642,
+          "latency_p95_ms": 96.5085620759055,
+          "peak_cuda_allocated_mib": 447.4345703125,
+          "peak_cuda_reserved_mib": 488.0
+        },
+        "failure_events": {
+          "baseline": 824,
+          "c1": 768,
+          "old4": 805,
+          "write_events_complete": 792
+        },
+        "recovered_events": {
+          "baseline": 748,
+          "c1": 691,
+          "old4": 729,
+          "write_events_complete": 714
+        }
+      },
+      "rgbt234": {
+        "counters": {
+          "tracking_frames": 116415,
+          "valid_tracking_frames": 116415,
+          "candidate_evaluations": 538703,
+          "local_candidate_recalled_frames": 102480,
+          "budget_candidate_recalled_frames": 102480,
+          "local_missing_frames": 13935,
+          "missing_correct_candidates_reintroduced": 0,
+          "reintroduced_candidates_selected_correctly": 0,
+          "c1_same_state_failed_frames": 10716,
+          "c1_same_state_correct_frames": 100708,
+          "selected_failed_frames": 10703,
+          "changed_candidate_indices": 120,
+          "valid_changed_candidate_indices": 120,
+          "same_state_rescues": 22,
+          "same_state_harms": 11,
+          "same_state_iou_improvements": 43,
+          "same_state_iou_degradations": 33,
+          "requested_extra_searches": 0,
+          "extra_visual_forwards": 0,
+          "searches_without_new_correct_candidate": 0,
+          "requested_extra_area_sum_pixels_squared": 0.0,
+          "template_updates": 58540,
+          "known_template_updates": 58540,
+          "wrong_template_updates_localization_proxy": 1696,
+          "paused_query_writes": 3,
+          "known_paused_query_writes": 3,
+          "wrong_query_writes_prevented_localization_proxy": 1,
+          "correct_query_writes_prevented": 0,
+          "known_active_template_frames": 116415,
+          "wrong_active_template_frames_localization_proxy": 1783,
+          "memory_rgb_target_write_known_mass": 33625.17962175608,
+          "memory_rgb_target_write_wrong_mass": 985.0816786289215,
+          "memory_rgb_target_read_known_mass": 116414.99998950186,
+          "memory_rgb_target_read_wrong_mass": 1762.614582824254,
+          "memory_tir_target_write_known_mass": 33602.62941890955,
+          "memory_tir_target_write_wrong_mass": 1024.027692437172,
+          "memory_tir_target_read_known_mass": 116415.00000429487,
+          "memory_tir_target_read_wrong_mass": 1894.7709519118312,
+          "candidate_quality_squared_error_sum": 7202.063816784033,
+          "known_candidate_evaluations": 538703
+        },
+        "rates": {
+          "local_recall": 0.8802989305501868,
+          "budget_recall": 0.8802989305501868,
+          "missing_candidate_reintroduction_rate": 0.0,
+          "wrong_template_write_rate": 0.028971643320806286,
+          "misintervention_rate_on_correct_same_state_c1": 0.00010922667514000873
+        },
+        "efficiency": {
+          "instrumented_tracking_fps": 30.641131889322125,
+          "latency_p50_ms": 31.478062737733126,
+          "latency_p95_ms": 41.87435330823064,
+          "peak_cuda_allocated_mib": 442.06787109375,
+          "peak_cuda_reserved_mib": 488.0
+        },
+        "failure_events": {
+          "baseline": 167,
+          "c1": 151,
+          "old4": 162,
+          "write_events_complete": 160
+        },
+        "recovered_events": {
+          "baseline": 131,
+          "c1": 114,
+          "old4": 130,
+          "write_events_complete": 125
+        }
+      }
+    },
+    "original_native_and_diagnostic_coordinators_terminal": true,
+    "next_action": "Keep protectedold4; inspect search/action prediction calibration and event-level supervision support from sealed TRAIN/VAL and actual recorded native outputs before defining the next minimal main-method change. Current B requested0extra searches onboth native benchmarks, so do notclaim active-search contribution. MaskedGT-gap firstframe20diagnostic hadonly1actualreferencechange; do nottrain/repeat that C1 substitution rule as established fix. Allfive+2 remains unmet; no3seedgate or automaticadditionalNNjobs currentlyqueued."
   }
 }
