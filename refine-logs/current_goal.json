@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T10:42:44.940309+08:00",
+  "updated_cst": "2026-10-05T10:48:59.415600+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8335,6 +8335,20 @@
         "estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
         "scope": "Read same complete-fit/evaluation owners, actual optimizer records and CPU acceptance; no restart/NN/power/temperature actions."
       }
+    },
+    "actual_completed_TRAIN_action_label_inventory": {
+      "source": "refine-logs/runs/recoverability_train_events/actual_completed_action_label_inventory.json",
+      "source_code": "refine-logs/runs/recoverability_train_events/diagnose_completed_action_labels_cpu.py",
+      "computed_at_cst": "2026-10-05T10:47:32.373328+08:00",
+      "new_NN_or_optimizer_steps": 0,
+      "base_queries": 1762,
+      "base_with_oracle_beneficial_action": 514,
+      "new_queries": 716,
+      "new_with_oracle_beneficial_action": 669,
+      "new_correct_candidate_reintroduced_in_cached_regions": 466,
+      "not_online_or_formal_accuracy": true,
+      "utility_gain_threshold": 0.05,
+      "interpretation_limit": "GT-derived label inventory and oracle diagnostic. Regions were already collected; maxima are not deployed selector choices, realized online gains, or formal benchmark metrics."
     }
   }
 }

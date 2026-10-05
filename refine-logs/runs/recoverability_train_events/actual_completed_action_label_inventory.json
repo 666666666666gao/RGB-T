@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "created_at_cst": "2026-10-05T10:47:32.373328+08:00",
+  "datasets_read": "Previously completed TRAIN caches only; no VAL or native TEST reads.",
+  "results": {
+    "base": {
+      "queries": 1762,
+      "original_failed_queries_iou_lt_02": 180,
+      "original_correct_queries_iou_ge_05": 1505,
+      "original_candidate_present_iou_ge_05": 1540,
+      "original_candidate_absent_iou_lt_05": 222,
+      "absent_correct_candidate_reintroduced_by_any_cached_extra_region": 103,
+      "queries_with_local_oracle_utility_gain_gt_005": 91,
+      "queries_with_extra_oracle_gain_gt_005_over_best_local_after_001_cost": 427,
+      "queries_with_any_legal_action_utility_gain_gt_005": 514,
+      "queries_with_any_harmful_legal_action_utility_loss_gt_005": 1609,
+      "queries_with_valid_pause_write_pair": 997,
+      "queries_with_pause_utility_gain_gt_001": 434,
+      "queries_with_pause_utility_loss_gt_001": 55,
+      "mean_local_oracle_utility_gain": 0.019567985087633133,
+      "utility_definition": ".7*current_iou + .3*mean(future_iou over3) - .1*wrong_update_fraction",
+      "new_online_accuracy_computed": false
+    },
+    "new_events": {
+      "queries": 716,
+      "original_failed_queries_iou_lt_02": 658,
+      "original_correct_queries_iou_ge_05": 45,
+      "original_candidate_present_iou_ge_05": 163,
+      "original_candidate_absent_iou_lt_05": 553,
+      "absent_correct_candidate_reintroduced_by_any_cached_extra_region": 466,
+      "queries_with_local_oracle_utility_gain_gt_005": 264,
+      "queries_with_extra_oracle_gain_gt_005_over_best_local_after_001_cost": 594,
+      "queries_with_any_legal_action_utility_gain_gt_005": 669,
+      "queries_with_any_harmful_legal_action_utility_loss_gt_005": 484,
+      "queries_with_valid_pause_write_pair": 26,
+      "queries_with_pause_utility_gain_gt_001": 18,
+      "queries_with_pause_utility_loss_gt_001": 8,
+      "mean_local_oracle_utility_gain": 0.1311672329902649,
+      "utility_definition": ".7*current_iou + .3*mean(future_iou over3) - .1*wrong_update_fraction",
+      "new_online_accuracy_computed": false
+    }
+  },
+  "interpretation_limit": "GT-derived label inventory and oracle diagnostic. Regions were already collected; maxima are not deployed selector choices, realized online gains, or formal benchmark metrics.",
+  "supervision_limit": "Actual frozen own-policy outputs: source-linked, finite/range checked; no independent future neural rerun.",
+  "execution": {
+    "live_training_progress_queries": 0,
+    "model_imports": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "GPU_queries": 0,
+    "live_training_source_changed": false,
+    "npz_fields_loaded": [
+      "current_iou",
+      "future_iou",
+      "wrong_update_fraction",
+      "action_valid",
+      "valid",
+      "original_choice"
+    ]
+  }
+}
