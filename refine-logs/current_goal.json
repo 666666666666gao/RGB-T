@@ -6401,7 +6401,44 @@
       "historical_receipt": "refine-logs/runs/recoverability_search_realization/user_disable_thermal_power_control.json",
       "resumed_collector_pid": 1977211
     },
-    "gpu_assignment_current": "Original b336 training controller2626708 has launched four-card M0; actual pass/reload pending, full60/480 successor in samecontroller.",
+    "gpu_assignment_current": [
+      {
+        "pid": 2634230,
+        "gpu": 0,
+        "arm": "pairwise_lr4",
+        "log": "/data/gb/setup/write_events_b336_full_gpu0_20261005.log",
+        "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005",
+        "expected_epochs": 60,
+        "expected_optimizer_steps": 480
+      },
+      {
+        "pid": 2634231,
+        "gpu": 1,
+        "arm": "budgeted_lr4",
+        "log": "/data/gb/setup/write_events_b336_full_gpu1_20261005.log",
+        "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005",
+        "expected_epochs": 60,
+        "expected_optimizer_steps": 480
+      },
+      {
+        "pid": 2634232,
+        "gpu": 2,
+        "arm": "pairwise_lr5",
+        "log": "/data/gb/setup/write_events_b336_full_gpu2_20261005.log",
+        "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005",
+        "expected_epochs": 60,
+        "expected_optimizer_steps": 480
+      },
+      {
+        "pid": 2634233,
+        "gpu": 3,
+        "arm": "budgeted_lr5",
+        "log": "/data/gb/setup/write_events_b336_full_gpu3_20261005.log",
+        "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005",
+        "expected_epochs": 60,
+        "expected_optimizer_steps": 480
+      }
+    ],
     "gpu_memory_request": {
       "policy": "Actual gradient training batch384 raisedto416. Both realABC M0 and60epoch180update fits passed at B416, about21GiB device occupancy. Current unchanged collection uses16clips/forward64 and serial causal prefixes; no padding or temperature/power query/control.",
       "batch_size": 416,
@@ -7169,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T22:44:49.800991+08:00",
+  "updated_cst": "2026-10-05T23:01:31.137878+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11304,9 +11341,9 @@
       "GPU_queries": 0
     }
   },
-  "current_execution_authority": "Original controllers2626708/2627974 and soleobserver54250; batch384 fullyclosedfailed; all98GTCPU PASS; old4 remains globalbest.",
+  "current_execution_authority": "Original training2626708 all4 full60/480 children plus evaluation2627974 waiting. All4 M0/24 grad/update/reloadCPU PASS and firstfulloptimizersteps real. Sole54250 nextnear2026-10-05T23:46:46.221020+08:00. Old4 remains protected best; full/native still pending.",
   "current_write_episode_supervision_iteration": {
-    "status": "ACTUAL_B336_FOUR_CARD_M0_STARTED_AFTER_SOURCE_RESCUE_FULL_AND_EVALUATION_QUEUED_NOT_YET_ACCEPTED",
+    "status": "ACTUAL_ALL4_B336_M024_AND_CPU_RELOAD_PASS_FULL60_480_OPTIMIZATION_STARTED",
     "collection": {
       "status": "PASS",
       "new_queries": 98,
@@ -12541,6 +12578,213 @@
     "sole_training_observer_session": 54250,
     "first_training_observation_cst": "2026-10-05T22:46:36.152156+08:00",
     "new_full_training_completed": false,
-    "new_formal_report_completed": false
+    "new_formal_report_completed": false,
+    "actual_M0_CPU_acceptance": {
+      "status": "PASS",
+      "stage": "m0",
+      "all_four_ABC_fits_passed": true,
+      "arms": {
+        "pairwise_lr4": {
+          "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 24,
+          "train_queries": 2576,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 18789.439453125,
+          "elapsed_seconds": 170.92671321798116
+        },
+        "budgeted_lr4": {
+          "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 24,
+          "train_queries": 2576,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 18790.158203125,
+          "elapsed_seconds": 170.8835096959956
+        },
+        "pairwise_lr5": {
+          "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 24,
+          "train_queries": 2576,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 2,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 18789.439453125,
+          "elapsed_seconds": 170.32748150918633
+        },
+        "budgeted_lr5": {
+          "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_m0_20261005",
+          "epochs": 3,
+          "optimizer_steps": 24,
+          "train_queries": 2576,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 2,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_003.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 18790.158203125,
+          "elapsed_seconds": 170.47619895637035
+        }
+      },
+      "validation_queries": 196,
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "completed_at_cst": "2026-10-05T22:46:45.529767+08:00"
+    },
+    "actual_full_launch": {
+      "stage": "FULL_FOUR_GPU_ABC_TRAINING_RUNNING",
+      "at_cst": "2026-10-05T22:46:46.221020+08:00",
+      "pid": 2626708,
+      "automatic_restarts": 0,
+      "official_metrics_completed": false,
+      "children": [
+        {
+          "pid": 2634230,
+          "gpu": 0,
+          "arm": "pairwise_lr4",
+          "log": "/data/gb/setup/write_events_b336_full_gpu0_20261005.log",
+          "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 480
+        },
+        {
+          "pid": 2634231,
+          "gpu": 1,
+          "arm": "budgeted_lr4",
+          "log": "/data/gb/setup/write_events_b336_full_gpu1_20261005.log",
+          "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 480
+        },
+        {
+          "pid": 2634232,
+          "gpu": 2,
+          "arm": "pairwise_lr5",
+          "log": "/data/gb/setup/write_events_b336_full_gpu2_20261005.log",
+          "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 480
+        },
+        {
+          "pid": 2634233,
+          "gpu": 3,
+          "arm": "budgeted_lr5",
+          "log": "/data/gb/setup/write_events_b336_full_gpu3_20261005.log",
+          "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005",
+          "expected_epochs": 60,
+          "expected_optimizer_steps": 480
+        }
+      ]
+    },
+    "actual_all4_full_first_optimizer_step_verified": true,
+    "failed_b384_unused_weight_cleanup": {
+      "completed": true,
+      "deleted": [
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_m0_20261005/best.pth",
+          "bytes": 1733620
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_m0_20261005/epoch_003.pth",
+          "bytes": 1735109
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_m0_20261005/best.pth",
+          "bytes": 1733620
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_m0_20261005/epoch_003.pth",
+          "bytes": 1735109
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_m0_20261005/best.pth",
+          "bytes": 1733620
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_m0_20261005/epoch_003.pth",
+          "bytes": 1735109
+        },
+        {
+          "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_m0_20261005/best.pth",
+          "bytes": 1733620
+        }
+      ],
+      "bytes": 12139807,
+      "scope": "Original b384 M0 all consumers terminal, full never launched. Logs/config/curves preserved; current b336 M0 weights remain for declared evaluation cleanup.",
+      "old4_protected_unchanged": true,
+      "completed_at_cst": "2026-10-05T22:54:28.694953+08:00"
+    },
+    "next_original_training_observation_cst": "2026-10-05T23:46:46.221020+08:00"
   }
 }

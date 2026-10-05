@@ -1,0 +1,65 @@
+{
+  "snapshots": [
+    {
+      "observed_at_cst": "2026-10-05T22:46:38.249213+08:00",
+      "controller_live": true,
+      "state": {
+        "stage": "M0_TRAINING_COMPLETE_CPU_RELOAD_AUDIT_RUNNING",
+        "at_cst": "2026-10-05T22:46:22.053734+08:00",
+        "pid": 2626708,
+        "automatic_restarts": 0,
+        "official_metrics_completed": false
+      }
+    },
+    {
+      "observed_at_cst": "2026-10-05T22:50:38.994808+08:00",
+      "controller_live": true,
+      "state": {
+        "stage": "FULL_FOUR_GPU_ABC_TRAINING_RUNNING",
+        "at_cst": "2026-10-05T22:46:46.221020+08:00",
+        "pid": 2626708,
+        "automatic_restarts": 0,
+        "official_metrics_completed": false,
+        "children": [
+          {
+            "pid": 2634230,
+            "gpu": 0,
+            "arm": "pairwise_lr4",
+            "log": "/data/gb/setup/write_events_b336_full_gpu0_20261005.log",
+            "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005",
+            "expected_epochs": 60,
+            "expected_optimizer_steps": 480
+          },
+          {
+            "pid": 2634231,
+            "gpu": 1,
+            "arm": "budgeted_lr4",
+            "log": "/data/gb/setup/write_events_b336_full_gpu1_20261005.log",
+            "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005",
+            "expected_epochs": 60,
+            "expected_optimizer_steps": 480
+          },
+          {
+            "pid": 2634232,
+            "gpu": 2,
+            "arm": "pairwise_lr5",
+            "log": "/data/gb/setup/write_events_b336_full_gpu2_20261005.log",
+            "output": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005",
+            "expected_epochs": 60,
+            "expected_optimizer_steps": 480
+          },
+          {
+            "pid": 2634233,
+            "gpu": 3,
+            "arm": "budgeted_lr5",
+            "log": "/data/gb/setup/write_events_b336_full_gpu3_20261005.log",
+            "output": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005",
+            "expected_epochs": 60,
+            "expected_optimizer_steps": 480
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Original training only, no re-launch or native accuracy."
+}
