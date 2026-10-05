@@ -7217,7 +7217,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T06:01:02.559834+08:00",
+  "updated_cst": "2026-10-06T06:12:51.440277+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -22658,7 +22658,7 @@
     "next_native_observation_cst": "2026-10-06T06:04:38.648419+08:00"
   },
   "current_extra_candidate_acceptance_diagnosis": {
-    "status": "ACTUAL_CPU_DIAGNOSTICS_COMPLETE_QUERY_PROTOTYPE_SOURCE_HELPERS_ONLY",
+    "status": "CPU_DIAGNOSTICS_COMPLETE_EVENT_DRIVER_REVIEWED_CACHE_PASS_NN_NOT_STARTED",
     "source_scope": "Saved full98 development observations and actual developer GT; no official test reads or new NN.",
     "acceptance_bound": {
       "counts": {
@@ -22738,11 +22738,43 @@
         "limitation": "Helpers only; private acceptance replay, full query lifecycle/raw parity and NN rollouts not executed.",
         "recorded_at_cst": "2026-10-06T06:01:02.559834+08:00"
       },
-      "NN_driver_implemented": false,
+      "NN_driver_implemented": true,
       "raw_NN_parity_verified": false,
       "future_rollouts_completed": false,
-      "main_geometry_commit_changed": false
+      "main_geometry_commit_changed": false,
+      "pipeline_source_review": {
+        "status": "PASS",
+        "scope": "DRIVER_SAMPLER_CONTROLLER_SOURCE",
+        "reviewer": "/root/quality_geometry_query_prototype_review",
+        "model": "gpt-6-astra",
+        "reasoning_effort": "max",
+        "review_independence": "same-family",
+        "acceptance_status": "provisional",
+        "runtime_attested": false,
+        "fixed_blockers": [
+          "H3 unknown-GT window requires no three-known gate; H32 retains eligibility.",
+          "Controller drains all four worker exits before checking failure/outputs."
+        ],
+        "verified": [
+          "TRAIN memory-mapped parent root and mask parity",
+          "One query per known normal/failure event; four per outcome group",
+          "Predicted Q before GT; GT only diagnostic event/outcome labels",
+          "Same pre-query state and same Q for three controls",
+          "Raw/base exact state/decisions and saved indices/length checks",
+          "Original native closure and four-GPU sanity before full rollouts"
+        ],
+        "limits": "Source-only. Sampler availability, cache eligibility, actual raw replay and rollouts not yet verified.",
+        "recorded_at_cst": "2026-10-06T06:11:27.523309+08:00"
+      },
+      "sampler_event_counts": {
+        "normal": 4,
+        "recovered_H32": 4,
+        "unrecovered_H32": 4
+      },
+      "legal_query_write_pairs": 1,
+      "actual_CPU_cache_eligibility": "PASS",
+      "NN_controller_started": false
     },
-    "next": "After current native evaluation closes, verify raw/base parity and compare the same extra-selected query under regular appearance writes, paused writes, and paused writes plus exact current C geometry. Use TRAIN events, known GT only for offline consequences, normal/recovery/unrecovered coverage; do not freeze geometry unconditionally or repeat the completed C1 geometry experiment."
+    "next": "After the original native report/controller actually closes, run the reviewed single four-card H3 sanity then all12 matched H3/H32 controls. These are TRAIN-root repeatedly-used validation events, not native scores or training. Only1 legal query write pair, so do not claim appearance-write supervision/effect sufficiency."
   }
 }

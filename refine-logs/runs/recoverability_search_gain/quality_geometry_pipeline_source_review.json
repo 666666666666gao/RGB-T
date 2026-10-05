@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "DRIVER_SAMPLER_CONTROLLER_SOURCE",
+  "reviewer": "/root/quality_geometry_query_prototype_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "fixed_blockers": [
+    "H3 unknown-GT window requires no three-known gate; H32 retains eligibility.",
+    "Controller drains all four worker exits before checking failure/outputs."
+  ],
+  "verified": [
+    "TRAIN memory-mapped parent root and mask parity",
+    "One query per known normal/failure event; four per outcome group",
+    "Predicted Q before GT; GT only diagnostic event/outcome labels",
+    "Same pre-query state and same Q for three controls",
+    "Raw/base exact state/decisions and saved indices/length checks",
+    "Original native closure and four-GPU sanity before full rollouts"
+  ],
+  "limits": "Source-only. Sampler availability, cache eligibility, actual raw replay and rollouts not yet verified.",
+  "recorded_at_cst": "2026-10-06T06:11:27.523309+08:00"
+}
