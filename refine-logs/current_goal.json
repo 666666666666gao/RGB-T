@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T11:11:37.548677+08:00",
+  "updated_cst": "2026-10-05T11:32:14.549233+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8256,8 +8256,8 @@
     "actual_user_status_receipt": "refine-logs/runs/recoverability_best_native_policy/actual_user_complete_training_metrics_status_20261005.json"
   },
   "current_train_event_data_iteration": {
-    "status": "ACTUAL_ALL4_COMPLETE420UPDATE_ABC_TRAINING_RUNNING_AFTER_CONFIRMED_LOG_COLLISION_RECOVERY",
-    "observed_at_cst": "2026-10-05T11:09:02.759894+08:00",
+    "status": "FOUR_COMPLETE420_ABC_FITS_CPU_PASS; FOUR_GPU_FULL98_SLOT0_ACTUALLY_RUNNING",
+    "observed_at_cst": "2026-10-05T11:26:51.700329+08:00",
     "collection_pid": 1297701,
     "fit_queue_pid": 1423763,
     "actual_sanity_GT_gate": "PASS",
@@ -8270,19 +8270,20 @@
     "first_expected_finish_check_cst": "2026-10-05T11:04:00.463143+08:00",
     "finish_estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
-    "next_required_work": "Continue the same73271 observer at300-second intervals until allfour420 updates and actual CPU acceptance; existing1423909 then full98 selection and both full native reports. No restart or new trial.",
+    "next_required_work": "Original1423909 completes16 full98 candidate evaluations, locks one, retires unselected weights, then evaluates all479 native sequences and allfive/31attributes/curves/paired/GT. Sole29016 first checks near13:27 then300sec; no training restart or new trial.",
     "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
-      "native_session_id": 73271,
-      "local_pid": 16276,
-      "actual_created_at_cst": "2026-10-05T10:17:53.764480+08:00",
-      "actual_live_confirmed_by": "Windows Win32_Process exact observer commandline",
-      "first_remote_inspection_cst": "2026-10-05T11:04:00.463143+08:00",
+      "native_session_id": 29016,
+      "local_pid": 20484,
+      "actual_created_at_cst": "2026-10-05T11:29:17.561102+08:00",
+      "actual_live_confirmed_by": "Windows Win32_Process exact commandline",
+      "source": "refine-logs/runs/recoverability_train_events/wait_full98_and_native_start_local.py",
+      "first_remote_inspection_cst": "2026-10-05T13:27:11.340299+08:00",
       "poll_interval_seconds": 300,
-      "source": "refine-logs/runs/recoverability_train_events/wait_complete420_acceptance_local.py",
-      "estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
-      "scope": "Read same complete-fit/evaluation owners, actual optimizer records and CPU acceptance; no restart/NN/power/temperature actions."
+      "estimate_scope": "Four serial waves of four complete98/49418-frame checkpoints, maximum actual prior same-setting wall time per wave, minus180 seconds; CPU scoring/model load overhead not guaranteed.",
+      "same_evaluation_owner_pid": 1423909,
+      "no_NN_or_optimization_started_by_observer": true
     },
     "evaluation_queue_pid": 1423909,
     "evaluation_queue_started_at_cst": "2026-10-05T10:12:48.628362+08:00",
@@ -8300,7 +8301,7 @@
     ],
     "actual_full_optimizer_steps_at_observation": {
       "base_pairwise": 420,
-      "aug_pairwise": 330,
+      "aug_pairwise": 420,
       "base_budgeted": 420,
       "aug_budgeted": 420
     },
@@ -8355,10 +8356,58 @@
     },
     "actual_observation": "refine-logs/runs/recoverability_train_events/actual_complete420_training_acceptance_observation.json",
     "actual_live_pids_at_observation": [
-      1423763,
-      1423766,
-      1423909
+      1423909,
+      1538758,
+      1538759,
+      1538760,
+      1538761
     ],
-    "current_finish_estimate": "refine-logs/runs/recoverability_train_events/actual_observed_complete420_finish_estimate.json"
+    "current_finish_estimate": "refine-logs/runs/recoverability_train_events/actual_observed_complete420_finish_estimate.json",
+    "complete_training_finished": true,
+    "actual_fullfit_CPU_gate": "PASS",
+    "actual_fullfit_CPU_completed_at_cst": "2026-10-05T11:20:42.603505+08:00",
+    "actual_complete_training_closeout": "refine-logs/runs/recoverability_train_events/actual_four_complete420_training_closeout.json",
+    "full98_stage": "FULL98_SLOT0_RUNNING",
+    "full98_stage_started_at_cst": "2026-10-05T11:21:51.843441+08:00",
+    "actual_full98_initial_progress": [
+      {
+        "arm": "base_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/epoch_028.pth",
+        "completed_sequences": 10,
+        "completed_frames": 2887,
+        "tracking_elapsed_seconds": 98.15912128426135,
+        "target_sequences": 98,
+        "target_frames": 49418
+      },
+      {
+        "arm": "aug_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/epoch_020.pth",
+        "completed_sequences": 10,
+        "completed_frames": 2887,
+        "tracking_elapsed_seconds": 101.11947673372924,
+        "target_sequences": 98,
+        "target_frames": 49418
+      },
+      {
+        "arm": "base_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/epoch_028.pth",
+        "completed_sequences": 10,
+        "completed_frames": 2887,
+        "tracking_elapsed_seconds": 106.21738455025479,
+        "target_sequences": 98,
+        "target_frames": 49418
+      },
+      {
+        "arm": "aug_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/epoch_020.pth",
+        "completed_sequences": 10,
+        "completed_frames": 2887,
+        "tracking_elapsed_seconds": 100.63782898522913,
+        "target_sequences": 98,
+        "target_frames": 49418
+      }
+    ],
+    "full98_checkpoint_candidates": 16,
+    "training_observer73271_status": "CLOSED_EXIT0_AFTER_ALL420_AND_CPU_PASS"
   }
 }

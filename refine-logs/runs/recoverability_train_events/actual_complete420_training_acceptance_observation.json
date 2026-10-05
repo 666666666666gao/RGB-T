@@ -1,65 +1,245 @@
 {
-  "observed_at_cst": "2026-10-05T11:09:02.759894+08:00",
+  "observed_at_cst": "2026-10-05T11:24:04.688250+08:00",
   "fit": {
-    "stage": "FULL_FOUR_GPU_ABC_TRAINING_RUNNING",
-    "at_cst": "2026-10-05T10:12:47.446483+08:00",
+    "stage": "FOUR_COMPLETE_MATCHED420UPDATE_ABC_FITS_READY_FOR_FULL_VIDEO_SELECTION",
+    "at_cst": "2026-10-05T11:20:43.236361+08:00",
     "pid": 1423763,
     "automatic_restarts": 0,
     "official_metrics_completed": false,
     "collection_repeated": false,
     "capacity_training_repeated": false,
-    "children": [
-      {
-        "pid": 1423765,
-        "gpu": 0,
-        "arm": "base_pairwise",
-        "log": "/data/gb/setup/train_events_fit_full_gpu0_20261005.log",
-        "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005",
-        "expected_epochs": 84,
-        "expected_optimizer_steps": 420
+    "acceptance": {
+      "status": "PASS",
+      "stage": "full",
+      "all_four_ABC_fits_passed": true,
+      "arms": {
+        "base_pairwise": {
+          "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005",
+          "epochs": 84,
+          "optimizer_steps": 420,
+          "train_queries": 1762,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 4,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_028.pth": {
+              "epoch": 28,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_056.pth": {
+              "epoch": 56,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_084.pth": {
+              "epoch": 84,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 17375.158203125,
+          "elapsed_seconds": 3221.505610140972
+        },
+        "aug_pairwise": {
+          "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005",
+          "epochs": 60,
+          "optimizer_steps": 420,
+          "train_queries": 2478,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 9,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19800.48779296875,
+          "elapsed_seconds": 3983.1136043970473
+        },
+        "base_budgeted": {
+          "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005",
+          "epochs": 84,
+          "optimizer_steps": 420,
+          "train_queries": 1762,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 59,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_028.pth": {
+              "epoch": 28,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_056.pth": {
+              "epoch": 56,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_084.pth": {
+              "epoch": 84,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 17373.658203125,
+          "elapsed_seconds": 3214.6768230861053
+        },
+        "aug_budgeted": {
+          "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005",
+          "epochs": 60,
+          "optimizer_steps": 420,
+          "train_queries": 2478,
+          "checkpoints": {
+            "best.pth": {
+              "epoch": 3,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_020.pth": {
+              "epoch": 20,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_040.pth": {
+              "epoch": 40,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            },
+            "epoch_060.pth": {
+              "epoch": 60,
+              "ABC_changed": {
+                "A": true,
+                "B": true,
+                "C": true
+              },
+              "cached_CPU_replay_pass": true
+            }
+          },
+          "peak_cuda_mib": 19799.48779296875,
+          "elapsed_seconds": 3210.5523159671575
+        }
       },
-      {
-        "pid": 1423766,
-        "gpu": 1,
-        "arm": "aug_pairwise",
-        "log": "/data/gb/setup/train_events_fit_full_gpu1_20261005.log",
-        "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005",
-        "expected_epochs": 60,
-        "expected_optimizer_steps": 420
-      },
-      {
-        "pid": 1423767,
-        "gpu": 2,
-        "arm": "base_budgeted",
-        "log": "/data/gb/setup/train_events_fit_full_gpu2_20261005.log",
-        "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005",
-        "expected_epochs": 84,
-        "expected_optimizer_steps": 420
-      },
-      {
-        "pid": 1423768,
-        "gpu": 3,
-        "arm": "aug_budgeted",
-        "log": "/data/gb/setup/train_events_fit_full_gpu3_20261005.log",
-        "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005",
-        "expected_epochs": 60,
-        "expected_optimizer_steps": 420
-      }
-    ]
+      "validation_queries": 196,
+      "official_metrics_completed": false,
+      "CUDA_initialized": false,
+      "completed_at_cst": "2026-10-05T11:20:42.603505+08:00"
+    }
   },
   "evaluation": {
-    "stage": "WAITING_FOR_ACTUAL_FOUR_COMPLETE420UPDATE_ABC_FITS",
-    "at_cst": "2026-10-05T10:12:48.652897+08:00",
+    "stage": "FULL98_SLOT0_RUNNING",
+    "at_cst": "2026-10-05T11:21:51.843441+08:00",
     "pid": 1423909,
     "automatic_restarts": 0,
     "system_goal_completed": false,
-    "upstream_pid": 1423763
+    "children": [
+      {
+        "pid": 1538758,
+        "gpu": 0,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu0_20261005.log"
+      },
+      {
+        "pid": 1538759,
+        "gpu": 1,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu1_20261005.log"
+      },
+      {
+        "pid": 1538760,
+        "gpu": 2,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu2_20261005.log"
+      },
+      {
+        "pid": 1538761,
+        "gpu": 3,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu3_20261005.log"
+      }
+    ]
   },
-  "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1423763       1 Ss      3375 python\n1423766 1423763 Sl      3375 python\n1423767 1423763 Z       3375 python <defunct>\n1423768 1423763 Z       3375 python <defunct>\n1423909       1 Ss      3374 python\n",
+  "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1423909       1 Ss      4276 python\n1538758 1423909 Rl       133 python\n1538759 1423909 Rl       133 python\n1538760 1423909 Rl       133 python\n1538761 1423909 Rl       133 python\n",
   "live_pids": [
-    1423763,
-    1423766,
-    1423909
+    1423909,
+    1538758,
+    1538759,
+    1538760,
+    1538761
   ],
   "arms": [
     {
@@ -173,34 +353,110 @@
     {
       "arm": "aug_pairwise",
       "last_actual_optimizer_record": {
-        "epoch": 48,
-        "step": 1,
-        "optimizer_steps": 330,
-        "loss": 1.144486665725708,
+        "epoch": 60,
+        "step": 7,
+        "optimizer_steps": 420,
+        "loss": 1.095106601715088,
         "parts": {
-          "advantage": 0.025234945118427277,
-          "action_ranking": 0.00990309752523899,
-          "harm": 0.5193907022476196,
-          "quality": 0.6252037882804871,
-          "query_write_risk": 0.008989030495285988,
-          "future": 0.07230077683925629,
-          "memory_gate": 1.2812377214431763,
-          "margin_preservation": 0.005381383467465639,
-          "identity_margin": 0.15092410147190094,
-          "search_value": 0.012824444100260735,
-          "search_success": 0.47527340054512024,
-          "candidate_absence": 0.44044527411460876,
-          "search_ranking": 1.3816536664962769
+          "advantage": 0.020513346418738365,
+          "action_ranking": 0.00758212199434638,
+          "harm": 0.4660366177558899,
+          "quality": 0.5856702327728271,
+          "query_write_risk": 0.013434628024697304,
+          "future": 0.062186915427446365,
+          "memory_gate": 1.2604687213897705,
+          "margin_preservation": 0.0035463229287415743,
+          "identity_margin": 0.13549910485744476,
+          "search_value": 0.013955422677099705,
+          "search_success": 0.42403072118759155,
+          "candidate_absence": 0.40863335132598877,
+          "search_ranking": 1.3828709125518799
         },
         "module_gradient_norms": {
-          "A": 0.05329195037484169,
-          "B": 3.2576072216033936,
-          "C": 0.10767988115549088
+          "A": 0.07650478184223175,
+          "B": 6.486095428466797,
+          "C": 0.17587409913539886
         },
-        "elapsed_seconds": 3294.558633899782,
+        "elapsed_seconds": 3981.38232691586,
         "peak_cuda_mib": 19800.48779296875
       },
-      "completion": null
+      "completion": {
+        "completed": true,
+        "epochs": 60,
+        "optimizer_steps": 420,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.10212203860282898,
+          "B": 13.937084197998047,
+          "C": 1.5320545434951782
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 3983.1136043970473,
+        "peak_cuda_mib": 19800.48779296875,
+        "best_epoch": 9,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.5072540044784546,
+          "valid_actions": 7251,
+          "current": 0.7532786726951599,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7546062469482422,
+          "utility": 0.7541981935501099,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 8,
+          "changed_location": 6,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 12,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.002238750457763672,
+          "utility_gain_against_c1": 0.002112269401550293
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.047383189201355,
+          "valid_actions": 7251,
+          "current": 0.7448064088821411,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7473269701004028,
+          "utility": 0.7458984851837158,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 28,
+          "changed_location": 8,
+          "rescued": 0,
+          "harmed": 1,
+          "failed": 14,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 181,
+          "missing_candidate_found": 5,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": -0.006233513355255127,
+          "utility_gain_against_c1": -0.00618743896484375
+        },
+        "retained_weights": [
+          "best.pth",
+          "epoch_020.pth",
+          "epoch_040.pth",
+          "epoch_060.pth"
+        ],
+        "official_tracking_accuracy": false
+      }
     },
     {
       "arm": "base_budgeted",
@@ -419,7 +675,201 @@
       }
     }
   ],
-  "full_CPU_acceptance": null,
+  "full_CPU_acceptance": {
+    "status": "PASS",
+    "stage": "full",
+    "all_four_ABC_fits_passed": true,
+    "arms": {
+      "base_pairwise": {
+        "output": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005",
+        "epochs": 84,
+        "optimizer_steps": 420,
+        "train_queries": 1762,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 4,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_028.pth": {
+            "epoch": 28,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_056.pth": {
+            "epoch": 56,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_084.pth": {
+            "epoch": 84,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          }
+        },
+        "peak_cuda_mib": 17375.158203125,
+        "elapsed_seconds": 3221.505610140972
+      },
+      "aug_pairwise": {
+        "output": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005",
+        "epochs": 60,
+        "optimizer_steps": 420,
+        "train_queries": 2478,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 9,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_020.pth": {
+            "epoch": 20,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_040.pth": {
+            "epoch": 40,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_060.pth": {
+            "epoch": 60,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          }
+        },
+        "peak_cuda_mib": 19800.48779296875,
+        "elapsed_seconds": 3983.1136043970473
+      },
+      "base_budgeted": {
+        "output": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005",
+        "epochs": 84,
+        "optimizer_steps": 420,
+        "train_queries": 1762,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 59,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_028.pth": {
+            "epoch": 28,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_056.pth": {
+            "epoch": 56,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_084.pth": {
+            "epoch": 84,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          }
+        },
+        "peak_cuda_mib": 17373.658203125,
+        "elapsed_seconds": 3214.6768230861053
+      },
+      "aug_budgeted": {
+        "output": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005",
+        "epochs": 60,
+        "optimizer_steps": 420,
+        "train_queries": 2478,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 3,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_020.pth": {
+            "epoch": 20,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_040.pth": {
+            "epoch": 40,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          },
+          "epoch_060.pth": {
+            "epoch": 60,
+            "ABC_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "cached_CPU_replay_pass": true
+          }
+        },
+        "peak_cuda_mib": 19799.48779296875,
+        "elapsed_seconds": 3210.5523159671575
+      }
+    },
+    "validation_queries": 196,
+    "official_metrics_completed": false,
+    "CUDA_initialized": false,
+    "completed_at_cst": "2026-10-05T11:20:42.603505+08:00"
+  },
   "new_neural_forward_calls": 0,
   "new_optimizer_steps": 0,
   "power_or_temperature_queried": false

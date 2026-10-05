@@ -1,0 +1,156 @@
+{
+  "observed_at_cst": "2026-10-05T11:26:51.700329+08:00",
+  "evaluation": {
+    "stage": "FULL98_SLOT0_RUNNING",
+    "at_cst": "2026-10-05T11:21:51.843441+08:00",
+    "pid": 1423909,
+    "automatic_restarts": 0,
+    "system_goal_completed": false,
+    "children": [
+      {
+        "pid": 1538758,
+        "gpu": 0,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu0_20261005.log"
+      },
+      {
+        "pid": 1538759,
+        "gpu": 1,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu1_20261005.log"
+      },
+      {
+        "pid": 1538760,
+        "gpu": 2,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu2_20261005.log"
+      },
+      {
+        "pid": 1538761,
+        "gpu": 3,
+        "log": "/data/gb/setup/train_events_FULL98_SLOT0_gpu3_20261005.log"
+      }
+    ]
+  },
+  "actual_ps": "    PID    PPID STAT ELAPSED COMMAND\n1423909       1 Ss      4443 python\n1538758 1423909 Rl       300 python\n1538759 1423909 Rl       300 python\n1538760 1423909 Rl       300 python\n1538761 1423909 Rl       300 python\n",
+  "progress": [
+    {
+      "arm": "base_pairwise",
+      "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/epoch_028.pth",
+      "completed_sequences": 10,
+      "completed_frames": 2887,
+      "tracking_elapsed_seconds": 98.15912128426135,
+      "target_sequences": 98,
+      "target_frames": 49418
+    },
+    {
+      "arm": "aug_pairwise",
+      "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/epoch_020.pth",
+      "completed_sequences": 10,
+      "completed_frames": 2887,
+      "tracking_elapsed_seconds": 101.11947673372924,
+      "target_sequences": 98,
+      "target_frames": 49418
+    },
+    {
+      "arm": "base_budgeted",
+      "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/epoch_028.pth",
+      "completed_sequences": 10,
+      "completed_frames": 2887,
+      "tracking_elapsed_seconds": 106.21738455025479,
+      "target_sequences": 98,
+      "target_frames": 49418
+    },
+    {
+      "arm": "aug_budgeted",
+      "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/epoch_020.pth",
+      "completed_sequences": 10,
+      "completed_frames": 2887,
+      "tracking_elapsed_seconds": 100.63782898522913,
+      "target_sequences": 98,
+      "target_frames": 49418
+    }
+  ],
+  "completed_prior_full98_wall_seconds": [
+    {
+      "arm": "pairwise_lr4",
+      "epoch": 20,
+      "wall_seconds": 1769.7516221147962
+    },
+    {
+      "arm": "pairwise_lr5",
+      "epoch": 20,
+      "wall_seconds": 1833.4529587682337
+    },
+    {
+      "arm": "budgeted_lr4",
+      "epoch": 20,
+      "wall_seconds": 1879.4162208461203
+    },
+    {
+      "arm": "budgeted_lr5",
+      "epoch": 20,
+      "wall_seconds": 1805.8445603200234
+    },
+    {
+      "arm": "pairwise_lr4",
+      "epoch": 40,
+      "wall_seconds": 1787.5332086877897
+    },
+    {
+      "arm": "pairwise_lr5",
+      "epoch": 40,
+      "wall_seconds": 1865.3519309908152
+    },
+    {
+      "arm": "budgeted_lr4",
+      "epoch": 40,
+      "wall_seconds": 1883.8016110369936
+    },
+    {
+      "arm": "budgeted_lr5",
+      "epoch": 40,
+      "wall_seconds": 1854.6833297857083
+    },
+    {
+      "arm": "pairwise_lr4",
+      "epoch": 60,
+      "wall_seconds": 1837.4763847310096
+    },
+    {
+      "arm": "pairwise_lr5",
+      "epoch": 60,
+      "wall_seconds": 1836.5144041120075
+    },
+    {
+      "arm": "budgeted_lr4",
+      "epoch": 60,
+      "wall_seconds": 1924.5787020940334
+    },
+    {
+      "arm": "budgeted_lr5",
+      "epoch": 60,
+      "wall_seconds": 1848.6494073732756
+    },
+    {
+      "arm": "pairwise_lr4",
+      "epoch": 4,
+      "wall_seconds": 1856.8901052060537
+    },
+    {
+      "arm": "pairwise_lr5",
+      "epoch": 39,
+      "wall_seconds": 1858.0605847709812
+    },
+    {
+      "arm": "budgeted_lr4",
+      "epoch": 59,
+      "wall_seconds": 1924.8742145211436
+    },
+    {
+      "arm": "budgeted_lr5",
+      "epoch": 50,
+      "wall_seconds": 1845.2885009567253
+    }
+  ],
+  "prior_median_wall_seconds": 1851.666368579492,
+  "new_NN_forwards_by_this_intake": 0,
+  "GPU_queries": 0
+}
