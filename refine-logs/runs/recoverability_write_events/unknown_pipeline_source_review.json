@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-06T03:38:36.761565+08:00",
+  "reviewer_agent": "/root/unknown_gt_geometry_pipeline_review",
+  "reviewer_attribution": "Fresh Codex source reviewer. Served backend model and reasoning-effort metadata cannot be independently attested in this reviewer context.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "review_scope": "SOURCE ONLY: four-card TRAIN GT-gap orchestration, saved-array CPU validation, aggregation and one-time local launch adapter. No new neural rollout, remote state, or native performance is accepted by this review.",
+  "sources": [
+    "refine-logs/runs/recoverability_write_events/unknown_probe_pipeline.py",
+    "refine-logs/runs/recoverability_write_events/validate_unknown_probe_cpu.py",
+    "refine-logs/runs/recoverability_write_events/unknown_probe_plan.json",
+    "refine-logs/runs/recoverability_write_events/actual_TRAIN_unknown_probe_jobs_cpu.json",
+    "refine-logs/runs/recoverability_write_events/unknown_probe_source_review.json",
+    "research/probe_geometry_commit.py",
+    "research/collect_rollouts.py",
+    "scripts/run_temporal.sh",
+    "refine-logs/runs/recoverability_state_commit/matched_velocity_train88_old4/gpu0/config.json",
+    "refine-logs/runs/c1_seed42_split.json",
+    "refine-logs/runs/recoverability_write_events/evaluation_pipeline.py",
+    "refine-logs/runs/recoverability_write_events/resume_native_after_crlf.py",
+    "refine-logs/runs/recoverability_write_events/merge_complete_goal_report.py",
+    "refine-logs/runs/recoverability_write_events/audit_native_complete_cpu.py",
+    "refine-logs/runs/recoverability_write_events/actual_masked_probe_CPU_regression.json",
+    "refine-logs/runs/recoverability_write_events/actual_unknown_pipeline_CPU_fixture.json",
+    "refine-logs/runs/recoverability_write_events/actual_unknown_pipeline_CPU_fixture.log",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_unknown_probe_local_20261006.py"
+  ],
+  "unresolved_blockers": [],
+  "required_source_fixes": [],
+  "findings": [
+    {
+      "topic": "Native completion dependency and fixed model",
+      "verdict": "PASS",
+      "evidence": "unknown_probe_pipeline.py:60-65 requires the original evaluation progress artifact to reach COMPLETE480_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY, its recorded PID to be absent, a completed five-metric report and PASS native CPU audits. The inspected resume and merge sources produce that stage only after both LasHeR245/RGBT234 inference, reporting and actual-dataset-GT audits finish. Lines79-81 retain the existing TRAIN configuration and require the plan's epoch_004.pth to equal the selected formal checkpoint. No GPU subprocess starts before these gates."
+    },
+    {
+      "topic": "Exact partition and sanity barrier",
+      "verdict": "PASS",
+      "evidence": "Independent local JSON checks confirm20 unique event IDs and sequence/query pairs, all in TRAIN and absent from validation, from14 sequences. The four plan groups contain5 events each and exactly partition the jobs. unknown_probe_pipeline.py:86-91 runs group[0] once per GPU, waits for all4 child exits and successful sanity CPU validation, then runs only group[1:]. Final validation combines4+16 distinct events. No sanity event is repeated and the two waves cannot overlap in this controller."
+    },
+    {
+      "topic": "Commands, device allocation and existing environment",
+      "verdict": "PASS",
+      "evidence": "The probe CLI matches research.probe_geometry_commit's argparse schema and explicitly uses H3/H32, action write verification, seed42 and C1_components. Its Python executable, cwd, per-card CUDA visibility, PCI order, library path, caches, four CPU threads and CUBLAS setting match scripts/run_temporal.sh. Before launching, the coordinator requires more than20000 MiB free and no compute application on each observed physical card0-3. Each wave starts one child per card. Both CPU-validator calls now explicitly set CUDA_VISIBLE_DEVICES empty and PYTHONPATH=/data/gb/GOLA."
+    },
+    {
+      "topic": "Actual-array masking, outcomes and GT checks",
+      "verdict": "PASS",
+      "evidence": "validate_unknown_probe_cpu.py:24-54 requires completed per-card output, exact event counts and job/result identities, all four controls,33 saved GT rows, an independently recomputed finite-positive-area mask, no known query/H3 labels and at least3 known future labels. It checks unknown IoU=-1, recomputes every known-frame IoU from saved prediction boxes and saved GT using the existing CPU iou function, and recomputes H3/H32 outcomes from arrays. Query IoUs remain null, unknown H3 means remain null and unknown writes are not counted as wrong localization. This checks saved-array/label consistency; it is not a separate raw-dataset reread or a separately implemented metric."
+    },
+    {
+      "topic": "Controlled query state and no future GT action input",
+      "verdict": "PASS",
+      "evidence": "The new coordinator invokes the already reviewed C1_components probe without changing its control logic. Direct source inspection confirms one shared query observation/output, the actual policy pause, equal template/identity/motion-memory tensors and retained observation time/quality; only selected search and/or motion-history coordinates change. The validator checks equal query boxes, pause/template-update metadata and unchanged coordinates for the complementary component. Probe runtime assertions cover tensors/history that are not duplicated in the new CPU report. Initial GT enters tracker initialization; future GT is read for offline eligibility and after rollout for labels, never passed to policy actions. Inference mode and frozen modules perform no main-method training."
+    },
+    {
+      "topic": "Event aggregation and evidence boundaries",
+      "verdict": "PASS",
+      "evidence": "The validator rejects duplicate event IDs across phases and requires event_summary's event and query-state counts to equal collected rows. H32 differences are paired against raw within each event, then equally averaged, with5000 seed42 event-bootstrap draws. The prior CPU regression receipt covers8 known-GT control/horizon outcomes. The new fixture receipt/log reports PASS for4 sanity,16 remaining and20 combined deliberately masked copies of sealed prior NN arrays. Those fixture rows and their numbers are not actual outcomes of the20 planned events."
+    },
+    {
+      "topic": "Preserved failures, logs and one-time launch adapter",
+      "verdict": "PASS",
+      "evidence": "The local adapter requires completed local formal intake, five metrics, native-GT acceptance and source/fixture PASS before upload. It uploads only the two new scripts and this review, then rechecks remote native completion/PID absence before one detached coordinator with CUDA disabled and PYTHONPATH set. Existing launch receipt, output directory or controller log prevent reuse. The coordinator creates a fresh base, preserves per-card jobs/logs/config/events/NPZ arrays, waits for every child and records exit codes; nonzero children or CPU validation halt progress. COMPLETE is written only after combined CPU PASS. No automatic NN retry, deletion of earlier failures, main-model training, temperature action or power action is introduced. The adapter's PID receipt records launch, not completion."
+    }
+  ],
+  "resolved_during_review": [
+    {
+      "location": "unknown_probe_pipeline.py:51-53 and89-91",
+      "note": "Initial CPU-validator invocations relied on inherited PYTHONPATH despite using an absolute script path. The parent made the direct correction to both subprocess environments; the reviewer read and syntax-checked the corrected source. No unresolved import-path finding remains."
+    }
+  ],
+  "checks_actually_executed": [
+    "Read the listed local source and saved evidence artifacts; inspect the native report producer and raw-GT audit gate schema.",
+    "PowerShell JSON assertions independently verify20 unique TRAIN jobs, four5-event groups, exact assignment coverage, disjoint4/16 phases,14 sequences and minimum saved H32 known-label count7.",
+    "Local stdlib AST parsing passes for the coordinator, validator, probe, launch adapter and embedded remote launch source, without importing project modules or executing entry points.",
+    "Read existing normal8 CPU regression and new4/16/20 masked-fixture receipts/log; neither was rerun by this reviewer."
+  ],
+  "reviewer_execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "deployments": 0,
+    "subagents_spawned": 0,
+    "research_source_files_modified": false,
+    "only_written_artifact": "refine-logs/runs/recoverability_write_events/unknown_pipeline_source_review.json"
+  },
+  "limitations": [
+    "PASS is for the reviewed source and launch contract. The original native2914365 reports are still pending in the task context; this reviewer did not inspect live processes, devices, raw remote GT or the eventual formal intake.",
+    "The new20-event neural rollout, matched-state runtime assertions and actual-array CPU acceptance have not been executed or attested by this reviewer. Saved CPU fixtures do not substitute for the four-event neural sanity gate.",
+    "Known-frame IoU recomputation uses the saved GT arrays and existing iou implementation. Raw TRAIN dataset eligibility is checked by the probe; the new CPU validator does not independently reread the raw dataset.",
+    "Twenty selected TRAIN events and finite32-frame windows, including multiple events from some sequences, cannot establish native benchmark gains, permanent unrecoverability or independent-training uncertainty. The all-five-metrics plus2percentage-point main goal remains unmet."
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-06T03:51:19.202924+08:00",
+  "reviewer_agent": "/root/unknown_gt_geometry_pipeline_review",
+  "reviewer_attribution": "Follow-up Codex rescue source review by the prior schedule reviewer, independent of the implementing parent agent. Served backend model and reasoning-effort metadata cannot be independently attested.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "review_scope": "SOURCE ONLY rescue of the actual pre-launch owner-process gate failure. Review the absent-or-Z predicates and required rescue-review guards in both the released-GPU3 coordinator and local adapter. No SSH, NN or deployment was performed by this reviewer.",
+  "historical_reviews_preserved": [
+    "unknown_pipeline_source_review.json",
+    "unknown_released_gpu_source_review.json"
+  ],
+  "superseded_prior_premise": "The earlier review treated saved live:false as literal /proc absence. The actual03:49:52 primary shows /proc/2914373 exists and its state is Z. Earlier source PASS was not runtime acceptance; the first launch failed before diagnostic Popen, controller-log creation or output creation.",
+  "sources": [
+    "refine-logs/runs/recoverability_write_events/unknown_released_gpu_pipeline.py",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_unknown_released_gpu_local_20261006.py",
+    "refine-logs/runs/recoverability_write_events/unknown_probe_plan.json",
+    "refine-logs/runs/recoverability_write_events/actual_unknown_released_pipeline_first_launch_failure.log",
+    "refine-logs/runs/recoverability_write_events/actual_released_GPU3_launch_gate_primary.json",
+    "refine-logs/runs/recoverability_write_events/actual_released_GPU3_launch_gate_primary.log",
+    "refine-logs/runs/recoverability_write_events/evaluation_pipeline.py"
+  ],
+  "unresolved_blockers": [],
+  "required_source_fixes": [],
+  "findings": [
+    {
+      "topic": "Actual failure diagnosis",
+      "verdict": "CONFIRMED",
+      "evidence": "The preserved first-launch traceback stops at remote stdin line7, the former owner-/proc-absence assertion. The03:49:52 raw primary contains '2914373 (bash) Z 2914365 ...', owner_proc_exists=true, diagnostic_output_exists=false, diagnostic_controller_log_exists=false and new_NN_launched=false. The original coordinator waits for children in order at evaluation_pipeline.py:41-43, so an already exited later child can remain unreaped while earlier cards continue. This is concrete evidence for correcting the gate; no speculative compatibility behavior is needed."
+    },
+    {
+      "topic": "Minimal absent-or-Z correction in both locations",
+      "verdict": "PASS",
+      "evidence": "unknown_released_gpu_pipeline.py:60-61 and launch_unknown_released_gpu_local_20261006.py:21-22 now accept an absent owner /proc directory or a stat state exactly Z. Both parse the actual '(bash) Z ...' record correctly. Local evaluation of the exact two source predicates passes for the saved Z record and an absent owner, and rejects an active-state S control. The code does not kill or reap the parent, restart native work, catch extra exceptions, or introduce a retry/fallback path."
+    },
+    {
+      "topic": "Completion and free-card safeguards remain mandatory",
+      "verdict": "PASS",
+      "evidence": "Both locations still require original coordinator2914365 at BOTH_COMPLETE_NATIVE_CRLF_RESUME_RUNNING and both real GPU3 inference_completed.txt / predictions/inference_completion.json artifacts. The actual primary records LasHeR61 sequences/35148 frames and RGBT23458/26743, with both markers and completed fields true. Independent local parsing of its device/app strings confirms GPU3 has24233 MiB free and no compute application. The coordinator retains its fresh no-compute-app and >20000 MiB check before output creation or any diagnostic NN child. Thus the Z relaxation alone cannot authorize card reuse."
+    },
+    {
+      "topic": "Rescue-review gate is required before retry",
+      "verdict": "PASS",
+      "evidence": "The current adapter:10-14 requires unknown_released_gpu_rescue_source_review.json PASS before uploads and includes that record in its upload list. The current coordinator:55-56 also requires the rescue record PASS alongside the retained probe/schedule reviews. The latest reviewed source therefore cannot use only the earlier PASS to proceed past this actual failure. The new review filename matches both guards exactly."
+    },
+    {
+      "topic": "Diagnostic and native boundaries remain unchanged",
+      "verdict": "PASS",
+      "evidence": "The coordinator still locks the existing16-candidate full98 selection to the plan's epoch_004.pth, runs only physical GPU3, executes one sanity event followed by19 nonrepeated events after CPU PASS, and uses the same TRAIN probe and masked-array validator. Both CPU validation calls retain explicit PYTHONPATH and empty CUDA visibility. The adapter uploads only diagnostic-directory source/plan/review files. No native score read, model selection update, optimizer work, GPU0/1/2 intervention or normal inference-source replacement is introduced by this rescue."
+    },
+    {
+      "topic": "Failure preservation and truthful receipts",
+      "verdict": "PASS",
+      "evidence": "The original traceback and raw proc/device/completion primary remain saved in dedicated files, and unknown_probe_plan.json records the first failed attempt and its exact cause. This review adds a separate rescue record and does not overwrite either historical review. Existing launch-receipt, controller-log and output-directory gates remain. A subsequent launch receipt can only record that later attempt; neither the first source PASS nor the CPU fixture is represented as actual neural sanity or full20-event completion."
+    }
+  ],
+  "checks_actually_executed": [
+    "Read the preserved first failure, raw primary JSON/log, corrected coordinator/adapter and updated plan.",
+    "Parse the saved owner stat to confirm Z and parent2914365; verify both saved shard completion records and GPU3 free memory/compute-app absence without contacting the remote host.",
+    "AST-parse both corrected sources and the adapter's embedded remote code, and confirm both contain the required rescue-review guard.",
+    "Evaluate only the exact source owner-state predicates against local saved-data objects: actual Z and absent owner pass, active S rejects. No project entry point, SSH command or NN code is executed."
+  ],
+  "reviewer_execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "deployments": 0,
+    "subagents_spawned": 0,
+    "research_source_files_modified": false,
+    "historical_review_files_modified": false,
+    "only_written_artifact": "refine-logs/runs/recoverability_write_events/unknown_released_gpu_rescue_source_review.json"
+  },
+  "limitations": [
+    "This source rescue PASS is not attestation of a successful retry or current remote state. The corrected adapter/coordinator must execute their real gates before diagnostic inference.",
+    "The saved03:49:52 primary is point-in-time evidence. The original native GPU0/1/2 work remains active in the supplied context; full actual-GT five-metric native reports are pending and the main goal remains ACTIVE_UNMET.",
+    "No actual masked-event neural sanity or20-event result has been accepted by this reviewer. Existing1/19/20 CPU fixtures exercise saved deliberately masked arrays only, and the validator does not independently reread raw TRAIN GT."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-06T03:47:20.801469+08:00",
+  "reviewer_agent": "/root/unknown_gt_geometry_pipeline_review",
+  "reviewer_attribution": "Codex source reviewer of the explicit schedule revision. Served backend model and reasoning-effort metadata cannot be independently attested in this reviewer context.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "review_scope": "SOURCE ONLY: use already released physical GPU3 for one masked TRAIN sanity event, then19 remaining events, while the original native GPU0/1/2 work continues. Review includes the updated validator and one-time local launch adapter. No new neural execution or native accuracy result is accepted.",
+  "historical_review": "unknown_pipeline_source_review.json is retained unchanged as the review of the unlaunched original four-card schedule. This new review covers the explicitly revised1+19 schedule only.",
+  "sources": [
+    "refine-logs/runs/recoverability_write_events/unknown_released_gpu_pipeline.py",
+    "refine-logs/runs/recoverability_write_events/validate_unknown_probe_cpu.py",
+    "refine-logs/runs/recoverability_write_events/unknown_probe_plan.json",
+    "refine-logs/runs/recoverability_write_events/actual_TRAIN_unknown_probe_jobs_cpu.json",
+    "refine-logs/runs/c1_seed42_split.json",
+    "refine-logs/runs/recoverability_write_events/actual_native_post_observer_exit_primary.json",
+    "refine-logs/runs/recoverability_write_events/actual_unknown_released_pipeline_CPU_fixture.json",
+    "refine-logs/runs/recoverability_write_events/actual_unknown_released_pipeline_CPU_fixture.log",
+    "refine-logs/runs/recoverability_write_events/run_native_complete.sh",
+    "refine-logs/runs/recoverability_write_events/resume_native_after_crlf.py",
+    "refine-logs/runs/recoverability_write_events/evaluation_pipeline.py",
+    "research/evaluate_recoverability.py",
+    "scripts/run_temporal.sh",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_unknown_released_gpu_local_20261006.py"
+  ],
+  "retained_probe_review": "The unchanged research.probe_geometry_commit.py and its masked-GT/state-control contract were directly inspected in the preceding source review; unknown_probe_source_review.json remains a required PASS launch gate.",
+  "unresolved_blockers": [],
+  "required_source_fixes": [],
+  "findings": [
+    {
+      "topic": "Concrete released-card evidence and revised dependency",
+      "verdict": "PASS",
+      "evidence": "The saved03:40:34 primary reports original coordinator2914365 live, GPU0/1/2 owners live, and GPU3 owner2914373 absent with its final RGBT234 log reporting COMPLETED58 sequences/26743 frames. This is inference completion, explicitly without GT scoring. The new coordinator:57-65 and launch adapter:18-25 require the same original coordinator ID and running-native stage, the recorded GPU3 owner absent, and both dataset shard completion artifacts before diagnostic launch. They no longer assert whole-report completion, consistent with the explicit schedule revision; formal native acceptance remains pending."
+    },
+    {
+      "topic": "Actual completion filenames and exclusive GPU3 use",
+      "verdict": "PASS",
+      "evidence": "run_native_complete.sh:11-27 runs LasHeR then RGBT234 with set-e, writes each shard to native_full_20261005/{dataset}/shards/gpu3/predictions, and creates inference_completed.txt only after that evaluator exits successfully. evaluate_recoverability.py writes predictions/inference_completion.json. Both new gates use these exact paths. The coordinator additionally checks the GPU3 UUID has no compute applications and more than20000 MiB free before creating output or spawning inference. CUDA_VISIBLE_DEVICES=3 is assigned only to the diagnostic child; GPU0/1/2 are never targeted, stopped or restarted."
+    },
+    {
+      "topic": "One sanity plus19 remaining, with unchanged event set",
+      "verdict": "PASS",
+      "evidence": "Independent local JSON checks reconstruct the coordinator's order and confirm the sanity event is ab_motoinrain:GT_unknown:77, agreeing with released_GPU_schedule and the original GPU3 first event. jobs[:1] and jobs[1:] are disjoint and exactly cover the same20 unique event IDs and sequence/query pairs in actual_TRAIN_unknown_probe_jobs_cpu.json; all are TRAIN and absent from validation. The coordinator waits for sanity child exit0 and CPU PASS before starting the19 remaining events. No sanity replay or overlapping diagnostic child is introduced."
+    },
+    {
+      "topic": "Explicit validator schedules and unchanged array checks",
+      "verdict": "PASS",
+      "evidence": "validate_unknown_probe_cpu.py:17-32 accepts only1 or4 distinct physical indices in0-3. It expects one sanity event per selected card and (20-card_count)/card_count remaining events:19 for the released-card schedule or4 per card for the historical schedule. The coordinator passes --gpus3 for all three validations. Existing33-frame masks, unknown-query/H3 nulls, at-least3-known H32 requirement, known-frame IoU recomputation against saved GT, outcome equality, fixed query outputs/control metadata, complementary coordinates and duplicate-event rejection remain present. Final aggregation therefore contains20 events once each."
+    },
+    {
+      "topic": "Frozen model, TRAIN-only controls and no native-score input",
+      "verdict": "PASS",
+      "evidence": "The coordinator:66-79 reads the existing full98 selection, requires PASS,16 candidates and checkpoint equality with the unchanged epoch_004.pth in the plan, then supplies that model to the existing frozen C1_components probe. It does not write selection or weights and does not read native accuracy reports. H3/H32, seed42 and action write verification remain explicit. The inherited probe uses initialization GT and offline TRAIN eligibility/outcome labels, without future GT action input or optimizer work. The same query output, actual pause, appearance and memory tensors, times and quality remain controlled by the previously reviewed probe assertions."
+    },
+    {
+      "topic": "Launch environment and source isolation",
+      "verdict": "PASS",
+      "evidence": "The local adapter requires probe/released-schedule source PASS and CPU-fixture PASS. Its upload list contains only the new coordinator, diagnostic validator, new review and diagnostic plan, all under the diagnostic run directory; the active native scripts/modules neither import those files nor receive changes from this adapter. One detached CPU coordinator starts with CUDA hidden and PYTHONPATH set. Diagnostic child Python, cwd, CUDA device order, library path, caches, thread count and CUBLAS configuration match scripts/run_temporal.sh. Every CPU-validator call explicitly hides CUDA and sets PYTHONPATH."
+    },
+    {
+      "topic": "Failure records and completion semantics",
+      "verdict": "PASS",
+      "evidence": "Separate released_gpu3 output/controller-log names prevent collision with native outputs and the old unlaunched schedule. Existing local launch receipt, remote output base or controller log prevents reuse. Child logs, jobs and probe arrays/config/results remain on disk; exit codes are recorded, failed children or failed CPU checks stop the sequence, and COMPLETE appears only after the combined1+19 CPU audit. The launcher saves SSH output and checks its return code before recording a launch receipt. No automatic retry, prior-failure deletion or temperature/power action is added; a launch PID is not represented as a completed experiment."
+    },
+    {
+      "topic": "CPU fixture evidence is not the planned experiment",
+      "verdict": "PASS",
+      "evidence": "The new saved fixture JSON and log agree on PASS for1 sanity,19 remaining and20 combined rows, with zero neural forward calls and optimizer updates. They explicitly use sealed prior NN arrays with the first4 labels deliberately masked. This exercises the revised schedule counts and masking/aggregation paths; its repeated fixture rows and numerical deltas do not establish actual20-event outcomes or native performance."
+    }
+  ],
+  "checks_actually_executed": [
+    "Read the local revised source, launch adapter, saved native primary and CPU-fixture receipts/log.",
+    "Trace native shell output paths and completion filenames to the evaluator; inspect native selection/continuation source and diagnostic upload scope.",
+    "Parse the coordinator, validator, launch adapter and embedded remote launch string with local stdlib AST, without importing project modules or executing entry points.",
+    "Independently reconstruct the1+19 job partition from JSON and verify unique events/query pairs, exact original-job coverage, declared sanity event and TRAIN/validation membership."
+  ],
+  "reviewer_execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "deployments": 0,
+    "subagents_spawned": 0,
+    "research_source_files_modified": false,
+    "historical_review_modified": false,
+    "only_written_artifact": "refine-logs/runs/recoverability_write_events/unknown_released_gpu_source_review.json"
+  },
+  "limitations": [
+    "This is source PASS for the revised release gate, not live attestation that GPU3 is still free or that the two remote completion artifacts exist. The launcher and coordinator must satisfy their actual gates before the first new NN child.",
+    "At the reviewed primary snapshot the full native five-metric reports are pending. Partial shard inference completion is not actual-GT native acceptance; the all-five plus2percentage-point goal remains ACTIVE_UNMET.",
+    "Neither the one-event neural sanity nor the19 remaining actual rollouts were executed by this reviewer. Fixture PASS does not substitute for their runtime state assertions and actual-array CPU checks.",
+    "The CPU validator recomputes IoU using saved GT arrays and the existing iou function; it does not independently reread raw TRAIN GT. Dataset eligibility and action-input boundaries remain those of the previously reviewed probe.",
+    "Finite selected TRAIN events and event-level bootstrap intervals cannot establish native gains, permanent unrecoverability or independent-training uncertainty. Concurrent shared-host timing is descriptive, not isolated algorithm speed evidence."
+  ]
+}

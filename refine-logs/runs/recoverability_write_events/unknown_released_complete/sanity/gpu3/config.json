@@ -1,0 +1,34 @@
+{
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "jobs_file": "/data/gb/outputs/recoverability_unknown_geometry_train20_released_gpu3_20261006/sanity_gpu3_jobs.json",
+  "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+  "pretrained": "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+  "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+  "output": "/data/gb/outputs/recoverability_unknown_geometry_train20_released_gpu3_20261006/sanity/gpu3",
+  "horizons": [
+    3,
+    32
+  ],
+  "write_verification": "action",
+  "seed": 42,
+  "geometry_reference": "C1_components",
+  "jobs": [
+    {
+      "sequence": "ab_motoinrain",
+      "query_frame": 77,
+      "event_id": "ab_motoinrain:GT_unknown:77",
+      "unknown_frames_in_episode": 14,
+      "future32_known_GT_frames": 19,
+      "source_prefix_role": "recovered_within32_after_gap"
+    }
+  ],
+  "checkpoint_epoch": 4,
+  "scope": "TRAIN matched-prestate diagnostic; no training or native benchmark",
+  "query_output_unchanged": true,
+  "geometry_scope": "C1 changes query search and motion reference; velocity_search changes ONLY next search reference using past centers and real times; C1_components separates query search box and motion-history coordinates with the actual loaded-policy pause, appearance, memories, time and quality held fixed. None is verified identity.",
+  "future_policy": "same frozen checkpoint normal deployed step",
+  "GT_role": "initialization, TRAIN prelaunch eligibility, and offline outcomes; no GT action inputs"
+}
