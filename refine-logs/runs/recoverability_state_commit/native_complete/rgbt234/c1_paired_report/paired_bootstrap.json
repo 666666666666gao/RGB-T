@@ -1,0 +1,43 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/recoverability_geometry_commit_native_20261005/rgbt234/c1_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/recoverability_geometry_commit_native_20261005/rgbt234/c1_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "c1",
+        "geometry_commit_complete"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": -3.153257378232324,
+          "percentile_95_interval_percentage_points": [
+            -4.827111224359436,
+            -1.6015608555647833
+          ],
+          "improved_sequences": 46,
+          "worsened_sequences": 69,
+          "tied_sequences": 119
+        },
+        "MSR": {
+          "mean_delta_percentage_points": -2.148726121045872,
+          "percentile_95_interval_percentage_points": [
+            -3.3730791710407733,
+            -1.0367436233719065
+          ],
+          "improved_sequences": 103,
+          "worsened_sequences": 129,
+          "tied_sequences": 2
+        }
+      }
+    }
+  }
+}

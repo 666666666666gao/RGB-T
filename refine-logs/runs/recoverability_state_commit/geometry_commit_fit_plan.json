@@ -1,5 +1,5 @@
 {
-  "status": "COMPLETE_ALL4_FULL98_NEGATIVE_SELECTED_E41_NATIVE_RUNNING",
+  "status": "COMPLETE_FOUR60_FITS_FULL98_AND_BOTH_NATIVE_NEGATIVE",
   "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
   "parent_epoch": 4,
   "frozen": "pretrained GOLA/C1 and existing old4 A/B/C; only new C state-submission head trains",
@@ -252,9 +252,68 @@
   "first_full98_observation_cst": "2026-10-05T17:30:09+08:00",
   "later_poll_seconds": 240,
   "training_scope": "Only new commit head; frozen old4 A/B/C/C1; 18TRAINevents66queries, 6optimizer-held-out events22queries already diagnosed",
-  "native_metrics": null,
-  "formal_native_complete": false,
-  "weight_retention": "Unselected gpu0/2/3 heads retired379710B after allfull98 readers closed; e41 retained for native, old4 and teachers protected.",
+  "native_metrics": {
+    "metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "baseline_percent": 73.10197299993155,
+        "c1_percent": 74.15451765370953,
+        "old4_percent": 74.45735525847881,
+        "method_percent": 70.87340176485108,
+        "delta_vs_baseline_pp": -2.228571235080466,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "baseline_percent": 76.59844897037928,
+        "c1_percent": 77.86097272569167,
+        "old4_percent": 78.09777783730206,
+        "method_percent": 74.23986802546474,
+        "delta_vs_baseline_pp": -2.358580944914536,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "baseline_percent": 61.03742534859602,
+        "c1_percent": 61.951313680271845,
+        "old4_percent": 62.12706332333795,
+        "method_percent": 59.1309196011904,
+        "delta_vs_baseline_pp": -1.9065057474056175,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "baseline_percent": 91.77885757450758,
+        "c1_percent": 91.81700889694795,
+        "old4_percent": 92.13340500935078,
+        "method_percent": 88.66375151871566,
+        "delta_vs_baseline_pp": -3.1151060557919266,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "baseline_percent": 69.2325931778893,
+        "c1_percent": 69.2340473415621,
+        "old4_percent": 69.57809745628578,
+        "method_percent": 67.08532122051624,
+        "delta_vs_baseline_pp": -2.1472719573730643,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false
+      }
+    ],
+    "all_five_overall_meet_plus_two": false
+  },
+  "formal_native_complete": true,
+  "weight_retention": "3unselected heads already gone; e41 remains ONLY for new fixed-weight control, old4 still globalbest.",
   "actual_full98_scores": [
     0.6895623651315335,
     0.7117588343821164,
@@ -369,5 +428,9 @@
     "first_observation": "2026-10-05T18:54:41.832295+08:00",
     "later_poll_seconds": 240
   },
-  "next_causal_question": "Labels apply a single query intervention then H frozen-old4 steps; deployment re-intervenes every frame. Test fixed weights with the trained H continuation, no new loss/epochs first."
+  "next_causal_question": "Labels apply a single query intervention then H frozen-old4 steps; deployment re-intervenes every frame. Test fixed weights with the trained H continuation, no new loss/epochs first.",
+  "native_report": "refine-logs/runs/recoverability_state_commit/native_complete/complete_report/complete_core_report.json",
+  "native_created_at_cst": "2026-10-05T19:09:24.758280+08:00",
+  "original_native_observer_status": "23101 CLOSED_EXIT0",
+  "original_native_CPU_finisher_status": "2214595 CLOSED_COMPLETE"
 }

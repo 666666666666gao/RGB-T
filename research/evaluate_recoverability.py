@@ -36,6 +36,8 @@ def arguments():
                         help='Fixed-weight control: action keeps learned regular/pause choice without an independent identity veto. Memory gates stay unchanged.')
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--commit-model', help='Optional trained query search/appearance commit head; parent model stays fixed.')
+    parser.add_argument('--commit-continuation', choices=('frame', 'teacher_horizon'), default='frame',
+                        help='Fixed-weight control: after a commit intervention use frozen old4 for the head training horizon.')
     return parser.parse_args()
 
 
@@ -45,6 +47,10 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
     if commit_head is not None:
         from .geometry_commit import GeometryCommitTracker
         tracker_type, kwargs = GeometryCommitTracker, {'commit_head':commit_head}
+        if args.commit_continuation == 'teacher_horizon':
+            from .geometry_commit_event import GeometryCommitEventTracker
+            tracker_type = GeometryCommitEventTracker
+            kwargs['continuation_horizon'] = args.commit_continuation_horizon
     tracker = tracker_type(extractor, modules, motion, read_pair(visible[0], infrared[0], device),
                                     initial, threshold, args.policy, not args.disable_search, not args.unsafe_writes,
                                     args.write_verification, **kwargs)
@@ -74,6 +80,8 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
              'changed_candidate_indices', 'paused_query_writes', 'max_motion_history')}
     if commit_head is not None:
         stats.update({key:tracker.stats[key] for key in ('geometry_commit_interventions','geometry_reference_changed','appearance_commit_overrides')})
+        if args.commit_continuation == 'teacher_horizon':
+            stats.update({key:tracker.stats[key] for key in ('old4_continuation_frames','commit_events')})
     if args.parity_check:
         extractor.proposal_policy = 'peaks'
         reference_timeline = []
@@ -93,6 +101,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
 
 def main():
     args = arguments()
+    assert args.commit_continuation == 'frame' or args.commit_model
     assert not args.parity_check or args.zero_init or args.policy == 'c1'
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
@@ -118,6 +127,7 @@ def main():
         commit_head=GeometryCommitHead().to(device)
         commit_head.load_state_dict(commit['head'],strict=True)
         commit_head.eval().requires_grad_(False)
+        args.commit_continuation_horizon = commit['args']['horizon'] if args.commit_continuation == 'teacher_horizon' else 0
     motion_config = json.loads((Path(args.motion_run) / 'config.json').read_text())
     motion_checkpoint = torch.load(Path(args.motion_run) / 'last.pth', map_location='cpu', weights_only=False)
     assert motion_checkpoint['epoch'] == 30 and motion_config['c1_head'] == args.c1_head
@@ -160,6 +170,8 @@ def main():
         config.update(commit_head_epoch=commit['epoch'],
                       new_commit_parameters=sum(p.numel() for p in commit_head.parameters()),
                       commit_scope='Current output and motion history unchanged; learned query search-reference and appearance commits')
+        if args.commit_continuation == 'teacher_horizon':
+            config['commit_scope'] = 'One chosen query intervention, then frozen-old4 continuation for the trained horizon; no past output rewrite or future GT'
         config['total_loaded_parameters_including_unused_frozen_motion_heads'] += config['new_commit_parameters']
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()

@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/recoverability_geometry_commit_native_20261005/lasher/c1_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/recoverability_geometry_commit_native_20261005/lasher/c1_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "c1",
+        "geometry_commit_complete"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": -3.2811158888584395,
+          "percentile_95_interval_percentage_points": [
+            -5.273291461878639,
+            -1.29630910416573
+          ],
+          "improved_sequences": 78,
+          "worsened_sequences": 122,
+          "tied_sequences": 45
+        },
+        "PR": {
+          "mean_delta_percentage_points": -3.621104700226883,
+          "percentile_95_interval_percentage_points": [
+            -5.913053345905365,
+            -1.4454679489075566
+          ],
+          "improved_sequences": 80,
+          "worsened_sequences": 105,
+          "tied_sequences": 60
+        },
+        "SR": {
+          "mean_delta_percentage_points": -2.8203940790814515,
+          "percentile_95_interval_percentage_points": [
+            -4.497694587569349,
+            -1.1649560794817801
+          ],
+          "improved_sequences": 107,
+          "worsened_sequences": 137,
+          "tied_sequences": 1
+        }
+      }
+    }
+  }
+}
