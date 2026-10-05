@@ -18,6 +18,19 @@ def analyze(rows):
                 'actual_write_eligible_queries': sum(q['query_raw_write_eligible'] for q in queries),
                 'geometry_different_queries': sum(not q['selected_matches_C1_keep'] for q in queries),
                 'controls': {}, 'paired': {}}
+        roles = {'normal': 0, 'ambiguous_localization': 0, 'failed_then_recovered32': 0, 'failed_unrecovered32': 0}
+        for q in queries:
+            raw = next(c for c in q['controls'] if c['name'] == 'raw')
+            if raw['query_output_iou'] >= .5:
+                role = 'normal'
+            elif raw['query_output_iou'] >= .2:
+                role = 'ambiguous_localization'
+            elif raw['horizons']['32']['first_future_three_correct_run_offset'] is not None:
+                role = 'failed_then_recovered32'
+            else:
+                role = 'failed_unrecovered32'
+            roles[role] += 1
+        item['raw_reference_query_roles'] = roles
         for h in ['3', '32']:
             for name in ['raw', 'pause', 'geometry_C1', 'pause_geometry_C1']:
                 values = [next(c for c in q['controls'] if c['name'] == name) for q in queries]
@@ -52,6 +65,8 @@ def analyze(rows):
                                'events_equal': sum(abs(d) <= 1e-8 for d in diffs)}
     eligible = [q for q in rows if q['query_raw_write_eligible']]
     return {'events': len(events), 'queries': len(rows), 'event_rows': events, 'equal_event_comparisons': summary,
+            'equal_event_mean_raw_role_fractions': {role: float(np.mean([e['raw_reference_query_roles'][role] / e['correlated_queries'] for e in events])) for role in roles},
+            'events_containing_raw_role': {role: sum(e['raw_reference_query_roles'][role] > 0 for e in events) for role in roles},
             'actual_write_eligible_queries': len(eligible),
             'eligible_write_pause_future_deltas': [{
                 'sequence': q['sequence'], 'event_id': q['event_id'], 'query_frame': q['query_frame'],
