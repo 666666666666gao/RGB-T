@@ -146,3 +146,8 @@ Checkpoint retention per explicit user instruction: after validation and audits 
 ## 2026-10-06T07:07:09.435730+08:00 selective-state-commit execution update
 
 Actual four-GPU query M0 PASS, full1789labels collecting original3338360. Original3351735 queued: four2epoch fit sanities, fourfull60epoch C-extension fits (H3/H32 × lost0/.1, B128 LR.001 seed42), all98video selection, onehead forboth245/234 native/full5/31attrs/4pairedreferences. A/B+completeGOLA/C1/old4 remain active/frozen in this prototype; not jointABC retraining. Actual consecutive known-state events get totaltrainingweight1. Two27/32frame videos explicitlyH3-only; H32 doesnot inventfuture labels. OptimizerVAL exclusion, nofutureGTinput, no TEST checkpointchoice; onebestmodel sufficient, allfiveGOLA+2 stillUNMET. Humanhandoff only docs/HANDOFF_20261002.md; authoritative machine snapshot refine-logs/runs/selective_state_commit/current_execution_snapshot.json.
+
+
+## 2026-10-06T07:45:41.497027+08:00 pre-fit endpoint-selection correction
+
+Actual waiting-only3351735 retired with no fit/children/updates. Replacement3423188 waits unchanged3338360 collection; no NN collection/training replay. Four full60 fits preserve cached-best and actual60endpoint, strictreloadboth. All eight candidates each full98/49418 in two4GPU waves; selectONE by developer sequenceIoU before samehead bothnative/all5/31attrs/4refs5000CIs. Retire11 own unused heads onlyafter all consumers. Recipe/data/model unchanged, no>=3positive-seed gate, targetall5GOLA+2 remainsUNMET.

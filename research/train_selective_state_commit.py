@@ -131,10 +131,10 @@ def main():
     best, updates, grads, started = m0['event_weighted_utility'], 0, set(), time.perf_counter()
     parent = json.loads((root / 'full/gpu0/config.json').read_text())['model']
 
-    def save(epoch, metrics):
+    def save(epoch, metrics, filename='best.pth'):
         torch.save({'module': 'selective_state_commit', 'features': FEATURES, 'threshold': .03,
                     'parent_model': parent, 'search_value': 'gross', 'epoch': epoch,
-                    'args': vars(args), 'head': head.state_dict(), 'validation': metrics}, out / 'best.pth')
+                    'args': vars(args), 'head': head.state_dict(), 'validation': metrics}, out / filename)
 
     save(0, m0)
     history = [{'epoch': 0, 'optimizer_updates': 0, 'validation': m0}]
@@ -165,6 +165,13 @@ def main():
         print(json.dumps(record), flush=True)
     changed = [key for key, value in head.state_dict().items() if not torch.equal(value, original[key])]
     assert updates == config['required_optimizer_updates'] and changed and grads
+    if not args.sanity:
+        save(args.epochs, metrics, 'last.pth')
+        endpoint = torch.load(out / 'last.pth', map_location=device, weights_only=False)
+        endpoint_head = SelectiveStateCommitHead().to(device)
+        endpoint_head.load_state_dict(endpoint['head'], strict=True)
+        endpoint_metrics, _ = evaluate(endpoint_head, valid)
+        assert endpoint['epoch'] == args.epochs and endpoint_metrics == metrics
     saved = torch.load(out / 'best.pth', map_location=device, weights_only=False)
     reloaded = SelectiveStateCommitHead().to(device)
     reloaded.load_state_dict(saved['head'], strict=True)
@@ -173,6 +180,7 @@ def main():
     result = {'status': 'COMPLETE_FULL_C_EXTENSION_TRAINING', 'epochs': args.epochs, 'optimizer_updates': updates,
               'best_epoch': saved['epoch'], 'best_validation': saved['validation'], 'M0_parent_exact': True,
               'actual_gradient_parameters': sorted(grads), 'actual_changed_parameters': changed, 'strict_reload_pass': True,
+              'last_epoch': args.epochs if not args.sanity else None, 'last_strict_reload_pass': not args.sanity,
               'peak_allocated_bytes': torch.cuda.max_memory_allocated(device), 'elapsed_seconds': time.perf_counter() - started}
     (out / 'training_complete.json').write_text(json.dumps(result, indent=2))
     (out / 'COMPLETE').write_text('COMPLETE\n')

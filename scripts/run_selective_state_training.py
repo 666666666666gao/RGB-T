@@ -1,4 +1,4 @@
-"""After original collection: four full C fits, full98 selection, one native model."""
+"""Four full C fits, cached-best and full-endpoint full98 selection, one native model."""
 import argparse
 import json
 import os
@@ -77,37 +77,48 @@ def main():
             config = json.loads((root / stage / arm / 'config.json').read_text())
             assert result['epochs'] == epochs and result['optimizer_updates'] == config['required_optimizer_updates']
             assert result['M0_parent_exact'] and result['strict_reload_pass'] and result['actual_changed_parameters']
+            if stage == 'fit_full':
+                assert result['last_epoch'] == 60 and result['last_strict_reload_pass']
         record(stage.upper() + '_ACTUAL_TRAINING_PASS')
-    commands = []
-    for gpu, (arm, _, _) in enumerate(ARMS):
-        commands.append(['bash', 'scripts/run_temporal.sh', str(gpu), 'evaluate_recoverability',
-                         '--dataset', 'lasher', '--root', '/data/wangwj/dataset/LasHeR/traingset',
-                         '--validation-split', SPLIT, '--model', PARENT,
-                         '--state-commit-model', str(root / 'fit_full' / arm / 'best.pth'),
-                         '--search-value', 'gross', '--write-verification', 'action',
-                         '--output', str(root / 'full98' / arm / 'predictions')])
-    wave('full98', commands)
+    candidates = []
+    for checkpoint in ('best', 'last'):
+        commands = []
+        for gpu, (arm, _, _) in enumerate(ARMS):
+            label = arm + '_' + checkpoint
+            weight = root / 'fit_full' / arm / (checkpoint + '.pth')
+            candidates.append((label, arm, checkpoint, weight))
+            commands.append(['bash', 'scripts/run_temporal.sh', str(gpu), 'evaluate_recoverability',
+                             '--dataset', 'lasher', '--root', '/data/wangwj/dataset/LasHeR/traingset',
+                             '--validation-split', SPLIT, '--model', PARENT,
+                             '--state-commit-model', str(weight),
+                             '--search-value', 'gross', '--write-verification', 'action',
+                             '--output', str(root / 'full98' / label / 'predictions')])
+        wave('full98_' + checkpoint, commands)
     env = dict(os.environ, CUDA_VISIBLE_DEVICES='', PYTHONPATH=str(REPO),
                LD_LIBRARY_PATH='/data/gb/envs/gola/lib', OMP_NUM_THREADS='4')
     references = ['/data/gb/outputs/abc_internal_validation_v1/baseline/predictions',
                   '/data/gb/outputs/abc_internal_validation_v1/c1/predictions',
                   '/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/predictions',
                   '/data/gb/outputs/recoverability_search_gross_control_20261006/predictions']
-    for arm, _, _ in ARMS:
-        receipt = json.loads((root / 'full98' / arm / 'predictions/inference_completion.json').read_text())
+    for label, _, _, _ in candidates:
+        receipt = json.loads((root / 'full98' / label / 'predictions/inference_completion.json').read_text())
         assert receipt['completed'] and receipt['sequences'] == 98 and receipt['frames'] == 49418
     with (root / 'full98_CPU_report.log').open('w') as log:
         subprocess.run([PYTHON, '-u', '-m', 'research.collect_recoverability_metrics',
                         '--dataset', 'lasher', '--root', '/data/wangwj/dataset/LasHeR/traingset', '--split', SPLIT,
-                        '--labels', *[a for a, _, _ in ARMS], '--runs', *[str(root / 'full98' / a / 'predictions') for a, _, _ in ARMS],
+                        '--labels', *[label for label, _, _, _ in candidates],
+                        '--runs', *[str(root / 'full98' / label / 'predictions') for label, _, _, _ in candidates],
                         '--reference-labels', 'baseline', 'c1', 'old4', 'gross_parent', '--references', *references,
                         '--output', str(root / 'full98_report')], cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT, check=True)
     report = json.loads((root / 'full98_report/full_recoverability_report.json').read_text())
     assert report['completed'] and report['sequences'] == 98
-    selected = max((a for a, _, _ in ARMS), key=lambda a: report['variants'][a]['sequence_mean_iou'])
-    selection = {'selected_arm': selected, 'state_commit_model': str(root / 'fit_full' / selected / 'best.pth'),
+    selected, arm, checkpoint, weight = max(candidates, key=lambda row: report['variants'][row[0]]['sequence_mean_iou'])
+    selected_training = json.loads((weight.parent / 'training_complete.json').read_text())
+    selection = {'selected_candidate': selected, 'selected_arm': arm, 'selected_checkpoint': checkpoint,
+                 'selected_epoch': 60 if checkpoint == 'last' else selected_training['best_epoch'],
+                 'state_commit_model': str(weight),
                  'parent_model': PARENT, 'search_value': 'gross', 'same_checkpoint_both_native_datasets': True,
-                 'selection_scope': 'One best among four training configs by full98 developer sequence IoU; not multiple-seed stability or untouched confirmation',
+                 'selection_scope': 'One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation',
                  'sequence_mean_iou': {k: v['sequence_mean_iou'] for k, v in report['variants'].items()},
                  'native_metrics_completed': False}
     (root / 'selected_model.json').write_text(json.dumps(selection, indent=2))
@@ -121,12 +132,14 @@ def main():
     removed = []
     for stage in ('fit_sanity', 'fit_full'):
         for arm, _, _ in ARMS:
-            weight = root / stage / arm / 'best.pth'
-            if str(weight) == selection['state_commit_model']:
-                continue
-            assert (weight.parent / 'COMPLETE').is_file()
-            removed.append({'path': str(weight), 'bytes': weight.stat().st_size})
-            weight.unlink()
+            for checkpoint in ('best',) if stage == 'fit_sanity' else ('best', 'last'):
+                weight = root / stage / arm / (checkpoint + '.pth')
+                if str(weight) == selection['state_commit_model']:
+                    continue
+                assert (weight.parent / 'COMPLETE').is_file()
+                removed.append({'path': str(weight), 'bytes': weight.stat().st_size})
+                weight.unlink()
+    assert len(removed) == 11
     (root / 'unused_own_weight_cleanup.json').write_text(json.dumps({'removed': removed,
         'kept': selection['state_commit_model'], 'old4_and_all_dependencies_preserved': True}, indent=2))
     record('COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS', metrics=native['five_metrics'],
