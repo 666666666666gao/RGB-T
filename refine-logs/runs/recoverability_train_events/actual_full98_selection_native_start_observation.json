@@ -1,0 +1,170 @@
+{
+  "observed_at_cst": "2026-10-05T13:37:14.425721+08:00",
+  "evaluation": {
+    "stage": "BOTH_COMPLETE_NATIVE_BENCHMARKS_RUNNING",
+    "at_cst": "2026-10-05T13:33:53.069440+08:00",
+    "pid": 1423909,
+    "automatic_restarts": 0,
+    "system_goal_completed": false,
+    "children": [
+      {
+        "pid": 1756473,
+        "gpu": 0,
+        "log": "/data/gb/setup/train_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu0_20261005.log"
+      },
+      {
+        "pid": 1756474,
+        "gpu": 1,
+        "log": "/data/gb/setup/train_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu1_20261005.log"
+      },
+      {
+        "pid": 1756475,
+        "gpu": 2,
+        "log": "/data/gb/setup/train_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu2_20261005.log"
+      },
+      {
+        "pid": 1756480,
+        "gpu": 3,
+        "log": "/data/gb/setup/train_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu3_20261005.log"
+      }
+    ]
+  },
+  "actual_ps": "    PID    PPID STAT ELAPSED COMMAND\n1423909       1 Ss     12266 python\n1756473 1423909 S        201 bash\n1756474 1423909 S        201 bash\n1756475 1423909 S        201 bash\n1756480 1423909 S        201 bash\n",
+  "live_pids": [
+    1423909,
+    1756473,
+    1756474,
+    1756475,
+    1756480
+  ],
+  "selection": {
+    "status": "PASS",
+    "checkpoint": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/best.pth",
+    "selected_best_epoch": 3,
+    "all_four_full_fits_CPU_passed": true,
+    "completed_epochs": 60,
+    "optimizer_steps": 420,
+    "train_queries": 2478,
+    "selection_rule": "Highest full98 continuous developer sequence mean IoU among trained positive epochs; declared order on ties; no native-test selection.",
+    "candidates": [
+      {
+        "arm": "base_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/epoch_028.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/continuous_epoch_028/predictions",
+        "epoch": 28,
+        "sequence_mean_iou": 0.7301031391707141
+      },
+      {
+        "arm": "aug_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/epoch_020.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/continuous_epoch_020/predictions",
+        "epoch": 20,
+        "sequence_mean_iou": 0.7383100254741436
+      },
+      {
+        "arm": "base_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/epoch_028.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/continuous_epoch_028/predictions",
+        "epoch": 28,
+        "sequence_mean_iou": 0.7302307240446463
+      },
+      {
+        "arm": "aug_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/epoch_020.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/continuous_epoch_020/predictions",
+        "epoch": 20,
+        "sequence_mean_iou": 0.7270053410264675
+      },
+      {
+        "arm": "base_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/epoch_056.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/continuous_epoch_056/predictions",
+        "epoch": 56,
+        "sequence_mean_iou": 0.722416041644418
+      },
+      {
+        "arm": "aug_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/epoch_040.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/continuous_epoch_040/predictions",
+        "epoch": 40,
+        "sequence_mean_iou": 0.731830575829461
+      },
+      {
+        "arm": "base_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/epoch_056.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/continuous_epoch_056/predictions",
+        "epoch": 56,
+        "sequence_mean_iou": 0.7245241656926932
+      },
+      {
+        "arm": "aug_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/epoch_040.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/continuous_epoch_040/predictions",
+        "epoch": 40,
+        "sequence_mean_iou": 0.7284479769237943
+      },
+      {
+        "arm": "base_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/epoch_084.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/continuous_epoch_084/predictions",
+        "epoch": 84,
+        "sequence_mean_iou": 0.7223641762563784
+      },
+      {
+        "arm": "aug_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/epoch_060.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/continuous_epoch_060/predictions",
+        "epoch": 60,
+        "sequence_mean_iou": 0.7294091301185511
+      },
+      {
+        "arm": "base_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/epoch_084.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/continuous_epoch_084/predictions",
+        "epoch": 84,
+        "sequence_mean_iou": 0.7296331088859874
+      },
+      {
+        "arm": "aug_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/epoch_060.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/continuous_epoch_060/predictions",
+        "epoch": 60,
+        "sequence_mean_iou": 0.723912216951577
+      },
+      {
+        "arm": "base_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/best.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005/continuous_best/predictions",
+        "epoch": 4,
+        "sequence_mean_iou": 0.7249104219981505
+      },
+      {
+        "arm": "aug_pairwise",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/best.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005/continuous_best/predictions",
+        "epoch": 9,
+        "sequence_mean_iou": 0.7309170605980279
+      },
+      {
+        "arm": "base_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/best.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005/continuous_best/predictions",
+        "epoch": 59,
+        "sequence_mean_iou": 0.7272626052953101
+      },
+      {
+        "arm": "aug_budgeted",
+        "model": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/best.pth",
+        "predictions": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005/continuous_best/predictions",
+        "epoch": 3,
+        "sequence_mean_iou": 0.7393453844544717
+      }
+    ],
+    "both_datasets_same_fixed_checkpoint": true,
+    "parent_remains_historical_reference": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "selected_at_cst": "2026-10-05T13:33:53.003994+08:00"
+  },
+  "neural_forward_calls_by_observer": 0,
+  "optimizer_steps": 0,
+  "GPU_queries": 0
+}

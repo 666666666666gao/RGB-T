@@ -90,6 +90,7 @@ def main():
         'base_budgeted': (84, 420, 1762), 'aug_budgeted': (60, 420, 2478)}
     selection = report['selected_checkpoint']
     assert selection['both_datasets_same_fixed_checkpoint'] and selection['selected_best_epoch'] > 0
+    selected_updates = selection['selected_best_epoch'] * ((selection['train_queries'] + 383) // 384)
     for dataset, sequences, frames in [('lasher', 245, 220703), ('rgbt234', 234, 116649)]:
         audit = report['datasets'][dataset]['independent_native_CPU']
         assert audit['status'] == 'PASS' and audit['sequences'] == sequences and audit['frames'] == frames
@@ -109,7 +110,7 @@ def main():
         lines.append(f"| {name} | {row['epochs']} | {row['optimizer_steps']} | {row['train_queries']} | "
                      f"{row['peak_cuda_mib'] / 1024:.4f} | {row['elapsed_seconds']:.2f} |")
     lines.extend(['', f"完整98条连续内部视频共评测{len(selection['candidates'])}个正epoch候选权重，锁定`{selection['checkpoint']}`，"
-                  f"epoch{selection['selected_best_epoch']}，SHA256 `{report['selected_checkpoint_sha256_at_report_export']}`。"
+                  f"epoch{selection['selected_best_epoch']}，该权重实际累计{selected_updates}次更新；所属完整训练运行执行420次更新。SHA256 `{report['selected_checkpoint_sha256_at_report_export']}`。"
                   '同一个权重用于LasHeR245条／220703帧对和RGBT234234条／116649帧对，合计479条／337352帧对。'
                   '实际GT、逐序列指标、全部属性、官方曲线及5000次配对bootstrap已独立CPU核对；不把缓存utility当正式SR。', '',
                   native_tables(report), '',
