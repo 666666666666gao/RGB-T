@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "在完整预训练GOLA-B及C1基础上，研究不可靠定位如何损害后续可恢复性；围绕有界身份/候选证据、可信几何驱动的多未来搜索、事件级延迟风险与分级状态提交完善A/B/C。正常、恢复和无法恢复状态按事件覆盖；搜索监督与合法写入动作对分别审计。先关闭已完成训练和候选的全量评测，再做同状态位置/运动提交最小因果对照，证据支持后训练升级模块。只做原地LasHeR/RGBT234；预先选定一个内部指标最好的seed/checkpoint/config并用于两个数据集，不要求三个seed同时超过。最终全部五项正式指标均须比本地完整GOLA-B提高至少2个百分点，同时给出全量序列、31属性、曲线、配对区间、恢复/损害/写入机制和完整推理成本。训练完成、缓存IoU或源码检查不能替代正式成绩。保护old4及必要依赖，仅清理已完成消费者后的无用权重；四卡用于必要工作，长任务按ETA后180–300秒检查；无需功率/温度控制。只维护一份人工交接文档，同步Desktop与服务器，并上传授权仓库。",
+  "execution_objective": "以完整预训练GOLA-B、C1和保护old4为基础，接通A身份证据/B因果运动搜索/C事件风险与分级提交；用一个预先选定最好checkpoint完整训练并完成LasHeR/RGBT234五项native指标，全部>=完整GOLA+2pp。当前先验证C的最小动作扩展，不把旧A/B冻结称为本轮联合训练。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -6334,6 +6334,12 @@
       "validation": "The existing 98 videos are repeatedly used development data and must be disclosed as such. Pre-register a validation protocol not used to tune the proposed structure/thresholds; official tests cannot select seeds, epochs or thresholds.",
       "confirmation": "After freezing the selected best model, complete Baseline/A/B/C/AB/AC/BC/ABC with equal-capacity/equal-search alternatives, memory/search budget curves, fair serial timing, FLOPs with coverage and SUTrack-B224 transfer under matched training resources. Additional seeds are optional diagnostics; retain all already-run results, but their performance is not an acceptance requirement.",
       "final_acceptance": "One selected best model, with the same fixed checkpoint on both official datasets, exceeds the same local complete GOLA-B by at least2 percentage points on every one of the five native metrics. Report all full native metrics/attributes/sequences/curves and fixed-checkpoint5000paired sequence confidence intervals, mechanisms and actualcost. Intervals support claims of statistical improvement; multi-seed averages, at least3positive seeds, and no-negative-other-seed requirements are removed. Selection uses internal full-video validation; officialtests verify the locked model. All comprehensive reports and synchronization receipts complete."
+    },
+    {
+      "id": "S_selective_state_commit_event_labels_and_full_fit_20261006",
+      "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
+      "work": "One uniform timestamp/all881TRAIN+98VAL, 716 historical transition hints,98 highscore wrong-write hints; exact duplicates merged, actual labels regenerated",
+      "acceptance": "Full98 developer videos/all49418frames selectsonebest checkpoint; samehead bothnative245/234/all337352frames,5metrics/31attrs/curves/5000pairedCIs4references/fullmechanisms"
     }
   ],
   "native_targets_percent": {
@@ -6379,7 +6385,7 @@
     "environment": "/data/gb/envs/gola",
     "use_four_gpus_when_useful": true,
     "poll_seconds": 240,
-    "checkpoint_retention": "Protectedold4 and requiredGOLA/DINO/C1/frozenmotion dependencies retained. All owned unselected/failed/latestdominated write_events weights alreadyretired with original journals; latestepoch004 1735109bytes removed onlyafterallconsumers ended. This fixedweight control produces no newweights.",
+    "checkpoint_retention": "Only one selected newhead after nativeconsumers; seven own sanity/unselected weights retired. Protectedold4 andrequireddependencies retained.",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
     "repository": "https://github.com/666666666666gao/RGB-T",
     "gpu_assignment_cst_20261003_2234": {
@@ -6389,7 +6395,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Original3174168 native bothbenchmark/full5/report/audit and 3283580 twelve-query fourcard sanity/full controls actually closed. No NN queue is currently running. Next selective-commit TRAIN supervision must be designed/reviewed before launch; no weight cleanup needed for fixed controls.",
+    "queued_successor": "Actual3351735 waits original3338360 collection_complete/240s, then4 realbackward sanities,4 full60epoch C fits,4 full98,onefixedhead bothnative/all5reports. No optimization/native result accepted yet.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6401,253 +6407,40 @@
       "historical_receipt": "refine-logs/runs/recoverability_search_realization/user_disable_thermal_power_control.json",
       "resumed_collector_pid": 1977211
     },
-    "gpu_assignment_current": [],
-    "gpu_memory_request": {
-      "policy": "Actual gradient training batch384 raisedto416. Both realABC M0 and60epoch180update fits passed at B416, about21GiB device occupancy. Current unchanged collection uses16clips/forward64 and serial causal prefixes; no padding or temperature/power query/control.",
-      "batch_size": 416,
-      "sanity_epochs": 3,
-      "sanity_optimizer_steps": 9,
-      "allfour_m0_pass": true,
-      "actual_allocated_peak_mib": 14194.94091796875,
-      "actual_nvidia_peak_mib_by_gpu": {
-        "GPU3": 21293,
-        "GPU0": 21602,
-        "GPU2": 21273,
-        "GPU1": 21271
+    "gpu_assignment_current": [
+      {
+        "gpu": 0,
+        "pid": 3338937,
+        "task": "Matched full causal TRAIN/developer-label collection",
+        "query_count": 441
       },
-      "card_total_mib": 24576,
-      "full_epochs": 60,
-      "full_updates": 180,
-      "allfour_full_completed": true,
-      "allocation_padding": false,
-      "temperature_power_constraints_enabled": false,
-      "receipt": "refine-logs/runs/recoverability_write_pair/b384_m0/write_pair_b384_m0_gate_20261004.json",
-      "latest_actual_nvidia_mib_by_gpu": {
-        "GPU3": 5109,
-        "GPU0": 1498,
-        "GPU2": 1199,
-        "GPU1": 1159
+      {
+        "gpu": 1,
+        "pid": 3338938,
+        "task": "Matched full causal TRAIN/developer-label collection",
+        "query_count": 418
       },
-      "latest_fullfit_allocated_peak_mib": 14191.0830078125,
-      "actual_fullfit_runtime_receipt": "refine-logs/runs/recoverability_warm_budgeted_action/runtime_1322.json",
-      "latest_user_preference": "Use useful real memory; actual B384 trainers GPU0 20654MiB and GPU2 20325MiB. B512 long fit OOM, no unchanged retry or artificial allocation. No power or temperature constraints.",
-      "current_observed_cst": "2026-10-05T08:42:23.218561+08:00",
-      "current_evaluation_nvidia_mib_by_gpu": {
-        "GPU0": 1180,
-        "GPU1": 851,
-        "GPU2": 851,
-        "GPU3": 851
+      {
+        "gpu": 2,
+        "pid": 3338939,
+        "task": "Matched full causal TRAIN/developer-label collection",
+        "query_count": 466
       },
-      "status": "ACTUAL_NEW716_TRAIN_COLLECTION_FOURCARDS; REAL_FULL_FITS_QUEUED_AFTER_GT_GATE",
-      "actual_latest_observation": [
-        {
-          "gpu": 0,
-          "memory_used_mib": 1498,
-          "memory_total_mib": 24576,
-          "utilization_percent": 35
-        },
-        {
-          "gpu": 1,
-          "memory_used_mib": 1159,
-          "memory_total_mib": 24576,
-          "utilization_percent": 30
-        },
-        {
-          "gpu": 2,
-          "memory_used_mib": 1199,
-          "memory_total_mib": 24576,
-          "utilization_percent": 39
-        },
-        {
-          "gpu": 3,
-          "memory_used_mib": 5109,
-          "memory_total_mib": 24576,
-          "utilization_percent": 39
-        }
-      ],
-      "all_four_gpus_active": true,
-      "current_four_fit_plan": {
-        "status": "ACTUAL_ALL4_M0_CPU_PASS; FOUR_FRESH_FULL_FITS_RUNNING",
-        "date": "2026-10-04",
-        "purpose": "Diagnose joint-learning influence after four complete current-policy fits underperformed GOLA and the protected best; retain the complete ABC inference architecture.",
-        "batch_size": 416,
-        "batch_change_reason": "User requested more useful GPU memory. Previous B384 reserved about20GiB/card; B512 long fits OOM at epoch3. Increase modestly and measure real M0/full memory, without dummy allocations.",
-        "variant_frozen_modules": {
-          "bc": [
-            "A"
-          ],
-          "ac": [
-            "B"
-          ],
-          "ab": [
-            "C"
-          ],
-          "c": [
-            "A",
-            "B"
-          ]
-        },
-        "gpu_assignments": {
-          "bc": 0,
-          "ac": 1,
-          "ab": 2,
-          "c": 3
-        },
-        "all_deployed_modules": [
-          "A",
-          "B",
-          "C"
-        ],
-        "inference_source_changed": false,
-        "m0_epochs": 3,
-        "m0_optimizer_steps_per_arm": 9,
-        "full_epochs": 60,
-        "full_optimizer_steps_per_arm": 180,
-        "train_clips": 902,
-        "validation_clips": 128,
-        "seed": 42,
-        "learning_rate": 0.0001,
-        "weight_decay": 0.0001,
-        "threshold": 0.03,
-        "search_supervision": "oracle",
-        "action_ranking": "budgeted",
-        "write_verification": "action",
-        "write_pair_calibration": false,
-        "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-        "train": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/train",
-        "validation": "/data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation",
-        "private_source": "/data/gb/experiments/recoverability_module_freeze_20261004",
-        "checkpoint_retention": "best.pth only; raw metrics and negative evidence retained",
-        "full_training_gate": "Actual all-four M0 nine-step logs, frozen/active tensor evidence, parent initialization and all128 cached21-field CPU replays PASS.",
-        "full_evaluation": "Separate actual full-fit CPU audit before any continuous98-video evaluator; no automatic full98 launch in runner.",
-        "scope": "LasHeR TRAIN/internal validation only. Native final evaluation remains LasHeR plus RGBT234, same selected checkpoint both datasets.",
-        "limitations": [
-          "B416 differs from prior joint ABC reference B384; these controls are not isolated eight-way deployment ablations.",
-          "A selected best epoch0 is the parent, not new learning; terminal optimized state is reported separately.",
-          "Cached developer validation improvements do not establish continuous or native tracking improvements."
-        ],
-        "temperature_or_power_queries_or_controls": false,
-        "foreign_gpu0_process_must_be_preserved": 3494704,
-        "actual_m0_acceptance": "refine-logs/runs/recoverability_module_freeze/actual_m0_acceptance.json",
-        "actual_best_m0_epochs": {
-          "c": 0,
-          "ac": 0,
-          "ab": 0,
-          "bc": 0
-        },
-        "actual_full_launch": {
-          "status": "FULL_ALL4_LAUNCHED_AFTER_ACTUAL_M0_CPU_PASS",
-          "launched_at_cst": "2026-10-04T17:37:31.904936+08:00",
-          "batch_size": 416,
-          "epochs_per_arm": 60,
-          "optimizer_steps_per_arm": 180,
-          "runs": [
-            {
-              "gpu": 0,
-              "variant": "bc",
-              "stage": "full",
-              "runner_pid": 4045998,
-              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
-            },
-            {
-              "gpu": 1,
-              "variant": "ac",
-              "stage": "full",
-              "runner_pid": 4045999,
-              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
-            },
-            {
-              "gpu": 2,
-              "variant": "ab",
-              "stage": "full",
-              "runner_pid": 4046000,
-              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
-            },
-            {
-              "gpu": 3,
-              "variant": "c",
-              "stage": "full",
-              "runner_pid": 4046002,
-              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
-            }
-          ],
-          "m0_acceptance": "/data/gb/setup/module_freeze_m0_acceptance_20261004.json",
-          "fresh_parent_initialization": true,
-          "automatic_full98_evaluation": false,
-          "memory_monitor_pid": 4046004
-        },
-        "actual_full_latest_observation": {
-          "observed_at_cst": "2026-10-04T17:38:22.786193+08:00",
-          "runs": [
-            {
-              "gpu": 0,
-              "variant": "bc",
-              "stage": "full",
-              "runner_pid": 4045998,
-              "log": "/data/gb/setup/recoverability_module_freeze_bc_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004",
-              "train_epoch_latest": 9,
-              "complete": false,
-              "actual_NN_handles": [
-                "4046141 4045998 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_bc_b416_full_20261004"
-              ],
-              "best_epoch": null
-            },
-            {
-              "gpu": 1,
-              "variant": "ac",
-              "stage": "full",
-              "runner_pid": 4045999,
-              "log": "/data/gb/setup/recoverability_module_freeze_ac_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004",
-              "train_epoch_latest": 1,
-              "complete": false,
-              "actual_NN_handles": [
-                "4046133 4045999 Sl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ac_b416_full_20261004"
-              ],
-              "best_epoch": null
-            },
-            {
-              "gpu": 2,
-              "variant": "ab",
-              "stage": "full",
-              "runner_pid": 4046000,
-              "log": "/data/gb/setup/recoverability_module_freeze_ab_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004",
-              "train_epoch_latest": 1,
-              "complete": false,
-              "actual_NN_handles": [
-                "4046128 4046000 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules C --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_ab_b416_full_20261004"
-              ],
-              "best_epoch": null
-            },
-            {
-              "gpu": 3,
-              "variant": "c",
-              "stage": "full",
-              "runner_pid": 4046002,
-              "log": "/data/gb/setup/recoverability_module_freeze_c_b416_full_20261004.log",
-              "root": "/data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004",
-              "train_epoch_latest": 9,
-              "complete": false,
-              "actual_NN_handles": [
-                "4046134 4046002 Rl   /data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_current_policy_merged_20261004/own/train --validation /data/gb/outputs/recoverability_current_policy_merged_20261004/own/validation --batch-size 416 --epochs 60 --seed 42 --search-supervision oracle --action-ranking budgeted --write-verification action --frozen-modules A B --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --output /data/gb/outputs/recoverability_module_freeze_c_b416_full_20261004"
-              ],
-              "best_epoch": null
-            }
-          ],
-          "GPU_inventory": "0, 16176, 24576, 17\n1, 21271, 24576, 100\n2, 21271, 24576, 15\n3, 15845, 24576, 15\n"
-        },
-        "source_review_status": "PASS_SAME_FAMILY_PROVISIONAL"
-      },
-      "actual_B416_joint_full_allocated_peak_mib": {
-        "pairwise": 15079.76513671875,
-        "budgeted": 15079.26513671875
+      {
+        "gpu": 3,
+        "pid": 3338940,
+        "task": "Matched full causal TRAIN/developer-label collection",
+        "query_count": 464
       }
+    ],
+    "gpu_memory_request": {
+      "policy": "Four useful real NN collectors; frozenbackbone/serial causalstates do not require training-sized VRAM. No filler allocation. Fitmemory/update measurements recorded by actual trainer.",
+      "current_stage": "Full matched label collection",
+      "train_batch_planned": 128,
+      "source_review": "PASS same-family/provisional",
+      "M0_real_query_runtime_pass": true,
+      "current_optimization_started": false,
+      "temperature_power_constraints_enabled": false
     },
     "next_check_cst": "2026-10-05T13:27:11.340299+08:00",
     "checkpoint_cleanup_total": {
@@ -7233,14 +7026,14 @@
     ]
   },
   "model_selection": {
-    "policy": "One best seed/checkpoint",
+    "policy": "One best checkpoint/config sufficient",
     "correction_cst": "2026-10-03T22:24:00+08:00",
-    "criterion": "Predeclared complete internal-video primary metric, not cached-query gains",
+    "criterion": "Full98 complete developer sequence IoU selects one amongfournewhead fits; same selected model both native data sets",
     "other_seeds_required_to_improve": false,
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T06:27:51.358769+08:00",
+  "updated_cst": "2026-10-06T07:07:09.435730+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8705,14 +8498,14 @@
     "selected_negative_retirement_receipt": "refine-logs/runs/recoverability_state_commit/actual_selected_e3_weight_retirement.json",
     "all16_fullfit_candidate_weights_retired_after_use": true
   },
-  "research_core_problem": "在不可靠观测下，将当帧输出、搜索/运动几何参考和RGB/TIR身份提交分离，在固定预算中保留未来恢复机会。",
+  "research_core_problem": "在固定记忆与搜索预算下，避免一次不可靠输出同时污染搜索、运动和身份依据；保留后续恢复机会。",
   "current_state_commit_refinement": {
-    "updated_cst": "2026-10-05T12:52:30.785753+08:00",
-    "status": "COMPLETE_E3_AND_BEST_TRAIN48_DIAGNOSTICS; DISTINCT_SEARCH_REFERENCE_CONTROL_PLANNED",
+    "updated_cst": "2026-10-06T07:07:09.435730+08:00",
+    "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
     "actual_source_intake": "refine-logs/runs/recoverability_state_commit/actual_state_commit_source_intake.json",
     "causal_protocol": "refine-logs/runs/recoverability_state_commit/geometry_commit_causal_plan.json",
     "first_required_work": "All originalformal andboth48diagnostic NN chains CLOSED. Preserveold4; goalall5+2unmet.",
-    "next_required_work": "Implement reviewed TRAIN query-only time-advanced searchreference control and qualify persistentfailure cases. ExistingC1control showed0realgeometrydifferences onbestold4; no learnedgate yet.",
+    "next_required_work": "Full98 developer videos/all49418frames selectsonebest checkpoint; samehead bothnative245/234/all337352frames,5metrics/31attrs/curves/5000pairedCIs4references/fullmechanisms",
     "source_fact": "Appearance pause does not prevent selected-box search_box update or unconditional motion-history append.",
     "example_scope": "waiterontheothersideofwindow is reused98 DEVELOPER_VALIDATION, never TRAIN supervision.",
     "event_sampling": "Group offsets by sequence/event, retain normal/recovered/unrecovered states; report legal search and update supervision separately.",
@@ -11373,9 +11166,16 @@
       "neural_forwards": 0,
       "optimizer_updates": 0,
       "GPU_queries": 0
-    }
+    },
+    "actual_current_iteration": "current_selective_state_commit_iteration"
   },
-  "current_execution_authority": "Historical allfour60/480 fits and bothfullnative5 closed; protectedold4 best remains. Current fixedold4/gross completefull98/49418 IoU.7461261776 vsold4.745906103, delta+.022007pp CIcrosseszero/1up1down96same; B5281 forwards/442correctreintroduced/2accepted. Sameweight/config bothnative controller3174168 actuallypassed8sanity and fullfourworkers3175579-82 started. Solelocalobserver37416 next06:04:38CST then240s. No newtraining/weight. Allfive+2 ACTIVE_UNMET, no three-seed gate.",
+  "current_execution_authority": {
+    "updated_cst": "2026-10-06T07:07:09.435730+08:00",
+    "authoritative_snapshot": "refine-logs/runs/selective_state_commit/current_execution_snapshot.json",
+    "collector_pid": 3338360,
+    "queued_pipeline_pid": 3351735,
+    "warning": "Older embedded GPU/pid/training snapshots are historical; current optimization has not yet started."
+  },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
     "collection": {
@@ -32327,5 +32127,132 @@
       }
     },
     "next": "Use TRAIN optimizer sequences, separately sample normal/transition/recovery/unrecovered events and high-score legal-write episodes to develop selective delayed-risk/state-commit supervision. Do not train on these98 repeatedly-used validation videos or repeat completed oldC1 geometry rules. A new training/data pipeline is not yet registered or running."
+  },
+  "current_selective_state_commit_iteration": {
+    "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
+    "updated_cst": "2026-10-06T07:07:09.435730+08:00",
+    "current_observed_state": {
+      "stage": "FULL",
+      "at_cst": "2026-10-06T06:56:15.809674+08:00",
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 3338937
+        },
+        {
+          "gpu": 1,
+          "pid": 3338938
+        },
+        {
+          "gpu": 2,
+          "pid": 3338939
+        },
+        {
+          "gpu": 3,
+          "pid": 3338940
+        }
+      ]
+    },
+    "observed_at_cst": "2026-10-06T06:59:04.462370+08:00",
+    "collector_launch": {
+      "pid": 3338360,
+      "output": "/data/gb/outputs/selective_state_collection_20261006",
+      "log": "/data/gb/setup/selective_state_collection_20261006.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "scripts/run_selective_state_collection.py",
+        "--queries",
+        "/data/gb/outputs/selective_state_queries_20261006",
+        "--review",
+        "/data/gb/setup/selective_state_collection_source_review_20261006.json",
+        "--output",
+        "/data/gb/outputs/selective_state_collection_20261006"
+      ],
+      "at_cst": "2026-10-06T06:56:03.904924+08:00",
+      "stage": "LAUNCHED_NOT_YET_SANITY_ACCEPTED",
+      "optimizer_updates": 0,
+      "new_weights": 0
+    },
+    "full_pipeline_queue_launch": {
+      "pid": 3351735,
+      "output": "/data/gb/outputs/selective_state_training_20261006",
+      "log": "/data/gb/setup/selective_state_training_20261006.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "scripts/run_selective_state_training.py",
+        "--collection",
+        "/data/gb/outputs/selective_state_collection_20261006",
+        "--collection-launch",
+        "/data/gb/setup/selective_state_collection_launch_20261006.json",
+        "--review",
+        "/data/gb/setup/selective_state_complete_pipeline_review_20261006.json",
+        "--output",
+        "/data/gb/outputs/selective_state_training_20261006"
+      ],
+      "at_cst": "2026-10-06T07:03:38.141892+08:00",
+      "stage": "LAUNCHED_WAITING_ORIGINAL_COLLECTION_NOT_TRAINING_STARTED",
+      "optimizer_updates": 0,
+      "formal_metrics_completed": false,
+      "poll_seconds": 240
+    },
+    "actual_queries": 1789,
+    "TRAIN_queries": 1691,
+    "validation_queries": 98,
+    "TRAIN_sequence_coverage": 881,
+    "validation_sequence_coverage": 98,
+    "short_H3_only_sequences": [
+      "leftthrowfoam",
+      "mototurntous"
+    ],
+    "GT_hints_excluded": 2,
+    "candidate_budget": "Actual parent C + quality-best + identity-best, deduplicated<=3, observed original5+at mostone extra5",
+    "actions": [
+      "regular acceptance",
+      "paused appearance acceptance",
+      "alternative output with current-frame parent-C search/history geometry"
+    ],
+    "feature_dimension": 917,
+    "causal_memory_and_history_features": true,
+    "event_unit": "Maximal consecutive known normal/failure/uncertain runs on the actual parent prefix; inverse-query-count event weights",
+    "sampling_sources": "One uniform timestamp/all881TRAIN+98VAL, 716 historical transition hints,98 highscore wrong-write hints; exact duplicates merged, actual labels regenerated",
+    "trainable_scope": "C extension only at first; complete pretrained GOLA/C1/old4 A/B/C/frozenmotion stay active and frozen",
+    "planned_fit": {
+      "configs": [
+        "H3_lost0",
+        "H3_lost01",
+        "H32_lost0",
+        "H32_lost01"
+      ],
+      "epochs_each": 60,
+      "batch": 128,
+      "lr": 0.001,
+      "seed": 42,
+      "action_margin": 0.03,
+      "loss": "Relative actual future meanIoU-lostfraction advantage MSE + legal-action pairwise margin",
+      "updates_per_arm": "60*ceil(actual-known-future TRAIN rows/128); recorded after full collection",
+      "sanity": "2 epochs on8 TRAIN rows with real differing legal outcomes; VAL never enters optimizer"
+    },
+    "planned_acceptance": "Full98 developer videos/all49418frames selectsonebest checkpoint; samehead bothnative245/234/all337352frames,5metrics/31attrs/curves/5000pairedCIs4references/fullmechanisms",
+    "optimizer_updates_at_observation": 0,
+    "new_training_completed": false,
+    "new_native_metrics_completed": false,
+    "complete_GOLA_C1_old4_references_retained": true,
+    "same_checkpoint_both_datasets": true,
+    "requires_three_positive_training_seeds": false,
+    "formal_target": "All five native overall metrics >= fullGOLA+2pp",
+    "retention": "Only one selected newhead after nativeconsumers; seven own sanity/unselected weights retired. Protectedold4 andrequireddependencies retained.",
+    "sole_observer": {
+      "session_id": 72729,
+      "source": "watch_selective_state_collection_20261006.py",
+      "next_inspection_cst": "2026-10-06T09:53:15.809674+08:00",
+      "estimate_seconds": 10800,
+      "estimated_from_actual_full_start": "2026-10-06T06:56:15.809674+08:00",
+      "after_due_poll_seconds": 240
+    },
+    "no_power_temperature_query_or_control": true,
+    "no_dataset_moves": true,
+    "limitation": "Source reviews same-family/provisional; actual query M0 PASS only. No learned contribution or native improvement yet."
   }
 }

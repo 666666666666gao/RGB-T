@@ -1,0 +1,127 @@
+{
+  "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
+  "updated_cst": "2026-10-06T07:07:09.435730+08:00",
+  "current_observed_state": {
+    "stage": "FULL",
+    "at_cst": "2026-10-06T06:56:15.809674+08:00",
+    "children": [
+      {
+        "gpu": 0,
+        "pid": 3338937
+      },
+      {
+        "gpu": 1,
+        "pid": 3338938
+      },
+      {
+        "gpu": 2,
+        "pid": 3338939
+      },
+      {
+        "gpu": 3,
+        "pid": 3338940
+      }
+    ]
+  },
+  "observed_at_cst": "2026-10-06T06:59:04.462370+08:00",
+  "collector_launch": {
+    "pid": 3338360,
+    "output": "/data/gb/outputs/selective_state_collection_20261006",
+    "log": "/data/gb/setup/selective_state_collection_20261006.log",
+    "command": [
+      "/data/gb/envs/gola/bin/python",
+      "-u",
+      "scripts/run_selective_state_collection.py",
+      "--queries",
+      "/data/gb/outputs/selective_state_queries_20261006",
+      "--review",
+      "/data/gb/setup/selective_state_collection_source_review_20261006.json",
+      "--output",
+      "/data/gb/outputs/selective_state_collection_20261006"
+    ],
+    "at_cst": "2026-10-06T06:56:03.904924+08:00",
+    "stage": "LAUNCHED_NOT_YET_SANITY_ACCEPTED",
+    "optimizer_updates": 0,
+    "new_weights": 0
+  },
+  "full_pipeline_queue_launch": {
+    "pid": 3351735,
+    "output": "/data/gb/outputs/selective_state_training_20261006",
+    "log": "/data/gb/setup/selective_state_training_20261006.log",
+    "command": [
+      "/data/gb/envs/gola/bin/python",
+      "-u",
+      "scripts/run_selective_state_training.py",
+      "--collection",
+      "/data/gb/outputs/selective_state_collection_20261006",
+      "--collection-launch",
+      "/data/gb/setup/selective_state_collection_launch_20261006.json",
+      "--review",
+      "/data/gb/setup/selective_state_complete_pipeline_review_20261006.json",
+      "--output",
+      "/data/gb/outputs/selective_state_training_20261006"
+    ],
+    "at_cst": "2026-10-06T07:03:38.141892+08:00",
+    "stage": "LAUNCHED_WAITING_ORIGINAL_COLLECTION_NOT_TRAINING_STARTED",
+    "optimizer_updates": 0,
+    "formal_metrics_completed": false,
+    "poll_seconds": 240
+  },
+  "actual_queries": 1789,
+  "TRAIN_queries": 1691,
+  "validation_queries": 98,
+  "TRAIN_sequence_coverage": 881,
+  "validation_sequence_coverage": 98,
+  "short_H3_only_sequences": [
+    "leftthrowfoam",
+    "mototurntous"
+  ],
+  "GT_hints_excluded": 2,
+  "candidate_budget": "Actual parent C + quality-best + identity-best, deduplicated<=3, observed original5+at mostone extra5",
+  "actions": [
+    "regular acceptance",
+    "paused appearance acceptance",
+    "alternative output with current-frame parent-C search/history geometry"
+  ],
+  "feature_dimension": 917,
+  "causal_memory_and_history_features": true,
+  "event_unit": "Maximal consecutive known normal/failure/uncertain runs on the actual parent prefix; inverse-query-count event weights",
+  "sampling_sources": "One uniform timestamp/all881TRAIN+98VAL, 716 historical transition hints,98 highscore wrong-write hints; exact duplicates merged, actual labels regenerated",
+  "trainable_scope": "C extension only at first; complete pretrained GOLA/C1/old4 A/B/C/frozenmotion stay active and frozen",
+  "planned_fit": {
+    "configs": [
+      "H3_lost0",
+      "H3_lost01",
+      "H32_lost0",
+      "H32_lost01"
+    ],
+    "epochs_each": 60,
+    "batch": 128,
+    "lr": 0.001,
+    "seed": 42,
+    "action_margin": 0.03,
+    "loss": "Relative actual future meanIoU-lostfraction advantage MSE + legal-action pairwise margin",
+    "updates_per_arm": "60*ceil(actual-known-future TRAIN rows/128); recorded after full collection",
+    "sanity": "2 epochs on8 TRAIN rows with real differing legal outcomes; VAL never enters optimizer"
+  },
+  "planned_acceptance": "Full98 developer videos/all49418frames selectsonebest checkpoint; samehead bothnative245/234/all337352frames,5metrics/31attrs/curves/5000pairedCIs4references/fullmechanisms",
+  "optimizer_updates_at_observation": 0,
+  "new_training_completed": false,
+  "new_native_metrics_completed": false,
+  "complete_GOLA_C1_old4_references_retained": true,
+  "same_checkpoint_both_datasets": true,
+  "requires_three_positive_training_seeds": false,
+  "formal_target": "All five native overall metrics >= fullGOLA+2pp",
+  "retention": "Only one selected newhead after nativeconsumers; seven own sanity/unselected weights retired. Protectedold4 andrequireddependencies retained.",
+  "sole_observer": {
+    "session_id": 72729,
+    "source": "watch_selective_state_collection_20261006.py",
+    "next_inspection_cst": "2026-10-06T09:53:15.809674+08:00",
+    "estimate_seconds": 10800,
+    "estimated_from_actual_full_start": "2026-10-06T06:56:15.809674+08:00",
+    "after_due_poll_seconds": 240
+  },
+  "no_power_temperature_query_or_control": true,
+  "no_dataset_moves": true,
+  "limitation": "Source reviews same-family/provisional; actual query M0 PASS only. No learned contribution or native improvement yet."
+}

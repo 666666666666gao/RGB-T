@@ -38,13 +38,14 @@ def arguments():
                         help='Fixed-weight control: action keeps learned regular/pause choice without an independent identity veto. Memory gates stay unchanged.')
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--commit-model', help='Optional trained query search/appearance commit head; parent model stays fixed.')
+    parser.add_argument('--state-commit-model', help='Optional C candidate/output/geometry commit extension trained on actual matched states.')
     parser.add_argument('--commit-continuation', choices=('frame', 'teacher_horizon'), default='frame',
                         help='Fixed-weight control: after a commit intervention use frozen old4 for the head training horizon.')
     return parser.parse_args()
 
 
 @torch.inference_mode()
-def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head=None):
+def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head=None, state_commit_head=None):
     tracker_type, kwargs = RecoverabilityTracker, {}
     if commit_head is not None:
         from .geometry_commit import GeometryCommitTracker
@@ -53,6 +54,9 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
             from .geometry_commit_event import GeometryCommitEventTracker
             tracker_type = GeometryCommitEventTracker
             kwargs['continuation_horizon'] = args.commit_continuation_horizon
+    if state_commit_head is not None:
+        from .selective_state_commit import SelectiveStateCommitTracker
+        tracker_type, kwargs = SelectiveStateCommitTracker, {'state_commit_head': state_commit_head}
     tracker = tracker_type(extractor, modules, motion, read_pair(visible[0], infrared[0], device),
                                     initial, threshold, args.policy, not args.disable_search, not args.unsafe_writes,
                                     args.write_verification, search_value=args.search_value, **kwargs)
@@ -84,6 +88,8 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
         stats.update({key:tracker.stats[key] for key in ('geometry_commit_interventions','geometry_reference_changed','appearance_commit_overrides')})
         if args.commit_continuation == 'teacher_horizon':
             stats.update({key:tracker.stats[key] for key in ('old4_continuation_frames','commit_events')})
+    if state_commit_head is not None:
+        stats.update({key: tracker.stats[key] for key in ('state_commit_interventions', 'state_geometry_holds')})
     if args.parity_check:
         extractor.proposal_policy = 'peaks'
         reference_timeline = []
@@ -103,6 +109,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
 
 def main():
     args = arguments()
+    assert not (args.commit_model and args.state_commit_model)
     assert args.commit_continuation == 'frame' or args.commit_model
     assert not args.parity_check or args.zero_init or args.policy == 'c1'
     torch.manual_seed(args.seed)
@@ -119,6 +126,7 @@ def main():
         modules.load_state_dict(checkpoint['model'], strict=True)
     modules.eval().requires_grad_(False)
     commit_head = None
+    state_commit_head = None
     if args.commit_model:
         from .geometry_commit import GeometryCommitHead
         commit = torch.load(args.commit_model,map_location='cpu',weights_only=False)
@@ -130,6 +138,17 @@ def main():
         commit_head.load_state_dict(commit['head'],strict=True)
         commit_head.eval().requires_grad_(False)
         args.commit_continuation_horizon = commit['args']['horizon'] if args.commit_continuation == 'teacher_horizon' else 0
+    if args.state_commit_model:
+        from .selective_state_commit import FEATURES, SelectiveStateCommitHead
+        state_commit = torch.load(args.state_commit_model, map_location='cpu', weights_only=False)
+        assert state_commit['module'] == 'selective_state_commit' and state_commit['parent_model'] == args.model
+        assert state_commit['features'] == FEATURES and state_commit['threshold'] == .03
+        assert state_commit['search_value'] == args.search_value == 'gross'
+        assert args.policy == 'learned' and args.write_verification == 'action'
+        assert not args.parity_check and not args.zero_init and not args.unsafe_writes and not args.disable_search
+        state_commit_head = SelectiveStateCommitHead().to(device)
+        state_commit_head.load_state_dict(state_commit['head'], strict=True)
+        state_commit_head.eval().requires_grad_(False)
     motion_config = json.loads((Path(args.motion_run) / 'config.json').read_text())
     motion_checkpoint = torch.load(Path(args.motion_run) / 'last.pth', map_location='cpu', weights_only=False)
     assert motion_checkpoint['epoch'] == 30 and motion_config['c1_head'] == args.c1_head
@@ -175,6 +194,11 @@ def main():
         if args.commit_continuation == 'teacher_horizon':
             config['commit_scope'] = 'One chosen query intervention, then frozen-old4 continuation for the trained horizon; no past output rewrite or future GT'
         config['total_loaded_parameters_including_unused_frozen_motion_heads'] += config['new_commit_parameters']
+    if state_commit_head is not None:
+        config.update(state_commit_head_epoch=state_commit['epoch'],
+                      new_state_commit_parameters=sum(p.numel() for p in state_commit_head.parameters()),
+                      state_commit_scope='C extension selects current output, appearance pause and current-frame parent geometry; causal continuous deployment')
+        config['total_loaded_parameters_including_unused_frozen_motion_heads'] += config['new_state_commit_parameters']
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()
     torch.cuda.reset_peak_memory_stats(device)
@@ -190,7 +214,7 @@ def main():
             if args.max_frames:
                 visible, infrared = visible[:args.max_frames], infrared[:args.max_frames]
             assert len(visible) > 1
-            prediction, latency, decisions, stats = track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head)
+            prediction, latency, decisions, stats = track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head, state_commit_head)
             assert np.isfinite(prediction).all() and np.isfinite(latency).all() and (latency > 0).all()
             np.savetxt(out / (sequence.name + '.txt'), prediction, delimiter='\t', fmt='%.3f')
             if args.parity_check:

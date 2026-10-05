@@ -34,6 +34,7 @@ def summarize(timeline, prediction, gt, dataset):
     failed = known_gt & (selected < .2)
     writes, paused = timeline['template_updated'], timeline['pause']
     raw = timeline['raw_score'].reshape(n, 35)[np.arange(n), choice]
+    paused_writes = paused & (raw > .84)
     assert np.array_equal(writes, (raw > .84) & ~paused)
     assert np.array_equal(timeline['extra_executed'], valid[:, 5:].any(1))
     assert (timeline['extra_executed'] <= timeline['search_requested']).all()
@@ -58,9 +59,10 @@ def summarize(timeline, prediction, gt, dataset):
               'requested_extra_area_sum_pixels_squared': float(timeline['requested_extra_area'].sum()),
               'template_updates': int(writes.sum()), 'known_template_updates': int((writes & known_gt).sum()),
               'wrong_template_updates_localization_proxy': int((writes & failed).sum()),
-              'paused_query_writes': int(paused.sum()), 'known_paused_query_writes': int((paused & known_gt).sum()),
-              'wrong_query_writes_prevented_localization_proxy': int((paused & failed).sum()),
-              'correct_query_writes_prevented': int((paused & known_gt & (selected >= .5)).sum()),
+              'paused_actions': int(paused.sum()),
+              'paused_query_writes': int(paused_writes.sum()), 'known_paused_query_writes': int((paused_writes & known_gt).sum()),
+              'wrong_query_writes_prevented_localization_proxy': int((paused_writes & failed).sum()),
+              'correct_query_writes_prevented': int((paused_writes & known_gt & (selected >= .5)).sum()),
               'known_active_template_frames': 0, 'wrong_active_template_frames_localization_proxy': 0}
     for modality in ('rgb', 'tir'):
         for kind in ('target_write', 'target_read'):
