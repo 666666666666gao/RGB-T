@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "review_level": "SOURCE_ONLY",
+  "revision": "COUNT_BOUNDARY_CORRECTION",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "backend_identity_independently_attested": false,
+  "reviewed_at_cst": "2026-10-05T21:25:09.335891+08:00",
+  "reviewed_source": "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py",
+  "conclusion": "The minimal frame>1 correction correctly excludes initialization-to-frame1 events while retaining prediction-to-prediction transitions and the current-IoU>=0 requirement. The corrected CPU inventory may run; numerical completion remains unverified.",
+  "deployment_decision": "CORRECTED_CPU_INVENTORY_SOURCE_GATE_PASS",
+  "blocking_findings": [],
+  "unresolved_blockers": [],
+  "required_fixes": [],
+  "preserved_initial_review": {
+    "path": "refine-logs/runs/recoverability_state_commit/event_window_inventory_source_review_initial_pass_20261005_212014.json",
+    "original_status": "PASS",
+    "original_reviewed_at_cst": "2026-10-05T21:20:14.985219+08:00",
+    "assessment": "Initial SOURCE_ONLY PASS missed a real boundary defect. Positive query filtering excluded frame0 only from output records; it did not stop frame0 GT initialization from serving as the previous predicted state. That earlier PASS is superseded."
+  },
+  "preserved_actual_failure": {
+    "path": "refine-logs/runs/recoverability_state_commit/actual_event_window_inventory_count_failure.json",
+    "status": "CPU_ASSERTION_FAILURE_NO_NN",
+    "traceback": "audit_event_window_coverage_cpu.py line47 expected721 event assertion failed; no result artifact written.",
+    "known_transitions_including_initialization": 723,
+    "unknown_current_transition_rows": 32,
+    "stored_unique_frames": 261147,
+    "initialization_to_frame1_failures": 2,
+    "initialization_count_evidence": "Parent actual CPU diagnosis; not recomputed from samples.npz by this reviewer.",
+    "corrected_runtime_status": "NOT_YET_EXECUTED_BY_REVIEWER"
+  },
+  "correction_checks": [
+    "Lines39-41 require frame>1, so both event sides are noninitial predictions. The current0<=IoU<.2 bound remains; negative unknown labels cannot become failures. The original expected721 assertion remains.",
+    "Lines76-79 count prefix_frames only when t>0 and IoU>=0, matching the original259186 known-positive-frame definition. Total stored frames including initialization/unknown, unknown noninitial labels, and initialization-to-first-failure count are separately exposed.",
+    "Offsets[-2,-1,0,1,3], thresholds, recovery-window logic, query exclusions, selected raw>.84 eligibility, actual writes, unique-query counting, source data, and no-NN scope are unchanged.",
+    "E:/python.exe -X utf8 stdlib AST parse passed. Direct evaluation of the actual predicate rejected frame1 and unknown-IoU cases and accepted a valid frame2 transition. The four actual count expressions matched a minimal initialization/known/unknown fixture."
+  ],
+  "validation_limits": "Only local source, archived failure JSON, and stdlib boundary checks were used. No NumPy/Torch import, samples.npz read, dataset GT read, image decode, SSH, GPU query, NN, training, or deployment occurred. Corrected721/259186 numerical results still require actual CPU execution."
+}

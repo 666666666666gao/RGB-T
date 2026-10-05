@@ -17,7 +17,7 @@ def main():
     apps = subprocess.check_output(['nvidia-smi', '--query-compute-apps=gpu_uuid,pid,process_name', '--format=csv,noheader'], text=True)
     devices = subprocess.check_output(['nvidia-smi', '--query-gpu=index,uuid,memory.free', '--format=csv,noheader,nounits'], text=True)
     row = next(line.split(', ') for line in devices.splitlines() if int(line.split(', ')[0]) == gpu)
-    assert float(row[2]) > 20000 and not any(line.split(', ')[0] == row[1] for line in apps.splitlines())
+    assert float(row[2]) > 20000 and not any(line.split(', ')[0] == row[1] and 'python' in line.lower() for line in apps.splitlines())
     cfg = json.loads((FOLDER/'matched_velocity_train88_old4/gpu0/config.json').read_text())
     suffix = 'sanity'
     jobs = FOLDER/f'geometry_components_{suffix}_jobs.json'

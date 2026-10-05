@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "review_level": "SOURCE_ONLY",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "backend_identity_independently_attested": false,
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T21:20:14.985219+08:00",
+  "reviewed_source": "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py",
+  "conclusion": "PASS for the narrowly scoped CPU inventory of stored old4 TRAIN transition histories. No blocking correctness issue or required source change was found. This is not a new collection, candidate-action audit, neural result, or native-score result.",
+  "deployment_decision": "CPU_INVENTORY_SOURCE_GATE_PASS",
+  "blocking_findings": [],
+  "unresolved_blockers": [],
+  "non_blocking_findings": [],
+  "required_fixes": [],
+  "source_checks": [
+    {
+      "topic": "Actual closed base identity and ordered rows",
+      "result": "PASS",
+      "evidence": "The actual pairwise_lr4 training config embeds the exact target merged own/train collection config: 1762 unique sequence/frame jobs, all881 TRAIN names, two jobs per sequence, max_prefix1024, old4 checkpoint epoch4, action write verification, per-sequence prefix execution. Source jobs equal the ordered concatenation of the four source shard job lists. TRAIN and validation names are disjoint. Actual query frames span6..818, so each full causal prefix fits in1024 slots; the latest query per sequence sums to261147 prefix frames.",
+      "locations": [
+        "refine-logs/runs/recoverability_best_native_policy/native_complete/training/pairwise_lr4/config.json: source_configs[0]",
+        "refine-logs/runs/c1_seed42_split.json",
+        "refine-logs/runs/recoverability_best_native_policy/actual_full_collection_completion.json",
+        "refine-logs/runs/recoverability_best_native_policy/merge_partition_cpu.py"
+      ]
+    },
+    {
+      "topic": "Previously action-queried set",
+      "result": "PASS",
+      "evidence": "The716 unique new_event_jobs are all TRAIN, disjoint from the1762 base queries, and their union is exactly the2478 combined jobs. The four prepared shards reproduce all716 jobs with179 each. Although the earlier eligibility proposal retains its original NOT_LAUNCHED status, the later actual_completed716_collection_summary records collection_completed=true and actual_GT_CPU_acceptance=PASS. The collection audit source checks each actual shard job list against these same requested jobs. Thus excluding these716 alongside the base1762 is supported by completed evidence.",
+      "locations": [
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:22",
+        "refine-logs/runs/recoverability_best_native_policy/actual_train_event_query_eligibility_proposal.json",
+        "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu0.json",
+        "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu1.json",
+        "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu2.json",
+        "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu3.json",
+        "refine-logs/runs/recoverability_train_events/actual_completed716_collection_summary.json",
+        "refine-logs/runs/recoverability_train_events/audit_collection_cpu.py:45"
+      ]
+    },
+    {
+      "topic": "Stored causal history and selected-candidate field semantics",
+      "result": "PASS",
+      "evidence": "The collector stores accepted old4 observations only through query-1. history_iou is added as an offline GT label, with-1 for invalid GT; it is distinct from model history_quality. Candidate evidence channel0 is exactly selected_raw, so history_evidence[...,0] is the raw score of the actually selected candidate. history_write comes from tracker.last_decision.template_updated. Tracker write is confidence>.84 and not pause. The inventory therefore correctly keeps raw eligibility separate from actual template writes. Positive query filtering excludes the synthetic initial frame0.",
+      "locations": [
+        "research/collect_recoverability.py:54",
+        "research/collect_recoverability.py:106",
+        "research/collect_recoverability.py:124",
+        "research/collect_recoverability.py:218",
+        "research/candidate_learning.py:179",
+        "research/recoverability_tracker.py:120",
+        "research/recoverability_tracker.py:212",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:24"
+      ]
+    },
+    {
+      "topic": "Transition and finite recovery-window definitions",
+      "result": "PASS",
+      "evidence": "The predicate requires adjacent saved frames, previous IoU>=.5, and current IoU in[0,.2), matching the inherited721-transition definition and excluding invalid GT. Ascending query order makes the later full causal prefix authoritative for duplicate frames. Recovery requires three consecutive observed IoU>=.5 frames wholly inside transition+1..transition+32. A witnessed recovery remains known even if the remainder is absent. Without such a recovery, not_recovered_within32 requires all32 frames observed with valid labels; otherwise future_window_incomplete is retained. The result explicitly rejects permanent-unrecoverability interpretation.",
+      "locations": [
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:28",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:39",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:80",
+        "refine-logs/runs/recoverability_best_native_policy/actual_train_failure_transition_query_coverage.json",
+        "refine-logs/runs/recoverability_state_commit/actual_persistent_train_event_inventory.json"
+      ]
+    },
+    {
+      "topic": "Offsets, missing states, and correlated counting",
+      "result": "PASS",
+      "evidence": "Offsets are exactly[-2,-1,0,1,3], with query indices restricted to1..1024. Missing cached states remain explicit through actual_prefix_state_observed=false and null scalar evidence. Per-offset summaries are explicitly event links; the global new-query count deduplicates sequence/frame pairs across offsets and events. Repeated event links therefore are not represented as independent query counts. Known or unknown GT eligibility is not promoted to eligibility for a new collection.",
+      "locations": [
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:48",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:63",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:79"
+      ]
+    },
+    {
+      "topic": "CPU-only execution and claim boundary",
+      "result": "PASS_SOURCE_ONLY",
+      "evidence": "Imports are only json, pathlib, and numpy. The entry point reads config/split/earlier proposal JSON plus five stored history arrays with allow_pickle=False. It has no model import, model load, neural forward, optimizer, image decode, dataset GT loader, SSH, or installation path. It writes only the designated inventory JSON and fails if that output already exists. The result disclaims current all-candidate write pairs, new visual recall, pause benefit, unobserved outcomes, and neural gains; new jobs explicitly require actual GT validity before launch.",
+      "locations": [
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:1",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:13",
+        "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py:78"
+      ]
+    }
+  ],
+  "local_validation": {
+    "python": "E:/python.exe -X utf8",
+    "modules_used_by_reviewer": [
+      "ast",
+      "json",
+      "pathlib",
+      "collections",
+      "datetime"
+    ],
+    "source_AST_parse": "PASS",
+    "base_config_and_split_checks": "PASS",
+    "ordered_merge_job_check": "PASS",
+    "base1762_plus_completed716_identity_check": "PASS",
+    "inventory_script_executed": false,
+    "samples_npz_read": false,
+    "model_imported": false,
+    "numpy_or_torch_imported": false,
+    "raw_images_read": false,
+    "new_query_or_future_GT_read": false,
+    "network_or_SSH_used": false,
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "optimizer_updates": 0,
+    "actual_local_check_failure_preserved": {
+      "first_attempt": "AssertionError from reviewer comparing full training job triples directly against source job dictionaries.",
+      "observed_schema": "train_jobs entries are [sequence, query_frame, prefix_policy]; source_configs[0].jobs entries are {sequence, query_frame}.",
+      "correction": "Compared ordered sequence/frame identities, which passed. The merged source order also exactly matched four concatenated source shard lists.",
+      "impact": "Reviewer check assumption only; no inventory-source failure, data alteration, or scientific-source patch."
+    }
+  },
+  "interpretation_limits": [
+    "This review does not reproduce the721 events or new offset counts from samples.npz; those remain the forthcoming actual CPU inventory result.",
+    "already_action_queried means the base1762 and completed716 event-action queries used by this inventory, not every separately recorded probe.",
+    "Selected raw>.84 is eligibility of a historical selected candidate; it is not a count of every currently available candidate-action pair.",
+    "Some proposed offsets can lack observed state or valid new-query GT. Actual query/future GT eligibility and actual NN collection are still required before any new supervision claim.",
+    "No new model efficacy, native score, or full-video causal outcome follows from this inventory."
+  ]
+}

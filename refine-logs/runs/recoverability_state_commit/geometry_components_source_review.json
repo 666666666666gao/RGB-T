@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "reviewed_at_cst": "2026-10-05T21:01:27.131521+08:00",
+  "reviewed_at_cst": "2026-10-05T21:07:01.151180+08:00",
   "reviewer_agent": "/root/geometry_components_source_review",
   "reviewer_attribution": "Fresh Codex reviewer; served backend model and reasoning-effort metadata not independently attested by this agent.",
   "review_independence": "same-family",
@@ -66,7 +66,8 @@
     "Local AST extraction and execution of controls only, plus old/new branch predicate truth table; no tracker/model import.",
     "Local JSON inventory, exact prepared88 job matching, duplicate checks, 881-TRAIN/98-validation membership checks and role counts.",
     "Local completed-record audit of 87 equal boxes, one differing box and 41 raw-score write opportunities.",
-    "Direct source inspection of provider, state copies, model/memory update operations, inference calls, launcher paths and summary semantics."
+    "Direct source inspection of provider, state copies, model/memory update operations, inference calls, launcher paths and summary semantics.",
+    "Narrow follow-up: corrected launcher AST matches existing capacity guard; local stdlib replay rejects the old recorded desktop case, accepts it under the correction, still rejects selected-GPU Python and insufficient-memory cases."
   ],
   "reviewer_execution": {
     "SSH_calls": 0,
@@ -86,5 +87,68 @@
     "C1 keep is a reference candidate from the same old4 prestate, not verified identity or a separately tracked C1 trajectory.",
     "Fixed query appearance/memory invariants concern the intervention boundary; future branch states may naturally diverge under the same policy.",
     "The main allfive baseline+2 objective remains unmet; this source PASS is not experiment acceptance."
+  ],
+  "initial_review": {
+    "status": "PASS",
+    "reviewed_at_cst": "2026-10-05T21:01:27.131521+08:00",
+    "attribution": "Original source-only PASS retained; its findings remain above. The initial review did not detect the desktop-process false positive subsequently observed during prelaunch."
+  },
+  "followup_reviews": [
+    {
+      "status": "PASS",
+      "reviewed_at_cst": "2026-10-05T21:07:01.151180+08:00",
+      "scope": "Narrow source-only re-review of launch_geometry_components.py line20 after the actual capacity prelaunch failure.",
+      "failure_evidence": "refine-logs/runs/recoverability_state_commit/actual_components_capacity_prelaunch_failure.json",
+      "failure_attribution": {
+        "status": "PRELAUNCH_CAPACITY_FALSE_POSITIVE_NO_NN",
+        "created_at_cst": "2026-10-05T21:05:37.629883+08:00",
+        "failed_stage": "launcher assertion before any output creation or child launch",
+        "actual_capacity_mib": [
+          23905,
+          24233,
+          24233,
+          24233
+        ],
+        "actual_compute_app": "GPU0 PID3494704 /usr/local/awesun/bin/awesun_desktop",
+        "neural_calls": 0,
+        "reviewer_observation": "Read the saved local failure receipt; no reviewer remote query or independent live-runtime attestation."
+      },
+      "accepted_minimal_fix": "Retain >20000 MiB free capacity and reject Python compute processes on the selected GPU UUID, matching the existing project guard; do not reject the witnessed awesun desktop process.",
+      "evidence": "The corrected guard AST exactly matches geometry_event_pipeline.py line74. Its position remains before configuration/output creation and subprocess.Popen. Experiment arguments, single-query scope and scientific probe code are unchanged by this fix.",
+      "checks": {
+        "launcher_AST": "PASS",
+        "existing_project_guard_AST_match": "PASS",
+        "old_guard_rejects_recorded_desktop_case": true,
+        "corrected_guard_source_expression_cases": [
+          {
+            "case": "recorded desktop app and free memory",
+            "guard_allows_launch": true,
+            "expected": true
+          },
+          {
+            "case": "selected GPU Python job",
+            "guard_allows_launch": false,
+            "expected": false
+          },
+          {
+            "case": "other GPU Python job",
+            "guard_allows_launch": true,
+            "expected": true
+          },
+          {
+            "case": "insufficient memory",
+            "guard_allows_launch": false,
+            "expected": false
+          }
+        ],
+        "fixture_attribution": "Stdlib evaluation of the extracted source expression, using recorded process name/PID/free memory and a symbolic selected GPU UUID; the Python/low-memory cases are constructed checks, not live observations."
+      },
+      "unresolved_blockers": [],
+      "runtime_attested": false,
+      "reviewer_SSH_calls": 0,
+      "reviewer_GPU_queries": 0,
+      "reviewer_NN_calls": 0,
+      "boundary": "This PASS clears the corrected source gate only. The failed first launch produced no new neural result; a subsequent single-query runtime outcome remains unobserved by this reviewer."
+    }
   ]
 }

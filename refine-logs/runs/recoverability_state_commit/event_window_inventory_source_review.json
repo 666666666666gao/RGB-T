@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "review_level": "SOURCE_ONLY",
+  "revision": "WRITE_RISK_EPISODE_EXTENSION",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "backend_identity_independently_attested": false,
+  "reviewed_at_cst": "2026-10-05T21:33:16.315472+08:00",
+  "reviewed_source": "refine-logs/runs/recoverability_state_commit/audit_event_window_coverage_cpu.py",
+  "scope": "Narrow review of the added write-risk episode postprocessing and separate output path only.",
+  "conclusion": "SOURCE_ONLY PASS. Contiguous known-failure runs, first actual write selection, coverage counts, and separate output path match the authorized CPU inventory. No source fix is required.",
+  "deployment_decision": "WRITE_RISK_CPU_INVENTORY_SOURCE_GATE_PASS",
+  "blocking_findings": [],
+  "unresolved_blockers": [],
+  "required_fixes": [],
+  "prior_history": [
+    {
+      "artifact": "refine-logs/runs/recoverability_state_commit/event_window_inventory_source_review_initial_pass_20261005_212014.json",
+      "status": "INITIAL_SOURCE_ONLY_PASS_SUPERSEDED",
+      "assessment": "Initial SOURCE_ONLY PASS missed a real boundary defect. Positive query filtering excluded frame0 only from output records; it did not stop frame0 GT initialization from serving as the previous predicted state. That earlier PASS is superseded."
+    },
+    {
+      "artifact": "refine-logs/runs/recoverability_state_commit/actual_event_window_inventory_count_failure.json",
+      "status": "CPU_ASSERTION_FAILURE_NO_NN",
+      "traceback": "audit_event_window_coverage_cpu.py line47 expected721 event assertion failed; no result artifact written.",
+      "preserved_unchanged": true
+    },
+    {
+      "artifact": "refine-logs/runs/recoverability_state_commit/event_window_inventory_source_review_count_correction_pass_20261005_212509.json",
+      "status": "COUNT_BOUNDARY_CORRECTION_SOURCE_ONLY_PASS",
+      "reviewed_at_cst": "2026-10-05T21:25:09.335891+08:00",
+      "preserved_exact_bytes": true
+    },
+    {
+      "artifact": "refine-logs/runs/recoverability_state_commit/actual_event_window_inventory_cpu_v2_execution.json",
+      "result_artifact": "refine-logs/runs/recoverability_state_commit/actual_event_window_coverage_cpu.json",
+      "status": "ACTUAL_CORRECTED_CPU_V2_PASS",
+      "return_code": 0,
+      "events": 721,
+      "known_noninitial_frames": 259186,
+      "stored_frames": 261147,
+      "unknown_noninitial_labels": 1080,
+      "initialization_to_first_failure_count": 2,
+      "unique_unqueried_pairs": 2731,
+      "new_neural_calls": 0,
+      "preserved_unchanged": true
+    }
+  ],
+  "source_checks": [
+    {
+      "location": "audit_event_window_coverage_cpu.py:75",
+      "result": "PASS",
+      "evidence": "Sorted noninitial frames with known0<=IoU<.2 form maximal contiguous failure episodes. Unknown/nonfailure records close an episode; a missing frame closes it before a later failure frame is appended. The final episode is flushed."
+    },
+    {
+      "location": "audit_event_window_coverage_cpu.py:78",
+      "result": "PASS",
+      "evidence": "Episodes without actual template_written frames emit no write-risk representative. Each emitted episode uses written[0], asserts that selected historical raw_score>.84, records all written-frame multiplicity separately, and checks action-query coverage at that representative query only."
+    },
+    {
+      "location": "audit_event_window_coverage_cpu.py:104",
+      "result": "PASS",
+      "evidence": "Known wrong-localization written-frame total is distinct from episode count. Already/not-action-queried counts partition the first-write representatives. Multiple adjacent writes are not counted as separate representative queries."
+    },
+    {
+      "location": "audit_event_window_coverage_cpu.py:9",
+      "result": "PASS",
+      "evidence": "OUT now names recoverability_event_window_write_coverage_20261005.json. The output-exists assertion remains; the sole write_text targets OUT. The earlier recoverability_event_window_coverage_20261005.json output is not written."
+    },
+    {
+      "location": "audit_event_window_coverage_cpu.py:110",
+      "result": "PASS",
+      "evidence": "The result explicitly limits wrong localization to an IoU proxy and requires actual query/future GT eligibility plus matched write-pause NN outcomes before additional claims. It does not claim wrong identity, causal writing harm, benefit, or all-candidate action coverage."
+    }
+  ],
+  "local_validation": {
+    "interpreter": "E:/python.exe -X utf8",
+    "source_AST_parse": "PASS",
+    "synthetic_stdlib_source_boundary_check": {
+      "result": "PASS",
+      "method": "Extracted and executed only the actual new postprocessing AST with hand-authored scalar histories. No production module imports.",
+      "covered": "Multiple writes per episode; no-write episodes; unknown GT; missing frame; nonfailure break; terminal flush; first-write queried versus later-write queried.",
+      "fixture_written_frames": 8,
+      "fixture_episodes": 6,
+      "fixture_first_already_queried": 2,
+      "fixture_first_not_queried": 4
+    },
+    "new_inventory_executed": false,
+    "samples_npz_read": false,
+    "new_GT_or_images_read": false,
+    "numpy_or_torch_imported": false,
+    "SSH_or_network_used": false,
+    "model_imports": 0,
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "optimizer_updates": 0,
+    "source_modified_by_reviewer": false
+  },
+  "limits": "The new write-risk counts remain unmeasured until actual CPU execution. Episode representatives describe the first historical selected-candidate write in a known localization-failure run; they do not establish independent samples, every current write-pair, or a benefit from pausing. The overall improvement goal remains unmet."
+}

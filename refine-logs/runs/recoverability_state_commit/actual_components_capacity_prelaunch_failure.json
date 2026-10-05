@@ -1,0 +1,16 @@
+{
+  "status": "PRELAUNCH_CAPACITY_FALSE_POSITIVE_NO_NN",
+  "created_at_cst": "2026-10-05T21:05:37.629883+08:00",
+  "failed_stage": "launcher assertion before any output creation or child launch",
+  "traceback": "launch_geometry_components.py line20 capacity assert",
+  "actual_capacity_mib": [
+    23905,
+    24233,
+    24233,
+    24233
+  ],
+  "actual_compute_app": "GPU0 PID3494704 /usr/local/awesun/bin/awesun_desktop",
+  "cause": "Capacity guard counted a desktop display application as an experiment; all cards have >20GB free and no Python compute job.",
+  "minimum_fix": "Use the existing Python-experiment process check rather than reject every display app.",
+  "neural_calls": 0
+}
