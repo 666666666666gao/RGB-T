@@ -1,0 +1,117 @@
+{
+  "checked_at_cst": "2026-10-05T08:44:28.220153+08:00",
+  "server_observation_cst": "2026-10-05T08:42:23.218561+08:00",
+  "status": "COMPLETE_TRAINING_AND_BOTH_FULL_NATIVE_METRICS",
+  "active_project_training_processes": 0,
+  "active_project_collection_processes": 0,
+  "current_stage": "Completed result delivery; 716 next-round TRAIN queries are prepared only",
+  "next_round_optimization_started": false,
+  "training": {
+    "arms": 4,
+    "epochs_per_arm": 60,
+    "optimizer_steps_per_arm": 300,
+    "batch_size": 384,
+    "train_videos": 881,
+    "train_decision_states": 1762,
+    "validation_videos": 98,
+    "validation_decision_states": 196,
+    "GOLA_C1_frozen": true,
+    "ABC_all_changed": true,
+    "all_raw_frames_trained": false,
+    "training_type": "Frozen pretrained visual backbone with all added ABC modules trained on sampled causal temporal states"
+  },
+  "native_coverage": {
+    "lasher": {
+      "sequences": 245,
+      "frames": 220703,
+      "completed": true
+    },
+    "rgbt234": {
+      "sequences": 234,
+      "frames": 116649,
+      "completed": true
+    }
+  },
+  "five_official_metrics": [
+    {
+      "dataset": "lasher",
+      "metric": "PR",
+      "baseline_percent": 76.59844897037928,
+      "c1_percent": 77.86097272569167,
+      "ABC_percent": 77.43650574418123,
+      "delta_vs_baseline_percentage_points": 0.8380567738019522,
+      "delta_vs_c1_percentage_points": -0.4244669815104345,
+      "target_percent": 78.59844897037928,
+      "meets_plus_two": false,
+      "paired_95_lower_percentage_points": -0.39052144995832816,
+      "paired_95_upper_percentage_points": 2.170020480062801
+    },
+    {
+      "dataset": "lasher",
+      "metric": "NPR",
+      "baseline_percent": 73.10197299993155,
+      "c1_percent": 74.15451765370953,
+      "ABC_percent": 73.947334176965,
+      "delta_vs_baseline_percentage_points": 0.8453611770334533,
+      "delta_vs_c1_percentage_points": -0.2071834767445324,
+      "target_percent": 75.10197299993155,
+      "meets_plus_two": false,
+      "paired_95_lower_percentage_points": -0.2447663837737381,
+      "paired_95_upper_percentage_points": 1.9996682373244952
+    },
+    {
+      "dataset": "lasher",
+      "metric": "SR",
+      "baseline_percent": 61.03742534859602,
+      "c1_percent": 61.951313680271845,
+      "ABC_percent": 61.67730568537687,
+      "delta_vs_baseline_percentage_points": 0.6398803367808554,
+      "delta_vs_c1_percentage_points": -0.27400799489497274,
+      "target_percent": 63.03742534859602,
+      "meets_plus_two": false,
+      "paired_95_lower_percentage_points": -0.2384939085235389,
+      "paired_95_upper_percentage_points": 1.5699088791557045
+    },
+    {
+      "dataset": "rgbt234",
+      "metric": "MPR",
+      "baseline_percent": 91.77885757450758,
+      "c1_percent": 91.81700889694795,
+      "ABC_percent": 91.52281087656603,
+      "delta_vs_baseline_percentage_points": -0.25604669794155654,
+      "delta_vs_c1_percentage_points": -0.294198020381927,
+      "target_percent": 93.77885757450758,
+      "meets_plus_two": false,
+      "paired_95_lower_percentage_points": -1.7665941621107302,
+      "paired_95_upper_percentage_points": 1.2201407019096495
+    },
+    {
+      "dataset": "rgbt234",
+      "metric": "MSR",
+      "baseline_percent": 69.2325931778893,
+      "c1_percent": 69.2340473415621,
+      "ABC_percent": 69.25241757148007,
+      "delta_vs_baseline_percentage_points": 0.01982439359076693,
+      "delta_vs_c1_percentage_points": 0.018370229917962888,
+      "target_percent": 71.2325931778893,
+      "meets_plus_two": false,
+      "paired_95_lower_percentage_points": -0.7690103746630856,
+      "paired_95_upper_percentage_points": 0.8578131003686048
+    }
+  ],
+  "full_report": "refine-logs/runs/recoverability_best_native_policy/native_complete/complete_report/complete_core_report.json",
+  "full_report_sha256": "860d21179810173d7d990f2a522c4217ef011e467e1dabe7b8d17cd8b024cd33",
+  "full_report_created_at_cst": "2026-10-05T08:17:42.754229+08:00",
+  "gpu_memory_mib": {
+    "0": 349,
+    "1": 20,
+    "2": 20,
+    "3": 20
+  },
+  "goal_status": "ACTIVE_UNMET",
+  "execution": {
+    "new_neural_forward_calls": 0,
+    "new_optimizer_steps": 0,
+    "training_restart": false
+  }
+}
