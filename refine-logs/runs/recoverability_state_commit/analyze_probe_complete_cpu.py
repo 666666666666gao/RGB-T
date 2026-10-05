@@ -7,16 +7,17 @@ BASE = Path('/data/gb/outputs/recoverability_geometry_commit_train_20261005')
 FOLDER = Path('/data/gb/GOLA/refine-logs/runs/recoverability_state_commit')
 
 
-def analyze(rows):
+def analyze(rows, geometry_names=('geometry_C1', 'pause_geometry_C1')):
     groups = {}
     for row in rows:
         groups.setdefault((row['sequence'], row['event_id']), []).append(row)
-    comparisons = [('geometry_C1', 'raw'), ('pause_geometry_C1', 'pause'), ('pause', 'raw')]
+    assert geometry_names in [('geometry_C1', 'pause_geometry_C1'), ('search_velocity', 'pause_search_velocity')]
+    comparisons = [(geometry_names[0], 'raw'), (geometry_names[1], 'pause'), ('pause', 'raw')]
     events = []
     for (sequence, event), queries in groups.items():
         item = {'sequence': sequence, 'event_id': event, 'correlated_queries': len(queries),
                 'actual_write_eligible_queries': sum(q['query_raw_write_eligible'] for q in queries),
-                'geometry_different_queries': sum(not q['selected_matches_C1_keep'] for q in queries),
+                'geometry_different_queries': sum((not q['selected_matches_C1_keep']) if geometry_names[0] == 'geometry_C1' else q['query_search_reference_different'] for q in queries),
                 'controls': {}, 'paired': {}}
         roles = {'normal': 0, 'ambiguous_localization': 0, 'failed_then_recovered32': 0, 'failed_unrecovered32': 0}
         for q in queries:
@@ -32,7 +33,7 @@ def analyze(rows):
             roles[role] += 1
         item['raw_reference_query_roles'] = roles
         for h in ['3', '32']:
-            for name in ['raw', 'pause', 'geometry_C1', 'pause_geometry_C1']:
+            for name in ['raw', 'pause', *geometry_names]:
                 values = [next(c for c in q['controls'] if c['name'] == name) for q in queries]
                 failed = [v for v in values if v['query_output_iou'] < .2]
                 item['controls'].setdefault(name, {})[h] = {
