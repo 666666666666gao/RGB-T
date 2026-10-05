@@ -1,0 +1,92 @@
+{
+  "status": "ACTUAL_CACHE_SCHEMA_MEMORY_ACCOUNTING",
+  "observed_at_cst": "2026-10-05T07:11:36.619995+08:00",
+  "source_schema": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train/partition_cpu_acceptance.json",
+  "loaded_tensor_fields": [
+    "features",
+    "evidence",
+    "raw_score",
+    "boxes",
+    "instance_features",
+    "anchor_features",
+    "image_boxes",
+    "valid",
+    "c1_quality",
+    "original_choice",
+    "history_instance_descriptors",
+    "history_evidence",
+    "history_quality",
+    "history_boxes",
+    "history_frames",
+    "history_write",
+    "history_valid",
+    "motion_means",
+    "motion_log_weights",
+    "current_iou",
+    "future_iou",
+    "wrong_update_fraction",
+    "action_valid",
+    "history_iou"
+  ],
+  "bytes_per_query_by_field": {
+    "features": 107520,
+    "evidence": 1400,
+    "raw_score": 140,
+    "boxes": 560,
+    "instance_features": 215040,
+    "anchor_features": 6144,
+    "image_boxes": 560,
+    "valid": 35,
+    "c1_quality": 140,
+    "original_choice": 8,
+    "history_instance_descriptors": 3145728,
+    "history_evidence": 40960,
+    "history_quality": 4096,
+    "history_boxes": 16384,
+    "history_frames": 8192,
+    "history_write": 1024,
+    "history_valid": 1024,
+    "motion_means": 144,
+    "motion_log_weights": 12,
+    "current_iou": 140,
+    "future_iou": 840,
+    "wrong_update_fraction": 280,
+    "action_valid": 70,
+    "history_iou": 4096
+  },
+  "bytes_per_query_total": 3554537,
+  "original1762_TRAIN_single_copy_gib": 5.832961009815335,
+  "augmented2478_TRAIN_single_copy_gib": 8.203222123906016,
+  "current_loader_three2478_TRAIN_copies_payload_gib": 24.60966637171805,
+  "actual_cards": [
+    {
+      "gpu": 0,
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_total_mib": 24576,
+      "memory_used_mib_at_observation": 1180
+    },
+    {
+      "gpu": 1,
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_total_mib": 24576,
+      "memory_used_mib_at_observation": 851
+    },
+    {
+      "gpu": 2,
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_total_mib": 24576,
+      "memory_used_mib_at_observation": 851
+    },
+    {
+      "gpu": 3,
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_total_mib": 24576,
+      "memory_used_mib_at_observation": 851
+    }
+  ],
+  "scope": "Static accounting from accepted actual schema and current production load_data: GPU originals + torch.cat + value[indices] are simultaneously live during return construction. Payload estimate excludes CUDA context, model, allocator reservations and activations. No augmented training was run.",
+  "power_or_temperature_queries": 0,
+  "neural_calls": 0,
+  "optimizer_steps": 0,
+  "new_jobs_started": 0
+}

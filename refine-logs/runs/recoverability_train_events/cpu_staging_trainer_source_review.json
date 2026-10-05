@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "review_type": "experiment-bridge Phase 2.5 fresh source-only review",
+  "same_family_provisional": true,
+  "runtime_attested": false,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_source": "refine-logs/runs/recoverability_train_events/train_fixed_epochs_private.py",
+  "accepted_predecessor": "refine-logs/runs/recoverability_best_native_policy/train_fixed_epochs_private.py",
+  "scope": "Review the private future trainer's CPU staging change against the exact accepted predecessor. No deployment, training, CUDA execution, live job query, source edit, or runtime acceptance was performed. Current native owner 632884 and production NN sources were not touched.",
+  "blocking_findings": [
+    {
+      "id": "B1",
+      "location": "train_fixed_epochs_private.py:64-65",
+      "title": "Validation row indices still use the requested CUDA device while archive tensors are now on CPU",
+      "source_evidence": [
+        "Line 58 creates row tensors with torch.from_numpy(archive[key].copy()), leaving them on CPU.",
+        "Line 64 still creates rows with torch.arange(len(row['valid']), device=device).",
+        "Line 65 indexes CPU row['valid'] using rows and CPU row['original_choice'].long().",
+        "The existing main path sets device = torch.device('cuda:0') at line 149 and calls load_data with that device at lines 150-151."
+      ],
+      "effect": "The normal CUDA trainer path attempts to index a CPU tensor with a CUDA index tensor and fails at the validation assertion before concatenation, final transfer, or training. This is a concrete source device mismatch, not an observed runtime failure in this review.",
+      "minimal_required_fix": "Keep this validation index on CPU too: change line 64 to rows = torch.arange(len(row['valid'])).",
+      "runtime_reproduced": false
+    }
+  ],
+  "non_blocking_findings": [],
+  "verified_source_properties": {
+    "diff": "Exactly three changed source lines within load_data: remove the archive tensor transfer, remove the final selection index device argument, and transfer each final indexed tensor to the requested device. Text outside load_data is identical after normalizing file line endings.",
+    "ordering_and_deduplication": "The root traversal, field order, concatenation order, first-occurrence job deduplication, and prefer_last_prefix dictionary selection are unchanged. The final job list uses the same unique indices.",
+    "values_dtypes_labels_and_output_device": "The loaded fields and NumPy copy/from_numpy conversion are unchanged. CPU concatenation and integer advanced indexing preserve the selected tensor values and dtypes; the final .to(device) preserves the caller-requested output device. This intended output path is currently blocked for CUDA by B1.",
+    "cpu_audit_callers": "The existing audit_fit_cpu.py:49 passes torch.device('cpu'). Its load_data path remains on CPU, including validation indices and final tensors. The return structure, configs, names, and job order are unchanged. No CPU audit was executed in this review.",
+    "rng_and_training_order": "The loader changes add no RNG-consuming operations. Seeds, model construction, and CUDA torch.randperm training order remain unchanged in source.",
+    "model_objectives_and_frozen_c1": "The trainer's model import, ABC group construction, optimizer, objective/evaluation calls, gradient checks, and frozen-module handling are unchanged. The imported research/recoverability_modules.py freezes C1 with eval().requires_grad_(False) at line 91 and restores C1 eval mode in train() at lines 104-107. All three ABC modules remain trainable under the existing empty frozen_modules setting.",
+    "checkpoint_retention": "Cached best selection, fixed-epoch retention, save/reload, completion fields, and retained_weights logic are unchanged."
+  },
+  "capacity_evidence": {
+    "artifact": "refine-logs/runs/recoverability_best_native_policy/actual_event_augmented_loader_memory_accounting.json",
+    "observed_at_cst": "2026-10-05T07:11:36.619995+08:00",
+    "loaded_tensor_fields": 24,
+    "bytes_per_query_recomputed": 3554537,
+    "planned_query_count": 2478,
+    "single_payload_bytes_recomputed": 8808142686,
+    "single_payload_gib": 8.203222123906016,
+    "predecessor_three_payloads_gib": 24.60966637171805,
+    "recorded_card_capacity_gib": [24, 24, 24, 24],
+    "assessment": "The accepted schema byte counts sum to the recorded payload. The predecessor retains archive tensors, concatenated tensors, and the returned indexed tensors simultaneously on CUDA; their 24.609666 GiB payload alone exceeds a recorded 24 GiB RTX 3090. Moving archives, concatenation, and indexing to CPU is a justified direct correction. This accounting is not an observed augmented training OOM, and a source correction would not by itself prove the complete future training peak fits."
+  },
+  "review_actions": {
+    "source_reads_and_diff_only": true,
+    "local_text_comparison_and_byte_arithmetic": true,
+    "runtime_tensor_checks": 0,
+    "neural_calls": 0,
+    "optimizer_steps": 0,
+    "ssh_calls": 0,
+    "gpu_or_job_queries": 0,
+    "source_edits": 0,
+    "tests_or_frameworks_added": 0
+  },
+  "source_approval": false,
+  "next_required_action": "Apply the one-line CPU validation-index correction and re-review the resulting source before treating the CUDA load_data path as approved.",
+  "research_status": "Only LasHeR/RGBT234; frozen pretrained GOLA/C1 with all three ABC modules remains the intended contract. All five metrics plus two percentage points remains unmet. This report makes no deployment, training, metric, or goal-completion claim."
+}

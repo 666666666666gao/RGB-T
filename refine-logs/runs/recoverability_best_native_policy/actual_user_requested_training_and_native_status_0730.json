@@ -1,0 +1,159 @@
+{
+  "observed_at_cst": "2026-10-05T07:30:23.244391+08:00",
+  "reason": "Read-only response to user request for actual complete-training and full-metrics status",
+  "progress": {
+    "stage": "BOTH_COMPLETE_NATIVE_BENCHMARKS",
+    "observed_at_cst": "2026-10-05T06:37:17.510269+08:00",
+    "automatic_restarts": 0,
+    "poll_interval_seconds": 180,
+    "official_goal_completed": false,
+    "runs": [
+      {
+        "gpu": 0,
+        "pid": 1070923,
+        "log": "/data/gb/setup/best_native_policy_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu0_20261005.log",
+        "command": [
+          "bash",
+          "/data/gb/setup/run_best_native_policy_native_complete_20261005.sh",
+          "0"
+        ]
+      },
+      {
+        "gpu": 1,
+        "pid": 1070924,
+        "log": "/data/gb/setup/best_native_policy_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu1_20261005.log",
+        "command": [
+          "bash",
+          "/data/gb/setup/run_best_native_policy_native_complete_20261005.sh",
+          "1"
+        ]
+      },
+      {
+        "gpu": 2,
+        "pid": 1070925,
+        "log": "/data/gb/setup/best_native_policy_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu2_20261005.log",
+        "command": [
+          "bash",
+          "/data/gb/setup/run_best_native_policy_native_complete_20261005.sh",
+          "2"
+        ]
+      },
+      {
+        "gpu": 3,
+        "pid": 1070926,
+        "log": "/data/gb/setup/best_native_policy_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu3_20261005.log",
+        "command": [
+          "bash",
+          "/data/gb/setup/run_best_native_policy_native_complete_20261005.sh",
+          "3"
+        ]
+      }
+    ],
+    "GPU_memory_before_launch_mib": {
+      "0": 349,
+      "1": 20,
+      "2": 20,
+      "3": 20
+    }
+  },
+  "runs": [
+    {
+      "gpu": 0,
+      "pid": 1070923,
+      "processes": "1070923  632884 Ss         53:05 bash /data/gb/setup/run_best_native_policy_native_complete_20261005.sh 0\n1157419 1070923 Rl         03:37 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth --write-verification action --seed 42 --sequence-offset 0 --limit-sequences 59 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_native_full_20261005/rgbt234/shards/gpu0/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"car10\", \"sequence_index\": 20, \"sequences\": 59, \"frames\": 212, \"elapsed_seconds\": 6.737334606703371, \"stats\": {\"template_updates\": 211, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"car20\", \"sequence_index\": 21, \"sequences\": 59, \"frames\": 161, \"elapsed_seconds\": 5.06364797661081, \"stats\": {\"template_updates\": 160, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"car3\", \"sequence_index\": 22, \"sequences\": 59, \"frames\": 501, \"elapsed_seconds\": 15.898172134067863, \"stats\": {\"template_updates\": 449, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}"
+      ],
+      "datasets": {
+        "lasher": {
+          "written_sequence_files": 62,
+          "inference_marker": true
+        },
+        "rgbt234": {
+          "written_sequence_files": 22,
+          "inference_marker": false
+        }
+      }
+    },
+    {
+      "gpu": 1,
+      "pid": 1070924,
+      "processes": "1070924  632884 Ss         53:06 bash /data/gb/setup/run_best_native_policy_native_complete_20261005.sh 1\n1070937 1070924 Rl         53:06 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth --write-verification action --seed 42 --sequence-offset 62 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_native_full_20261005/lasher/shards/gpu1/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"boytakingplate2left\", \"sequence_index\": 40, \"sequences\": 61, \"frames\": 262, \"elapsed_seconds\": 16.440245419275016, \"stats\": {\"template_updates\": 116, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"boyunder2baskets\", \"sequence_index\": 41, \"sequences\": 61, \"frames\": 613, \"elapsed_seconds\": 36.73388729104772, \"stats\": {\"template_updates\": 126, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 4, \"extra_visual_forwards\": 4, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 4, \"paused_query_writes\": 1, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"boywaitgirl\", \"sequence_index\": 42, \"sequences\": 61, \"frames\": 965, \"elapsed_seconds\": 47.20881910761818, \"stats\": {\"template_updates\": 855, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}"
+      ],
+      "datasets": {
+        "lasher": {
+          "written_sequence_files": 42,
+          "inference_marker": false
+        },
+        "rgbt234": {
+          "written_sequence_files": 0,
+          "inference_marker": false
+        }
+      }
+    },
+    {
+      "gpu": 2,
+      "pid": 1070925,
+      "processes": "1070925  632884 Ss         53:06 bash /data/gb/setup/run_best_native_policy_native_complete_20261005.sh 2\n1070938 1070925 Dl         53:06 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/testingset --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth --write-verification action --seed 42 --sequence-offset 123 --limit-sequences 61 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_native_full_20261005/lasher/shards/gpu2/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"mansimiliar\", \"sequence_index\": 46, \"sequences\": 61, \"frames\": 273, \"elapsed_seconds\": 12.601812021806836, \"stats\": {\"template_updates\": 168, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 1, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"mantostartcar\", \"sequence_index\": 47, \"sequences\": 61, \"frames\": 123, \"elapsed_seconds\": 5.561571295838803, \"stats\": {\"template_updates\": 83, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"midblkgirl\", \"sequence_index\": 48, \"sequences\": 61, \"frames\": 353, \"elapsed_seconds\": 17.555068298708647, \"stats\": {\"template_updates\": 270, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}"
+      ],
+      "datasets": {
+        "lasher": {
+          "written_sequence_files": 48,
+          "inference_marker": false
+        },
+        "rgbt234": {
+          "written_sequence_files": 0,
+          "inference_marker": false
+        }
+      }
+    },
+    {
+      "gpu": 3,
+      "pid": 1070926,
+      "processes": "1070926  632884 Ss         53:06 bash /data/gb/setup/run_best_native_policy_native_complete_20261005.sh 3\n1138268 1070926 Rl         14:37 /data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset rgbt234 --root /data/zhouy/DATASET/RGB-T234 --model /data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth --write-verification action --seed 42 --sequence-offset 176 --limit-sequences 58 --max-frames 0 --output /data/gb/outputs/recoverability_best_native_policy_native_full_20261005/rgbt234/shards/gpu3/predictions",
+      "latest_log_lines": [
+        "SEQUENCE {\"sequence\": \"womanleft\", \"sequence_index\": 53, \"sequences\": 58, \"frames\": 578, \"elapsed_seconds\": 19.568546001333743, \"stats\": {\"template_updates\": 549, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"womanpink\", \"sequence_index\": 54, \"sequences\": 58, \"frames\": 112, \"elapsed_seconds\": 3.962486361153424, \"stats\": {\"template_updates\": 0, \"max_pending_per_branch\": 0, \"extra_searches_requested\": 2, \"extra_visual_forwards\": 2, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 3, \"paused_query_writes\": 0, \"max_motion_history\": 8}}",
+        "SEQUENCE {\"sequence\": \"womanred\", \"sequence_index\": 55, \"sequences\": 58, \"frames\": 102, \"elapsed_seconds\": 3.327907829079777, \"stats\": {\"template_updates\": 96, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}"
+      ],
+      "datasets": {
+        "lasher": {
+          "written_sequence_files": 61,
+          "inference_marker": true
+        },
+        "rgbt234": {
+          "written_sequence_files": 55,
+          "inference_marker": false
+        }
+      }
+    }
+  ],
+  "CPU_continuation": {
+    "status": "WAIT_ORIGINAL_NATIVE_REPORTS",
+    "pid": 1049952,
+    "original_controller_pid": 632884,
+    "started_at_cst": "2026-10-05T06:25:06.212413+08:00",
+    "first_completion_check_cst": "2026-10-05T07:30:00+08:00",
+    "poll_interval_seconds": 180,
+    "original_controller_stage_at_start": "FULL98_best",
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "optimizer_updates": 0,
+    "automatic_restarts": 0,
+    "goal_status_changed": false
+  },
+  "consolidated_report_marker": false,
+  "new_jobs": 0,
+  "neural_calls": 0,
+  "GPU_queries": 0
+}

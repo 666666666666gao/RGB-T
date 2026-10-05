@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "dataset": "lasher",
+  "sequences": 245,
+  "frames": 220703,
+  "same_checkpoint": "/data/gb/outputs/recoverability_best_native_policy_budgeted_lr4_full_20261005/epoch_040.pth",
+  "native_overall_percent": {
+    "baseline": {
+      "NPR": 73.10197299993155,
+      "PR": 76.59844897037928,
+      "SR": 61.03742534859602
+    },
+    "c1": {
+      "NPR": 74.15451765370953,
+      "PR": 77.86097272569167,
+      "SR": 61.951313680271845
+    },
+    "best_native_policy_complete": {
+      "NPR": 73.947334176965,
+      "PR": 77.43650574418123,
+      "SR": 61.67730568537687
+    }
+  },
+  "paired_5000_seed42_bootstrap_exact": {
+    "baseline": {
+      "NPR": {
+        "mean_delta_percentage_points": 0.8453611770335019,
+        "percentile_95_interval_percentage_points": [
+          -0.2447663837737381,
+          1.9996682373244952
+        ],
+        "improved_sequences": 57,
+        "worsened_sequences": 71,
+        "tied_sequences": 117
+      },
+      "PR": {
+        "mean_delta_percentage_points": 0.8380567738019156,
+        "percentile_95_interval_percentage_points": [
+          -0.39052144995832816,
+          2.170020480062801
+        ],
+        "improved_sequences": 53,
+        "worsened_sequences": 75,
+        "tied_sequences": 117
+      },
+      "SR": {
+        "mean_delta_percentage_points": 0.639880336780848,
+        "percentile_95_interval_percentage_points": [
+          -0.2384939085235389,
+          1.5699088791557045
+        ],
+        "improved_sequences": 62,
+        "worsened_sequences": 78,
+        "tied_sequences": 105
+      }
+    },
+    "c1": {
+      "NPR": {
+        "mean_delta_percentage_points": -0.20718347674449042,
+        "percentile_95_interval_percentage_points": [
+          -1.5593631835564175,
+          1.1105519503455112
+        ],
+        "improved_sequences": 63,
+        "worsened_sequences": 67,
+        "tied_sequences": 115
+      },
+      "PR": {
+        "mean_delta_percentage_points": -0.4244669815104373,
+        "percentile_95_interval_percentage_points": [
+          -1.9313639828497937,
+          1.0892621811777574
+        ],
+        "improved_sequences": 62,
+        "worsened_sequences": 71,
+        "tied_sequences": 112
+      },
+      "SR": {
+        "mean_delta_percentage_points": -0.27400799489498767,
+        "percentile_95_interval_percentage_points": [
+          -1.3991419647733527,
+          0.8308607420046153
+        ],
+        "improved_sequences": 66,
+        "worsened_sequences": 76,
+        "tied_sequences": 103
+      }
+    }
+  },
+  "all_actual_GT_sequence_metrics_attributes_and_curves_exact": true,
+  "native_metric_function_calls": 0,
+  "score_not_another_models_output": true,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "execution": {
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0
+  },
+  "scope": "Independent native metric arithmetic and paired bootstrap; detailed mechanism masses use the original separate collector."
+}

@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/recoverability_best_native_policy_native_full_20261005/lasher/baseline_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/recoverability_best_native_policy_native_full_20261005/lasher/baseline_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "baseline",
+        "best_native_policy_complete"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 0.8453611770335019,
+          "percentile_95_interval_percentage_points": [
+            -0.2447663837737381,
+            1.9996682373244952
+          ],
+          "improved_sequences": 57,
+          "worsened_sequences": 71,
+          "tied_sequences": 117
+        },
+        "PR": {
+          "mean_delta_percentage_points": 0.8380567738019156,
+          "percentile_95_interval_percentage_points": [
+            -0.39052144995832816,
+            2.170020480062801
+          ],
+          "improved_sequences": 53,
+          "worsened_sequences": 75,
+          "tied_sequences": 117
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.639880336780848,
+          "percentile_95_interval_percentage_points": [
+            -0.2384939085235389,
+            1.5699088791557045
+          ],
+          "improved_sequences": 62,
+          "worsened_sequences": 78,
+          "tied_sequences": 105
+        }
+      }
+    }
+  }
+}
