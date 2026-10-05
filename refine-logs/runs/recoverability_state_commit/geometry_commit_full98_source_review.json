@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T17:01:49.187757+08:00",
+  "scope": "Narrow source-only scheduling review of launch_geometry_commit_full98.py against the previously reviewed fit writer, optional commit evaluator, existing run_temporal.sh, and saved split. No source changes, SSH, GPU queries, neural execution, or installation.",
+  "reviewed_file": "refine-logs/runs/recoverability_state_commit/launch_geometry_commit_full98.py",
+  "prior_core_review": "refine-logs/runs/recoverability_state_commit/geometry_commit_fit_source_review.json",
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "conclusion": "No concrete correctness defect found. The launcher is suitable for one completed prototype fit per GPU to enter full98 continuous developer evaluation, subject to its actual runtime gates. This is not training or accuracy attestation.",
+  "checks": [
+    {
+      "topic": "Completion and review gates",
+      "result": "PASS",
+      "evidence": "Lines 18-26 require this source PASS, runtime_attested=false, the completed real parity receipt, that GPU fit COMPLETE plus non-sanity completion, exactly 60 epochs and optimizer updates, frozen_parent_exact, the fixed old4 parent path and seed42. A fit still running cannot satisfy the completion gate; a still-live Python process also blocks launch."
+    },
+    {
+      "topic": "Parent and selected checkpoint",
+      "result": "PASS",
+      "evidence": "Lines 11-12 and 22 use the same BASE/gpuN and protected old4 path as launch_geometry_commit_fit.py. Lines 35 and 45 pass that fit best.pth as --commit-model and old4 as --model, never replace the backbone with the small head. The reviewed trainer reloads the selected best checkpoint before writing completion; line46 records its selected_epoch separately from all_fit_updates=60. The reviewed evaluator checks the head parent path, module, 463 features and .03 threshold and strictly loads it, while recording the actual loaded head epoch."
+    },
+    {
+      "topic": "Complete developer split and GT scope",
+      "result": "PASS",
+      "evidence": "Lines 33-40 select LasHeR traingset with the established C1 seed42 split, no sequence offset/limit, max-frames=0, learned-policy default and write-verification=action. The reviewed evaluator filters to the entire validation set, asserts the set matches, and uses only initialization GT during tracking. The saved local split has 881 train and 98 unique validation sequences with no overlap. No native TEST root or test-based selection is present; receipt describes these 98 as repeatedly used developer videos, not unseen confirmation. Offline actual-GT metrics and later fixed-checkpoint native acceptance remain separate."
+    },
+    {
+      "topic": "GPU availability and launch ownership",
+      "result": "PASS",
+      "evidence": "Lines 27-30 query only index, UUID, free memory and compute process identity. The requested GPU needs over20000MiB free and no Python process on its UUID. Lines 31-43 refuse existing output/receipt, open that fit own log, and contain exactly one Popen with the selected GPU passed both to run_temporal.sh and CUDA_VISIBLE_DEVICES. Existing run_temporal.sh exports that GPU and execs the evaluator. No restart, delete, wait loop, temperature/power query or setting is present."
+    },
+    {
+      "topic": "Output and receipt scope",
+      "result": "PASS",
+      "evidence": "Outputs are separate per fit at gpuN/continuous/predictions, with gpuN/full98.log and gpuN/full98_launch.json. The receipt records a launch PID, command, selected head epoch and time; it does not assert completion or a metric. The evaluator keeps its independent actual inference completion and later native actual-GT scoring requirements."
+    }
+  ],
+  "executed_checks": {
+    "python_ast_parse": "PASS",
+    "popen_calls_in_source": 1,
+    "existing_local_split": {
+      "train_sequences": 881,
+      "validation_sequences": 98,
+      "unique_validation_sequences": 98,
+      "train_validation_overlap": 0
+    },
+    "remote_runtime_checked": false,
+    "neural_execution": false
+  },
+  "runtime_limits": "The parent reports successful M0/parity and four fit launches. This review does not independently attest those remote events, fit completion, current GPU availability, loaded checkpoint bytes, all98 prediction completion, or new accuracy. Actual launcher checks must pass at execution.",
+  "supplemental_telemetry_review": {
+    "status": "PASS",
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "runtime_attested": false,
+    "reviewed_at_cst": "2026-10-05T17:03:25.729984+08:00",
+    "reviewed_files": [
+      "research/geometry_commit.py",
+      "research/evaluate_recoverability.py"
+    ],
+    "scope": "Exact current telemetry-only diff against the already reviewed core source; no scientific source edits or runtime execution.",
+    "blocking_findings": [],
+    "non_blocking_findings": [],
+    "read_only_with_respect_to_tracking_state": true,
+    "default_baseline_path_unchanged": true,
+    "evidence": [
+      "geometry_commit.py:65 adds a zero-initialized diagnostic counter only.",
+      "geometry_commit.py:90 compares the already accepted same-query ordinary search reference with the provider result immediately before the existing assignment. It increments only for an actual difference, whereas geometry_commit_interventions still counts every selected geometry action. The count measures change relative to the ordinary commit at that state, not relative to the preceding frame.",
+      "geometry_commit.py:105-106 records the post-step committed search reference and latest motion observation as diagnostic tensors. Both are reads after action selection and all state commits; neither feeds features, actions, losses, memory updates, history writes, or the returned box. Both fields are present even on the first tracked frame, preserving consistent timeline serialization.",
+      "evaluate_recoverability.py:76 only adds the new counter to the optional commit-head stats collection. When commit_head is None, this block and the GeometryCommitTracker diagnostics remain absent, so the existing baseline execution path is unchanged.",
+      "The exact diff changes no feature construction, loss, training, checkpoint selection, score threshold, provider update, search-reference assignment, selected query output, or motion-history append. New tensor creation does add diagnostic work inside the timed step; the measured commit-head latency naturally includes that work."
+    ],
+    "executed_checks": "Exact local git diff read and Python AST parsing of both changed files; no imports, NN, SSH, GPU query, or installation.",
+    "parity_provenance": "The previously completed real 120-frame zero-initialized old4 parity run predates these new telemetry fields. This supplemental PASS is source-only and does not claim that parity or any neural evaluation was rerun after the telemetry change."
+  }
+}

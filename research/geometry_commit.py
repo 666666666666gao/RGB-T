@@ -62,7 +62,7 @@ class GeometryCommitTracker(RecoverabilityTracker):
     def __init__(self, *args, commit_head, **kwargs):
         super().__init__(*args, **kwargs)
         self.commit_head = commit_head.eval().requires_grad_(False)
-        self.stats.update(geometry_commit_interventions=0, appearance_commit_overrides=0)
+        self.stats.update(geometry_commit_interventions=0, geometry_reference_changed=0, appearance_commit_overrides=0)
 
     def original_inputs(self, observation, distribution, history):
         self.commit_data = super().original_inputs(observation, distribution, history)
@@ -87,6 +87,7 @@ class GeometryCommitTracker(RecoverabilityTracker):
             provider = SiamFCCroppingParameterSimpleProvider(4., 10.)
             provider.initialize(search_box)
             provider.update(0., prediction, np.array((image.shape[-1], image.shape[-2])))
+            self.stats['geometry_reference_changed'] += int(not np.array_equal(self.branch.search_box,provider.cached_bbox))
             self.branch.search_box = provider.cached_bbox.copy()
             self.stats['geometry_commit_interventions'] += 1
         self.stats['appearance_commit_overrides'] += int(actual_pause != pause)
@@ -101,4 +102,6 @@ class GeometryCommitTracker(RecoverabilityTracker):
             self.commit_action = int(self.last_decision['pause'])
         self.last_decision['commit_action'] = torch.tensor(self.commit_action, device=self.device)
         self.last_decision['pause'] = torch.tensor(bool(self.commit_action % 2), device=self.device)
+        self.last_decision['committed_search_reference'] = torch.as_tensor(self.branch.search_box,device=self.device)
+        self.last_decision['committed_motion_observation'] = torch.as_tensor(self.history[-1][0],device=self.device)
         return box

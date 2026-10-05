@@ -73,7 +73,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
              'extra_searches_requested', 'extra_visual_forwards', 'skipped_empty_extra_regions',
              'changed_candidate_indices', 'paused_query_writes', 'max_motion_history')}
     if commit_head is not None:
-        stats.update({key:tracker.stats[key] for key in ('geometry_commit_interventions','appearance_commit_overrides')})
+        stats.update({key:tracker.stats[key] for key in ('geometry_commit_interventions','geometry_reference_changed','appearance_commit_overrides')})
     if args.parity_check:
         extractor.proposal_policy = 'peaks'
         reference_timeline = []

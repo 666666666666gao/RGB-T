@@ -1,0 +1,66 @@
+{
+  "launch": {
+    "pid": 2091028,
+    "gpu": 0,
+    "stage": "sanity",
+    "command": [
+      "bash",
+      "/data/gb/GOLA/scripts/run_temporal.sh",
+      "0",
+      "train_geometry_commit",
+      "--probe-root",
+      "/data/gb/outputs/recoverability_velocity_search_commit_train88_20261005",
+      "--jobs",
+      "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/prepared_velocity_train88_jobs.json",
+      "--parent",
+      "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "--c1-head",
+      "/data/gb/outputs/c1_initial_seed42/best.pth",
+      "--output",
+      "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/sanity",
+      "--horizon",
+      "32",
+      "--lost-penalty",
+      "0.1",
+      "--epochs",
+      "4",
+      "--seed",
+      "42",
+      "--sanity"
+    ],
+    "output": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/sanity",
+    "epochs": 4,
+    "horizon": 32,
+    "lost_penalty": 0.1,
+    "launched_at_cst": "2026-10-05T16:53:25.295243+08:00"
+  },
+  "complete": true,
+  "completion": {
+    "complete": true,
+    "epochs": 4,
+    "optimizer_updates": 4,
+    "selected_epoch": 4,
+    "reloaded_validation": {
+      "event_weighted_utility_gain": 0.001879903837107122,
+      "queries": 22,
+      "changed_actions": 6,
+      "geometry_actions": 6,
+      "query_gains": 3,
+      "query_losses": 2
+    },
+    "head_parameter_change_norms": {
+      "net.0.weight": 0.03871406242251396,
+      "net.0.bias": 0.03435175493359566,
+      "net.1.weight": 0.30489063262939453,
+      "net.1.bias": 0.011926647275686264,
+      "net.3.weight": 0.04409848153591156,
+      "net.3.bias": 0.004044049885123968
+    },
+    "frozen_parent_exact": true,
+    "sanity_only": true,
+    "native_accuracy": null
+  },
+  "parent_alive": false,
+  "log_tail": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n{\"epoch\": 1, \"optimizer_updates\": 1, \"loss\": 0.009573905728757381, \"validation\": {\"event_weighted_utility_gain\": 0.0, \"queries\": 22, \"changed_actions\": 0, \"geometry_actions\": 0, \"query_gains\": 0, \"query_losses\": 0}, \"train\": {\"event_weighted_utility_gain\": 0.0, \"queries\": 66, \"changed_actions\": 0, \"geometry_actions\": 0, \"query_gains\": 0, \"query_losses\": 0}}\n{\"epoch\": 2, \"optimizer_updates\": 2, \"loss\": 0.009285944513976574, \"validation\": {\"event_weighted_utility_gain\": 0.001583218458108604, \"queries\": 22, \"changed_actions\": 11, \"geometry_actions\": 11, \"query_gains\": 3, \"query_losses\": 7}, \"train\": {\"event_weighted_utility_gain\": 0.021909914910793304, \"queries\": 66, \"changed_actions\": 28, \"geometry_actions\": 28, \"query_gains\": 16, \"query_losses\": 10}}\n{\"epoch\": 3, \"optimizer_updates\": 3, \"loss\": 0.008881800808012486, \"validation\": {\"event_weighted_utility_gain\": 0.0016604600241407752, \"queries\": 22, \"changed_actions\": 10, \"geometry_actions\": 10, \"query_gains\": 3, \"query_losses\": 6}, \"train\": {\"event_weighted_utility_gain\": 0.023321758955717087, \"queries\": 66, \"changed_actions\": 29, \"geometry_actions\": 29, \"query_gains\": 14, \"query_losses\": 13}}\n{\"epoch\": 4, \"optimizer_updates\": 4, \"loss\": 0.008318938314914703, \"validation\": {\"event_weighted_utility_gain\": 0.001879903837107122, \"queries\": 22, \"changed_actions\": 6, \"geometry_actions\": 6, \"query_gains\": 3, \"query_losses\": 2}, \"train\": {\"event_weighted_utility_gain\": 0.02453155256807804, \"queries\": 66, \"changed_actions\": 15, \"geometry_actions\": 15, \"query_gains\": 9, \"query_losses\": 5}}\n",
+  "observed_at_cst": "2026-10-05T16:56:26.768559+08:00"
+}
