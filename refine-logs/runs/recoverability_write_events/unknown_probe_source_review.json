@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-06T03:21:29.2576412+08:00",
+  "reviewer_agent": "/root/unknown_gt_geometry_probe_source_review",
+  "reviewer_attribution": "Fresh Codex source reviewer; served backend model and reasoning-effort metadata not independently attested in this reviewer context.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "review_scope": "SOURCE ONLY: masked GT-unknown extension relative to 3bbcd43, prepared TRAIN jobs and existing CPU evidence. No new neural or native result accepted.",
+  "sources": [
+    "research/probe_geometry_commit.py",
+    "research/recoverability_tracker.py",
+    "research/bounded_recovery.py",
+    "research/collect_temporal.py",
+    "research/collect_rollouts.py",
+    "research/collect_candidate_metrics.py",
+    "refine-logs/runs/c1_seed42_split.json",
+    "refine-logs/runs/recoverability_write_events/unknown_probe_plan.json",
+    "refine-logs/runs/recoverability_write_events/prepare_unknown_probe_jobs_cpu.py",
+    "refine-logs/runs/recoverability_write_events/actual_TRAIN_unknown_probe_jobs_cpu.json",
+    "refine-logs/runs/recoverability_write_events/audit_train_unknown_events_cpu.py",
+    "refine-logs/runs/recoverability_write_events/actual_TRAIN_unknown_events_cpu.json",
+    "refine-logs/runs/recoverability_write_events/audit_closed_divergence_windows_cpu.py",
+    "refine-logs/runs/recoverability_write_events/actual_six_closed_full98_divergence_cpu.json",
+    "refine-logs/runs/recoverability_write_events/actual_masked_probe_CPU_regression.json",
+    "refine-logs/runs/recoverability_write_events/actual_masked_probe_CPU_regression.log"
+  ],
+  "unresolved_blockers": [],
+  "required_source_fixes": [],
+  "findings": [
+    {
+      "topic": "GT and TRAIN boundary",
+      "verdict": "PASS",
+      "evidence": "probe_geometry_commit.py:253-269 checks disjoint TRAIN/validation, TRAIN membership, real frame availability, valid initialization and at least three known future labels before model load. Query GT may be unknown. Initial GT alone enters tracker construction; query/future GT is used only for offline eligibility and outcomes after all branch rollouts. Action inputs contain images, predictions and prior state, not GT."
+    },
+    {
+      "topic": "Matched state and control preservation",
+      "verdict": "PASS",
+      "evidence": "Local stdlib AST comparison confirms controls, QueryTracker, private_state, next_search_prediction and the entire probe body before offline GT extraction are identical to 3bbcd43. C1_components retains one shared query observation/output, the actual checkpoint's pause, identical templates and identity/motion-memory tensors, real observation times and quality. Only the selected search and/or motion-history coordinates change; future steps use the same frozen checkpoint."
+    },
+    {
+      "topic": "Unknown labels and denominators",
+      "verdict": "PASS",
+      "evidence": "probe_geometry_commit.py:68-82 and 166-182 assign unknown IoU=-1, exclude it from both IoU means and failure/wrong-write counts, separately count unknown frames/writes, and interrupt failure and three-correct runs at unknown frames. A zero-known H3 window has null IoU means and null query/reference IoU labels. GT validity uses finite positive-area XYXY boxes; the raw XYWH preparation uses finite positive width/height."
+    },
+    {
+      "topic": "Event aggregation and known-GT regression",
+      "verdict": "PASS",
+      "evidence": "mean_known and both event-summary levels omit null IoU means, returning null when no contributing known window exists. Correlated query states are averaged within events, then known events receive equal weight; known/unknown coverage counts remain explicit. When every frame is known the previous outcome expressions retain their values. The saved CPU record and log are identical and report exact old metrics for four controls times H3/H32 plus unknown/null/streak/aggregation fixtures; this reviewer did not rerun them."
+    },
+    {
+      "topic": "Actual prepared event scope",
+      "verdict": "PASS",
+      "evidence": "Local JSON checks match all 20 unique jobs to the first unknown frame of actual long-gap inventory events from 14 of 881 TRAIN sequences, with zero validation jobs. All saved H3 windows are unknown; the saved future32 known count is at least 7. The 20 jobs plus 10 exclusions exactly partition the 30 long episodes; plan GPU assignments contain each job once. Source-prefix roles are descriptive metadata and never select actions or supervise training."
+    },
+    {
+      "topic": "Diagnostic interpretation and execution boundary",
+      "verdict": "PASS",
+      "evidence": "The saved guardatbike_ab divergence is observational: first difference63, zero known GT at query/H3, and 25 known frames in H32 with old4 mean0.8966583504890182/new0. It motivates this TRAIN diagnostic without proving a causal mechanism or improvement. The plan remains SOURCE_PREPARED and requires complete current native245/234 GT reports before four-event neural sanity and the remaining16 events. ALL5+2 remains unmet."
+    }
+  ],
+  "non_blocking_notes": [
+    {
+      "location": "research/probe_geometry_commit.py:292",
+      "status": "RESOLVED",
+      "note": "The parent corrected the pre-existing 'actual old4 pause' wording to 'the actual loaded-policy pause'. Reviewer read the corrected line. This is a metadata-only correction; the executed control and masking code are unchanged. No unresolved non-blocking finding remains."
+    }
+  ],
+  "checks_actually_executed": [
+    "Local source and 3bbcd43 diff inspection; stdlib AST parsing and equality comparison, without importing research/model modules.",
+    "Local split, inventory, prepared-job and GPU-assignment JSON consistency checks.",
+    "Read existing CPU regression JSON/log and six closed divergence records; no regression replay."
+  ],
+  "reviewer_execution": {
+    "SSH_calls": 0,
+    "GPU_queries": 0,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "deployments": 0,
+    "subagents_spawned": 0,
+    "research_source_files_modified": false
+  },
+  "limitations": [
+    "This is a source PASS, not attestation of the new neural sanity, runtime state assertions or 20-event outcomes.",
+    "Saved actual GT eligibility and CPU receipts were inspected locally; raw remote GT and neural arrays were not re-read or re-executed by this reviewer.",
+    "The 20 selected finite-window TRAIN diagnostics cannot establish native benchmark gains or permanent unrecoverability."
+  ]
+}

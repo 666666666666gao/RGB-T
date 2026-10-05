@@ -66,16 +66,20 @@ def private_state(parent):
 
 
 def outcome(values, writes):
+    known = values >= 0
     longest = current = 0
-    for failed in values < .2:
+    for failed in known & (values < .2):
         current = current + 1 if failed else 0
         longest = max(longest, current)
     correct = values >= .5
     first = next((t for t in range(1, len(values) - 2) if correct[t:t + 3].all()), None)
-    return {'mean_iou_including_query': float(values.mean()), 'mean_future_iou': float(values[1:].mean()),
-            'failure_frames_including_query': int((values < .2).sum()), 'longest_failure_run': longest,
+    return {'mean_iou_including_query': float(values[known].mean()) if known.any() else None,
+            'mean_future_iou': float(values[1:][known[1:]].mean()) if known[1:].any() else None,
+            'valid_GT_frames': int(known.sum()), 'unknown_GT_frames': int((~known).sum()),
+            'failure_frames_including_query': int((known & (values < .2)).sum()), 'longest_failure_run': longest,
             'first_future_three_correct_run_offset': first,
-            'writes': int(writes.sum()), 'wrong_localization_writes': int((writes & (values < .2)).sum())}
+            'writes': int(writes.sum()), 'unknown_GT_writes': int((writes & ~known).sum()),
+            'wrong_localization_writes': int((writes & known & (values < .2)).sum())}
 
 
 @torch.inference_mode()
@@ -160,17 +164,20 @@ def probe(sequence, job, extractor, modules, motion, device, args, threshold):
     assert len(parent.history) == len(parent_history)
     assert all(np.array_equal(a[0], b[0]) and a[1:] == b[1:] for a, b in zip(parent.history, parent_history))
     gt = np.stack([sequence[q + t].get_bounding_box() for t in range(horizon + 1)])
-    assert np.isfinite(gt).all() and (gt[:, 2:] > gt[:, :2]).all()
+    gt_known = np.isfinite(gt).all(1) & (gt[:, 2:] > gt[:, :2]).all(1)
+    assert gt_known[1:].sum() >= 3
     results, arrays = [], {'gt_xyxy': gt, 'C1_keep_query_xyxy': keep_box,
+                          'gt_known': gt_known,
                           'pre_query_identity_anchor': parent.identity_anchor[0].cpu().numpy(),
                           'pre_query_identity_memory': parent_identity[0].cpu().numpy()}
     arrays.update({'decision_' + key: value[0].detach().cpu().numpy() for key, value in query.decision_inputs.items()})
     for row in rows:
         boxes, writes = np.asarray(row['boxes']), np.asarray(row['writes'], dtype=bool)
-        overlap = np.asarray([iou(b, target) for b, target in zip(boxes, gt)])
+        overlap = np.asarray([iou(b, target) if known else -1. for b, target, known in zip(boxes, gt, gt_known)])
         results.append({'name': row['name'], 'query_pause': row['pause'], 'query_geometry_C1': row['geometry_c1'],
-                        'query_output_iou': float(overlap[0]), 'query_geometry_iou': iou(row['search'][0], gt[0]),
-                        'next_search_reference_iou_at_next_frame': iou(row['search'][0], gt[1]),
+                        'query_output_iou': float(overlap[0]) if gt_known[0] else None,
+                        'query_geometry_iou': iou(row['search'][0], gt[0]) if gt_known[0] else None,
+                        'next_search_reference_iou_at_next_frame': iou(row['search'][0], gt[1]) if gt_known[1] else None,
                         'query_template_updated': bool(writes[0]), 'extra_visual_forwards': sum(row['extra']),
                         'horizons': {str(h): outcome(overlap[:h + 1], writes[:h + 1]) for h in args.horizons}})
         for key, value in [('boxes_xyxy', boxes), ('iou', overlap), ('writes', writes),
@@ -191,6 +198,11 @@ def probe(sequence, job, extractor, modules, motion, device, args, threshold):
             'query_visual_work_shared_once': True, 'controls': results}, arrays
 
 
+def mean_known(values):
+    values = [value for value in values if value is not None]
+    return float(np.mean(values)) if values else None
+
+
 def event_summary(rows, horizons):
     names = [c['name'] for c in rows[0]['controls']]
     groups = {}
@@ -201,10 +213,11 @@ def event_summary(rows, horizons):
         averages = {}
         for name in names:
             averages[name] = {str(h): {
-                metric: float(np.mean([next(c for c in row['controls'] if c['name'] == name)['horizons'][str(h)][metric]
-                                      for row in states]))
+                metric: mean_known([next(c for c in row['controls'] if c['name'] == name)['horizons'][str(h)][metric]
+                                      for row in states])
                 for metric in ('mean_iou_including_query', 'mean_future_iou', 'failure_frames_including_query',
-                               'longest_failure_run', 'writes', 'wrong_localization_writes')}
+                               'longest_failure_run', 'writes', 'wrong_localization_writes',
+                               'valid_GT_frames', 'unknown_GT_frames', 'unknown_GT_writes')}
                 for h in horizons}
         events.append({'sequence': sequence, 'event_id': event_id, 'query_states': len(states),
                        'legal_query_write_pairs': sum(row['query_raw_write_eligible'] for row in states),
@@ -220,9 +233,10 @@ def event_summary(rows, horizons):
             'requested_reference_not_exact_queries': sum(not row['query_requested_reference_matched_exactly'] for row in rows),
             'event_rows': events,
             'controls_equal_event_mean': {name: {str(h): {
-                metric: float(np.mean([e['controls_mean_over_correlated_query_states'][name][str(h)][metric] for e in events]))
+                metric: mean_known([e['controls_mean_over_correlated_query_states'][name][str(h)][metric] for e in events])
                 for metric in ('mean_iou_including_query', 'mean_future_iou', 'failure_frames_including_query',
-                               'longest_failure_run', 'writes', 'wrong_localization_writes')}
+                               'longest_failure_run', 'writes', 'wrong_localization_writes',
+                               'valid_GT_frames', 'unknown_GT_frames', 'unknown_GT_writes')}
                 for h in horizons} for name in names}}
 
 
@@ -251,7 +265,8 @@ def main():
         sequence = dataset[indices[job['sequence']]]
         eligible_gt = np.stack([sequence[t].get_bounding_box() for t in
                                 [0] + list(range(job['query_frame'], job['query_frame'] + max(args.horizons) + 1))])
-        assert np.isfinite(eligible_gt).all() and (eligible_gt[:, 2:] > eligible_gt[:, :2]).all()
+        known = np.isfinite(eligible_gt).all(1) & (eligible_gt[:, 2:] > eligible_gt[:, :2]).all(1)
+        assert known[0] and known[2:].sum() >= 3  # Initialization and at least three future labels; query may be unknown.
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=False)
     torch.manual_seed(args.seed)
@@ -274,7 +289,7 @@ def main():
     (out / 'config.json').write_text(json.dumps(vars(args) | {'jobs': jobs, 'checkpoint_epoch': saved['epoch'],
         'scope': 'TRAIN matched-prestate diagnostic; no training or native benchmark',
         'query_output_unchanged': True, 'geometry_reference': args.geometry_reference,
-        'geometry_scope': 'C1 changes query search and motion reference; velocity_search changes ONLY next search reference using past centers and real times; C1_components separates query search box and motion-history coordinates with actual old4 pause, appearance, memories, time and quality held fixed. None is verified identity.',
+        'geometry_scope': 'C1 changes query search and motion reference; velocity_search changes ONLY next search reference using past centers and real times; C1_components separates query search box and motion-history coordinates with the actual loaded-policy pause, appearance, memories, time and quality held fixed. None is verified identity.',
         'future_policy': 'same frozen checkpoint normal deployed step', 'GT_role': 'initialization, TRAIN prelaunch eligibility, and offline outcomes; no GT action inputs'}, indent=2) + '\n')
     summaries = []
     for index, job in enumerate(jobs):
