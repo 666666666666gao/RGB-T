@@ -1,0 +1,195 @@
+{
+  "observed_at_cst": "2026-10-05T09:00:47.059751+08:00",
+  "state": {
+    "stage": "FULL_FOUR_GPU_COLLECTION_RUNNING",
+    "at_cst": "2026-10-05T08:55:47.123598+08:00",
+    "pid": 1297701,
+    "optimization_started": false,
+    "official_metrics_completed": false,
+    "children": [
+      {
+        "pid": 1298337,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+        "log": "/data/gb/setup/train_events_full_gpu0_20261005.log"
+      },
+      {
+        "pid": 1298338,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+        "log": "/data/gb/setup/train_events_full_gpu1_20261005.log"
+      },
+      {
+        "pid": 1298339,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+        "log": "/data/gb/setup/train_events_full_gpu2_20261005.log"
+      },
+      {
+        "pid": 1298340,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+        "log": "/data/gb/setup/train_events_full_gpu3_20261005.log"
+      }
+    ]
+  },
+  "sanity_actual_GT_acceptance": {
+    "status": "PASS",
+    "phase": "sanity",
+    "new_clips": 4,
+    "entries": [
+      {
+        "gpu": 0,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu0_20261005",
+        "clips": 1,
+        "current_GT_max_error": 1.794407508137752e-07,
+        "history_GT_max_error": 4.086546645520883e-08,
+        "completion": {
+          "completed": true,
+          "clips": 1,
+          "partition": "train",
+          "valid_actions": 35,
+          "requested_extra_crops": 6,
+          "executed_extra_crops": 6,
+          "original_correct_queries": 0,
+          "original_failed_queries": 1,
+          "original_candidate_present_queries": 0,
+          "query_frames_after256": 0,
+          "decision_input_contains_future": false,
+          "official_tracking_accuracy": false,
+          "elapsed_seconds": 4.232596104033291,
+          "peak_cuda_mib": 743.5166015625,
+          "actual_prefix_counts_sum": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "gpu": 1,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu1_20261005",
+        "clips": 1,
+        "current_GT_max_error": 1.2015361150474746e-07,
+        "history_GT_max_error": 3.6762295430037284e-08,
+        "completion": {
+          "completed": true,
+          "clips": 1,
+          "partition": "train",
+          "valid_actions": 34,
+          "requested_extra_crops": 6,
+          "executed_extra_crops": 6,
+          "original_correct_queries": 0,
+          "original_failed_queries": 1,
+          "original_candidate_present_queries": 0,
+          "query_frames_after256": 0,
+          "decision_input_contains_future": false,
+          "official_tracking_accuracy": false,
+          "elapsed_seconds": 4.167592920828611,
+          "peak_cuda_mib": 743.5166015625,
+          "actual_prefix_counts_sum": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "gpu": 2,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu2_20261005",
+        "clips": 1,
+        "current_GT_max_error": 4.399592251624895e-08,
+        "history_GT_max_error": 4.92631611059835e-08,
+        "completion": {
+          "completed": true,
+          "clips": 1,
+          "partition": "train",
+          "valid_actions": 42,
+          "requested_extra_crops": 6,
+          "executed_extra_crops": 6,
+          "original_correct_queries": 0,
+          "original_failed_queries": 1,
+          "original_candidate_present_queries": 0,
+          "query_frames_after256": 0,
+          "decision_input_contains_future": false,
+          "official_tracking_accuracy": false,
+          "elapsed_seconds": 4.888925168197602,
+          "peak_cuda_mib": 743.25439453125,
+          "actual_prefix_counts_sum": [
+            0,
+            0,
+            0,
+            3
+          ]
+        }
+      },
+      {
+        "gpu": 3,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu3_20261005",
+        "clips": 1,
+        "current_GT_max_error": 2.7467864160968247e-07,
+        "history_GT_max_error": 3.163502004799312e-08,
+        "completion": {
+          "completed": true,
+          "clips": 1,
+          "partition": "train",
+          "valid_actions": 32,
+          "requested_extra_crops": 6,
+          "executed_extra_crops": 6,
+          "original_correct_queries": 0,
+          "original_failed_queries": 1,
+          "original_candidate_present_queries": 0,
+          "query_frames_after256": 0,
+          "decision_input_contains_future": false,
+          "official_tracking_accuracy": false,
+          "elapsed_seconds": 3.7740482296794653,
+          "peak_cuda_mib": 743.5166015625,
+          "actual_prefix_counts_sum": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "all_queries_TRAIN_only": true,
+    "base1762_and_validation196_unchanged": true,
+    "full_combined_train_queries": 2478,
+    "GT_current_and_all_valid_history_verified": true,
+    "decision_inputs_copied_before_future": true,
+    "official_metrics_completed": false,
+    "future_label_scope": "Actual frozen own-policy outputs: source-linked, finite/range checked; no independent future neural rerun.",
+    "execution": {
+      "new_neural_forward_calls": 0,
+      "optimizer_steps": 0,
+      "native_test_reads": false
+    },
+    "completed_at_cst": "2026-10-05T08:55:47.048491+08:00"
+  },
+  "full_shards": [
+    {
+      "gpu": 0,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+      "progress": null,
+      "total_query_prefix_frame_proxy": 53067
+    },
+    {
+      "gpu": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+      "progress": null,
+      "total_query_prefix_frame_proxy": 52860
+    },
+    {
+      "gpu": 2,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+      "progress": null,
+      "total_query_prefix_frame_proxy": 52671
+    },
+    {
+      "gpu": 3,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+      "progress": null,
+      "total_query_prefix_frame_proxy": 52486
+    }
+  ],
+  "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1297701       1 Ss       314 python\n1298337 1297701 Rl       300 python\n1298338 1297701 Rl       300 python\n1298339 1297701 Dl       300 python\n1298340 1297701 Rl       300 python\n"
+}

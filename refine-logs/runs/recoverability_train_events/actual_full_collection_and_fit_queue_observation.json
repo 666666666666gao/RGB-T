@@ -1,0 +1,89 @@
+{
+  "observed_at_cst": "2026-10-05T09:09:43.523612+08:00",
+  "states": {
+    "train_events_collection": {
+      "stage": "FULL_FOUR_GPU_COLLECTION_RUNNING",
+      "at_cst": "2026-10-05T08:55:47.123598+08:00",
+      "pid": 1297701,
+      "optimization_started": false,
+      "official_metrics_completed": false,
+      "children": [
+        {
+          "pid": 1298337,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+          "log": "/data/gb/setup/train_events_full_gpu0_20261005.log"
+        },
+        {
+          "pid": 1298338,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+          "log": "/data/gb/setup/train_events_full_gpu1_20261005.log"
+        },
+        {
+          "pid": 1298339,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+          "log": "/data/gb/setup/train_events_full_gpu2_20261005.log"
+        },
+        {
+          "pid": 1298340,
+          "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+          "log": "/data/gb/setup/train_events_full_gpu3_20261005.log"
+        }
+      ]
+    },
+    "train_events_fit": {
+      "stage": "WAITING_FOR_ACTUAL_NEW716_TRAIN_COLLECTION_AND_GT_AUDIT",
+      "at_cst": "2026-10-05T09:08:18.517712+08:00",
+      "pid": 1320786,
+      "automatic_restarts": 0,
+      "official_metrics_completed": false,
+      "upstream_pid": 1297701
+    }
+  },
+  "full_shards": [
+    {
+      "gpu": 0,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+      "progress": {
+        "completed_clips": 16,
+        "clips": 179,
+        "elapsed_seconds": 575.3254606430419,
+        "peak_cuda_mib": 4309.060546875
+      },
+      "estimated_total_seconds_weighted_proxy": 3215.6831494695707
+    },
+    {
+      "gpu": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+      "progress": {
+        "completed_clips": 16,
+        "clips": 179,
+        "elapsed_seconds": 571.2109120418318,
+        "peak_cuda_mib": 4312.802734375
+      },
+      "estimated_total_seconds_weighted_proxy": 3195.9176936329704
+    },
+    {
+      "gpu": 2,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+      "progress": {
+        "completed_clips": 16,
+        "clips": 179,
+        "elapsed_seconds": 570.3331641252153,
+        "peak_cuda_mib": 4302.546875
+      },
+      "estimated_total_seconds_weighted_proxy": 3191.311455322004
+    },
+    {
+      "gpu": 3,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+      "progress": {
+        "completed_clips": 16,
+        "clips": 179,
+        "elapsed_seconds": 570.18719188869,
+        "peak_cuda_mib": 4320.1884765625
+      },
+      "estimated_total_seconds_weighted_proxy": 3192.233209630672
+    }
+  ],
+  "actual_process_status": "    PID    PPID STAT ELAPSED COMMAND\n1297701       1 Ss       850 python\n1298337 1297701 Rl       836 python\n1298338 1297701 Rl       836 python\n1298339 1297701 Rl       836 python\n1298340 1297701 Rl       836 python\n1320786       1 Ss        85 python\n"
+}

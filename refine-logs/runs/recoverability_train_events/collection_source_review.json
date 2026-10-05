@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_phase": "experiment-bridge Phase 2.5 fresh source review",
+  "reviewed_at_cst": "2026-10-05T08:55:07.137748+08:00",
+  "summary": "The collection-only implementation is correct for the stated plan. No blocking or nonblocking source defects were found in the reviewed files. Full collection is correctly gated on four successful sanity collectors and their actual-GT CPU audit; later optimization requires its separately reviewed stage.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "required_source_fixes": [],
+  "files_reviewed": [
+    "refine-logs/runs/recoverability_train_events/plan.json",
+    "refine-logs/runs/recoverability_train_events/collection_pipeline.py",
+    "refine-logs/runs/recoverability_train_events/audit_collection_cpu.py",
+    "research/collect_recoverability.py",
+    "scripts/run_temporal.sh",
+    "refine-logs/runs/recoverability_best_native_policy/merge_partition_cpu.py",
+    "refine-logs/runs/recoverability_best_native_policy/actual_train_event_query_eligibility_proposal.json",
+    "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu0.json",
+    "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu1.json",
+    "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu2.json",
+    "refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu3.json",
+    "refine-logs/runs/recoverability_train_events/sanity_jobs_gpu0.json",
+    "refine-logs/runs/recoverability_train_events/sanity_jobs_gpu1.json",
+    "refine-logs/runs/recoverability_train_events/sanity_jobs_gpu2.json",
+    "refine-logs/runs/recoverability_train_events/sanity_jobs_gpu3.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\launch_train_event_collection_20261005.py"
+  ],
+  "checks": [
+    {
+      "check": "Exact prepared query membership and counts",
+      "status": "PASS",
+      "evidence": "Parsed all four full and four sanity job files. Full shards contain exactly 179 distinct queries each, totaling 716 distinct pairs on 244 sequences, exactly equal to the eligibility proposal new_event_jobs. The query range is 3..783, within max_prefix=1024. None is among the four ineligible events. Each sanity job is a distinct member of its corresponding full shard."
+    },
+    {
+      "check": "Original TRAIN and held-out validation preservation",
+      "status": "PASS",
+      "evidence": "The eligibility proposal combined_jobs contains exactly 2,478 distinct pairs; subtracting the 716 new pairs leaves 1,762 pairs on 881 names with exactly two queries per name. Every new query name belongs to that original TRAIN-name set. The controller checks the actual base jobs, TRAIN membership, and TRAIN/validation disjointness before launch. The CPU audit additionally checks actual base1762/validation196 configuration and 881/98 split membership. The reviewed code reads base/validation artifacts and writes only distinct new collection outputs and run receipts."
+    },
+    {
+      "check": "CLI and fixed teacher mapping",
+      "status": "PASS",
+      "evidence": "All 17 collector options constructed by the controller match collector argparse. Commands explicitly use partition=train, the unchanged recoverability_write_pair_reference_own_b384_full_20261004/best.pth teacher, future-policy=own, and prefix-write-verification=action. Root/cache/split/pretrained/head/motion-run and collection sizes are passed from the existing base config. The auditor requires both prefix and future epoch 4 and batch_clips=16, forward_batch=64, max_prefix=1024, seed=42 matching plan and base. The collector freezes the loaded C1, motion, and ABC modules and runs collection in inference mode, using the unchanged pretrained extractor path."
+    },
+    {
+      "check": "Causal prefix and three-step own-policy continuation",
+      "status": "PASS",
+      "evidence": "The collector executes predicted prefixes only through query-1, builds the query candidate/history arrays, and copies every decision array before reading future images or later GT. Current and historical GT are used for supervision. Own-policy actions receive private history deques and use three causal shadow.step calls for offsets 1,2,3 from the fixed prefix teacher. The auditor parses the existing DECISION_FIELDS constant without importing neural modules and excludes the listed GT/action-target arrays."
+    },
+    {
+      "check": "Actual GT, history, schema and dtype audit",
+      "status": "PASS",
+      "evidence": "For each collected shard the auditor requires exact expected ordered jobs, TRAIN partition, successful completion, own-policy/action settings, matching base configuration, exactly the accepted base schema key set, every per-query shape, exact dtype.str, and finite arrays. It checks action-valid masks and label ranges, recomputes valid current candidate IoUs against dataset GT within 1e-4, requires valid query..query+3 GT, verifies exact complete history frames through query-1, and recomputes every valid historical GT IoU with invalid GT labeled -1. All prepared query prefixes include valid frame0, so the history max reduction has a valid nonempty input without an extra defensive branch."
+    },
+    {
+      "check": "Sanity/full phase dependencies and honest result scope",
+      "status": "PASS",
+      "evidence": "The controller starts four sanity collectors, waits for exit0 and exact completion counts, then runs the CPU auditor with check=True and requires its PASS. Only then does it start the four full collectors, followed by the same full audit requirement. It records optimization_started=false and official_metrics_completed=false. Completion flags are written only after the corresponding collector exits successfully. No fitting or native-evaluation command is present; the final state reports caches ready for the subsequent capacity/fit stage."
+    },
+    {
+      "check": "Output isolation",
+      "status": "PASS",
+      "evidence": "All eight collection output paths are unique and outside the retained base TRAIN and validation directories. The controller rejects preexisting outputs and progress state, uses exclusive creation for process/audit logs, and reads the old4 checkpoint without writing it. No reviewed source path writes to the original caches or teacher checkpoint."
+    },
+    {
+      "check": "Warm environment and remote-command boundary",
+      "status": "PASS",
+      "evidence": "The deployment helper uses fixed local owned-file names and the known 2027:/data/gb/GOLA destinations, structured subprocess argument lists, and shlex.quote for both remote Python -c payloads. It verifies deployed bytes using its existing digest comparison before launch. Its fixed Popen argument list starts only collection_pipeline.py in /data/gb/GOLA, with stdin detached, exclusive logging, CUDA_VISIBLE_DEVICES empty, PYTHONPATH=/data/gb/GOLA, and the /data/gb/envs/gola environment library path. The unchanged run_temporal.sh sets each GPU plus the project/cache/environment settings and forwards all arguments with quoted \"$@\". fit_plan.json is uploaded metadata and is not executed or read by the collection controller."
+    },
+    {
+      "check": "Static compilation",
+      "status": "PASS",
+      "evidence": "AST parsing and compile() succeeded for collection_pipeline.py, audit_collection_cpu.py, the unchanged collect_recoverability.py, the reference merge_partition_cpu.py, and the deployment helper. No reviewed Python module was imported or executed."
+    }
+  ],
+  "limitations": [
+    "This is a same-family provisional source review, not runtime acceptance. No SSH/SCP, GPU query, neural forward, collector, optimizer, or native evaluation was executed by this reviewer.",
+    "Remote dataset/checkpoint bytes, actual base NPZ/config/acceptance files, resource availability, and warm environment execution were not inspected remotely. The review uses the supplied fact that the current base schema/config agrees with the referenced merge checker and confirms the runtime checks against those artifacts.",
+    "The eligibility report and its complete prepared job sets were checked for exact internal consistency; the original cached failure-transition telemetry and dataset GT were not independently recomputed in this source-only review. The collector rechecks actual TRAIN eligibility and the required sanity/full audits recompute current/history overlaps against actual GT.",
+    "Future labels are produced by the frozen own-policy collector and checked for source linkage, shape, finiteness and range; the CPU auditor explicitly does not independently rerun future neural continuations.",
+    "No claim of improved action selection or native accuracy is made. Capacity/full-fit design and runtime training are outside this review; fit_plan.json was considered only as inert deployment metadata."
+  ],
+  "execution": {
+    "source_and_JSON_inspection_only": true,
+    "AST_compile_only": true,
+    "SSH_or_SCP_calls": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "native_test_reads": false,
+    "jobs_launched": 0,
+    "source_files_changed": 0
+  }
+}

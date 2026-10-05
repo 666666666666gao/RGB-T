@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "review_type": "experiment-bridge Phase 2.5 fresh source-only review of the matched-update fitting queue",
+  "reviewed_at_cst": "2026-10-05T09:05:35+08:00",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "model_attribution": "Requested fresh reviewer routing; backend execution is not independently attested.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "same_family_provisional": true,
+  "runtime_attested": false,
+  "source_approval": true,
+  "scope": "Source review of the new fitting-only controller, private trainer, CPU fit auditor, plan and queue deployment helper. Existing collection controller 1297701 and its workers were not queried, changed, restarted or otherwise touched. No experiment or remote command was executed by this reviewer.",
+  "reviewed_sources": [
+    "refine-logs/runs/recoverability_train_events/fit_plan.json",
+    "refine-logs/runs/recoverability_train_events/fit_pipeline.py",
+    "refine-logs/runs/recoverability_train_events/audit_fit_cpu.py",
+    "refine-logs/runs/recoverability_train_events/train_fixed_epochs_private.py",
+    "refine-logs/runs/recoverability_train_events/cpu_staging_trainer_source_review_corrected.json",
+    "refine-logs/runs/recoverability_train_events/collection_pipeline.py",
+    "refine-logs/runs/recoverability_train_events/audit_collection_cpu.py",
+    "refine-logs/runs/recoverability_train_events/plan.json",
+    "refine-logs/runs/recoverability_train_events/actual_collection_launch.json",
+    "refine-logs/runs/recoverability_best_native_policy/train_fixed_epochs_private.py",
+    "refine-logs/runs/recoverability_best_native_policy/audit_fit_cpu.py",
+    "refine-logs/runs/recoverability_best_native_policy/complete_pipeline.py",
+    "research/recoverability_modules.py",
+    "research/collect_recoverability.py",
+    "research/__init__.py",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_train_event_fit_queue_20261005.py"
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "verified_source_properties": [
+    {
+      "subject": "Exact private trainer change scope",
+      "locations": ["train_fixed_epochs_private.py:50", "train_fixed_epochs_private.py:82"],
+      "evidence": "A local stdlib comparison after normalizing line endings confirms the current 291-line trainer differs from the accepted predecessor only at lines 58, 64, 81 and 82. Archive tensors, validation indices, concatenation and deduplication indices stay on CPU; only the final selected tensors transfer to the requested device. All code outside these four loader changes is identical. The prior CPU-index/CUDA-index defect is resolved; no new allocation padding or model change was introduced."
+    },
+    {
+      "subject": "Four-arm plan and real CLI mapping",
+      "locations": ["fit_plan.json:3", "fit_pipeline.py:62", "train_fixed_epochs_private.py:21"],
+      "evidence": "The exact command-list expression was evaluated locally with plan values, and all eight M0/full argument lists were parsed by an isolated copy of the trainer's argparse function without importing the trainer or neural libraries. GPUs are 0 base_pairwise, 1 aug_pairwise, 2 base_budgeted and 3 aug_budgeted. All use B384, lr1e-4, seed42, selector search supervision, action write verification and the same old4 checkpoint. Omitted flags correctly retain frozen_modules=[], write_pair_calibration=False, prefer_last_prefix=False, threshold=.03 and weight_decay=1e-4. The eight output directories are distinct."
+    },
+    {
+      "subject": "Matched update counts and retained checkpoints",
+      "locations": ["fit_plan.json:11", "fit_pipeline.py:65", "audit_fit_cpu.py:38", "train_fixed_epochs_private.py:220"],
+      "evidence": "The unchanged randperm/split loop consumes every query once per epoch, including the last partial batch. Base1762 requires ceil(1762/384)=5 updates per epoch; augmented2478 requires ceil(2478/384)=7. Base84x5 and augmented60x7 both produce 420 updates. Retained base28/56/84 and augmented20/40/60 align at updates140/280/420. M0 uses the complete corresponding dataset for three epochs, giving base15 and augmented21 updates."
+    },
+    {
+      "subject": "Existing collection dependency and actual GT gate",
+      "locations": ["fit_pipeline.py:35", "fit_pipeline.py:45", "collection_pipeline.py:81", "audit_collection_cpu.py:40"],
+      "evidence": "The queue reads the existing actual_collection_launch.json coordinator PID, which is 1297701 in the reviewed receipt. It waits in 180-second intervals for the existing collection controller's terminal READY stage and checks that coordinator while unfinished. It then requires the actual full CPU acceptance to report PASS, exactly716 new clips, TRAIN-only queries and unchanged base1762/VAL196. The upstream controller emits READY only after its full collection subprocesses exit0 and its CPU GT auditor succeeds. The fitting controller contains no collector invocation, restart or mutation of collection sources or outputs."
+    },
+    {
+      "subject": "TRAIN augmentation and future-label separation",
+      "locations": ["fit_plan.json:12", "fit_plan.json:40", "audit_collection_cpu.py:45", "train_fixed_epochs_private.py:55", "train_fixed_epochs_private.py:85", "train_fixed_epochs_private.py:150"],
+      "evidence": "Both base arms consume only the accepted1762 TRAIN root; each augmented arm adds exactly the four full179-clip TRAIN shard roots from the collection plan. All four use the same196-query developer-VAL root. The collection gate verifies716 unique new query pairs disjoint from the base, all inside the881 TRAIN sequences and outside the98 VAL sequences. The trainer also enforces partition receipts, TRAIN/VAL sequence disjointness and split membership, and matching cache/teacher-related contracts. Only DECISION_FIELDS enter model.forward; current/future/history IoUs, action_valid and wrong_update_fraction remain supervision. The unchanged collector copies decision arrays before future decoding. No native test split is read by this fitting pipeline."
+    },
+    {
+      "subject": "All ABC trainable; C1 and pretrained GOLA frozen",
+      "locations": ["train_fixed_epochs_private.py:164", "train_fixed_epochs_private.py:170", "train_fixed_epochs_private.py:186", "research/recoverability_modules.py:85", "audit_fit_cpu.py:48", "audit_fit_cpu.py:68"],
+      "evidence": "The empty frozen_modules setting leaves memory/search/action trainable and AdamW receives only requires_grad parameters. The model freezes C1 at construction and restores its eval mode during model.train(). Initialization strictly reloads old4 and verifies C1 equality. The trainer checks finite loss/gradients, absent C1 gradients and actual changes in all ABC groups. The CPU audit also checks all saved C1 tensors against the fixed C1 checkpoint and requires positive-epoch retained ABC tensors to differ from old4. GOLA supplies frozen collected features and is not part of this optimizer. Existing pairwise/budgeted losses are selected by CLI; their implementation and the architecture are unchanged."
+    },
+    {
+      "subject": "Private package import and CPU replay resolution",
+      "locations": ["fit_pipeline.py:46", "fit_pipeline.py:55", "fit_pipeline.py:75", "fit_pipeline.py:88", "audit_fit_cpu.py:11"],
+      "evidence": "The controller copies the same accepted research package used by the predecessor into a new private root, then replaces research/train_recoverability.py with the reviewed trainer. Both GPU training and CPU auditing use cwd=private and PYTHONPATH=private:ROOT. GPU commands use -m research.train_recoverability. The absolute-path CPU auditor therefore resolves research.train_recoverability and its relative module imports from that same private package, rather than relying on its script directory or cwd alone. This carries the corrected predecessor import precedence into the new audit path."
+    },
+    {
+      "subject": "Actual capacity gate precedes fresh complete fitting",
+      "locations": ["fit_pipeline.py:56", "fit_pipeline.py:83", "fit_pipeline.py:92"],
+      "evidence": "The controller runs all four complete-data three-epoch M0 fits, waits for all four exit0 results, runs the actual CPU fit auditor with CUDA hidden, and requires its PASS/all_four_ABC_fits_passed receipt before the loop can launch full fits. Every full command starts in a new output directory and initializes from the same old4 checkpoint, not from M0. GPU allocation is only the declared four arms after an existing-memory availability check. Capacity is assessed by the actual M0 run, not asserted by this source review."
+    },
+    {
+      "subject": "Full completion proof and parseable artifact schema",
+      "locations": ["audit_fit_cpu.py:35", "audit_fit_cpu.py:51", "audit_fit_cpu.py:63", "audit_fit_cpu.py:78", "audit_fit_cpu.py:99", "train_fixed_epochs_private.py:243", "train_fixed_epochs_private.py:276"],
+      "evidence": "The auditor matches recorded config to each arm, requires exact train/VAL query counts, old4 initialization, epochs and optimizer counts, and checks every epoch0..final metric row. Its expected first/last-step train.jsonl records match the trainer's logging rule for both five- and seven-step epochs. It checks finite positive ABC gradients, the exact retained weight set, strict checkpoint loading, earliest-best utility tie behavior, every retained checkpoint's196-query CPU replay within the inherited tolerance, and saved best_validation.npz values. It requires CUDA to remain uninitialized before emitting PASS. Controller, per-GPU logs, config.json, train.jsonl, metrics.json, completion.json and separate M0/full CPU receipts provide the planned stage and completion evidence."
+    },
+    {
+      "subject": "Fitting-only completion and pending native selection",
+      "locations": ["fit_pipeline.py:23", "fit_pipeline.py:93", "audit_fit_cpu.py:99", "train_fixed_epochs_private.py:285"],
+      "evidence": "The final queue stage is FOUR_COMPLETE_MATCHED420UPDATE_ABC_FITS_READY_FOR_FULL_VIDEO_SELECTION. It explicitly names full98 continuous checkpoint selection followed by the same selected checkpoint on all245 LasHeR and234 RGBT234 sequences as future work. All stage/CPU receipts keep official_metrics_completed false, and the trainer keeps official_tracking_accuracy false. The cached best and three fixed positive epochs are retained; this controller does not launch continuous/native evaluation or delete weights."
+    },
+    {
+      "subject": "Deployment helper remote-command boundary",
+      "locations": ["launch_train_event_fit_queue_20261005.py:12", "launch_train_event_fit_queue_20261005.py:19", "launch_train_event_fit_queue_20261005.py:26", "launch_train_event_fit_queue_20261005.py:43"],
+      "evidence": "The helper gates on local source PASS/runtime_attested=false, uses structured subprocess argv for SCP of exactly the six declared fit-owned files, compares their existing remote same-bytes verification, and sends fixed2027 Python payloads through shlex.quote. The remote payload refuses an existing fit state/log and starts only fit_pipeline.py with CUDA hidden, fixed cwd/environment, stdin DEVNULL, dedicated stdout/stderr log and start_new_session=True. The fitting controller rechecks same-family/provisional source acceptance. A new local launch receipt is then copied to the matching owned remote path. No collection controller, job file, active neural source or collector output is overwritten or relaunched."
+    }
+  ],
+  "matched_update_contract": [
+    {"arm": "base_pairwise", "gpu": 0, "train_queries": 1762, "steps_per_epoch": 5, "m0_epochs": 3, "m0_updates": 15, "full_epochs": 84, "full_updates": 420, "retained_epochs": [28, 56, 84]},
+    {"arm": "aug_pairwise", "gpu": 1, "train_queries": 2478, "steps_per_epoch": 7, "m0_epochs": 3, "m0_updates": 21, "full_epochs": 60, "full_updates": 420, "retained_epochs": [20, 40, 60]},
+    {"arm": "base_budgeted", "gpu": 2, "train_queries": 1762, "steps_per_epoch": 5, "m0_epochs": 3, "m0_updates": 15, "full_epochs": 84, "full_updates": 420, "retained_epochs": [28, 56, 84]},
+    {"arm": "aug_budgeted", "gpu": 3, "train_queries": 2478, "steps_per_epoch": 7, "m0_epochs": 3, "m0_updates": 21, "full_epochs": 60, "full_updates": 420, "retained_epochs": [20, 40, 60]}
+  ],
+  "local_source_validation": {
+    "status": "PASS",
+    "python": "E:/python.exe",
+    "python_sources_AST_parsed": 9,
+    "embedded_remote_launch_payload_AST": "PASS",
+    "exact_changed_trainer_lines": [58, 64, 81, 82],
+    "isolated_argparse_invocations_checked": 8,
+    "all_four_retained_update_counts": [140, 280, 420],
+    "torch_imported": false,
+    "numpy_imported": false,
+    "initial_tooling_note": "The first local PATH python invocation exited before running the check with 'No pyvenv.cfg file'. The source-only check was then executed successfully with the existing E:/python.exe interpreter. No experiment source or environment was changed."
+  },
+  "limitations": [
+    "This is a source-only PASS. The reviewer did not run or attest collection, training, GPU/host-memory capacity, checkpoint replay, deployed imports, or remote process state. Existing PID1297701 is read from its saved launch receipt only.",
+    "The new private package is created from the accepted predecessor package at deployment time. Its current remote filesystem contents were not re-read by this reviewer; actual import and execution remain runtime facts.",
+    "The existing collection CPU gate recomputes current and valid-history labels against dataset GT. Future own-policy labels are source-linked and checked for schema, finiteness and range; they are not independently re-inferred by that CPU audit or this reviewer.",
+    "M0 contains15 base versus21 augmented updates because it is a complete-data capacity check. The formal runs, and the retained comparison points, are matched at420 and140/280/420 updates respectively. Equal optimizer updates do not imply identical partial-batch sizes or identical total query presentations.",
+    "A cached best checkpoint may remain at epoch0. The positive fixed epochs still demonstrate trained checkpoints; choosing the eventual trained checkpoint requires the later full98 continuous selection stage.",
+    "The trainer's elapsed_seconds starts immediately before its training loop, after cache loading and initial evaluation. It is not a complete queue or deployment wall-clock measurement.",
+    "Full98 continuous selection and all479 native sequence evaluation are explicitly PENDING and outside this fitting-only controller. No native score, plus-two-point success, or overall goal completion is established by this report."
+  ],
+  "review_actions": {
+    "source_reads_and_comparisons": true,
+    "source_AST_and_isolated_argparse_checks": true,
+    "ssh_calls": 0,
+    "gpu_or_job_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "experiment_launches": 0,
+    "source_edits": 0,
+    "active_collection_changes": 0,
+    "report_files_written": 1
+  },
+  "conclusion": "No blocking source finding. The reviewed queue and deployment helper implement the planned TRAIN-only data-factor comparison, require actual M0 and CPU replay acceptance before four fresh420-update fits, and preserve later full98/native evaluation as pending. PASS is same-family provisional source approval, not runtime acceptance."
+}

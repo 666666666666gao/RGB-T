@@ -1,0 +1,133 @@
+{
+  "stage": "PREPARED_MATCHED_UPDATE_DATA_FACTOR_FITS_NOT_LAUNCHED",
+  "arms": [
+    {
+      "gpu": 0,
+      "arm": "base_pairwise",
+      "action_ranking": "pairwise",
+      "lr": 0.0001,
+      "seed": 42,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "train": [
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train"
+      ],
+      "validation": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+      "m0_epochs": 3,
+      "m0_optimizer_steps": 15,
+      "full_epochs": 84,
+      "full_optimizer_steps": 420,
+      "retain_epochs": [
+        28,
+        56,
+        84
+      ],
+      "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "frozen_modules": [],
+      "search_supervision": "selector",
+      "write_verification": "action",
+      "output_m0": "/data/gb/outputs/recoverability_train_events_base_pairwise_m0_20261005",
+      "output_full": "/data/gb/outputs/recoverability_train_events_base_pairwise_full_20261005"
+    },
+    {
+      "gpu": 1,
+      "arm": "aug_pairwise",
+      "action_ranking": "pairwise",
+      "lr": 0.0001,
+      "seed": 42,
+      "batch_size": 384,
+      "train_queries": 2478,
+      "train": [
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005"
+      ],
+      "validation": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+      "m0_epochs": 3,
+      "m0_optimizer_steps": 21,
+      "full_epochs": 60,
+      "full_optimizer_steps": 420,
+      "retain_epochs": [
+        20,
+        40,
+        60
+      ],
+      "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "frozen_modules": [],
+      "search_supervision": "selector",
+      "write_verification": "action",
+      "output_m0": "/data/gb/outputs/recoverability_train_events_aug_pairwise_m0_20261005",
+      "output_full": "/data/gb/outputs/recoverability_train_events_aug_pairwise_full_20261005"
+    },
+    {
+      "gpu": 2,
+      "arm": "base_budgeted",
+      "action_ranking": "budgeted",
+      "lr": 0.0001,
+      "seed": 42,
+      "batch_size": 384,
+      "train_queries": 1762,
+      "train": [
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train"
+      ],
+      "validation": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+      "m0_epochs": 3,
+      "m0_optimizer_steps": 15,
+      "full_epochs": 84,
+      "full_optimizer_steps": 420,
+      "retain_epochs": [
+        28,
+        56,
+        84
+      ],
+      "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "frozen_modules": [],
+      "search_supervision": "selector",
+      "write_verification": "action",
+      "output_m0": "/data/gb/outputs/recoverability_train_events_base_budgeted_m0_20261005",
+      "output_full": "/data/gb/outputs/recoverability_train_events_base_budgeted_full_20261005"
+    },
+    {
+      "gpu": 3,
+      "arm": "aug_budgeted",
+      "action_ranking": "budgeted",
+      "lr": 0.0001,
+      "seed": 42,
+      "batch_size": 384,
+      "train_queries": 2478,
+      "train": [
+        "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+        "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005"
+      ],
+      "validation": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+      "m0_epochs": 3,
+      "m0_optimizer_steps": 21,
+      "full_epochs": 60,
+      "full_optimizer_steps": 420,
+      "retain_epochs": [
+        20,
+        40,
+        60
+      ],
+      "init_checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "frozen_modules": [],
+      "search_supervision": "selector",
+      "write_verification": "action",
+      "output_m0": "/data/gb/outputs/recoverability_train_events_aug_budgeted_m0_20261005",
+      "output_full": "/data/gb/outputs/recoverability_train_events_aug_budgeted_full_20261005"
+    }
+  ],
+  "private_package": "/data/gb/experiments/recoverability_train_events_fit_20261005",
+  "private_trainer": "refine-logs/runs/recoverability_train_events/train_fixed_epochs_private.py",
+  "review": "refine-logs/runs/recoverability_train_events/cpu_staging_trainer_source_review_corrected.json",
+  "capacity_before_full_required": true,
+  "architecture_loss_and_seed_unchanged": true,
+  "no_three_seed_requirement": true,
+  "official_native_full_tests_required": true,
+  "training_started": false
+}

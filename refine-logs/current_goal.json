@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Previous four full60epoch/300update ABC fits, full98 selection and both native benchmarks are COMPLETE. Next 716 TRAIN transition queries are prepared only; no collection or optimization has started.",
+    "queued_successor": "Actual queued fit coordinator1320786 waits original collection1297701 and716 actualGT PASS, then four capacity M0 fits and four fresh matched420update complete ABC fits. Full98 selection and both native benchmark reports remain mandatory and not started.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6404,31 +6404,39 @@
     "gpu_assignment_current": [
       {
         "gpu": 0,
-        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
-        "pid": null,
-        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
-        "memory_used_mib": 349
+        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
+        "pid": 1298337,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+        "completed_clips": 16,
+        "total_clips": 179,
+        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
       },
       {
         "gpu": 1,
-        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
-        "pid": null,
-        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
-        "memory_used_mib": 20
+        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
+        "pid": 1298338,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+        "completed_clips": 16,
+        "total_clips": 179,
+        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
       },
       {
         "gpu": 2,
-        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
-        "pid": null,
-        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
-        "memory_used_mib": 20
+        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
+        "pid": 1298339,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+        "completed_clips": 16,
+        "total_clips": 179,
+        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
       },
       {
         "gpu": 3,
-        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
-        "pid": null,
-        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
-        "memory_used_mib": 20
+        "phase": "ACTUAL_TRAIN_FAILURE_TRANSITION_COLLECTION",
+        "pid": 1298340,
+        "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+        "completed_clips": 16,
+        "total_clips": 179,
+        "observed_at_cst": "2026-10-05T09:09:43.523612+08:00"
       }
     ],
     "gpu_memory_request": {
@@ -6467,7 +6475,7 @@
         "GPU2": 851,
         "GPU3": 851
       },
-      "status": "PREVIOUS_FULL60_FITS_AND_FULL_NATIVE_METRICS_COMPLETED; NEXT_RUN_NOT_STARTED",
+      "status": "ACTUAL_NEW716_TRAIN_COLLECTION_FOURCARDS; REAL_FULL_FITS_QUEUED_AFTER_GT_GATE",
       "actual_latest_observation": [
         {
           "gpu": 0,
@@ -6494,7 +6502,7 @@
           "utilization_percent": 39
         }
       ],
-      "all_four_gpus_active": false,
+      "all_four_gpus_active": true,
       "current_four_fit_plan": {
         "status": "ACTUAL_ALL4_M0_CPU_PASS; FOUR_FRESH_FULL_FITS_RUNNING",
         "date": "2026-10-04",
@@ -6678,7 +6686,7 @@
         "budgeted": 15079.26513671875
       }
     },
-    "next_check_cst": null,
+    "next_check_cst": "2026-10-05T09:46:00+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7158,6 +7166,36 @@
         "observed_at_cst": "2026-10-05T03:45:01.839590+08:00",
         "phase": "FULL_ABC_TRAINING"
       }
+    ],
+    "gpu_assignment_previous_completed_round": [
+      {
+        "gpu": 0,
+        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
+        "pid": null,
+        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
+        "memory_used_mib": 349
+      },
+      {
+        "gpu": 1,
+        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
+        "pid": null,
+        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
+        "memory_used_mib": 20
+      },
+      {
+        "gpu": 2,
+        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
+        "pid": null,
+        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
+        "memory_used_mib": 20
+      },
+      {
+        "gpu": 3,
+        "phase": "NO_ACTIVE_PROJECT_NN; PREVIOUS_FULL_TRAINING_AND_NATIVE_EVALUATION_COMPLETED",
+        "pid": null,
+        "observed_at_cst": "2026-10-05T08:42:23.218561+08:00",
+        "memory_used_mib": 20
+      }
     ]
   },
   "model_selection": {
@@ -7168,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T08:44:28.220153+08:00",
+  "updated_cst": "2026-10-05T09:11:53.342311+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8244,5 +8282,37 @@
     ],
     "current_runtime_status": "Completed result delivery; 716 next-round TRAIN queries are prepared only",
     "actual_user_status_receipt": "refine-logs/runs/recoverability_best_native_policy/actual_user_complete_training_metrics_status_20261005.json"
+  },
+  "current_train_event_data_iteration": {
+    "status": "ACTUAL_ALL4_NEW716_TRAIN_COLLECTION_RUNNING; MATCHED420_FULL_FIT_SUCCESSOR_LIVE_WAITING",
+    "observed_at_cst": "2026-10-05T09:09:43.523612+08:00",
+    "collection_pid": 1297701,
+    "fit_queue_pid": 1320786,
+    "actual_sanity_GT_gate": "PASS",
+    "new_queries": 716,
+    "completed_queries_at_last_observation": 64,
+    "combined_train_queries": 2478,
+    "validation_queries": 196,
+    "optimization_training_started": false,
+    "full_native_metrics_completed_this_new_iteration": false,
+    "first_expected_finish_check_cst": "2026-10-05T09:46:00+08:00",
+    "finish_estimate_scope": "First16 actual clips per GPU and weighted prefix-frame proxy; assumes105 future forwards/query, about09:49 collection, excludes NPZ compression/CPU audit/M0/full fits. Not a completion guarantee.",
+    "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
+    "next_required_work": "After actual training, complete full98 continuous selection and both full native benchmark reports; five raw metrics all>=baseline+2 remains required",
+    "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
+    "goal_status": "ACTIVE_UNMET",
+    "actual_local_observer": {
+      "native_session_id": 20844,
+      "local_pid": 40576,
+      "actual_created_at_cst": "2026-10-05T09:14:19+08:00",
+      "actual_live_confirmed_by": "Windows Win32_Process commandline check matching exact observer script",
+      "first_remote_inspection_cst": "2026-10-05T09:46:00+08:00",
+      "poll_interval_seconds": 300,
+      "upstream_collection_pid": 1297701,
+      "upstream_fit_queue_pid": 1320786,
+      "source": "refine-logs/runs/recoverability_train_events/wait_capacity_and_full_start_local.py",
+      "scope": "Only read existing process states/progress and capacity receipts; no NN/optimization launch, restart, temperature or power query",
+      "historical_completed_observers_not_restarted": true
+    }
   }
 }

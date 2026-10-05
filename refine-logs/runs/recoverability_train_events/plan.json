@@ -1,0 +1,73 @@
+{
+  "stage": "TRAIN_FAILURE_TRANSITION_STATE_AUGMENTATION",
+  "objective": "All three ABC modules, one best fixed checkpoint, all five LasHeR/RGBT234 native metrics >= complete GOLA-B +2 percentage points",
+  "reason": "Only one of721 observed correct-to-failed TRAIN transitions was a supervised action query in original1762 states. All716 additional queries passed TRAIN-only GT eligibility; current complete60/300 native results remain below retainedold4 onall5.",
+  "teacher": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "teacher_epoch": 4,
+  "base_train": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+  "validation": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+  "datasets": [
+    "LasHeR",
+    "RGBT234"
+  ],
+  "new_queries": 716,
+  "combined_train_queries": 2478,
+  "validation_queries": 196,
+  "new_query_sequence_count": 244,
+  "batch_clips": 16,
+  "forward_batch": 64,
+  "max_prefix": 1024,
+  "seed": 42,
+  "future_horizon": 3,
+  "architecture_changed": false,
+  "collector_changed": false,
+  "power_or_temperature_queries": 0,
+  "source_eligibility": "refine-logs/runs/recoverability_best_native_policy/actual_train_event_query_eligibility_proposal.json",
+  "sanity": {
+    "0": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_train_events/sanity_jobs_gpu0.json",
+      "clips": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu0_20261005"
+    },
+    "1": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_train_events/sanity_jobs_gpu1.json",
+      "clips": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu1_20261005"
+    },
+    "2": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_train_events/sanity_jobs_gpu2.json",
+      "clips": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu2_20261005"
+    },
+    "3": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_train_events/sanity_jobs_gpu3.json",
+      "clips": 1,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_sanity_gpu3_20261005"
+    }
+  },
+  "full": {
+    "0": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu0.json",
+      "clips": 179,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005"
+    },
+    "1": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu1.json",
+      "clips": 179,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005"
+    },
+    "2": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu2.json",
+      "clips": 179,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005"
+    },
+    "3": {
+      "jobs_file": "/data/gb/GOLA/refine-logs/runs/recoverability_best_native_policy/prepared_train_event_jobs_gpu3.json",
+      "clips": 179,
+      "output": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005"
+    }
+  },
+  "next_training_design": "Paired base versus augmented controls under pairwise/budgeted ranking: base84epochs*5=420updates, augmented60epochs*7=420updates; batch384, lr1e-4, seed42, allABC trainable, GOLA/C1 frozen. Capacity M0 before any full fit. No three-seed-stability requirement.",
+  "next_training_started": false,
+  "native_completion_before_new_iteration": "Prior all479/337352 native tests and actualGT CPU acceptance closed08:17; published36d70a6."
+}
