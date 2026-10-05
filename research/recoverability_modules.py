@@ -180,13 +180,18 @@ class RecoverabilityModules(nn.Module):
         return output
 
 
-def select_actions(output, data, threshold=.03, write_verification='identity'):
+def select_actions(output, data, threshold=.03, write_verification='identity', search_value='weighted'):
     """One optional extra region, then change only with positive net advantage."""
     assert write_verification in ('identity', 'action')
+    assert search_value in ('weighted', 'gross')
     batch = len(data['valid'])
     device = data['valid'].device
     keep = data['original_choice'].long()
-    regional = output['region_advantage'] * output['region_success_logits'].sigmoid() - .01
+    regional = output['region_advantage']
+    if search_value == 'weighted':
+        regional = regional * output['region_success_logits'].sigmoid()
+    # The gross target already measures utility gain, including partial recovery.
+    regional = regional - .01
     best_region = regional.argmax(1) + 1
     current_quality = output['quality_logits'].sigmoid()[torch.arange(batch, device=device), 0, keep]
     search = ((output['absence_logit'].sigmoid() >= .5) | (current_quality < .5)) & (regional.max(1).values > threshold)

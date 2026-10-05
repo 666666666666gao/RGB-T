@@ -31,6 +31,8 @@ def arguments():
     parser.add_argument('--parity-check', action='store_true', help='Real-video bitwise C1 output/update check for M0 or C1 control.')
     parser.add_argument('--policy', choices=['learned', 'c1'], default='learned')
     parser.add_argument('--disable-search', action='store_true')
+    parser.add_argument('--search-value', choices=('weighted', 'gross'), default='weighted',
+                        help='Fixed-weight search control: gross utility gain charges .01 once without multiplying by success probability.')
     parser.add_argument('--unsafe-writes', action='store_true', help='Matched write ablation: force original raw>.84 template write after selection.')
     parser.add_argument('--write-verification', choices=('identity', 'action'), default='identity',
                         help='Fixed-weight control: action keeps learned regular/pause choice without an independent identity veto. Memory gates stay unchanged.')
@@ -53,7 +55,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
             kwargs['continuation_horizon'] = args.commit_continuation_horizon
     tracker = tracker_type(extractor, modules, motion, read_pair(visible[0], infrared[0], device),
                                     initial, threshold, args.policy, not args.disable_search, not args.unsafe_writes,
-                                    args.write_verification, **kwargs)
+                                    args.write_verification, search_value=args.search_value, **kwargs)
     anchors = [value.clone() for value in (tracker.anchor, tracker.identity_anchor, tracker.motion_anchor)]
     predictions, latencies, decisions = [initial.copy()], [], []
     for frame in range(1, len(visible)):

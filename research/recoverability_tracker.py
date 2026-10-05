@@ -20,15 +20,18 @@ from trackit.runner.evaluation.common.siamfc_search_region_cropping_params_provi
 
 class RecoverabilityTracker(BoundedRecoveryTracker):
     def __init__(self, extractor, modules, motion, image, init_box, threshold=.03,
-                 policy='learned', search_enabled=True, safe_writes=True, write_verification='identity'):
+                 policy='learned', search_enabled=True, safe_writes=True, write_verification='identity',
+                 search_value='weighted'):
         assert policy in ('learned', 'c1')
         assert write_verification in ('identity', 'action')
+        assert search_value in ('weighted', 'gross')
         super().__init__(extractor, modules.c1, image, init_box, torch.float16)
         self.modules = modules.eval().requires_grad_(False)
         self.motion_model = motion.eval().requires_grad_(False)
         self.threshold, self.policy = threshold, policy
         self.search_enabled, self.safe_writes = search_enabled, safe_writes
         self.write_verification = write_verification
+        self.search_value = search_value
         self.branch = self.branches[0]
         weights = self.anchor_mask.flatten(1).float()
         anchors = []
@@ -164,7 +167,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
                                                  self.motion_anchor, self.motion_memory)
         data = self.original_inputs(original, distribution, history)
         first = self.modules.decide(data, self.identity_anchor, self.identity_memory)
-        proposed = select_actions(first, data, self.threshold, self.write_verification)
+        proposed = select_actions(first, data, self.threshold, self.write_verification, self.search_value)
         requested_search = self.search_enabled and bool(proposed['search_triggered'][0]) and self.policy == 'learned'
         region_searched, extra, requested_area = 0, None, 0.
         if requested_search:
@@ -174,7 +177,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
             if extra is not None:
                 self.insert_region(data, region_searched, extra)
         output = self.modules.decide(data, self.identity_anchor, self.identity_memory) if extra is not None else first
-        selected = select_actions(output, data, self.threshold, self.write_verification)
+        selected = select_actions(output, data, self.threshold, self.write_verification, self.search_value)
         if self.policy == 'c1':
             region, choice, pause = 0, original[3], False
         else:
@@ -204,6 +207,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
                               'predicted_advantage': output['advantage'][0],
                               'target_probability': output['target_probability'][0],
                               'region_advantage': output['region_advantage'][0],
+                              'region_success_probability': output['region_success_logits'][0].sigmoid(),
                               'absence_probability': output['absence_logit'][0].sigmoid(),
                               'search_requested': torch.tensor(requested_search, device=self.device),
                               'searched_region': torch.tensor(region_searched, device=self.device),

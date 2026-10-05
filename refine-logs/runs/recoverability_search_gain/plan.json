@@ -1,0 +1,39 @@
+{
+  "status": "SOURCE_PREPARED_CPU_REPRODUCED_NO_NEURAL_EXECUTION",
+  "at_cst": "2026-10-06T04:53:29.534143+08:00",
+  "hypothesis": "Unconditional region-gain supervision is additionally weighted by a thresholded success probability at deployment; this suppresses some positive partial-recovery searches. Accuracy effect unproved.",
+  "change": "Explicit gross search value subtracts .01 once; weighted remains default. No retraining or new parameters.",
+  "checkpoint": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+  "sanity": "Four GPU weighted/gross pairs on first two developer sequences,96 frames; weighted exact historical old4 parity required.",
+  "full_scope": {
+    "dataset": "LasHeR TRAIN developer validation",
+    "sequences": 98,
+    "frames": 49418,
+    "offsets": [
+      0,
+      25,
+      50,
+      74
+    ],
+    "counts": [
+      25,
+      25,
+      24,
+      24
+    ],
+    "one_extra_visual_forward_max": 1,
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "metrics": "Actual GT sequence/frame IoU, full failure/recovery and candidate/write mechanisms; 5000 paired-sequence bootstrap vsGOLA/C1/old4. Not native PR/NPR/SR.",
+  "native_followup": "Only after full98 comparison; same fixed checkpoint/config both core datasets, full five metrics.",
+  "data_moved": false,
+  "training_steps": 0,
+  "three_seed_gate": false,
+  "power_temperature_control": false,
+  "source_review_required": true
+}

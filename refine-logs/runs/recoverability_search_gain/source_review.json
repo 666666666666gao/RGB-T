@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/search_gain_control_source_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "blocking_issues": [],
+  "reviewed_files": [
+    "research/recoverability_modules.py",
+    "research/recoverability_tracker.py",
+    "research/evaluate_recoverability.py",
+    "scripts/check_recoverability_search_gate.py",
+    "scripts/run_search_gain_control.py"
+  ],
+  "findings": [
+    "Default weighted multiplication and .01 deduction order unchanged; explicit gross mode uses unconditional gain minus .01 with original presence/quality gates.",
+    "Both online decisions receive the same mode, at most one extra forward per frame, original-region/history-only search inputs; no future GT.",
+    "GeometryCommitTracker/EventTracker forward kwargs correctly.",
+    "Sanity weighted historical prefix parity required before four disjoint full98 shards covering49418 frames.",
+    "Existing collector reads actual GT and computes5000 paired sequence bootstrap; no formaltest selection.",
+    "Preflight queries memory/utilization/disk only; no temp/power, retry, preemption.",
+    "Five-file AST, shard coverage and git diff --check passed. Reviewer did not modify source or execute NN."
+  ],
+  "nonblocking_limit": "Existing search ranking training loss remains weighted although gain regression is unconditional. This is a fixed-weight control hypothesis, not a proven calibrated accuracy fix."
+}
