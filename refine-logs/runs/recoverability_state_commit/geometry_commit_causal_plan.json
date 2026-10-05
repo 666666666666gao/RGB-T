@@ -1,0 +1,72 @@
+{
+  "status": "PREPARED_PROTOCOL_ONLY_NOT_IMPLEMENTED_NOT_LAUNCHED",
+  "prepared_at_cst": "2026-10-05T12:07:56.805542+08:00",
+  "prerequisite": "Close the existing four matched420-update fits, sixteen full98 comparisons and one-checkpoint two-dataset formal report. Preserve the original queue1423909 and observer29016.",
+  "scope": "LasHeR881 TRAIN event states first; reused98 developer validation separately disclosed. No VTUAV. No native TEST tuning.",
+  "first_probe": "Same-prestate output/geometry separation, without retraining or replacing the baseline crop provider.",
+  "geometry_counterfactual": "Use the same-frame original frozen C1 keep candidate as the query search-box and motion-history reference while keeping the learned current output unchanged. This C1 reference is a counterfactual control, not ground-truth or a guaranteed trusted observation.",
+  "factorial_controls": [
+    {
+      "name": "query_raw_commit",
+      "query_appearance": "raw_score>.84",
+      "query_geometry": "selected output"
+    },
+    {
+      "name": "query_appearance_pause",
+      "query_appearance": "force query pause",
+      "query_geometry": "selected output"
+    },
+    {
+      "name": "query_geometry_C1_reference",
+      "query_appearance": "raw_score>.84",
+      "query_geometry": "same-frame original C1 keep"
+    },
+    {
+      "name": "query_pause_and_geometry_C1_reference",
+      "query_appearance": "force query pause",
+      "query_geometry": "same-frame original C1 keep"
+    }
+  ],
+  "causal_contract": [
+    "Four actions start from the same privately copied actual policy prestate.",
+    "Query images, candidates, selection and current output remain identical.",
+    "Alter only query commits; all future frames use the same checkpoint and unchanged normal causal policy.",
+    "Keep real query timestamp and advance subsequent frames normally. Never freeze position indefinitely.",
+    "Geometry comparison first isolates search_box and motion history. RGB/TIR appearance reliability and arbitrary historical reconstruction are not claimed.",
+    "Future GT supplies offline outcomes only; no future images or labels enter query decisions.",
+    "Original full GOLA/C1/live evaluation source remains unchanged."
+  ],
+  "sampling": {
+    "event_unit": "sequence plus predeclared correct-to-failure event time",
+    "event_offsets": [
+      -2,
+      -1,
+      0,
+      1,
+      3
+    ],
+    "states": [
+      "normal outside event windows",
+      "failure then recovery within observed horizon",
+      "failure without observed recovery within horizon"
+    ],
+    "counting": "Offsets are correlated states within one event, not independent repeated events. Aggregate by event; report contributing events, sequences and actual legal pairs.",
+    "TRAIN_only_eligibility": "Check actual TRAIN GT validity and future horizon for each requested window before launching. Existing716 transition times only provide source event locations.",
+    "write_supervision": "Check actual raw>.84 legal write/pause pairs separately from candidate/search opportunities; current716 supplies26 pairs only.",
+    "current_query_inventory": "refine-logs/runs/recoverability_train_events/actual_completed_action_label_inventory.json"
+  },
+  "outcomes": [
+    "Mean subsequent IoU at matched short3 and longer32-frame horizons on the same states",
+    "Persistent failure frames and event duration",
+    "Reacquisition within horizon and continued correct following",
+    "Query output parity; search-box and motion-reference provenance",
+    "Wrong localization geometric commits without wrong appearance writes",
+    "Actual appearance write/pause eligibility and helpful/harmful pairs",
+    "Additional visual forwards and normal-state damage"
+  ],
+  "acceptance": "Do not implement learned geometry gates or claim graded-state submission effective unless this minimal control reveals useful causal differences. Preserve null/negative findings.",
+  "launch_gate": "Fresh source review and actual small NN sanity after the current original queue has closed and the GPU slots are free.",
+  "new_NN_jobs": 0,
+  "new_training": false,
+  "goal_status": "ACTIVE_UNMET"
+}

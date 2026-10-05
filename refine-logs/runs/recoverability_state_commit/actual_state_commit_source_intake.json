@@ -1,0 +1,72 @@
+{
+  "status": "ACTUAL_SOURCE_AND_CLOSED_TRACE_INTAKE",
+  "computed_at_cst": "2026-10-05T12:07:56.805542+08:00",
+  "source_paths": [
+    "research/recoverability_tracker.py",
+    "research/bounded_recovery.py",
+    "trackit/runner/evaluation/common/siamfc_search_region_cropping_params_provider/simple.py"
+  ],
+  "source_facts": [
+    {
+      "path": "trackit/runner/evaluation/common/siamfc_search_region_cropping_params_provider/simple.py",
+      "function": "update",
+      "lines": [
+        39,
+        47
+      ],
+      "fact": "Confidence argument is not read; valid intersecting output is copied into cached_bbox."
+    },
+    {
+      "path": "research/bounded_recovery.py",
+      "function": "_advance",
+      "lines": [
+        113,
+        122
+      ],
+      "fact": "Selected output supplies next search_box through the provider."
+    },
+    {
+      "path": "research/recoverability_tracker.py",
+      "function": "accept_observation",
+      "lines": [
+        127,
+        148
+      ],
+      "fact": "Appearance pause does not stop the top-level selected-box append into motion history."
+    }
+  ],
+  "closed_frame13_trace": "refine-logs/runs/recoverability_best_native_policy/actual_epoch020_geometry_motion_propagation.json",
+  "closed_trace_models": {
+    "pairwise_lr4": {
+      "appearance_updated": false,
+      "max_position_reference_difference": 1.902814892673632e-05
+    },
+    "pairwise_lr5": {
+      "appearance_updated": false,
+      "max_position_reference_difference": 2.8203886813571444e-05
+    },
+    "budgeted_lr4": {
+      "appearance_updated": false,
+      "max_position_reference_difference": 2.8203886813571444e-05
+    },
+    "budgeted_lr5": {
+      "appearance_updated": false,
+      "max_position_reference_difference": 2.8203886813571444e-05
+    }
+  },
+  "example_partition": {
+    "sequence": "waiterontheothersideofwindow",
+    "partition": "existing98_DEVELOPER_VALIDATION",
+    "in_train881": false,
+    "use_as_TRAIN_supervision": false
+  },
+  "interpretation": "A real geometric propagation path is established. Its effect on recovery and average tracking accuracy is unproven until matched-prestate interventions.",
+  "execution": {
+    "GPU_queries": 0,
+    "neural_calls": 0,
+    "optimizer_updates": 0,
+    "live_NN_progress_read": false,
+    "new_NN_jobs": 0,
+    "source_or_checkpoint_changed": false
+  }
+}

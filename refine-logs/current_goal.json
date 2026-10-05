@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "保留完整预训练 GOLA-B 和冻结 C1，在 LasHeR TRAIN 数据上训练全部 A/B/C。当前轮必须连续完成采集、实际完整训练、完整内部视频选择和同一权重的 LasHeR/RGBT234 全量评测，再交付五项原生指标及全部属性、曲线、配对区间和机制记录；不得用缓存指标或训练完成替代正式成绩。允许挑选一个最佳 seed/checkpoint，不要求至少三个 seed 稳定超过。五项相对完整本地 baseline 各高两个百分点仍是尚未达成的性能目标。",
+  "execution_objective": "保留完整预训练GOLA-B、冻结C1和历史最好old4，只做LasHeR/RGBT234。先封闭当前四组匹配420更新的完整98视频对照，锁定一个最好checkpoint并完成两数据集五项、31属性、曲线、配对区间、机制与真实GT验收。随后优先在TRAIN同一前置状态验证不可靠输出进入搜索框和运动历史的因果影响，再决定是否训练分级提交。采样按转折事件聚合，保留正常、恢复与未恢复状态，分别检查搜索监督和合法写入动作对；不重复已封闭的负实验，不把缓存拟合当连续跟踪收益。允许一个最好seed/权重，不要求至少三个seed稳定超过。同一选定权重在五项原生指标上各超过完整本地baseline两个百分点仍未达成。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -39,13 +39,13 @@
       "id": "S2_realizable_search_selection_update",
       "status": "ACTIVE_UNMET",
       "work_order": [
-        "Compare oracle regional utility with utility realizable by the deployed selector, charging actual search cost; retain oracle only as auxiliary supervision or a diagnostic upper bound.",
-        "Jointly calibrate and associate candidates from original and additional regions, with image coordinates, region/scale/template provenance and identity evidence.",
-        "Maintain bounded short associations for selected and unselected candidates, preserving target/distractor/unknown distinctions and candidate margins under compression.",
-        "Separate candidate identity correctness from RGB/TIR evidence reliability; test controlled single-modality degradation rather than interpreting duplicated IoU labels as modality reliability.",
-        "Train intervention advantage and harm on the current policy's states, and align selection, template/memory submission and motion state decisions. Reintroduce state restoration only if it beats box-only and pause-update controls."
+        "Complete the current matched base/augmented by pairwise/budgeted four420-update full-video/native comparison; do not repeat its collection or training.",
+        "Test query-only search-box/motion-history commits from a matched prestate while holding current output fixed; keep baseline source unchanged and do not freeze position indefinitely.",
+        "Group TRAIN failure windows, normal states and observed recovery outcomes by event. Audit write/pause eligibility separately from candidate/search opportunities.",
+        "Only after this causal control, decide whether graded geometry and RGB/TIR identity submission warrants new training; distinguish hypotheses from established gains.",
+        "Preserve negative own/selector/ranking/update controls and old4 results; joint candidates and bounded relation memory remain proposals requiring matched-cost evidence."
       ],
-      "acceptance": "Original allfive complete native metrics +2 vs fullGOLA remains required; latest902/128completefitdidnotcoverallvideos. Correctall881/98coveragefirst; onefixedbestcheckpoint completebothdatasets.",
+      "acceptance": "One internally selected fixed checkpoint, all881 TRAIN coverage disclosed as cached-state module training, full98 continuous selection, and both native datasets with allfive/31attributes/curves/paired intervals/actualGT. Allfive +2 remains unmet; three positive seeds are not required.",
       "diagnostic": "Locked own42epoch25 actualCPU TRAIN274: missing/reintroduced127 pairs =3selected+122ranking+2keepthreshold+0ineligible. VAL128:17=0selected+16ranking+1threshold+0ineligible. Verification changes zero correct score winners to wrong within this subset; overall gate still blocks template writes. No inference or threshold change.",
       "active_controls": "All3 original98/49418 completed; no_search TXT exact; identity TXT+NPZ exact; raw_write -0.225148pp vs selected4 CI[-0.659613,0.001939]. Both locked best4 native datasets fully completed; all5 point estimates above GOLA, all5 below +2 targets. Las vs GOLA CIs positive; RGB CIs contain0.",
       "write_control_completed": "Rawtemplatewrite same-own42 completed98; search/write2x2 closednegative. CurrentB256oracleC1/own regular template writes83/1 andpause12066/12170: overblocking remains, pairwisefactor retains gate to isolate comparison.",
@@ -6379,7 +6379,7 @@
     "environment": "/data/gb/envs/gola",
     "use_four_gpus_when_useful": true,
     "poll_seconds": 240,
-    "checkpoint_retention": "Retain one overall best metrics checkpoint plus necessary frozen teachers/pretrained inputs. Keep temporary20/40/60 and cached best only until full98 selection and formal evaluation close; then remove our unselected/failed checkpoints after preserving metrics and checking live references.",
+    "checkpoint_retention": "Retain global metrics best old4 plus necessary frozen pretrained/teachers. Current16 positive full-fit candidates are temporary until original full98 selection; then original queue removes15 unselected weights. New native result determines promotion; never keep inferior weights only because training was newer.",
     "single_human_handoff": "docs/HANDOFF_20261002.md mirrored byte-for-byte to the Desktop document folder and server project",
     "repository": "https://github.com/666666666666gao/RGB-T",
     "gpu_assignment_cst_20261003_2234": {
@@ -6389,7 +6389,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Actual queued fit coordinator1320786 waits original collection1297701 and716 actualGT PASS, then four capacity M0 fits and four fresh matched420update complete ABC fits. Full98 selection and both native benchmark reports remain mandatory and not started.",
+    "queued_successor": "Actual fit1423763 completed allfour420 updates and CPU strict acceptance11:20:42. Original evaluation1423909 owns16 full98 candidates, one checkpoint selection, unselected-weight cleanup and both native report chain. Do not restart old1320786/1366848.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6686,7 +6686,7 @@
         "budgeted": 15079.26513671875
       }
     },
-    "next_check_cst": "2026-10-05T09:46:00+08:00",
+    "next_check_cst": "2026-10-05T13:27:11.340299+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T11:36:31.905743+08:00",
+  "updated_cst": "2026-10-05T12:10:08.613664+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8271,7 +8271,7 @@
     "finish_estimate_scope": "Actual M0 elapsed/3epochs scaled to full84 or60, minus180 seconds; includes no guarantee of finish. Full native report will take additional inference time.",
     "fullfit_design": "Base84epochs*5updates and augmented60epochs*7updates, both420 updates; pairwise/budgeted arms, B384/lr1e-4/seed42, allABC trainable, pretrainedGOLA/C1 frozen",
     "next_required_work": "Original1423909 completes16 full98 candidate evaluations, locks one, retires unselected weights, then evaluates all479 native sequences and allfive/31attributes/curves/paired/GT. Sole29016 first checks near13:27 then300sec; no training restart or new trial.",
-    "source_review_scope": "Two fresh same-family/provisional source PASS verdicts; runtime capacity/fullfit/native not yet accepted",
+    "source_review_scope": "Fresh source review was provisional; actual four capacity fits and allfour420 full fits now CPU accepted. Full98 selection and new native report are still pending.",
     "goal_status": "ACTIVE_UNMET",
     "actual_local_observer": {
       "native_session_id": 29016,
@@ -8419,5 +8419,25 @@
       "new_deletions_by_intake": 0,
       "full98_candidates_temporarily_retained_until_selection": 16
     }
+  },
+  "research_core_problem": "在不可靠观测下，将当帧输出、搜索/运动几何参考和RGB/TIR身份提交分离，在固定预算中保留未来恢复机会。",
+  "current_state_commit_refinement": {
+    "updated_cst": "2026-10-05T12:10:08.613664+08:00",
+    "status": "SOURCE_EVIDENCE_CHECKED; CAUSAL_PROTOCOL_PREPARED_ONLY",
+    "actual_source_intake": "refine-logs/runs/recoverability_state_commit/actual_state_commit_source_intake.json",
+    "causal_protocol": "refine-logs/runs/recoverability_state_commit/geometry_commit_causal_plan.json",
+    "first_required_work": "Close original1423909 full98 and both native reports; preserve sole29016 observer.",
+    "next_required_work": "Matched-prestate query-only output/geometry submission control on TRAIN, before new architecture or retraining.",
+    "source_fact": "Appearance pause does not prevent selected-box search_box update or unconditional motion-history append.",
+    "example_scope": "waiterontheothersideofwindow is reused98 DEVELOPER_VALIDATION, never TRAIN supervision.",
+    "event_sampling": "Group offsets by sequence/event, retain normal/recovered/unrecovered states; report legal search and update supervision separately.",
+    "geometry_control_boundary": "Same-frame original C1 keep is a counterfactual reference, not proven trusted geometry. Query output unchanged; later time/prediction advance normally.",
+    "module_hypotheses": {
+      "A": "Bounded identity/candidate relations and separate fast geometry history; benefit unproven.",
+      "B": "Trusted geometry and identity-conditioned multi-future search with joint cross-region candidate comparison; benefit unproven.",
+      "C": "Event-window delayed recovery-risk and graded geometry/RGB/TIR commits; benefit unproven."
+    },
+    "new_training_or_neural_rollouts": false,
+    "goal_status": "ACTIVE_UNMET"
   }
 }
