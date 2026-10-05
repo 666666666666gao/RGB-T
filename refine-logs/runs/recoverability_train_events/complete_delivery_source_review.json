@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "review_date": "2026-10-05",
+  "scope": "Fresh local source review of the three completed-result delivery scripts; no deployment or subject-script execution.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer": {
+    "role": "fresh Codex reviewer",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_model": "not independently attested by this runtime",
+    "actual_reasoning_effort": "not independently attested by this runtime",
+    "attribution": "Astra/max requested; same-family source review, without a verified runtime model/effort claim."
+  },
+  "reviewed_sources": [
+    "plot_completed_training_history_cpu.py",
+    "export_completed_results_cpu.py",
+    "collect_completed_results_local.py"
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "checks": [
+    "Compared all three sources with the actually used plot_best_native_policy_training_history_20261005.py, export_best_native_policy_complete_results_20261005.py and collect_best_native_policy_complete_results_20261005.py. Changes remain within the new round's receipt, path, training-history and delivery requirements.",
+    "Collector checks the actual final report, completed marker, COMPLETE420_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY state, identical acceptance, 420-update receipts, fixed checkpoint and 716-clip transition before plotting, exporting, transferring or creating the local result directory. The exporter repeats the report/marker/final-state gate before copying.",
+    "Current fit_plan.json and audit_fit_cpu.py supply arm.output and all_four_ABC_fits_passed: base arms use 84 epochs and 1762 queries; augmented arms use 60 epochs and 2478 queries; each completes 420 updates. The fit audit checks every logged epoch/first-and-last step/update triple; the plot checks the complete epoch metric sequence, 2*epochs log count and terminal 420 record. Cached validation x axes correctly use 5 or 7 updates per epoch, and captions distinguish cached utility/IoU from native accuracy/SR.",
+    "evaluation_after_complete_fit.py writes the exact final state and acceptance consumed by delivery. Launch and fit-controller sources produce the requested runtime log names. Full98 candidate records contain the arm/model/predictions/positive-epoch fields and matching score/config/completion paths; three retained epochs per arm plus distinct positive cached best give 12-16 candidates.",
+    "Export copies the consolidated five metrics, both full native reports, all 19+12 attributes, paired reports/curves, mechanism evidence, four training histories/configs/completions/cached-best NPZ files and full98 selection evidence. The declared copy paths do not export PTH files, datasets or raw tracking predictions and do not rerun NN, scoring or weight selection.",
+    "Collector's exact four-arm training assertions match the producer schema. Its ordered dataset assertion matches EXPECTED insertion order and merge_complete_goal_report.py: lasher 245/220703 followed by rgbt234 234/116649, totaling 479 sequences and 337352 frames. The trusted packet's existing membership, byte-size and SHA checks are preserved.",
+    "New plotting/export/local result paths use recoverability_train_events and reject existing destinations. The new receipt intentionally differs from the predecessor's 300-update/root schema. Goal result and five metrics are copied from the actual report; no goal-status update or additional success claim is introduced."
+  ],
+  "predecessor_report_reference": {
+    "path": "refine-logs/runs/recoverability_best_native_policy/native_complete/complete_report/complete_core_report.json",
+    "sha256": "860d21179810173d7d990f2a522c4217ef011e467e1dabe7b8d17cd8b024cd33",
+    "verified": true,
+    "usage": "Existing field and dataset-order comparison only; not evidence of new-round results."
+  },
+  "external_collector_matches_archived_bytes": true,
+  "validation": {
+    "manual_source_and_predecessor_diff_review": "PASS",
+    "local_python_AST_check": "PASS: parsed all three sources plus the embedded remote preflight and prefixed plot payload with E:\\python.exe -X utf8. No reviewed script or matplotlib was imported or executed.",
+    "initial_tooling_failure": "The default python launcher exited with 'No pyvenv.cfg file' before reading the source. The parent supplied the existing E:\\python.exe interpreter; no environment repair or installation occurred.",
+    "runtime_delivery_check": "Not performed; this is a source-only review."
+  },
+  "execution": {
+    "remote_calls": 0,
+    "training_progress_queries": 0,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "matplotlib_executed": false,
+    "metrics_computed": false,
+    "weights_deleted": false,
+    "source_files_modified": false
+  },
+  "new_round_completion_or_accuracy_attested": false,
+  "limitation": "New-round native results are not complete in the supplied task state. Actual plotting, export, intake and their runtime outputs remain unexecuted and unattested; this PASS does not establish the all-five-plus-two objective."
+}
