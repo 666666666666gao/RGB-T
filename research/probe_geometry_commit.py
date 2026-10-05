@@ -1,0 +1,232 @@
+"""TRAIN query-only causal geometry/appearance commits; current output stays fixed.
+C1 keep is a counterfactual reference, not verified identity. Future steps use the
+same frozen deployed policy. This is a diagnostic, not a learned geometry gate.
+"""
+import argparse
+import copy
+import json
+from collections import deque
+from pathlib import Path
+
+import numpy as np
+import torch
+
+from .collect_recoverability import InstanceExtractor
+from .collect_rollouts import iou
+from .collect_temporal import paths
+from .evaluate_online import read_pair
+from .recoverability_modules import RecoverabilityModules
+from .recoverability_tracker import RecoverabilityTracker
+from .temporal_modules import TemporalModules
+from trackit.datasets.MMOT.specialization.memory_mapped.dataset import MultiModalObjectTrackingDataset_MemoryMapped
+from trackit.runner.evaluation.common.siamfc_search_region_cropping_params_provider.simple import SiamFCCroppingParameterSimpleProvider
+
+CONTROLS = (('raw', False, False), ('pause', True, False),
+            ('geometry_C1', False, True), ('pause_geometry_C1', True, True))
+
+
+class QueryTracker(RecoverabilityTracker):
+    def original_inputs(self, observation, distribution, history):
+        self.original_observation = observation
+        return super().original_inputs(observation, distribution, history)
+
+
+def private_state(parent):
+    shadow = copy.copy(parent)
+    shadow.branch = parent.branch.copy()
+    shadow.branches = [shadow.branch]
+    shadow.stats = parent.stats.copy()
+    shadow.history = deque(((box.copy(), frame, quality) for box, frame, quality in parent.history), maxlen=8)
+    shadow.identity_memory = parent.identity_memory.clone()
+    shadow.motion_memory = parent.motion_memory.clone()
+    shadow.template_source_box = parent.template_source_box.copy()
+    return shadow
+
+
+def outcome(values, writes):
+    longest = current = 0
+    for failed in values < .2:
+        current = current + 1 if failed else 0
+        longest = max(longest, current)
+    correct = values >= .5
+    first = next((t for t in range(1, len(values) - 2) if correct[t:t + 3].all()), None)
+    return {'mean_iou_including_query': float(values.mean()), 'mean_future_iou': float(values[1:].mean()),
+            'failure_frames_including_query': int((values < .2).sum()), 'longest_failure_run': longest,
+            'first_future_three_correct_run_offset': first,
+            'writes': int(writes.sum()), 'wrong_localization_writes': int((writes & (values < .2)).sum())}
+
+
+@torch.inference_mode()
+def probe(sequence, job, extractor, modules, motion, device, args, threshold):
+    q, horizon = job['query_frame'], max(args.horizons)
+    initial = sequence[0].get_bounding_box().copy()
+    parent = QueryTracker(extractor, modules, motion, read_pair(*paths(sequence, 0), device), initial,
+                          threshold, write_verification=args.write_verification)
+    for frame in range(1, q):
+        parent.step(read_pair(*paths(sequence, frame), device))
+    parent_box, parent_search = parent.branch.box.copy(), parent.branch.search_box.copy()
+    parent_history = [(b.copy(), t, quality) for b, t, quality in parent.history]
+    parent_identity, parent_motion = parent.identity_memory.clone(), parent.motion_memory.clone()
+    image = read_pair(*paths(sequence, q), device)
+    query = private_state(parent)
+    query_box = query.step(image)
+    selected, original = query.last_observation, query.original_observation
+    keep_box, keep_quality = original[2][original[3]].copy(), float(original[1][original[3]])
+    shadows, rows = [], []
+    for name, pause, geometry_c1 in CONTROLS:
+        shadow = private_state(parent)
+        shadow.frame = q
+        branch, write, _, _ = shadow.accept_observation(image, selected, pause)
+        assert np.array_equal(branch.box, query_box)
+        if geometry_c1:
+            provider = SiamFCCroppingParameterSimpleProvider(4., 10.)
+            provider.initialize(parent.branch.search_box)
+            provider.update(float(original[0]['raw_score'][0, original[3]]), keep_box,
+                            np.array((image.shape[-1], image.shape[-2])))
+            branch.search_box = provider.cached_bbox.copy()
+            shadow.history[-1] = (keep_box.copy(), q, keep_quality)
+        else:
+            assert np.array_equal(branch.search_box, query.branch.search_box)
+        reference = keep_box if geometry_c1 else query_box
+        assert shadow.history[-1][1] == q and np.array_equal(shadow.history[-1][0], reference)
+        shadows.append(shadow)
+        rows.append({'name': name, 'pause': pause, 'geometry_c1': geometry_c1,
+                     'boxes': [branch.box.copy()], 'writes': [bool(write)],
+                     'search': [branch.search_box.copy()], 'motion': [shadow.history[-1][0].copy()],
+                     'extra': [int(query.last_decision['extra_executed'])]})
+    # GT is used only for TRAIN eligibility before launch and offline outcomes below.
+    # No GT is passed to query selection, commits, or future policy steps.
+    for offset in range(1, horizon + 1):
+        image = read_pair(*paths(sequence, q + offset), device)
+        for shadow, row in zip(shadows, rows):
+            shadow.step(image)
+            d = shadow.last_decision
+            row['boxes'].append(shadow.branch.box.copy())
+            row['writes'].append(bool(d['template_updated']))
+            row['search'].append(shadow.branch.search_box.copy())
+            row['motion'].append(d['forecast_reference'].double().cpu().numpy().copy())
+            row['extra'].append(int(d['extra_executed']))
+            assert shadow.frame == q + offset
+    assert np.array_equal(parent.branch.box, parent_box) and np.array_equal(parent.branch.search_box, parent_search)
+    assert torch.equal(parent.identity_memory, parent_identity) and torch.equal(parent.motion_memory, parent_motion)
+    assert len(parent.history) == len(parent_history)
+    assert all(np.array_equal(a[0], b[0]) and a[1:] == b[1:] for a, b in zip(parent.history, parent_history))
+    gt = np.stack([sequence[q + t].get_bounding_box() for t in range(horizon + 1)])
+    assert np.isfinite(gt).all() and (gt[:, 2:] > gt[:, :2]).all()
+    results, arrays = [], {'gt_xyxy': gt, 'C1_keep_query_xyxy': keep_box}
+    for row in rows:
+        boxes, writes = np.asarray(row['boxes']), np.asarray(row['writes'], dtype=bool)
+        overlap = np.asarray([iou(b, target) for b, target in zip(boxes, gt)])
+        results.append({'name': row['name'], 'query_pause': row['pause'], 'query_geometry_C1': row['geometry_c1'],
+                        'query_output_iou': float(overlap[0]), 'query_geometry_iou': iou(row['search'][0], gt[0]),
+                        'query_template_updated': bool(writes[0]), 'extra_visual_forwards': sum(row['extra']),
+                        'horizons': {str(h): outcome(overlap[:h + 1], writes[:h + 1]) for h in args.horizons}})
+        for key, value in [('boxes_xyxy', boxes), ('iou', overlap), ('writes', writes),
+                           ('search_xyxy', row['search']), ('motion_xyxy', row['motion'])]:
+            arrays[row['name'] + '_' + key] = np.asarray(value)
+    return {'event_id': job['event_id'], 'sequence': sequence.get_name(), 'query_frame': q,
+            'selected_matches_C1_keep': bool(np.array_equal(query_box, keep_box)),
+            'query_raw_write_eligible': float(selected[0]['raw_score'][0, selected[3]]) > .84,
+            'actual_policy_query_pause': bool(query.last_decision['pause']),
+            'C1_keep_is_valid_search_reference': bool(np.array_equal(rows[2]['search'][0], keep_box)),
+            'query_visual_work_shared_once': True, 'controls': results}, arrays
+
+
+def event_summary(rows, horizons):
+    groups = {}
+    for row in rows:
+        groups.setdefault((row['sequence'], row['event_id']), []).append(row)
+    events = []
+    for (sequence, event_id), states in groups.items():
+        averages = {}
+        for name, _, _ in CONTROLS:
+            averages[name] = {str(h): {
+                metric: float(np.mean([next(c for c in row['controls'] if c['name'] == name)['horizons'][str(h)][metric]
+                                      for row in states]))
+                for metric in ('mean_iou_including_query', 'mean_future_iou', 'failure_frames_including_query',
+                               'longest_failure_run', 'writes', 'wrong_localization_writes')}
+                for h in horizons}
+        events.append({'sequence': sequence, 'event_id': event_id, 'query_states': len(states),
+                       'legal_query_write_pairs': sum(row['query_raw_write_eligible'] for row in states),
+                       'geometry_position_different_queries': sum(not row['selected_matches_C1_keep'] for row in states),
+                       'controls_mean_over_correlated_query_states': averages})
+    return {'sequences': len({row['sequence'] for row in rows}), 'events': len(events), 'query_states': len(rows),
+            'legal_query_write_pairs': sum(row['query_raw_write_eligible'] for row in rows),
+            'events_with_legal_write_pairs': sum(e['legal_query_write_pairs'] > 0 for e in events),
+            'geometry_position_different_queries': sum(not row['selected_matches_C1_keep'] for row in rows),
+            'events_with_geometry_position_difference': sum(e['geometry_position_different_queries'] > 0 for e in events),
+            'C1_search_update_rejected_queries': sum(not row['C1_keep_is_valid_search_reference'] for row in rows),
+            'event_rows': events,
+            'controls_equal_event_mean': {name: {str(h): {
+                metric: float(np.mean([e['controls_mean_over_correlated_query_states'][name][str(h)][metric] for e in events]))
+                for metric in ('mean_iou_including_query', 'mean_future_iou', 'failure_frames_including_query',
+                               'longest_failure_run', 'writes', 'wrong_localization_writes')}
+                for h in horizons} for name, _, _ in CONTROLS}}
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    for name in ('root', 'cache', 'split', 'jobs-file', 'model', 'pretrained', 'c1-head', 'motion-run', 'output'):
+        p.add_argument('--' + name, required=True)
+    p.add_argument('--horizons', type=int, nargs='+', default=[3, 32])
+    p.add_argument('--write-verification', choices=['identity', 'action'], required=True)
+    p.add_argument('--seed', type=int, default=42)
+    args = p.parse_args()
+    assert min(args.horizons) > 0 and len(set(args.horizons)) == len(args.horizons)
+    split = json.loads(Path(args.split).read_text())
+    assert not set(split['train']) & set(split['validation'])
+    jobs = json.loads(Path(args.jobs_file).read_text())['jobs']
+    assert jobs and all(j['sequence'] in split['train'] and j['event_id'] for j in jobs)
+    assert len({(j['sequence'], j['query_frame']) for j in jobs}) == len(jobs)
+    dataset = MultiModalObjectTrackingDataset_MemoryMapped.load(args.root, args.cache)
+    indices = {dataset[i].get_name(): i for i in range(len(dataset))}
+    assert all(0 < j['query_frame'] and j['query_frame'] + max(args.horizons) < len(dataset[indices[j['sequence']]]) for j in jobs)
+    # Actual TRAIN sampling eligibility; labels never enter probe action inputs.
+    for job in jobs:
+        sequence = dataset[indices[job['sequence']]]
+        eligible_gt = np.stack([sequence[t].get_bounding_box() for t in
+                                [0] + list(range(job['query_frame'], job['query_frame'] + max(args.horizons) + 1))])
+        assert np.isfinite(eligible_gt).all() and (eligible_gt[:, 2:] > eligible_gt[:, :2]).all()
+    out = Path(args.output)
+    out.mkdir(parents=True, exist_ok=False)
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    torch.set_num_threads(4)
+    device = torch.device('cuda:0')
+    c1 = torch.load(args.c1_head, map_location='cpu', weights_only=False)
+    saved = torch.load(args.model, map_location='cpu', weights_only=False)
+    assert saved['module'] == 'ABC_recoverability' and saved['args']['c1_head'] == args.c1_head
+    extractor = InstanceExtractor(args.pretrained, c1['args']['candidates'], .45, c1['args']['nms_iou']).to(device)
+    modules = RecoverabilityModules(c1).to(device)
+    modules.load_state_dict(saved['model'], strict=True)
+    modules.eval().requires_grad_(False)
+    config = json.loads((Path(args.motion_run) / 'config.json').read_text())
+    motion_saved = torch.load(Path(args.motion_run) / 'last.pth', map_location='cpu', weights_only=False)
+    assert motion_saved['epoch'] == 30 and config['c1_head'] == args.c1_head
+    motion = TemporalModules(c1, config['slots'], config['motion_history'], config['modes'], motion_saved['horizon']).to(device)
+    motion.load_state_dict(motion_saved['model'], strict=True)
+    motion.eval().requires_grad_(False)
+    (out / 'config.json').write_text(json.dumps(vars(args) | {'jobs': jobs, 'checkpoint_epoch': saved['epoch'],
+        'scope': 'TRAIN matched-prestate diagnostic; no training or native benchmark',
+        'query_output_unchanged': True, 'geometry_reference': 'same-frame C1 keep; not verified identity',
+        'future_policy': 'same frozen checkpoint normal deployed step', 'GT_role': 'initialization, TRAIN prelaunch eligibility, and offline outcomes; no GT action inputs'}, indent=2) + '\n')
+    summaries = []
+    for index, job in enumerate(jobs):
+        result, arrays = probe(dataset[indices[job['sequence']]], job, extractor, modules, motion,
+                               device, args, saved['args']['threshold'])
+        np.savez_compressed(out / f'event_{index:04d}.npz', **arrays)
+        (out / f'event_{index:04d}.json').write_text(json.dumps(result, indent=2) + '\n')
+        summaries.append(result)
+        print(json.dumps({'completed': index + 1, 'total': len(jobs), 'sequence': job['sequence'],
+                          'query_frame': job['query_frame'], 'event_id': job['event_id']}), flush=True)
+    (out / 'events.json').write_text(json.dumps({'status': 'COMPLETE_MATCHED_QUERY_COMMIT_ROLLOUTS',
+        'queries': len(jobs), 'event_summary': event_summary(summaries, args.horizons), 'results': summaries,
+        'aggregation': 'Group by (sequence,event_id), average correlated query offsets within event, then give each event equal weight.',
+        'pause_semantics': 'Existing query pause stops template, target identity commits and motion-memory writes; non-target/unknown slots may update.',
+        'motion_array_time_semantics': 'Index0 is query history commit; later indices are forecast reference before the corresponding future step.',
+        'interpretation': 'Reference substitution only; no claim of trusted geometry or native gain.'}, indent=2) + '\n')
+    (out / 'COMPLETE').write_text('COMPLETE\n')
+
+
+if __name__ == '__main__':
+    main()

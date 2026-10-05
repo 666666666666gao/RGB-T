@@ -1,0 +1,46 @@
+{
+  "status": "PASS_SOURCE_RECHECK",
+  "reviewed_at_cst": "2026-10-05T12:33:35.893987+08:00",
+  "reviewer_agent": "/root/geometry_commit_probe_source_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "source": "research/probe_geometry_commit.py",
+  "actual_reviews": [
+    {
+      "verdict": "FAIL",
+      "blocking": [
+        "Raw search_box equality to query output violated the existing provider invalid-box rule; direct C1 output assignment could make search state invalid.",
+        "GT initial/query..32 sampling eligibility was not checked before model load."
+      ],
+      "nonblocking": [
+        "Need event-level aggregation and legal write-pair counts.",
+        "Pause does not stop unknown/non-target slot updates.",
+        "Motion reference array query/future timestamps differ."
+      ]
+    },
+    {
+      "verdict": "PASS",
+      "blocking": [],
+      "accepted_fixes": [
+        "Reuse actual provider for C1 search reference and preserve its invalid-box behavior; compare raw search to single query actual search.",
+        "Check actual TRAIN initial and full query-window GT before model load; do not pass labels to policy.",
+        "Group by sequence/event_id, average correlated states within event then equal-event mean; count legal raw>.84 pairs separately.",
+        "Explicitly document existing pause slot scope and motion-array timing."
+      ],
+      "nonblocking": [
+        "Event-level three-correct-frame reacquisition rate and eligible-write-only helpful/harmful analysis remain offline analyses; per-query outcomes are retained."
+      ]
+    }
+  ],
+  "real_execution": {
+    "reviewer_SSH": false,
+    "reviewer_GPU_queries": false,
+    "reviewer_NN_calls": false,
+    "neural_sanity_executed": false,
+    "current_queue_changed": false
+  },
+  "boundary": "Only implementation source correctness; no causal accuracy gain, trusted identity or native performance established."
+}

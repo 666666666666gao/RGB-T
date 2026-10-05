@@ -7206,7 +7206,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-05T12:10:08.613664+08:00",
+  "updated_cst": "2026-10-05T12:34:52.059133+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -8422,8 +8422,8 @@
   },
   "research_core_problem": "在不可靠观测下，将当帧输出、搜索/运动几何参考和RGB/TIR身份提交分离，在固定预算中保留未来恢复机会。",
   "current_state_commit_refinement": {
-    "updated_cst": "2026-10-05T12:10:08.613664+08:00",
-    "status": "SOURCE_EVIDENCE_CHECKED; CAUSAL_PROTOCOL_PREPARED_ONLY",
+    "updated_cst": "2026-10-05T12:34:52.059133+08:00",
+    "status": "ISOLATED_PROBE_IMPLEMENTED_SOURCE_RECHECK_PASS_CPU_CHECKS; NN_NOT_STARTED",
     "actual_source_intake": "refine-logs/runs/recoverability_state_commit/actual_state_commit_source_intake.json",
     "causal_protocol": "refine-logs/runs/recoverability_state_commit/geometry_commit_causal_plan.json",
     "first_required_work": "Close original1423909 full98 and both native reports; preserve sole29016 observer.",
@@ -8438,6 +8438,13 @@
       "C": "Event-window delayed recovery-risk and graded geometry/RGB/TIR commits; benefit unproven."
     },
     "new_training_or_neural_rollouts": false,
-    "goal_status": "ACTIVE_UNMET"
+    "goal_status": "ACTIVE_UNMET",
+    "source": "research/probe_geometry_commit.py",
+    "source_review": "refine-logs/runs/recoverability_state_commit/probe_geometry_commit_source_review.json",
+    "actual_CPU_function_checks": [
+      "refine-logs/runs/recoverability_state_commit/actual_probe_cpu_function_checks.json",
+      "refine-logs/runs/recoverability_state_commit/actual_probe_event_and_crop_cpu_checks.json"
+    ],
+    "NN_sanity_executed": false
   }
 }
