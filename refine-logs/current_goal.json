@@ -6388,7 +6388,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Original evaluation2627974 runs all16 positive checkpoints (fixed4/20/60 plus cachedbest7/3/18/2) over complete98/49418 videos, selects one before nativeTEST, then all245+234/five metrics/31attrs/curves/GOLA-C1-old4paired intervals/GT. Sole99754 first00:28:10 then240s nearwaveend. No new training or evaluation restart.",
+    "queued_successor": "Reviewed CRLF-only native continuation uses same previously selected positiveepoch4 and runs all245+234/five metrics/31attrs/curves/3pairedrefs/actualGT. No training/full98 replay. Protectedold4 remains globalbest; final native result pending.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6402,24 +6402,24 @@
     },
     "gpu_assignment_current": [
       {
-        "pid": 2752185,
+        "pid": 2914369,
         "gpu": 0,
-        "log": "/data/gb/setup/write_events_FULL98_SLOT0_gpu0_20261005.log"
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu0_20261005.log"
       },
       {
-        "pid": 2752186,
+        "pid": 2914370,
         "gpu": 1,
-        "log": "/data/gb/setup/write_events_FULL98_SLOT0_gpu1_20261005.log"
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu1_20261005.log"
       },
       {
-        "pid": 2752187,
+        "pid": 2914371,
         "gpu": 2,
-        "log": "/data/gb/setup/write_events_FULL98_SLOT0_gpu2_20261005.log"
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu2_20261005.log"
       },
       {
-        "pid": 2752188,
+        "pid": 2914373,
         "gpu": 3,
-        "log": "/data/gb/setup/write_events_FULL98_SLOT0_gpu3_20261005.log"
+        "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu3_20261005.log"
       }
     ],
     "gpu_memory_request": {
@@ -7189,7 +7189,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T00:24:49.650745+08:00",
+  "updated_cst": "2026-10-06T02:47:07.403059+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11324,9 +11324,9 @@
       "GPU_queries": 0
     }
   },
-  "current_execution_authority": "Training2626708 andsole54250 terminal success/all4 actual60/480 CPU PASS. Originalevaluation2627974 confirmedlive withFULL98_SLOT0 children2752185-88. Sole99754 observes expectedwaveends; officialmetrics still pending; old4 protectedglobalbest.",
+  "current_execution_authority": "All4 full60/480 andall16 full98 closed. Bestnewbudgeted_lr5e4 .745141925 belowold4 .745906103. Original2627974 failed atBashCRLF beforeanynativeNN, all5originalPIDs gone. ReviewedLFfix, nativeonlyresume2914365 actual4children live; formal5pending, +2ACTIVE_UNMET.",
   "current_write_episode_supervision_iteration": {
-    "status": "ACTUAL_ALL4_FULL60_480_CPU_RELOAD_CLOSED_FULL98_SLOT0_RUNNING_NATIVE_PENDING",
+    "status": "ALL4_FULL60_480_AND16_FULL98_CLOSED_NATIVE_CRLF_RESUME_RUNNING",
     "collection": {
       "status": "PASS",
       "new_queries": 98,
@@ -13326,6 +13326,458 @@
     "completed_training_plot": "refine-logs/runs/recoverability_write_events/completed_training/training_history/training_history.png",
     "original_training_observer_closed_exit_code": 0,
     "sole_evaluation_observer_session": 99754,
-    "first_evaluation_observation_cst": "2026-10-06T00:28:10.134989+08:00"
+    "first_evaluation_observation_cst": "2026-10-06T00:28:10.134989+08:00",
+    "actual_full98_selection": {
+      "status": "PASS",
+      "checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+      "selected_best_epoch": 4,
+      "all_four_full_fits_CPU_passed": true,
+      "completed_epochs": 60,
+      "optimizer_steps": 480,
+      "train_queries": 2576,
+      "selection_rule": "Highest full98 continuous developer sequence mean IoU among trained positive epochs; declared order on ties; no native-test selection.",
+      "candidates": [
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_004.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_004/predictions",
+          "epoch": 4,
+          "sequence_mean_iou": 0.7217584033025004
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_004.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_004/predictions",
+          "epoch": 4,
+          "sequence_mean_iou": 0.7267039920813938
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_004.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_004/predictions",
+          "epoch": 4,
+          "sequence_mean_iou": 0.7425247300139537
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_004/predictions",
+          "epoch": 4,
+          "sequence_mean_iou": 0.745141925218853
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.7387590305144431
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.7228765686800235
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.73044537921753
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_020.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_020/predictions",
+          "epoch": 20,
+          "sequence_mean_iou": 0.738979799099395
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7294617627831181
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.725809994924099
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7324633272733204
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_060.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_060/predictions",
+          "epoch": 60,
+          "sequence_mean_iou": 0.7338903010044425
+        },
+        {
+          "arm": "pairwise_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_best/predictions",
+          "epoch": 7,
+          "sequence_mean_iou": 0.732161508268079
+        },
+        {
+          "arm": "budgeted_lr4",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_best/predictions",
+          "epoch": 3,
+          "sequence_mean_iou": 0.7405243513163408
+        },
+        {
+          "arm": "pairwise_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_best/predictions",
+          "epoch": 18,
+          "sequence_mean_iou": 0.7293796416314203
+        },
+        {
+          "arm": "budgeted_lr5",
+          "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/best.pth",
+          "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_best/predictions",
+          "epoch": 2,
+          "sequence_mean_iou": 0.744690302616002
+        }
+      ],
+      "both_datasets_same_fixed_checkpoint": true,
+      "parent_remains_historical_reference": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "selected_at_cst": "2026-10-06T02:12:12.789060+08:00"
+    },
+    "actual_native_launch_failure": {
+      "state": {
+        "stage": "BOTH_COMPLETE_NATIVE_BENCHMARKS_RUNNING",
+        "at_cst": "2026-10-06T02:12:12.836097+08:00",
+        "pid": 2627974,
+        "automatic_restarts": 0,
+        "system_goal_completed": false,
+        "children": [
+          {
+            "pid": 2881897,
+            "gpu": 0,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu0_20261005.log"
+          },
+          {
+            "pid": 2881898,
+            "gpu": 1,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu1_20261005.log"
+          },
+          {
+            "pid": 2881899,
+            "gpu": 2,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu2_20261005.log"
+          },
+          {
+            "pid": 2881900,
+            "gpu": 3,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_BENCHMARKS_gpu3_20261005.log"
+          }
+        ]
+      },
+      "children_primary": [
+        {
+          "pid": 2881897,
+          "gpu": 0,
+          "log": "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_native_complete.sh: line 2: set: pipefail\n: invalid option name\n",
+          "live": false
+        },
+        {
+          "pid": 2881898,
+          "gpu": 1,
+          "log": "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_native_complete.sh: line 2: set: pipefail\n: invalid option name\n",
+          "live": false
+        },
+        {
+          "pid": 2881899,
+          "gpu": 2,
+          "log": "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_native_complete.sh: line 2: set: pipefail\n: invalid option name\n",
+          "live": false
+        },
+        {
+          "pid": 2881900,
+          "gpu": 3,
+          "log": "/data/gb/GOLA/refine-logs/runs/recoverability_write_events/run_native_complete.sh: line 2: set: pipefail\n: invalid option name\n",
+          "live": false
+        }
+      ],
+      "selection": {
+        "status": "PASS",
+        "checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+        "selected_best_epoch": 4,
+        "all_four_full_fits_CPU_passed": true,
+        "completed_epochs": 60,
+        "optimizer_steps": 480,
+        "train_queries": 2576,
+        "selection_rule": "Highest full98 continuous developer sequence mean IoU among trained positive epochs; declared order on ties; no native-test selection.",
+        "candidates": [
+          {
+            "arm": "pairwise_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_004.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_004/predictions",
+            "epoch": 4,
+            "sequence_mean_iou": 0.7217584033025004
+          },
+          {
+            "arm": "budgeted_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_004.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_004/predictions",
+            "epoch": 4,
+            "sequence_mean_iou": 0.7267039920813938
+          },
+          {
+            "arm": "pairwise_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_004.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_004/predictions",
+            "epoch": 4,
+            "sequence_mean_iou": 0.7425247300139537
+          },
+          {
+            "arm": "budgeted_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_004/predictions",
+            "epoch": 4,
+            "sequence_mean_iou": 0.745141925218853
+          },
+          {
+            "arm": "pairwise_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_020.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_020/predictions",
+            "epoch": 20,
+            "sequence_mean_iou": 0.7387590305144431
+          },
+          {
+            "arm": "budgeted_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_020.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_020/predictions",
+            "epoch": 20,
+            "sequence_mean_iou": 0.7228765686800235
+          },
+          {
+            "arm": "pairwise_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_020.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_020/predictions",
+            "epoch": 20,
+            "sequence_mean_iou": 0.73044537921753
+          },
+          {
+            "arm": "budgeted_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_020.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_020/predictions",
+            "epoch": 20,
+            "sequence_mean_iou": 0.738979799099395
+          },
+          {
+            "arm": "pairwise_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_060.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_epoch_060/predictions",
+            "epoch": 60,
+            "sequence_mean_iou": 0.7294617627831181
+          },
+          {
+            "arm": "budgeted_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_060.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_epoch_060/predictions",
+            "epoch": 60,
+            "sequence_mean_iou": 0.725809994924099
+          },
+          {
+            "arm": "pairwise_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_060.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_epoch_060/predictions",
+            "epoch": 60,
+            "sequence_mean_iou": 0.7324633272733204
+          },
+          {
+            "arm": "budgeted_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_060.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_epoch_060/predictions",
+            "epoch": 60,
+            "sequence_mean_iou": 0.7338903010044425
+          },
+          {
+            "arm": "pairwise_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/best.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/continuous_best/predictions",
+            "epoch": 7,
+            "sequence_mean_iou": 0.732161508268079
+          },
+          {
+            "arm": "budgeted_lr4",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/best.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/continuous_best/predictions",
+            "epoch": 3,
+            "sequence_mean_iou": 0.7405243513163408
+          },
+          {
+            "arm": "pairwise_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/best.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/continuous_best/predictions",
+            "epoch": 18,
+            "sequence_mean_iou": 0.7293796416314203
+          },
+          {
+            "arm": "budgeted_lr5",
+            "model": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/best.pth",
+            "predictions": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/continuous_best/predictions",
+            "epoch": 2,
+            "sequence_mean_iou": 0.744690302616002
+          }
+        ],
+        "both_datasets_same_fixed_checkpoint": true,
+        "parent_remains_historical_reference": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "selected_at_cst": "2026-10-06T02:12:12.789060+08:00"
+      },
+      "cleanup": {
+        "completed": true,
+        "deleted": [
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/best.pth",
+            "bytes": 1733620
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_004.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_020.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr4_b336_full_20261005/epoch_060.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/best.pth",
+            "bytes": 1733620
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_004.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_020.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr4_b336_full_20261005/epoch_060.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/best.pth",
+            "bytes": 1733620
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_004.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_020.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_pairwise_lr5_b336_full_20261005/epoch_060.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/best.pth",
+            "bytes": 1733620
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_020.pth",
+            "bytes": 1735109
+          },
+          {
+            "path": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_060.pth",
+            "bytes": 1735109
+          }
+        ],
+        "teacher_or_pretrained_weights_deleted": false,
+        "completed_at_cst": "2026-10-06T02:12:12.796541+08:00"
+      }
+    },
+    "actual_native_resume_launch": {
+      "pid": 2914365,
+      "log": "/data/gb/setup/write_events_native_crlf_resume_controller_20261006.log",
+      "launched_at_cst": "2026-10-06T02:45:49.006626+08:00",
+      "scope": "Resume only zero-forward native phase after actual CRLF failure; no training/full98 rerun.",
+      "selected_checkpoint": "/data/gb/outputs/recoverability_write_events_budgeted_lr5_b336_full_20261005/epoch_004.pth",
+      "original_coordinator_terminal_failure_preserved": true
+    },
+    "actual_native_resume_started": {
+      "observed_at_cst": "2026-10-06T02:46:07.085007+08:00",
+      "coordinator_live": true,
+      "state": {
+        "stage": "BOTH_COMPLETE_NATIVE_CRLF_RESUME_RUNNING",
+        "at_cst": "2026-10-06T02:45:49.077141+08:00",
+        "pid": 2914365,
+        "automatic_restarts": 0,
+        "system_goal_completed": false,
+        "children": [
+          {
+            "pid": 2914369,
+            "gpu": 0,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu0_20261005.log"
+          },
+          {
+            "pid": 2914370,
+            "gpu": 1,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu1_20261005.log"
+          },
+          {
+            "pid": 2914371,
+            "gpu": 2,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu2_20261005.log"
+          },
+          {
+            "pid": 2914373,
+            "gpu": 3,
+            "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu3_20261005.log"
+          }
+        ]
+      },
+      "children": [
+        {
+          "pid": 2914369,
+          "gpu": 0,
+          "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu0_20261005.log",
+          "live": true,
+          "log_tail": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+        },
+        {
+          "pid": 2914370,
+          "gpu": 1,
+          "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu1_20261005.log",
+          "live": true,
+          "log_tail": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+        },
+        {
+          "pid": 2914371,
+          "gpu": 2,
+          "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu2_20261005.log",
+          "live": true,
+          "log_tail": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+        },
+        {
+          "pid": 2914373,
+          "gpu": 3,
+          "log": "/data/gb/setup/write_events_BOTH_COMPLETE_NATIVE_CRLF_RESUME_gpu3_20261005.log",
+          "live": true,
+          "log_tail": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\nSEQUENCE {\"sequence\": \"motowithbluetop\", \"sequence_index\": 1, \"sequences\": 61, \"frames\": 95, \"elapsed_seconds\": 5.822003963869065, \"stats\": {\"template_updates\": 63, \"max_pending_per_branch\": 5, \"extra_searches_requested\": 0, \"extra_visual_forwards\": 0, \"skipped_empty_extra_regions\": 0, \"changed_candidate_indices\": 0, \"paused_query_writes\": 0, \"max_motion_history\": 8}}\n"
+        }
+      ]
+    },
+    "original_evaluation_observer_closed_exit_code": 1,
+    "sole_native_resume_observer_session": 48298,
+    "native_resume_first_check_cst": "2026-10-06T03:35:49.006626+08:00"
   }
 }

@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "reviewed_at_cst": "2026-10-06T02:45:30.505485+08:00",
+  "reviewer_agent": "/root/write_event_native_crlf_rescue_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer_model_metadata": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "model_family": "Codex/GPT-6",
+    "exact_runtime_model_and_effort_independently_attested": false
+  },
+  "scope": "Fresh source-only CRLF rescue review under experiment-bridge Phase 2.5. No deployment, SSH, inference, training or native metric execution.",
+  "reviewed_files": [
+    "resume_native_after_crlf.py",
+    "export_completed_results_cpu.py",
+    "collect_completed_results_local.py",
+    "run_native_complete.sh",
+    "report_native_complete.sh",
+    ".gitattributes",
+    "evaluation_pipeline.py",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/launch_write_event_native_crlf_resume_20261006.py"
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "checks": [
+    "Actual archived controller traceback records native GPU0 shell exit2; all four child logs fail on line2 set pipefail with invalid option name. Preparation records original PID2627974 and children2881897-2881900 ABSENT, native output absent, downstream run_temporal.sh CRLF count0. These are archived primaries, not fresh remote observations by this reviewer.",
+    "Both repaired shell files are byte-for-byte equal to their HEAD content after CRLF-to-LF normalization: run_native_complete.sh28lines and report_native_complete.sh38lines. Both and downstream run_temporal.sh pass local Git Bash -n; all three contain zero CR bytes. The directory .gitattributes is exactly *.sh text eol=lf followed by LF.",
+    "Resume imports evaluation_pipeline without invoking its guarded main. It reuses only read/wave/record, begins at the unstarted four-worker native wave, and never calls training, full98 selection or retire. Before launch it requires source PASS, all original process paths absent, an absent native output root, LF/bash syntax checks, an existing selected checkpoint, and exact equality with the failed selection snapshot.",
+    "The archived selection contains16positive candidates and its maximum is budgeted_lr5 epoch4, developer sequence mean IoU0.745141925218853. Both datasets consume that same fixed checkpoint. Existing full_CPU_acceptance confirms four60-epoch/480-update/2576TRAIN fits. Full98 scoring uses the original98 developer videos and49418frames against actual LasHeR TRAIN GT; rescue adds no TEST model selection. Reused developer IoU is not a native metric.",
+    "Native shell arguments match evaluate_recoverability and run_temporal: explicit GPU0-3, action write verification, seed42, max_frames0, and disjoint contiguous partitions covering LasHeR245/220703 and RGBT234234/116649. The unchanged online producer reads only the first GT row for initialization; subsequent decisions receive current observations and causal predicted history, not future GT. Later annotations enter offline scorers.",
+    "The original merge/report/audit chain remains mandatory. It verifies complete shard union and the fixed checkpoint, scores actual dataset GT with NPR/PR/SR and MPR/MSR, preserves19+12attributes, and independently recomputes curves plus5000-resample seed42 paired intervals against baseline/c1/old4. The complete merger requires both independent CPU audits, all five metrics,1916per-sequence variant rows,124attribute rows and report/plot/mechanism markers before the original COMPLETE480_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY stage.",
+    "The deployment helper requires this PASS before SCP and sends exactly seven explicitly named files in the existing run directory. Its embedded remote Python repeats PASS, LF/bash-n, original-five-PID absence and absent-native-root checks; then opens the unique resume controller log with x and starts exactly one detached controller. No automatic retry is present. No packet member is a model, dataset or raw prediction. No rescue path deletes protected old4, teacher/pretrained or selected weights or moves either dataset.",
+    "The added exporter runtime entry exactly matches the helper log: write_events_native_crlf_resume_controller_20261006.log. Original evaluation/training logs remain in delivery. Export and collection still require the completed five-metric report and original COMPLETE480 stage with matching acceptance. Report completion remains distinct from all-five-plus-two success."
+  ],
+  "direct_producers_and_evidence": [
+    "actual_native_launch_failure_primary.json",
+    "actual_native_crlf_resume_preparation.json",
+    "actual_original_evaluation_observation.json",
+    "completed_training/full_CPU_acceptance.json",
+    "merge_native_complete.py",
+    "merge_complete_goal_report.py",
+    "audit_native_complete_cpu.py",
+    "score_full98_cpu.py",
+    "../../../scripts/run_temporal.sh",
+    "../../../research/evaluate_recoverability.py",
+    "../../../research/recoverability_tracker.py",
+    "../../../research/recoverability_modules.py",
+    "../../../research/collect_core_metrics.py",
+    "../../../research/collect_recoverability_metrics.py",
+    "../../../research/paired_sequence_bootstrap.py",
+    "../../../research/merge_abc_complete.py",
+    "../../../evaluation.py"
+  ],
+  "validation": {
+    "all15_run_subtree_python_AST": "PASS",
+    "additional12_direct_producer_python_AST": "PASS",
+    "deployment_helper_python_AST": "PASS",
+    "total_python_files_parsed": 28,
+    "embedded_python_AST": "PASS: helper remote code, collector preflight, and three shell -c snippets",
+    "bash_n": "PASS: both repaired shell files and scripts/run_temporal.sh",
+    "shell_normalized_HEAD_equality": "PASS",
+    "primary_JSON_and_training_schema": "PASS",
+    "fixed_selection_and_shard_union": "PASS"
+  },
+  "execution": {
+    "SSH_calls": 0,
+    "deployments": 0,
+    "GPU_queries": 0,
+    "CUDA_initializations": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "new_native_metrics_computed": false,
+    "subject_scripts_executed": false,
+    "business_source_edits": 0,
+    "review_output_files_written": 1
+  },
+  "limitation": "Source PASS authorizes workflow progress only; the proposed resume has not been executed by this reviewer. Native startup, full runtime completion, accuracy and the all-five-plus-two goal require actual subsequent runtime evidence."
+}

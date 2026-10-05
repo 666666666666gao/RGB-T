@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "review_date": "2026-10-06",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewer_agent": "/root/write_event_complete_delivery_review",
+  "reviewer_model_metadata": {
+    "model_family": "Codex/GPT-6",
+    "exact_runtime_model_and_effort_independently_attested": false
+  },
+  "scope": "Fresh source review of the two completed-result delivery adapters and their direct producers/schemas. Existing local receipts were read; no subject script, deployment, live observation, inference or experiment was executed.",
+  "delivery_state": "PREPARED_NOT_EXECUTED",
+  "reviewed_files": [
+    "export_completed_results_cpu.py",
+    "collect_completed_results_local.py"
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "checks": [
+    "Compared both adapters with their recoverability_train_events predecessors. Changes consistently use recoverability_write_events, the actual b336 receipts, all-four 60-epoch/480-update/2576-query training schema, and the COMPLETE480_TRAINING_FULL98_AND_BOTH_FULL_NATIVE_REPORTS_READY terminal stage.",
+    "The collector requires source PASS before any remote operation. Its preflight requires a completed official five-metric report, completed marker, exact terminal state and matching acceptance, complete training receipts, one fixed checkpoint, the distinct old716/new98 gates, and the existing completed480-update plot summary. The exporter repeats the report/marker/terminal-state gate before creating its destination.",
+    "The directly consumed merge_complete_goal_report.py only emits the complete report and marker after both independent native CPU audits pass with actual GT, exact sequence/frame counts, matching fixed checkpoint, native metrics/attributes/curves and all three paired bootstrap results. evaluation_pipeline.py only emits the final COMPLETE480 stage after that merger succeeds. The adapters therefore remain gated on actual complete native evidence, not training completion alone.",
+    "Collector training keys exactly match completed_training/full_CPU_acceptance.json: pairwise_lr4, budgeted_lr4, pairwise_lr5 and budgeted_lr5, each60epochs/480updates/2576TRAIN queries. Existing completion/config/metrics/train.jsonl artifacts were checked; all61epoch validation entries and120first/last-step training records are present. Cached196developer results remain distinct from native accuracy.",
+    "Reproducing only the producer's candidate enumeration from the existing plan and CPU receipt yields16positive distinct arm/epoch candidates: retained4/20/60 plus cached-best7/3/18/2. The inherited12-to16 candidate guard admits this actual16. Export prefixes use arm and checkpoint stem; full98_selection_score.json is read from predictions.parent and inference config/completion from predictions, matching the exact paths consumed by evaluation_pipeline.py. Unselected PTH files need not exist for metadata export.",
+    "The exporter includes core, baseline_paired, c1_paired, old4_paired and mechanism reports for both datasets. The producers use baseline/c1/old4/write_events_complete, three paired references,19+12attributes,1916per-sequence variant rows and124attribute rows. Collector counts match EXPECTED insertion order: LasHeR245sequences/220703frames and RGBT234234sequences/116649frames, totaling479sequences/337352frames and five required metrics.",
+    "Runtime names match the actual producer and launch receipts: write_events_b336_fit_progress, b336_full_fit_cpu_acceptance, b336_m0_fit_cpu_acceptance, b336_fit_controller, b336_full_fit_cpu_audit, complete_evaluation_controller/progress and native_selection, all with20261005 suffixes. The original716 gate correctly retains train_events_full_cpu_acceptance_20261005.json. The new98 gate is collection_cpu_acceptance.json with new_queries=98 and combined_train_queries=2576; the cohort utility artifact path matches its actual CPU producer.",
+    "The collector does not invoke plot_completed_training_history_cpu.py. It reads the existing training_history_summary.json, and the exporter copies the existing PNG/PDF/summary from recoverability_write_events_training_history_20261005. Existing local copies and actual_training_history_plot_cpu_receipt.json confirm completed480-update plotting; no plot rerun is added.",
+    "Exported files are JSON/CSV/TXT reports, PNG/PDF figures, runtime logs/receipts, four training configs/completions/metrics/train.jsonl files, cached best_validation.npz, and full98 internal selection metadata. No copy path includes PTH, datasets, raw images or full raw tracking predictions. The unchanged trusted-packet membership, file-size and SHA byte checks are preserved; no new hash or defensive framework was introduced.",
+    "The remote archive name and local SCP packet name both equal write_events_complete_results_20261005.tar.gz. Both output trees use recoverability_write_events/native_complete and reject an existing destination. The intake result copies the actual five metrics and goal_result; it does not change system goal status or declare all-five-plus-two success merely because delivery succeeds."
+  ],
+  "direct_evidence": [
+    "evaluation_pipeline.py",
+    "merge_complete_goal_report.py",
+    "report_native_complete.sh",
+    "run_training.py",
+    "audit_fit_cpu.py",
+    "fit_plan.json",
+    "completed_training/full_CPU_acceptance.json",
+    "completed_training/training_controller_terminal_state.json",
+    "completed_training/{pairwise_lr4,budgeted_lr4,pairwise_lr5,budgeted_lr5}/{config.json,completion.json,metrics.json,train.jsonl}",
+    "completed_training/training_history/{training_history.png,training_history.pdf,training_history_summary.json}",
+    "actual_four_full60_480_training_closeout.json",
+    "actual_training_history_plot_cpu_receipt.json",
+    "actual_training_b336_launch.json",
+    "actual_evaluation_launch.json",
+    "actual_b336_runtime_metadata/actual_b336_m0_CPU_acceptance.json",
+    "actual_collection_cpu_acceptance.json",
+    "actual_cohort_utility_components_cpu.json",
+    "../recoverability_train_events/export_completed_results_cpu.py",
+    "../recoverability_train_events/collect_completed_results_local.py",
+    "research/merge_abc_complete.py:EXPECTED",
+    "research/collect_core_metrics.py:output filenames",
+    "research/collect_recoverability_metrics.py:output filenames",
+    "research/plot_core_metrics.py:output filenames",
+    "../recoverability_train_events/train_fixed_epochs_private.py:training output filenames",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/audit_write_event_cohort_utility_components_20261005.py:cohort output path"
+  ],
+  "validation": {
+    "manual_source_and_predecessor_diff_review": "PASS",
+    "local_python_AST": "PASS: E:/python.exe -X utf8 parsed both adapters and the collector's embedded remote preflight without importing or executing the reviewed scripts.",
+    "existing_training_receipt_and_plot_schema": "PASS",
+    "candidate_enumeration_from_actual_receipt": {
+      "count": 16,
+      "all_positive": true,
+      "retained_epochs": [4, 20, 60],
+      "cached_best_epochs": {
+        "pairwise_lr4": 7,
+        "budgeted_lr4": 3,
+        "pairwise_lr5": 18,
+        "budgeted_lr5": 2
+      }
+    },
+    "runtime_delivery": "Not performed; both adapters remain prepared."
+  },
+  "execution": {
+    "business_source_edits": 0,
+    "SSH_calls": 0,
+    "live_progress_queries": 0,
+    "GPU_queries": 0,
+    "CUDA_initializations": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0,
+    "subject_scripts_executed": false,
+    "matplotlib_executed": false,
+    "new_metrics_computed": false,
+    "review_output_files_written": 1
+  },
+  "new_round_native_completion_or_accuracy_attested": false,
+  "limitation": "The supplied archived closeout showed original evaluation PID2627974 at FULL98_SLOT0_RUNNING with official_metrics_completed=false; the parent subsequently reported slot0 complete. Neither observation establishes the final five-metric reports. This source PASS does not attest native completion, future delivery execution or the all-five-plus-two goal."
+}
