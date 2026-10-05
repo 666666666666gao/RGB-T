@@ -1,5 +1,5 @@
 {
-  "status": "COMPLETE_ACTUAL_FOUR60_UPDATE_PROTOTYPE_FITS_FULL98_RUNNING",
+  "status": "COMPLETE_ALL4_FULL98_NEGATIVE_SELECTED_E41_NATIVE_RUNNING",
   "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
   "parent_epoch": 4,
   "frozen": "pretrained GOLA/C1 and existing old4 A/B/C; only new C state-submission head trains",
@@ -64,7 +64,7 @@
   "hardware": "2027 GPUs0-3; no power/temp constraints or queries. Small head fits use naturally small VRAM, no filler tensors; complete-video forward uses pretrainedbase.",
   "goal_status": "ACTIVE_UNMET",
   "validation_disclosure": "All24 events have already been inspected as causal diagnostics. The18/6 split is optimizer-held-out, not an unseen independent confirmation set.",
-  "updated_at_cst": "2026-10-05T17:10:12.189760+08:00",
+  "updated_at_cst": "2026-10-05T18:16:39.523202+08:00",
   "real_sanity_updates": 4,
   "real_zero_init_video_parity_frames": 120,
   "actual_full_fit_acceptance": "actual_geometry_full_fit_observation.json",
@@ -254,5 +254,120 @@
   "training_scope": "Only new commit head; frozen old4 A/B/C/C1; 18TRAINevents66queries, 6optimizer-held-out events22queries already diagnosed",
   "native_metrics": null,
   "formal_native_complete": false,
-  "weight_retention": "Only best.pth per four fits remains for full98 consumers. Closed4-step sanity weight126570B retired; protectedold4 and teacher weights unchanged."
+  "weight_retention": "Unselected gpu0/2/3 heads retired379710B after allfull98 readers closed; e41 retained for native, old4 and teachers protected.",
+  "actual_full98_scores": [
+    0.6895623651315335,
+    0.7117588343821164,
+    0.6790142367025717,
+    0.6872014366432646
+  ],
+  "actual_full98_all_sequences": 98,
+  "actual_full98_all_frames": 49418,
+  "full98_parent_processes_terminal": true,
+  "sole_full98_observer_status": "92874 CLOSED_EXIT0",
+  "selected_native_checkpoint": {
+    "status": "SELECTED_ON_COMPLETE98_DEVELOPER_VIDEOS",
+    "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+    "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+    "commit_epoch": 41,
+    "candidates": [
+      {
+        "gpu": 0,
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu0/best.pth",
+        "commit_epoch": 39,
+        "sequence_mean_iou": 0.6895623651315335,
+        "full98_score": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu0/continuous/full98_selection_score.json"
+      },
+      {
+        "gpu": 1,
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+        "commit_epoch": 41,
+        "sequence_mean_iou": 0.7117588343821164,
+        "full98_score": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/continuous/full98_selection_score.json"
+      },
+      {
+        "gpu": 2,
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu2/best.pth",
+        "commit_epoch": 20,
+        "sequence_mean_iou": 0.6790142367025717,
+        "full98_score": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu2/continuous/full98_selection_score.json"
+      },
+      {
+        "gpu": 3,
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu3/best.pth",
+        "commit_epoch": 31,
+        "sequence_mean_iou": 0.6872014366432646,
+        "full98_score": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu3/continuous/full98_selection_score.json"
+      }
+    ],
+    "all_four60fits_and98videos_complete": true,
+    "selection_rule": "Maximum actual-GT sequence mean IoU, declared GPU order on ties; no native-test selection",
+    "limitations": "Reused98 developer videos and diagnosed24 TRAIN events, not untouched confirmation; prototype commit head only",
+    "selected_at_cst": "2026-10-05T18:09:29.542369+08:00"
+  },
+  "actual_native_launches": [
+    {
+      "pid": 2205892,
+      "gpu": 0,
+      "command": [
+        "bash",
+        "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+        "0"
+      ],
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+      "commit_epoch": 41,
+      "launched_at_cst": "2026-10-05T18:09:41.284174+08:00"
+    },
+    {
+      "pid": 2205968,
+      "gpu": 1,
+      "command": [
+        "bash",
+        "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+        "1"
+      ],
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+      "commit_epoch": 41,
+      "launched_at_cst": "2026-10-05T18:09:41.469823+08:00"
+    },
+    {
+      "pid": 2206043,
+      "gpu": 2,
+      "command": [
+        "bash",
+        "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+        "2"
+      ],
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+      "commit_epoch": 41,
+      "launched_at_cst": "2026-10-05T18:09:41.652560+08:00"
+    },
+    {
+      "pid": 2206117,
+      "gpu": 3,
+      "command": [
+        "bash",
+        "/data/gb/GOLA/refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+        "3"
+      ],
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "commit_model": "/data/gb/outputs/recoverability_geometry_commit_fit_20261005/gpu1/best.pth",
+      "commit_epoch": 41,
+      "launched_at_cst": "2026-10-05T18:09:41.832295+08:00"
+    }
+  ],
+  "native_cpu_finish": {
+    "pid": 2214595,
+    "CUDA_VISIBLE_DEVICES": "",
+    "first_observation": "2026-10-05T18:54:41.832295+08:00",
+    "later_poll_seconds": 240
+  },
+  "next_causal_question": "Labels apply a single query intervention then H frozen-old4 steps; deployment re-intervenes every frame. Test fixed weights with the trained H continuation, no new loss/epochs first."
 }

@@ -1,0 +1,147 @@
+{
+  "status": "PASS",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "reviewed_at_cst": "2026-10-05T17:53:48.668534+08:00",
+  "scope": "Fresh experiment-bridge CODE_REVIEW of the fixed-head native evaluation pipeline, source and existing local JSON only. No deployment, SSH, GPU query, neural execution, training, package installation, or scientific source edit.",
+  "reviewed_files": [
+    "refine-logs/runs/recoverability_state_commit/native_pipeline.py",
+    "refine-logs/runs/recoverability_state_commit/run_geometry_native.sh",
+    "refine-logs/runs/recoverability_state_commit/audit_geometry_native_cpu.py"
+  ],
+  "interfaces_inspected": [
+    "research/evaluate_recoverability.py",
+    "research/geometry_commit.py",
+    "research/recoverability_tracker.py",
+    "scripts/run_temporal.sh",
+    "research/collect_core_metrics.py",
+    "research/paired_sequence_bootstrap.py",
+    "research/plot_core_metrics.py",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_abc_metrics.py",
+    "research/merge_abc_complete.py:native_report,uncertainty",
+    "evaluation.py",
+    "refine-logs/runs/recoverability_train_events/score_full98_cpu.py",
+    "refine-logs/runs/recoverability_train_events/audit_native_complete_cpu.py"
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "conclusion": "No concrete correctness defect found. The reviewed pipeline is suitable to proceed through its actual execution gates with one developer-selected commit head and the protected old4 parent on both native datasets. PASS is source-only and does not attest new native execution, metrics, or successful runtime completion.",
+  "checks": [
+    {
+      "topic": "Completed-fit selection and negative results",
+      "result": "PASS",
+      "evidence": "native_pipeline.py:71-93 reads all four complete 60-update fits, actual-GT 98-sequence/49418-frame scores and inference configs. It checks the parent, per-fit best.pth, loaded commit epoch, complete untruncated developer split and selects max(sequence_mean_iou) with stable GPU-order ties. The existing score_full98_cpu.py writes the expected fields in continuous/full98_selection_score.json and validates actual TRAIN GT. Selection does not read native metrics. Final acceptance records every delta and meets_plus_two boolean without requiring positivity or selecting again."
+    },
+    {
+      "topic": "Reference paths and frame-balanced full partition",
+      "result": "PASS",
+      "evidence": "native_pipeline.py:27-68 matches baseline=/data/gb/outputs/online_core/{dataset}_baseline, C1=/data/gb/outputs/online_core_v2/{dataset}_c1 and the exact full old4 roots verified in actual_old4_native_reference_intake.json. Preparation reads completed baseline frame-count records and directory names, checks the exact name union and 245/220703 or 234/116649 totals, then creates four nonempty contiguous partitions. The cut bounds leave enough sequences for every remaining shard. Sorting and offset/count semantics match evaluate_recoverability.py:131-139; no native labels enter this partition or checkpoint selection."
+    },
+    {
+      "topic": "Fixed parent/head tuple and worker execution",
+      "result": "PASS",
+      "evidence": "native_pipeline.py:96-110 starts one run_geometry_native.sh worker for the requested available GPU, with a per-GPU receipt and log. The shell reads the selected parent and commit once, then uses those same paths for LasHeR and RGBT234, max-frames=0, the prepared offset/count, write-verification=action, seed42 and established pretrained/C1/motion paths. It refuses an existing shard run. run_temporal.sh maps the same GPU and execs the existing evaluator. evaluate_recoverability.py:111-120 checks the commit parent/module/features/threshold and strictly loads the head; its default path is unchanged. Only the first annotation initializes online tracking."
+    },
+    {
+      "topic": "Exact four-shard merge and raw prediction preservation",
+      "result": "PASS",
+      "evidence": "native_pipeline.py:113-160 requires completion markers, correct shard offsets/counts/frames, identical parent and commit epochs, full untruncated native settings, exact ordered sequence records and exact prediction file sets. It checks raw prediction and latency dimensions, finiteness, image counts for both modalities, common model configuration and unique full 479-sequence union across the two datasets. Predictions, latencies and decision timelines are hardlinked under the same output filesystem. The merged config clears only shard extent/smoke metadata after verifying the full union; the collectors therefore receive their expected complete-run interface."
+    },
+    {
+      "topic": "Official metrics, references, attributes, curves and bootstrap APIs",
+      "result": "PASS",
+      "evidence": "native_pipeline.py:163-178 passes four run folders to collect_core_metrics, then creates a two-variant report for each of baseline/C1/old4. paired_sequence_bootstrap accepts those pair reports with its current defaults of 5000 iterations and seed42; plot_core_metrics requires exactly two variants and writes the four filenames later checked by complete(). The official collector validates dataset GT and exact 245/220703 or 234/116649 scope, uses NPR/PR/SR for LasHeR and MPR/MSR for RGBT234, and exports all attributes and mean curves."
+    },
+    {
+      "topic": "Optional-commit mechanism collector contract",
+      "result": "PASS",
+      "evidence": "The new method is passed as one --labels/--runs pair with three distinct reference labels and direct prediction roots, matching collect_recoverability_metrics arguments. GeometryCommitTracker.accept_observation passes actual_pause to the original commit implementation; GeometryCommitTracker.step overwrites the final timeline pause accordingly. Template-write and paused-write counters therefore satisfy summarize() assertions. New commit action/search/motion telemetry is additive; the existing candidate, memory, forecast and latency fields remain available. Mechanism diagnostics retain their descriptive localization/fixed-checkpoint scope."
+    },
+    {
+      "topic": "Independent CPU arithmetic audit and complete-report gate",
+      "result": "PASS",
+      "evidence": "audit_geometry_native_cpu.py is the completed train-events audit with paths, four-variant count, separate parent/head checks and a third reference updated. It independently loads actual native GT and raw predictions, reproduces official rounding and LasHeR zero-area inheritance on an in-memory copy, checks every sequence score, metric, attribute and mean curve, and exactly replays each 5000/seed42 paired bootstrap. native_pipeline.py:181-222 requires both dataset audits, native_report/uncertainty validation and plots, checks the same selected parent/head across both datasets, and requires five metrics, 479*4 sequence rows and 31*4 attribute rows before COMPLETE. It explicitly records prototype training and fixed-checkpoint limitations."
+    }
+  ],
+  "executed_checks": {
+    "python_AST_parse": {
+      "status": "PASS",
+      "files": [
+        "refine-logs/runs/recoverability_state_commit/native_pipeline.py",
+        "refine-logs/runs/recoverability_state_commit/audit_geometry_native_cpu.py",
+        "research/merge_abc_complete.py",
+        "research/collect_core_metrics.py",
+        "research/paired_sequence_bootstrap.py",
+        "research/collect_recoverability_metrics.py",
+        "research/plot_core_metrics.py",
+        "research/evaluate_recoverability.py",
+        "research/geometry_commit.py"
+      ]
+    },
+    "saved_four_fit_completion_JSON": {
+      "status": "PASS",
+      "updates_per_fit": [
+        60,
+        60,
+        60,
+        60
+      ],
+      "selected_epochs": [
+        39,
+        41,
+        20,
+        31
+      ],
+      "frozen_parent_exact_all": true
+    },
+    "saved_full98_observation_JSON": {
+      "status": "PASS",
+      "observed_at_cst": "2026-10-05T17:42:24.359549+08:00",
+      "all_four_complete": true,
+      "all_recorded_parents_closed": true,
+      "sequences_per_fit": 98,
+      "frames_per_fit": 49418,
+      "fresh_remote_check": false
+    },
+    "saved_old4_reference_intake_JSON": {
+      "status": "PASS",
+      "full_roots_match": true,
+      "epoch": 4,
+      "disable_search": false,
+      "unsafe_writes": false,
+      "write_verification": "action"
+    },
+    "historical_native_report_and_uncertainty_API": {
+      "status": "PASS",
+      "source": "refine-logs/runs/recoverability_train_events/native_complete",
+      "datasets": [
+        "lasher",
+        "rgbt234"
+      ],
+      "native_rows": [
+        735,
+        702
+      ],
+      "attributes_per_variant": [
+        19,
+        12
+      ],
+      "paired_references": [
+        "baseline",
+        "c1"
+      ],
+      "scope": "Existing saved successful reports only; no new geometry predictions or scores were executed."
+    },
+    "bash_script": "Source inspection only; no bash runtime or bash -n attestation.",
+    "NumPy_import_or_native_arithmetic_execution": false,
+    "remote_runtime_checked": false,
+    "GPU_queries": 0,
+    "neural_forward_calls": 0,
+    "optimizer_steps": 0
+  },
+  "runtime_limits": "E:/python.exe lacks NumPy per supplied environment context. This review performed Python AST and stdlib existing-artifact interface checks only; it did not rerun native scoring, arithmetic/bootstrap audits, prepare/select/launch/merge/report/complete stages, or read current remote data/checkpoint bytes. The supplied negative full98 scores were not recomputed here. Successful new native metrics and acceptance remain contingent on real execution."
+}
