@@ -7217,7 +7217,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T05:28:17.833024+08:00",
+  "updated_cst": "2026-10-06T06:01:02.559834+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -22656,5 +22656,93 @@
     },
     "native_observer_local_pid": 37416,
     "next_native_observation_cst": "2026-10-06T06:04:38.648419+08:00"
+  },
+  "current_extra_candidate_acceptance_diagnosis": {
+    "status": "ACTUAL_CPU_DIAGNOSTICS_COMPLETE_QUERY_PROTOTYPE_SOURCE_HELPERS_ONLY",
+    "source_scope": "Saved full98 development observations and actual developer GT; no official test reads or new NN.",
+    "acceptance_bound": {
+      "counts": {
+        "reintroduced_frames": 442,
+        "selected_correct_frames": 2,
+        "even_without_extra_cost_bound_below_threshold": 426,
+        "only_cost_band_could_block": 12,
+        "with_cost_bound_can_cross_threshold": 4
+      },
+      "events": {
+        "opportunity_episodes": 256,
+        "correctly_selected_episodes": 2,
+        "no_cost_bound_can_cross_episodes": 13,
+        "with_cost_bound_can_cross_episodes": 4
+      },
+      "limitation": "Upper bounds, not actual harm/risk-adjusted scores. Crossing a bound does not prove a switch, future benefit or acceptable identity. No native scores, futureGT or newlabels used for deployment."
+    },
+    "quality_rule": {
+      "counts": {
+        "known_tracking_frames": 49233,
+        "changed_frames": 1787,
+        "reintroduced_frames": 442,
+        "actual_C_correct_on_reintroduced": 2,
+        "quality_correct_on_reintroduced": 116,
+        "same_state_rescues": 97,
+        "same_state_harms": 205,
+        "iou_increased_frames": 553,
+        "iou_decreased_frames": 999,
+        "known_iou_sum_delta": -156.4478169102184
+      },
+      "opportunity_events": {
+        "total": 256,
+        "actual_C_correct": 2,
+        "quality_correct": 82
+      },
+      "limitation": "Instantaneous same-state localization only. Future identity, geometry, appearance/write consequences and continuous recovery are untested; do not promote as deployed performance."
+    },
+    "decision": "Do not adopt cost removal or direct current-quality selection: optimistic bounds usually cannot cross the action threshold, and the tested quality rule causes more instantaneous harms than rescues.",
+    "prototype": {
+      "source_review": {
+        "reviewer": "/root/quality_geometry_query_prototype_review",
+        "model": "gpt-6-astra",
+        "reasoning_effort": "max",
+        "verdict": "PASS",
+        "review_independence": "same-family",
+        "acceptance_status": "provisional",
+        "runtime_attested": false,
+        "scope": [
+          "research/probe_quality_geometry_commit.py",
+          "scripts/check_quality_geometry_components.py"
+        ],
+        "findings": [
+          "No blocking class/helper defect or patch required.",
+          "Raw preserves parent C query; all quality controls use the same extra-only Q selection.",
+          "Private base acceptance replay isolates mutable branch/history/statistics/memories.",
+          "Geometry replacement changes only current-frame search box and latest history box/time/quality.",
+          "Q output, paused appearance state and diagnostic bookkeeping remain consistent.",
+          "No future frame or GT enters action inputs."
+        ],
+        "limits": "Read-only source review; reviewer executed no code, SSH, NN or tests. Future driver must verify TRAIN event sampling, identical prefixes, raw/base NN parity and complete query lifecycle. This is not deployment or accuracy acceptance.",
+        "recorded_at_cst": "2026-10-06T06:01:02.559834+08:00"
+      },
+      "CPU_helper_receipt": {
+        "status": "HELPER_COMPONENTS_PASS",
+        "execution": "Actual server CPU helper command completed twice before this record; no new execution here.",
+        "command": "cd /data/gb/GOLA && CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data/gb/envs/gola/bin/python scripts/check_quality_geometry_components.py",
+        "cases": [
+          "extra-only choice",
+          "no-extra baseline",
+          "output/appearance unchanged",
+          "current-time geometry advances",
+          "history-quality provenance"
+        ],
+        "model_forward_calls": 0,
+        "optimizer_steps": 0,
+        "GPU_queries": 0,
+        "limitation": "Helpers only; private acceptance replay, full query lifecycle/raw parity and NN rollouts not executed.",
+        "recorded_at_cst": "2026-10-06T06:01:02.559834+08:00"
+      },
+      "NN_driver_implemented": false,
+      "raw_NN_parity_verified": false,
+      "future_rollouts_completed": false,
+      "main_geometry_commit_changed": false
+    },
+    "next": "After current native evaluation closes, verify raw/base parity and compare the same extra-selected query under regular appearance writes, paused writes, and paused writes plus exact current C geometry. Use TRAIN events, known GT only for offline consequences, normal/recovery/unrecovered coverage; do not freeze geometry unconditionally or repeat the completed C1 geometry experiment."
   }
 }
