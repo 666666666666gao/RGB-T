@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/search_gain_control_source_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_attested": false,
+  "blocking_issues": [],
+  "reviewed_files": [
+    "scripts/run_search_gain_native.py",
+    "refine-logs/runs/recoverability_search_gain/report_native_complete.sh",
+    "refine-logs/runs/recoverability_search_gain/audit_native_complete_cpu.py",
+    "refine-logs/runs/recoverability_search_gain/native_selection.json"
+  ],
+  "findings": [
+    "Executed exact partition function independently on real completed native frame receipts: exhaustive disjoint245/220703 and234/116649 coverage, groups64/55/52/74 and79/46/48/61.",
+    "Each GPU processes both datasets sequentially; all8native sanity tasks complete before full. No retry or training.",
+    "Full native merge verifies all sequence/frame/config coverage and restores non-smoke metadata; output fixed-root assertion matches reports/audit.",
+    "Unchanged trueGT native evaluator, all31attributes/curves; paired reference->gross_gain order with5000iterations/seed42.",
+    "Independent actualGT sequence/attribute/curve/bootstrap rescorer retains previously verified arithmetic and checks old4epoch4/gross.",
+    "Five metrics require eachgross>=localbaseline+2; no newtraining attribution; reused developer videos disclosed.",
+    "Python AST, Bash -n, LF format and real frame partition checks passed. Reviewer did not edit source or execute SSH/NN."
+  ],
+  "interpretation_limit": "Internal+.022007pp with CI crossingzero supports further validation only, not strong improvement or native success."
+}

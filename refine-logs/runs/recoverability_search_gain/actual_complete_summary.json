@@ -1,0 +1,53 @@
+{
+  "stage": "COMPLETE_FULL98_ACTUAL_GT",
+  "archive": "/data/gb/setup/search_gain_control_complete_20261006.tar.gz",
+  "files": 33,
+  "sequence_mean_iou": {
+    "baseline": 0.7432785069707898,
+    "c1": 0.7394401616015396,
+    "old4": 0.745906102961742,
+    "gross_gain": 0.7461261775861118
+  },
+  "paired": {
+    "gross_gain_vs_baseline": {
+      "mean_iou_delta_percentage_points": 0.2847670615322057,
+      "paired_sequence_95_ci": [
+        -0.2158652076935773,
+        0.8682531121923173
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 19,
+      "tied_sequences": 56,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "gross_gain_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.6686015984572155,
+      "paired_sequence_95_ci": [
+        -0.0043390353746131805,
+        1.676830396502589
+      ],
+      "improved_sequences": 24,
+      "worsened_sequences": 8,
+      "tied_sequences": 66,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "gross_gain_vs_old4": {
+      "mean_iou_delta_percentage_points": 0.022007462436989686,
+      "paired_sequence_95_ci": [
+        -0.022075315485295684,
+        0.08809770279626475
+      ],
+      "improved_sequences": 1,
+      "worsened_sequences": 1,
+      "tied_sequences": 96,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    }
+  },
+  "extra_visual_forwards": 5281,
+  "new_training_steps": 0,
+  "native_metrics_completed": false,
+  "best_weight_changed": false
+}
