@@ -1,0 +1,16 @@
+/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Traceback (most recent call last):
+  File "/data/gb/envs/gola/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/gb/envs/gola/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/gb/GOLA/research/train_recoverability.py", line 341, in <module>
+    main()
+  File "/data/gb/GOLA/research/train_recoverability.py", line 154, in main
+    train, train_configs, train_names, train_jobs = load_data(args.train, 'train', device, args.prefer_last_prefix)
+  File "/data/gb/GOLA/research/train_recoverability.py", line 87, in load_data
+    return {key: value[indices] for key, value in pooled.items()}, configs, names, [jobs[i] for i in unique]
+  File "/data/gb/GOLA/research/train_recoverability.py", line 87, in <dictcomp>
+    return {key: value[indices] for key, value in pooled.items()}, configs, names, [jobs[i] for i in unique]
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.55 GiB. GPU 0 has a total capacity of 23.68 GiB of which 3.72 GiB is free. Process 3494704 has 312.51 MiB memory in use. Including non-PyTorch memory, this process has 19.62 GiB memory in use. Of the allocated memory 17.86 GiB is allocated by PyTorch, and 1.48 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

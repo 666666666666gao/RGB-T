@@ -1,0 +1,18 @@
+{
+  "status": "ACTUAL_SANITY_PRE_OPTIMIZER_GPU_DEDUP_OOM; ALL_CHILDREN_CLOSED",
+  "at_cst": "2026-10-06T14:38:11.111040+08:00",
+  "failed_owner": 4102464,
+  "failed_observer": 22912,
+  "observed_at_cst": "2026-10-06T14:35:14.211915+08:00",
+  "actual_optimizer_updates": 0,
+  "actual_full_fits": 0,
+  "parent_parity_executed": false,
+  "new_native_scores": false,
+  "data_or_batch_or_targets_changed": false,
+  "reason": "Existing GPU raw chunks + concatenation + indexed dedup result exceed24GiB; requested7.55GiB while17.86GiBallocated, before model construction/optimizer.",
+  "minimal_patch": "CPU raw concatenate/dedup, then final unique data transfer toGPU; preserve exact rows/dtypes/order.",
+  "review_and_new_sanity_pending": true,
+  "old_failed_output_preserved": "/data/gb/outputs/candidate_relation_raw_ABC_20261006",
+  "unused_weights_produced": 0,
+  "no_unchanged_retry": true
+}

@@ -97,3 +97,8 @@ Four60/840 fits and eight98/49418 complete. Last H3MLP .695204/H32MLP .701136/H3
 ## 2026-10-06T14:17:32.093926+08:00 Current-future complete actual native closure
 
 Four60/840, eightfull98, one epoch0 both245/220703+234/116649 complete. Five78.016094/74.383784/62.072660 +92.866361/70.022381 exactgrossparent, no trainedCgain, all+2false. All31attrs/81rows, four5000pairedrefs/mechanisms/efficiency. Original3801966 andobserver14340/91871 CLOSED. Elevenownunusedheads2539938B retired by original queue; selected/dependencies retained.1998originalartifacts copied/noNNorreportreplay. Newrelation source/syntheticCPU only, realGPU/controller pending. Rawlabel interpretation corrected: IoU==0nonTarget, partialoverlapunknown; no halfGTsupport among zeroIoU. GoalACTIVE_UNMET; onebest enough.
+
+
+## 2026-10-06T14:38:11.111040+08:00 Candidate relation real sanity OOM before optimizer
+
+Owner4102464/allfourworkers closed14:32:51; soleobserver22912/12671 exit1 after14:35scheduledread. GPU chunks+cat+dedup OOM requested7.55GiB while17.86allocated. Zeroactualupdates/models/fullfits/parity/native; not algorithmic negative. MinimalCPU concat/dedup thenfinalGPUtransfer, same rows/dtypes/order/batch/targets. ActualMemAvailable245681688kB. Failurelogs preserved in failed_pre_optimizer_oom, no weights produced/deleted. Source re-review and changed-v2 sanity pending, no unchangedretry. Goalactiveunmet and previouscompletefive kept.

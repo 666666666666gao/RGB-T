@@ -6395,7 +6395,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Candidate relation ABC preparation in isolated worktree; source-only PASS, no GPU training or full pipeline acceptance yet.",
+    "queued_successor": "CPU dedup placement correction/source re-review; original failed owner and observer closed.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6408,8 +6408,8 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "stage": "ORIGINAL_PIPELINE_COMPLETE",
-      "active_original_NN_jobs": 0
+      "stage": "ACTUAL_SANITY_PRE_OPTIMIZER_GPU_DEDUP_OOM; ALL_CHILDREN_CLOSED",
+      "active_NN_jobs": 0
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -7003,20 +7003,10 @@
       }
     ],
     "sole_passive_observer": {
-      "observer_pid": 14340,
-      "pipeline_pid": 3801966,
-      "started_cst": "2026-10-06T11:38:25.285422+08:00",
-      "first_poll_cst": "2026-10-06T12:07:00+08:00",
-      "after_due_interval_seconds": 240,
-      "NN_launch_or_retry": false,
-      "estimates_seconds": {
-        "FULL98_BEST": 2340,
-        "FULL98_LAST": 2340,
-        "LASHER_SHARDS": 2700,
-        "RGBT234_SHARDS": 1200
-      },
-      "status": "CLOSED_EXIT0",
-      "next_inspection_cst": null
+      "observer_pid": 22912,
+      "pipeline_pid": 4102464,
+      "status": "CLOSED_FAILURE_EXIT1",
+      "next_check_cst": null
     }
   },
   "model_selection": {
@@ -7027,7 +7017,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T14:17:32.093926+08:00",
+  "updated_cst": "2026-10-06T14:38:11.111040+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11164,15 +11154,14 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T14:17:32.093926+08:00",
-    "authoritative_snapshot": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
-    "pipeline_pid": 3801966,
-    "pipeline_complete": true,
+    "updated_cst": "2026-10-06T14:38:11.111040+08:00",
+    "pipeline_pid": 4102464,
+    "pipeline_alive": false,
     "active_NN_jobs": 0,
-    "sole_observer_closed_exit0": true,
-    "new_native_metrics_complete": true,
-    "actual_completed_report": "refine-logs/runs/state_commit_current_future/complete/training/native/complete_metrics.json",
-    "warning": "Original jobs and observer CLOSED. Eleven owned unused weights retired. Epoch0 equals gross parent; no learned C benefit; five +2 unmet. Do not rerun unchanged jobs."
+    "actual_stage": "ACTUAL_SANITY_PRE_OPTIMIZER_GPU_DEDUP_OOM; ALL_CHILDREN_CLOSED",
+    "actual_optimizer_updates": 0,
+    "authoritative_failure_receipt": "refine-logs/runs/candidate_relation/failed_pre_optimizer_oom/failure_receipt.json",
+    "next_step": "Review CPU dedup placement correction then new real sanity; no unchanged replay."
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -35165,5 +35154,23 @@
       "kept": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
       "old4_and_all_dependencies_preserved": true
     }
+  },
+  "current_candidate_relation_sanity_failure": {
+    "status": "ACTUAL_SANITY_PRE_OPTIMIZER_GPU_DEDUP_OOM; ALL_CHILDREN_CLOSED",
+    "at_cst": "2026-10-06T14:38:11.111040+08:00",
+    "failed_owner": 4102464,
+    "failed_observer": 22912,
+    "observed_at_cst": "2026-10-06T14:35:14.211915+08:00",
+    "actual_optimizer_updates": 0,
+    "actual_full_fits": 0,
+    "parent_parity_executed": false,
+    "new_native_scores": false,
+    "data_or_batch_or_targets_changed": false,
+    "reason": "Existing GPU raw chunks + concatenation + indexed dedup result exceed24GiB; requested7.55GiB while17.86GiBallocated, before model construction/optimizer.",
+    "minimal_patch": "CPU raw concatenate/dedup, then final unique data transfer toGPU; preserve exact rows/dtypes/order.",
+    "review_and_new_sanity_pending": true,
+    "old_failed_output_preserved": "/data/gb/outputs/candidate_relation_raw_ABC_20261006",
+    "unused_weights_produced": 0,
+    "no_unchanged_retry": true
   }
 }
