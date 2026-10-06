@@ -127,3 +127,8 @@ Existing consistent overlapping prefixes, no NN/TEST/newlabels or livetraining e
 ## 2026-10-06T16:12:21.071460+08:00 Four raw ABC full training fits closed
 
 Allfour60epochs/480 actualupdates, A/B/C changed/nonzero gradients, frozenC1no grads, best+trueepoch60last strictreload PASS. Bothrelationblocks changed. Actual61epoch records each/244 total. Intake only17 closedtext files, no NN/report replay or weightcleanup. Sameowner4115079 actual2026-10-06T16:11:02.556317+08:00 stageFULL98_BEST; originaleightfull98 then SAMEselected native/reference decision continues, soleobserver34928. Newformalmetrics pending; all5+2 ACTIVE_UNMET.
+
+
+## 2026-10-06T16:38:51.902506+08:00 Saved best decision decomposition
+
+Four storedbest NPZs vs realparent-equivalent epoch0 savedM0, exactsame196 VAL jobs/C1labels, zero new NN/TEST. Actionschanged2/2/4/4; current improved1/1/2/3 queries, allpause0. HighLRrelations admits3 foundcorrect candidates vsM0zero on samequeries; not sustainedonline proof. LowLR utility includes fewer-search costgain, separately reported. Four configs shareseed42; cached selectiondata isnot independentconfirmation. Originaleightfull98 queue continues; all5+2 ACTIVE_UNMET.
