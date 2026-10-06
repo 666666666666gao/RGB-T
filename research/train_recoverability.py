@@ -1,7 +1,7 @@
 """Train ROI memory, one-extra-region search, and relative action advantage.
 
 Checkpoint selection uses held-out budgeted rollout utility, never test data.
-Only best.pth is retained; epoch metrics and optimization logs are all retained.
+Requested initial/last weights stay through parity and full-video selection.
 """
 import argparse
 import json
@@ -13,6 +13,7 @@ import torch
 
 from .recoverability_modules import (DECISION_FIELDS, RecoverabilityModules,
                                      action_utility, objective, select_actions)
+from .candidate_relations import CandidateRelations
 
 LABEL_FIELDS = ('current_iou', 'future_iou', 'wrong_update_fraction',
                 'action_valid', 'history_iou')
@@ -35,6 +36,8 @@ def arguments():
     p.add_argument('--action-ranking', choices=('reference', 'pairwise', 'budgeted'), default='reference',
                    help='Keep sign margin, coexisting pair ordering, or budgeted winner versus current rival.')
     p.add_argument('--write-verification', choices=('identity', 'action'), default='identity')
+    p.add_argument('--search-value', choices=('weighted', 'gross'), default='weighted',
+                   help='Use the same search trigger as full-video deployment and checkpoint validation.')
     p.add_argument('--frozen-modules', nargs='+', choices=('A', 'B', 'C'), default=[],
                    help='Keep selected pretrained ABC modules fixed while retaining the complete deployed method.')
     p.add_argument('--write-pair-calibration', action='store_true',
@@ -42,6 +45,10 @@ def arguments():
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--prefer-last-prefix', action='store_true',
                    help='For matched-query prefix controls, use the last supplied state for each sequence/query.')
+    p.add_argument('--candidate-relations', action='store_true',
+                   help='Add a zero-output candidate relation block; start from the full pretrained ABC parent.')
+    p.add_argument('--retain-last', action='store_true',
+                   help='Keep the actual completed endpoint until full-video selection finishes.')
     return p.parse_args()
 
 
@@ -86,15 +93,15 @@ def forward(model, data):
 
 @torch.no_grad()
 def evaluate(model, data, batch_size, threshold, details=False, search_supervision='oracle', action_ranking='reference',
-             write_pair_calibration=False, write_verification='identity'):
+             write_pair_calibration=False, write_verification='identity', search_value='weighted'):
     model.eval()
     results, total_loss = [], 0.
     for start in range(0, len(data['valid']), batch_size):
         batch = {key: value[start:start + batch_size] for key, value in data.items()}
         output = forward(model, batch)
         loss, _ = objective(model, output, batch, search_supervision, threshold, action_ranking,
-                            write_pair_calibration, write_verification)
-        chosen = select_actions(output, batch, threshold, write_verification)
+                            write_pair_calibration, write_verification, search_value)
+        chosen = select_actions(output, batch, threshold, write_verification, search_value)
         utility = action_utility(batch).flatten(1)
         current = batch['current_iou'].float()
         rows = torch.arange(len(current), device=current.device)
@@ -164,53 +171,76 @@ def main():
         model.load_state_dict(checkpoint['model'], strict=True)
         assert all(torch.equal(value.cpu(), c1['head'][key]) for key, value in model.c1.state_dict().items())
         initial_checkpoint_epoch = checkpoint['epoch']
-    groups = {'A': model.memory, 'B': model.search, 'C': model.action}
+    if args.candidate_relations:
+        assert args.init_checkpoint
+        model.relations = CandidateRelations(c1['args']['hidden']).to(device)
+        parent = RecoverabilityModules(c1).to(device)
+        parent.load_state_dict(checkpoint['model'], strict=True)
+        parent.eval().requires_grad_(False)
+    groups = {'A': model.memory, 'B': model.search,
+              'C': torch.nn.ModuleList((model.action, model.relations)) if args.candidate_relations else model.action}
     for name in args.frozen_modules:
         groups[name].requires_grad_(False)
     initial = {name: {key: value.detach().clone() for key, value in module.state_dict().items()}
                for name, module in groups.items()}
+    initial_relations = ({key: value.detach().clone() for key, value in model.relations.state_dict().items()}
+                         if args.candidate_relations else None)
     model.eval()
     initial_matches_c1 = True
+    initial_parent_exact = True if args.candidate_relations else None
     with torch.no_grad():
         for data in (train, validation):
             for start in range(0, len(data['valid']), args.batch_size):
                 batch = {key: value[start:start + args.batch_size] for key, value in data.items()}
-                chosen = select_actions(forward(model, batch), batch, args.threshold, args.write_verification)
+                output = forward(model, batch)
+                if args.candidate_relations:
+                    reference_output = forward(parent, batch)
+                    assert output.keys() == reference_output.keys()
+                    assert all(torch.equal(output[key], reference_output[key]) for key in output)
+                chosen = select_actions(output, batch, args.threshold, args.write_verification, args.search_value)
                 initial_matches_c1 &= (torch.equal(chosen['flat_action'], batch['original_choice'].long() * 2)
                                        and not bool(chosen['search_triggered'].any()))
     if not args.init_checkpoint:
         assert initial_matches_c1
+    if args.candidate_relations:
+        del parent
     parameters = [parameter for parameter in model.parameters() if parameter.requires_grad]
     optimizer = torch.optim.AdamW(parameters, lr=args.lr, weight_decay=args.weight_decay)
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    config = vars(args) | {'module': 'ABC_recoverability', 'train_clips': len(train_jobs),
+    model_family = 'ABC_candidate_relations' if args.candidate_relations else 'ABC_recoverability'
+    config = vars(args) | {'module': model_family, 'train_clips': len(train_jobs),
                            'validation_clips': len(val_jobs), 'train_jobs': train_jobs, 'validation_jobs': val_jobs,
                            'source_configs': train_configs + val_configs,
                            'decision_fields': DECISION_FIELDS, 'initial_all_choices_match_c1': initial_matches_c1,
                            'initial_checkpoint_epoch': initial_checkpoint_epoch,
+                           'initial_parent_all_output_tensors_exact': initial_parent_exact,
                            'base_GOLA': 'full pretrained frozen visual extractor used by collector',
                            'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters() if p.requires_grad) for name, module in groups.items()},
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',
-                           'checkpoint_retention': 'best.pth only; all epoch metrics retained',
+                           'checkpoint_retention': {'best': True, 'last_until_full_video_selection': args.retain_last,
+                                                    'initial_until_parent_parity': args.candidate_relations},
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
                            'scope': 'causal predicted-prefix TRAIN caches; frozen continuation policy recorded in source_configs; not complete online or official accuracy'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
     metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision,
                        action_ranking=args.action_ranking, write_pair_calibration=args.write_pair_calibration,
-                       write_verification=args.write_verification)
+                       write_verification=args.write_verification, search_value=args.search_value)
     records, best = [{'epoch': 0, **metrics}], metrics['utility']
 
-    def save(epoch, metrics):
-        torch.save({'module': 'ABC_recoverability', 'model': model.state_dict(),
+    def save(epoch, metrics, filename='best.pth'):
+        torch.save({'module': model_family, 'model': model.state_dict(),
                     'epoch': epoch, 'args': vars(args), 'validation': metrics,
-                    'selection_policy': config['checkpoint_selection']}, out / 'best.pth')
+                    'selection_policy': config['checkpoint_selection']}, out / filename)
 
     save(0, metrics)
+    if args.candidate_relations:
+        save(0, metrics, 'initial.pth')  # Actual pretrained M0; retire after parity consumers.
     (out / 'metrics.json').write_text(json.dumps(records, indent=2))
     print('INITIAL', json.dumps(metrics), flush=True)
     started, steps = time.perf_counter(), 0
     max_gradients = {name: 0. for name in groups}
+    max_relation_gradient = 0.
     with (out / 'train.jsonl').open('w') as stream:
         for epoch in range(1, args.epochs + 1):
             model.train()
@@ -219,7 +249,7 @@ def main():
                 batch = {key: value[indices] for key, value in train.items()}
                 output = forward(model, batch)
                 loss, parts = objective(model, output, batch, args.search_supervision, args.threshold, args.action_ranking,
-                                        args.write_pair_calibration, args.write_verification)
+                                        args.write_pair_calibration, args.write_verification, args.search_value)
                 assert torch.isfinite(loss)
                 optimizer.zero_grad(set_to_none=True)
                 loss.backward()
@@ -233,6 +263,11 @@ def main():
                     assert np.isfinite(gradients[name])
                     max_gradients[name] = max(max_gradients[name], gradients[name])
                 norm = torch.nn.utils.clip_grad_norm_(parameters, 5.)
+                if args.candidate_relations and 'C' not in args.frozen_modules:
+                    relation_gradient = float(torch.stack([p.grad.detach().square().sum()
+                                              for p in model.relations.parameters() if p.grad is not None]).sum().sqrt())
+                    assert np.isfinite(relation_gradient)
+                    max_relation_gradient = max(max_relation_gradient, relation_gradient)
                 assert torch.isfinite(norm) and all(p.grad is None for p in model.c1.parameters())
                 optimizer.step()
                 steps += 1
@@ -246,7 +281,7 @@ def main():
                     print('TRAIN', json.dumps(row), flush=True)
             metrics = evaluate(model, validation, args.batch_size, args.threshold, search_supervision=args.search_supervision,
                                action_ranking=args.action_ranking, write_pair_calibration=args.write_pair_calibration,
-                               write_verification=args.write_verification)
+                               write_verification=args.write_verification, search_value=args.search_value)
             records.append({'epoch': epoch, **metrics})
             if metrics['utility'] > best:
                 best = metrics['utility']
@@ -257,12 +292,29 @@ def main():
                for name, module in groups.items()}
     assert all(changed[name] == (name not in args.frozen_modules) for name in groups)
     assert all((norm > 0) == (name not in args.frozen_modules) for name, norm in max_gradients.items())
+    relations_changed = None
+    if args.candidate_relations:
+        relations_changed = any(not torch.equal(initial_relations[key], value)
+                                for key, value in model.relations.state_dict().items())
+        assert relations_changed == ('C' not in args.frozen_modules)
+        assert (max_relation_gradient > 0) == ('C' not in args.frozen_modules)
+    last_strict_reload = None
+    if args.retain_last:
+        save(args.epochs, metrics, 'last.pth')
+        last_checkpoint = torch.load(out / 'last.pth', map_location=device, weights_only=False)
+        model.load_state_dict(last_checkpoint['model'], strict=True)
+        last_metrics = evaluate(model, validation, args.batch_size, args.threshold,
+                                search_supervision=args.search_supervision, action_ranking=args.action_ranking,
+                                write_pair_calibration=args.write_pair_calibration,
+                                write_verification=args.write_verification, search_value=args.search_value)
+        assert last_metrics == metrics
+        last_strict_reload = True
     checkpoint = torch.load(out / 'best.pth', map_location=device, weights_only=False)
     model.load_state_dict(checkpoint['model'], strict=True)
     best_metrics, values = evaluate(model, validation, args.batch_size, args.threshold, details=True,
                                     search_supervision=args.search_supervision, action_ranking=args.action_ranking,
                                     write_pair_calibration=args.write_pair_calibration,
-                                    write_verification=args.write_verification)
+                                    write_verification=args.write_verification, search_value=args.search_value)
     assert best_metrics == checkpoint['validation']
     np.savez_compressed(out / 'best_validation.npz', **values)
     receipt = {'completed': True, 'epochs': args.epochs, 'optimizer_steps': steps,
@@ -274,7 +326,13 @@ def main():
                'peak_cuda_mib': torch.cuda.max_memory_allocated(device) / 2**20,
                'best_epoch': checkpoint['epoch'], 'best_validation': best_metrics,
                'strict_reload_metrics_equal': True, 'last_validation': metrics,
-               'retained_weights': ['best.pth'], 'official_tracking_accuracy': False}
+               'last_strict_reload_metrics_equal': last_strict_reload,
+               'initial_parent_all_output_tensors_exact': initial_parent_exact,
+               'relation_parameters_changed': relations_changed,
+               'max_relation_gradient_norm': max_relation_gradient if args.candidate_relations else None,
+               'retained_weights': (['best.pth'] + (['last.pth'] if args.retain_last else [])
+                                    + (['initial.pth'] if args.candidate_relations else [])),
+               'official_tracking_accuracy': False}
     (out / 'completion.json').write_text(json.dumps(receipt, indent=2))
     print('COMPLETED', json.dumps(receipt), flush=True)
 

@@ -8,6 +8,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from .candidate_learning import CandidateQualityHead
+from .candidate_relations import CandidateRelations
 from .temporal_modules import relative_geometry
 
 DECISION_FIELDS = ('features', 'evidence', 'raw_score', 'boxes', 'instance_features',
@@ -83,7 +84,7 @@ class InstanceMemory(nn.Module):
 
 
 class RecoverabilityModules(nn.Module):
-    def __init__(self, c1_checkpoint, hidden=128):
+    def __init__(self, c1_checkpoint, hidden=128, candidate_relations=False):
         super().__init__()
         assert hidden == c1_checkpoint['args']['hidden']
         self.c1 = CandidateQualityHead(hidden)
@@ -94,6 +95,7 @@ class RecoverabilityModules(nn.Module):
         # Two local summaries plus causal motion geometry/distribution.
         self.search = nn.Sequential(nn.Linear((hidden * 3 + 23) * 2 + 39 + 48, hidden),
                                     nn.GELU(), nn.Linear(hidden, 13))
+        self.relations = CandidateRelations(hidden) if candidate_relations else None
         for module in (self.action, self.search):
             nn.init.zeros_(module[-1].weight)
             nn.init.zeros_(module[-1].bias)
@@ -156,7 +158,10 @@ class RecoverabilityModules(nn.Module):
         region = torch.eye(7, device=inputs.device)[None, :, None].expand(batch, -1, 5, -1).reshape(batch, 35, 7)
         action_inputs = torch.cat((inputs, keep_fused[:, None].expand(-1, 35, -1),
                                    keep_roi[:, None].expand(-1, 35, -1), region), -1)
-        result = self.action(action_inputs).reshape(batch, 7, 5, 7)
+        result = self.action(action_inputs)
+        if self.relations is not None:
+            result = result + self.relations(inputs, data['valid'])
+        result = result.reshape(batch, 7, 5, 7)
         raw_advantage = result[..., 1:3].tanh()
         reference = raw_advantage[torch.arange(batch, device=inputs.device), 0, keep, 0]
         harm = result[..., 3:5].sigmoid()
@@ -224,7 +229,7 @@ def action_utility(data):
 
 
 @torch.no_grad()
-def search_supervision_targets(output, data, mode='oracle', threshold=.03, write_verification='identity'):
+def search_supervision_targets(output, data, mode='oracle', threshold=.03, write_verification='identity', search_value='weighted'):
     """Gross search gain; deployment charges .01 once per extra visual forward.
 
     Selector targets compare the same detached selector with and without each
@@ -247,14 +252,14 @@ def search_supervision_targets(output, data, mode='oracle', threshold=.03, write
     forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
     forced['region_success_logits'] = torch.zeros_like(output['region_success_logits'])
     forced['absence_logit'] = torch.full_like(output['absence_logit'], 20)
-    local = select_actions(forced, data, threshold, write_verification)
+    local = select_actions(forced, data, threshold, write_verification, search_value)
     assert not local['search_triggered'].any() and (local['region'] == 0).all()
     reference = utility.flatten(1)[rows, local['flat_action']]
     gains, successes = [], []
     for region in range(1, 7):
         forced['region_advantage'] = torch.full_like(output['region_advantage'], -1)
         forced['region_advantage'][:, region - 1] = 1
-        chosen = select_actions(forced, data, threshold, write_verification)
+        chosen = select_actions(forced, data, threshold, write_verification, search_value)
         assert chosen['search_triggered'].all() and (chosen['searched_region'] == region).all()
         assert ((chosen['region'] == 0) | (chosen['region'] == region)).all()
         selected = utility.flatten(1)[rows, chosen['flat_action']]
@@ -317,7 +322,7 @@ def write_pair_supervision_loss(scores, utility, action_valid):
 
 
 def objective(model, output, data, search_supervision='oracle', threshold=.03, action_ranking='reference',
-              write_pair_calibration=False, write_verification='identity'):
+              write_pair_calibration=False, write_verification='identity', search_value='weighted'):
     batch = len(data['valid'])
     valid, action_valid = data['valid'], data['action_valid']
     current = data['current_iou'].float()
@@ -363,13 +368,16 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
     identity = (F.relu(.2 - student_gap) * pairs).sum() / pairs.sum().clamp(min=1)
 
     region_gain, region_success = search_supervision_targets(output, data, search_supervision, threshold,
-                                                           write_verification)
+                                                           write_verification, search_value)
     region_value_loss = F.smooth_l1_loss(output['region_advantage'], region_gain)
     search_success_loss = F.binary_cross_entropy_with_logits(output['region_success_logits'], region_success)
     absence = (current[:, 0].masked_fill(~valid[:, 0], -1).max(-1).values < .5).float()
     absence_loss = F.binary_cross_entropy_with_logits(output['absence_logit'], absence)
     beneficial_search = region_gain.max(-1).values > .05
-    search_scores = output['region_advantage'] * output['region_success_logits'].sigmoid() - .01
+    search_scores = output['region_advantage']
+    if search_value == 'weighted':
+        search_scores = search_scores * output['region_success_logits'].sigmoid()
+    search_scores = search_scores - .01
     search_ce = F.cross_entropy(search_scores / .1, region_gain.argmax(1), reduction='none')
     search_rank = (search_ce * beneficial_search).sum() / beneficial_search.sum().clamp(min=1)
     loss = (advantage_loss + ranking_loss + .2 * harm_loss + .2 * quality_loss + .1 * risk_loss

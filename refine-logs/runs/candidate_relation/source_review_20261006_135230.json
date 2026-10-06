@@ -1,0 +1,496 @@
+{
+  "status": "PASS",
+  "scope": "CANDIDATE_RELATION_SOURCE_ONLY",
+  "reviewed_at": "2026-10-06T13:52:30+08:00",
+  "agent_model": "gpt-6-astra",
+  "reasoning": "max",
+  "model_attribution": "delegated reviewer configuration; no separate backend attestation",
+  "same_family_provisional": true,
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "base_commit": "42ac67e890ed909589e753849dd43b918ba98735",
+  "workspace": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-candidate-relation",
+  "conclusion": "未发现阻断性的候选关系源码问题。局部和单个额外区域之间的信息边界、零输出注入位置、旧模型严格加载、新模型元数据、优化器注册、关系参数独立验收和真实末轮保存顺序符合本次计划。此 PASS 仅允许继续准备及审查后续运行流程，不代表控制器、GPU、完整视频或算法收益验收。",
+  "complete_pipeline_pass": false,
+  "controller_reviewed": false,
+  "runtime_acceptance": false,
+  "effectiveness_acceptance": false,
+  "reviewed_files": [
+    "research/candidate_relations.py",
+    "research/recoverability_modules.py",
+    "research/train_recoverability.py",
+    "research/evaluate_recoverability.py"
+  ],
+  "plan_reviewed": {
+    "path": "refine-logs/EXPERIMENT_PLAN.md",
+    "section": "2026-10-06 candidate-relation preparation, NOT deployed or effective yet",
+    "lines": [
+      203,
+      211
+    ],
+    "includes_latest_gross_alignment": true
+  },
+  "dependencies_reviewed": [
+    "research/recoverability_tracker.py",
+    "research/collect_recoverability.py",
+    "research/candidate_learning.py",
+    "research/temporal_modules.py:relative_geometry",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_candidate_metrics.py:ground_truth",
+    "research/collect_core_metrics.py:main"
+  ],
+  "blockers": [],
+  "non_blockers": [
+    {
+      "id": "NB2",
+      "type": "declared_scientific_limitation",
+      "severity": "informational",
+      "paths": [
+        "refine-logs/EXPERIMENT_PLAN.md:207",
+        "research/collect_recoverability.py:255",
+        "research/train_recoverability.py:55"
+      ],
+      "finding": "本实验仍使用已有预测前缀、冻结 own-policy 的三步后续标签及重复使用的 196 个开发 queries / 98 个视频。2576 个 sequence/query/prefix states 不等同于 2576 个独立恢复事件。关系块增加候选比较能力，但没有提供新的长期几何机制；源码和计划未声称已经有效。",
+      "suggested_action": "保留这些限制；收益只从匹配对照和完整视频实际 GT 指标判断，不从训练损失或 MSE 下降推导。"
+    },
+    {
+      "id": "NB3",
+      "type": "scope_boundary",
+      "severity": "informational",
+      "paths": [
+        "research/evaluate_recoverability.py:93",
+        "research/evaluate_recoverability.py:114",
+        "research/evaluate_recoverability.py:125"
+      ],
+      "finding": "现有 --zero-init 重建的是未训练 ABC，现有 --parity-check 比较的是 C1。两者都不能替代 relation 在 old4 预训练初始化下的完整视频父策略一致性验收。完整控制器尚未实现，故该验收明确属于 pending，不把已有 C1 检查冒称为 old4/relation 检查。",
+      "suggested_action": "后续流程应比较真实保存的 relation epoch0 checkpoint 与同一 old4/gross 父策略，保持输入、threshold、write verification 和 search-value 一致。"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "check": "candidate_information_boundary",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/candidate_relations.py",
+          "lines": [
+            18,
+            37
+          ]
+        },
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            111,
+            143
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            64,
+            70
+          ]
+        },
+        {
+          "path": "research/candidate_learning.py",
+          "lines": [
+            146,
+            160
+          ]
+        },
+        {
+          "path": "research/recoverability_tracker.py",
+          "lines": [
+            62,
+            81
+          ]
+        },
+        {
+          "path": "research/recoverability_tracker.py",
+          "lines": [
+            159,
+            190
+          ]
+        }
+      ],
+      "reason": "原 candidate_inputs 为 3h+23 维，新增 7 维 region one-hot 后为 3h+30，与 embedding 一致。local 的 query/key/value 都只有 tokens[:,0]。每个额外区域被放入独立 batch 项，其 5 个 query 只能读取 local5 与自身5；key_padding_mask 使用同一对区域的 valid。LayerNorm 只沿特征维处理，没有跨候选区域的归一化。local 结果不依赖任意额外区域，search_decision 也只读原 local 输入及既有因果运动字段。缓存加载断言 local 至少一项有效，在线提取器保留 Hann winner，当前真实路径不会产生全 key 被遮蔽的注意力集合。在线 tracker 先作 local 决定，再最多调用一次 extra_observation，并只插入所选区域。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E2",
+      "check": "zero_initialization_and_existing_action_semantics",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/candidate_relations.py",
+          "lines": [
+            12,
+            16
+          ]
+        },
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            151,
+            185
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            168,
+            206
+          ]
+        }
+      ],
+      "reason": "关系输出层的 weight/bias 均置零，dropout 为零。7 个修正量在原 action MLP 输出之后、reshape 及 advantage/harm/write-risk/quality/future-quality 变换之前相加，因此既有参考候选相减、风险惩罚和单次搜索成本路径未改变。trainer 先严格加载父 checkpoint，再挂接 relations；另构造同一父模型，对 TRAIN 与开发 VAL 的每批所有输出 tensor 执行 torch.equal。输出完全相等且选择器参数相同，则策略决定相等。代码中这个断言尚未实际执行。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E3",
+      "check": "checkpoint_architecture_and_strict_loading",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            86,
+            108
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            165,
+            178
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            211,
+            234
+          ]
+        },
+        {
+          "path": "research/evaluate_recoverability.py",
+          "lines": [
+            120,
+            128
+          ]
+        },
+        {
+          "path": "research/evaluate_recoverability.py",
+          "lines": [
+            177,
+            193
+          ]
+        }
+      ],
+      "reason": "构造器默认 candidate_relations=False；relations=None 不引入参数或 state_dict tensor，原 A/B/C/C1 结构和键不变。trainer 仍只接受 ABC_recoverability 父 checkpoint，并在新增 relations 之前 strict=True 加载。新 checkpoint 明确记录 ABC_candidate_relations，evaluator 据 module 字段选择结构后 strict=True 加载；普通旧 checkpoint 仍走原结构。没有 strict=False、遗漏键容忍或自动模型 fallback。旧 weighted 默认仍保留。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E4",
+      "check": "optimizer_gradients_and_changes",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            174,
+            208
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            244,
+            300
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            320,
+            335
+          ]
+        },
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            90,
+            108
+          ]
+        }
+      ],
+      "reason": "relations 在 optimizer 构造之前注册为 model 子模块，optimizer 使用全部 requires_grad 参数。C 检查组包含 action 与 relations，A/B 仍分别为 memory/search；frozen C 会同时冻结 action 与 relations。另单独保留 relations 初值、记录最大非零梯度并断言真实参数变化，避免仅凭原 action 的梯度冒称新增块学习。C1 保持 requires_grad=False 且 train() 强制 eval，训练中还断言其梯度缺失。真实梯度与变化仅能由后续运行确认。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E5",
+      "check": "actual_last_checkpoint",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            220,
+            238
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            282,
+            335
+          ]
+        }
+      ],
+      "reason": "每轮先验证，严格 utility 改善时保存 best。训练循环结束后，在读取 best 之前将当前模型以 args.epochs 与该末轮 metrics 保存为 last.pth，随后 strict=True 重载 last，复算并断言指标字典完全相等，再重载 best 并执行原有 best 指标一致性检查。默认普通 ABC 未传 --retain-last 时仍只保存 best。relation 臂还在首个优化步之前独立保存真实 old4 加零关系输出的 initial.pth，供父策略 parity 使用，避免后续 best 改善覆盖 epoch0。config 和 completion 分别记录 best、可选 last 与 relation initial 的保留边界；两种训练端点之外的 initial 仅待 parity 消费者使用。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E6",
+      "check": "causal_fields_and_ground_truth_boundary",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            14,
+            18
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            18,
+            19
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            55,
+            91
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            147,
+            164
+          ]
+        },
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            324,
+            393
+          ]
+        },
+        {
+          "path": "research/collect_recoverability.py",
+          "lines": [
+            194,
+            284
+          ]
+        },
+        {
+          "path": "research/evaluate_recoverability.py",
+          "lines": [
+            210,
+            245
+          ]
+        },
+        {
+          "path": "research/collect_candidate_metrics.py",
+          "lines": [
+            28,
+            33
+          ]
+        },
+        {
+          "path": "research/collect_core_metrics.py",
+          "lines": [
+            112,
+            173
+          ]
+        }
+      ],
+      "reason": "trainer.forward 只传 DECISION_FIELDS；GT current/future IoU、wrong_update_fraction、action_valid 和 history_iou 仅用于 objective/离线验证，不进入关系块或在线决策。TRAIN 与开发 VAL 检查视频名不相交且各自属于原 split。collector 在复制当前决策输入之后生成 GT 标签，own continuation 为冻结策略的三个未来 step。在线 evaluator 只读第一行 GT 初始化，后续 GT 由独立 collector/native evaluator 离线读取。GT 是真实数据标注，未以另一模型预测作为正确答案；C1 quality 只是已有输入特征。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E7",
+      "check": "gross_validation_and_deployment_alignment",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            38,
+            40
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            95,
+            104
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            200,
+            200
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            226,
+            228
+          ]
+        },
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            282,
+            317
+          ]
+        },
+        {
+          "path": "research/recoverability_modules.py",
+          "lines": [
+            232,
+            270
+          ]
+        },
+        {
+          "path": "refine-logs/EXPERIMENT_PLAN.md",
+          "lines": [
+            211,
+            211
+          ]
+        }
+      ],
+      "reason": "最新增加的 search_value 参数从 CLI 传入初始化选择、每次缓存验证、last 重载验证与 best 重载验证。旧默认 weighted 不变，计划中的四臂都明确用 gross。强制区域的 selector 标签及现有训练 surrogate 未被改写。这个共同口径修正不能作为 relation 独有收益；应比较同学习率的 gross 普通 ABC 与 gross relation ABC。控制器尚未实现，因此四条实际命令仍需后续核查。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E8",
+      "check": "frozen_visual_and_motion_components",
+      "source_verdict": "PASS",
+      "references": [
+        {
+          "path": "research/train_recoverability.py",
+          "lines": [
+            55,
+            91
+          ]
+        },
+        {
+          "path": "research/candidate_learning.py",
+          "lines": [
+            99,
+            129
+          ]
+        },
+        {
+          "path": "research/evaluate_recoverability.py",
+          "lines": [
+            155,
+            164
+          ]
+        },
+        {
+          "path": "research/recoverability_tracker.py",
+          "lines": [
+            83,
+            121
+          ]
+        },
+        {
+          "path": "research/temporal_modules.py",
+          "lines": [
+            20,
+            29
+          ]
+        }
+      ],
+      "reason": "训练读取已有视觉/运动缓存，只优化 ABC 与可选 relations。视觉 extractor、C1 与独立运动模型的冻结路径保持不变；motion 提案区域坐标计算和现有 relative_geometry 没有修改。新增块不增加 backbone 调用，也不是第四个时间状态模块。",
+      "runtime_witness": "PENDING"
+    },
+    {
+      "id": "E9",
+      "check": "static_verification_executed",
+      "source_verdict": "PASS",
+      "reason": "已对四个最新 Python 文件执行标准库 ast.parse，全部通过；未导入任何研究模块或 torch。已执行限定四文件的 git diff --check，退出码为 0。读取并追踪了相对于 42ac67e 的 diff 与实际依赖。初次裸 python 入口因 No pyvenv.cfg file 失败，随后使用已安装的 uv 管理 Python、offline/no-project 模式完成 AST 检查；未安装包或改变项目环境。 随后对新增 initial.pth 保存和保留元数据的最新 trainer 再次读取 diff 并执行 AST 检查，通过；未运行模型。",
+      "ast_file_line_counts": {
+        "research/candidate_relations.py": 37,
+        "research/recoverability_modules.py": 393,
+        "research/train_recoverability.py": 341,
+        "research/evaluate_recoverability.py": 251
+      }
+    }
+  ],
+  "runtime_checks_pending": [
+    {
+      "id": "R1",
+      "status": "PENDING",
+      "check": "完成并独立审查完整控制器，确认旧 native pipeline 实际关闭后才部署新任务。此次未审控制器，也未检查服务器当前状态。"
+    },
+    {
+      "id": "R2",
+      "status": "PENDING",
+      "check": "四条命令必须匹配同一 old4、九个 TRAIN roots、2576 states / 881 videos、196 developer queries / 98 videos、seed42、batch336、60 epochs、oracle、budgeted、action write verification 和 gross；只在两条 relation 臂加 --candidate-relations，四臂都加 --retain-last，lr 分别为 1e-5/1e-4，不冻结 A/B/C。实际 counts 和输入路径尚未加载核验。按这组样本数与 batch，源码循环应为每轮 8 步、60 轮 480 步，不能把旧 C917 的 840 步当成新实验预期。"
+    },
+    {
+      "id": "R3",
+      "status": "PENDING",
+      "check": "真实 GPU sanity：执行全部 TRAIN/开发 VAL 的父模型初始化逐 tensor 相等断言；验证参数/损失/梯度有限、A/B/C 与 relations 独立非零梯度及变化、C1 无梯度、真实 batch336 资源可运行。零输出层的上游 attention/embedding 在首步梯度为零是正常初始化行为，后续学习仍须真实运行。"
+    },
+    {
+      "id": "R4",
+      "status": "PENDING",
+      "check": "使用独立保存的真实 relation initial.pth（epoch0）严格重载后，与同一 old4/gross 父策略做完整视频输出/策略一致性检查；现有 --zero-init/--parity-check 只适用于未训练 ABC/C1，不能替代本检查。亦需实际验证缓存完整候选与在线 local+一个额外区域在可执行候选上的决定一致。initial.pth 应在 parity 消费者完成后按计划退役。"
+    },
+    {
+      "id": "R5",
+      "status": "PENDING",
+      "check": "实际完成四臂训练，并取得 best/实际 epoch60 last 的严格重载和指标相等回执；last 必须来自真实末轮而非 best 的复制。按明确模型元数据在在线 evaluator 中严格重载两种结构。"
+    },
+    {
+      "id": "R6",
+      "status": "PENDING",
+      "check": "完成每臂 best/last 的原始 98 视频比较和实际失败/恢复事件报告，选择一个 checkpoint 后跨两项正式数据集使用同一权重，取得实际 GT 的五个 native 指标。训练损失、缓存 utility 或 MSE 下降不能代替完整视频收益。若 best 仍等于父初始化，报告无学习收益并复用已完成父证据，不能宣称新的算法胜利或重复未变测试。"
+    }
+  ],
+  "actions_performed": {
+    "read_only_source_and_diff_review": true,
+    "local_stdlib_ast_parse": true,
+    "research_module_imports": 0,
+    "model_forward_or_backward_runs": 0,
+    "training_runs": 0,
+    "data_collection_runs": 0,
+    "evaluation_runs": 0,
+    "server_or_ssh_actions": 0,
+    "old_experiments_repeated": 0,
+    "scientific_source_edits": 0,
+    "memory_md_read": false
+  },
+  "resolved_during_review": [
+    {
+      "id": "NB1",
+      "type": "documentation_and_retention_metadata",
+      "status": "RESOLVED_BY_IMPLEMENTER",
+      "finding": "旧 Only best.pth 文档已更新；新增 initial.pth 的 config 保留说明与 completion 保留列表已同步。",
+      "reviewer_modified_scientific_source": false
+    }
+  ]
+}

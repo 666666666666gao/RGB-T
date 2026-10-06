@@ -10,7 +10,7 @@ import numpy as np
 
 from scripts.run_search_gain_native import partitions
 
-REPO = Path('/data/gb/GOLA')
+REPO = Path(__file__).resolve().parents[1]
 PYTHON = '/data/gb/envs/gola/bin/python'
 DATA = {'lasher': '/data/wangwj/dataset/LasHeR/testingset', 'rgbt234': '/data/zhouy/DATASET/RGB-T234'}
 EXPECTED = {'lasher': (245, 220703), 'rgbt234': (234, 116649)}
@@ -77,7 +77,8 @@ def main():
     p.add_argument('--output', required=True)
     args = p.parse_args()
     selection, review = read(args.selection), read(args.review)
-    assert review['status'] == 'PASS' and review['scope'] == 'COMPLETE_STATE_COMMIT_PIPELINE_SOURCE'
+    assert review['status'] == 'PASS' and review['scope'] in ('COMPLETE_STATE_COMMIT_PIPELINE_SOURCE', 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE')
+    label = 'selected_ABC' if review['scope'] == 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE' else 'state_commit'
     assert selection['same_checkpoint_both_native_datasets'] and not selection['native_metrics_completed']
     root = Path(args.output)
     root.mkdir(parents=True, exist_ok=False)
@@ -104,13 +105,19 @@ def main():
             for gpu, group in enumerate(plan[dataset]['groups']):
                 out = root / dataset / stage / f'gpu{gpu}' / 'predictions'
                 log = (root / f'{dataset}_{stage}_gpu{gpu}.log').open('w')
-                command = ['bash', 'scripts/run_temporal.sh', str(gpu), 'evaluate_recoverability',
+                command = [PYTHON, '-u', '-m', 'research.evaluate_recoverability',
                            '--dataset', dataset, '--root', data, '--model', selection['parent_model'],
-                           '--state-commit-model', selection['state_commit_model'], '--search-value', 'gross',
+                           '--search-value', 'gross',
                            '--write-verification', 'action', '--sequence-offset', str(group['offset']),
                            '--limit-sequences', '1' if stage == 'sanity' else str(group['count']),
                            '--max-frames', '64' if stage == 'sanity' else '0', '--output', str(out)]
-                child = subprocess.Popen(command, cwd=REPO, stdout=log, stderr=subprocess.STDOUT)
+                if selection['state_commit_model'] is not None:
+                    command += ['--state-commit-model', selection['state_commit_model']]
+                env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu), CUDA_DEVICE_ORDER='PCI_BUS_ID',
+                           LD_LIBRARY_PATH='/data/gb/envs/gola/lib', PYTHONPATH=str(REPO),
+                           TORCH_HOME='/data/gb/cache/torch', XDG_CACHE_HOME='/data/gb/cache',
+                           TMPDIR='/data/gb/cache/tmp', OMP_NUM_THREADS='4', CUBLAS_WORKSPACE_CONFIG=':4096:8')
+                child = subprocess.Popen(command, cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT)
                 children.append((child, log, gpu, out))
             record(dataset.upper() + '_' + stage.upper(), children=[{'gpu': g, 'pid': c.pid} for c, _, g, _ in children])
             exits = []
@@ -141,21 +148,21 @@ def main():
                 subprocess.run([PYTHON, '-u', '-m', module, *arguments], cwd=REPO, env=env,
                                stdout=log, stderr=subprocess.STDOUT, check=True)
             cpu('research.collect_core_metrics', '--dataset', dataset, '--data-root', data,
-                '--variants', *references, 'state_commit', '--runs', *references.values(), str(run), '--output', str(run / 'core_report'))
-            for label, reference in references.items():
-                pair = run / f'{label}_paired_report'
+                '--variants', *references, label, '--runs', *references.values(), str(run), '--output', str(run / 'core_report'))
+            for reference_label, reference in references.items():
+                pair = run / f'{reference_label}_paired_report'
                 cpu('research.collect_core_metrics', '--dataset', dataset, '--data-root', data,
-                    '--variants', label, 'state_commit', '--runs', reference, str(run), '--output', str(pair))
+                    '--variants', reference_label, label, '--runs', reference, str(run), '--output', str(pair))
                 cpu('research.paired_sequence_bootstrap', '--reports', str(pair / 'full_report.json'), '--output', str(pair / 'paired_bootstrap.json'))
                 cpu('research.plot_core_metrics', '--report', str(pair / 'full_report.json'), '--output', str(pair))
             cpu('research.collect_recoverability_metrics', '--dataset', dataset, '--root', data,
-                '--labels', 'state_commit', '--runs', str(run / 'predictions'), '--reference-labels', *references,
+                '--labels', label, '--runs', str(run / 'predictions'), '--reference-labels', *references,
                 '--references', *[r + '/predictions' for r in references.values()], '--output', str(run / 'mechanism_report'))
         report = read(run / 'core_report/full_report.json')
         assert report['all_actual_ground_truth_verified'] and (report['sequences'], report['frames']) == EXPECTED[dataset]
-        values = report['variants']['state_commit']['overall_metrics_percent']
-        assert len(report['variants']['state_commit']['attributes']) == (19 if dataset == 'lasher' else 12)
-        assert set(report['variants']['state_commit']['mean_curves']) == set(values)
+        values = report['variants'][label]['overall_metrics_percent']
+        assert len(report['variants'][label]['attributes']) == (19 if dataset == 'lasher' else 12)
+        assert set(report['variants'][label]['mean_curves']) == set(values)
         baseline = report['variants']['baseline']['overall_metrics_percent']
         for metric in (('PR', 'NPR', 'SR') if dataset == 'lasher' else ('MPR', 'MSR')):
             metrics.append({'dataset': dataset, 'metric': metric, 'percent': values[metric],
@@ -164,6 +171,7 @@ def main():
         record('FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE', dataset=dataset, metrics=values)
     assert len(metrics) == 5
     complete = {'completed': True, 'same_state_commit_model_both_datasets': selection['state_commit_model'],
+                'same_ABC_model_both_datasets': selection['parent_model'], 'model_label': label,
                 'five_metrics': metrics, 'all_five_plus_two': all(m['meets_plus_two'] for m in metrics),
                 'complete_attribute_settings': 31, 'fixed_checkpoint_paired_bootstrap': '5000/seed42 versus GOLA/C1/old4/gross_parent',
                 'not_training_seed_stability': True}

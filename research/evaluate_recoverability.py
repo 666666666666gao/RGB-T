@@ -119,9 +119,10 @@ def main():
     torch.cuda.set_device(device)
     c1 = torch.load(args.c1_head, map_location='cpu', weights_only=False)
     checkpoint = torch.load(args.model, map_location='cpu', weights_only=False)
-    assert checkpoint['module'] == 'ABC_recoverability' and checkpoint['args']['c1_head'] == args.c1_head
+    assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
+    assert checkpoint['args']['c1_head'] == args.c1_head
     threshold = checkpoint['args']['threshold']
-    modules = RecoverabilityModules(c1).to(device)
+    modules = RecoverabilityModules(c1, candidate_relations=checkpoint['module'] == 'ABC_candidate_relations').to(device)
     if not args.zero_init:
         modules.load_state_dict(checkpoint['model'], strict=True)
     modules.eval().requires_grad_(False)
@@ -175,6 +176,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     smoke = bool(args.validation_split or args.sequence_offset or args.limit_sequences or args.max_frames or args.zero_init or args.parity_check)
     config = vars(args) | {'threshold': threshold, 'head_epoch': 0 if args.zero_init else checkpoint['epoch'],
+                           'ABC_model_family': checkpoint['module'],
                            'model_training_seed': checkpoint['args']['seed'],
                            'scope': 'causal single path, bounded instance memory, learned one-extra-region search and query-only safe write',
                            'smoke_only': smoke, 'pretrained_load': extractor.load_receipt,

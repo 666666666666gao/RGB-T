@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SYNTHETIC_SOURCE_BUDGET_AND_GRADIENT_CHECK",
+  "torch_version": "2.5.1+cu118",
+  "parameters": 121155,
+  "zero_output_initialization": true,
+  "independent_of_unavailable_region_inputs_and_masks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "own_region_changes_output": true,
+  "parameter_groups_changed_after_two_synthetic_CPU_steps": {
+    "embedding": true,
+    "attention": true,
+    "normalization": true,
+    "output": true
+  },
+  "synthetic_CPU_optimizer_steps": 2,
+  "synthetic_module_forward_calls": 11,
+  "real_training_or_tracking_efficacy": false,
+  "GPU_or_process_queries": 0,
+  "canonical_science_source_changes": 0,
+  "pending": "Full parent checkpoint/tensor and online trajectory parity, real GPU A/B/C training/reload, controller and complete validation/native evaluation"
+}

@@ -1,0 +1,180 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE",
+  "reviewed_at": "2026-10-06T14:27:22+08:00",
+  "reviewer_task": "/root/candidate_relation_pipeline_review",
+  "agent_model": "gpt-6-astra",
+  "reasoning": "max",
+  "fork_turns": "none",
+  "model_attribution": "orchestrator-confirmed configuration; no separate backend attestation",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "same_family_provisional": true,
+  "complete_pipeline_source_pass": true,
+  "runtime_acceptance": false,
+  "effectiveness_acceptance": false,
+  "workspace": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-candidate-relation",
+  "base_commit": "42ac67e890ed909589e753849dd43b918ba98735",
+  "conclusion": "最新完整 candidate-relation 流程源码 PASS，0 个剩余 blocker。覆盖普通/关系 ABC 四臂训练、真实 initial.pth 父策略 parity、八端点 full98 选优、条件式双 native 评估、已完成父报告复用和仅自有权重清理。允许按已编排的真实 sanity/parity 顺序推进；不是新 GPU、训练、完整视频或算法收益验收。",
+  "reviewed_files": [
+    "scripts/run_candidate_relation_training.py",
+    "scripts/run_selective_state_native.py",
+    "research/candidate_relations.py",
+    "research/recoverability_modules.py",
+    "research/train_recoverability.py",
+    "research/evaluate_recoverability.py"
+  ],
+  "dependencies_reviewed": [
+    "scripts/run_search_gain_native.py:partitions",
+    "scripts/run_temporal.sh",
+    "research/recoverability_tracker.py",
+    "research/collect_recoverability.py",
+    "research/candidate_learning.py:FrozenCandidateExtractor",
+    "research/temporal_modules.py:relative_geometry",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_core_metrics.py",
+    "research/collect_candidate_metrics.py:ground_truth",
+    "research/collect_abc_metrics.py:mechanism helper interfaces",
+    "research/paired_sequence_bootstrap.py",
+    "research/plot_core_metrics.py",
+    "evaluation.py:LasHeREvaluation and RGBT234Evaluation"
+  ],
+  "plan": "refine-logs/EXPERIMENT_PLAN.md:203-214",
+  "previous_review": "refine-logs/runs/candidate_relation/source_review.json (scientific source only)",
+  "blockers": [],
+  "non_blockers": [
+    {
+      "id": "NB1",
+      "type": "declared_scientific_limitation",
+      "finding": "2576 个 sequence/query/prefix states 来自已有九个 TRAIN cache；196 queries / 98 videos 是重复使用的开发验证集。冻结 own-policy 三步标签没有随新模型重新收集，因此本轮不是新策略的长期因果恢复证据，也不是独立训练种子稳定性验证。",
+      "references": [
+        "refine-logs/EXPERIMENT_PLAN.md:207",
+        "research/train_recoverability.py:55",
+        "research/train_recoverability.py:214",
+        "scripts/run_candidate_relation_training.py:174"
+      ],
+      "action": "维持现有明确范围；按计划用完整视频实际 GT 判断收益，无需增加三 seed 门槛或额外模型。"
+    },
+    {
+      "id": "NB2",
+      "type": "declared_measurement_limitation",
+      "finding": "native 四个 worker 并行、历史参考运行的并行负载不同。延迟、FPS 和峰值显存可报告，但不能据此声称隔离条件下的算法加速。",
+      "references": [
+        "scripts/run_selective_state_native.py:69",
+        "research/collect_recoverability_metrics.py:185",
+        "research/collect_core_metrics.py:180"
+      ],
+      "action": "保留当前 descriptive timing 注释。"
+    }
+  ],
+  "source_checks": [
+    {
+      "check": "matched_training_and_GT_boundary",
+      "status": "PASS",
+      "references": [
+        "scripts/run_candidate_relation_training.py:21",
+        "scripts/run_candidate_relation_training.py:71",
+        "research/train_recoverability.py:55"
+      ],
+      "evidence": "普通/关系 × lr1e-5/1e-4，共同 old4、seed42、batch336、oracle/budgeted/action/gross；九个 TRAIN caches、2576 states/881 videos、196 VAL queries/98 videos 的字段和 loader 接口一致。原 split 不交、shape/finite/mask 与完成 receipt 检查存在；2ep sanity 后才进入60ep/480updates。"
+    },
+    {
+      "check": "relations_and_frozen_dependencies",
+      "status": "PASS",
+      "references": [
+        "research/candidate_relations.py:18",
+        "research/recoverability_modules.py:111",
+        "research/recoverability_tracker.py:159",
+        "research/train_recoverability.py:180"
+      ],
+      "evidence": "local 仅看 local5，extra 独立只看 local5+自身5，维度及 mask 一致；search 仅看因果 local/history，在线最多一次 extra visual forward。A/B/C 与独立 relations 的梯度、变化验收路径齐全；GOLA/C1 和单独 motion 保持冻结。未执行区域和未来 GT 不进入决策特征。"
+    },
+    {
+      "check": "latest_gross_objective_alignment",
+      "status": "PASS",
+      "references": [
+        "research/recoverability_modules.py:232",
+        "research/recoverability_modules.py:324",
+        "research/recoverability_modules.py:370",
+        "research/train_recoverability.py:102",
+        "research/train_recoverability.py:251"
+      ],
+      "evidence": "最新 search_value 参数贯穿 objective、搜索排序 CE、强制 selector targets、初始选择、验证及 strict reload。gross 直接用 region_advantage-.01；旧 weighted 默认保留。既有三步 own-policy 标签没有冒称为新策略重收集。"
+    },
+    {
+      "check": "saved_initial_parity_and_real_last",
+      "status": "PASS",
+      "references": [
+        "research/train_recoverability.py:168",
+        "research/train_recoverability.py:231",
+        "research/train_recoverability.py:302",
+        "scripts/run_candidate_relation_training.py:103"
+      ],
+      "evidence": "old4 strict load 后添加零输出 relations，真实 TRAIN/VAL 所有 output tensors 的精确父一致性要求存在。优化器前保存 initial.pth；四 sanity 通过后以该实际文件做四 shard 全98/49418预测字节及九项决策 parity。未使用 C1/zero-init 检查替代。last 在重载 best 前保存，并分别 strict reload/精确指标复算；新旧 checkpoint family 正确区分。"
+    },
+    {
+      "check": "eight_full98_one_pretest_selection",
+      "status": "PASS",
+      "references": [
+        "scripts/run_candidate_relation_training.py:138",
+        "scripts/run_candidate_relation_training.py:158",
+        "scripts/run_candidate_relation_training.py:166",
+        "research/collect_recoverability_metrics.py:168"
+      ],
+      "evidence": "四 best 加四 actual last 全98结束后，用实际 GT 的 sequence_mean_iou 对 GOLA/C1/old4/gross 比较，锁定一个再决定 TEST。collector 核对完整集合、帧数、原始轨迹、timeline、有效 GT；分数不是模型输出相似度。"
+    },
+    {
+      "check": "native_environment_metadata_GT_merge_and_reports",
+      "status": "PASS",
+      "references": [
+        "scripts/run_selective_state_native.py:13",
+        "scripts/run_selective_state_native.py:23",
+        "scripts/run_selective_state_native.py:79",
+        "scripts/run_selective_state_native.py:108",
+        "scripts/run_selective_state_native.py:140"
+      ],
+      "evidence": "REPO 来自脚本 real path，cwd/PYTHONPATH 一致，直接 Python 启动与已有环境设置一致。state_commit_model=None 不传额外 head；selected_ABC label 和实际 ABC_model_family 一致，reference_label 未遮蔽 label。merge 校验每 shard 配置、集合、计数、txt/latency shape/finite，再形成完整 union。相同 ABC 用于245/220703及234/116649；五 native 指标、31 attrs、四参考5000/seed42配对CI、机制和效率的同步收集链完整，GT 来自实际数据。"
+    },
+    {
+      "check": "verified_parent_reuse_and_owned_cleanup",
+      "status": "PASS",
+      "references": [
+        "scripts/run_candidate_relation_training.py:184",
+        "scripts/run_candidate_relation_training.py:204",
+        "scripts/run_candidate_relation_training.py:218"
+      ],
+      "evidence": "无开发集改善时读取父 progress/selection/native/core 完成证据，核对 old4/gross/epoch0、完整计数与五分数一致性，明确新 native 未执行。相关历史权威本地收件已查阅。所有消费者结束后才删除新建 root 内明确列举的自有19/20权重，保护 incumbent/C1/motion/cache；最终字段已收窄为 developer_full98_parent_point_improvement。"
+    }
+  ],
+  "resolved_during_review": [
+    "仅写父报告路径的分支已改为读取并验收实际关闭凭据；已补审。",
+    "宽泛 trained_method_gain_established 已仅改名为 developer_full98_parent_point_improvement；已补审。",
+    "已包含主代理最新 gross loss/selector propagation 补丁及 selected_ABC native label 修正。"
+  ],
+  "checks_performed": {
+    "manual_source_interface_review": "PASS",
+    "standard_library_ast_parse_13_files": "PASS",
+    "scientific_modules_imported_or_executed": false,
+    "source_diff_whitespace_check": "PASS",
+    "remote_commands_training_NN_polling": false,
+    "scientific_source_edits_by_reviewer": false,
+    "historical_parent_read_only": {
+      "root": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/refine-logs/runs/state_commit_current_future/complete/training",
+      "terminal_stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+      "terminal_at_cst": "2026-10-06T14:00:16.204406+08:00",
+      "native_completed_and_GT_counts": true,
+      "state_commit_metrics_equal_gross_parent": true,
+      "all_five_plus_two": false
+    }
+  },
+  "pending_real_gpu_and_runtime_acceptance": [
+    "Deployment must preserve the reviewed worktree files and resolve existing server Python, pretrained, C1, motion, split, raw caches and historical reference artifacts; remote availability was not probed in this SOURCE review.",
+    "Four actual 2-epoch sanity runs: finite forward/backward, required A/B/C and relation gradient/change receipts, frozen C1, exact cached parent tensors, strict best and actual last reload.",
+    "Actual saved initial.pth full98/49418 four-shard parent prediction-byte and decision parity; C1 or zero-init flags cannot substitute.",
+    "Four complete 60-epoch/480-update runs and all eight best/last complete98 actual-GT reports.",
+    "One developer-selected checkpoint locked before TEST; if it exceeds protected gross parent, same checkpoint both full native datasets and all required reports/receipts.",
+    "If no developer parent improvement, execute the verified historical-report reuse branch and retain incumbent; do not replay identical native inference.",
+    "Only after every relevant consumer finishes, execute and inspect the owned-weight cleanup receipt.",
+    "Five native metrics +2 and any scientific effectiveness claim require actual results; the historical parent still fails the five-target goal."
+  ]
+}
