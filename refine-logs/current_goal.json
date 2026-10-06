@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-03_closed_loop_recovery_best_model",
+  "version": "2026-10-06_current_quality_future_state_reward_alignment",
   "status": "ACTIVE_UNMET",
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
@@ -6395,7 +6395,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Actual3423188 waits original3338360/240s ->4backward sanities ->4full60 fits ->8full98 best/endpoints ->onehead bothnative/all5; original3351735 retired before any training.",
+    "queued_successor": "Actual3801966: allfour sanity and full60/840 fits PASS, eight full98 then one locked checkpoint both native full metrics; original completed queues remain closed.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6410,39 +6410,55 @@
     "gpu_assignment_current": [
       {
         "gpu": 0,
-        "pid": 3338937,
-        "task": "Matched full causal TRAIN/developer-label collection",
-        "query_count": 441
+        "pid": 3803085,
+        "process": {
+          "pid": 3803085,
+          "alive": true,
+          "state": "R",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --state-commit-model /data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth --search-value gross --write-verification action --output /data/gb/outputs/state_commit_current_future_20261006/full98/H3_current_future_mlp_best/predictions "
+        }
       },
       {
         "gpu": 1,
-        "pid": 3338938,
-        "task": "Matched full causal TRAIN/developer-label collection",
-        "query_count": 418
+        "pid": 3803086,
+        "process": {
+          "pid": 3803086,
+          "alive": true,
+          "state": "R",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --state-commit-model /data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth --search-value gross --write-verification action --output /data/gb/outputs/state_commit_current_future_20261006/full98/H32_current_future_mlp_best/predictions "
+        }
       },
       {
         "gpu": 2,
-        "pid": 3338939,
-        "task": "Matched full causal TRAIN/developer-label collection",
-        "query_count": 466
+        "pid": 3803087,
+        "process": {
+          "pid": 3803087,
+          "alive": true,
+          "state": "R",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --state-commit-model /data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth --search-value gross --write-verification action --output /data/gb/outputs/state_commit_current_future_20261006/full98/H3_current_future_linear_best/predictions "
+        }
       },
       {
         "gpu": 3,
-        "pid": 3338940,
-        "task": "Matched full causal TRAIN/developer-label collection",
-        "query_count": 464
+        "pid": 3803088,
+        "process": {
+          "pid": 3803088,
+          "alive": true,
+          "state": "R",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --state-commit-model /data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth --search-value gross --write-verification action --output /data/gb/outputs/state_commit_current_future_20261006/full98/H32_current_future_linear_best/predictions "
+        }
       }
     ],
     "gpu_memory_request": {
-      "policy": "Four useful real NN collectors; frozenbackbone/serial causalstates do not require training-sized VRAM. No filler allocation. Fitmemory/update measurements recorded by actual trainer.",
-      "current_stage": "Full matched label collection",
+      "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
+      "current_stage": "FULL98_BEST",
       "train_batch_planned": 128,
       "source_review": "PASS same-family/provisional",
       "M0_real_query_runtime_pass": true,
-      "current_optimization_started": false,
+      "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-05T13:27:11.340299+08:00",
+    "next_check_cst": "2026-10-06T12:07:00+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7033,7 +7049,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T11:09:59.304261+08:00",
+  "updated_cst": "2026-10-06T11:35:25.855066+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11169,19 +11185,7 @@
     },
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
-  "current_execution_authority": {
-    "updated_cst": "2026-10-06T11:09:59.304261+08:00",
-    "authoritative_snapshot": "refine-logs/runs/selective_state_commit/current_execution_snapshot.json",
-    "collector_pid": 3338360,
-    "collector_complete": true,
-    "pipeline_pid": 3423188,
-    "pipeline_complete": true,
-    "active_NN_jobs": 0,
-    "sole_observer_closed_exit0": true,
-    "new_native_metrics_complete": true,
-    "actual_completed_report": "refine-logs/runs/selective_state_commit/complete/training/native/complete_metrics.json",
-    "warning": "All original consumers CLOSED and11ownunusedheads already retired. Preserve selected epoch0 and old4/dependencies; do not rerun collectors/training/evaluation/cleanup. +2 goal still unmet."
-  },
+  "current_execution_authority": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
     "collection": {
@@ -33516,5 +33520,19 @@
       "kept": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
       "old4_and_all_dependencies_preserved": true
     }
+  },
+  "current_state_commit_reward_alignment": {
+    "status": "FOUR_FULL60_840_FITS_COMPLETE_EIGHT_FULL98_SELECTION_RUNNING; GOAL_UNMET",
+    "updated_cst": "2026-10-06T11:35:25.855066+08:00",
+    "evidence": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
+    "controller_pid": 3801966,
+    "reward": "current IoU + known future mean IoU; original default retained",
+    "actual_four_fits": "60epochs/840updates each; all cached best epoch0; complete endpoints also queued full98",
+    "new_native_metrics_completed": false,
+    "all_five_plus_two": false,
+    "next_check_cst": "2026-10-06T12:07:00+08:00",
+    "poll_seconds": 240,
+    "scope": "C extension only; existing A/B/C parent and complete GOLA/C1 active/frozen; real four-card inference, no filler allocation",
+    "previous_completed_native": "refine-logs/runs/selective_state_commit/native_complete_summary.json"
   }
 }

@@ -141,12 +141,14 @@ def main():
     if args.state_commit_model:
         from .selective_state_commit import FEATURES, SelectiveStateCommitHead
         state_commit = torch.load(args.state_commit_model, map_location='cpu', weights_only=False)
-        assert state_commit['module'] == 'selective_state_commit' and state_commit['parent_model'] == args.model
+        assert state_commit['module'] in ('selective_state_commit', 'selective_state_commit_refined')
+        assert state_commit['parent_model'] == args.model
         assert state_commit['features'] == FEATURES and state_commit['threshold'] == .03
         assert state_commit['search_value'] == args.search_value == 'gross'
         assert args.policy == 'learned' and args.write_verification == 'action'
         assert not args.parity_check and not args.zero_init and not args.unsafe_writes and not args.disable_search
-        state_commit_head = SelectiveStateCommitHead().to(device)
+        architecture = 'mlp' if state_commit['module'] == 'selective_state_commit' else state_commit['architecture']
+        state_commit_head = SelectiveStateCommitHead(architecture).to(device)
         state_commit_head.load_state_dict(state_commit['head'], strict=True)
         state_commit_head.eval().requires_grad_(False)
     motion_config = json.loads((Path(args.motion_run) / 'config.json').read_text())

@@ -161,3 +161,40 @@ Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418
 ## 2026-10-06T11:09:59.304261+08:00 actual full native closure; goal still unmet
 
 Four60/840 fits, eightfull98 and SAME epoch0 both245/220703+234/116649 actual-GT complete. Five78.016094/74.383784/62.072660 and92.866361/70.022381, allbaseline+2false; exactgrossparent scores/no learned C benefit. Las threeCIpositive/RGBtwoinclude0; all31attrs/81metricrows/curves/four5000pairedrefs/mechanisms/efficiency copied3838files.11ownunusedweights5303694Bretired by original queue afterconsumers; bestepoch0 anddependenciesheld. Original3423188 andobserver22853 CLOSED; no replays or activeNN. Negative training and repeateddeveloper/test limitations retained. GoalACTIVE_UNMET, one best sufficient.
+
+
+## 2026-10-06 current-frame and future-state reward alignment
+
+The previous four60/840 fits and eightfull98 candidates are CLOSED negative;
+their prelocked epoch0 native five metrics exactly reproduce old4/gross and all
+five +2 targets remain unmet. Do not rerun the closed mean-all controls.
+
+Actual completed-state CPU audit found207 H32 TRAIN queries with legal mode2
+current-IoU gain>.03 and no worse future mean, all blocked by the .03 threshold
+on mean-over-query-plus32futureframes;96 legal rescue actions were blocked.
+The repeatedly used developer cache has only1 corresponding opportunity.
+This is a TRAIN/developer oracle diagnostic, not demonstrated online efficacy.
+Current+future oracle selection improves current quality but slightly reduces
+old mean-all utility, so full videos must judge the tradeoff rather than cached
+loss or the new objective alone.
+
+Next four fits: H3/current_future/MLP, H32/current_future/MLP,
+H3/current_future/linear, H32/current_future/linear. Current_future target is
+current known IoU + mean of known future IoUs, with the existing optional lost
+penalty applied to known future frames only; these four arms use penalty0.
+Linear head is LayerNorm917 + Linear917-to3 (4588parameters), versus the original
+119725parameter MLP. Both preserve exact zero-head parent behavior. This tests
+the measured reward dilution and observed TRAIN-positive/VAL-negative fit with
+two explicit axes, using the SAME completed1789 labels/event weighting, seed42,
+batch128/lr.001/full60/840updates per arm. Full GOLA/C1/old4 A/B/C and frozen
+motion remain active and frozen; this is C-extension training, not backbone or
+joint A/B/C retraining. No future GT enters decision features.
+
+Source review then real four-GPU2epoch backward/strict-reload sanity; full fits
+only after all four pass. Preserve cached best and actual60 endpoint for each;
+all eight complete98/49418 videos before selecting ONE by developer sequence
+IoU. Same checkpoint then full LasHeR245/220703 +RGBT234234/116649, allfive native
+metrics/all31attributes/fourreferences/5000pairedCIs and state mechanisms;
+retire11ownunused heads after all consumers, keep selectedbest and dependencies.
+No >=3positive-seed gate, no TEST tuning, no dataset move or power/temp actions.
+Actual update 2026-10-06T11:35:25.855066+08:00: deployed source/CPU witness and allfour real GPU sanity/full60/840 fits PASS; original3801966 in FULL98_BEST. Eightfull98/oneweight/bothnative pending, not formal success.

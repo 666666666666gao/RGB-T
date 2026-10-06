@@ -50,9 +50,12 @@ def decision_features(modules, data, anchor, memory, baseline, baseline_pause):
 
 
 class SelectiveStateCommitHead(nn.Module):
-    def __init__(self):
+    def __init__(self, architecture='mlp'):
         super().__init__()
-        self.net = nn.Sequential(nn.LayerNorm(FEATURES), nn.Linear(FEATURES, 128), nn.GELU(), nn.Linear(128, 3))
+        assert architecture in ('mlp', 'linear')
+        self.net = (nn.Sequential(nn.LayerNorm(FEATURES), nn.Linear(FEATURES, 3))
+                    if architecture == 'linear' else
+                    nn.Sequential(nn.LayerNorm(FEATURES), nn.Linear(FEATURES, 128), nn.GELU(), nn.Linear(128, 3)))
         nn.init.zeros_(self.net[-1].weight)
         nn.init.zeros_(self.net[-1].bias)
 

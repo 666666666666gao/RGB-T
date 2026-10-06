@@ -32,3 +32,8 @@ Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418
 ## 2026-10-06T11:09:59.304261+08:00 actual full native closure; goal still unmet
 
 Four60/840 fits, eightfull98 and SAME epoch0 both245/220703+234/116649 actual-GT complete. Five78.016094/74.383784/62.072660 and92.866361/70.022381, allbaseline+2false; exactgrossparent scores/no learned C benefit. Las threeCIpositive/RGBtwoinclude0; all31attrs/81metricrows/curves/four5000pairedrefs/mechanisms/efficiency copied3838files.11ownunusedweights5303694Bretired by original queue afterconsumers; bestepoch0 anddependenciesheld. Original3423188 andobserver22853 CLOSED; no replays or activeNN. Negative training and repeateddeveloper/test limitations retained. GoalACTIVE_UNMET, one best sufficient.
+
+
+## 2026-10-06T11:35:25.855066+08:00 current/future reward alignment actual execution
+
+SOURCE reviewPASS/provisional + actual deployed CPU default-exact witness + four GPU2epoch sanityPASS + four full60/840 fits strictbest/last reloadPASS. Original3801966 nowFULL98_BEST; eightfull98 selection and samehead bothnative/5+31attrs/4refs5000 pending. Same completed1789/event-weighted corpus; A/B/GOLA/C1/old4 frozen, C-only MLP119725 vslinear4588 H3/H32. Allfive+2UNMET; one best sufficient. No NN replay/oldqueue restart/dataset move/power-temperature operation. See current_execution_snapshot in state_commit_current_future and ONEHANDOFF.

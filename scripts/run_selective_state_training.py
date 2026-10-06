@@ -20,7 +20,12 @@ def main():
     p.add_argument('--collection-launch', required=True)
     p.add_argument('--review', required=True)
     p.add_argument('--output', required=True)
+    p.add_argument('--reward', choices=('mean_all', 'current_future'), default='mean_all')
     args = p.parse_args()
+    arms = ([(arm, horizon, penalty, 'mlp') for arm, horizon, penalty in ARMS]
+            if args.reward == 'mean_all' else
+            [('H3_current_future_mlp', 3, 0., 'mlp'), ('H32_current_future_mlp', 32, 0., 'mlp'),
+             ('H3_current_future_linear', 3, 0., 'linear'), ('H32_current_future_linear', 32, 0., 'linear')])
     assert json.loads(Path(args.review).read_text())['scope'] == 'COMPLETE_STATE_COMMIT_PIPELINE_SOURCE'
     assert json.loads(Path(args.review).read_text())['status'] == 'PASS'
     root = Path(args.output)
@@ -63,16 +68,17 @@ def main():
 
     for stage, epochs in [('fit_sanity', 2), ('fit_full', 60)]:
         commands = []
-        for gpu, (arm, horizon, penalty) in enumerate(ARMS):
+        for gpu, (arm, horizon, penalty, architecture) in enumerate(arms):
             command = ['bash', 'scripts/run_temporal.sh', str(gpu), 'train_selective_state_commit',
                        '--collection', str(collection), '--output', str(root / stage / arm),
                        '--horizon', str(horizon), '--lost-penalty', str(penalty), '--epochs', str(epochs),
-                       '--batch', '128', '--lr', '.001', '--seed', '42']
+                       '--batch', '128', '--lr', '.001', '--seed', '42',
+                       '--reward', args.reward, '--head-architecture', architecture]
             if stage == 'fit_sanity':
                 command.append('--sanity')
             commands.append(command)
         wave(stage, commands)
-        for arm, _, _ in ARMS:
+        for arm, _, _, _ in arms:
             result = json.loads((root / stage / arm / 'training_complete.json').read_text())
             config = json.loads((root / stage / arm / 'config.json').read_text())
             assert result['epochs'] == epochs and result['optimizer_updates'] == config['required_optimizer_updates']
@@ -83,7 +89,7 @@ def main():
     candidates = []
     for checkpoint in ('best', 'last'):
         commands = []
-        for gpu, (arm, _, _) in enumerate(ARMS):
+        for gpu, (arm, _, _, _) in enumerate(arms):
             label = arm + '_' + checkpoint
             weight = root / 'fit_full' / arm / (checkpoint + '.pth')
             candidates.append((label, arm, checkpoint, weight))
@@ -131,7 +137,7 @@ def main():
     assert native['completed'] and len(native['five_metrics']) == 5
     removed = []
     for stage in ('fit_sanity', 'fit_full'):
-        for arm, _, _ in ARMS:
+        for arm, _, _, _ in arms:
             for checkpoint in ('best',) if stage == 'fit_sanity' else ('best', 'last'):
                 weight = root / stage / arm / (checkpoint + '.pth')
                 if str(weight) == selection['state_commit_model']:
