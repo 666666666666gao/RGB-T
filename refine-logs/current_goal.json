@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "以完整预训练GOLA-B、C1和保护old4为基础，训练接入全部A/B/C主模块；预先选定一份最好checkpoint完整评测LasHeR与RGBT234，同模型五项均达到本地完整GOLA-B+2百分点。当前执行四组raw ABC/候选关联ABC的60epochs/480更新与完整视频选模，不附加多seed成功门槛，不将缓存拟合或父策略继承视为新训练收益。",
+  "execution_objective": "完整预训练GOLA/C1冻结，A/B/C已真实训练；恢复已选epoch5并核对原预测，使用同一份权重完成LasHeR与RGBT234正式五项及全部属性/曲线/配对区间，保留最佳权重。五项均比完整本地GOLA高2百分点才完成，单个最佳seed即可。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -6408,50 +6408,70 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "observed_at_cst": "2026-10-06T16:46:29.570523+08:00",
-      "workers": [
-        {
-          "gpu": 0,
-          "pid": 126715,
-          "process": {
-            "pid": 126715,
-            "alive": true,
-            "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/last.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr5_last/predictions "
-          }
-        },
-        {
-          "gpu": 1,
-          "pid": 126716,
-          "process": {
-            "pid": 126716,
-            "alive": true,
-            "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/last.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr5_last/predictions "
-          }
-        },
-        {
-          "gpu": 2,
-          "pid": 126717,
-          "process": {
-            "pid": 126717,
-            "alive": true,
-            "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/last.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr4_last/predictions "
-          }
-        },
-        {
-          "gpu": 3,
-          "pid": 126718,
-          "process": {
-            "pid": 126718,
-            "alive": true,
-            "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/last.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr4_last/predictions "
-          }
-        }
+      "reconstruction": [
+        1
       ],
-      "memory_utilization_only": "0, 1180 MiB, 24576 MiB, 35 %\n1, 851 MiB, 24576 MiB, 33 %\n2, 851 MiB, 24576 MiB, 40 %\n3, 851 MiB, 24576 MiB, 34 %\n"
+      "parity_and_native": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "actual_launch": {
+        "pid": 253188,
+        "output": "/data/gb/outputs/candidate_relation_native_recovery_20261006",
+        "log": "/data/gb/setup/candidate_relation_native_recovery_20261006.log",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "scripts.recover_candidate_relation_native",
+          "--original-root",
+          "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
+          "--review",
+          "/data/gb/GOLA/refine-logs/runs/candidate_relation_native_recovery/EXPERIMENT_CODE_REVIEW.json",
+          "--output",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006"
+        ],
+        "at_cst": "2026-10-06T18:02:55.057448+08:00",
+        "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0",
+        "stage": "LAUNCHED_SELECTED_EPOCH5_RECOVERY_PARITY_BOTH_NATIVE",
+        "original_full60_training_repeated": false,
+        "restoration_epochs": 5,
+        "restoration_optimizer_steps": 40,
+        "formal_metrics_completed": false,
+        "same_selected_model_both_datasets": true,
+        "disk_available_bytes": 2666019655680,
+        "GPU_preflight_memory_utilization": [
+          [
+            0,
+            349,
+            24576,
+            0
+          ],
+          [
+            1,
+            20,
+            24576,
+            0
+          ],
+          [
+            2,
+            20,
+            24576,
+            0
+          ],
+          [
+            3,
+            20,
+            24576,
+            0
+          ]
+        ],
+        "temperature_power_queried_or_set": false,
+        "poll_seconds": 240,
+        "scope": "Original full60/480 completed; recovery of preselected epoch5 then full98 parity and actual native benchmarks"
+      }
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6462,7 +6482,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-06T17:19:35.716648+08:00",
+    "next_check_cst": null,
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7068,7 +7088,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T17:15:13.178740+08:00",
+  "updated_cst": "2026-10-06T18:03:22.243684+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11205,19 +11225,16 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T17:15:13.178740+08:00",
-    "authoritative_snapshot": "refine-logs/runs/candidate_relation/first_video_wave_execution_snapshot.json",
-    "pipeline_pid": 4115079,
+    "updated_cst": "2026-10-06T18:03:22.243684+08:00",
+    "authoritative_snapshot": "refine-logs/runs/candidate_relation_native_recovery/closed_eight_and_recovery_launch_snapshot.json",
+    "pipeline_pid": 253188,
+    "actual_stage": "LAUNCHED_SELECTED_EPOCH5_RECOVERY_PARITY_BOTH_NATIVE",
     "pipeline_complete": false,
-    "actual_stage": "FULL98_LAST",
-    "actual_parent_full98_parity_pass": true,
-    "source_main_commit": "0cbc390461003364db5fc4645aedece6660bb29f",
-    "new_formal_metrics_complete": false,
-    "previous_original_pipeline_complete": true,
-    "next_check_cst": "2026-10-06T17:19:35.716648+08:00",
+    "original_pipeline_complete": true,
     "full_training_complete": true,
-    "first_four_full98_complete": true,
-    "all_eight_full98_complete": false
+    "all_eight_full98_complete": true,
+    "new_formal_metrics_complete": false,
+    "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -41500,5 +41517,258 @@
     ],
     "no_new_NN_or_report_replay": true,
     "new_native_metrics_complete": false
+  },
+  "current_candidate_relation_native_recovery": {
+    "status": "ACTIVE_UNMET",
+    "updated_cst": "2026-10-06T18:03:22.243684+08:00",
+    "original_pipeline": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
+    "original_source_main": "0cbc390461003364db5fc4645aedece6660bb29f",
+    "original_four_full60_and_eight_full98_complete": true,
+    "original_native_not_executed": true,
+    "original_selected": {
+      "selected_candidate": "relations_lr5_best",
+      "selected_arm": "relations_lr5",
+      "selected_checkpoint": "best",
+      "selected_epoch": 5,
+      "parent_model": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth",
+      "state_commit_model": null,
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "native_metrics_completed": false,
+      "improves_protected_parent_on_developer_full98": false,
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "ABC_lr5_best": 0.7419918547892075,
+        "relations_lr5_best": 0.7444150380548322,
+        "ABC_lr4_best": 0.738714010900166,
+        "relations_lr4_best": 0.7205848813011212,
+        "ABC_lr5_last": 0.742695737282,
+        "relations_lr5_last": 0.7262692387320131,
+        "ABC_lr4_last": 0.7232948436605218,
+        "relations_lr4_last": 0.7095730716346498
+      },
+      "selection_scope": "One best of eight full98 models before both native tests; reused developer98, not seed stability or untouched confirmation"
+    },
+    "all_eight_results": [
+      {
+        "variant": "ABC_lr5_best",
+        "sequence_mean_iou": 0.7419918547892075,
+        "delta_vs_GOLA_pp": -0.12866521815821919,
+        "paired_sequence_95_ci": [
+          -0.9110868049118547,
+          0.5063666608003091
+        ]
+      },
+      {
+        "variant": "relations_lr5_best",
+        "sequence_mean_iou": 0.7444150380548322,
+        "delta_vs_GOLA_pp": 0.11365310840425315,
+        "paired_sequence_95_ci": [
+          -0.2966963534077919,
+          0.5473318278418318
+        ]
+      },
+      {
+        "variant": "ABC_lr4_best",
+        "sequence_mean_iou": 0.738714010900166,
+        "delta_vs_GOLA_pp": -0.4564496070623673,
+        "paired_sequence_95_ci": [
+          -2.0227126212521154,
+          0.6800312324383302
+        ]
+      },
+      {
+        "variant": "relations_lr4_best",
+        "sequence_mean_iou": 0.7205848813011212,
+        "delta_vs_GOLA_pp": -2.2693625669668562,
+        "paired_sequence_95_ci": [
+          -4.67865429604288,
+          -0.3805569983561317
+        ]
+      },
+      {
+        "variant": "ABC_lr5_last",
+        "sequence_mean_iou": 0.742695737282,
+        "delta_vs_GOLA_pp": -0.05827696887896282,
+        "paired_sequence_95_ci": [
+          -0.7595534819028764,
+          0.49973122455743174
+        ]
+      },
+      {
+        "variant": "relations_lr5_last",
+        "sequence_mean_iou": 0.7262692387320131,
+        "delta_vs_GOLA_pp": -1.7009268238776667,
+        "paired_sequence_95_ci": [
+          -3.602146201101515,
+          -0.2269883191650442
+        ]
+      },
+      {
+        "variant": "ABC_lr4_last",
+        "sequence_mean_iou": 0.7232948436605218,
+        "delta_vs_GOLA_pp": -1.9983663310267938,
+        "paired_sequence_95_ci": [
+          -3.89536523157521,
+          -0.5312740146653031
+        ]
+      },
+      {
+        "variant": "relations_lr4_last",
+        "sequence_mean_iou": 0.7095730716346498,
+        "delta_vs_GOLA_pp": -3.3705435336140073,
+        "paired_sequence_95_ci": [
+          -6.07052165387063,
+          -1.0882310372199715
+        ]
+      }
+    ],
+    "premature_cleanup": {
+      "removed": [
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/ABC_lr5/best.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/ABC_lr5/last.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/best.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/last.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth",
+          "bytes": 2223399
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/ABC_lr4/best.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/ABC_lr4/last.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr4/best.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr4/last.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr4/initial.pth",
+          "bytes": 2223399
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/best.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/last.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/last.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/initial.pth",
+          "bytes": 2223399
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/best.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/last.pth",
+          "bytes": 1733684
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/best.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/last.pth",
+          "bytes": 2221804
+        },
+        {
+          "path": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/initial.pth",
+          "bytes": 2223399
+        }
+      ],
+      "kept": null,
+      "protected_parent_and_all_dependencies_preserved": true
+    },
+    "corrected_execution_rule": "Always full-native test preselected trained model; retain selected best regardless parent dev comparison",
+    "actual_recovery_launch": {
+      "pid": 253188,
+      "output": "/data/gb/outputs/candidate_relation_native_recovery_20261006",
+      "log": "/data/gb/setup/candidate_relation_native_recovery_20261006.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.recover_candidate_relation_native",
+        "--original-root",
+        "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
+        "--review",
+        "/data/gb/GOLA/refine-logs/runs/candidate_relation_native_recovery/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006"
+      ],
+      "at_cst": "2026-10-06T18:02:55.057448+08:00",
+      "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0",
+      "stage": "LAUNCHED_SELECTED_EPOCH5_RECOVERY_PARITY_BOTH_NATIVE",
+      "original_full60_training_repeated": false,
+      "restoration_epochs": 5,
+      "restoration_optimizer_steps": 40,
+      "formal_metrics_completed": false,
+      "same_selected_model_both_datasets": true,
+      "disk_available_bytes": 2666019655680,
+      "GPU_preflight_memory_utilization": [
+        [
+          0,
+          349,
+          24576,
+          0
+        ],
+        [
+          1,
+          20,
+          24576,
+          0
+        ],
+        [
+          2,
+          20,
+          24576,
+          0
+        ],
+        [
+          3,
+          20,
+          24576,
+          0
+        ]
+      ],
+      "temperature_power_queried_or_set": false,
+      "poll_seconds": 240,
+      "scope": "Original full60/480 completed; recovery of preselected epoch5 then full98 parity and actual native benchmarks"
+    },
+    "restoration_pass_not_yet_claimed": true,
+    "new_native_metrics_completed": false
   }
 }

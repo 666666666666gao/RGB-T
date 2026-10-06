@@ -137,3 +137,8 @@ Four storedbest NPZs vs realparent-equivalent epoch0 savedM0, exactsame196 VAL j
 ## 2026-10-06T17:15:13.178740+08:00 First four complete98 and cached/online bridge
 
 Allfourbest NN98/49418 complete, sameoriginalowner4115079 nowFULL98_LAST, original126715/16/17/18 alive at2026-10-06T16:46:29.570523+08:00. Every previously savedchangedcacheaction joinedtoonline; cached3correct-extra highLRrel becomes1at corresponding onlineframes; someprefixdrift hurts andboybackpack drift helps. basketball lowLRrelation current.6643 vsparent0, future3.4322 vsfrozenlabel.7495. abmotocometurn41 bothcurrent0/wrongwriteproxy0 butfuture.7626→.5463, actualalso.7627→.5462; no uniquegeocausationclaim. NoNN/reportreplay; oldABCfieldschema mistake corrected direct, stderrpreserved. ActualeightGT/nativepending/all5+2 ACTIVE_UNMET.
+
+
+## 2026-10-06T18:03:22.243684+08:00 Actual four full60 and eight full98 closed; selected-epoch recovery launched
+
+Original all4x60/480 and all8x98/49418 complete. Best relations_lr5 epoch5 .744415 vsGOLA .743279/grossparent .746126, no +2/effect acceptance. Original parent-gated native skip and20weight40537500B prematurecleanup explicitly corrected; raw receipts retained. New owner253188 restores sameprefix5/40 then archivedarray+full98 prediction/state parity, then actual samehead two native datasets/five/31attrs/four5000CIs. No originalfull60 repeat/newTESTselection/seedstableclaim. Launch only, all newmetrics pending. Protectedold4/C1/GOLA/motion retained, no data move/no hardwarepower-temp. GoalACTIVE_UNMET.
