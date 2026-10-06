@@ -112,3 +112,8 @@ One controller4115079 launched2026-10-06T14:39:21.735409+08:00, actual2026-10-06
 ## 2026-10-06T14:58:02.208638+08:00 Candidate-relation actual progress
 
 One controller4115079 launched2026-10-06T14:39:21.735409+08:00, actual2026-10-06T14:54:29.616097+08:00 stageFIT_FULL. Real completedfit receipts4, no newformalclaim. SOURCE samefamilyPASS/provisional; actual saved pretrainedinitial98/49418 parent prediction/9decisions parity PASS; realfour60/480 fullfits active. Four rawABC configs train A/B/C, not backbone/motion, same2576TRAINstates881seq/196devqueries98seq, oracle/budgeted/action/gross alignedloss. One observer34928, next2026-10-06T14:58:28.173877+08:00,240sec thereafter. Originalclosedfive kept; onebest enough/all+2unmet.
+
+
+## 2026-10-06T15:36:16.920341+08:00 Actual raw ABC supervision coverage
+
+Original controller4115079 FIT_FULL, actual observation2026-10-06T15:34:39.423432+08:00; allfour workersalive. Read-only TRAIN2576/VAL196 states, writepairs4115/455; originalC1keep pausegain>.03 only21/0, candidate-level399/44. ExistingfutureIoUs valid, unknownhistory3378/99 masked. These are states/candidatepairs not independent recoveryevents; no NN/newlabels/TEST or livetraining edits. Original full60/480 plus eightfull98 queue continues, one selectedcheckpoint bothdatasets, all5+2 ACTIVE_UNMET.

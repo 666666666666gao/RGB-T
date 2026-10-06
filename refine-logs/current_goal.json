@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "以完整预训练GOLA-B、C1和保护old4为基础，接通A身份证据/B因果运动搜索/C事件风险与分级提交；用一个预先选定最好checkpoint完整训练并完成LasHeR/RGBT234五项native指标，全部>=完整GOLA+2pp。当前先验证C的最小动作扩展，不把旧A/B冻结称为本轮联合训练。",
+  "execution_objective": "以完整预训练GOLA-B、C1和保护old4为基础，训练接入全部A/B/C主模块；预先选定一份最好checkpoint完整评测LasHeR与RGBT234，同模型五项均达到本地完整GOLA-B+2百分点。当前执行四组raw ABC/候选关联ABC的60epochs/480更新与完整视频选模，不附加多seed成功门槛，不将缓存拟合或父策略继承视为新训练收益。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -6408,7 +6408,7 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "observed_at_cst": "2026-10-06T14:54:29.616097+08:00",
+      "observed_at_cst": "2026-10-06T15:34:39.423432+08:00",
       "workers": [
         {
           "gpu": 0,
@@ -6446,12 +6446,12 @@
           "process": {
             "pid": 4137207,
             "alive": true,
-            "state": "S",
+            "state": "R",
             "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4 --candidate-relations "
           }
         }
       ],
-      "memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 23433 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 23433 MiB, 24576 MiB, 100 %\n"
+      "memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 24085 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 24085 MiB, 24576 MiB, 14 %\n"
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6462,7 +6462,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-06T14:58:28.173877+08:00",
+    "next_check_cst": "2026-10-06T15:38:37.936448+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7068,7 +7068,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T14:58:02.208638+08:00",
+  "updated_cst": "2026-10-06T15:36:16.920341+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11205,8 +11205,8 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T14:58:02.208638+08:00",
-    "authoritative_snapshot": "refine-logs/runs/candidate_relation/current_execution_snapshot.json",
+    "updated_cst": "2026-10-06T15:36:16.920341+08:00",
+    "authoritative_snapshot": "refine-logs/runs/candidate_relation/supervision_audit_execution_snapshot.json",
     "pipeline_pid": 4115079,
     "pipeline_complete": false,
     "actual_stage": "FIT_FULL",
@@ -11214,7 +11214,7 @@
     "source_main_commit": "0cbc390461003364db5fc4645aedece6660bb29f",
     "new_formal_metrics_complete": false,
     "previous_original_pipeline_complete": true,
-    "next_check_cst": "2026-10-06T14:58:28.173877+08:00"
+    "next_check_cst": "2026-10-06T15:38:37.936448+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -35228,7 +35228,7 @@
   },
   "current_candidate_relation_iteration": {
     "status": "ACTIVE_UNMET; CANDIDATE_RELATION_ACTUAL_PROGRESS",
-    "updated_cst": "2026-10-06T14:58:02.208638+08:00",
+    "updated_cst": "2026-10-06T15:36:16.920341+08:00",
     "launch": {
       "pid": 4115079,
       "output": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
@@ -35282,7 +35282,7 @@
       "scope": "Raw cached-feature A/B/C training; frozen visual and motion dependencies; no full-backbone retrain claim"
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-06T14:54:29.616097+08:00",
+      "observed_at_cst": "2026-10-06T15:34:39.423432+08:00",
       "owner": {
         "pid": 4115079,
         "alive": true,
@@ -35465,7 +35465,7 @@
           "process": {
             "pid": 4137207,
             "alive": true,
-            "state": "S",
+            "state": "R",
             "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4 --candidate-relations "
           }
         }
@@ -36003,140 +36003,140 @@
           "stage": "fit_full",
           "arm": "ABC_lr4",
           "last_complete_log_record": {
-            "epoch": 2,
+            "epoch": 45,
             "step": 1,
-            "optimizer_steps": 9,
-            "loss": 1.914581537246704,
+            "optimizer_steps": 353,
+            "loss": 1.351867437362671,
             "parts": {
-              "advantage": 0.05436515435576439,
-              "action_ranking": 0.18931852281093597,
-              "harm": 1.6477938890457153,
-              "quality": 0.7767741680145264,
-              "query_write_risk": 0.05641157552599907,
-              "future": 0.1325109302997589,
-              "memory_gate": 1.3971028327941895,
-              "margin_preservation": 0.003334280103445053,
-              "identity_margin": 0.16336765885353088,
-              "search_value": 0.037006985396146774,
-              "search_success": 0.6525009274482727,
-              "candidate_absence": 1.1701757907867432,
-              "search_ranking": 1.6487423181533813
+              "advantage": 0.023879606276750565,
+              "action_ranking": 0.16702908277511597,
+              "harm": 0.5011515021324158,
+              "quality": 0.6639713048934937,
+              "query_write_risk": 0.019329607486724854,
+              "future": 0.07572610676288605,
+              "memory_gate": 1.2791420221328735,
+              "margin_preservation": 0.0045725577510893345,
+              "identity_margin": 0.14669492840766907,
+              "search_value": 0.028714610263705254,
+              "search_success": 0.3883996605873108,
+              "candidate_absence": 0.42540568113327026,
+              "search_ranking": 1.6404175758361816
             },
             "module_gradient_norms": {
-              "A": 0.09457724541425705,
-              "B": 1.2722394466400146,
-              "C": 0.48129111528396606
+              "A": 0.067850261926651,
+              "B": 2.725399971008301,
+              "C": 0.56058269739151
             },
-            "elapsed_seconds": 63.79689062200487,
+            "elapsed_seconds": 2486.8884013267234,
             "peak_cuda_mib": 18784.357421875
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 3338.703942551588,
+          "estimated_remaining_training_seconds": 894.7162237067815,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "ABC_lr5",
           "last_complete_log_record": {
-            "epoch": 2,
+            "epoch": 45,
             "step": 1,
-            "optimizer_steps": 9,
-            "loss": 1.9579106569290161,
+            "optimizer_steps": 353,
+            "loss": 1.7457369565963745,
             "parts": {
-              "advantage": 0.05720438435673714,
-              "action_ranking": 0.19549120962619781,
-              "harm": 1.663041114807129,
-              "quality": 0.7789897918701172,
-              "query_write_risk": 0.057562317699193954,
-              "future": 0.1331208497285843,
-              "memory_gate": 1.3984402418136597,
-              "margin_preservation": 0.002097331453114748,
-              "identity_margin": 0.17112697660923004,
-              "search_value": 0.039456792175769806,
-              "search_success": 0.6694060564041138,
-              "candidate_absence": 1.1912575960159302,
-              "search_ranking": 1.7464821338653564
+              "advantage": 0.04263579472899437,
+              "action_ranking": 0.19179047644138336,
+              "harm": 1.470204472541809,
+              "quality": 0.7714282870292664,
+              "query_write_risk": 0.04166104644536972,
+              "future": 0.1254422962665558,
+              "memory_gate": 1.3645744323730469,
+              "margin_preservation": 0.0032235709950327873,
+              "identity_margin": 0.1528204381465912,
+              "search_value": 0.03770602121949196,
+              "search_success": 0.49990224838256836,
+              "candidate_absence": 0.7283600568771362,
+              "search_ranking": 1.689692497253418
             },
             "module_gradient_norms": {
-              "A": 0.09290869534015656,
-              "B": 3.046557664871216,
-              "C": 1.1022919416427612
+              "A": 0.08405356109142303,
+              "B": 2.6083590984344482,
+              "C": 1.0866656303405762
             },
-            "elapsed_seconds": 63.91149959014729,
+            "elapsed_seconds": 2489.638590927236,
             "peak_cuda_mib": 18784.357421875
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 3344.701811884375,
+          "estimated_remaining_training_seconds": 895.7056686905353,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "relations_lr4",
           "last_complete_log_record": {
-            "epoch": 2,
-            "step": 1,
-            "optimizer_steps": 9,
-            "loss": 1.9207510948181152,
+            "epoch": 44,
+            "step": 8,
+            "optimizer_steps": 352,
+            "loss": 1.2998136281967163,
             "parts": {
-              "advantage": 0.046744171530008316,
-              "action_ranking": 0.21335230767726898,
-              "harm": 1.608338713645935,
-              "quality": 0.7697733640670776,
-              "query_write_risk": 0.053328074514865875,
-              "future": 0.13099777698516846,
-              "memory_gate": 1.3970673084259033,
-              "margin_preservation": 0.0033432175405323505,
-              "identity_margin": 0.16316929459571838,
-              "search_value": 0.036979593336582184,
-              "search_success": 0.6520267724990845,
-              "candidate_absence": 1.1696383953094482,
-              "search_ranking": 1.647577166557312
+              "advantage": 0.021889733150601387,
+              "action_ranking": 0.1391795575618744,
+              "harm": 0.46952322125434875,
+              "quality": 0.5245949625968933,
+              "query_write_risk": 0.013618416152894497,
+              "future": 0.06920374929904938,
+              "memory_gate": 1.2843362092971802,
+              "margin_preservation": 0.006195842754095793,
+              "identity_margin": 0.14755851030349731,
+              "search_value": 0.025719398632645607,
+              "search_success": 0.42663419246673584,
+              "candidate_absence": 0.4819725751876831,
+              "search_ranking": 1.61760675907135
             },
             "module_gradient_norms": {
-              "A": 0.09488224983215332,
-              "B": 1.2642713785171509,
-              "C": 1.6987063884735107
+              "A": 0.0871242880821228,
+              "B": 3.80107045173645,
+              "C": 0.635859489440918
             },
-            "elapsed_seconds": 63.92730771377683,
+            "elapsed_seconds": 2489.834426256828,
             "peak_cuda_mib": 19084.8583984375
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 3345.529103687654,
+          "estimated_remaining_training_seconds": 905.3943368206648,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "relations_lr5",
           "last_complete_log_record": {
-            "epoch": 2,
+            "epoch": 29,
             "step": 1,
-            "optimizer_steps": 9,
-            "loss": 1.9520561695098877,
+            "optimizer_steps": 225,
+            "loss": 1.7567064762115479,
             "parts": {
-              "advantage": 0.05639520660042763,
-              "action_ranking": 0.19131983816623688,
-              "harm": 1.65969979763031,
-              "quality": 0.7783501148223877,
-              "query_write_risk": 0.05727856978774071,
-              "future": 0.1329682469367981,
-              "memory_gate": 1.3984395265579224,
-              "margin_preservation": 0.002097286283969879,
-              "identity_margin": 0.1711280345916748,
-              "search_value": 0.03945552557706833,
-              "search_success": 0.6694009900093079,
-              "candidate_absence": 1.191253662109375,
-              "search_ranking": 1.7463281154632568
+              "advantage": 0.034769315272569656,
+              "action_ranking": 0.18664339184761047,
+              "harm": 1.4793044328689575,
+              "quality": 0.7474944591522217,
+              "query_write_risk": 0.03841929882764816,
+              "future": 0.11941554397344589,
+              "memory_gate": 1.3749501705169678,
+              "margin_preservation": 0.003842936595901847,
+              "identity_margin": 0.15805861353874207,
+              "search_value": 0.03406911715865135,
+              "search_success": 0.5546890497207642,
+              "candidate_absence": 0.8854886889457703,
+              "search_ranking": 1.6168535947799683
             },
             "module_gradient_norms": {
-              "A": 0.09272336214780807,
-              "B": 3.044213056564331,
-              "C": 3.682649612426758
+              "A": 0.08653605729341507,
+              "B": 1.972983717918396,
+              "C": 1.4154329299926758
             },
-            "elapsed_seconds": 63.94794759899378,
+            "elapsed_seconds": 2452.925155050587,
             "peak_cuda_mib": 19084.8583984375
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 3346.6092576806745,
+          "estimated_remaining_training_seconds": 2779.981842390665,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         }
       ],
@@ -36164,7 +36164,7 @@
         ],
         "legacy_C1_parity_or_zero_init_used": false
       },
-      "GPU_memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 23433 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 23433 MiB, 24576 MiB, 100 %\n"
+      "GPU_memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 24085 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 24085 MiB, 24576 MiB, 14 %\n"
     },
     "sole_passive_observer": {
       "observer_pid": 34928,
@@ -36181,9 +36181,55 @@
         "RGBT234_SHARDS": 1200
       }
     },
-    "next_check_cst": "2026-10-06T14:58:28.173877+08:00",
+    "next_check_cst": "2026-10-06T15:38:37.936448+08:00",
     "new_formal_five_metrics_complete": false,
     "one_best_checkpoint_required_not_three_seeds": true,
     "previous_complete_native": "refine-logs/runs/state_commit_current_future/native_complete_summary.json"
+  },
+  "latest_raw_supervision_audit": {
+    "path": "refine-logs/runs/candidate_relation/supervision_audit_execution_snapshot.json",
+    "published_at_cst": "2026-10-06T15:36:16.920341+08:00",
+    "write_pair_counts": {
+      "train": {
+        "states": 2576,
+        "candidate_write_pairs": 4115,
+        "queries_with_any_write_pair": 1121,
+        "pairs_exactly_zero_utility_difference": 0,
+        "pairs_pause_utility_higher": 2430,
+        "pairs_write_utility_higher": 1685,
+        "pairs_pause_gain_gt_003": 399,
+        "pairs_pause_loss_gt_003": 48,
+        "queries_with_pause_gain_gt_003": 346,
+        "queries_with_pause_loss_gt_003": 26,
+        "original_C1_write_queries": 1068,
+        "original_C1_pause_gain_gt_003": 21,
+        "original_C1_pause_loss_gt_003": 0,
+        "original_C1_pair_equal_zero": 0,
+        "original_C1_writable_correct_queries": 934,
+        "original_C1_writable_failed_queries": 126,
+        "original_C1_current_failed_queries": 936
+      },
+      "validation": {
+        "states": 196,
+        "candidate_write_pairs": 455,
+        "queries_with_any_write_pair": 114,
+        "pairs_exactly_zero_utility_difference": 0,
+        "pairs_pause_utility_higher": 262,
+        "pairs_write_utility_higher": 193,
+        "pairs_pause_gain_gt_003": 44,
+        "pairs_pause_loss_gt_003": 4,
+        "queries_with_pause_gain_gt_003": 38,
+        "queries_with_pause_loss_gt_003": 1,
+        "original_C1_write_queries": 112,
+        "original_C1_pause_gain_gt_003": 0,
+        "original_C1_pause_loss_gt_003": 0,
+        "original_C1_pair_equal_zero": 0,
+        "original_C1_writable_correct_queries": 108,
+        "original_C1_writable_failed_queries": 3,
+        "original_C1_current_failed_queries": 12
+      }
+    },
+    "independent_event_count_established": false,
+    "NN_forwards": 0
   }
 }

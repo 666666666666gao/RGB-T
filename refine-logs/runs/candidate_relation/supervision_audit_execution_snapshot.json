@@ -1,0 +1,1307 @@
+{
+  "status": "ACTIVE_UNMET; ACTUAL_TRAINING_PROGRESS_AND_READ_ONLY_SUPERVISION_AUDIT",
+  "published_at_cst": "2026-10-06T15:36:16.920341+08:00",
+  "actual_observation": {
+    "observed_at_cst": "2026-10-06T15:34:39.423432+08:00",
+    "owner": {
+      "pid": 4115079,
+      "alive": true,
+      "state": "S",
+      "command": "/data/gb/envs/gola/bin/python -u -m scripts.run_candidate_relation_training --review /data/gb/GOLA/refine-logs/runs/candidate_relation/pipeline_source_review.json --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2 "
+    },
+    "progress": {
+      "stage": "FIT_FULL",
+      "at_cst": "2026-10-06T14:52:09.684638+08:00",
+      "elapsed_seconds": 767.8015735871159,
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 4137204
+        },
+        {
+          "gpu": 1,
+          "pid": 4137205
+        },
+        {
+          "gpu": 2,
+          "pid": 4137206
+        },
+        {
+          "gpu": 3,
+          "pid": 4137207
+        }
+      ]
+    },
+    "last_events": [
+      {
+        "stage": "FIT_SANITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:42:17.724163+08:00",
+        "elapsed_seconds": 175.8411159394309,
+        "gpu": 0,
+        "exit_code": 0
+      },
+      {
+        "stage": "FIT_SANITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:42:25.579605+08:00",
+        "elapsed_seconds": 183.69655346497893,
+        "gpu": 1,
+        "exit_code": 0
+      },
+      {
+        "stage": "FIT_SANITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:42:25.580123+08:00",
+        "elapsed_seconds": 183.69706170121208,
+        "gpu": 2,
+        "exit_code": 0
+      },
+      {
+        "stage": "FIT_SANITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:42:26.145004+08:00",
+        "elapsed_seconds": 184.26195411523804,
+        "gpu": 3,
+        "exit_code": 0
+      },
+      {
+        "stage": "FIT_SANITY_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS",
+        "at_cst": "2026-10-06T14:42:26.167818+08:00",
+        "elapsed_seconds": 184.28475694917142,
+        "epochs": 2,
+        "updates_per_arm": 16
+      },
+      {
+        "stage": "PARENT_PARITY",
+        "at_cst": "2026-10-06T14:42:26.444747+08:00",
+        "elapsed_seconds": 184.56168859126046,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 4120520
+          },
+          {
+            "gpu": 1,
+            "pid": 4120521
+          },
+          {
+            "gpu": 2,
+            "pid": 4120522
+          },
+          {
+            "gpu": 3,
+            "pid": 4120523
+          }
+        ]
+      },
+      {
+        "stage": "PARENT_PARITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:51:14.022513+08:00",
+        "elapsed_seconds": 712.1394582032226,
+        "gpu": 0,
+        "exit_code": 0
+      },
+      {
+        "stage": "PARENT_PARITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:51:34.112601+08:00",
+        "elapsed_seconds": 732.2295471881516,
+        "gpu": 1,
+        "exit_code": 0
+      },
+      {
+        "stage": "PARENT_PARITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:52:08.672864+08:00",
+        "elapsed_seconds": 766.7898171450943,
+        "gpu": 2,
+        "exit_code": 0
+      },
+      {
+        "stage": "PARENT_PARITY_WORKER_ENDED",
+        "at_cst": "2026-10-06T14:52:08.673421+08:00",
+        "elapsed_seconds": 766.7903558532707,
+        "gpu": 3,
+        "exit_code": 0
+      },
+      {
+        "stage": "ACTUAL_PRETRAINED_INITIAL_FULL98_PARENT_PARITY_PASS",
+        "at_cst": "2026-10-06T14:52:09.682293+08:00",
+        "elapsed_seconds": 767.7992296633311
+      },
+      {
+        "stage": "FIT_FULL",
+        "at_cst": "2026-10-06T14:52:09.684638+08:00",
+        "elapsed_seconds": 767.8015735871159,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 4137204
+          },
+          {
+            "gpu": 1,
+            "pid": 4137205
+          },
+          {
+            "gpu": 2,
+            "pid": 4137206
+          },
+          {
+            "gpu": 3,
+            "pid": 4137207
+          }
+        ]
+      }
+    ],
+    "last_wave_workers": [
+      {
+        "gpu": 0,
+        "pid": 4137204,
+        "process": {
+          "pid": 4137204,
+          "alive": true,
+          "state": "S",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5 "
+        }
+      },
+      {
+        "gpu": 1,
+        "pid": 4137205,
+        "process": {
+          "pid": 4137205,
+          "alive": true,
+          "state": "S",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5 --candidate-relations "
+        }
+      },
+      {
+        "gpu": 2,
+        "pid": 4137206,
+        "process": {
+          "pid": 4137206,
+          "alive": true,
+          "state": "S",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4 "
+        }
+      },
+      {
+        "gpu": 3,
+        "pid": 4137207,
+        "process": {
+          "pid": 4137207,
+          "alive": true,
+          "state": "R",
+          "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4 --candidate-relations "
+        }
+      }
+    ],
+    "actual_fits": [
+      {
+        "stage": "fit_sanity",
+        "arm": "ABC_lr4",
+        "training": {
+          "completed": true,
+          "epochs": 2,
+          "optimizer_steps": 16,
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.09457724541425705,
+            "B": 3.477571964263916,
+            "C": 1.0938035249710083
+          },
+          "frozen_modules": [],
+          "frozen_module_weights_unchanged": {},
+          "frozen_c1_gradients_absent": true,
+          "elapsed_seconds": 114.77185090072453,
+          "peak_cuda_mib": 18784.357421875,
+          "best_epoch": 1,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.7770251035690308,
+            "valid_actions": 7251,
+            "current": 0.7523692846298218,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7534797787666321,
+            "utility": 0.7526125311851501,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 17,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0013293623924255371,
+            "utility_gain_against_c1": 0.0005266070365905762
+          },
+          "strict_reload_metrics_equal": true,
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.7595808506011963,
+            "valid_actions": 7251,
+            "current": 0.7519669532775879,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7531370520591736,
+            "utility": 0.7522187232971191,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 18,
+            "changed_location": 4,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 12,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0009270310401916504,
+            "utility_gain_against_c1": 0.0001327991485595703
+          },
+          "last_strict_reload_metrics_equal": true,
+          "initial_parent_all_output_tensors_exact": null,
+          "relation_parameters_changed": null,
+          "max_relation_gradient_norm": null,
+          "retained_weights": [
+            "best.pth",
+            "last.pth"
+          ],
+          "official_tracking_accuracy": false
+        },
+        "data_and_parameters": {
+          "module": "ABC_recoverability",
+          "train_clips": 2576,
+          "validation_clips": 196,
+          "batch_size": 336,
+          "lr": 0.0001,
+          "search_value": "gross",
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 86791
+          }
+        }
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "ABC_lr5",
+        "training": {
+          "completed": true,
+          "epochs": 2,
+          "optimizer_steps": 16,
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.09290869534015656,
+            "B": 3.665255069732666,
+            "C": 1.1557687520980835
+          },
+          "frozen_modules": [],
+          "frozen_module_weights_unchanged": {},
+          "frozen_c1_gradients_absent": true,
+          "elapsed_seconds": 114.42156855389476,
+          "peak_cuda_mib": 18784.357421875,
+          "best_epoch": 0,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.8220438957214355,
+            "valid_actions": 7251,
+            "current": 0.7523692846298218,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7534797787666321,
+            "utility": 0.7525104284286499,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 19,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0013293623924255371,
+            "utility_gain_against_c1": 0.00042450428009033203
+          },
+          "strict_reload_metrics_equal": true,
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.8095448017120361,
+            "valid_actions": 7251,
+            "current": 0.7523692846298218,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7534797787666321,
+            "utility": 0.7525104284286499,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 19,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0013293623924255371,
+            "utility_gain_against_c1": 0.00042450428009033203
+          },
+          "last_strict_reload_metrics_equal": true,
+          "initial_parent_all_output_tensors_exact": null,
+          "relation_parameters_changed": null,
+          "max_relation_gradient_norm": null,
+          "retained_weights": [
+            "best.pth",
+            "last.pth"
+          ],
+          "official_tracking_accuracy": false
+        },
+        "data_and_parameters": {
+          "module": "ABC_recoverability",
+          "train_clips": 2576,
+          "validation_clips": 196,
+          "batch_size": 336,
+          "lr": 1e-05,
+          "search_value": "gross",
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 86791
+          }
+        }
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "relations_lr4",
+        "training": {
+          "completed": true,
+          "epochs": 2,
+          "optimizer_steps": 16,
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.09488224983215332,
+            "B": 3.477571964263916,
+            "C": 5.623400688171387
+          },
+          "frozen_modules": [],
+          "frozen_module_weights_unchanged": {},
+          "frozen_c1_gradients_absent": true,
+          "elapsed_seconds": 115.07921558711678,
+          "peak_cuda_mib": 19084.8583984375,
+          "best_epoch": 0,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.8220438957214355,
+            "valid_actions": 7251,
+            "current": 0.7523692846298218,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7534797787666321,
+            "utility": 0.7525104284286499,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 19,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0013293623924255371,
+            "utility_gain_against_c1": 0.00042450428009033203
+          },
+          "strict_reload_metrics_equal": true,
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.7048836946487427,
+            "valid_actions": 7251,
+            "current": 0.7510399222373962,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7524170875549316,
+            "utility": 0.7516517639160156,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 15,
+            "changed_location": 1,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 12,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0,
+            "utility_gain_against_c1": -0.0004341602325439453
+          },
+          "last_strict_reload_metrics_equal": true,
+          "initial_parent_all_output_tensors_exact": true,
+          "relation_parameters_changed": true,
+          "max_relation_gradient_norm": 4.175105571746826,
+          "retained_weights": [
+            "best.pth",
+            "last.pth",
+            "initial.pth"
+          ],
+          "official_tracking_accuracy": false
+        },
+        "data_and_parameters": {
+          "module": "ABC_candidate_relations",
+          "train_clips": 2576,
+          "validation_clips": 196,
+          "batch_size": 336,
+          "lr": 0.0001,
+          "search_value": "gross",
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 207946
+          }
+        }
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "relations_lr5",
+        "training": {
+          "completed": true,
+          "epochs": 2,
+          "optimizer_steps": 16,
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.09272336214780807,
+            "B": 3.6652562618255615,
+            "C": 5.741759777069092
+          },
+          "frozen_modules": [],
+          "frozen_module_weights_unchanged": {},
+          "frozen_c1_gradients_absent": true,
+          "elapsed_seconds": 114.93291114503518,
+          "peak_cuda_mib": 19084.8583984375,
+          "best_epoch": 0,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.8220438957214355,
+            "valid_actions": 7251,
+            "current": 0.7523692846298218,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7534797787666321,
+            "utility": 0.7525104284286499,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 19,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0013293623924255371,
+            "utility_gain_against_c1": 0.00042450428009033203
+          },
+          "strict_reload_metrics_equal": true,
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.800649881362915,
+            "valid_actions": 7251,
+            "current": 0.7510399222373962,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7524170875549316,
+            "utility": 0.7514987587928772,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 18,
+            "changed_location": 1,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 12,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0,
+            "utility_gain_against_c1": -0.000587165355682373
+          },
+          "last_strict_reload_metrics_equal": true,
+          "initial_parent_all_output_tensors_exact": true,
+          "relation_parameters_changed": true,
+          "max_relation_gradient_norm": 4.5278449058532715,
+          "retained_weights": [
+            "best.pth",
+            "last.pth",
+            "initial.pth"
+          ],
+          "official_tracking_accuracy": false
+        },
+        "data_and_parameters": {
+          "module": "ABC_candidate_relations",
+          "train_clips": 2576,
+          "validation_clips": 196,
+          "batch_size": 336,
+          "lr": 1e-05,
+          "search_value": "gross",
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 207946
+          }
+        }
+      }
+    ],
+    "training_progress": [
+      {
+        "stage": "fit_sanity",
+        "arm": "ABC_lr4",
+        "last_complete_log_record": {
+          "epoch": 2,
+          "step": 8,
+          "optimizer_steps": 16,
+          "loss": 1.8750178813934326,
+          "parts": {
+            "advantage": 0.05078301206231117,
+            "action_ranking": 0.200334370136261,
+            "harm": 1.7226922512054443,
+            "quality": 0.7928454875946045,
+            "query_write_risk": 0.054532378911972046,
+            "future": 0.1267801821231842,
+            "memory_gate": 1.3703782558441162,
+            "margin_preservation": 0.004739739466458559,
+            "identity_margin": 0.15054111182689667,
+            "search_value": 0.031825583428144455,
+            "search_success": 0.6229265928268433,
+            "candidate_absence": 0.89777672290802,
+            "search_ranking": 1.7002695798873901
+          },
+          "module_gradient_norms": {
+            "A": 0.08552776277065277,
+            "B": 2.9968461990356445,
+            "C": 0.5620715022087097
+          },
+          "elapsed_seconds": 112.17048018192872,
+          "peak_cuda_mib": 18784.357421875
+        },
+        "planned_total_optimizer_steps": 16,
+        "estimated_remaining_training_seconds": 0,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "ABC_lr5",
+        "last_complete_log_record": {
+          "epoch": 2,
+          "step": 8,
+          "optimizer_steps": 16,
+          "loss": 1.9199036359786987,
+          "parts": {
+            "advantage": 0.057525623589754105,
+            "action_ranking": 0.20321378111839294,
+            "harm": 1.762951135635376,
+            "quality": 0.7990595698356628,
+            "query_write_risk": 0.057366993278265,
+            "future": 0.12803372740745544,
+            "memory_gate": 1.3728879690170288,
+            "margin_preservation": 0.001999086933210492,
+            "identity_margin": 0.16364184021949768,
+            "search_value": 0.03414119407534599,
+            "search_success": 0.6677011847496033,
+            "candidate_absence": 0.9390983581542969,
+            "search_ranking": 1.721451997756958
+          },
+          "module_gradient_norms": {
+            "A": 0.08562193810939789,
+            "B": 2.461580991744995,
+            "C": 1.0400171279907227
+          },
+          "elapsed_seconds": 111.91171600017697,
+          "peak_cuda_mib": 18784.357421875
+        },
+        "planned_total_optimizer_steps": 16,
+        "estimated_remaining_training_seconds": 0,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "relations_lr4",
+        "last_complete_log_record": {
+          "epoch": 2,
+          "step": 8,
+          "optimizer_steps": 16,
+          "loss": 1.846987009048462,
+          "parts": {
+            "advantage": 0.03936126083135605,
+            "action_ranking": 0.2044789046049118,
+            "harm": 1.6386429071426392,
+            "quality": 0.7781964540481567,
+            "query_write_risk": 0.04890887439250946,
+            "future": 0.12385132908821106,
+            "memory_gate": 1.370335578918457,
+            "margin_preservation": 0.004461886361241341,
+            "identity_margin": 0.15143446624279022,
+            "search_value": 0.03182760253548622,
+            "search_success": 0.622208297252655,
+            "candidate_absence": 0.8971731066703796,
+            "search_ranking": 1.7005442380905151
+          },
+          "module_gradient_norms": {
+            "A": 0.08606649935245514,
+            "B": 3.0134825706481934,
+            "C": 1.336309790611267
+          },
+          "elapsed_seconds": 112.5411332482472,
+          "peak_cuda_mib": 19084.8583984375
+        },
+        "planned_total_optimizer_steps": 16,
+        "estimated_remaining_training_seconds": 0,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_sanity",
+        "arm": "relations_lr5",
+        "last_complete_log_record": {
+          "epoch": 2,
+          "step": 8,
+          "optimizer_steps": 16,
+          "loss": 1.9128363132476807,
+          "parts": {
+            "advantage": 0.05598688870668411,
+            "action_ranking": 0.19959700107574463,
+            "harm": 1.7559568881988525,
+            "quality": 0.7976806163787842,
+            "query_write_risk": 0.056818146258592606,
+            "future": 0.12771737575531006,
+            "memory_gate": 1.3728818893432617,
+            "margin_preservation": 0.0020027735736221075,
+            "identity_margin": 0.16361276805400848,
+            "search_value": 0.034127626568078995,
+            "search_success": 0.6676288843154907,
+            "candidate_absence": 0.9390456676483154,
+            "search_ranking": 1.7209135293960571
+          },
+          "module_gradient_norms": {
+            "A": 0.08561556041240692,
+            "B": 2.454442024230957,
+            "C": 1.6303215026855469
+          },
+          "elapsed_seconds": 112.41498877573758,
+          "peak_cuda_mib": 19084.8583984375
+        },
+        "planned_total_optimizer_steps": 16,
+        "estimated_remaining_training_seconds": 0,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_full",
+        "arm": "ABC_lr4",
+        "last_complete_log_record": {
+          "epoch": 45,
+          "step": 1,
+          "optimizer_steps": 353,
+          "loss": 1.351867437362671,
+          "parts": {
+            "advantage": 0.023879606276750565,
+            "action_ranking": 0.16702908277511597,
+            "harm": 0.5011515021324158,
+            "quality": 0.6639713048934937,
+            "query_write_risk": 0.019329607486724854,
+            "future": 0.07572610676288605,
+            "memory_gate": 1.2791420221328735,
+            "margin_preservation": 0.0045725577510893345,
+            "identity_margin": 0.14669492840766907,
+            "search_value": 0.028714610263705254,
+            "search_success": 0.3883996605873108,
+            "candidate_absence": 0.42540568113327026,
+            "search_ranking": 1.6404175758361816
+          },
+          "module_gradient_norms": {
+            "A": 0.067850261926651,
+            "B": 2.725399971008301,
+            "C": 0.56058269739151
+          },
+          "elapsed_seconds": 2486.8884013267234,
+          "peak_cuda_mib": 18784.357421875
+        },
+        "planned_total_optimizer_steps": 480,
+        "estimated_remaining_training_seconds": 894.7162237067815,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_full",
+        "arm": "ABC_lr5",
+        "last_complete_log_record": {
+          "epoch": 45,
+          "step": 1,
+          "optimizer_steps": 353,
+          "loss": 1.7457369565963745,
+          "parts": {
+            "advantage": 0.04263579472899437,
+            "action_ranking": 0.19179047644138336,
+            "harm": 1.470204472541809,
+            "quality": 0.7714282870292664,
+            "query_write_risk": 0.04166104644536972,
+            "future": 0.1254422962665558,
+            "memory_gate": 1.3645744323730469,
+            "margin_preservation": 0.0032235709950327873,
+            "identity_margin": 0.1528204381465912,
+            "search_value": 0.03770602121949196,
+            "search_success": 0.49990224838256836,
+            "candidate_absence": 0.7283600568771362,
+            "search_ranking": 1.689692497253418
+          },
+          "module_gradient_norms": {
+            "A": 0.08405356109142303,
+            "B": 2.6083590984344482,
+            "C": 1.0866656303405762
+          },
+          "elapsed_seconds": 2489.638590927236,
+          "peak_cuda_mib": 18784.357421875
+        },
+        "planned_total_optimizer_steps": 480,
+        "estimated_remaining_training_seconds": 895.7056686905353,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_full",
+        "arm": "relations_lr4",
+        "last_complete_log_record": {
+          "epoch": 44,
+          "step": 8,
+          "optimizer_steps": 352,
+          "loss": 1.2998136281967163,
+          "parts": {
+            "advantage": 0.021889733150601387,
+            "action_ranking": 0.1391795575618744,
+            "harm": 0.46952322125434875,
+            "quality": 0.5245949625968933,
+            "query_write_risk": 0.013618416152894497,
+            "future": 0.06920374929904938,
+            "memory_gate": 1.2843362092971802,
+            "margin_preservation": 0.006195842754095793,
+            "identity_margin": 0.14755851030349731,
+            "search_value": 0.025719398632645607,
+            "search_success": 0.42663419246673584,
+            "candidate_absence": 0.4819725751876831,
+            "search_ranking": 1.61760675907135
+          },
+          "module_gradient_norms": {
+            "A": 0.0871242880821228,
+            "B": 3.80107045173645,
+            "C": 0.635859489440918
+          },
+          "elapsed_seconds": 2489.834426256828,
+          "peak_cuda_mib": 19084.8583984375
+        },
+        "planned_total_optimizer_steps": 480,
+        "estimated_remaining_training_seconds": 905.3943368206648,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      },
+      {
+        "stage": "fit_full",
+        "arm": "relations_lr5",
+        "last_complete_log_record": {
+          "epoch": 29,
+          "step": 1,
+          "optimizer_steps": 225,
+          "loss": 1.7567064762115479,
+          "parts": {
+            "advantage": 0.034769315272569656,
+            "action_ranking": 0.18664339184761047,
+            "harm": 1.4793044328689575,
+            "quality": 0.7474944591522217,
+            "query_write_risk": 0.03841929882764816,
+            "future": 0.11941554397344589,
+            "memory_gate": 1.3749501705169678,
+            "margin_preservation": 0.003842936595901847,
+            "identity_margin": 0.15805861353874207,
+            "search_value": 0.03406911715865135,
+            "search_success": 0.5546890497207642,
+            "candidate_absence": 0.8854886889457703,
+            "search_ranking": 1.6168535947799683
+          },
+          "module_gradient_norms": {
+            "A": 0.08653605729341507,
+            "B": 1.972983717918396,
+            "C": 1.4154329299926758
+          },
+          "elapsed_seconds": 2452.925155050587,
+          "peak_cuda_mib": 19084.8583984375
+        },
+        "planned_total_optimizer_steps": 480,
+        "estimated_remaining_training_seconds": 2779.981842390665,
+        "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+      }
+    ],
+    "completed_full98": {},
+    "partial_full98_prediction_counts": {},
+    "scope": "Existing pipeline read-only; no NN/report launch/retry; GPU memory/utilization only",
+    "actual_parent_parity": {
+      "passed": true,
+      "sequences": 98,
+      "frames": 49418,
+      "actual_saved_initial_model": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth",
+      "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "parent_predictions": "/data/gb/outputs/recoverability_search_gross_control_20261006/predictions",
+      "predictions_byte_exact": true,
+      "decision_fields_exact": [
+        "choice",
+        "original_choice",
+        "pause",
+        "searched_region",
+        "extra_executed",
+        "template_updated",
+        "template_source_frame",
+        "forecast_reference",
+        "memory_target_commit"
+      ],
+      "legacy_C1_parity_or_zero_init_used": false
+    },
+    "GPU_memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 24085 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 24085 MiB, 24576 MiB, 14 %\n"
+  },
+  "next_planned_observation": {
+    "next_poll_cst": "2026-10-06T15:38:37.936448+08:00",
+    "after_due_interval_seconds": 240,
+    "pipeline_pid": 4115079,
+    "estimated_wave": {
+      "stage": "FIT_FULL",
+      "at_cst": "2026-10-06T14:52:09.684638+08:00",
+      "elapsed_seconds": 767.8015735871159,
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 4137204
+        },
+        {
+          "gpu": 1,
+          "pid": 4137205
+        },
+        {
+          "gpu": 2,
+          "pid": 4137206
+        },
+        {
+          "gpu": 3,
+          "pid": 4137207
+        }
+      ]
+    }
+  },
+  "write_pair_audit": {
+    "status": "READ_ONLY_EXISTING_MATCHED_WRITE_ACTION_COVERAGE",
+    "at_cst": "2026-10-06T15:29:00.889881+08:00",
+    "partitions": {
+      "train": {
+        "counts": {
+          "states": 2576,
+          "candidate_write_pairs": 4115,
+          "queries_with_any_write_pair": 1121,
+          "pairs_exactly_zero_utility_difference": 0,
+          "pairs_pause_utility_higher": 2430,
+          "pairs_write_utility_higher": 1685,
+          "pairs_pause_gain_gt_003": 399,
+          "pairs_pause_loss_gt_003": 48,
+          "queries_with_pause_gain_gt_003": 346,
+          "queries_with_pause_loss_gt_003": 26,
+          "original_C1_write_queries": 1068,
+          "original_C1_pause_gain_gt_003": 21,
+          "original_C1_pause_loss_gt_003": 0,
+          "original_C1_pair_equal_zero": 0,
+          "original_C1_writable_correct_queries": 934,
+          "original_C1_writable_failed_queries": 126,
+          "original_C1_current_failed_queries": 936
+        },
+        "source_metadata": [
+          {
+            "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+            "deduplicated_states": 1762,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+            "deduplicated_states": 179,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+            "deduplicated_states": 179,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+            "deduplicated_states": 179,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+            "deduplicated_states": 179,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0",
+            "deduplicated_states": 24,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1",
+            "deduplicated_states": 25,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2",
+            "deduplicated_states": 25,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3",
+            "deduplicated_states": 24,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "counts": {
+          "states": 196,
+          "candidate_write_pairs": 455,
+          "queries_with_any_write_pair": 114,
+          "pairs_exactly_zero_utility_difference": 0,
+          "pairs_pause_utility_higher": 262,
+          "pairs_write_utility_higher": 193,
+          "pairs_pause_gain_gt_003": 44,
+          "pairs_pause_loss_gt_003": 4,
+          "queries_with_pause_gain_gt_003": 38,
+          "queries_with_pause_loss_gt_003": 1,
+          "original_C1_write_queries": 112,
+          "original_C1_pause_gain_gt_003": 0,
+          "original_C1_pause_loss_gt_003": 0,
+          "original_C1_pair_equal_zero": 0,
+          "original_C1_writable_correct_queries": 108,
+          "original_C1_writable_failed_queries": 3,
+          "original_C1_current_failed_queries": 12
+        },
+        "source_metadata": [
+          {
+            "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+            "deduplicated_states": 196,
+            "job_keys": [
+              "query_frame",
+              "sequence"
+            ]
+          }
+        ]
+      }
+    },
+    "utility": "0.7 current IoU +0.3 mean frozen-policy3step future IoU -0.1 wrong-update fraction",
+    "scope": "3step frozen-policy matched action consequences. State/prefix/query/candidate counts are not independent recovery events; no long-horizon or semantic identity guarantee.",
+    "NN_forwards": 0,
+    "new_labels": 0,
+    "TEST_access": 0,
+    "active_training_modified": false
+  },
+  "label_bounds_audit": {
+    "status": "READ_ONLY_EXISTING_RAW_LABEL_BOUND_AUDIT",
+    "at_cst": "2026-10-06T15:25:51.572389+08:00",
+    "partitions": {
+      "train": {
+        "counts": {
+          "states": 2576,
+          "valid_candidates": 89158,
+          "valid_actions": 93273,
+          "current_unknown_valid_candidates": 0,
+          "current_valid_candidates_outside_unit_interval": 0,
+          "future_unknown_valid_action_timesteps": 0,
+          "future_valid_action_timesteps_outside_unit_interval": 0,
+          "queries_with_unknown_future": 0,
+          "unknown_history_observations": 3378,
+          "nonfinite_scalar_labels": 0,
+          "legal_pause_actions": 4115
+        },
+        "sequences": 881,
+        "shards": [
+          {
+            "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+            "unique_states": 1762,
+            "current_shape": [
+              1762,
+              7,
+              5
+            ],
+            "future_shape": [
+              1762,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              1762,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+            "unique_states": 179,
+            "current_shape": [
+              179,
+              7,
+              5
+            ],
+            "future_shape": [
+              179,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              179,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+            "unique_states": 179,
+            "current_shape": [
+              179,
+              7,
+              5
+            ],
+            "future_shape": [
+              179,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              179,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+            "unique_states": 179,
+            "current_shape": [
+              179,
+              7,
+              5
+            ],
+            "future_shape": [
+              179,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              179,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+            "unique_states": 179,
+            "current_shape": [
+              179,
+              7,
+              5
+            ],
+            "future_shape": [
+              179,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              179,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0",
+            "unique_states": 24,
+            "current_shape": [
+              24,
+              7,
+              5
+            ],
+            "future_shape": [
+              24,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              24,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1",
+            "unique_states": 25,
+            "current_shape": [
+              25,
+              7,
+              5
+            ],
+            "future_shape": [
+              25,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              25,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2",
+            "unique_states": 25,
+            "current_shape": [
+              25,
+              7,
+              5
+            ],
+            "future_shape": [
+              25,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              25,
+              1024
+            ]
+          },
+          {
+            "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3",
+            "unique_states": 24,
+            "current_shape": [
+              24,
+              7,
+              5
+            ],
+            "future_shape": [
+              24,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              24,
+              1024
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "counts": {
+          "states": 196,
+          "valid_candidates": 6796,
+          "valid_actions": 7251,
+          "current_unknown_valid_candidates": 0,
+          "current_valid_candidates_outside_unit_interval": 0,
+          "future_unknown_valid_action_timesteps": 0,
+          "future_valid_action_timesteps_outside_unit_interval": 0,
+          "queries_with_unknown_future": 0,
+          "unknown_history_observations": 99,
+          "nonfinite_scalar_labels": 0,
+          "legal_pause_actions": 455
+        },
+        "sequences": 98,
+        "shards": [
+          {
+            "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+            "unique_states": 196,
+            "current_shape": [
+              196,
+              7,
+              5
+            ],
+            "future_shape": [
+              196,
+              7,
+              5,
+              2,
+              3
+            ],
+            "history_iou_shape": [
+              196,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "source": "Same nine existing TRAIN and one developerVAL caches consumed by active rawABC fits",
+    "scope": "States/actions/timesteps are not independent recovery events; scalar bounds audit, not semantic identity truth or new performance",
+    "NN_forwards": 0,
+    "optimizers": 0,
+    "new_data_or_labels": 0,
+    "native_TEST_access": 0,
+    "active_training_modified": false
+  },
+  "new_native_metrics_complete": false,
+  "NN_restarts": 0,
+  "active_training_modified": false
+}
