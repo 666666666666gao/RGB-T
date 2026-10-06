@@ -1,0 +1,430 @@
+{
+  "created_at": "2026-10-06T13:14:41.728Z",
+  "scoring_rerun": false,
+  "nn_rerun": false,
+  "bootstrap_rerun": false,
+  "original_history_records": 61,
+  "reconstructed_history_exact_original_prefix": true,
+  "reconstructed_config_matches_except_epochs_output": true,
+  "train_sequences": 881,
+  "developer_sequences": 98,
+  "train_developer_disjoint": true,
+  "selected_developer_argmax_matches": true,
+  "seed": 42,
+  "selected_epoch": 5,
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "frames": 220703,
+      "shards": [
+        {
+          "gpu": 0,
+          "sequences": 64,
+          "frames": 56764,
+          "max_frames": 0,
+          "offset": 0
+        },
+        {
+          "gpu": 1,
+          "sequences": 55,
+          "frames": 53427,
+          "max_frames": 0,
+          "offset": 64
+        },
+        {
+          "gpu": 2,
+          "sequences": 52,
+          "frames": 54841,
+          "max_frames": 0,
+          "offset": 119
+        },
+        {
+          "gpu": 3,
+          "sequences": 74,
+          "frames": 55671,
+          "max_frames": 0,
+          "offset": 171
+        }
+      ],
+      "union_exact": true,
+      "native_metric_curve_and_saved_sequence_means_match": true,
+      "attributes": 19,
+      "selected_metrics": {
+        "NPR": 74.6574864127439,
+        "PR": 78.30155331814711,
+        "SR": 62.3395735664682
+      },
+      "mechanism_report_completed": true,
+      "mechanism_valid_frames": 219925,
+      "optional_state_commit_counters_present": false
+    },
+    "rgbt234": {
+      "sequences": 234,
+      "frames": 116649,
+      "shards": [
+        {
+          "gpu": 0,
+          "sequences": 79,
+          "frames": 29838,
+          "max_frames": 0,
+          "offset": 0
+        },
+        {
+          "gpu": 1,
+          "sequences": 46,
+          "frames": 28487,
+          "max_frames": 0,
+          "offset": 79
+        },
+        {
+          "gpu": 2,
+          "sequences": 48,
+          "frames": 29032,
+          "max_frames": 0,
+          "offset": 125
+        },
+        {
+          "gpu": 3,
+          "sequences": 61,
+          "frames": 29292,
+          "max_frames": 0,
+          "offset": 173
+        }
+      ],
+      "union_exact": true,
+      "native_metric_curve_and_saved_sequence_means_match": true,
+      "attributes": 12,
+      "selected_metrics": {
+        "MPR": 92.03542684456828,
+        "MSR": 69.4544747423496
+      },
+      "mechanism_report_completed": true,
+      "mechanism_valid_frames": 116415,
+      "optional_state_commit_counters_present": false
+    }
+  },
+  "pairs": [
+    {
+      "dataset": "lasher",
+      "reference": "baseline",
+      "metric": "NPR",
+      "mean_delta_percentage_points": 1.5555134128123898,
+      "percentile_95_interval_percentage_points": [
+        0.6846084390352504,
+        2.539711101025768
+      ],
+      "improved_sequences": 63,
+      "worsened_sequences": 52,
+      "tied_sequences": 130
+    },
+    {
+      "dataset": "lasher",
+      "reference": "baseline",
+      "metric": "PR",
+      "mean_delta_percentage_points": 1.7031043477678431,
+      "percentile_95_interval_percentage_points": [
+        0.7501913650826993,
+        2.8032905987237484
+      ],
+      "improved_sequences": 65,
+      "worsened_sequences": 50,
+      "tied_sequences": 130
+    },
+    {
+      "dataset": "lasher",
+      "reference": "baseline",
+      "metric": "SR",
+      "mean_delta_percentage_points": 1.3021482178721744,
+      "percentile_95_interval_percentage_points": [
+        0.5983972755647249,
+        2.0897716325700046
+      ],
+      "improved_sequences": 69,
+      "worsened_sequences": 52,
+      "tied_sequences": 124
+    },
+    {
+      "dataset": "lasher",
+      "reference": "c1",
+      "metric": "NPR",
+      "mean_delta_percentage_points": 0.5029687590343975,
+      "percentile_95_interval_percentage_points": [
+        -0.3764782569976824,
+        1.5095215513268685
+      ],
+      "improved_sequences": 49,
+      "worsened_sequences": 37,
+      "tied_sequences": 159
+    },
+    {
+      "dataset": "lasher",
+      "reference": "c1",
+      "metric": "PR",
+      "mean_delta_percentage_points": 0.44058059245549,
+      "percentile_95_interval_percentage_points": [
+        -0.5355512573369761,
+        1.5466521593108684
+      ],
+      "improved_sequences": 52,
+      "worsened_sequences": 35,
+      "tied_sequences": 158
+    },
+    {
+      "dataset": "lasher",
+      "reference": "c1",
+      "metric": "SR",
+      "mean_delta_percentage_points": 0.3882598861963387,
+      "percentile_95_interval_percentage_points": [
+        -0.3612252919169192,
+        1.2220564961224227
+      ],
+      "improved_sequences": 55,
+      "worsened_sequences": 38,
+      "tied_sequences": 152
+    },
+    {
+      "dataset": "lasher",
+      "reference": "old4",
+      "metric": "NPR",
+      "mean_delta_percentage_points": 0.20013115426512665,
+      "percentile_95_interval_percentage_points": [
+        -0.3305179497899552,
+        0.8042384939610621
+      ],
+      "improved_sequences": 37,
+      "worsened_sequences": 45,
+      "tied_sequences": 163
+    },
+    {
+      "dataset": "lasher",
+      "reference": "old4",
+      "metric": "PR",
+      "mean_delta_percentage_points": 0.2037754808451078,
+      "percentile_95_interval_percentage_points": [
+        -0.4311560022599763,
+        0.9297907135713332
+      ],
+      "improved_sequences": 35,
+      "worsened_sequences": 43,
+      "tied_sequences": 167
+    },
+    {
+      "dataset": "lasher",
+      "reference": "old4",
+      "metric": "SR",
+      "mean_delta_percentage_points": 0.21251024313023403,
+      "percentile_95_interval_percentage_points": [
+        -0.22015401155005296,
+        0.702594109477395
+      ],
+      "improved_sequences": 49,
+      "worsened_sequences": 53,
+      "tied_sequences": 143
+    },
+    {
+      "dataset": "lasher",
+      "reference": "gross_parent",
+      "metric": "NPR",
+      "mean_delta_percentage_points": 0.2737020337710274,
+      "percentile_95_interval_percentage_points": [
+        -0.19709813871515325,
+        0.8443334071496477
+      ],
+      "improved_sequences": 38,
+      "worsened_sequences": 44,
+      "tied_sequences": 163
+    },
+    {
+      "dataset": "lasher",
+      "reference": "gross_parent",
+      "metric": "PR",
+      "mean_delta_percentage_points": 0.28545912202705487,
+      "percentile_95_interval_percentage_points": [
+        -0.2726562100540815,
+        0.9703779953516389
+      ],
+      "improved_sequences": 37,
+      "worsened_sequences": 41,
+      "tied_sequences": 167
+    },
+    {
+      "dataset": "lasher",
+      "reference": "gross_parent",
+      "metric": "SR",
+      "mean_delta_percentage_points": 0.26691371707378664,
+      "percentile_95_interval_percentage_points": [
+        -0.12021891786520347,
+        0.7221319546869359
+      ],
+      "improved_sequences": 51,
+      "worsened_sequences": 52,
+      "tied_sequences": 142
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "baseline",
+      "metric": "MPR",
+      "mean_delta_percentage_points": 0.2565692700607477,
+      "percentile_95_interval_percentage_points": [
+        -0.8760541254464503,
+        1.4669425389996356
+      ],
+      "improved_sequences": 39,
+      "worsened_sequences": 30,
+      "tied_sequences": 165
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "baseline",
+      "metric": "MSR",
+      "mean_delta_percentage_points": 0.22188156446030402,
+      "percentile_95_interval_percentage_points": [
+        -0.4310525378480474,
+        0.9223580410881869
+      ],
+      "improved_sequences": 43,
+      "worsened_sequences": 34,
+      "tied_sequences": 157
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "c1",
+      "metric": "MPR",
+      "mean_delta_percentage_points": 0.21841794762030076,
+      "percentile_95_interval_percentage_points": [
+        -0.748655994291073,
+        1.2702368530356438
+      ],
+      "improved_sequences": 25,
+      "worsened_sequences": 23,
+      "tied_sequences": 186
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "c1",
+      "metric": "MSR",
+      "mean_delta_percentage_points": 0.22042740078749595,
+      "percentile_95_interval_percentage_points": [
+        -0.3629656667522917,
+        0.8790230789708465
+      ],
+      "improved_sequences": 26,
+      "worsened_sequences": 24,
+      "tied_sequences": 184
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "old4",
+      "metric": "MPR",
+      "mean_delta_percentage_points": -0.09797816478253846,
+      "percentile_95_interval_percentage_points": [
+        -1.334601831967586,
+        1.1245025869839478
+      ],
+      "improved_sequences": 25,
+      "worsened_sequences": 21,
+      "tied_sequences": 188
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "old4",
+      "metric": "MSR",
+      "mean_delta_percentage_points": -0.12362271393615967,
+      "percentile_95_interval_percentage_points": [
+        -0.9135034787976777,
+        0.6590342726532333
+      ],
+      "improved_sequences": 46,
+      "worsened_sequences": 47,
+      "tied_sequences": 141
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "gross_parent",
+      "metric": "MPR",
+      "mean_delta_percentage_points": -0.8309340917109312,
+      "percentile_95_interval_percentage_points": [
+        -1.8384526348567323,
+        0.015007454626206293
+      ],
+      "improved_sequences": 24,
+      "worsened_sequences": 23,
+      "tied_sequences": 187
+    },
+    {
+      "dataset": "rgbt234",
+      "reference": "gross_parent",
+      "metric": "MSR",
+      "mean_delta_percentage_points": -0.5679066277954233,
+      "percentile_95_interval_percentage_points": [
+        -1.215347774318426,
+        0.00013581081526391575
+      ],
+      "improved_sequences": 45,
+      "worsened_sequences": 49,
+      "tied_sequences": 140
+    }
+  ],
+  "derivative_rows": {
+    "five_metrics": 5,
+    "attribute_metrics": 81,
+    "paired_metrics": 20
+  },
+  "files_read": [
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/selected_model.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/complete_metrics.json",
+    "refine-logs/runs/candidate_relation/complete_v2/training/fit_full/relations_lr5/metrics.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstructed_epoch5/metrics.json",
+    "refine-logs/runs/candidate_relation/complete_v2/training/fit_full/relations_lr5/config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstructed_epoch5/config.json",
+    "refine-logs/runs/candidate_relation/complete_v2/training/full98_report/full_recoverability_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/plan.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/core_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu0/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu0/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu1/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu1/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu2/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu2/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu3/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/shards/gpu3/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/core_report/per_sequence.csv",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/baseline_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/baseline_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/c1_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/c1_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/old4_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/old4_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/gross_parent_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/gross_parent_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/mechanism_report/full_recoverability_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/core_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu0/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu0/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu1/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu1/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu2/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu2/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu3/predictions/inference_config.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/shards/gpu3/predictions/inference_completion.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/core_report/per_sequence.csv",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/baseline_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/baseline_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/c1_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/c1_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/old4_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/old4_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/gross_parent_paired_report/full_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/gross_parent_paired_report/paired_bootstrap.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/mechanism_report/full_recoverability_report.json",
+    "refine-logs/runs/candidate_relation_native_recovery/actual_native_complete_summary.json",
+    "refine-logs/runs/candidate_relation_native_recovery/native_five_metrics.csv",
+    "refine-logs/runs/candidate_relation_native_recovery/native_all_attribute_metrics.csv",
+    "refine-logs/runs/candidate_relation_native_recovery/native_four_reference_paired_metrics.csv"
+  ],
+  "status": "PASS"
+}

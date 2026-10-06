@@ -6408,8 +6408,14 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "pipeline_complete": true,
-      "new_neural_work_not_launched": true
+      "diagnostic": "no_extra_search",
+      "workers": [
+        463938,
+        463939,
+        463940,
+        463941
+      ],
+      "four_gpu_per_control": true
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6420,7 +6426,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": null,
+    "next_check_cst": "2026-10-06T21:34:49.888315+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7026,7 +7032,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T21:08:01.816466+08:00",
+  "updated_cst": "2026-10-06T21:35:23.170055+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11163,14 +11169,17 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T21:08:01.816466+08:00",
-    "authoritative_snapshot": "refine-logs/runs/candidate_relation_native_recovery/actual_native_complete_summary.json",
-    "pipeline_complete": true,
+    "updated_cst": "2026-10-06T21:35:23.170055+08:00",
+    "authoritative_snapshot": "refine-logs/runs/selected_abc_controls/current_execution_snapshot.json",
+    "actual_stage": "NO_EXTRA_SEARCH_FULL",
+    "pipeline_pid": 462886,
+    "pipeline_complete": false,
     "full_training_complete": true,
-    "all_eight_full98_complete": true,
+    "original_all_eight_full98_complete": true,
     "new_formal_metrics_complete": true,
-    "actual_stage": "COMPLETE_RECONSTRUCTED_SELECTED_RAW_ABC_BOTH_NATIVE",
-    "all_five_plus_two": false
+    "all_five_plus_two": false,
+    "source_main_commit": "4813c93c77953f79a83d3dc570ef8a7597258bb4",
+    "next_check_cst": "2026-10-06T21:34:49.888315+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -41971,5 +41980,247 @@
     "formal_attribute_rows": 81,
     "paired_comparison_rows": 20,
     "scope": "Fixed preselected trained checkpoint; developer98 reused; not independent training seed stability"
-  }
+  },
+  "current_selected_abc_controls": {
+    "updated_cst": "2026-10-06T21:35:23.170055+08:00",
+    "formal_native_completed": true,
+    "native_result_integrity_audit": {
+      "audit_skill": "experiment-audit",
+      "date": "2026-10-06",
+      "generated_at": "2026-10-06T13:18:16.987Z",
+      "verdict": "WARN",
+      "overall_verdict": "warn",
+      "integrity_status": "warn",
+      "reason_code": "metadata_clarity_and_claim_scope_limits",
+      "summary": "Actual complete native results are supported; all five +2 pp targets are unmet. Historical selection metadata and generic pending notices require contextual reading; no model/module efficacy claim follows.",
+      "audit_type": "SOURCE_AND_ACTUAL_RESULT_READ_ONLY",
+      "advisory": true,
+      "blocks_recording_results": false,
+      "agent_id": "/root/selected_native_result_audit",
+      "verdict_id": "/root/selected_native_result_audit:20261006T131816Z",
+      "executor_family": "openai",
+      "executor_model": null,
+      "reviewer_model": "gpt-6-astra",
+      "reviewer_reasoning": "max",
+      "reviewer_family": "openai",
+      "configured_backend": "codex native agent",
+      "runtime_backend_attestation": "unattested",
+      "model_attribution_scope": "Configured model/effort supplied by parent; actual runtime backend/model not independently attested.",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional",
+      "fork_turns": "none",
+      "trace_path": "refine-logs/runs/candidate_relation_native_recovery/result_audit/.aris/traces/experiment-audit/20261006_selected_native",
+      "no_nn_executed": true,
+      "no_score_rerun": true,
+      "no_source_edits": true,
+      "checks": {
+        "A": {
+          "name": "Ground truth provenance",
+          "status": "PASS",
+          "details": "Both native benchmarks use dataset annotations, not model-output references. Independent read-only server inspection verified all native evaluator GT arrays against every dataset annotation: LasHeR 245 sequences/220703 frames, RGBT234 234/116649. Online evaluation reads only the first annotation for initialization. Developer/reconstruction prediction equality is a separately labelled consistency check, not accuracy.",
+          "evidence": [
+            "research/evaluate_recoverability.py:214",
+            "research/evaluate_recoverability.py:221",
+            "research/collect_core_metrics.py:114",
+            "research/collect_core_metrics.py:121",
+            "research/collect_candidate_metrics.py:28",
+            "evaluation.py:46",
+            "evaluation.py:81",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstruction_verification.json:24"
+          ]
+        },
+        "B": {
+          "name": "Score normalization",
+          "status": "PASS",
+          "details": "No division of native accuracy by the model-own maximum, mean, or range. Native functions produce per-sequence threshold fractions; collector reports percent, equal-sequence means and plain paired differences. RGBT234 maximum means choosing the better RGB/TIR annotation agreement, not a prediction normalization denominator. Motion NLL/ADE diagnostics use the forecast reference coordinate system and predicted distribution scale; these are explicitly separate from native tracking accuracy.",
+          "evidence": [
+            "research/collect_core_metrics.py:87",
+            "research/collect_core_metrics.py:171",
+            "research/paired_sequence_bootstrap.py:45",
+            "research/collect_recoverability_metrics.py:254",
+            "research/collect_abc_metrics.py:57",
+            "/data/gb/envs/gola/lib/python3.10/site-packages/rgbt/metrics/metrics.py:36",
+            "/data/gb/envs/gola/lib/python3.10/site-packages/rgbt/metrics/metrics.py:71"
+          ]
+        },
+        "C": {
+          "name": "Existing results, values and completion",
+          "status": "WARN",
+          "details": "Actual full native completion and all five negative-to-target results are supported. Saved-artifact consistency verification passed: all eight shard configs/receipts, disjoint complete sequence union, curve and CSV means, eight pair reports/5000-resample CI records, and derivative 5/81/20 rows. Pre-run selected_model.native_metrics_completed=false remains inside terminal progress; this is a historical selection snapshot, not evidence of missing native results. Generic core mechanism_measurements_pending strings also remain although the separate mechanism reports are complete. Preserve originals and use native/complete_metrics.json plus the dated completion summary as current authority.",
+          "evidence": [
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/complete_metrics.json:2",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/complete_metrics.json:14",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/selected_model.json:10",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/progress.json:70",
+            "research/collect_core_metrics.py:140",
+            "refine-logs/EXPERIMENT_TRACKER.md:152",
+            "docs/HANDOFF_20261002.md:3",
+            "refine-logs/runs/candidate_relation_native_recovery/result_audit/.aris/traces/experiment-audit/20261006_selected_native/saved_artifact_verification.json:1"
+          ]
+        },
+        "D": {
+          "name": "Metric execution versus dead code",
+          "status": "PASS",
+          "details": "Core native metrics, full attributes/curves, paired bootstrap, plot exports, and GT mechanism diagnostics are called by the native controller and have actual nonempty output artifacts. Trainer evaluation is called before training, each epoch, and during strict reload; original 61 records and reconstructed six-record prefix match. The optional state_commit_geometry function is not active for this selected ABC configuration (state_commit_model=null and no state counters); no current state-commit result is claimed from that branch.",
+          "evidence": [
+            "scripts/run_selective_state_native.py:150",
+            "scripts/run_selective_state_native.py:156",
+            "scripts/run_selective_state_native.py:158",
+            "research/collect_core_metrics.py:171",
+            "research/train_recoverability.py:228",
+            "research/train_recoverability.py:284",
+            "research/collect_recoverability_metrics.py:91",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/selected_model.json:7"
+          ]
+        },
+        "E": {
+          "name": "Scope and contribution",
+          "status": "WARN",
+          "details": "Full native datasets, not pilots: one developer-selected reconstructed epoch5, seed42, used on both datasets; 19+12 attributes. Original chosen run completed 60 epochs/480 updates, reconstruction only the selected prefix5/40. One of eight models was chosen on repeatedly used developer98; not untouched confirmation. Bootstrap is fixed-checkpoint sequence uncertainty, not training-seed stability or a joint five-metric guarantee. Relation/ABC gains cannot be attributed from baseline gains: versus gross parent the LasHeR deltas are +0.285459 PR/+0.273702 NPR/+0.266914 SR while RGBT234 changes are -0.830934 MPR/-0.567907 MSR; every corresponding CI includes zero. All five baseline+2 point targets fail. A single best checkpoint remains the user acceptance rule; no three-seed condition is added.",
+          "evidence": [
+            "scripts/run_candidate_relation_training.py:166",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/selected_model.json:26",
+            "refine-logs/runs/candidate_relation/complete_v2/training/fit_full/relations_lr5/completion.json:3",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstructed_epoch5/completion.json:3",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstruction_verification.json:24",
+            "research/paired_sequence_bootstrap.py:24",
+            "scripts/run_selective_state_native.py:167",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/lasher/gross_parent_paired_report/paired_bootstrap.json:21",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/native/rgbt234/gross_parent_paired_report/paired_bootstrap.json:21",
+            "docs/HANDOFF_20261002.md:19"
+          ]
+        },
+        "F": {
+          "name": "Evaluation classification",
+          "status": "PASS",
+          "details": "Native tracking scores and full-video localization diagnostics are real_gt. Candidate recall, wrong-template writes and memory contamination are GT-localization proxies, not semantic identity labels. Cached short-horizon utility is a real-GT-labelled policy-contingent diagnostic, not native accuracy. Reconstruction parity is output-derived consistency only (synthetic_proxy in the limited output-reference taxonomy), explicitly not a performance evaluation. No human-eval, simulation-only benchmark or self-supervised accuracy claim is supported or asserted.",
+          "evidence": [
+            "research/collect_recoverability_metrics.py:178",
+            "research/collect_recoverability_metrics.py:180",
+            "research/collect_recoverability_metrics.py:182",
+            "research/recoverability_modules.py:226",
+            "research/train_recoverability.py:226",
+            "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstruction_verification.json:24"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "actual_native_five_metrics",
+          "impact": "supported",
+          "details": "Report the actual selected reconstructed checkpoint with local complete GOLA baseline and protocol."
+        },
+        {
+          "id": "all_five_at_least_baseline_plus_two",
+          "impact": "unsupported",
+          "details": "Zero of five point-estimate thresholds pass; objective remains unmet."
+        },
+        {
+          "id": "candidate_relation_or_each_ABC_module_effective",
+          "impact": "unsupported",
+          "details": "Parent-relative evidence is mixed, all five parent CIs include zero, and current scope does not isolate each module."
+        },
+        {
+          "id": "seed_stability_or_untouched_confirmation",
+          "impact": "unsupported",
+          "details": "One seed, reused developer98, fixed-weight sequence bootstrap. This is a claim ceiling, not an added acceptance gate."
+        },
+        {
+          "id": "reconstructed_original_weight_identity",
+          "impact": "needs_qualifier",
+          "details": "Original weight was deleted. Saved query arrays/full98 behavior parity supports operational reconstruction on checked inputs, not byte identity or all-input equivalence."
+        },
+        {
+          "id": "persistent_rejected_trajectory_or_arbitrary_historical_repair",
+          "impact": "unsupported",
+          "details": "Current relation/query-only-pause configuration has no separate state-commit model."
+        }
+      ],
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.30155331814711,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.7031043477678338,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.6574864127439,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.5555134128123598,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.3395735664682,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.3021482178721797,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.03542684456828,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 0.2565692700606945,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 69.4544747423496,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.22188156446030405,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "deterministic_artifact_check": "refine-logs/runs/candidate_relation_native_recovery/result_audit/.aris/traces/experiment-audit/20261006_selected_native/saved_artifact_verification.json",
+      "limitations": [
+        "No scorer/NN/CI rerun; evidence is direct source/result reads, saved-value arithmetic, full GT equality, and all shard receipts.",
+        "Did not independently re-execute archived tensor parity or attest original deleted weight bytes.",
+        "Current training controller is a corrected version; historical native_not_replayed and cleanup receipts preserve the earlier skipped run, superseded by actual recovery completion."
+      ],
+      "actions": [
+        "Record actual scores and unmet +2 target now; do not block the pipeline.",
+        "Keep immutable pre-run selection records distinct from current completion authority; do not interpret the generic pending list as current mechanism status.",
+        "Retain protocol/scope qualifiers and mixed parent-relative results; use mechanism diagnostics to motivate, not prove, the next change."
+      ]
+    },
+    "fixed_selected_model_control_launch": {
+      "pid": 462886,
+      "output": "/data/gb/outputs/selected_abc_controls_20261006",
+      "log": "/data/gb/setup/selected_abc_controls_20261006.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.run_selected_abc_controls",
+        "--review",
+        "/data/gb/GOLA/refine-logs/runs/selected_abc_controls/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/selected_abc_controls_20261006"
+      ],
+      "at_cst": "2026-10-06T21:27:29.888315+08:00",
+      "source_main_commit": "4813c93c77953f79a83d3dc570ef8a7597258bb4",
+      "stage": "LAUNCHED_FOUR_GPU_FIXED_MODEL_TWO_FULL98_DIAGNOSTICS",
+      "new_training": false,
+      "new_TEST_inference": false,
+      "new_checkpoints": false,
+      "poll_seconds": 240,
+      "estimate_minutes": 22,
+      "scope": "98 reuseddeveloper TRAIN-root videos percontrol, not8combination orfullBoff"
+    },
+    "control_metrics_not_yet_claimed": true,
+    "goal_status": "ACTIVE_UNMET"
+  },
+  "latest_native_result_integrity_audit": "refine-logs/runs/candidate_relation_native_recovery/result_audit/EXPERIMENT_AUDIT.json"
 }

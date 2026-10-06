@@ -152,3 +152,8 @@ At18:17:08 exactall98/49418 TXT+9fields pass; no originalweight-byte identity cl
 ## 2026-10-06T21:08:01.816466+08:00 Selected raw ABC epoch5 complete native evaluation
 
 Original4x60/480 intact; restoredprefix5/40+archivedcached/full98parity PASS; samebest bothfull245/220703 and234/116649 actualGT five/31attrs/curves/four5000pairs COMPLETE. Actualallfive+2=False. No NN/report replay bycollector/publisher; best protected, owninitial/last cleaned onlyafterconsumers. Scope currentrelations/querypause, nottrustedstate/fullhistoricalrepair.
+
+
+## 2026-10-06T21:35:23.170055+08:00 Real native integrity WARN and fixed-head full98 controls actual start
+
+All479/337352 GTarrays/shards/5+81+20 records independentlyreadverified, SOURCE_RESULTsamefamilyprovisionalWARNmetadata+scopeonly; 0of5+2. Original4x60/480 andnativeclosed. New462886 fourGPUno_extra_searchfull21:27:49 afterbothsanities, pause_offnext; fixedhead5/no train/newweights/TEST, notfullBoff/allsafetyoff/eightcombination. Sole2664 first21:34:49 then240/nearETA; original40544terminal. GoalACTIVE_UNMET.
