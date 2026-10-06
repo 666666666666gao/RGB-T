@@ -1,5 +1,5 @@
 {
-  "updated_cst": "2026-10-07T07:28:09.569432+08:00",
+  "updated_cst": "2026-10-07T07:32:59.716043+08:00",
   "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
   "actual_launch": {
     "pid": 1311071,
@@ -16,79 +16,110 @@
     "no_three_seed_gate": true
   },
   "actual_observation": {
-    "observed_at_cst": "2026-10-07T07:26:38.268474+08:00",
+    "observed_at_cst": "2026-10-07T07:30:39.066752+08:00",
     "owner_pid": 1311071,
     "owner_alive": true,
     "progress": {
-      "stage": "FIT_SANITY",
-      "at_cst": "2026-10-07T07:26:32.428084+08:00",
-      "elapsed_seconds": 190.45243579195812,
+      "stage": "FIT_FULL",
+      "at_cst": "2026-10-07T07:29:37.050108+08:00",
+      "elapsed_seconds": 375.0744549706578,
       "children": [
         {
           "gpu": 0,
-          "pid": 1315837
+          "pid": 1320972
         },
         {
           "gpu": 1,
-          "pid": 1315838
+          "pid": 1320973
         },
         {
           "gpu": 2,
-          "pid": 1315839
+          "pid": 1320974
         },
         {
           "gpu": 3,
-          "pid": 1315840
+          "pid": 1320975
         }
       ]
     },
     "observed_phase": {
-      "stage": "FIT_SANITY",
-      "at_cst": "2026-10-07T07:26:32.428084+08:00",
-      "elapsed_seconds": 190.45243579195812,
+      "stage": "FIT_FULL",
+      "at_cst": "2026-10-07T07:29:37.050108+08:00",
+      "elapsed_seconds": 375.0744549706578,
       "children": [
         {
           "gpu": 0,
-          "pid": 1315837
+          "pid": 1320972
         },
         {
           "gpu": 1,
-          "pid": 1315838
+          "pid": 1320973
         },
         {
           "gpu": 2,
-          "pid": 1315839
+          "pid": 1320974
         },
         {
           "gpu": 3,
-          "pid": 1315840
+          "pid": 1320975
         }
       ]
     },
     "children_alive": [
       {
         "gpu": 0,
-        "pid": 1315837,
+        "pid": 1320972,
         "alive": true
       },
       {
         "gpu": 1,
-        "pid": 1315838,
+        "pid": 1320973,
         "alive": true
       },
       {
         "gpu": 2,
-        "pid": 1315839,
+        "pid": 1320974,
         "alive": true
       },
       {
         "gpu": 3,
-        "pid": 1315840,
+        "pid": 1320975,
         "alive": true
       }
     ],
     "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
-    "actual_training_rows": [],
+    "actual_training_rows": [
+      {
+        "arm": "post_search_lr5",
+        "epoch": 1,
+        "step": 1,
+        "optimizer_steps": 1,
+        "loss": 1.899129867553711,
+        "parts": {
+          "advantage": 0.06010422429868153,
+          "action_ranking": 0.19158748643738882,
+          "harm": 1.659389819417681,
+          "quality": 0.4900754136698587,
+          "query_write_risk": 0.06559607812336513,
+          "future": 0.12462866306304932,
+          "memory_gate": 1.4709728445325578,
+          "margin_preservation": 0.0028596907920603242,
+          "identity_margin": 0.1684956955058234,
+          "search_value": 0.03697981312870979,
+          "search_success": 0.6610593795776367,
+          "candidate_absence": 1.1208151578903198,
+          "search_ranking": 1.7337018251419067
+        },
+        "module_gradient_norms": {
+          "A": 0.1440938115119934,
+          "B": 3.079406261444092,
+          "C": 1.849573016166687
+        },
+        "elapsed_seconds": 7.404863408766687,
+        "peak_cuda_mib": 19936.49462890625
+      }
+    ],
+    "estimated_phase_seconds_from_closed_sanity": 4096.611783519387,
     "closed_causal_pair_check": {
       "completed": true,
       "same_loaded_parameters": true,
@@ -135,11 +166,13 @@
       "method_effect_or_formal_accuracy_proven": false
     }
   },
-  "next_check_cst": "2026-10-07T07:30:36.444958+08:00",
+  "next_check_cst": "2026-10-07T08:34:53.661892+08:00",
   "goal_status": "ACTIVE_UNMET",
   "full_training_complete": false,
   "full98_complete": false,
   "native_complete": false,
   "first_actual_causal_check_complete": true,
+  "four_actual_fit_sanities_complete": true,
+  "actual_fit_sanity_updates": 72,
   "one_checkpoint_both_native_datasets_required": true
 }
