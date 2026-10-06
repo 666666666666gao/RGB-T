@@ -57,3 +57,8 @@ Actual waiting-only3351735 retired with no fit/children/updates. Replacement3423
 ## 2026-10-06T07:57:55.811531+08:00 CPU mechanism-report coverage
 
 New selective fields aggregate actual same-frame GT search/motion geometry localization, mask unknownGT, couple motion failure to correct active appearance-template source, verify actual mode2 count. SourcePASS samefamily/provisional; four-state mask fixture and actual333frame legacy counters/bins/interventions PASS. Synthetic extension is not selective NN runtime or causal benefit. NN/train/eval replay0; current collectors/fit/native queue unchanged, all5+2UNMET.
+
+
+## 2026-10-06T10:20:55.846949+08:00 actual full-training/internal closure, native ongoing
+
+Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418 complete; all learned checkpoints below frozenold4/gross. One epoch0 locked before bothnative; actual98prediction text equalparent, no training gain. TRAIN1646event1691queries/881seq and615write-pairqueries; threeeventroles overlap. Actual16CPUcachedforwards show TRAINpositive/VALnegative selectedutility despitepositive predictedutility. History244CSV/plots and report metadata copied; no NN/report replay. Currentoriginal3423188/native3643976-79 lastactual09:59:49, sole22853 next10:53:18 then240. Five formal new metrics pending; all5+2UNMET. One best sufficient, old4/dependencies protected.

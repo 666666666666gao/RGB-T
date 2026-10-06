@@ -7033,7 +7033,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T07:57:55.811531+08:00",
+  "updated_cst": "2026-10-06T10:20:55.846949+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11170,11 +11170,39 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T07:45:41.497027+08:00",
+    "updated_cst": "2026-10-06T10:20:55.846949+08:00",
     "authoritative_snapshot": "refine-logs/runs/selective_state_commit/current_execution_snapshot.json",
     "collector_pid": 3338360,
-    "queued_pipeline_pid": 3423188,
-    "warning": "3351735 was retired while WAITING with zero training children/updates; new coordinator waits same original collector. Older snapshots historical."
+    "collector_complete": true,
+    "pipeline_pid": 3423188,
+    "native_workers_last_observed": [
+      {
+        "gpu": 0,
+        "pid": 3643976,
+        "state": "R",
+        "alive": true
+      },
+      {
+        "gpu": 1,
+        "pid": 3643977,
+        "state": "R",
+        "alive": true
+      },
+      {
+        "gpu": 2,
+        "pid": 3643978,
+        "state": "R",
+        "alive": true
+      },
+      {
+        "gpu": 3,
+        "pid": 3643979,
+        "state": "R",
+        "alive": true
+      }
+    ],
+    "last_process_observation_cst": "2026-10-06T09:59:49.735487+08:00",
+    "warning": "Four60/840 fits and eightfull98 CLOSED. Newlearnedheads negative; selectedzeroheadepoch0. Only original native pipeline and sole22853 observer ongoing. Earlier07:59 state historical."
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -32129,31 +32157,31 @@
     "next": "Use TRAIN optimizer sequences, separately sample normal/transition/recovery/unrecovered events and high-score legal-write episodes to develop selective delayed-risk/state-commit supervision. Do not train on these98 repeatedly-used validation videos or repeat completed oldC1 geometry rules. A new training/data pipeline is not yet registered or running."
   },
   "current_selective_state_commit_iteration": {
-    "status": "ACTUAL_FOUR_GPU_FULL_COLLECTION_AFTER_QUERY_M0_PASS; FULL_FIT_NATIVE_QUEUE_REGISTERED",
-    "updated_cst": "2026-10-06T07:57:55.811531+08:00",
+    "status": "FOUR_FULL60_FITS_AND_EIGHT_FULL98_COMPLETE_NEGATIVE; ONE_EPOCH0_HEAD_NATIVE_RUNNING",
+    "updated_cst": "2026-10-06T10:20:55.846949+08:00",
     "current_observed_state": {
-      "stage": "FULL",
-      "at_cst": "2026-10-06T06:56:15.809674+08:00",
+      "stage": "LASHER_SHARDS",
+      "at_cst": "2026-10-06T09:56:18.542061+08:00",
       "children": [
         {
           "gpu": 0,
-          "pid": 3338937
+          "pid": 3643976
         },
         {
           "gpu": 1,
-          "pid": 3338938
+          "pid": 3643977
         },
         {
           "gpu": 2,
-          "pid": 3338939
+          "pid": 3643978
         },
         {
           "gpu": 3,
-          "pid": 3338940
+          "pid": 3643979
         }
       ]
     },
-    "observed_at_cst": "2026-10-06T06:59:04.462370+08:00",
+    "observed_at_cst": "2026-10-06T09:59:49.735487+08:00",
     "collector_launch": {
       "pid": 3338360,
       "output": "/data/gb/outputs/selective_state_collection_20261006",
@@ -32192,10 +32220,10 @@
         "/data/gb/outputs/selective_state_training_endpoint_20261006"
       ],
       "at_cst": "2026-10-06T07:45:42.686204+08:00",
-      "stage": "LAUNCHED_WAITING_SAME_ORIGINAL_COLLECTION_NOT_TRAINING_STARTED",
+      "stage": "ACTUAL_TRAINING_AND_FULL98_COMPLETE; ONE_HEAD_LOCKED_BEFORE_NATIVE",
       "replaced_never_started_waiting_coordinator": 3351735,
       "collector_pid": 3338360,
-      "optimizer_updates": 0,
+      "optimizer_updates": 3360,
       "formal_metrics_completed": false,
       "poll_seconds": 240,
       "selection_protocol": "Four full60 fits; cached best and actual endpoint all eight full98; lock one before both native tests; retire11 own unused weights after consumers"
@@ -32220,7 +32248,7 @@
     "causal_memory_and_history_features": true,
     "event_unit": "Maximal consecutive known normal/failure/uncertain runs on the actual parent prefix; inverse-query-count event weights",
     "sampling_sources": "One uniform timestamp/all881TRAIN+98VAL, 716 historical transition hints,98 highscore wrong-write hints; exact duplicates merged, actual labels regenerated",
-    "trainable_scope": "C extension only at first; complete pretrained GOLA/C1/old4 A/B/C/frozenmotion stay active and frozen",
+    "trainable_scope": "119725-parameter C extension cached training; full GOLA/C1 and existing old4 A/B/C/motion active and frozen, not raw-frame end-to-end jointABC retraining",
     "planned_fit": {
       "configs": [
         "H3_lost0",
@@ -32240,7 +32268,7 @@
     },
     "planned_acceptance": "Four complete60 fits; cached-best and actual60 endpoint each evaluated over all98/49418frames (eight candidates, two4GPUwaves). Selectone developer sequenceIoU before samehead both245/234 native337352frames/all5/31attrs/4refs5000pairedCIs/mechanisms.",
     "optimizer_updates_at_observation": 0,
-    "new_training_completed": false,
+    "new_training_completed": true,
     "new_native_metrics_completed": false,
     "complete_GOLA_C1_old4_references_retained": true,
     "same_checkpoint_both_datasets": true,
@@ -32248,16 +32276,17 @@
     "formal_target": "All five native overall metrics >= fullGOLA+2pp",
     "retention": "Only one selected newhead after all eight full98 and native consumers; retire11 own sanity/unselected weights. Protectedold4 and required dependencies retained.",
     "sole_observer": {
-      "session_id": 72729,
-      "source": "watch_selective_state_collection_20261006.py",
-      "next_inspection_cst": "2026-10-06T09:53:15.809674+08:00",
-      "estimate_seconds": 10800,
-      "estimated_from_actual_full_start": "2026-10-06T06:56:15.809674+08:00",
-      "after_due_poll_seconds": 240
+      "session_id": 22853,
+      "source": "watch_selective_state_endpoint_pipeline_20261006.py",
+      "next_inspection_cst": "2026-10-06T10:53:18.542061+08:00",
+      "estimate_seconds": 3600,
+      "estimated_from_actual_full_start": "2026-10-06T09:56:18.542061+08:00",
+      "after_due_poll_seconds": 240,
+      "previous_collection_observer_72729_closed": true
     },
     "no_power_temperature_query_or_control": true,
     "no_dataset_moves": true,
-    "limitation": "Source reviews same-family/provisional; actual query M0 PASS only. No learned contribution or native improvement yet.",
+    "limitation": "All trained full98 checkpoints below frozen parent; selected epoch0 is no learned contribution. CPU cached-score calibration is not online calibration, and counts do not establish causality. Native five metrics pending at actual09:59 observation; goalACTIVE_UNMET.",
     "replaced_waiting_coordinator": {
       "status": "RETIRED_ONLY_NEVER_STARTED_WAITING_COORDINATOR",
       "old_pid": 3351735,
@@ -32317,7 +32346,639 @@
         "training_or_evaluation_replays": 0,
         "active_process_or_GPU_queries": 0
       },
-      "actual_new_selective_NN_runtime_verified": false
-    }
+      "actual_new_selective_NN_runtime_verified": true,
+      "actual_runtime_report": "refine-logs/runs/selective_state_commit/training_internal_complete/training/full98_report/full_recoverability_report.json"
+    },
+    "actual_collection_completed": true,
+    "actual_collection_partitions": {
+      "train": {
+        "queries": 1691,
+        "distinct_actual_events": 1646,
+        "query_roles": {
+          "unrecovered_H32": 263,
+          "recovered_H32": 637,
+          "normal": 762,
+          "uncertain": 29
+        },
+        "event_roles": {
+          "unrecovered_H32": 225,
+          "recovered_H32": 633,
+          "normal": 762,
+          "uncertain": 29
+        },
+        "search_executed_queries": 519,
+        "alternative_candidate_queries": 1033,
+        "legal_write_pair_queries": 615
+      },
+      "validation": {
+        "queries": 98,
+        "distinct_actual_events": 98,
+        "query_roles": {
+          "normal": 86,
+          "unrecovered_H32": 5,
+          "recovered_H32": 2,
+          "uncertain": 5
+        },
+        "event_roles": {
+          "normal": 86,
+          "unrecovered_H32": 5,
+          "recovered_H32": 2,
+          "uncertain": 5
+        },
+        "search_executed_queries": 6,
+        "alternative_candidate_queries": 56,
+        "legal_write_pair_queries": 55
+      }
+    },
+    "actual_full_training": [
+      {
+        "arm": "H3_lost0",
+        "training": {
+          "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+          "epochs": 60,
+          "optimizer_updates": 840,
+          "best_epoch": 0,
+          "best_validation": {
+            "event_weighted_utility": 0.7451024055480957,
+            "event_weighted_utility_advantage": 0.0,
+            "event_weighted_mean_iou": 0.7451024055480957,
+            "changed_queries": 0,
+            "harmful_future_queries": 0,
+            "beneficial_future_queries": 0,
+            "geometry_holds": 0
+          },
+          "M0_parent_exact": true,
+          "actual_gradient_parameters": [
+            "net.0.bias",
+            "net.0.weight",
+            "net.1.bias",
+            "net.1.weight",
+            "net.3.bias",
+            "net.3.weight"
+          ],
+          "actual_changed_parameters": [
+            "net.0.weight",
+            "net.0.bias",
+            "net.1.weight",
+            "net.1.bias",
+            "net.3.weight",
+            "net.3.bias"
+          ],
+          "strict_reload_pass": true,
+          "last_epoch": 60,
+          "last_strict_reload_pass": true,
+          "peak_allocated_bytes": 94065152,
+          "elapsed_seconds": 2.9498921600170434
+        },
+        "config": {
+          "collection": "/data/gb/outputs/selective_state_collection_20261006",
+          "output": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0",
+          "horizon": 3,
+          "lost_penalty": 0.0,
+          "epochs": 60,
+          "batch": 128,
+          "lr": 0.001,
+          "seed": 42,
+          "sanity": false,
+          "module": "selective_state_commit",
+          "features": 917,
+          "threshold": 0.03,
+          "train_queries_with_known_future": 1691,
+          "train_sequences_with_known_future": 881,
+          "full_corpus_train_queries_with_known_future": 1691,
+          "validation_queries": 98,
+          "validation_sequences": 98,
+          "event_weighting": "Each actual consecutive known-state event has total weight one",
+          "trained_parameters": 119725,
+          "frozen_A_B_C_parent": true,
+          "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+          "required_optimizer_updates": 840
+        }
+      },
+      {
+        "arm": "H3_lost01",
+        "training": {
+          "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+          "epochs": 60,
+          "optimizer_updates": 840,
+          "best_epoch": 0,
+          "best_validation": {
+            "event_weighted_utility": 0.7374493479728699,
+            "event_weighted_utility_advantage": 0.0,
+            "event_weighted_mean_iou": 0.7451024055480957,
+            "changed_queries": 0,
+            "harmful_future_queries": 0,
+            "beneficial_future_queries": 0,
+            "geometry_holds": 0
+          },
+          "M0_parent_exact": true,
+          "actual_gradient_parameters": [
+            "net.0.bias",
+            "net.0.weight",
+            "net.1.bias",
+            "net.1.weight",
+            "net.3.bias",
+            "net.3.weight"
+          ],
+          "actual_changed_parameters": [
+            "net.0.weight",
+            "net.0.bias",
+            "net.1.weight",
+            "net.1.bias",
+            "net.3.weight",
+            "net.3.bias"
+          ],
+          "strict_reload_pass": true,
+          "last_epoch": 60,
+          "last_strict_reload_pass": true,
+          "peak_allocated_bytes": 94065152,
+          "elapsed_seconds": 3.001487944740802
+        },
+        "config": {
+          "collection": "/data/gb/outputs/selective_state_collection_20261006",
+          "output": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01",
+          "horizon": 3,
+          "lost_penalty": 0.1,
+          "epochs": 60,
+          "batch": 128,
+          "lr": 0.001,
+          "seed": 42,
+          "sanity": false,
+          "module": "selective_state_commit",
+          "features": 917,
+          "threshold": 0.03,
+          "train_queries_with_known_future": 1691,
+          "train_sequences_with_known_future": 881,
+          "full_corpus_train_queries_with_known_future": 1691,
+          "validation_queries": 98,
+          "validation_sequences": 98,
+          "event_weighting": "Each actual consecutive known-state event has total weight one",
+          "trained_parameters": 119725,
+          "frozen_A_B_C_parent": true,
+          "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+          "required_optimizer_updates": 840
+        }
+      },
+      {
+        "arm": "H32_lost0",
+        "training": {
+          "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+          "epochs": 60,
+          "optimizer_updates": 840,
+          "best_epoch": 3,
+          "best_validation": {
+            "event_weighted_utility": 0.7437164783477783,
+            "event_weighted_utility_advantage": 2.992685404024087e-05,
+            "event_weighted_mean_iou": 0.7437164783477783,
+            "changed_queries": 1,
+            "harmful_future_queries": 0,
+            "beneficial_future_queries": 1,
+            "geometry_holds": 0
+          },
+          "M0_parent_exact": true,
+          "actual_gradient_parameters": [
+            "net.0.bias",
+            "net.0.weight",
+            "net.1.bias",
+            "net.1.weight",
+            "net.3.bias",
+            "net.3.weight"
+          ],
+          "actual_changed_parameters": [
+            "net.0.weight",
+            "net.0.bias",
+            "net.1.weight",
+            "net.1.bias",
+            "net.3.weight",
+            "net.3.bias"
+          ],
+          "strict_reload_pass": true,
+          "last_epoch": 60,
+          "last_strict_reload_pass": true,
+          "peak_allocated_bytes": 94065152,
+          "elapsed_seconds": 2.940489276777953
+        },
+        "config": {
+          "collection": "/data/gb/outputs/selective_state_collection_20261006",
+          "output": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0",
+          "horizon": 32,
+          "lost_penalty": 0.0,
+          "epochs": 60,
+          "batch": 128,
+          "lr": 0.001,
+          "seed": 42,
+          "sanity": false,
+          "module": "selective_state_commit",
+          "features": 917,
+          "threshold": 0.03,
+          "train_queries_with_known_future": 1689,
+          "train_sequences_with_known_future": 879,
+          "full_corpus_train_queries_with_known_future": 1689,
+          "validation_queries": 98,
+          "validation_sequences": 98,
+          "event_weighting": "Each actual consecutive known-state event has total weight one",
+          "trained_parameters": 119725,
+          "frozen_A_B_C_parent": true,
+          "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+          "required_optimizer_updates": 840
+        }
+      },
+      {
+        "arm": "H32_lost01",
+        "training": {
+          "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+          "epochs": 60,
+          "optimizer_updates": 840,
+          "best_epoch": 3,
+          "best_validation": {
+            "event_weighted_utility": 0.7360789179801941,
+            "event_weighted_utility_advantage": 2.992677764268592e-05,
+            "event_weighted_mean_iou": 0.7437164783477783,
+            "changed_queries": 1,
+            "harmful_future_queries": 0,
+            "beneficial_future_queries": 1,
+            "geometry_holds": 0
+          },
+          "M0_parent_exact": true,
+          "actual_gradient_parameters": [
+            "net.0.bias",
+            "net.0.weight",
+            "net.1.bias",
+            "net.1.weight",
+            "net.3.bias",
+            "net.3.weight"
+          ],
+          "actual_changed_parameters": [
+            "net.0.weight",
+            "net.0.bias",
+            "net.1.weight",
+            "net.1.bias",
+            "net.3.weight",
+            "net.3.bias"
+          ],
+          "strict_reload_pass": true,
+          "last_epoch": 60,
+          "last_strict_reload_pass": true,
+          "peak_allocated_bytes": 94065152,
+          "elapsed_seconds": 2.9854958979412913
+        },
+        "config": {
+          "collection": "/data/gb/outputs/selective_state_collection_20261006",
+          "output": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01",
+          "horizon": 32,
+          "lost_penalty": 0.1,
+          "epochs": 60,
+          "batch": 128,
+          "lr": 0.001,
+          "seed": 42,
+          "sanity": false,
+          "module": "selective_state_commit",
+          "features": 917,
+          "threshold": 0.03,
+          "train_queries_with_known_future": 1689,
+          "train_sequences_with_known_future": 879,
+          "full_corpus_train_queries_with_known_future": 1689,
+          "validation_queries": 98,
+          "validation_sequences": 98,
+          "event_weighting": "Each actual consecutive known-state event has total weight one",
+          "trained_parameters": 119725,
+          "frozen_A_B_C_parent": true,
+          "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+          "required_optimizer_updates": 840
+        }
+      }
+    ],
+    "optimizer_updates_completed": 3360,
+    "actual_full98_scores": {
+      "baseline": 0.7432785069707898,
+      "c1": 0.7394401616015396,
+      "old4": 0.745906102961742,
+      "gross_parent": 0.7461261775861118,
+      "H3_lost0_best": 0.7461261775861118,
+      "H3_lost01_best": 0.7461261775861118,
+      "H32_lost0_best": 0.7290703184737595,
+      "H32_lost01_best": 0.7237486249053048,
+      "H3_lost0_last": 0.6843854987910891,
+      "H3_lost01_last": 0.6948461806050684,
+      "H32_lost0_last": 0.6168591901071322,
+      "H32_lost01_last": 0.5110262570283247
+    },
+    "selected_before_native": {
+      "selected_candidate": "H3_lost0_best",
+      "selected_arm": "H3_lost0",
+      "selected_checkpoint": "best",
+      "selected_epoch": 0,
+      "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+      "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "H3_lost0_best": 0.7461261775861118,
+        "H3_lost01_best": 0.7461261775861118,
+        "H32_lost0_best": 0.7290703184737595,
+        "H32_lost01_best": 0.7237486249053048,
+        "H3_lost0_last": 0.6843854987910891,
+        "H3_lost01_last": 0.6948461806050684,
+        "H32_lost0_last": 0.6168591901071322,
+        "H32_lost01_last": 0.5110262570283247
+      },
+      "native_metrics_completed": false
+    },
+    "selected_epoch0_is_new_training_gain": false,
+    "zero_head_full98_prediction_text_parity": {
+      "status": "ZERO_HEAD_FULL98_PREDICTION_TEXT_PARITY_PASS",
+      "results": [
+        {
+          "variant": "H3_lost0_best",
+          "prediction_files": 98,
+          "different_prediction_files": [],
+          "all_prediction_text_bytes_equal_parent": true
+        },
+        {
+          "variant": "H3_lost01_best",
+          "prediction_files": 98,
+          "different_prediction_files": [],
+          "all_prediction_text_bytes_equal_parent": true
+        }
+      ],
+      "NN_replays": 0,
+      "active_process_GPU_queries": 0
+    },
+    "actual_new_selective_NN_runtime_verified": true,
+    "native_current_last_observation": {
+      "owner_pid": 3423188,
+      "alive": true,
+      "progress": {
+        "stage": "COMPLETE_FOUR60_EPOCH_FITS_FULL98_ONE_MODEL_LOCKED",
+        "at_cst": "2026-10-06T09:55:57.566950+08:00",
+        "elapsed_seconds": 7814.8504275670275,
+        "selected_candidate": "H3_lost0_best",
+        "selected_arm": "H3_lost0",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "H3_lost0_best": 0.7461261775861118,
+          "H3_lost01_best": 0.7461261775861118,
+          "H32_lost0_best": 0.7290703184737595,
+          "H32_lost01_best": 0.7237486249053048,
+          "H3_lost0_last": 0.6843854987910891,
+          "H3_lost01_last": 0.6948461806050684,
+          "H32_lost0_last": 0.6168591901071322,
+          "H32_lost01_last": 0.5110262570283247
+        },
+        "native_metrics_completed": false
+      },
+      "last_events": [
+        {
+          "stage": "FULL98_LAST",
+          "at_cst": "2026-10-06T09:16:05.866372+08:00",
+          "elapsed_seconds": 5423.149842085782,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3576322
+            },
+            {
+              "gpu": 1,
+              "pid": 3576323
+            },
+            {
+              "gpu": 2,
+              "pid": 3576324
+            },
+            {
+              "gpu": 3,
+              "pid": 3576325
+            }
+          ]
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T09:52:30.452433+08:00",
+          "elapsed_seconds": 7607.735911218915,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T09:52:30.452862+08:00",
+          "elapsed_seconds": 7607.736332681961,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T09:54:59.697704+08:00",
+          "elapsed_seconds": 7756.981187768746,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T09:54:59.698332+08:00",
+          "elapsed_seconds": 7756.981805628166,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "COMPLETE_FOUR60_EPOCH_FITS_FULL98_ONE_MODEL_LOCKED",
+          "at_cst": "2026-10-06T09:55:57.566950+08:00",
+          "elapsed_seconds": 7814.8504275670275,
+          "selected_candidate": "H3_lost0_best",
+          "selected_arm": "H3_lost0",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+          "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "H3_lost0_best": 0.7461261775861118,
+            "H3_lost01_best": 0.7461261775861118,
+            "H32_lost0_best": 0.7290703184737595,
+            "H32_lost01_best": 0.7237486249053048,
+            "H3_lost0_last": 0.6843854987910891,
+            "H3_lost01_last": 0.6948461806050684,
+            "H32_lost0_last": 0.6168591901071322,
+            "H32_lost01_last": 0.5110262570283247
+          },
+          "native_metrics_completed": false
+        }
+      ],
+      "observed_at_cst": "2026-10-06T09:59:49.735487+08:00",
+      "selection": {
+        "selected_candidate": "H3_lost0_best",
+        "selected_arm": "H3_lost0",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "H3_lost0_best": 0.7461261775861118,
+          "H3_lost01_best": 0.7461261775861118,
+          "H32_lost0_best": 0.7290703184737595,
+          "H32_lost01_best": 0.7237486249053048,
+          "H3_lost0_last": 0.6843854987910891,
+          "H3_lost01_last": 0.6948461806050684,
+          "H32_lost0_last": 0.6168591901071322,
+          "H32_lost01_last": 0.5110262570283247
+        },
+        "native_metrics_completed": false
+      },
+      "native_progress": {
+        "stage": "LASHER_SHARDS",
+        "at_cst": "2026-10-06T09:56:18.542061+08:00",
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 3643976
+          },
+          {
+            "gpu": 1,
+            "pid": 3643977
+          },
+          {
+            "gpu": 2,
+            "pid": 3643978
+          },
+          {
+            "gpu": 3,
+            "pid": 3643979
+          }
+        ]
+      },
+      "native_last_events": [
+        {
+          "stage": "LASHER_SANITY",
+          "at_cst": "2026-10-06T09:55:59.504021+08:00",
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3642739
+            },
+            {
+              "gpu": 1,
+              "pid": 3642740
+            },
+            {
+              "gpu": 2,
+              "pid": 3642741
+            },
+            {
+              "gpu": 3,
+              "pid": 3642742
+            }
+          ]
+        },
+        {
+          "stage": "LASHER_SANITY_PASS",
+          "at_cst": "2026-10-06T09:56:09.003093+08:00"
+        },
+        {
+          "stage": "RGBT234_SANITY",
+          "at_cst": "2026-10-06T09:56:09.005510+08:00",
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3643481
+            },
+            {
+              "gpu": 1,
+              "pid": 3643482
+            },
+            {
+              "gpu": 2,
+              "pid": 3643483
+            },
+            {
+              "gpu": 3,
+              "pid": 3643484
+            }
+          ]
+        },
+        {
+          "stage": "RGBT234_SANITY_PASS",
+          "at_cst": "2026-10-06T09:56:18.539476+08:00"
+        },
+        {
+          "stage": "LASHER_SHARDS",
+          "at_cst": "2026-10-06T09:56:18.542061+08:00",
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3643976
+            },
+            {
+              "gpu": 1,
+              "pid": 3643977
+            },
+            {
+              "gpu": 2,
+              "pid": 3643978
+            },
+            {
+              "gpu": 3,
+              "pid": 3643979
+            }
+          ]
+        }
+      ],
+      "native_first_full_start": "2026-10-06T09:56:18.542061+08:00",
+      "last_wave_processes": [
+        {
+          "gpu": 0,
+          "pid": 3643976,
+          "state": "R",
+          "alive": true
+        },
+        {
+          "gpu": 1,
+          "pid": 3643977,
+          "state": "R",
+          "alive": true
+        },
+        {
+          "gpu": 2,
+          "pid": 3643978,
+          "state": "R",
+          "alive": true
+        },
+        {
+          "gpu": 3,
+          "pid": 3643979,
+          "state": "R",
+          "alive": true
+        }
+      ]
+    },
+    "cached_advantage_CPU_audit": "refine-logs/runs/selective_state_commit/cached_advantage_CPU_audit.json",
+    "event_weighting_detail": "Per-query inverse count within event, globally normalized to mean1; equal event mass, not literal sum1 after normalization",
+    "event_role_count_limitation": "Three TRAIN events have multiple future-window roles; event-role counts overlap, distinct TRAIN events1646"
   }
 }

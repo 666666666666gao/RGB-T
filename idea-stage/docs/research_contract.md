@@ -22,3 +22,8 @@ Actual four-GPU query M0 PASS, full1789labels collecting original3338360. Origin
 ## 2026-10-06T07:45:41.497027+08:00 pre-fit endpoint-selection correction
 
 Actual waiting-only3351735 retired with no fit/children/updates. Replacement3423188 waits unchanged3338360 collection; no NN collection/training replay. Four full60 fits preserve cached-best and actual60endpoint, strictreloadboth. All eight candidates each full98/49418 in two4GPU waves; selectONE by developer sequenceIoU before samehead bothnative/all5/31attrs/4refs5000CIs. Retire11 own unused heads onlyafter all consumers. Recipe/data/model unchanged, no>=3positive-seed gate, targetall5GOLA+2 remainsUNMET.
+
+
+## 2026-10-06T10:20:55.846949+08:00 actual full-training/internal closure, native ongoing
+
+Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418 complete; all learned checkpoints below frozenold4/gross. One epoch0 locked before bothnative; actual98prediction text equalparent, no training gain. TRAIN1646event1691queries/881seq and615write-pairqueries; threeeventroles overlap. Actual16CPUcachedforwards show TRAINpositive/VALnegative selectedutility despitepositive predictedutility. History244CSV/plots and report metadata copied; no NN/report replay. Currentoriginal3423188/native3643976-79 lastactual09:59:49, sole22853 next10:53:18 then240. Five formal new metrics pending; all5+2UNMET. One best sufficient, old4/dependencies protected.
