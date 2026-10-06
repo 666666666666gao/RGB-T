@@ -7033,7 +7033,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T10:28:16.939834+08:00",
+  "updated_cst": "2026-10-06T11:09:59.304261+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11170,39 +11170,17 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T10:20:55.846949+08:00",
+    "updated_cst": "2026-10-06T11:09:59.304261+08:00",
     "authoritative_snapshot": "refine-logs/runs/selective_state_commit/current_execution_snapshot.json",
     "collector_pid": 3338360,
     "collector_complete": true,
     "pipeline_pid": 3423188,
-    "native_workers_last_observed": [
-      {
-        "gpu": 0,
-        "pid": 3643976,
-        "state": "R",
-        "alive": true
-      },
-      {
-        "gpu": 1,
-        "pid": 3643977,
-        "state": "R",
-        "alive": true
-      },
-      {
-        "gpu": 2,
-        "pid": 3643978,
-        "state": "R",
-        "alive": true
-      },
-      {
-        "gpu": 3,
-        "pid": 3643979,
-        "state": "R",
-        "alive": true
-      }
-    ],
-    "last_process_observation_cst": "2026-10-06T09:59:49.735487+08:00",
-    "warning": "Four60/840 fits and eightfull98 CLOSED. Newlearnedheads negative; selectedzeroheadepoch0. Only original native pipeline and sole22853 observer ongoing. Earlier07:59 state historical."
+    "pipeline_complete": true,
+    "active_NN_jobs": 0,
+    "sole_observer_closed_exit0": true,
+    "new_native_metrics_complete": true,
+    "actual_completed_report": "refine-logs/runs/selective_state_commit/complete/training/native/complete_metrics.json",
+    "warning": "All original consumers CLOSED and11ownunusedheads already retired. Preserve selected epoch0 and old4/dependencies; do not rerun collectors/training/evaluation/cleanup. +2 goal still unmet."
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -32157,31 +32135,134 @@
     "next": "Use TRAIN optimizer sequences, separately sample normal/transition/recovery/unrecovered events and high-score legal-write episodes to develop selective delayed-risk/state-commit supervision. Do not train on these98 repeatedly-used validation videos or repeat completed oldC1 geometry rules. A new training/data pipeline is not yet registered or running."
   },
   "current_selective_state_commit_iteration": {
-    "status": "FOUR_FULL60_FITS_AND_EIGHT_FULL98_COMPLETE_NEGATIVE; ONE_EPOCH0_HEAD_NATIVE_RUNNING",
-    "updated_cst": "2026-10-06T10:28:16.939834+08:00",
+    "status": "COMPLETE_FULL_TRAINING_EIGHT_FULL98_BOTH_NATIVE_FIVE_METRICS; GOAL_UNMET",
+    "updated_cst": "2026-10-06T11:09:59.304261+08:00",
     "current_observed_state": {
-      "stage": "LASHER_SHARDS",
-      "at_cst": "2026-10-06T09:56:18.542061+08:00",
-      "children": [
+      "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+      "at_cst": "2026-10-06T11:03:45.124785+08:00",
+      "elapsed_seconds": 11882.40826019179,
+      "metrics": [
         {
-          "gpu": 0,
-          "pid": 3643976
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.01609419612012,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.4176452257408414,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
         },
         {
-          "gpu": 1,
-          "pid": 3643977
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.3837843789729,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.2818113790413577,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
         },
         {
-          "gpu": 2,
-          "pid": 3643978
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.072659849394405,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.0352345007983885,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
         },
         {
-          "gpu": 3,
-          "pid": 3643979
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.86636093627918,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 1.0875033617715957,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 70.02238137014503,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.7897881922557275,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "all_five_plus_two": false,
+      "selected_model": {
+        "selected_candidate": "H3_lost0_best",
+        "selected_arm": "H3_lost0",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "H3_lost0_best": 0.7461261775861118,
+          "H3_lost01_best": 0.7461261775861118,
+          "H32_lost0_best": 0.7290703184737595,
+          "H32_lost01_best": 0.7237486249053048,
+          "H3_lost0_last": 0.6843854987910891,
+          "H3_lost01_last": 0.6948461806050684,
+          "H32_lost0_last": 0.6168591901071322,
+          "H32_lost01_last": 0.5110262570283247
+        },
+        "native_metrics_completed": false
+      },
+      "cleaned_own_unused_weights": [
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/last.pth",
+          "bytes": 482154
         }
       ]
     },
-    "observed_at_cst": "2026-10-06T09:59:49.735487+08:00",
+    "observed_at_cst": "2026-10-06T11:05:22.657933+08:00",
     "collector_launch": {
       "pid": 3338360,
       "output": "/data/gb/outputs/selective_state_collection_20261006",
@@ -32269,7 +32350,7 @@
     "planned_acceptance": "Four complete60 fits; cached-best and actual60 endpoint each evaluated over all98/49418frames (eight candidates, two4GPUwaves). Selectone developer sequenceIoU before samehead both245/234 native337352frames/all5/31attrs/4refs5000pairedCIs/mechanisms.",
     "optimizer_updates_at_observation": 0,
     "new_training_completed": true,
-    "new_native_metrics_completed": false,
+    "new_native_metrics_completed": true,
     "complete_GOLA_C1_old4_references_retained": true,
     "same_checkpoint_both_datasets": true,
     "requires_three_positive_training_seeds": false,
@@ -32278,16 +32359,18 @@
     "sole_observer": {
       "session_id": 22853,
       "source": "watch_selective_state_endpoint_pipeline_20261006.py",
-      "next_inspection_cst": "2026-10-06T10:53:18.542061+08:00",
+      "next_inspection_cst": null,
       "estimate_seconds": 3600,
       "estimated_from_actual_full_start": "2026-10-06T09:56:18.542061+08:00",
       "after_due_poll_seconds": 240,
       "previous_collection_observer_72729_closed": true,
-      "local_PID": 43888
+      "local_PID": 43888,
+      "status": "CLOSED_EXIT0",
+      "closed_observed_cst": "2026-10-06T11:05:22.657933+08:00"
     },
     "no_power_temperature_query_or_control": true,
     "no_dataset_moves": true,
-    "limitation": "All trained full98 checkpoints below frozen parent; selected epoch0 is no learned contribution. CPU cached-score calibration is not online calibration, and counts do not establish causality. Native five metrics pending at actual09:59 observation; goalACTIVE_UNMET.",
+    "limitation": "Actual full training and all native reports closed; learned heads negative, epoch0 exactly reproduces protected old4/gross scores; all five +2 unmet. No remaining original jobs or observer. Do not restart them.",
     "replaced_waiting_coordinator": {
       "status": "RETIRED_ONLY_NEVER_STARTED_WAITING_COORDINATOR",
       "old_pid": 3351735,
@@ -32713,60 +32796,133 @@
     "actual_new_selective_NN_runtime_verified": true,
     "native_current_last_observation": {
       "owner_pid": 3423188,
-      "alive": true,
+      "alive": false,
       "progress": {
-        "stage": "COMPLETE_FOUR60_EPOCH_FITS_FULL98_ONE_MODEL_LOCKED",
-        "at_cst": "2026-10-06T09:55:57.566950+08:00",
-        "elapsed_seconds": 7814.8504275670275,
-        "selected_candidate": "H3_lost0_best",
-        "selected_arm": "H3_lost0",
-        "selected_checkpoint": "best",
-        "selected_epoch": 0,
-        "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
-        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-        "search_value": "gross",
-        "same_checkpoint_both_native_datasets": true,
-        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
-        "sequence_mean_iou": {
-          "baseline": 0.7432785069707898,
-          "c1": 0.7394401616015396,
-          "old4": 0.745906102961742,
-          "gross_parent": 0.7461261775861118,
-          "H3_lost0_best": 0.7461261775861118,
-          "H3_lost01_best": 0.7461261775861118,
-          "H32_lost0_best": 0.7290703184737595,
-          "H32_lost01_best": 0.7237486249053048,
-          "H3_lost0_last": 0.6843854987910891,
-          "H3_lost01_last": 0.6948461806050684,
-          "H32_lost0_last": 0.6168591901071322,
-          "H32_lost01_last": 0.5110262570283247
+        "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+        "at_cst": "2026-10-06T11:03:45.124785+08:00",
+        "elapsed_seconds": 11882.40826019179,
+        "metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "selected_model": {
+          "selected_candidate": "H3_lost0_best",
+          "selected_arm": "H3_lost0",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+          "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "H3_lost0_best": 0.7461261775861118,
+            "H3_lost01_best": 0.7461261775861118,
+            "H32_lost0_best": 0.7290703184737595,
+            "H32_lost01_best": 0.7237486249053048,
+            "H3_lost0_last": 0.6843854987910891,
+            "H3_lost01_last": 0.6948461806050684,
+            "H32_lost0_last": 0.6168591901071322,
+            "H32_lost01_last": 0.5110262570283247
+          },
+          "native_metrics_completed": false
         },
-        "native_metrics_completed": false
+        "cleaned_own_unused_weights": [
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost0/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost01/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost0/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost01/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/last.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/last.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/last.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/best.pth",
+            "bytes": 482154
+          },
+          {
+            "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/last.pth",
+            "bytes": 482154
+          }
+        ]
       },
       "last_events": [
-        {
-          "stage": "FULL98_LAST",
-          "at_cst": "2026-10-06T09:16:05.866372+08:00",
-          "elapsed_seconds": 5423.149842085782,
-          "children": [
-            {
-              "gpu": 0,
-              "pid": 3576322
-            },
-            {
-              "gpu": 1,
-              "pid": 3576323
-            },
-            {
-              "gpu": 2,
-              "pid": 3576324
-            },
-            {
-              "gpu": 3,
-              "pid": 3576325
-            }
-          ]
-        },
         {
           "stage": "FULL98_LAST_WORKER_ENDED",
           "at_cst": "2026-10-06T09:52:30.452433+08:00",
@@ -32823,9 +32979,134 @@
             "H32_lost01_last": 0.5110262570283247
           },
           "native_metrics_completed": false
+        },
+        {
+          "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+          "at_cst": "2026-10-06T11:03:45.124785+08:00",
+          "elapsed_seconds": 11882.40826019179,
+          "metrics": [
+            {
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.01609419612012,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.4176452257408414,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.3837843789729,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.2818113790413577,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.072659849394405,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.0352345007983885,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.86636093627918,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 1.0875033617715957,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 70.02238137014503,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.7897881922557275,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
+            }
+          ],
+          "all_five_plus_two": false,
+          "selected_model": {
+            "selected_candidate": "H3_lost0_best",
+            "selected_arm": "H3_lost0",
+            "selected_checkpoint": "best",
+            "selected_epoch": 0,
+            "state_commit_model": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+            "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+            "search_value": "gross",
+            "same_checkpoint_both_native_datasets": true,
+            "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+            "sequence_mean_iou": {
+              "baseline": 0.7432785069707898,
+              "c1": 0.7394401616015396,
+              "old4": 0.745906102961742,
+              "gross_parent": 0.7461261775861118,
+              "H3_lost0_best": 0.7461261775861118,
+              "H3_lost01_best": 0.7461261775861118,
+              "H32_lost0_best": 0.7290703184737595,
+              "H32_lost01_best": 0.7237486249053048,
+              "H3_lost0_last": 0.6843854987910891,
+              "H3_lost01_last": 0.6948461806050684,
+              "H32_lost0_last": 0.6168591901071322,
+              "H32_lost01_last": 0.5110262570283247
+            },
+            "native_metrics_completed": false
+          },
+          "cleaned_own_unused_weights": [
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost0/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost01/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost0/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost01/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/last.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/last.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/last.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/best.pth",
+              "bytes": 482154
+            },
+            {
+              "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/last.pth",
+              "bytes": 482154
+            }
+          ]
         }
       ],
-      "observed_at_cst": "2026-10-06T09:59:49.735487+08:00",
+      "observed_at_cst": "2026-10-06T11:05:22.657933+08:00",
       "selection": {
         "selected_candidate": "H3_lost0_best",
         "selected_arm": "H3_lost0",
@@ -32853,128 +33134,250 @@
         "native_metrics_completed": false
       },
       "native_progress": {
-        "stage": "LASHER_SHARDS",
-        "at_cst": "2026-10-06T09:56:18.542061+08:00",
-        "children": [
+        "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+        "at_cst": "2026-10-06T11:03:45.108078+08:00",
+        "completed": true,
+        "same_state_commit_model_both_datasets": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+        "five_metrics": [
           {
-            "gpu": 0,
-            "pid": 3643976
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
           },
           {
-            "gpu": 1,
-            "pid": 3643977
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
           },
           {
-            "gpu": 2,
-            "pid": 3643978
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
           },
           {
-            "gpu": 3,
-            "pid": 3643979
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
           }
-        ]
+        ],
+        "all_five_plus_two": false,
+        "complete_attribute_settings": 31,
+        "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+        "not_training_seed_stability": true
+      },
+      "complete_native_metrics": {
+        "completed": true,
+        "same_state_commit_model_both_datasets": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+        "five_metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "complete_attribute_settings": 31,
+        "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+        "not_training_seed_stability": true
       },
       "native_last_events": [
         {
-          "stage": "LASHER_SANITY",
-          "at_cst": "2026-10-06T09:55:59.504021+08:00",
+          "stage": "LASHER_SHARDS_PASS",
+          "at_cst": "2026-10-06T10:40:58.114364+08:00"
+        },
+        {
+          "stage": "RGBT234_SHARDS",
+          "at_cst": "2026-10-06T10:40:58.116194+08:00",
           "children": [
             {
               "gpu": 0,
-              "pid": 3642739
+              "pid": 3719003
             },
             {
               "gpu": 1,
-              "pid": 3642740
+              "pid": 3719004
             },
             {
               "gpu": 2,
-              "pid": 3642741
+              "pid": 3719006
             },
             {
               "gpu": 3,
-              "pid": 3642742
+              "pid": 3719007
             }
           ]
         },
         {
-          "stage": "LASHER_SANITY_PASS",
-          "at_cst": "2026-10-06T09:56:09.003093+08:00"
+          "stage": "RGBT234_SHARDS_PASS",
+          "at_cst": "2026-10-06T11:00:43.547366+08:00"
         },
         {
-          "stage": "RGBT234_SANITY",
-          "at_cst": "2026-10-06T09:56:09.005510+08:00",
-          "children": [
+          "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+          "at_cst": "2026-10-06T11:02:38.579785+08:00",
+          "dataset": "lasher",
+          "metrics": {
+            "NPR": 74.3837843789729,
+            "PR": 78.01609419612012,
+            "SR": 62.072659849394405
+          }
+        },
+        {
+          "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+          "at_cst": "2026-10-06T11:03:45.107643+08:00",
+          "dataset": "rgbt234",
+          "metrics": {
+            "MPR": 92.86636093627918,
+            "MSR": 70.02238137014503
+          }
+        },
+        {
+          "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+          "at_cst": "2026-10-06T11:03:45.108078+08:00",
+          "completed": true,
+          "same_state_commit_model_both_datasets": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+          "five_metrics": [
             {
-              "gpu": 0,
-              "pid": 3643481
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.01609419612012,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.4176452257408414,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
             },
             {
-              "gpu": 1,
-              "pid": 3643482
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.3837843789729,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.2818113790413577,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
             },
             {
-              "gpu": 2,
-              "pid": 3643483
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.072659849394405,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.0352345007983885,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
             },
             {
-              "gpu": 3,
-              "pid": 3643484
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.86636093627918,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 1.0875033617715957,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 70.02238137014503,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.7897881922557275,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
             }
-          ]
-        },
-        {
-          "stage": "RGBT234_SANITY_PASS",
-          "at_cst": "2026-10-06T09:56:18.539476+08:00"
-        },
-        {
-          "stage": "LASHER_SHARDS",
-          "at_cst": "2026-10-06T09:56:18.542061+08:00",
-          "children": [
-            {
-              "gpu": 0,
-              "pid": 3643976
-            },
-            {
-              "gpu": 1,
-              "pid": 3643977
-            },
-            {
-              "gpu": 2,
-              "pid": 3643978
-            },
-            {
-              "gpu": 3,
-              "pid": 3643979
-            }
-          ]
+          ],
+          "all_five_plus_two": false,
+          "complete_attribute_settings": 31,
+          "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+          "not_training_seed_stability": true
         }
       ],
       "native_first_full_start": "2026-10-06T09:56:18.542061+08:00",
       "last_wave_processes": [
         {
           "gpu": 0,
-          "pid": 3643976,
-          "state": "R",
-          "alive": true
+          "pid": 3719003,
+          "state": "ABSENT",
+          "alive": false
         },
         {
           "gpu": 1,
-          "pid": 3643977,
-          "state": "R",
-          "alive": true
+          "pid": 3719004,
+          "state": "ABSENT",
+          "alive": false
         },
         {
           "gpu": 2,
-          "pid": 3643978,
-          "state": "R",
-          "alive": true
+          "pid": 3719006,
+          "state": "ABSENT",
+          "alive": false
         },
         {
           "gpu": 3,
-          "pid": 3643979,
-          "state": "R",
-          "alive": true
+          "pid": 3719007,
+          "state": "ABSENT",
+          "alive": false
         }
       ]
     },
@@ -32987,6 +33390,131 @@
       "new_NN_forwards": 0,
       "scope": "Search reference and current motion history box+quality together; pure coordinate-only claim not supported",
       "full_parent_policy_improvement_claim": false
+    },
+    "native_complete_summary": "refine-logs/runs/selective_state_commit/native_complete_summary.json",
+    "new_five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "baseline": 76.59844897037928,
+        "c1": 77.86097272569167,
+        "old4": 78.09777783730206,
+        "gross_parent": 78.01609419612012,
+        "state_commit": 78.01609419612012,
+        "delta_vs_baseline_pp": 1.4176452257408414,
+        "delta_ci_low_pp": 0.5736352656394301,
+        "delta_ci_high_pp": 2.412107920388264,
+        "target_baseline_plus_two": 78.59844897037928,
+        "remaining_to_target_pp": 0.5823547742591586
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "baseline": 73.10197299993155,
+        "c1": 74.15451765370953,
+        "old4": 74.45735525847881,
+        "gross_parent": 74.3837843789729,
+        "state_commit": 74.3837843789729,
+        "delta_vs_baseline_pp": 1.2818113790413577,
+        "delta_ci_low_pp": 0.51625451904097,
+        "delta_ci_high_pp": 2.166425679210014,
+        "target_baseline_plus_two": 75.10197299993155,
+        "remaining_to_target_pp": 0.7181886209586423
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "baseline": 61.03742534859602,
+        "c1": 61.951313680271845,
+        "old4": 62.12706332333795,
+        "gross_parent": 62.072659849394405,
+        "state_commit": 62.072659849394405,
+        "delta_vs_baseline_pp": 1.0352345007983885,
+        "delta_ci_low_pp": 0.4159219746358212,
+        "delta_ci_high_pp": 1.7450956597228018,
+        "target_baseline_plus_two": 63.03742534859602,
+        "remaining_to_target_pp": 0.9647654992016115
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "baseline": 91.77885757450758,
+        "c1": 91.81700889694795,
+        "old4": 92.13340500935078,
+        "gross_parent": 92.86636093627918,
+        "state_commit": 92.86636093627918,
+        "delta_vs_baseline_pp": 1.0875033617715957,
+        "delta_ci_low_pp": -0.31078425237390683,
+        "delta_ci_high_pp": 2.5908441816928356,
+        "target_baseline_plus_two": 93.77885757450758,
+        "remaining_to_target_pp": 0.9124966382284043
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "baseline": 69.2325931778893,
+        "c1": 69.2340473415621,
+        "old4": 69.57809745628578,
+        "gross_parent": 70.02238137014503,
+        "state_commit": 70.02238137014503,
+        "delta_vs_baseline_pp": 0.7897881922557275,
+        "delta_ci_low_pp": -0.053605273245573064,
+        "delta_ci_high_pp": 1.716406244906392,
+        "target_baseline_plus_two": 71.2325931778893,
+        "remaining_to_target_pp": 1.2102118077442725
+      }
+    ],
+    "all_five_plus_two": false,
+    "active_NN_jobs": 0,
+    "actual_unused_own_weight_cleanup": {
+      "removed": [
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H3_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_sanity/H32_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost01/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost0/last.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/best.pth",
+          "bytes": 482154
+        },
+        {
+          "path": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H32_lost01/last.pth",
+          "bytes": 482154
+        }
+      ],
+      "kept": "/data/gb/outputs/selective_state_training_endpoint_20261006/fit_full/H3_lost0/best.pth",
+      "old4_and_all_dependencies_preserved": true
     }
   }
 }

@@ -1,0 +1,81 @@
+{
+  "sequence": "boyride2trees",
+  "query_frame": 474,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "boyride2trees:wrong_localization_write:474"
+  ],
+  "total_frames": 837,
+  "horizon": 32,
+  "actual_event_role": "unrecovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.15962352454602877,
+        "mean_future_iou": 0.15794472751969965,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      },
+      "32": {
+        "mean_iou_including_query": 0.1875335374493774,
+        "mean_future_iou": 0.1882483381313887,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 20,
+        "longest_failure_run": 16,
+        "first_future_three_correct_run_offset": null,
+        "writes": 29,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 17
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.15965476558007383,
+        "mean_future_iou": 0.15798638223175968,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.18753732424138286,
+        "mean_future_iou": 0.18825224326064433,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 20,
+        "longest_failure_run": 16,
+        "first_future_three_correct_run_offset": null,
+        "writes": 28,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 16
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "boyride2trees:failure:474"
+}

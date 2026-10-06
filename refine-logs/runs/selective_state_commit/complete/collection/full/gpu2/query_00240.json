@@ -1,0 +1,81 @@
+{
+  "sequence": "whitecatjump",
+  "query_frame": 437,
+  "partition": "train",
+  "sources": [
+    "transition"
+  ],
+  "historical_event_ids": [
+    "whitecatjump:historical_transition:437"
+  ],
+  "total_frames": 950,
+  "horizon": 32,
+  "actual_event_role": "recovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.5016040710188086,
+        "mean_future_iou": 0.6144761159447668,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 2,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 2
+      },
+      "32": {
+        "mean_iou_including_query": 0.8330213730237899,
+        "mean_future_iou": 0.8539599179232542,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 2,
+        "first_future_three_correct_run_offset": 2,
+        "writes": 33,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 2
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.5028120493127441,
+        "mean_future_iou": 0.6160867536700142,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 2,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 1
+      },
+      "32": {
+        "mean_iou_including_query": 0.833167794635176,
+        "mean_future_iou": 0.8541109152099962,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 2,
+        "first_future_three_correct_run_offset": 2,
+        "writes": 32,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 1
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "whitecatjump:failure:437"
+}

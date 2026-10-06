@@ -1,0 +1,81 @@
+{
+  "sequence": "ab_rightmirror",
+  "query_frame": 241,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "ab_rightmirror:wrong_localization_write:233"
+  ],
+  "total_frames": 1528,
+  "horizon": 32,
+  "actual_event_role": "recovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.0,
+        "mean_future_iou": 0.0,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      },
+      "32": {
+        "mean_iou_including_query": 0.08291056227398812,
+        "mean_future_iou": 0.08550151734505025,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 30,
+        "longest_failure_run": 30,
+        "first_future_three_correct_run_offset": 30,
+        "writes": 15,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 15
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.0,
+        "mean_future_iou": 0.0,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.08291056227398812,
+        "mean_future_iou": 0.08550151734505025,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 30,
+        "longest_failure_run": 30,
+        "first_future_three_correct_run_offset": 30,
+        "writes": 14,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 14
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "ab_rightmirror:failure:233"
+}

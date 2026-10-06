@@ -1,0 +1,81 @@
+{
+  "sequence": "leftshortgirl",
+  "query_frame": 290,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "leftshortgirl:wrong_localization_write:290"
+  ],
+  "total_frames": 411,
+  "horizon": 32,
+  "actual_event_role": "unrecovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.18060658074890348,
+        "mean_future_iou": 0.18990636596207555,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 3,
+        "longest_failure_run": 3,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.20865961384012205,
+        "mean_future_iou": 0.2104081259879575,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 14,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 32,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 14
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.1804499246720447,
+        "mean_future_iou": 0.18969749119293053,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 3,
+        "longest_failure_run": 3,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 2
+      },
+      "32": {
+        "mean_iou_including_query": 0.20876561479669525,
+        "mean_future_iou": 0.2105174394744236,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 14,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 31,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 13
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "leftshortgirl:failure:290"
+}

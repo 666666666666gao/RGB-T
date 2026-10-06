@@ -156,3 +156,8 @@ Actual waiting-only3351735 retired with no fit/children/updates. Replacement3423
 ## 2026-10-06T10:20:55.846949+08:00 actual full-training/internal closure, native ongoing
 
 Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418 complete; all learned checkpoints below frozenold4/gross. One epoch0 locked before bothnative; actual98prediction text equalparent, no training gain. TRAIN1646event1691queries/881seq and615write-pairqueries; threeeventroles overlap. Actual16CPUcachedforwards show TRAINpositive/VALnegative selectedutility despitepositive predictedutility. History244CSV/plots and report metadata copied; no NN/report replay. Currentoriginal3423188/native3643976-79 lastactual09:59:49, sole22853 next10:53:18 then240. Five formal new metrics pending; all5+2UNMET. One best sufficient, old4/dependencies protected.
+
+
+## 2026-10-06T11:09:59.304261+08:00 actual full native closure; goal still unmet
+
+Four60/840 fits, eightfull98 and SAME epoch0 both245/220703+234/116649 actual-GT complete. Five78.016094/74.383784/62.072660 and92.866361/70.022381, allbaseline+2false; exactgrossparent scores/no learned C benefit. Las threeCIpositive/RGBtwoinclude0; all31attrs/81metricrows/curves/four5000pairedrefs/mechanisms/efficiency copied3838files.11ownunusedweights5303694Bretired by original queue afterconsumers; bestepoch0 anddependenciesheld. Original3423188 andobserver22853 CLOSED; no replays or activeNN. Negative training and repeateddeveloper/test limitations retained. GoalACTIVE_UNMET, one best sufficient.

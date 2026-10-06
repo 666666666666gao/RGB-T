@@ -67,3 +67,8 @@ Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418
 ## 2026-10-06T10:28:16.939834+08:00 matched write/motion commit CPU contrasts
 
 H32 lost0 pause-vs-regular613TRAIN/55VAL queries; lowraw mode2-vs-samecandidate-mode0 1208TRAINpairs/1009events and58VALpairs/56events. Search reference plus motionhistory box+quality copying, not coordinate-only; GTunknown masked/eventequal. Positive contrast means reduced alternate-action harm, not better than parentkeep or deployed C efficacy. Reviewed explanation corrected; all16numericrows unchanged, no NN/optimizer/replay. Formal5pending; +2ACTIVE_UNMET.
+
+
+## 2026-10-06T11:09:59.304261+08:00 actual full native closure; goal still unmet
+
+Four60/840 fits, eightfull98 and SAME epoch0 both245/220703+234/116649 actual-GT complete. Five78.016094/74.383784/62.072660 and92.866361/70.022381, allbaseline+2false; exactgrossparent scores/no learned C benefit. Las threeCIpositive/RGBtwoinclude0; all31attrs/81metricrows/curves/four5000pairedrefs/mechanisms/efficiency copied3838files.11ownunusedweights5303694Bretired by original queue afterconsumers; bestepoch0 anddependenciesheld. Original3423188 andobserver22853 CLOSED; no replays or activeNN. Negative training and repeateddeveloper/test limitations retained. GoalACTIVE_UNMET, one best sufficient.

@@ -1,0 +1,81 @@
+{
+  "sequence": "manatwhiteright",
+  "query_frame": 115,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "manatwhiteright:wrong_localization_write:115"
+  ],
+  "total_frames": 274,
+  "horizon": 32,
+  "actual_event_role": "unrecovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.03202170321362244,
+        "mean_future_iou": 0.011461262365314749,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      },
+      "32": {
+        "mean_iou_including_query": 0.0038814185713481743,
+        "mean_future_iou": 0.0010744933467482576,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 33,
+        "longest_failure_run": 33,
+        "first_future_three_correct_run_offset": null,
+        "writes": 33,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 33
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.030910019826115825,
+        "mean_future_iou": 0.009979017848639265,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.0037466690698322214,
+        "mean_future_iou": 0.0009355329233099311,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 33,
+        "longest_failure_run": 33,
+        "first_future_three_correct_run_offset": null,
+        "writes": 32,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 32
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "manatwhiteright:failure:115"
+}

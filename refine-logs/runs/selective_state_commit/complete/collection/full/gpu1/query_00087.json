@@ -1,0 +1,81 @@
+{
+  "sequence": "greenleftbackblack",
+  "query_frame": 620,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "greenleftbackblack:wrong_localization_write:620"
+  ],
+  "total_frames": 1417,
+  "horizon": 32,
+  "actual_event_role": "recovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.03093246859412054,
+        "mean_future_iou": 0.007880433982567357,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      },
+      "32": {
+        "mean_iou_including_query": 0.09459707896082563,
+        "mean_future_iou": 0.09442546978995203,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 29,
+        "longest_failure_run": 29,
+        "first_future_three_correct_run_offset": 29,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.028876094176038362,
+        "mean_future_iou": 0.005138601425124457,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.0926500085493669,
+        "mean_future_iou": 0.09241755342813526,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 29,
+        "longest_failure_run": 29,
+        "first_future_three_correct_run_offset": 29,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "greenleftbackblack:failure:620"
+}

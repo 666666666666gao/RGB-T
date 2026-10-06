@@ -1,0 +1,108 @@
+{
+  "sequence": "4sisters",
+  "query_frame": 200,
+  "partition": "train",
+  "sources": [
+    "transition"
+  ],
+  "historical_event_ids": [
+    "4sisters:historical_transition:200"
+  ],
+  "total_frames": 406,
+  "horizon": 32,
+  "actual_event_role": "recovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    3,
+    5
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 0,
+  "alternative_candidates": 1,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.5068414707603168,
+        "mean_future_iou": 0.6545570983217153,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 1,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": 1,
+        "writes": 0,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      },
+      "32": {
+        "mean_iou_including_query": 0.6615016007078022,
+        "mean_future_iou": 0.6801830698525422,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": 1,
+        "writes": 11,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      }
+    },
+    "3": {
+      "3": {
+        "mean_iou_including_query": 0.40834089967931575,
+        "mean_future_iou": 0.5444545329057543,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 1,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": null,
+        "writes": 0,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      },
+      "32": {
+        "mean_iou_including_query": 0.6495756640535301,
+        "mean_future_iou": 0.669874903555203,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": 2,
+        "writes": 11,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      }
+    },
+    "5": {
+      "3": {
+        "mean_iou_including_query": 0.49091782374128645,
+        "mean_future_iou": 0.6545570983217153,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 1,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": 1,
+        "writes": 0,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      },
+      "32": {
+        "mean_iou_including_query": 0.6595714616751924,
+        "mean_future_iou": 0.6801830698525422,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 2,
+        "longest_failure_run": 1,
+        "first_future_three_correct_run_offset": 1,
+        "writes": 11,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 0
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "4sisters:failure:200"
+}

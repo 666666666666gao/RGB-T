@@ -1,0 +1,81 @@
+{
+  "sequence": "rightblkgirlrunning",
+  "query_frame": 417,
+  "partition": "train",
+  "sources": [
+    "write_episode"
+  ],
+  "historical_event_ids": [
+    "rightblkgirlrunning:wrong_localization_write:417"
+  ],
+  "total_frames": 4470,
+  "horizon": 32,
+  "actual_event_role": "recovered_H32",
+  "query_family": "failure",
+  "legal_actions": [
+    0,
+    1
+  ],
+  "actual_rollout_horizon": 32,
+  "legal_write_pairs": 1,
+  "alternative_candidates": 0,
+  "baseline_index": 0,
+  "extra_visual_forward_at_query": 0,
+  "causal_features_before_future": true,
+  "outcomes": {
+    "0": {
+      "3": {
+        "mean_iou_including_query": 0.14227669190241404,
+        "mean_future_iou": 0.1257343678564777,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      },
+      "32": {
+        "mean_iou_including_query": 0.3532542818587841,
+        "mean_future_iou": 0.35829648866561414,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 19,
+        "longest_failure_run": 10,
+        "first_future_three_correct_run_offset": 21,
+        "writes": 4,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 4
+      }
+    },
+    "1": {
+      "3": {
+        "mean_iou_including_query": 0.1640302285258828,
+        "mean_future_iou": 0.1547390833544361,
+        "valid_GT_frames": 4,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 4,
+        "longest_failure_run": 4,
+        "first_future_three_correct_run_offset": null,
+        "writes": 3,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 3
+      },
+      "32": {
+        "mean_iou_including_query": 0.3049336042548598,
+        "mean_future_iou": 0.3084657898865672,
+        "valid_GT_frames": 33,
+        "unknown_GT_frames": 0,
+        "failure_frames_including_query": 21,
+        "longest_failure_run": 21,
+        "first_future_three_correct_run_offset": 23,
+        "writes": 19,
+        "unknown_GT_writes": 0,
+        "wrong_localization_writes": 19
+      }
+    }
+  },
+  "M0_parity_pass": false,
+  "actual_event_id": "rightblkgirlrunning:failure:417"
+}
