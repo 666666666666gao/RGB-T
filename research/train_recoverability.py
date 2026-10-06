@@ -45,6 +45,8 @@ def arguments():
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--prefer-last-prefix', action='store_true',
                    help='For matched-query prefix controls, use the last supplied state for each sequence/query.')
+    p.add_argument('--aggregate-policy-states', action='store_true',
+                   help='Keep distinct checkpoint-policy states at the same sequence/query when aggregating rollouts.')
     p.add_argument('--candidate-relations', action='store_true',
                    help='Add a zero-output candidate relation block; start from the full pretrained ABC parent.')
     p.add_argument('--retain-last', action='store_true',
@@ -52,7 +54,8 @@ def arguments():
     return p.parse_args()
 
 
-def load_data(roots, partition, device, prefer_last_prefix=False):
+def load_data(roots, partition, device, prefer_last_prefix=False, aggregate_policy_states=False):
+    assert not (prefer_last_prefix and aggregate_policy_states)
     arrays, configs, names, jobs = [], [], set(), []
     for root in map(Path, roots):
         config = json.loads((root / 'config.json').read_text())
@@ -73,7 +76,9 @@ def load_data(roots, partition, device, prefer_last_prefix=False):
         arrays.append(row)
         configs.append(config)
         names.update(job['sequence'] for job in config['jobs'])
-        jobs.extend((job['sequence'], job['query_frame'], config['prefix_policy']) for job in config['jobs'])
+        policy = (json.dumps({'prefix_policy': config['prefix_policy'], 'prefix_model': config['prefix_model']}, sort_keys=True)
+                  if aggregate_policy_states else config['prefix_policy'])
+        jobs.extend((job['sequence'], job['query_frame'], policy) for job in config['jobs'])
     pooled = {key: torch.cat([row[key] for row in arrays]) for key in arrays[0]}
     unique, seen = [], set()
     for index, job in enumerate(jobs):
@@ -153,7 +158,8 @@ def main():
     torch.cuda.manual_seed_all(args.seed)
     torch.set_num_threads(4)
     device = torch.device('cuda:0')
-    train, train_configs, train_names, train_jobs = load_data(args.train, 'train', device, args.prefer_last_prefix)
+    train, train_configs, train_names, train_jobs = load_data(args.train, 'train', device, args.prefer_last_prefix,
+                                                           args.aggregate_policy_states)
     validation, val_configs, val_names, val_jobs = load_data([args.validation], 'validation', device)
     assert not train_names & val_names
     reference = train_configs[0]
@@ -165,28 +171,36 @@ def main():
     split = json.loads(Path(reference['split']).read_text())
     assert train_names <= set(split['train']) and val_names <= set(split['validation'])
     c1 = torch.load(args.c1_head, map_location='cpu', weights_only=False)
-    model = RecoverabilityModules(c1).to(device)
     initial_checkpoint_epoch = None
+    initial_checkpoint_weights_exact = None
+    checkpoint = None
     if args.init_checkpoint:
         checkpoint = torch.load(args.init_checkpoint, map_location='cpu', weights_only=False)
-        assert checkpoint['module'] == 'ABC_recoverability'
+        assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
+    continued_relations = checkpoint is not None and checkpoint['module'] == 'ABC_candidate_relations'
+    model = RecoverabilityModules(c1, candidate_relations=continued_relations).to(device)
+    if checkpoint is not None:
         model.load_state_dict(checkpoint['model'], strict=True)
+        initial_checkpoint_weights_exact = all(torch.equal(value.cpu(), checkpoint['model'][key])
+                                               for key, value in model.state_dict().items())
+        assert initial_checkpoint_weights_exact
         assert all(torch.equal(value.cpu(), c1['head'][key]) for key, value in model.c1.state_dict().items())
         initial_checkpoint_epoch = checkpoint['epoch']
     if args.candidate_relations:
-        assert args.init_checkpoint
+        assert checkpoint is not None and checkpoint['module'] == 'ABC_recoverability'
         model.relations = CandidateRelations(c1['args']['hidden']).to(device)
         parent = RecoverabilityModules(c1).to(device)
         parent.load_state_dict(checkpoint['model'], strict=True)
         parent.eval().requires_grad_(False)
+    has_relations = model.relations is not None
     groups = {'A': model.memory, 'B': model.search,
-              'C': torch.nn.ModuleList((model.action, model.relations)) if args.candidate_relations else model.action}
+              'C': torch.nn.ModuleList((model.action, model.relations)) if has_relations else model.action}
     for name in args.frozen_modules:
         groups[name].requires_grad_(False)
     initial = {name: {key: value.detach().clone() for key, value in module.state_dict().items()}
                for name, module in groups.items()}
     initial_relations = ({key: value.detach().clone() for key, value in model.relations.state_dict().items()}
-                         if args.candidate_relations else None)
+                         if has_relations else None)
     model.eval()
     initial_matches_c1 = True
     initial_parent_exact = True if args.candidate_relations else None
@@ -210,12 +224,14 @@ def main():
     optimizer = torch.optim.AdamW(parameters, lr=args.lr, weight_decay=args.weight_decay)
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    model_family = 'ABC_candidate_relations' if args.candidate_relations else 'ABC_recoverability'
+    model_family = 'ABC_candidate_relations' if has_relations else 'ABC_recoverability'
     config = vars(args) | {'module': model_family, 'train_clips': len(train_jobs),
                            'validation_clips': len(val_jobs), 'train_jobs': train_jobs, 'validation_jobs': val_jobs,
                            'source_configs': train_configs + val_configs,
                            'decision_fields': DECISION_FIELDS, 'initial_all_choices_match_c1': initial_matches_c1,
                            'initial_checkpoint_epoch': initial_checkpoint_epoch,
+                           'initial_checkpoint_weights_exact': initial_checkpoint_weights_exact,
+                           'training_state_identity': 'sequence/query/checkpoint-policy' if args.aggregate_policy_states else 'legacy sequence/query/prefix description',
                            'initial_parent_all_output_tensors_exact': initial_parent_exact,
                            'base_GOLA': 'full pretrained frozen visual extractor used by collector',
                            'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters() if p.requires_grad) for name, module in groups.items()},
@@ -265,7 +281,7 @@ def main():
                     assert np.isfinite(gradients[name])
                     max_gradients[name] = max(max_gradients[name], gradients[name])
                 norm = torch.nn.utils.clip_grad_norm_(parameters, 5.)
-                if args.candidate_relations and 'C' not in args.frozen_modules:
+                if has_relations and 'C' not in args.frozen_modules:
                     relation_gradient = float(torch.stack([p.grad.detach().square().sum()
                                               for p in model.relations.parameters() if p.grad is not None]).sum().sqrt())
                     assert np.isfinite(relation_gradient)
@@ -295,7 +311,7 @@ def main():
     assert all(changed[name] == (name not in args.frozen_modules) for name in groups)
     assert all((norm > 0) == (name not in args.frozen_modules) for name, norm in max_gradients.items())
     relations_changed = None
-    if args.candidate_relations:
+    if has_relations:
         relations_changed = any(not torch.equal(initial_relations[key], value)
                                 for key, value in model.relations.state_dict().items())
         assert relations_changed == ('C' not in args.frozen_modules)
@@ -330,8 +346,9 @@ def main():
                'strict_reload_metrics_equal': True, 'last_validation': metrics,
                'last_strict_reload_metrics_equal': last_strict_reload,
                'initial_parent_all_output_tensors_exact': initial_parent_exact,
+               'initial_checkpoint_weights_exact': initial_checkpoint_weights_exact,
                'relation_parameters_changed': relations_changed,
-               'max_relation_gradient_norm': max_relation_gradient if args.candidate_relations else None,
+               'max_relation_gradient_norm': max_relation_gradient if has_relations else None,
                'retained_weights': (['best.pth'] + (['last.pth'] if args.retain_last else [])
                                     + (['initial.pth'] if args.candidate_relations else [])),
                'official_tracking_accuracy': False}

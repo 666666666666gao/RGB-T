@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE",
+  "run_scope": "DEPLOYED_CURRENT_POLICY_AGGREGATION",
+  "reviewed_at_cst": "2026-10-06T22:41:02.910308+08:00",
+  "reviewer_task": "/root/current_policy_aggregation_review",
+  "reviewer_role": "fresh source reviewer under experiment-bridge CODE_REVIEW",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_runtime_model": null,
+  "actual_runtime_reasoning_effort": null,
+  "model_attribution": "Parent supplied requested model=gpt-6-astra, reasoning_effort=max, fresh context. Backend model/effort identity is not independently attested.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "runtime_verified": false,
+  "verdict": "No concrete blocking source defect found. Source PASS permits the single dependent queue, which must retain predecessor completion and four real full-data training sanity gates before full training.",
+  "reviewed_files": [
+    "research/train_recoverability.py (current diff and full relevant path)",
+    "scripts/run_current_policy_aggregation.py",
+    "refine-logs/EXPERIMENT_PLAN.md (last current-policy aggregation section)",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/deploy_current_policy_aggregation_20261006.py"
+  ],
+  "related_sources": [
+    "scripts/collect_current_relation_policy.py",
+    "scripts/run_candidate_relation_training.py",
+    "scripts/run_selective_state_native.py",
+    "research/collect_recoverability.py",
+    "research/recoverability_modules.py",
+    "research/candidate_relations.py (import/call contract)",
+    "research/evaluate_recoverability.py",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_core_metrics.py",
+    "research/collect_abc_metrics.py",
+    "research/paired_sequence_bootstrap.py"
+  ],
+  "primary_artifacts": [
+    "refine-logs/runs/candidate_relation/complete_v2/training/fit_full/relations_lr5/config.json",
+    "refine-logs/runs/current_relation_policy_collection/completed_sanity/plan.json",
+    "refine-logs/runs/current_relation_policy_collection/completed_sanity/{train,validation}/gpu{0,1,2,3}/{config,completion}.json",
+    "refine-logs/runs/current_relation_policy_collection/actual_sanity_completion_summary.json",
+    "refine-logs/runs/candidate_relation_native_recovery/complete/training/reconstruction_verification.json",
+    "refine-logs/runs/candidate_relation/complete_v2/training/full98/relations_lr5_best/predictions/{inference_config,inference_completion}.json",
+    "refine-logs/runs/recoverability_future_policy/cli_m0/own/samples.npz"
+  ],
+  "checks": [
+    {
+      "name": "actual_cache_contract_and_state_identity",
+      "status": "PASS",
+      "evidence": "Actual archived relations_lr5 config has 9 TRAIN source configs, 2576 rows/unique sequence-query pairs over 881 names. Completed current collection plan selects 256 distinct old TRAIN times (128 failed/64 ambiguous/64 normal). Recomputing the exact new sequence/query/JSON(prefix_policy,prefix_model) identity produces 2832 states, 2576 unique times and 2 policies; old-only remains 2576 states/1 policy. Shared split/root/cache/head/pretrained/motion/max_prefix/regions/future_policy/horizon fields match every old source and the actual current sanity config.",
+      "source_locations": [
+        "research/train_recoverability.py:57",
+        "research/train_recoverability.py:79"
+      ]
+    },
+    {
+      "name": "pretrained_relation_continuation",
+      "status": "PASS",
+      "evidence": "Trainer reads checkpoint family before constructing RecoverabilityModules, instantiates relations for ABC_candidate_relations, strict-loads the entire model and checks tensor equality to the loaded checkpoint before optimization. Adding a zero relation block remains restricted to an ABC_recoverability parent with --candidate-relations; the new queue does not pass that flag. Existing relation weights therefore continue rather than reset. C grouping, relation snapshots, gradients, change receipts and saved family use actual has_relations. C1 remains frozen; GOLA and motion stay in the previously frozen cache/evaluator path.",
+      "source_locations": [
+        "research/train_recoverability.py:173",
+        "research/train_recoverability.py:195",
+        "research/train_recoverability.py:284",
+        "research/train_recoverability.py:314",
+        "research/recoverability_modules.py:86"
+      ]
+    },
+    {
+      "name": "default_path_preserved",
+      "status": "PASS",
+      "evidence": "aggregate-policy-states is optional and false by default; the former prefix-description deduplication and prefer-last-prefix behavior are retained when absent. The current queue deliberately enables aggregation identity in all four arms so the old-only control keeps its exact 2576 rows while additional current-policy states survive in the aggregate arms."
+    },
+    {
+      "name": "validation_merge_and_split",
+      "status": "PASS",
+      "evidence": "Actual source validation has 196 unique queries over 98 names, disjoint from all 881 TRAIN names. Actual collection plan has four groups of49. Applying the exact sequence/query index and order expression used by merge_validation to those real jobs gives a complete 196-index permutation and exactly the original jobs order. Source concatenates every sample array using that order and requires exact NPZ reload equality; trainer still checks partition, completion, label/action contracts and sequence split exclusion. Current full NPZ bytes were not locally available and were not polled.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:29",
+        "research/train_recoverability.py:160"
+      ]
+    },
+    {
+      "name": "actual_collection_sanity_evidence",
+      "status": "PASS",
+      "evidence": "Read all8 completed TRAIN/validation sanity configs and receipts. Each completes1 clip, excludes future inputs, uses the protected epoch5 ABC_candidate_relations parent with gross/action/own and matches the first exact planned shard query. Archived actual_sanity_completion_summary records the four developer-prefix unrounded float32 parity gate passed. The reconstruction receipt records original full98 prediction-byte and declared decision-field parity; it does not claim original weight-byte identity."
+    },
+    {
+      "name": "owner_dependency_and_resources",
+      "status": "PASS",
+      "evidence": "Queue first waits for the explicitly supplied predecessor PID, sleeping240s, then requires exact COMPLETE_CURRENT_RELATION_POLICY_COLLECTION. It verifies the current collection plan, all TRAIN receipts, merged validation, >20GiB free space and four idle GPUs before training. Private deployer supplies535051. There is no replacement collector, duplicate observer, unchanged retry, dataset move, or power/temperature operation.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:85",
+        "scripts/run_current_policy_aggregation.py:89"
+      ]
+    },
+    {
+      "name": "matched_update_budget_and_sanity_barrier",
+      "status": "PASS",
+      "evidence": "Four arms use the same epoch5 parent, seed42, B336, oracle/budgeted/action/gross, all A/B/C+relations trainable, LR1e-5 or3e-5. Exact AST ARMS values and real row counts give ceil(2576/336)=8, 72*8=576; ceil(2832/336)=9, 64*9=576. Both schedules cover whole datasets for >=60 epochs. Four full-data2epoch sanities require16 or18 updates, all A/B/C and relation movement/nonzero gradients, frozen C1 gradients absent, checkpoint epoch5/weight equality and best/last exact metric reloads before full fits. The schedules match optimizer updates, not total sample presentations.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:19",
+        "scripts/run_current_policy_aggregation.py:127",
+        "scripts/run_current_policy_aggregation.py:156"
+      ]
+    },
+    {
+      "name": "full98_selection_and_ground_truth",
+      "status": "PASS",
+      "evidence": "All4 best and all4 actual endpoints run full98 in two four-card waves and must report98 sequences/49418 frames. Existing metric collector obtains per-sequence IoU from real dataset GT, verifies prediction coverage and compares all eight plus five archived references. max(sequence_mean_iou) locks one model before native invocation. No TEST metric is used for this choice.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:159",
+        "scripts/run_current_policy_aggregation.py:184",
+        "research/collect_recoverability_metrics.py:168",
+        "research/collect_recoverability_metrics.py:200"
+      ]
+    },
+    {
+      "name": "native_engine_protocol",
+      "status": "PASS",
+      "evidence": "Selection schema and accepted review scope match scripts.run_selective_state_native. Native is invoked unconditionally after selection, including when parent gain is absent. It keeps the same ABC model and no state-commit extension for both LasHeR245/220703 and RGBT234234/116649. Existing engine performs sanity then all four shards per dataset, verified unions, actual-GT official PR/NPR/SR and MPR/MSR,19+12 attributes, curves, and5000/seed42 paired sequence bootstrap versus GOLA/C1/old4/gross_parent. Collector code verifies actual dataset annotations against official evaluator GT. This does not measure training-seed stability.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:188",
+        "scripts/run_current_policy_aggregation.py:196",
+        "scripts/run_selective_state_native.py:74",
+        "scripts/run_selective_state_native.py:149",
+        "research/collect_core_metrics.py:100",
+        "research/paired_sequence_bootstrap.py:18"
+      ]
+    },
+    {
+      "name": "retention_after_consumers",
+      "status": "PASS",
+      "evidence": "Only after synchronous native completion and same-model receipt validation, cleanup enumerates the16 own fit_sanity/fit_full best.pth and last.pth paths, keeps the selected one, verifies resolved paths lie inside this run root, and removes the other15. Protected current parent, old4, GOLA/C1/DINO/motion paths and all raw reports are outside that exact enumeration. No initial.pth is produced by the continued-relations path.",
+      "source_locations": [
+        "scripts/run_current_policy_aggregation.py:198",
+        "scripts/run_current_policy_aggregation.py:209"
+      ]
+    },
+    {
+      "name": "private_deployer_trust_boundary",
+      "status": "PASS",
+      "evidence": "Read-only inspection of the single-use private deployer: scoped PASS required; local launch/archive and remote output must be absent; git index must be empty; explicit train/controller/plan plus own review directory only are staged and archived. Local branch is main and index was empty. Active collector/model source and MANIFEST are excluded. It verifies pushed commit, remote hashes of three published source/plan files, Python compilation, predecessor535051 alive or exact completed receipt, then starts one detached dependent controller. child.poll() confirms owner live; requested_first_phase is launch metadata, not asserted observed progress. The producer still enforces predecessor exit plus exact completion before any fit. No tool executed this deployer.",
+      "source_locations": [
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/deploy_current_policy_aggregation_20261006.py:19",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/deploy_current_policy_aggregation_20261006.py:35"
+      ]
+    },
+    {
+      "name": "local_static_and_cpu_checks",
+      "status": "PASS",
+      "evidence": "AST parsed changed trainer, new queue, existing native controller, private deployer and its embedded remote Python. CRLF-aware git diff --check passed. Local offline cached uv NumPy audit passed on actual archived configs/plan/receipts, query identities, validation permutation and budgets. Inspected a real local own-policy NPZ: finite original_choice int64[2], current_iou float32[2,7,5], future_iou float32[2,7,5,2,3], action_valid bool[2,7,5,2] and causal history arrays. No model import/forward/optimizer, SSH, predecessor poll, deployment or TEST read was performed."
+    }
+  ],
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "budget_verification": {
+    "seed": 42,
+    "batch_size": 336,
+    "learning_rates": [
+      1e-05,
+      3e-05
+    ],
+    "old": {
+      "states": 2576,
+      "unique_sequence_query_pairs": 2576,
+      "epochs": 72,
+      "updates_per_epoch": 8,
+      "full_updates": 576,
+      "sanity_updates": 16,
+      "state_presentations": 185472
+    },
+    "aggregate": {
+      "states": 2832,
+      "unique_sequence_query_pairs": 2576,
+      "epochs": 64,
+      "updates_per_epoch": 9,
+      "full_updates": 576,
+      "sanity_updates": 18,
+      "state_presentations": 181248
+    },
+    "full_fit_arms": 4,
+    "full98_candidates": 8,
+    "native_selected_checkpoints": 1,
+    "own_weights_created": 16,
+    "own_weights_removed_after_consumers": 15,
+    "own_weights_kept": 1
+  },
+  "limits": [
+    "Source review plus local CPU artifact checks; new training, resource peak, exact remote checkpoint bytes, full current collection arrays, and new native results are not verified here.",
+    "Last consumed actual current-collection observation is archived22:13:43; no new observation or predecessor polling was performed. Exact collection completion remains a queue runtime gate.",
+    "Current full validation NPZ data were unavailable locally. Order was proved on actual196 planned jobs; numerical merge/reload equality is a source gate to execute after collection.",
+    "Old own-policy teacher defaults to weighted while new current-policy states use another checkpoint and explicit gross/action/own. The comparison concerns updated state generation/aggregation and learning-rate controls, not an isolated architecture causal effect.",
+    "Developer196/98 is reused for training selection and full-video selection; results are descriptive development evidence, not independent held-out acceptance.",
+    "Matched576 updates do not imply equal sample presentations (old185472; aggregate181248), equal batch sizes at the final update, or training-seed stability. No three-positive-seed requirement is imposed.",
+    "Reconstructed epoch5 receipt establishes archived developer prediction/declared-decision parity, not original checkpoint-byte equality. No new efficacy or all-five-plus2 success is claimed."
+  ],
+  "production_code_modified_by_reviewer": false,
+  "runtime_actions_by_reviewer": {
+    "NN_forwards": 0,
+    "optimizer_steps": 0,
+    "deployments": 0,
+    "SSH_calls": 0,
+    "predecessor_polls": 0,
+    "TEST_reads": 0,
+    "checkpoint_deletions": 0
+  },
+  "history_preserved": true
+}
