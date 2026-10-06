@@ -77,3 +77,8 @@ Four60/840 fits, eightfull98 and SAME epoch0 both245/220703+234/116649 actual-GT
 ## 2026-10-06T11:35:25.855066+08:00 current/future reward alignment actual execution
 
 SOURCE reviewPASS/provisional + actual deployed CPU default-exact witness + four GPU2epoch sanityPASS + four full60/840 fits strictbest/last reloadPASS. Original3801966 nowFULL98_BEST; eightfull98 selection and samehead bothnative/5+31attrs/4refs5000 pending. Same completed1789/event-weighted corpus; A/B/GOLA/C1/old4 frozen, C-only MLP119725 vslinear4588 H3/H32. Allfive+2UNMET; one best sufficient. No NN replay/oldqueue restart/dataset move/power-temperature operation. See current_execution_snapshot in state_commit_current_future and ONEHANDOFF.
+
+
+## 2026-10-06T11:48:34.655819+08:00 sealed four-fit CPU diagnosis
+
+Actual16cached comparisons/32CPU-head forwards/strictreload PASS; allfour last60 TRAIN true utility positive but reused developer98 negative and predictedpositive. Linear4588 also negative; lossdecrease notdecisiongain. All cachedbest0. Frozenparent futurelabels, unknownmasked; not fullvideo/native efficacy. Collected244historyrows/config/completion/plots, no weight/NPZ copies or liveNN/GPUqueries. Original3801966/sole14340 first12:07 unchanged, all5+2ACTIVE_UNMET.
