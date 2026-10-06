@@ -60,13 +60,13 @@ def load_data(roots, partition, device, prefer_last_prefix=False):
         assert config['partition'] == receipt['partition'] == partition
         assert receipt['completed'] and not receipt['decision_input_contains_future']
         with np.load(root / 'samples.npz') as archive:
-            row = {key: torch.from_numpy(archive[key].copy()).to(device)
+            row = {key: torch.from_numpy(archive[key].copy())
                    for key in DECISION_FIELDS + LABEL_FIELDS}
         assert len(row['valid']) == receipt['clips'] == config['clips']
         assert row['valid'][:, 0].any(1).all() and row['history_valid'][:, -1].all()
         assert row['instance_features'].shape[1:] == (7, 5, 2, 768)
         assert all(torch.isfinite(value).all() for value in row.values())
-        rows = torch.arange(len(row['valid']), device=device)
+        rows = torch.arange(len(row['valid']))
         assert row['valid'][rows, 0, row['original_choice'].long()].all()
         assert torch.equal(row['action_valid'][..., 0], row['valid'])
         assert torch.equal(row['action_valid'][..., 1], row['valid'] & (row['raw_score'] > .84))
@@ -83,8 +83,10 @@ def load_data(roots, partition, device, prefer_last_prefix=False):
     if prefer_last_prefix:
         by_query = {(job[0], job[1]): index for index, job in enumerate(jobs)}
         unique = list(by_query.values())
-    indices = torch.tensor(unique, device=device)
-    return {key: value[indices] for key, value in pooled.items()}, configs, names, [jobs[i] for i in unique]
+    # Nine real caches exceeded 24 GiB during GPU concatenate+dedup copies.
+    # Preserve the same unique rows; transfer only the final data to the GPU.
+    indices = torch.tensor(unique)
+    return {key: value[indices].to(device) for key, value in pooled.items()}, configs, names, [jobs[i] for i in unique]
 
 
 def forward(model, data):
