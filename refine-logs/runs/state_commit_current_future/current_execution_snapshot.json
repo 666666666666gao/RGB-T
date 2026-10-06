@@ -1,6 +1,6 @@
 {
-  "status": "ALL_FOUR60_840_FITS_AND_EIGHT_FULL98_COMPLETE; ALL_LAST_NEGATIVE; ONE_EPOCH0_LOCKED; BOTH_NATIVE_PENDING; GOAL_UNMET",
-  "updated_cst": "2026-10-06T13:14:01.422464+08:00",
+  "status": "COMPLETE_FULL_TRAINING_EIGHT_FULL98_BOTH_NATIVE_FIVE_METRICS; GOAL_UNMET",
+  "updated_cst": "2026-10-06T14:17:32.093926+08:00",
   "launch": {
     "pid": 3801966,
     "output": "/data/gb/outputs/state_commit_current_future_20261006",
@@ -37,48 +37,138 @@
     "power_temperature_queried_or_set": false
   },
   "current_observed_state": {
-    "observed_at_cst": "2026-10-06T12:49:59.618915+08:00",
+    "observed_at_cst": "2026-10-06T14:02:18.740248+08:00",
     "owner": {
       "pid": 3801966,
-      "alive": true,
-      "state": "S",
-      "command": "/data/gb/envs/gola/bin/python -u scripts/run_selective_state_training.py --collection /data/gb/outputs/selective_state_collection_20261006 --collection-launch /data/gb/setup/selective_state_collection_launch_20261006.json --review /data/gb/GOLA/refine-logs/runs/state_commit_current_future/source_review.json --output /data/gb/outputs/state_commit_current_future_20261006 --reward current_future "
+      "alive": false,
+      "state": "ABSENT"
     },
     "progress": {
-      "stage": "COMPLETE_FOUR60_EPOCH_FITS_FULL98_ONE_MODEL_LOCKED",
-      "at_cst": "2026-10-06T12:48:41.788337+08:00",
-      "elapsed_seconds": 4610.6134310513735,
-      "selected_candidate": "H3_current_future_mlp_best",
-      "selected_arm": "H3_current_future_mlp",
-      "selected_checkpoint": "best",
-      "selected_epoch": 0,
-      "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
-      "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
-      "search_value": "gross",
-      "same_checkpoint_both_native_datasets": true,
-      "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
-      "sequence_mean_iou": {
-        "baseline": 0.7432785069707898,
-        "c1": 0.7394401616015396,
-        "old4": 0.745906102961742,
-        "gross_parent": 0.7461261775861118,
-        "H3_current_future_mlp_best": 0.7461261775861118,
-        "H32_current_future_mlp_best": 0.7461261775861118,
-        "H3_current_future_linear_best": 0.7461261775861118,
-        "H32_current_future_linear_best": 0.7461261775861118,
-        "H3_current_future_mlp_last": 0.6952040013199479,
-        "H32_current_future_mlp_last": 0.7011363658972538,
-        "H3_current_future_linear_last": 0.7122443652147492,
-        "H32_current_future_linear_last": 0.7129896353601908
+      "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+      "at_cst": "2026-10-06T14:00:16.204406+08:00",
+      "elapsed_seconds": 8905.029499736149,
+      "metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.01609419612012,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.4176452257408414,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.3837843789729,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.2818113790413577,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.072659849394405,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.0352345007983885,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.86636093627918,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 1.0875033617715957,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 70.02238137014503,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.7897881922557275,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "all_five_plus_two": false,
+      "selected_model": {
+        "selected_candidate": "H3_current_future_mlp_best",
+        "selected_arm": "H3_current_future_mlp",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "H3_current_future_mlp_best": 0.7461261775861118,
+          "H32_current_future_mlp_best": 0.7461261775861118,
+          "H3_current_future_linear_best": 0.7461261775861118,
+          "H32_current_future_linear_best": 0.7461261775861118,
+          "H3_current_future_mlp_last": 0.6952040013199479,
+          "H32_current_future_mlp_last": 0.7011363658972538,
+          "H3_current_future_linear_last": 0.7122443652147492,
+          "H32_current_future_linear_last": 0.7129896353601908
+        },
+        "native_metrics_completed": false
       },
-      "native_metrics_completed": false
+      "cleaned_own_unused_weights": [
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+          "bytes": 21368
+        }
+      ]
     },
     "last_events": [
-      {
-        "stage": "FIT_FULL_ACTUAL_TRAINING_PASS",
-        "at_cst": "2026-10-06T11:32:08.026907+08:00",
-        "elapsed_seconds": 16.8519944162108
-      },
       {
         "stage": "FULL98_BEST",
         "at_cst": "2026-10-06T11:32:08.029278+08:00",
@@ -209,6 +299,131 @@
           "H32_current_future_linear_last": 0.7129896353601908
         },
         "native_metrics_completed": false
+      },
+      {
+        "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+        "at_cst": "2026-10-06T14:00:16.204406+08:00",
+        "elapsed_seconds": 8905.029499736149,
+        "metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "selected_model": {
+          "selected_candidate": "H3_current_future_mlp_best",
+          "selected_arm": "H3_current_future_mlp",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+          "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "H3_current_future_mlp_best": 0.7461261775861118,
+            "H32_current_future_mlp_best": 0.7461261775861118,
+            "H3_current_future_linear_best": 0.7461261775861118,
+            "H32_current_future_linear_best": 0.7461261775861118,
+            "H3_current_future_mlp_last": 0.6952040013199479,
+            "H32_current_future_mlp_last": 0.7011363658972538,
+            "H3_current_future_linear_last": 0.7122443652147492,
+            "H32_current_future_linear_last": 0.7129896353601908
+          },
+          "native_metrics_completed": false
+        },
+        "cleaned_own_unused_weights": [
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+            "bytes": 21368
+          }
+        ]
       }
     ],
     "last_wave_workers": [
@@ -907,76 +1122,118 @@
       "native_metrics_completed": false
     },
     "native_progress": {
-      "stage": "LASHER_SHARDS",
-      "at_cst": "2026-10-06T12:49:03.047485+08:00",
-      "children": [
+      "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+      "at_cst": "2026-10-06T14:00:16.189296+08:00",
+      "completed": true,
+      "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+      "five_metrics": [
         {
-          "gpu": 0,
-          "pid": 3933618
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.01609419612012,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.4176452257408414,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
         },
         {
-          "gpu": 1,
-          "pid": 3933619
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.3837843789729,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.2818113790413577,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
         },
         {
-          "gpu": 2,
-          "pid": 3933621
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.072659849394405,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.0352345007983885,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
         },
         {
-          "gpu": 3,
-          "pid": 3933622
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.86636093627918,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 1.0875033617715957,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 70.02238137014503,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.7897881922557275,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
         }
-      ]
+      ],
+      "all_five_plus_two": false,
+      "complete_attribute_settings": 31,
+      "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+      "not_training_seed_stability": true
+    },
+    "complete_native_metrics": {
+      "completed": true,
+      "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.01609419612012,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.4176452257408414,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.3837843789729,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.2818113790413577,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.072659849394405,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.0352345007983885,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.86636093627918,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 1.0875033617715957,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 70.02238137014503,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.7897881922557275,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "all_five_plus_two": false,
+      "complete_attribute_settings": 31,
+      "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+      "not_training_seed_stability": true
     },
     "native_last_events": [
-      {
-        "stage": "LASHER_SANITY",
-        "at_cst": "2026-10-06T12:48:43.756432+08:00",
-        "children": [
-          {
-            "gpu": 0,
-            "pid": 3932262
-          },
-          {
-            "gpu": 1,
-            "pid": 3932263
-          },
-          {
-            "gpu": 2,
-            "pid": 3932264
-          },
-          {
-            "gpu": 3,
-            "pid": 3932265
-          }
-        ]
-      },
-      {
-        "stage": "LASHER_SANITY_PASS",
-        "at_cst": "2026-10-06T12:48:53.488642+08:00"
-      },
-      {
-        "stage": "RGBT234_SANITY",
-        "at_cst": "2026-10-06T12:48:53.491292+08:00",
-        "children": [
-          {
-            "gpu": 0,
-            "pid": 3932931
-          },
-          {
-            "gpu": 1,
-            "pid": 3932932
-          },
-          {
-            "gpu": 2,
-            "pid": 3932933
-          },
-          {
-            "gpu": 3,
-            "pid": 3932934
-          }
-        ]
-      },
       {
         "stage": "RGBT234_SANITY_PASS",
         "at_cst": "2026-10-06T12:49:03.045147+08:00"
@@ -1002,16 +1259,210 @@
             "pid": 3933622
           }
         ]
+      },
+      {
+        "stage": "LASHER_SHARDS_PASS",
+        "at_cst": "2026-10-06T13:37:14.671322+08:00"
+      },
+      {
+        "stage": "RGBT234_SHARDS",
+        "at_cst": "2026-10-06T13:37:14.673937+08:00",
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 4014763
+          },
+          {
+            "gpu": 1,
+            "pid": 4014764
+          },
+          {
+            "gpu": 2,
+            "pid": 4014765
+          },
+          {
+            "gpu": 3,
+            "pid": 4014766
+          }
+        ]
+      },
+      {
+        "stage": "RGBT234_SHARDS_PASS",
+        "at_cst": "2026-10-06T13:57:13.398379+08:00"
+      },
+      {
+        "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+        "at_cst": "2026-10-06T13:59:09.280595+08:00",
+        "dataset": "lasher",
+        "metrics": {
+          "NPR": 74.3837843789729,
+          "PR": 78.01609419612012,
+          "SR": 62.072659849394405
+        }
+      },
+      {
+        "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+        "at_cst": "2026-10-06T14:00:16.188890+08:00",
+        "dataset": "rgbt234",
+        "metrics": {
+          "MPR": 92.86636093627918,
+          "MSR": 70.02238137014503
+        }
+      },
+      {
+        "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+        "at_cst": "2026-10-06T14:00:16.189296+08:00",
+        "completed": true,
+        "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+        "five_metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "complete_attribute_settings": 31,
+        "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+        "not_training_seed_stability": true
       }
     ],
-    "GPU_memory_utilization_only": "0, 1180 MiB, 24576 MiB, 30 %\n1, 851 MiB, 24576 MiB, 29 %\n2, 851 MiB, 24576 MiB, 40 %\n3, 851 MiB, 24576 MiB, 27 %\n"
+    "native_wave_workers": [
+      {
+        "gpu": 0,
+        "pid": 4014763,
+        "process": {
+          "pid": 4014763,
+          "alive": false,
+          "state": "ABSENT"
+        }
+      },
+      {
+        "gpu": 1,
+        "pid": 4014764,
+        "process": {
+          "pid": 4014764,
+          "alive": false,
+          "state": "ABSENT"
+        }
+      },
+      {
+        "gpu": 2,
+        "pid": 4014765,
+        "process": {
+          "pid": 4014765,
+          "alive": false,
+          "state": "ABSENT"
+        }
+      },
+      {
+        "gpu": 3,
+        "pid": 4014766,
+        "process": {
+          "pid": 4014766,
+          "alive": false,
+          "state": "ABSENT"
+        }
+      }
+    ],
+    "native_shard_artifact_progress": {
+      "lasher/gpu0": {
+        "written_sequence_files": 64,
+        "completed": true,
+        "sequences": 64,
+        "frames": 56764
+      },
+      "lasher/gpu1": {
+        "written_sequence_files": 55,
+        "completed": true,
+        "sequences": 55,
+        "frames": 53427
+      },
+      "lasher/gpu2": {
+        "written_sequence_files": 52,
+        "completed": true,
+        "sequences": 52,
+        "frames": 54841
+      },
+      "lasher/gpu3": {
+        "written_sequence_files": 74,
+        "completed": true,
+        "sequences": 74,
+        "frames": 55671
+      },
+      "rgbt234/gpu0": {
+        "written_sequence_files": 79,
+        "completed": true,
+        "sequences": 79,
+        "frames": 29838
+      },
+      "rgbt234/gpu1": {
+        "written_sequence_files": 46,
+        "completed": true,
+        "sequences": 46,
+        "frames": 28487
+      },
+      "rgbt234/gpu2": {
+        "written_sequence_files": 48,
+        "completed": true,
+        "sequences": 48,
+        "frames": 29032
+      },
+      "rgbt234/gpu3": {
+        "written_sequence_files": 61,
+        "completed": true,
+        "sequences": 61,
+        "frames": 29292
+      }
+    },
+    "GPU_memory_utilization_only": "0, 349 MiB, 24576 MiB, 0 %\n1, 20 MiB, 24576 MiB, 0 %\n2, 20 MiB, 24576 MiB, 0 %\n3, 20 MiB, 24576 MiB, 0 %\n"
   },
-  "new_native_metrics_completed": false,
+  "new_native_metrics_completed": true,
   "all_five_plus_two": false,
   "previous_completed_native": "refine-logs/runs/selective_state_commit/native_complete_summary.json",
   "source_and_cpu_acceptance": "PASS; same-family source provisional; actual deployed CPU witness passed",
   "scope": "C extension only; existing A/B/C parent and complete GOLA/C1 active/frozen; real four-card inference, no filler allocation",
-  "next_check_cst": "2026-10-06T13:31:03.047485+08:00",
+  "next_check_cst": null,
   "poll_seconds": 240,
   "sole_passive_observer": {
     "observer_pid": 14340,
@@ -1025,7 +1476,9 @@
       "FULL98_LAST": 2340,
       "LASHER_SHARDS": 2700,
       "RGBT234_SHARDS": 1200
-    }
+    },
+    "status": "CLOSED_EXIT0",
+    "next_inspection_cst": null
   },
   "closed_fit_CPU_diagnosis": {
     "status": "COMPLETED_FIT_ENDPOINT_CPU_AUDIT",
@@ -1076,5 +1529,129 @@
     "native_metrics_completed": false
   },
   "new_C_training_gain": false,
-  "all_four_last_vs_GOLA_CIs_negative": true
+  "all_four_last_vs_GOLA_CIs_negative": true,
+  "observed_at_cst": "2026-10-06T14:02:18.740248+08:00",
+  "new_five_metrics": [
+    {
+      "dataset": "lasher",
+      "metric": "PR",
+      "baseline": 76.59844897037928,
+      "c1": 77.86097272569167,
+      "old4": 78.09777783730206,
+      "gross_parent": 78.01609419612012,
+      "state_commit": 78.01609419612012,
+      "delta_vs_baseline_pp": 1.4176452257408414,
+      "delta_ci_low_pp": 0.5736352656394301,
+      "delta_ci_high_pp": 2.412107920388264,
+      "target_baseline_plus_two": 78.59844897037928,
+      "remaining_to_target_pp": 0.5823547742591586
+    },
+    {
+      "dataset": "lasher",
+      "metric": "NPR",
+      "baseline": 73.10197299993155,
+      "c1": 74.15451765370953,
+      "old4": 74.45735525847881,
+      "gross_parent": 74.3837843789729,
+      "state_commit": 74.3837843789729,
+      "delta_vs_baseline_pp": 1.2818113790413577,
+      "delta_ci_low_pp": 0.51625451904097,
+      "delta_ci_high_pp": 2.166425679210014,
+      "target_baseline_plus_two": 75.10197299993155,
+      "remaining_to_target_pp": 0.7181886209586423
+    },
+    {
+      "dataset": "lasher",
+      "metric": "SR",
+      "baseline": 61.03742534859602,
+      "c1": 61.951313680271845,
+      "old4": 62.12706332333795,
+      "gross_parent": 62.072659849394405,
+      "state_commit": 62.072659849394405,
+      "delta_vs_baseline_pp": 1.0352345007983885,
+      "delta_ci_low_pp": 0.4159219746358212,
+      "delta_ci_high_pp": 1.7450956597228018,
+      "target_baseline_plus_two": 63.03742534859602,
+      "remaining_to_target_pp": 0.9647654992016115
+    },
+    {
+      "dataset": "rgbt234",
+      "metric": "MPR",
+      "baseline": 91.77885757450758,
+      "c1": 91.81700889694795,
+      "old4": 92.13340500935078,
+      "gross_parent": 92.86636093627918,
+      "state_commit": 92.86636093627918,
+      "delta_vs_baseline_pp": 1.0875033617715957,
+      "delta_ci_low_pp": -0.31078425237390683,
+      "delta_ci_high_pp": 2.5908441816928356,
+      "target_baseline_plus_two": 93.77885757450758,
+      "remaining_to_target_pp": 0.9124966382284043
+    },
+    {
+      "dataset": "rgbt234",
+      "metric": "MSR",
+      "baseline": 69.2325931778893,
+      "c1": 69.2340473415621,
+      "old4": 69.57809745628578,
+      "gross_parent": 70.02238137014503,
+      "state_commit": 70.02238137014503,
+      "delta_vs_baseline_pp": 0.7897881922557275,
+      "delta_ci_low_pp": -0.053605273245573064,
+      "delta_ci_high_pp": 1.716406244906392,
+      "target_baseline_plus_two": 71.2325931778893,
+      "remaining_to_target_pp": 1.2102118077442725
+    }
+  ],
+  "active_NN_jobs": 0,
+  "actual_unused_own_weight_cleanup": {
+    "removed": [
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+        "bytes": 482346
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+        "bytes": 482346
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+        "bytes": 21368
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+        "bytes": 21368
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+        "bytes": 482346
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+        "bytes": 482346
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+        "bytes": 482346
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+        "bytes": 21368
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+        "bytes": 21368
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+        "bytes": 21368
+      },
+      {
+        "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+        "bytes": 21368
+      }
+    ],
+    "kept": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+    "old4_and_all_dependencies_preserved": true
+  }
 }

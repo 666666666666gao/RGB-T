@@ -6395,7 +6395,7 @@
       "note": "Useful independent workloads; bestsinglemodelacceptance unchanged; retask completedcards to pendingmatchedcontrols",
       "GPU0": "locked LasHeR full formal evaluation"
     },
-    "queued_successor": "Original3801966: four60/840 and eight complete full98; all trainedlast negative. ONEepoch0 locked, both native fullmetrics running in original pipeline; no unchanged C917 re-fit scheduled.",
+    "queued_successor": "Candidate relation ABC preparation in isolated worktree; source-only PASS, no GPU training or full pipeline acceptance yet.",
     "thermal_power_constraints": {
       "authority": "不管功率和温度了",
       "stopped_utc": "2026-10-03T23:55:19.611511+08:00",
@@ -6408,38 +6408,19 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "scope": "Dated native shard launch, not current live-process verification",
-      "at_cst": "2026-10-06T12:49:03.047485+08:00",
-      "stage": "LASHER_SHARDS",
-      "workers": [
-        {
-          "gpu": 0,
-          "pid": 3933618
-        },
-        {
-          "gpu": 1,
-          "pid": 3933619
-        },
-        {
-          "gpu": 2,
-          "pid": 3933621
-        },
-        {
-          "gpu": 3,
-          "pid": 3933622
-        }
-      ]
+      "stage": "ORIGINAL_PIPELINE_COMPLETE",
+      "active_original_NN_jobs": 0
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
-      "current_stage": "LASHER_NATIVE_SHARDS_AT_LAST_OBSERVATION",
+      "current_stage": "ORIGINAL_PIPELINE_COMPLETE",
       "train_batch_planned": 128,
       "source_review": "PASS same-family/provisional",
       "M0_real_query_runtime_pass": true,
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-06T13:31:03.047485+08:00",
+    "next_check_cst": null,
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7033,7 +7014,9 @@
         "FULL98_LAST": 2340,
         "LASHER_SHARDS": 2700,
         "RGBT234_SHARDS": 1200
-      }
+      },
+      "status": "CLOSED_EXIT0",
+      "next_inspection_cst": null
     }
   },
   "model_selection": {
@@ -7044,7 +7027,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T13:14:01.422464+08:00",
+  "updated_cst": "2026-10-06T14:17:32.093926+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11180,7 +11163,17 @@
     },
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
-  "current_execution_authority": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
+  "current_execution_authority": {
+    "updated_cst": "2026-10-06T14:17:32.093926+08:00",
+    "authoritative_snapshot": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
+    "pipeline_pid": 3801966,
+    "pipeline_complete": true,
+    "active_NN_jobs": 0,
+    "sole_observer_closed_exit0": true,
+    "new_native_metrics_complete": true,
+    "actual_completed_report": "refine-logs/runs/state_commit_current_future/complete/training/native/complete_metrics.json",
+    "warning": "Original jobs and observer CLOSED. Eleven owned unused weights retired. Epoch0 equals gross parent; no learned C benefit; five +2 unmet. Do not rerun unchanged jobs."
+  },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
     "collection": {
@@ -33517,18 +33510,1487 @@
     }
   },
   "current_state_commit_reward_alignment": {
-    "status": "ALL_FOUR60_840_FITS_AND_EIGHT_FULL98_COMPLETE; ALL_LAST_NEGATIVE; ONE_EPOCH0_LOCKED; BOTH_NATIVE_PENDING; GOAL_UNMET",
-    "updated_cst": "2026-10-06T13:14:01.422464+08:00",
-    "evidence": "refine-logs/runs/state_commit_current_future/current_execution_snapshot.json",
-    "controller_pid": 3801966,
-    "reward": "current IoU + known future mean IoU; original default retained",
-    "actual_four_fits": "60epochs/840updates each; all cached best epoch0; complete endpoints also queued full98",
-    "new_native_metrics_completed": false,
+    "status": "COMPLETE_FULL_TRAINING_EIGHT_FULL98_BOTH_NATIVE_FIVE_METRICS; GOAL_UNMET",
+    "updated_cst": "2026-10-06T14:17:32.093926+08:00",
+    "launch": {
+      "pid": 3801966,
+      "output": "/data/gb/outputs/state_commit_current_future_20261006",
+      "log": "/data/gb/setup/state_commit_current_future_20261006.log",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "scripts/run_selective_state_training.py",
+        "--collection",
+        "/data/gb/outputs/selective_state_collection_20261006",
+        "--collection-launch",
+        "/data/gb/setup/selective_state_collection_launch_20261006.json",
+        "--review",
+        "/data/gb/GOLA/refine-logs/runs/state_commit_current_future/source_review.json",
+        "--output",
+        "/data/gb/outputs/state_commit_current_future_20261006",
+        "--reward",
+        "current_future"
+      ],
+      "at_cst": "2026-10-06T11:31:51.145210+08:00",
+      "stage": "LAUNCHED_SANITY_THEN_FOUR60_EPOCH_FITS_EIGHT_FULL98_BOTH_NATIVE",
+      "optimizer_updates_observed": 0,
+      "formal_metrics_completed": false,
+      "collection_reused_without_NN_replay": true,
+      "disk_available_bytes": 2667682975744,
+      "poll_seconds": 240,
+      "estimate_minutes": 150,
+      "first_full98_observation_after_minutes": 35,
+      "selection_protocol": "Four fits each60epochs/840updates, cached-best and last all8 full98, one locked weight both native TEST, all5+31attributes/paired5000, retire11 own unused weights afterwards",
+      "desktop_service_preserved": {
+        "pid": 3494704,
+        "memory_MiB": 312
+      },
+      "power_temperature_queried_or_set": false
+    },
+    "current_observed_state": {
+      "observed_at_cst": "2026-10-06T14:02:18.740248+08:00",
+      "owner": {
+        "pid": 3801966,
+        "alive": false,
+        "state": "ABSENT"
+      },
+      "progress": {
+        "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+        "at_cst": "2026-10-06T14:00:16.204406+08:00",
+        "elapsed_seconds": 8905.029499736149,
+        "metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "selected_model": {
+          "selected_candidate": "H3_current_future_mlp_best",
+          "selected_arm": "H3_current_future_mlp",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+          "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "H3_current_future_mlp_best": 0.7461261775861118,
+            "H32_current_future_mlp_best": 0.7461261775861118,
+            "H3_current_future_linear_best": 0.7461261775861118,
+            "H32_current_future_linear_best": 0.7461261775861118,
+            "H3_current_future_mlp_last": 0.6952040013199479,
+            "H32_current_future_mlp_last": 0.7011363658972538,
+            "H3_current_future_linear_last": 0.7122443652147492,
+            "H32_current_future_linear_last": 0.7129896353601908
+          },
+          "native_metrics_completed": false
+        },
+        "cleaned_own_unused_weights": [
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+            "bytes": 482346
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+            "bytes": 21368
+          },
+          {
+            "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+            "bytes": 21368
+          }
+        ]
+      },
+      "last_events": [
+        {
+          "stage": "FULL98_BEST",
+          "at_cst": "2026-10-06T11:32:08.029278+08:00",
+          "elapsed_seconds": 16.85436635138467,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3803085
+            },
+            {
+              "gpu": 1,
+              "pid": 3803086
+            },
+            {
+              "gpu": 2,
+              "pid": 3803087
+            },
+            {
+              "gpu": 3,
+              "pid": 3803088
+            }
+          ]
+        },
+        {
+          "stage": "FULL98_BEST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:07:46.073416+08:00",
+          "elapsed_seconds": 2154.8985196063295,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_BEST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:07:46.076236+08:00",
+          "elapsed_seconds": 2154.9013255853206,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_BEST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:09:56.389369+08:00",
+          "elapsed_seconds": 2285.214471273124,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_BEST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:09:56.389897+08:00",
+          "elapsed_seconds": 2285.214985629078,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST",
+          "at_cst": "2026-10-06T12:09:56.393785+08:00",
+          "elapsed_seconds": 2285.2188741932623,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3867094
+            },
+            {
+              "gpu": 1,
+              "pid": 3867095
+            },
+            {
+              "gpu": 2,
+              "pid": 3867096
+            },
+            {
+              "gpu": 3,
+              "pid": 3867097
+            }
+          ]
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:46:13.257499+08:00",
+          "elapsed_seconds": 4462.0826016650535,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:46:14.578883+08:00",
+          "elapsed_seconds": 4463.403981107287,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:47:43.366209+08:00",
+          "elapsed_seconds": 4552.191311247181,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "FULL98_LAST_WORKER_ENDED",
+          "at_cst": "2026-10-06T12:47:43.366697+08:00",
+          "elapsed_seconds": 4552.1917857909575,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "COMPLETE_FOUR60_EPOCH_FITS_FULL98_ONE_MODEL_LOCKED",
+          "at_cst": "2026-10-06T12:48:41.788337+08:00",
+          "elapsed_seconds": 4610.6134310513735,
+          "selected_candidate": "H3_current_future_mlp_best",
+          "selected_arm": "H3_current_future_mlp",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+          "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "H3_current_future_mlp_best": 0.7461261775861118,
+            "H32_current_future_mlp_best": 0.7461261775861118,
+            "H3_current_future_linear_best": 0.7461261775861118,
+            "H32_current_future_linear_best": 0.7461261775861118,
+            "H3_current_future_mlp_last": 0.6952040013199479,
+            "H32_current_future_mlp_last": 0.7011363658972538,
+            "H3_current_future_linear_last": 0.7122443652147492,
+            "H32_current_future_linear_last": 0.7129896353601908
+          },
+          "native_metrics_completed": false
+        },
+        {
+          "stage": "COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS",
+          "at_cst": "2026-10-06T14:00:16.204406+08:00",
+          "elapsed_seconds": 8905.029499736149,
+          "metrics": [
+            {
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.01609419612012,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.4176452257408414,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.3837843789729,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.2818113790413577,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.072659849394405,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.0352345007983885,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.86636093627918,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 1.0875033617715957,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 70.02238137014503,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.7897881922557275,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
+            }
+          ],
+          "all_five_plus_two": false,
+          "selected_model": {
+            "selected_candidate": "H3_current_future_mlp_best",
+            "selected_arm": "H3_current_future_mlp",
+            "selected_checkpoint": "best",
+            "selected_epoch": 0,
+            "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+            "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+            "search_value": "gross",
+            "same_checkpoint_both_native_datasets": true,
+            "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+            "sequence_mean_iou": {
+              "baseline": 0.7432785069707898,
+              "c1": 0.7394401616015396,
+              "old4": 0.745906102961742,
+              "gross_parent": 0.7461261775861118,
+              "H3_current_future_mlp_best": 0.7461261775861118,
+              "H32_current_future_mlp_best": 0.7461261775861118,
+              "H3_current_future_linear_best": 0.7461261775861118,
+              "H32_current_future_linear_best": 0.7461261775861118,
+              "H3_current_future_mlp_last": 0.6952040013199479,
+              "H32_current_future_mlp_last": 0.7011363658972538,
+              "H3_current_future_linear_last": 0.7122443652147492,
+              "H32_current_future_linear_last": 0.7129896353601908
+            },
+            "native_metrics_completed": false
+          },
+          "cleaned_own_unused_weights": [
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+              "bytes": 482346
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+              "bytes": 482346
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+              "bytes": 21368
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+              "bytes": 21368
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+              "bytes": 482346
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+              "bytes": 482346
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+              "bytes": 482346
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+              "bytes": 21368
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+              "bytes": 21368
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+              "bytes": 21368
+            },
+            {
+              "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+              "bytes": 21368
+            }
+          ]
+        }
+      ],
+      "last_wave_workers": [
+        {
+          "gpu": 0,
+          "pid": 3867094,
+          "process": {
+            "pid": 3867094,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 1,
+          "pid": 3867095,
+          "process": {
+            "pid": 3867095,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 2,
+          "pid": 3867096,
+          "process": {
+            "pid": 3867096,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 3,
+          "pid": 3867097,
+          "process": {
+            "pid": 3867097,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        }
+      ],
+      "actual_fits": [
+        {
+          "stage": "fit_sanity",
+          "arm": "H32_current_future_linear",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 2,
+            "optimizer_updates": 2,
+            "best_epoch": 1,
+            "best_validation": {
+              "event_weighted_utility": 1.4974919557571411,
+              "event_weighted_utility_advantage": 0.0027058087289333344,
+              "event_weighted_mean_iou": 0.7463091015815735,
+              "changed_queries": 55,
+              "harmful_future_queries": 21,
+              "beneficial_future_queries": 32,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.002705813135009235
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": null,
+            "last_strict_reload_pass": false,
+            "peak_allocated_bytes": 70600704,
+            "elapsed_seconds": 0.12404522020369768
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear",
+            "horizon": 32,
+            "lost_penalty": 0.0,
+            "epochs": 2,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "linear",
+            "sanity": true,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 8,
+            "train_sequences_with_known_future": 3,
+            "full_corpus_train_queries_with_known_future": 1689,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 4588,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 2
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "H32_current_future_mlp",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 2,
+            "optimizer_updates": 2,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.494786024093628,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7436866164207458,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight",
+              "net.3.bias",
+              "net.3.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias",
+              "net.3.weight",
+              "net.3.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": null,
+            "last_strict_reload_pass": false,
+            "peak_allocated_bytes": 73969664,
+            "elapsed_seconds": 0.12365190824493766
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp",
+            "horizon": 32,
+            "lost_penalty": 0.0,
+            "epochs": 2,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "mlp",
+            "sanity": true,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 8,
+            "train_sequences_with_known_future": 3,
+            "full_corpus_train_queries_with_known_future": 1689,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 119725,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 2
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "H3_current_future_linear",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 2,
+            "optimizer_updates": 2,
+            "best_epoch": 1,
+            "best_validation": {
+              "event_weighted_utility": 1.4953917264938354,
+              "event_weighted_utility_advantage": 0.0010442235507071018,
+              "event_weighted_mean_iou": 0.7458854913711548,
+              "changed_queries": 55,
+              "harmful_future_queries": 23,
+              "beneficial_future_queries": 30,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0010442281840923034
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": null,
+            "last_strict_reload_pass": false,
+            "peak_allocated_bytes": 70600704,
+            "elapsed_seconds": 0.1255867499858141
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear",
+            "horizon": 3,
+            "lost_penalty": 0.0,
+            "epochs": 2,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "linear",
+            "sanity": true,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 8,
+            "train_sequences_with_known_future": 3,
+            "full_corpus_train_queries_with_known_future": 1691,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 4588,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 2
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "H3_current_future_mlp",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 2,
+            "optimizer_updates": 2,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.4943474531173706,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7451024055480957,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight",
+              "net.3.bias",
+              "net.3.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias",
+              "net.3.weight",
+              "net.3.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": null,
+            "last_strict_reload_pass": false,
+            "peak_allocated_bytes": 73969664,
+            "elapsed_seconds": 0.12465723976492882
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp",
+            "horizon": 3,
+            "lost_penalty": 0.0,
+            "epochs": 2,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "mlp",
+            "sanity": true,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 8,
+            "train_sequences_with_known_future": 3,
+            "full_corpus_train_queries_with_known_future": 1691,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 119725,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 2
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "H32_current_future_linear",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 60,
+            "optimizer_updates": 840,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.494786024093628,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7436866164207458,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": 60,
+            "last_strict_reload_pass": true,
+            "peak_allocated_bytes": 91829760,
+            "elapsed_seconds": 2.4166664136573672
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear",
+            "horizon": 32,
+            "lost_penalty": 0.0,
+            "epochs": 60,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "linear",
+            "sanity": false,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 1689,
+            "train_sequences_with_known_future": 879,
+            "full_corpus_train_queries_with_known_future": 1689,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 4588,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 840
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "H32_current_future_mlp",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 60,
+            "optimizer_updates": 840,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.494786024093628,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7436866164207458,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight",
+              "net.3.bias",
+              "net.3.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias",
+              "net.3.weight",
+              "net.3.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": 60,
+            "last_strict_reload_pass": true,
+            "peak_allocated_bytes": 94323200,
+            "elapsed_seconds": 3.057661463972181
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp",
+            "horizon": 32,
+            "lost_penalty": 0.0,
+            "epochs": 60,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "mlp",
+            "sanity": false,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 1689,
+            "train_sequences_with_known_future": 879,
+            "full_corpus_train_queries_with_known_future": 1689,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 119725,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 840
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "H3_current_future_linear",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 60,
+            "optimizer_updates": 840,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.4943474531173706,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7451024055480957,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": 60,
+            "last_strict_reload_pass": true,
+            "peak_allocated_bytes": 91829760,
+            "elapsed_seconds": 2.5396897923201323
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear",
+            "horizon": 3,
+            "lost_penalty": 0.0,
+            "epochs": 60,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "linear",
+            "sanity": false,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 1691,
+            "train_sequences_with_known_future": 881,
+            "full_corpus_train_queries_with_known_future": 1691,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 4588,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 840
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "H3_current_future_mlp",
+          "training": {
+            "status": "COMPLETE_FULL_C_EXTENSION_TRAINING",
+            "epochs": 60,
+            "optimizer_updates": 840,
+            "best_epoch": 0,
+            "best_validation": {
+              "event_weighted_utility": 1.4943474531173706,
+              "event_weighted_utility_advantage": 0.0,
+              "event_weighted_mean_iou": 0.7451024055480957,
+              "changed_queries": 0,
+              "harmful_future_queries": 0,
+              "beneficial_future_queries": 0,
+              "geometry_holds": 0,
+              "event_weighted_current_iou_advantage": 0.0,
+              "event_weighted_future_iou_advantage": 0.0
+            },
+            "M0_parent_exact": true,
+            "actual_gradient_parameters": [
+              "net.0.bias",
+              "net.0.weight",
+              "net.1.bias",
+              "net.1.weight",
+              "net.3.bias",
+              "net.3.weight"
+            ],
+            "actual_changed_parameters": [
+              "net.0.weight",
+              "net.0.bias",
+              "net.1.weight",
+              "net.1.bias",
+              "net.3.weight",
+              "net.3.bias"
+            ],
+            "strict_reload_pass": true,
+            "last_epoch": 60,
+            "last_strict_reload_pass": true,
+            "peak_allocated_bytes": 94323200,
+            "elapsed_seconds": 3.0908463886007667
+          },
+          "config": {
+            "collection": "/data/gb/outputs/selective_state_collection_20261006",
+            "output": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp",
+            "horizon": 3,
+            "lost_penalty": 0.0,
+            "epochs": 60,
+            "batch": 128,
+            "lr": 0.001,
+            "seed": 42,
+            "reward": "current_future",
+            "head_architecture": "mlp",
+            "sanity": false,
+            "module": "selective_state_commit_refined",
+            "features": 917,
+            "threshold": 0.03,
+            "train_queries_with_known_future": 1691,
+            "train_sequences_with_known_future": 881,
+            "full_corpus_train_queries_with_known_future": 1691,
+            "validation_queries": 98,
+            "validation_sequences": 98,
+            "event_weighting": "Inverse query count within actual event, normalized to global mean1; equal event mass",
+            "trained_parameters": 119725,
+            "frozen_A_B_C_parent": true,
+            "scope": "C extension trained on causal protected-old4/gross TRAIN states; future continuation frozen parent",
+            "required_optimizer_updates": 840
+          }
+        }
+      ],
+      "completed_full98": {
+        "H32_current_future_linear_best": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H32_current_future_linear_last": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H32_current_future_mlp_best": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H32_current_future_mlp_last": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H3_current_future_linear_best": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H3_current_future_linear_last": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H3_current_future_mlp_best": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        },
+        "H3_current_future_mlp_last": {
+          "completed": true,
+          "sequences": 98,
+          "frames": 49418,
+          "smoke_only": true
+        }
+      },
+      "partial_full98_prediction_counts": {
+        "H32_current_future_linear_best": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H32_current_future_linear_last": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H32_current_future_mlp_best": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H32_current_future_mlp_last": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H3_current_future_linear_best": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H3_current_future_linear_last": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H3_current_future_mlp_best": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        },
+        "H3_current_future_mlp_last": {
+          "written_sequence_files": 98,
+          "written_prediction_rows": 49418,
+          "scope": "Progress only; files are written after each sequence, not a whole-run completion or benchmark score"
+        }
+      },
+      "scope": "Read-only existing pipeline and actual artifacts, GPU memory/utilization only; no NN/report replay",
+      "selection": {
+        "selected_candidate": "H3_current_future_mlp_best",
+        "selected_arm": "H3_current_future_mlp",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "state_commit_model": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+        "parent_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "selection_scope": "One best among eight checkpoints: cached best and full60 endpoint of four configs, by full98 developer sequence IoU before native TEST; not seed stability or untouched confirmation",
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "H3_current_future_mlp_best": 0.7461261775861118,
+          "H32_current_future_mlp_best": 0.7461261775861118,
+          "H3_current_future_linear_best": 0.7461261775861118,
+          "H32_current_future_linear_best": 0.7461261775861118,
+          "H3_current_future_mlp_last": 0.6952040013199479,
+          "H32_current_future_mlp_last": 0.7011363658972538,
+          "H3_current_future_linear_last": 0.7122443652147492,
+          "H32_current_future_linear_last": 0.7129896353601908
+        },
+        "native_metrics_completed": false
+      },
+      "native_progress": {
+        "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+        "at_cst": "2026-10-06T14:00:16.189296+08:00",
+        "completed": true,
+        "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+        "five_metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "complete_attribute_settings": 31,
+        "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+        "not_training_seed_stability": true
+      },
+      "complete_native_metrics": {
+        "completed": true,
+        "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+        "five_metrics": [
+          {
+            "dataset": "lasher",
+            "metric": "PR",
+            "percent": 78.01609419612012,
+            "baseline_percent": 76.59844897037928,
+            "delta_vs_baseline_pp": 1.4176452257408414,
+            "target_percent": 78.59844897037928,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "NPR",
+            "percent": 74.3837843789729,
+            "baseline_percent": 73.10197299993155,
+            "delta_vs_baseline_pp": 1.2818113790413577,
+            "target_percent": 75.10197299993155,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "lasher",
+            "metric": "SR",
+            "percent": 62.072659849394405,
+            "baseline_percent": 61.03742534859602,
+            "delta_vs_baseline_pp": 1.0352345007983885,
+            "target_percent": 63.03742534859602,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MPR",
+            "percent": 92.86636093627918,
+            "baseline_percent": 91.77885757450758,
+            "delta_vs_baseline_pp": 1.0875033617715957,
+            "target_percent": 93.77885757450758,
+            "meets_plus_two": false
+          },
+          {
+            "dataset": "rgbt234",
+            "metric": "MSR",
+            "percent": 70.02238137014503,
+            "baseline_percent": 69.2325931778893,
+            "delta_vs_baseline_pp": 0.7897881922557275,
+            "target_percent": 71.2325931778893,
+            "meets_plus_two": false
+          }
+        ],
+        "all_five_plus_two": false,
+        "complete_attribute_settings": 31,
+        "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+        "not_training_seed_stability": true
+      },
+      "native_last_events": [
+        {
+          "stage": "RGBT234_SANITY_PASS",
+          "at_cst": "2026-10-06T12:49:03.045147+08:00"
+        },
+        {
+          "stage": "LASHER_SHARDS",
+          "at_cst": "2026-10-06T12:49:03.047485+08:00",
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 3933618
+            },
+            {
+              "gpu": 1,
+              "pid": 3933619
+            },
+            {
+              "gpu": 2,
+              "pid": 3933621
+            },
+            {
+              "gpu": 3,
+              "pid": 3933622
+            }
+          ]
+        },
+        {
+          "stage": "LASHER_SHARDS_PASS",
+          "at_cst": "2026-10-06T13:37:14.671322+08:00"
+        },
+        {
+          "stage": "RGBT234_SHARDS",
+          "at_cst": "2026-10-06T13:37:14.673937+08:00",
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 4014763
+            },
+            {
+              "gpu": 1,
+              "pid": 4014764
+            },
+            {
+              "gpu": 2,
+              "pid": 4014765
+            },
+            {
+              "gpu": 3,
+              "pid": 4014766
+            }
+          ]
+        },
+        {
+          "stage": "RGBT234_SHARDS_PASS",
+          "at_cst": "2026-10-06T13:57:13.398379+08:00"
+        },
+        {
+          "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+          "at_cst": "2026-10-06T13:59:09.280595+08:00",
+          "dataset": "lasher",
+          "metrics": {
+            "NPR": 74.3837843789729,
+            "PR": 78.01609419612012,
+            "SR": 62.072659849394405
+          }
+        },
+        {
+          "stage": "FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE",
+          "at_cst": "2026-10-06T14:00:16.188890+08:00",
+          "dataset": "rgbt234",
+          "metrics": {
+            "MPR": 92.86636093627918,
+            "MSR": 70.02238137014503
+          }
+        },
+        {
+          "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+          "at_cst": "2026-10-06T14:00:16.189296+08:00",
+          "completed": true,
+          "same_state_commit_model_both_datasets": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+          "five_metrics": [
+            {
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.01609419612012,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.4176452257408414,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.3837843789729,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.2818113790413577,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.072659849394405,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.0352345007983885,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.86636093627918,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 1.0875033617715957,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 70.02238137014503,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.7897881922557275,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
+            }
+          ],
+          "all_five_plus_two": false,
+          "complete_attribute_settings": 31,
+          "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+          "not_training_seed_stability": true
+        }
+      ],
+      "native_wave_workers": [
+        {
+          "gpu": 0,
+          "pid": 4014763,
+          "process": {
+            "pid": 4014763,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 1,
+          "pid": 4014764,
+          "process": {
+            "pid": 4014764,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 2,
+          "pid": 4014765,
+          "process": {
+            "pid": 4014765,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        },
+        {
+          "gpu": 3,
+          "pid": 4014766,
+          "process": {
+            "pid": 4014766,
+            "alive": false,
+            "state": "ABSENT"
+          }
+        }
+      ],
+      "native_shard_artifact_progress": {
+        "lasher/gpu0": {
+          "written_sequence_files": 64,
+          "completed": true,
+          "sequences": 64,
+          "frames": 56764
+        },
+        "lasher/gpu1": {
+          "written_sequence_files": 55,
+          "completed": true,
+          "sequences": 55,
+          "frames": 53427
+        },
+        "lasher/gpu2": {
+          "written_sequence_files": 52,
+          "completed": true,
+          "sequences": 52,
+          "frames": 54841
+        },
+        "lasher/gpu3": {
+          "written_sequence_files": 74,
+          "completed": true,
+          "sequences": 74,
+          "frames": 55671
+        },
+        "rgbt234/gpu0": {
+          "written_sequence_files": 79,
+          "completed": true,
+          "sequences": 79,
+          "frames": 29838
+        },
+        "rgbt234/gpu1": {
+          "written_sequence_files": 46,
+          "completed": true,
+          "sequences": 46,
+          "frames": 28487
+        },
+        "rgbt234/gpu2": {
+          "written_sequence_files": 48,
+          "completed": true,
+          "sequences": 48,
+          "frames": 29032
+        },
+        "rgbt234/gpu3": {
+          "written_sequence_files": 61,
+          "completed": true,
+          "sequences": 61,
+          "frames": 29292
+        }
+      },
+      "GPU_memory_utilization_only": "0, 349 MiB, 24576 MiB, 0 %\n1, 20 MiB, 24576 MiB, 0 %\n2, 20 MiB, 24576 MiB, 0 %\n3, 20 MiB, 24576 MiB, 0 %\n"
+    },
+    "new_native_metrics_completed": true,
     "all_five_plus_two": false,
-    "next_check_cst": "2026-10-06T13:31:03.047485+08:00",
-    "poll_seconds": 240,
-    "scope": "C extension only; existing A/B/C parent and complete GOLA/C1 active/frozen; real four-card inference, no filler allocation",
     "previous_completed_native": "refine-logs/runs/selective_state_commit/native_complete_summary.json",
+    "source_and_cpu_acceptance": "PASS; same-family source provisional; actual deployed CPU witness passed",
+    "scope": "C extension only; existing A/B/C parent and complete GOLA/C1 active/frozen; real four-card inference, no filler allocation",
+    "next_check_cst": null,
+    "poll_seconds": 240,
+    "sole_passive_observer": {
+      "observer_pid": 14340,
+      "pipeline_pid": 3801966,
+      "started_cst": "2026-10-06T11:38:25.285422+08:00",
+      "first_poll_cst": "2026-10-06T12:07:00+08:00",
+      "after_due_interval_seconds": 240,
+      "NN_launch_or_retry": false,
+      "estimates_seconds": {
+        "FULL98_BEST": 2340,
+        "FULL98_LAST": 2340,
+        "LASHER_SHARDS": 2700,
+        "RGBT234_SHARDS": 1200
+      },
+      "status": "CLOSED_EXIT0",
+      "next_inspection_cst": null
+    },
     "closed_fit_CPU_diagnosis": {
       "status": "COMPLETED_FIT_ENDPOINT_CPU_AUDIT",
       "at_cst": "2026-10-06T11:48:34.655819+08:00",
@@ -33550,6 +35012,7 @@
       "new_training_efficacy_established": false,
       "native_accuracy_pending": true
     },
+    "full98_original_report": "refine-logs/runs/state_commit_current_future/sealed_full98/full98_report/full_recoverability_report.json",
     "actual_selection": {
       "selected_candidate": "H3_current_future_mlp_best",
       "selected_arm": "H3_current_future_mlp",
@@ -33576,8 +35039,131 @@
       },
       "native_metrics_completed": false
     },
-    "all_four_last_full98_negative": true,
     "new_C_training_gain": false,
-    "full98_report": "refine-logs/runs/state_commit_current_future/sealed_full98/full98_report/full_recoverability_report.json"
+    "all_four_last_vs_GOLA_CIs_negative": true,
+    "observed_at_cst": "2026-10-06T14:02:18.740248+08:00",
+    "new_five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "baseline": 76.59844897037928,
+        "c1": 77.86097272569167,
+        "old4": 78.09777783730206,
+        "gross_parent": 78.01609419612012,
+        "state_commit": 78.01609419612012,
+        "delta_vs_baseline_pp": 1.4176452257408414,
+        "delta_ci_low_pp": 0.5736352656394301,
+        "delta_ci_high_pp": 2.412107920388264,
+        "target_baseline_plus_two": 78.59844897037928,
+        "remaining_to_target_pp": 0.5823547742591586
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "baseline": 73.10197299993155,
+        "c1": 74.15451765370953,
+        "old4": 74.45735525847881,
+        "gross_parent": 74.3837843789729,
+        "state_commit": 74.3837843789729,
+        "delta_vs_baseline_pp": 1.2818113790413577,
+        "delta_ci_low_pp": 0.51625451904097,
+        "delta_ci_high_pp": 2.166425679210014,
+        "target_baseline_plus_two": 75.10197299993155,
+        "remaining_to_target_pp": 0.7181886209586423
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "baseline": 61.03742534859602,
+        "c1": 61.951313680271845,
+        "old4": 62.12706332333795,
+        "gross_parent": 62.072659849394405,
+        "state_commit": 62.072659849394405,
+        "delta_vs_baseline_pp": 1.0352345007983885,
+        "delta_ci_low_pp": 0.4159219746358212,
+        "delta_ci_high_pp": 1.7450956597228018,
+        "target_baseline_plus_two": 63.03742534859602,
+        "remaining_to_target_pp": 0.9647654992016115
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "baseline": 91.77885757450758,
+        "c1": 91.81700889694795,
+        "old4": 92.13340500935078,
+        "gross_parent": 92.86636093627918,
+        "state_commit": 92.86636093627918,
+        "delta_vs_baseline_pp": 1.0875033617715957,
+        "delta_ci_low_pp": -0.31078425237390683,
+        "delta_ci_high_pp": 2.5908441816928356,
+        "target_baseline_plus_two": 93.77885757450758,
+        "remaining_to_target_pp": 0.9124966382284043
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "baseline": 69.2325931778893,
+        "c1": 69.2340473415621,
+        "old4": 69.57809745628578,
+        "gross_parent": 70.02238137014503,
+        "state_commit": 70.02238137014503,
+        "delta_vs_baseline_pp": 0.7897881922557275,
+        "delta_ci_low_pp": -0.053605273245573064,
+        "delta_ci_high_pp": 1.716406244906392,
+        "target_baseline_plus_two": 71.2325931778893,
+        "remaining_to_target_pp": 1.2102118077442725
+      }
+    ],
+    "active_NN_jobs": 0,
+    "actual_unused_own_weight_cleanup": {
+      "removed": [
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H3_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_sanity/H32_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/last.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/best.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_mlp/last.pth",
+          "bytes": 482346
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_linear/last.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/best.pth",
+          "bytes": 21368
+        },
+        {
+          "path": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H32_current_future_linear/last.pth",
+          "bytes": 21368
+        }
+      ],
+      "kept": "/data/gb/outputs/state_commit_current_future_20261006/fit_full/H3_current_future_mlp/best.pth",
+      "old4_and_all_dependencies_preserved": true
+    }
   }
 }

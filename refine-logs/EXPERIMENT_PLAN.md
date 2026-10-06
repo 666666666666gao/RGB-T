@@ -198,3 +198,8 @@ metrics/all31attributes/fourreferences/5000pairedCIs and state mechanisms;
 retire11ownunused heads after all consumers, keep selectedbest and dependencies.
 No >=3positive-seed gate, no TEST tuning, no dataset move or power/temp actions.
 Actual update 2026-10-06T11:35:25.855066+08:00: deployed source/CPU witness and allfour real GPU sanity/full60/840 fits PASS; original3801966 in FULL98_BEST. Eightfull98/oneweight/bothnative pending, not formal success.
+
+
+## 2026-10-06T14:17:32.093926+08:00 Current-future complete actual native closure
+
+Four60/840, eightfull98, one epoch0 both245/220703+234/116649 complete. Five78.016094/74.383784/62.072660 +92.866361/70.022381 exactgrossparent, no trainedCgain, all+2false. All31attrs/81rows, four5000pairedrefs/mechanisms/efficiency. Original3801966 andobserver14340/91871 CLOSED. Elevenownunusedheads2539938B retired by original queue; selected/dependencies retained.1998originalartifacts copied/noNNorreportreplay. Newrelation source/syntheticCPU only, realGPU/controller pending. Rawlabel interpretation corrected: IoU==0nonTarget, partialoverlapunknown; no halfGTsupport among zeroIoU. GoalACTIVE_UNMET; onebest enough.

@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/state_commit_current_future_20261006/native/lasher/c1_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/state_commit_current_future_20261006/native/lasher/c1_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "c1",
+        "state_commit"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 0.22926672526337014,
+          "percentile_95_interval_percentage_points": [
+            -0.8219833170837004,
+            1.3255249301795442
+          ],
+          "improved_sequences": 45,
+          "worsened_sequences": 34,
+          "tied_sequences": 166
+        },
+        "PR": {
+          "mean_delta_percentage_points": 0.1551214704284351,
+          "percentile_95_interval_percentage_points": [
+            -1.029977850277042,
+            1.3509652491736268
+          ],
+          "improved_sequences": 45,
+          "worsened_sequences": 37,
+          "tied_sequences": 163
+        },
+        "SR": {
+          "mean_delta_percentage_points": 0.12134616912255211,
+          "percentile_95_interval_percentage_points": [
+            -0.7500586938915227,
+            1.0331678860636138
+          ],
+          "improved_sequences": 56,
+          "worsened_sequences": 46,
+          "tied_sequences": 143
+        }
+      }
+    }
+  }
+}

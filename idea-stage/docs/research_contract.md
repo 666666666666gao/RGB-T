@@ -52,3 +52,8 @@ All4cachedbest0 complete98/49418 and98TXT exactparent each, Cintervention/geomet
 ## 2026-10-06T13:14:01.422464+08:00 actual all8 full98 closed and one model locked
 
 Four60/840 fits and eight98/49418 complete. Last H3MLP .695204/H32MLP .701136/H3linear .712244/H32linear .712990 vsGOLA .743279, allfour5000pairedCI negative. Bestall0 exactgrossparent .746126/noCgain. ONEH3MLPbest0 selectedbeforebothnative. Dated12:49 Las shards launch3933618/19/21/22, original3801966 continues; currentformal5pending. Sole14340/session91871 next2026-10-06T13:31:03.047485+08:00, then240. Originalcompletedreport copied only/noNNorCPUreportreplay. No unchanged C917 fit repeated; newA/B needsraw inputs; currentholdaction notbaseline rejection. Owned11cleanupafterconsumers/protecteddeps. All5+2ACTIVE_UNMET/onebest sufficient.
+
+
+## 2026-10-06T14:17:32.093926+08:00 Current-future complete actual native closure
+
+Four60/840, eightfull98, one epoch0 both245/220703+234/116649 complete. Five78.016094/74.383784/62.072660 +92.866361/70.022381 exactgrossparent, no trainedCgain, all+2false. All31attrs/81rows, four5000pairedrefs/mechanisms/efficiency. Original3801966 andobserver14340/91871 CLOSED. Elevenownunusedheads2539938B retired by original queue; selected/dependencies retained.1998originalartifacts copied/noNNorreportreplay. Newrelation source/syntheticCPU only, realGPU/controller pending. Rawlabel interpretation corrected: IoU==0nonTarget, partialoverlapunknown; no halfGTsupport among zeroIoU. GoalACTIVE_UNMET; onebest enough.
