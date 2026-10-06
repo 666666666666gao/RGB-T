@@ -162,3 +162,8 @@ All479/337352 GTarrays/shards/5+81+20 records independentlyreadverified, SOURCE_
 ## 2026-10-06T22:16:01.981812+08:00 Fixed-head diagnostics complete; deployment-consistent current-policy collection launched
 
 Two98/49418controls closed21:44:45, source/sampling/protected weights unchanged for native. Selected .744415038, noextra .743650054, pauseoff .742451954; all5+2unmet. Realcollector weighted-default vs gross deployment mismatch fixed and actual relation-family supported. New single535051, observedalive 2026-10-06T22:13:43.310982+08:00 stageTRAIN_FULL; TRAIN256+developer196 supervisioncollect only, no newtraining/TEST/weights. FourGPU/first180then240 or measuredETA; futureinputcausal. GoalACTIVE_UNMET.
+
+
+## 2026-10-06T22:59:55.908976+08:00 Actual current-state collection and four full-data fit sanities closed; full fit starts
+
+452labels closed22:45:05/83rawtexts SHA; true aggregate2832states/2576times/2policies/881TRAIN; 196currentVAL same98disjoint. Four2epoch actualupdates16/18/16/18, allABC+relationschanged/nonzerograd/C1frozen/bestlastreloadPASS; maxTorch19739.822MiB. New589745 full72/64epochs576each FIT_FULL2026-10-06T22:50:13.065747+08:00, four602124-7 actuallyALIVE2026-10-06T22:50:39.853002+08:00. All8full98 thenoneheadbothnative queued, notyetcomplete. Sole45148 handoffafter36780exit, next2026-10-06T23:56:08.853442+08:00/240sec/nearETA; no newpower-temp/data move/restarts. GoalACTIVE_UNMET.

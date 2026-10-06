@@ -6408,8 +6408,15 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "task": "current relation policy state collection",
-      "four_gpu_per_wave": true
+      "task": "full ABC plus candidate relation training",
+      "workers": [
+        602124,
+        602125,
+        602126,
+        602127
+      ],
+      "four_gpu_per_wave": true,
+      "max_measured_sanity_Torch_mib": 19739.82177734375
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6420,7 +6427,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-06T22:32:27.315836+08:00",
+    "next_check_cst": "2026-10-06T23:56:08.853442+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7026,7 +7033,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T22:16:01.981812+08:00",
+  "updated_cst": "2026-10-06T22:59:55.908976+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11163,17 +11170,20 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T22:16:01.981812+08:00",
-    "authoritative_snapshot": "refine-logs/runs/current_relation_policy_collection/current_execution_snapshot.json",
-    "actual_stage": "TRAIN_FULL",
-    "pipeline_pid": 535051,
+    "updated_cst": "2026-10-06T22:59:55.908976+08:00",
+    "authoritative_snapshot": "refine-logs/runs/current_policy_aggregation/current_execution_snapshot.json",
+    "actual_stage": "FIT_FULL",
+    "pipeline_pid": 589745,
     "pipeline_complete": false,
-    "full_training_complete": true,
-    "original_all_eight_full98_complete": true,
-    "new_formal_metrics_complete": true,
-    "next_module_training_not_started": true,
+    "current_policy_collection_complete": true,
+    "four_fit_sanities_complete": true,
+    "current_full_fits_complete": false,
+    "current_native_metrics_complete": false,
+    "previous_full_training_complete": true,
+    "previous_formal_metrics_complete": true,
     "all_five_plus_two": false,
-    "source_main_commit": "d12283e43e943baa8e1eeee4f9c0a8c67701d7e4"
+    "source_main_commit": "a279323a0f98f2e6b0201b08b12c8b80b5652e99",
+    "next_check_cst": "2026-10-06T23:56:08.853442+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -42356,5 +42366,111 @@
     "goal_status": "ACTIVE_UNMET",
     "all_five_plus_two": false
   },
-  "completed_selected_abc_controls": "refine-logs/runs/selected_abc_controls/actual_completed_control_summary.json"
+  "completed_selected_abc_controls": "refine-logs/runs/selected_abc_controls/actual_completed_control_summary.json",
+  "current_policy_aggregation": {
+    "updated_cst": "2026-10-06T22:59:55.908976+08:00",
+    "current_policy_collection_complete": true,
+    "four_full_data_fit_sanities_complete": true,
+    "actual_current_observation": {
+      "observed_at_cst": "2026-10-06T22:50:39.853002+08:00",
+      "owner_pid": 589745,
+      "owner_alive": true,
+      "progress": {
+        "stage": "FIT_FULL",
+        "at_cst": "2026-10-06T22:50:13.065747+08:00",
+        "elapsed_seconds": 447.0086882598698,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 602124
+          },
+          {
+            "gpu": 1,
+            "pid": 602125
+          },
+          {
+            "gpu": 2,
+            "pid": 602126
+          },
+          {
+            "gpu": 3,
+            "pid": 602127
+          }
+        ]
+      },
+      "observed_phase": {
+        "stage": "FIT_FULL",
+        "at_cst": "2026-10-06T22:50:13.065747+08:00",
+        "elapsed_seconds": 447.0086882598698,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 602124
+          },
+          {
+            "gpu": 1,
+            "pid": 602125
+          },
+          {
+            "gpu": 2,
+            "pid": 602126
+          },
+          {
+            "gpu": 3,
+            "pid": 602127
+          }
+        ]
+      },
+      "children_alive": [
+        {
+          "gpu": 0,
+          "pid": 602124,
+          "alive": true
+        },
+        {
+          "gpu": 1,
+          "pid": 602125,
+          "alive": true
+        },
+        {
+          "gpu": 2,
+          "pid": 602126,
+          "alive": true
+        },
+        {
+          "gpu": 3,
+          "pid": 602127,
+          "alive": true
+        }
+      ],
+      "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
+      "actual_training_rows": [],
+      "estimated_phase_seconds_from_closed_sanity": 4135.787695448846
+    },
+    "actual_next_full_fits_complete": false,
+    "new_native_results_complete": false,
+    "previous_full_training_and_two_native_results_complete": true,
+    "launch": {
+      "pid": 589745,
+      "owner_alive_at_launch": true,
+      "at_cst": "2026-10-06T22:42:46.969315+08:00",
+      "output": "/data/gb/outputs/current_policy_aggregation_20261006",
+      "collection_pid": 535051,
+      "collection_alive_at_launch": true,
+      "source_main_commit": "a279323a0f98f2e6b0201b08b12c8b80b5652e99",
+      "review": "PASS",
+      "requested_first_phase": "WAIT_FOR_CURRENT_POLICY_COLLECTION",
+      "four_gpu_per_training_or_evaluation_wave": true,
+      "all_ABC_and_relations_trainable": true,
+      "one_best_before_both_native_datasets": true,
+      "full_optimizer_updates_per_arm": 576,
+      "full_epochs_old_data": 72,
+      "full_epochs_aggregate_data": 64,
+      "protected_epoch5_parent": true
+    },
+    "next_check_cst": "2026-10-06T23:56:08.853442+08:00",
+    "goal_status": "ACTIVE_UNMET",
+    "all_five_plus_two": false
+  },
+  "current_relation_collection_complete": true
 }
