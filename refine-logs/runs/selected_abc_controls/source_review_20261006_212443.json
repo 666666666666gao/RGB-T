@@ -1,0 +1,58 @@
+{
+  "status": "FAIL",
+  "scope": "SELECTED_NATIVE_DIAGNOSTIC_CONTROLS_SOURCE",
+  "reviewed_at_cst": "2026-10-06T21:24:43.351543+08:00",
+  "review_type": "fresh source review; source acceptance only",
+  "reviewer": {
+    "configured_model": "gpt-6-astra",
+    "configured_reasoning_effort": "max",
+    "fork_turns": "none",
+    "runtime_model_attested": false,
+    "review_independence": "same-family",
+    "acceptance_status": "provisional"
+  },
+  "blocking": [
+    {
+      "id": "B1",
+      "file": "scripts/run_selected_abc_controls.py",
+      "line": 109,
+      "related_file": "research/collect_recoverability_metrics.py",
+      "related_line": 198,
+      "issue": "Merged inference_completion.json omits smoke_only, which the GT collector indexes unconditionally. Both full control inference waves can finish, then CPU reporting fails with KeyError.",
+      "minimal_fix": "Add smoke_only: True to the merged completion receipt, matching the supplied developer validation split.",
+      "validation": "AST inspection confirms the receipt dictionary omits this key; collector requires receipt[smoke_only] == bool(args.split)."
+    }
+  ],
+  "nonblocking": [],
+  "verified": [
+    "Locked reconstructed relations_lr5 epoch5 comes from completed native receipt and selected_model parent_model; reconstruction verification passed. No new fit, optimizer, TEST inference, checkpoint selection, or weight deletion is invoked.",
+    "Commands match evaluate_recoverability CLI: gross search, action write verification, seed42, original pretrained/C1/motion inputs and exact original TRAIN root/validation_split. Both four-shard 1x64 sanity waves precede either full98 wave.",
+    "Partition union and completion checks preserve all98/49418, exact ordered names, shard TXT sets, config, per-sequence stats and latency arrays; output is required fresh and four GPUs idle.",
+    "pause_off forces query pause=False only (tracker187-188); candidate selection and verified identity memory writes remain active (tracker142-146). no_extra_search removes the additional visual evidence and relation context (tracker171-180); scope labels are accurate.",
+    "Collector evaluates dataset init.txt ground truth, not reference model predictions (collect_candidate_metrics28-31; collect_recoverability_metrics202-206), and computes 5000 paired sequence resamples (269-278). Original reference labels are baseline/c1/old4/gross_parent plus selected_ABC."
+  ],
+  "validation": {
+    "AST_pass_files": [
+      "scripts/run_selected_abc_controls.py",
+      "research/evaluate_recoverability.py",
+      "research/recoverability_tracker.py",
+      "research/collect_recoverability_metrics.py",
+      "scripts/run_candidate_relation_training.py",
+      "scripts/run_search_gain_native.py"
+    ],
+    "actual_selected_source_counters": {
+      "extra_visual_forwards": 3538,
+      "missing_correct_candidates_reintroduced": 359,
+      "reintroduced_candidates_selected_correctly": 8,
+      "paused_query_writes": 2
+    },
+    "NN_launched": false,
+    "remote_queries": false,
+    "source_modified": false,
+    "result_audit_repeated": false
+  },
+  "claim_limits": [
+    "Reused developer98 diagnostic comparison only; not independent confirmation, matched visual compute, complete A/B/C module ablation, training seed stability, or improved native metrics.",
+    "Native all-five +2 goal remains unmet; source acceptance cannot establish any new result."
+  ]
+}
