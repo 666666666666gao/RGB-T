@@ -62,3 +62,8 @@ New selective fields aggregate actual same-frame GT search/motion geometry local
 ## 2026-10-06T10:20:55.846949+08:00 actual full-training/internal closure, native ongoing
 
 Four C-extension fits each60/840 (not jointbackbone training), eightfull98/49418 complete; all learned checkpoints below frozenold4/gross. One epoch0 locked before bothnative; actual98prediction text equalparent, no training gain. TRAIN1646event1691queries/881seq and615write-pairqueries; threeeventroles overlap. Actual16CPUcachedforwards show TRAINpositive/VALnegative selectedutility despitepositive predictedutility. History244CSV/plots and report metadata copied; no NN/report replay. Currentoriginal3423188/native3643976-79 lastactual09:59:49, sole22853 next10:53:18 then240. Five formal new metrics pending; all5+2UNMET. One best sufficient, old4/dependencies protected.
+
+
+## 2026-10-06T10:28:16.939834+08:00 matched write/motion commit CPU contrasts
+
+H32 lost0 pause-vs-regular613TRAIN/55VAL queries; lowraw mode2-vs-samecandidate-mode0 1208TRAINpairs/1009events and58VALpairs/56events. Search reference plus motionhistory box+quality copying, not coordinate-only; GTunknown masked/eventequal. Positive contrast means reduced alternate-action harm, not better than parentkeep or deployed C efficacy. Reviewed explanation corrected; all16numericrows unchanged, no NN/optimizer/replay. Formal5pending; +2ACTIVE_UNMET.

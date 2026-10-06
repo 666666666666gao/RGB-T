@@ -1,0 +1,143 @@
+{
+  "status": "ACTUAL_MATCHED_WRITE_GEOMETRY_CONTRASTS_COMPLETE",
+  "reports": [
+    {
+      "partition": "train",
+      "contrast": "pause_vs_regular",
+      "horizon": 3,
+      "lost_penalty": 0.0,
+      "matched_action_pairs": 615,
+      "distinct_actual_events": 608,
+      "distinct_sequence_queries": 615,
+      "positive_pairs": 308,
+      "negative_pairs": 279,
+      "above_point03_pairs": 1,
+      "event_weighted_utility_delta": 0.00014212195874085815,
+      "event_weighted_future_mean_iou_delta": 0.00018949594498782297,
+      "pairs_with_unknown_GT_in_window": 0
+    },
+    {
+      "partition": "train",
+      "contrast": "pause_vs_regular",
+      "horizon": 3,
+      "lost_penalty": 0.1,
+      "matched_action_pairs": 615,
+      "distinct_actual_events": 608,
+      "distinct_sequence_queries": 615,
+      "positive_pairs": 308,
+      "negative_pairs": 279,
+      "above_point03_pairs": 2,
+      "event_weighted_utility_delta": 0.00022435880084612135,
+      "event_weighted_future_mean_iou_delta": 0.00018949594498782297,
+      "pairs_with_unknown_GT_in_window": 0
+    },
+    {
+      "partition": "train",
+      "contrast": "pause_vs_regular",
+      "horizon": 32,
+      "lost_penalty": 0.0,
+      "matched_action_pairs": 613,
+      "distinct_actual_events": 606,
+      "distinct_sequence_queries": 613,
+      "positive_pairs": 306,
+      "negative_pairs": 284,
+      "above_point03_pairs": 9,
+      "event_weighted_utility_delta": 0.0009094010907902621,
+      "event_weighted_future_mean_iou_delta": 0.0009377565978832763,
+      "pairs_with_unknown_GT_in_window": 6
+    },
+    {
+      "partition": "train",
+      "contrast": "pause_vs_regular",
+      "horizon": 32,
+      "lost_penalty": 0.1,
+      "matched_action_pairs": 613,
+      "distinct_actual_events": 606,
+      "distinct_sequence_queries": 613,
+      "positive_pairs": 308,
+      "negative_pairs": 282,
+      "above_point03_pairs": 9,
+      "event_weighted_utility_delta": 0.001014411591840367,
+      "event_weighted_future_mean_iou_delta": 0.0009377565978832763,
+      "pairs_with_unknown_GT_in_window": 6
+    },
+    {
+      "partition": "validation",
+      "contrast": "pause_vs_regular",
+      "horizon": 3,
+      "lost_penalty": 0.0,
+      "matched_action_pairs": 55,
+      "distinct_actual_events": 55,
+      "distinct_sequence_queries": 55,
+      "positive_pairs": 31,
+      "negative_pairs": 23,
+      "above_point03_pairs": 0,
+      "event_weighted_utility_delta": 0.0016253270812613943,
+      "event_weighted_future_mean_iou_delta": 0.002167102775015189,
+      "pairs_with_unknown_GT_in_window": 0
+    },
+    {
+      "partition": "validation",
+      "contrast": "pause_vs_regular",
+      "horizon": 3,
+      "lost_penalty": 0.1,
+      "matched_action_pairs": 55,
+      "distinct_actual_events": 55,
+      "distinct_sequence_queries": 55,
+      "positive_pairs": 31,
+      "negative_pairs": 23,
+      "above_point03_pairs": 0,
+      "event_weighted_utility_delta": 0.0016253270812613943,
+      "event_weighted_future_mean_iou_delta": 0.002167102775015189,
+      "pairs_with_unknown_GT_in_window": 0
+    },
+    {
+      "partition": "validation",
+      "contrast": "pause_vs_regular",
+      "horizon": 32,
+      "lost_penalty": 0.0,
+      "matched_action_pairs": 55,
+      "distinct_actual_events": 55,
+      "distinct_sequence_queries": 55,
+      "positive_pairs": 33,
+      "negative_pairs": 21,
+      "above_point03_pairs": 1,
+      "event_weighted_utility_delta": 0.00470552826437129,
+      "event_weighted_future_mean_iou_delta": 0.004855039879589991,
+      "pairs_with_unknown_GT_in_window": 1
+    },
+    {
+      "partition": "validation",
+      "contrast": "pause_vs_regular",
+      "horizon": 32,
+      "lost_penalty": 0.1,
+      "matched_action_pairs": 55,
+      "distinct_actual_events": 55,
+      "distinct_sequence_queries": 55,
+      "positive_pairs": 33,
+      "negative_pairs": 21,
+      "above_point03_pairs": 1,
+      "event_weighted_utility_delta": 0.00542178170789746,
+      "event_weighted_future_mean_iou_delta": 0.004855039879589991,
+      "pairs_with_unknown_GT_in_window": 1
+    }
+  ],
+  "unrecovered_role_scope": {
+    "train": {
+      "unrecovered_window_queries": 263,
+      "with_unknown_GT_frames_in_window": 5,
+      "definition": "No observed future three consecutive known frames IoU>=0.5 within the available H3/H32 window; not proof of never recoverable."
+    },
+    "validation": {
+      "unrecovered_window_queries": 5,
+      "with_unknown_GT_frames_in_window": 0,
+      "definition": "No observed future three consecutive known frames IoU>=0.5 within the available H3/H32 window; not proof of never recoverable."
+    }
+  },
+  "pair_weighting": "Inverse pair count per actual event within each reported group; equal event mass",
+  "scope": "Same actual candidate and prestate; pause-versus-regular changes appearance/memory commit. Mode2-versus-mode1 changes current C search/history geometry while both pause appearance. All later decisions use frozen parent, not deployed learned extension.",
+  "limitation": "These are existing TRAIN/developer action-label contrasts, not online policy efficacy or full causal explanation of the learned decline. Pair count is not independent sample count.",
+  "new_NN_forwards": 0,
+  "new_optimizer_updates": 0,
+  "active_process_GPU_queries": 0
+}
