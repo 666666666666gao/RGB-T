@@ -157,3 +157,8 @@ Original4x60/480 intact; restoredprefix5/40+archivedcached/full98parity PASS; sa
 ## 2026-10-06T21:35:23.170055+08:00 Real native integrity WARN and fixed-head full98 controls actual start
 
 All479/337352 GTarrays/shards/5+81+20 records independentlyreadverified, SOURCE_RESULTsamefamilyprovisionalWARNmetadata+scopeonly; 0of5+2. Original4x60/480 andnativeclosed. New462886 fourGPUno_extra_searchfull21:27:49 afterbothsanities, pause_offnext; fixedhead5/no train/newweights/TEST, notfullBoff/allsafetyoff/eightcombination. Sole2664 first21:34:49 then240/nearETA; original40544terminal. GoalACTIVE_UNMET.
+
+
+## 2026-10-06T22:16:01.981812+08:00 Fixed-head diagnostics complete; deployment-consistent current-policy collection launched
+
+Two98/49418controls closed21:44:45, source/sampling/protected weights unchanged for native. Selected .744415038, noextra .743650054, pauseoff .742451954; all5+2unmet. Realcollector weighted-default vs gross deployment mismatch fixed and actual relation-family supported. New single535051, observedalive 2026-10-06T22:13:43.310982+08:00 stageTRAIN_FULL; TRAIN256+developer196 supervisioncollect only, no newtraining/TEST/weights. FourGPU/first180then240 or measuredETA; futureinputcausal. GoalACTIVE_UNMET.
