@@ -6408,50 +6408,50 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "observed_at_cst": "2026-10-06T15:34:39.423432+08:00",
+      "observed_at_cst": "2026-10-06T16:11:02.556317+08:00",
       "workers": [
         {
           "gpu": 0,
-          "pid": 4137204,
+          "pid": 70024,
           "process": {
-            "pid": 4137204,
+            "pid": 70024,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5 "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr5_best/predictions "
           }
         },
         {
           "gpu": 1,
-          "pid": 4137205,
+          "pid": 70025,
           "process": {
-            "pid": 4137205,
+            "pid": 70025,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5 --candidate-relations "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr5_best/predictions "
           }
         },
         {
           "gpu": 2,
-          "pid": 4137206,
+          "pid": 70026,
           "process": {
-            "pid": 4137206,
+            "pid": 70026,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4 "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr4_best/predictions "
           }
         },
         {
           "gpu": 3,
-          "pid": 4137207,
+          "pid": 70027,
           "process": {
-            "pid": 4137207,
+            "pid": 70027,
             "alive": true,
             "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4 --candidate-relations "
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr4_best/predictions "
           }
         }
       ],
-      "memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 24085 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 24085 MiB, 24576 MiB, 14 %\n"
+      "memory_utilization_only": "0, 1180 MiB, 24576 MiB, 40 %\n1, 851 MiB, 24576 MiB, 37 %\n2, 851 MiB, 24576 MiB, 40 %\n3, 851 MiB, 24576 MiB, 36 %\n"
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6462,7 +6462,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-06T15:38:37.936448+08:00",
+    "next_check_cst": "2026-10-06T16:46:27.179055+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7068,7 +7068,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T15:51:00.369876+08:00",
+  "updated_cst": "2026-10-06T16:12:21.071460+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11205,16 +11205,17 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T15:36:16.920341+08:00",
-    "authoritative_snapshot": "refine-logs/runs/candidate_relation/supervision_audit_execution_snapshot.json",
+    "updated_cst": "2026-10-06T16:12:21.071460+08:00",
+    "authoritative_snapshot": "refine-logs/runs/candidate_relation/full_training_complete_execution_snapshot.json",
     "pipeline_pid": 4115079,
     "pipeline_complete": false,
-    "actual_stage": "FIT_FULL",
+    "actual_stage": "FULL98_BEST",
     "actual_parent_full98_parity_pass": true,
     "source_main_commit": "0cbc390461003364db5fc4645aedece6660bb29f",
     "new_formal_metrics_complete": false,
     "previous_original_pipeline_complete": true,
-    "next_check_cst": "2026-10-06T15:38:37.936448+08:00"
+    "next_check_cst": "2026-10-06T16:46:27.179055+08:00",
+    "full_training_complete": true
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -35228,7 +35229,7 @@
   },
   "current_candidate_relation_iteration": {
     "status": "ACTIVE_UNMET; CANDIDATE_RELATION_ACTUAL_PROGRESS",
-    "updated_cst": "2026-10-06T15:36:16.920341+08:00",
+    "updated_cst": "2026-10-06T16:12:21.071460+08:00",
     "launch": {
       "pid": 4115079,
       "output": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
@@ -35282,7 +35283,7 @@
       "scope": "Raw cached-feature A/B/C training; frozen visual and motion dependencies; no full-backbone retrain claim"
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-06T15:34:39.423432+08:00",
+      "observed_at_cst": "2026-10-06T16:11:02.556317+08:00",
       "owner": {
         "pid": 4115079,
         "alive": true,
@@ -35290,87 +35291,29 @@
         "command": "/data/gb/envs/gola/bin/python -u -m scripts.run_candidate_relation_training --review /data/gb/GOLA/refine-logs/runs/candidate_relation/pipeline_source_review.json --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2 "
       },
       "progress": {
-        "stage": "FIT_FULL",
-        "at_cst": "2026-10-06T14:52:09.684638+08:00",
-        "elapsed_seconds": 767.8015735871159,
+        "stage": "FULL98_BEST",
+        "at_cst": "2026-10-06T16:10:27.179055+08:00",
+        "elapsed_seconds": 5465.295990612358,
         "children": [
           {
             "gpu": 0,
-            "pid": 4137204
+            "pid": 70024
           },
           {
             "gpu": 1,
-            "pid": 4137205
+            "pid": 70025
           },
           {
             "gpu": 2,
-            "pid": 4137206
+            "pid": 70026
           },
           {
             "gpu": 3,
-            "pid": 4137207
+            "pid": 70027
           }
         ]
       },
       "last_events": [
-        {
-          "stage": "FIT_SANITY_WORKER_ENDED",
-          "at_cst": "2026-10-06T14:42:17.724163+08:00",
-          "elapsed_seconds": 175.8411159394309,
-          "gpu": 0,
-          "exit_code": 0
-        },
-        {
-          "stage": "FIT_SANITY_WORKER_ENDED",
-          "at_cst": "2026-10-06T14:42:25.579605+08:00",
-          "elapsed_seconds": 183.69655346497893,
-          "gpu": 1,
-          "exit_code": 0
-        },
-        {
-          "stage": "FIT_SANITY_WORKER_ENDED",
-          "at_cst": "2026-10-06T14:42:25.580123+08:00",
-          "elapsed_seconds": 183.69706170121208,
-          "gpu": 2,
-          "exit_code": 0
-        },
-        {
-          "stage": "FIT_SANITY_WORKER_ENDED",
-          "at_cst": "2026-10-06T14:42:26.145004+08:00",
-          "elapsed_seconds": 184.26195411523804,
-          "gpu": 3,
-          "exit_code": 0
-        },
-        {
-          "stage": "FIT_SANITY_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS",
-          "at_cst": "2026-10-06T14:42:26.167818+08:00",
-          "elapsed_seconds": 184.28475694917142,
-          "epochs": 2,
-          "updates_per_arm": 16
-        },
-        {
-          "stage": "PARENT_PARITY",
-          "at_cst": "2026-10-06T14:42:26.444747+08:00",
-          "elapsed_seconds": 184.56168859126046,
-          "children": [
-            {
-              "gpu": 0,
-              "pid": 4120520
-            },
-            {
-              "gpu": 1,
-              "pid": 4120521
-            },
-            {
-              "gpu": 2,
-              "pid": 4120522
-            },
-            {
-              "gpu": 3,
-              "pid": 4120523
-            }
-          ]
-        },
         {
           "stage": "PARENT_PARITY_WORKER_ENDED",
           "at_cst": "2026-10-06T14:51:14.022513+08:00",
@@ -35426,47 +35369,105 @@
               "pid": 4137207
             }
           ]
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T15:49:24.952954+08:00",
+          "elapsed_seconds": 4203.069907461293,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.151097+08:00",
+          "elapsed_seconds": 5465.268050242215,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.151652+08:00",
+          "elapsed_seconds": 5465.268587260973,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.153433+08:00",
+          "elapsed_seconds": 5465.270369025413,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS",
+          "at_cst": "2026-10-06T16:10:27.176547+08:00",
+          "elapsed_seconds": 5465.293483732268,
+          "epochs": 60,
+          "updates_per_arm": 480
+        },
+        {
+          "stage": "FULL98_BEST",
+          "at_cst": "2026-10-06T16:10:27.179055+08:00",
+          "elapsed_seconds": 5465.295990612358,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 70024
+            },
+            {
+              "gpu": 1,
+              "pid": 70025
+            },
+            {
+              "gpu": 2,
+              "pid": 70026
+            },
+            {
+              "gpu": 3,
+              "pid": 70027
+            }
+          ]
         }
       ],
       "last_wave_workers": [
         {
           "gpu": 0,
-          "pid": 4137204,
+          "pid": 70024,
           "process": {
-            "pid": 4137204,
+            "pid": 70024,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5 "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr5_best/predictions "
           }
         },
         {
           "gpu": 1,
-          "pid": 4137205,
+          "pid": 70025,
           "process": {
-            "pid": 4137205,
+            "pid": 70025,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 1e-05 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5 --candidate-relations "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr5_best/predictions "
           }
         },
         {
           "gpu": 2,
-          "pid": 4137206,
+          "pid": 70026,
           "process": {
-            "pid": 4137206,
+            "pid": 70026,
             "alive": true,
-            "state": "S",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4 "
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr4_best/predictions "
           }
         },
         {
           "gpu": 3,
-          "pid": 4137207,
+          "pid": 70027,
           "process": {
-            "pid": 4137207,
+            "pid": 70027,
             "alive": true,
             "state": "R",
-            "command": "/data/gb/envs/gola/bin/python -u -m research.train_recoverability --train /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train /data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005 /data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2 /data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3 --validation /data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation --c1-head /data/gb/outputs/c1_initial_seed42/best.pth --init-checkpoint /data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth --epochs 60 --batch-size 336 --lr 0.0001 --seed 42 --threshold .03 --search-supervision oracle --action-ranking budgeted --write-verification action --search-value gross --retain-last --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4 --candidate-relations "
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr4_best/predictions "
           }
         }
       ],
@@ -35856,6 +35857,392 @@
               "C": 207946
             }
           }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.20178523659706116,
+              "B": 14.971322059631348,
+              "C": 1.8612407445907593
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3382.8095278949477,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 3,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.7174365520477295,
+              "valid_actions": 7251,
+              "current": 0.754511296749115,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7554542422294617,
+              "utility": 0.7545357942581177,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 18,
+              "changed_location": 5,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.00347137451171875,
+              "utility_gain_against_c1": 0.0024498701095581055
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.1800158023834229,
+              "valid_actions": 7251,
+              "current": 0.7422056198120117,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7447344660758972,
+              "utility": 0.7434079647064209,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 26,
+              "changed_location": 5,
+              "rescued": 0,
+              "harmed": 2,
+              "failed": 16,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 183,
+              "missing_candidate_found": 7,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": -0.008834302425384521,
+              "utility_gain_against_c1": -0.008677959442138672
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10484139621257782,
+              "B": 7.4538655281066895,
+              "C": 1.4608092308044434
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3384.837361405138,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 57,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.5750302076339722,
+              "valid_actions": 7251,
+              "current": 0.7539032697677612,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7544947862625122,
+              "utility": 0.7539845705032349,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 3,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 10,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0028633475303649902,
+              "utility_gain_against_c1": 0.001898646354675293
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.5641865730285645,
+              "valid_actions": 7251,
+              "current": 0.7535474300384521,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7542392015457153,
+              "utility": 0.753728985786438,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 4,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.002507507801055908,
+              "utility_gain_against_c1": 0.001643061637878418
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.449252188205719,
+              "B": 14.676617622375488,
+              "C": 5.623400688171387
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3398.0669016577303,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 16,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.2808620929718018,
+              "valid_actions": 7251,
+              "current": 0.7554219961166382,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7554570436477661,
+              "utility": 0.7544876337051392,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 4,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.004382073879241943,
+              "utility_gain_against_c1": 0.00240170955657959
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.154539942741394,
+              "valid_actions": 7251,
+              "current": 0.7465118169784546,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7489365339279175,
+              "utility": 0.746487557888031,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 48,
+              "changed_location": 13,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 185,
+              "missing_candidate_found": 9,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": -0.00452810525894165,
+              "utility_gain_against_c1": -0.0055983662605285645
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.175105571746826,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10475317388772964,
+              "B": 7.4666361808776855,
+              "C": 5.741759777069092
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 4638.701427162625,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 5,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.7820472717285156,
+              "valid_actions": 7251,
+              "current": 0.7544292211532593,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7559369206428528,
+              "utility": 0.75532466173172,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 12,
+              "changed_location": 2,
+              "rescued": 1,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 181,
+              "missing_candidate_found": 5,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.003389298915863037,
+              "utility_gain_against_c1": 0.0032387375831604004
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.4708272218704224,
+              "valid_actions": 7251,
+              "current": 0.7516189813613892,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7529048919677734,
+              "utility": 0.7523947358131409,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 12,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0005790591239929199,
+              "utility_gain_against_c1": 0.00030881166458129883
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.5278449058532715,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
         }
       ],
       "training_progress": [
@@ -36003,145 +36390,162 @@
           "stage": "fit_full",
           "arm": "ABC_lr4",
           "last_complete_log_record": {
-            "epoch": 45,
-            "step": 1,
-            "optimizer_steps": 353,
-            "loss": 1.351867437362671,
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.380455732345581,
             "parts": {
-              "advantage": 0.023879606276750565,
-              "action_ranking": 0.16702908277511597,
-              "harm": 0.5011515021324158,
-              "quality": 0.6639713048934937,
-              "query_write_risk": 0.019329607486724854,
-              "future": 0.07572610676288605,
-              "memory_gate": 1.2791420221328735,
-              "margin_preservation": 0.0045725577510893345,
-              "identity_margin": 0.14669492840766907,
-              "search_value": 0.028714610263705254,
-              "search_success": 0.3883996605873108,
-              "candidate_absence": 0.42540568113327026,
-              "search_ranking": 1.6404175758361816
+              "advantage": 0.026815932244062424,
+              "action_ranking": 0.17602160573005676,
+              "harm": 0.5246162414550781,
+              "quality": 0.6219964623451233,
+              "query_write_risk": 0.020159687846899033,
+              "future": 0.08081179857254028,
+              "memory_gate": 1.2724934816360474,
+              "margin_preservation": 0.005962489638477564,
+              "identity_margin": 0.13699179887771606,
+              "search_value": 0.029195746406912804,
+              "search_success": 0.41604241728782654,
+              "candidate_absence": 0.4470524787902832,
+              "search_ranking": 1.7017019987106323
             },
             "module_gradient_norms": {
-              "A": 0.067850261926651,
-              "B": 2.725399971008301,
-              "C": 0.56058269739151
+              "A": 0.13904820382595062,
+              "B": 4.867588996887207,
+              "C": 1.8612407445907593
             },
-            "elapsed_seconds": 2486.8884013267234,
+            "elapsed_seconds": 3380.281463028863,
             "peak_cuda_mib": 18784.357421875
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 894.7162237067815,
+          "estimated_remaining_training_seconds": 0,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "ABC_lr5",
           "last_complete_log_record": {
-            "epoch": 45,
-            "step": 1,
-            "optimizer_steps": 353,
-            "loss": 1.7457369565963745,
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.7286489009857178,
             "parts": {
-              "advantage": 0.04263579472899437,
-              "action_ranking": 0.19179047644138336,
-              "harm": 1.470204472541809,
-              "quality": 0.7714282870292664,
-              "query_write_risk": 0.04166104644536972,
-              "future": 0.1254422962665558,
-              "memory_gate": 1.3645744323730469,
-              "margin_preservation": 0.0032235709950327873,
-              "identity_margin": 0.1528204381465912,
-              "search_value": 0.03770602121949196,
-              "search_success": 0.49990224838256836,
-              "candidate_absence": 0.7283600568771362,
-              "search_ranking": 1.689692497253418
+              "advantage": 0.04072529822587967,
+              "action_ranking": 0.21529625356197357,
+              "harm": 1.195351481437683,
+              "quality": 0.7443303465843201,
+              "query_write_risk": 0.034210506826639175,
+              "future": 0.12570567429065704,
+              "memory_gate": 1.384291648864746,
+              "margin_preservation": 0.0024813732597976923,
+              "identity_margin": 0.1556304693222046,
+              "search_value": 0.03584935516119003,
+              "search_success": 0.5109072327613831,
+              "candidate_absence": 0.7195569276809692,
+              "search_ranking": 1.7782922983169556
             },
             "module_gradient_norms": {
-              "A": 0.08405356109142303,
-              "B": 2.6083590984344482,
-              "C": 1.0866656303405762
+              "A": 0.09646300226449966,
+              "B": 4.212118148803711,
+              "C": 1.3755918741226196
             },
-            "elapsed_seconds": 2489.638590927236,
+            "elapsed_seconds": 3382.3232160010375,
             "peak_cuda_mib": 18784.357421875
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 895.7056686905353,
+          "estimated_remaining_training_seconds": 0,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "relations_lr4",
           "last_complete_log_record": {
-            "epoch": 44,
+            "epoch": 60,
             "step": 8,
-            "optimizer_steps": 352,
-            "loss": 1.2998136281967163,
+            "optimizer_steps": 480,
+            "loss": 1.3146612644195557,
             "parts": {
-              "advantage": 0.021889733150601387,
-              "action_ranking": 0.1391795575618744,
-              "harm": 0.46952322125434875,
-              "quality": 0.5245949625968933,
-              "query_write_risk": 0.013618416152894497,
-              "future": 0.06920374929904938,
-              "memory_gate": 1.2843362092971802,
-              "margin_preservation": 0.006195842754095793,
-              "identity_margin": 0.14755851030349731,
-              "search_value": 0.025719398632645607,
-              "search_success": 0.42663419246673584,
-              "candidate_absence": 0.4819725751876831,
-              "search_ranking": 1.61760675907135
+              "advantage": 0.02168448641896248,
+              "action_ranking": 0.1452912986278534,
+              "harm": 0.48246273398399353,
+              "quality": 0.5114661455154419,
+              "query_write_risk": 0.01926029473543167,
+              "future": 0.07264261692762375,
+              "memory_gate": 1.2723708152770996,
+              "margin_preservation": 0.006299333646893501,
+              "identity_margin": 0.1362116038799286,
+              "search_value": 0.02927240915596485,
+              "search_success": 0.41602256894111633,
+              "candidate_absence": 0.44780856370925903,
+              "search_ranking": 1.708541989326477
             },
             "module_gradient_norms": {
-              "A": 0.0871242880821228,
-              "B": 3.80107045173645,
-              "C": 0.635859489440918
+              "A": 0.25302281975746155,
+              "B": 5.599647045135498,
+              "C": 1.88852858543396
             },
-            "elapsed_seconds": 2489.834426256828,
+            "elapsed_seconds": 3395.557545613032,
             "peak_cuda_mib": 19084.8583984375
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 905.3943368206648,
+          "estimated_remaining_training_seconds": 0,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         },
         {
           "stage": "fit_full",
           "arm": "relations_lr5",
           "last_complete_log_record": {
-            "epoch": 29,
-            "step": 1,
-            "optimizer_steps": 225,
-            "loss": 1.7567064762115479,
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.6560289859771729,
             "parts": {
-              "advantage": 0.034769315272569656,
-              "action_ranking": 0.18664339184761047,
-              "harm": 1.4793044328689575,
-              "quality": 0.7474944591522217,
-              "query_write_risk": 0.03841929882764816,
-              "future": 0.11941554397344589,
-              "memory_gate": 1.3749501705169678,
-              "margin_preservation": 0.003842936595901847,
-              "identity_margin": 0.15805861353874207,
-              "search_value": 0.03406911715865135,
-              "search_success": 0.5546890497207642,
-              "candidate_absence": 0.8854886889457703,
-              "search_ranking": 1.6168535947799683
+              "advantage": 0.0331072062253952,
+              "action_ranking": 0.199661523103714,
+              "harm": 0.9649280905723572,
+              "quality": 0.7357247471809387,
+              "query_write_risk": 0.02790221944451332,
+              "future": 0.11986787617206573,
+              "memory_gate": 1.3841747045516968,
+              "margin_preservation": 0.0027707964181900024,
+              "identity_margin": 0.15453045070171356,
+              "search_value": 0.03584646061062813,
+              "search_success": 0.5108013153076172,
+              "candidate_absence": 0.7185899615287781,
+              "search_ranking": 1.7782267332077026
             },
             "module_gradient_norms": {
-              "A": 0.08653605729341507,
-              "B": 1.972983717918396,
-              "C": 1.4154329299926758
+              "A": 0.09931796044111252,
+              "B": 4.214574337005615,
+              "C": 1.5685362815856934
             },
-            "elapsed_seconds": 2452.925155050587,
+            "elapsed_seconds": 4636.2081212517805,
             "peak_cuda_mib": 19084.8583984375
           },
           "planned_total_optimizer_steps": 480,
-          "estimated_remaining_training_seconds": 2779.981842390665,
+          "estimated_remaining_training_seconds": 0,
           "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
         }
       ],
       "completed_full98": {},
-      "partial_full98_prediction_counts": {},
+      "partial_full98_prediction_counts": {
+        "ABC_lr4_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "ABC_lr5_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "relations_lr4_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "relations_lr5_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        }
+      },
       "scope": "Existing pipeline read-only; no NN/report launch/retry; GPU memory/utilization only",
       "actual_parent_parity": {
         "passed": true,
@@ -36164,7 +36568,7 @@
         ],
         "legacy_C1_parity_or_zero_init_used": false
       },
-      "GPU_memory_utilization_only": "0, 22784 MiB, 24576 MiB, 100 %\n1, 24085 MiB, 24576 MiB, 100 %\n2, 22455 MiB, 24576 MiB, 100 %\n3, 24085 MiB, 24576 MiB, 14 %\n"
+      "GPU_memory_utilization_only": "0, 1180 MiB, 24576 MiB, 40 %\n1, 851 MiB, 24576 MiB, 37 %\n2, 851 MiB, 24576 MiB, 40 %\n3, 851 MiB, 24576 MiB, 36 %\n"
     },
     "sole_passive_observer": {
       "observer_pid": 34928,
@@ -36181,10 +36585,11 @@
         "RGBT234_SHARDS": 1200
       }
     },
-    "next_check_cst": "2026-10-06T15:38:37.936448+08:00",
+    "next_check_cst": "2026-10-06T16:46:27.179055+08:00",
     "new_formal_five_metrics_complete": false,
     "one_best_checkpoint_required_not_three_seeds": true,
-    "previous_complete_native": "refine-logs/runs/state_commit_current_future/native_complete_summary.json"
+    "previous_complete_native": "refine-logs/runs/state_commit_current_future/native_complete_summary.json",
+    "full_training_complete": true
   },
   "latest_raw_supervision_audit": {
     "path": "refine-logs/runs/candidate_relation/supervision_audit_execution_snapshot.json",
@@ -36371,5 +36776,1748 @@
         }
       }
     }
+  },
+  "current_candidate_relation_full_training_complete": {
+    "status": "ACTIVE_UNMET; FOUR_ACTUAL_FULL60_FITS_COMPLETE_AND_ORIGINAL_VIDEO_QUEUE_ACTIVE",
+    "at_cst": "2026-10-06T16:12:21.071460+08:00",
+    "completed_training": {
+      "status": "FOUR_ACTUAL_FULL60_480_ABC_FITS_CLOSED",
+      "at_cst": "2026-10-06T16:11:55.048262+08:00",
+      "output": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
+      "pipeline_pid": 4115079,
+      "fits": [
+        {
+          "name": "ABC_lr5",
+          "epochs": 60,
+          "optimizer_steps": 480,
+          "best_epoch": 57,
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 86791
+          },
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.10484139621257782,
+            "B": 7.4538655281066895,
+            "C": 1.4608092308044434
+          },
+          "frozen_C1_no_gradients": true,
+          "relation_changed": null,
+          "max_relation_gradient_norm": null,
+          "best_and_last_strict_reload_pass": true,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.5750302076339722,
+            "valid_actions": 7251,
+            "current": 0.7539032697677612,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7544947862625122,
+            "utility": 0.7539845705032349,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 10,
+            "changed_location": 3,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 10,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0028633475303649902,
+            "utility_gain_against_c1": 0.001898646354675293
+          },
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.5641865730285645,
+            "valid_actions": 7251,
+            "current": 0.7535474300384521,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7542392015457153,
+            "utility": 0.753728985786438,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 10,
+            "changed_location": 4,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.002507507801055908,
+            "utility_gain_against_c1": 0.001643061637878418
+          },
+          "elapsed_training_seconds": 3384.837361405138,
+          "peak_cuda_mib": 18784.357421875,
+          "retained_weight_consumers_pending": [
+            "best.pth",
+            "last.pth"
+          ]
+        },
+        {
+          "name": "relations_lr5",
+          "epochs": 60,
+          "optimizer_steps": 480,
+          "best_epoch": 5,
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 207946
+          },
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.10475317388772964,
+            "B": 7.4666361808776855,
+            "C": 5.741759777069092
+          },
+          "frozen_C1_no_gradients": true,
+          "relation_changed": true,
+          "max_relation_gradient_norm": 4.5278449058532715,
+          "best_and_last_strict_reload_pass": true,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.7820472717285156,
+            "valid_actions": 7251,
+            "current": 0.7544292211532593,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7559369206428528,
+            "utility": 0.75532466173172,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 12,
+            "changed_location": 2,
+            "rescued": 1,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 181,
+            "missing_candidate_found": 5,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.003389298915863037,
+            "utility_gain_against_c1": 0.0032387375831604004
+          },
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.4708272218704224,
+            "valid_actions": 7251,
+            "current": 0.7516189813613892,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7529048919677734,
+            "utility": 0.7523947358131409,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 10,
+            "changed_location": 2,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 12,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.0005790591239929199,
+            "utility_gain_against_c1": 0.00030881166458129883
+          },
+          "elapsed_training_seconds": 4638.701427162625,
+          "peak_cuda_mib": 19084.8583984375,
+          "retained_weight_consumers_pending": [
+            "best.pth",
+            "last.pth",
+            "initial.pth"
+          ]
+        },
+        {
+          "name": "ABC_lr4",
+          "epochs": 60,
+          "optimizer_steps": 480,
+          "best_epoch": 3,
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 86791
+          },
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.20178523659706116,
+            "B": 14.971322059631348,
+            "C": 1.8612407445907593
+          },
+          "frozen_C1_no_gradients": true,
+          "relation_changed": null,
+          "max_relation_gradient_norm": null,
+          "best_and_last_strict_reload_pass": true,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.7174365520477295,
+            "valid_actions": 7251,
+            "current": 0.754511296749115,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7554542422294617,
+            "utility": 0.7545357942581177,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 18,
+            "changed_location": 5,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.00347137451171875,
+            "utility_gain_against_c1": 0.0024498701095581055
+          },
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.1800158023834229,
+            "valid_actions": 7251,
+            "current": 0.7422056198120117,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7447344660758972,
+            "utility": 0.7434079647064209,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 26,
+            "changed_location": 5,
+            "rescued": 0,
+            "harmed": 2,
+            "failed": 16,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 183,
+            "missing_candidate_found": 7,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": -0.008834302425384521,
+            "utility_gain_against_c1": -0.008677959442138672
+          },
+          "elapsed_training_seconds": 3382.8095278949477,
+          "peak_cuda_mib": 18784.357421875,
+          "retained_weight_consumers_pending": [
+            "best.pth",
+            "last.pth"
+          ]
+        },
+        {
+          "name": "relations_lr4",
+          "epochs": 60,
+          "optimizer_steps": 480,
+          "best_epoch": 16,
+          "trainable_parameters": {
+            "A": 109187,
+            "B": 117133,
+            "C": 207946
+          },
+          "modules_changed": {
+            "A": true,
+            "B": true,
+            "C": true
+          },
+          "max_module_gradient_norms": {
+            "A": 0.449252188205719,
+            "B": 14.676617622375488,
+            "C": 5.623400688171387
+          },
+          "frozen_C1_no_gradients": true,
+          "relation_changed": true,
+          "max_relation_gradient_norm": 4.175105571746826,
+          "best_and_last_strict_reload_pass": true,
+          "best_validation": {
+            "clips": 196,
+            "loss": 1.2808620929718018,
+            "valid_actions": 7251,
+            "current": 0.7554219961166382,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7554570436477661,
+            "utility": 0.7544876337051392,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 19,
+            "changed_location": 4,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 11,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 180,
+            "missing_candidate_found": 4,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": 0.004382073879241943,
+            "utility_gain_against_c1": 0.00240170955657959
+          },
+          "last_validation": {
+            "clips": 196,
+            "loss": 1.154539942741394,
+            "valid_actions": 7251,
+            "current": 0.7465118169784546,
+            "c1_current": 0.7510399222373962,
+            "utility_before_search_cost": 0.7489365339279175,
+            "utility": 0.746487557888031,
+            "c1_utility": 0.7520859241485596,
+            "pause": 0,
+            "search_triggered": 48,
+            "changed_location": 13,
+            "rescued": 0,
+            "harmed": 0,
+            "failed": 13,
+            "c1_failed": 12,
+            "original_recall": 176,
+            "budget_recall": 185,
+            "missing_candidate_found": 9,
+            "wrong_update_fraction": 0.015306122601032257,
+            "c1_wrong_update_fraction": 0.015306122601032257,
+            "current_gain_against_c1": -0.00452810525894165,
+            "utility_gain_against_c1": -0.0055983662605285645
+          },
+          "elapsed_training_seconds": 3398.0669016577303,
+          "peak_cuda_mib": 19084.8583984375,
+          "retained_weight_consumers_pending": [
+            "best.pth",
+            "last.pth",
+            "initial.pth"
+          ]
+        }
+      ],
+      "manifest": [
+        {
+          "path": "fit_full/ABC_lr5/config.json",
+          "bytes": 1013206,
+          "sha256": "947416e5ce9fe6baae98f08afeb01a66fb898e542621f24e256f835f98c536d9"
+        },
+        {
+          "path": "fit_full/ABC_lr5/completion.json",
+          "bytes": 2267,
+          "sha256": "61ffc99b8d4e520faf3fbfe4232bbfe27f96f1ada653b2c0fdc735bf6358619a"
+        },
+        {
+          "path": "fit_full/ABC_lr5/metrics.json",
+          "bytes": 45532,
+          "sha256": "ac2ca21949914034a523621927372e95e9801b604f1e1322692b05f364d8d632"
+        },
+        {
+          "path": "fit_full/ABC_lr5/train.jsonl",
+          "bytes": 88687,
+          "sha256": "3acc54525f82b3849f8965e9d6d3084e9f9efe825b53254fe45097ecd08d58d2"
+        },
+        {
+          "path": "fit_full/relations_lr5/config.json",
+          "bytes": 1013216,
+          "sha256": "df0639f11d4c6f5e9c1426162458bcbefe009b21c0027cb18a896bb89218caf7"
+        },
+        {
+          "path": "fit_full/relations_lr5/completion.json",
+          "bytes": 2301,
+          "sha256": "849f181e6a1446eb1ef0ede35f9dc1178bd45c61c96d3e1c7d3c4186f4e39fc9"
+        },
+        {
+          "path": "fit_full/relations_lr5/metrics.json",
+          "bytes": 45172,
+          "sha256": "0671102242ff8a97713b4303890732f778bacb75fe78a6b751d9b7af6da43640"
+        },
+        {
+          "path": "fit_full/relations_lr5/train.jsonl",
+          "bytes": 88811,
+          "sha256": "f94edcf64279700d497f6cb195841832de81e9f93e1f3cb9c3c5691b8c9f5d95"
+        },
+        {
+          "path": "fit_full/ABC_lr4/config.json",
+          "bytes": 1013207,
+          "sha256": "18cd2a1ab7f42d7a03f732862adcb16c92a9ce3aed0f516c0ec5143591c3bff6"
+        },
+        {
+          "path": "fit_full/ABC_lr4/completion.json",
+          "bytes": 2268,
+          "sha256": "405cb08669e633d35d07700d864f62395373b21fb677f64d5d6269cd949de481"
+        },
+        {
+          "path": "fit_full/ABC_lr4/metrics.json",
+          "bytes": 45471,
+          "sha256": "9bd2e07df4781b6f5184a72c30a61ee2a3e107d8ce27bd9ba6cde94480da1338"
+        },
+        {
+          "path": "fit_full/ABC_lr4/train.jsonl",
+          "bytes": 88920,
+          "sha256": "4e0114750f49ea7d67c1ba78852519906829abe7b5dce33b1363a886a31ec224"
+        },
+        {
+          "path": "fit_full/relations_lr4/config.json",
+          "bytes": 1013217,
+          "sha256": "7ba87c220afc6998c4efca50470c8ecb532c899eca970b0e6547266b25890c49"
+        },
+        {
+          "path": "fit_full/relations_lr4/completion.json",
+          "bytes": 2298,
+          "sha256": "168c8fdee0aa869d2bd29fac4d2162beab98d3027560b4ec755625b838937957"
+        },
+        {
+          "path": "fit_full/relations_lr4/metrics.json",
+          "bytes": 45537,
+          "sha256": "4e09e30c3ac93d8b3c9bd161cc9319c492fda63fc25631b235b85c88dfb55d39"
+        },
+        {
+          "path": "fit_full/relations_lr4/train.jsonl",
+          "bytes": 89028,
+          "sha256": "3e6d31a9d6b5f855a84f472fee0d10acce23ad8358754b2d40130e8760479e49"
+        },
+        {
+          "path": "actual_parent_parity.json",
+          "bytes": 703,
+          "sha256": "156e90a173c78b2c107d72f3c3d33fb6cdac8990f9bbc1df8ea05340a1d2e91c"
+        }
+      ],
+      "archive": "/data/gb/setup/candidate_relation_closed_full_fit_text_20261006_v2.tar",
+      "archive_bytes": 4638720,
+      "scope": "Complete raw-cache A/B/C training, frozen GOLA/C1 and separate motion dependencies; not 88M visual-backbone end-to-end training or full-video/native accuracy",
+      "NN_replayed": 0,
+      "report_replayed": 0,
+      "weights_copied_or_deleted": 0,
+      "new_native_metrics_complete": false
+    },
+    "actual_observation": {
+      "observed_at_cst": "2026-10-06T16:11:02.556317+08:00",
+      "owner": {
+        "pid": 4115079,
+        "alive": true,
+        "state": "S",
+        "command": "/data/gb/envs/gola/bin/python -u -m scripts.run_candidate_relation_training --review /data/gb/GOLA/refine-logs/runs/candidate_relation/pipeline_source_review.json --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2 "
+      },
+      "progress": {
+        "stage": "FULL98_BEST",
+        "at_cst": "2026-10-06T16:10:27.179055+08:00",
+        "elapsed_seconds": 5465.295990612358,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 70024
+          },
+          {
+            "gpu": 1,
+            "pid": 70025
+          },
+          {
+            "gpu": 2,
+            "pid": 70026
+          },
+          {
+            "gpu": 3,
+            "pid": 70027
+          }
+        ]
+      },
+      "last_events": [
+        {
+          "stage": "PARENT_PARITY_WORKER_ENDED",
+          "at_cst": "2026-10-06T14:51:14.022513+08:00",
+          "elapsed_seconds": 712.1394582032226,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "PARENT_PARITY_WORKER_ENDED",
+          "at_cst": "2026-10-06T14:51:34.112601+08:00",
+          "elapsed_seconds": 732.2295471881516,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "PARENT_PARITY_WORKER_ENDED",
+          "at_cst": "2026-10-06T14:52:08.672864+08:00",
+          "elapsed_seconds": 766.7898171450943,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "PARENT_PARITY_WORKER_ENDED",
+          "at_cst": "2026-10-06T14:52:08.673421+08:00",
+          "elapsed_seconds": 766.7903558532707,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "ACTUAL_PRETRAINED_INITIAL_FULL98_PARENT_PARITY_PASS",
+          "at_cst": "2026-10-06T14:52:09.682293+08:00",
+          "elapsed_seconds": 767.7992296633311
+        },
+        {
+          "stage": "FIT_FULL",
+          "at_cst": "2026-10-06T14:52:09.684638+08:00",
+          "elapsed_seconds": 767.8015735871159,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 4137204
+            },
+            {
+              "gpu": 1,
+              "pid": 4137205
+            },
+            {
+              "gpu": 2,
+              "pid": 4137206
+            },
+            {
+              "gpu": 3,
+              "pid": 4137207
+            }
+          ]
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T15:49:24.952954+08:00",
+          "elapsed_seconds": 4203.069907461293,
+          "gpu": 0,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.151097+08:00",
+          "elapsed_seconds": 5465.268050242215,
+          "gpu": 1,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.151652+08:00",
+          "elapsed_seconds": 5465.268587260973,
+          "gpu": 2,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_WORKER_ENDED",
+          "at_cst": "2026-10-06T16:10:27.153433+08:00",
+          "elapsed_seconds": 5465.270369025413,
+          "gpu": 3,
+          "exit_code": 0
+        },
+        {
+          "stage": "FIT_FULL_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS",
+          "at_cst": "2026-10-06T16:10:27.176547+08:00",
+          "elapsed_seconds": 5465.293483732268,
+          "epochs": 60,
+          "updates_per_arm": 480
+        },
+        {
+          "stage": "FULL98_BEST",
+          "at_cst": "2026-10-06T16:10:27.179055+08:00",
+          "elapsed_seconds": 5465.295990612358,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 70024
+            },
+            {
+              "gpu": 1,
+              "pid": 70025
+            },
+            {
+              "gpu": 2,
+              "pid": 70026
+            },
+            {
+              "gpu": 3,
+              "pid": 70027
+            }
+          ]
+        }
+      ],
+      "last_wave_workers": [
+        {
+          "gpu": 0,
+          "pid": 70024,
+          "process": {
+            "pid": 70024,
+            "alive": true,
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr5_best/predictions "
+          }
+        },
+        {
+          "gpu": 1,
+          "pid": 70025,
+          "process": {
+            "pid": 70025,
+            "alive": true,
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr5_best/predictions "
+          }
+        },
+        {
+          "gpu": 2,
+          "pid": 70026,
+          "process": {
+            "pid": 70026,
+            "alive": true,
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/ABC_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/ABC_lr4_best/predictions "
+          }
+        },
+        {
+          "gpu": 3,
+          "pid": 70027,
+          "process": {
+            "pid": 70027,
+            "alive": true,
+            "state": "R",
+            "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr4/best.pth --search-value gross --write-verification action --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/full98/relations_lr4_best/predictions "
+          }
+        }
+      ],
+      "actual_fits": [
+        {
+          "stage": "fit_sanity",
+          "arm": "ABC_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 16,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09457724541425705,
+              "B": 3.477571964263916,
+              "C": 1.0938035249710083
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 114.77185090072453,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 1,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.7770251035690308,
+              "valid_actions": 7251,
+              "current": 0.7523692846298218,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7534797787666321,
+              "utility": 0.7526125311851501,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 17,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0013293623924255371,
+              "utility_gain_against_c1": 0.0005266070365905762
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.7595808506011963,
+              "valid_actions": 7251,
+              "current": 0.7519669532775879,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7531370520591736,
+              "utility": 0.7522187232971191,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 18,
+              "changed_location": 4,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 12,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0009270310401916504,
+              "utility_gain_against_c1": 0.0001327991485595703
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "ABC_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 16,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09290869534015656,
+              "B": 3.665255069732666,
+              "C": 1.1557687520980835
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 114.42156855389476,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 0,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.8220438957214355,
+              "valid_actions": 7251,
+              "current": 0.7523692846298218,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7534797787666321,
+              "utility": 0.7525104284286499,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0013293623924255371,
+              "utility_gain_against_c1": 0.00042450428009033203
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.8095448017120361,
+              "valid_actions": 7251,
+              "current": 0.7523692846298218,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7534797787666321,
+              "utility": 0.7525104284286499,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0013293623924255371,
+              "utility_gain_against_c1": 0.00042450428009033203
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "relations_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 16,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09488224983215332,
+              "B": 3.477571964263916,
+              "C": 5.623400688171387
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 115.07921558711678,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 0,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.8220438957214355,
+              "valid_actions": 7251,
+              "current": 0.7523692846298218,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7534797787666321,
+              "utility": 0.7525104284286499,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0013293623924255371,
+              "utility_gain_against_c1": 0.00042450428009033203
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.7048836946487427,
+              "valid_actions": 7251,
+              "current": 0.7510399222373962,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7524170875549316,
+              "utility": 0.7516517639160156,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 15,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 12,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0,
+              "utility_gain_against_c1": -0.0004341602325439453
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.175105571746826,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "relations_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 16,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09272336214780807,
+              "B": 3.6652562618255615,
+              "C": 5.741759777069092
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 114.93291114503518,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 0,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.8220438957214355,
+              "valid_actions": 7251,
+              "current": 0.7523692846298218,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7534797787666321,
+              "utility": 0.7525104284286499,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0013293623924255371,
+              "utility_gain_against_c1": 0.00042450428009033203
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.800649881362915,
+              "valid_actions": 7251,
+              "current": 0.7510399222373962,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7524170875549316,
+              "utility": 0.7514987587928772,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 18,
+              "changed_location": 1,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 12,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0,
+              "utility_gain_against_c1": -0.000587165355682373
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.5278449058532715,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.20178523659706116,
+              "B": 14.971322059631348,
+              "C": 1.8612407445907593
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3382.8095278949477,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 3,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.7174365520477295,
+              "valid_actions": 7251,
+              "current": 0.754511296749115,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7554542422294617,
+              "utility": 0.7545357942581177,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 18,
+              "changed_location": 5,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.00347137451171875,
+              "utility_gain_against_c1": 0.0024498701095581055
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.1800158023834229,
+              "valid_actions": 7251,
+              "current": 0.7422056198120117,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7447344660758972,
+              "utility": 0.7434079647064209,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 26,
+              "changed_location": 5,
+              "rescued": 0,
+              "harmed": 2,
+              "failed": 16,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 183,
+              "missing_candidate_found": 7,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": -0.008834302425384521,
+              "utility_gain_against_c1": -0.008677959442138672
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10484139621257782,
+              "B": 7.4538655281066895,
+              "C": 1.4608092308044434
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3384.837361405138,
+            "peak_cuda_mib": 18784.357421875,
+            "best_epoch": 57,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.5750302076339722,
+              "valid_actions": 7251,
+              "current": 0.7539032697677612,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7544947862625122,
+              "utility": 0.7539845705032349,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 3,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 10,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0028633475303649902,
+              "utility_gain_against_c1": 0.001898646354675293
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.5641865730285645,
+              "valid_actions": 7251,
+              "current": 0.7535474300384521,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7542392015457153,
+              "utility": 0.753728985786438,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 4,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.002507507801055908,
+              "utility_gain_against_c1": 0.001643061637878418
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": null,
+            "relation_parameters_changed": null,
+            "max_relation_gradient_norm": null,
+            "retained_weights": [
+              "best.pth",
+              "last.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_recoverability",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 86791
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr4",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.449252188205719,
+              "B": 14.676617622375488,
+              "C": 5.623400688171387
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 3398.0669016577303,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 16,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.2808620929718018,
+              "valid_actions": 7251,
+              "current": 0.7554219961166382,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7554570436477661,
+              "utility": 0.7544876337051392,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 19,
+              "changed_location": 4,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.004382073879241943,
+              "utility_gain_against_c1": 0.00240170955657959
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.154539942741394,
+              "valid_actions": 7251,
+              "current": 0.7465118169784546,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7489365339279175,
+              "utility": 0.746487557888031,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 48,
+              "changed_location": 13,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 13,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 185,
+              "missing_candidate_found": 9,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": -0.00452810525894165,
+              "utility_gain_against_c1": -0.0055983662605285645
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.175105571746826,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 0.0001,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr5",
+          "training": {
+            "completed": true,
+            "epochs": 60,
+            "optimizer_steps": 480,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.10475317388772964,
+              "B": 7.4666361808776855,
+              "C": 5.741759777069092
+            },
+            "frozen_modules": [],
+            "frozen_module_weights_unchanged": {},
+            "frozen_c1_gradients_absent": true,
+            "elapsed_seconds": 4638.701427162625,
+            "peak_cuda_mib": 19084.8583984375,
+            "best_epoch": 5,
+            "best_validation": {
+              "clips": 196,
+              "loss": 1.7820472717285156,
+              "valid_actions": 7251,
+              "current": 0.7544292211532593,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7559369206428528,
+              "utility": 0.75532466173172,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 12,
+              "changed_location": 2,
+              "rescued": 1,
+              "harmed": 0,
+              "failed": 11,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 181,
+              "missing_candidate_found": 5,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.003389298915863037,
+              "utility_gain_against_c1": 0.0032387375831604004
+            },
+            "strict_reload_metrics_equal": true,
+            "last_validation": {
+              "clips": 196,
+              "loss": 1.4708272218704224,
+              "valid_actions": 7251,
+              "current": 0.7516189813613892,
+              "c1_current": 0.7510399222373962,
+              "utility_before_search_cost": 0.7529048919677734,
+              "utility": 0.7523947358131409,
+              "c1_utility": 0.7520859241485596,
+              "pause": 0,
+              "search_triggered": 10,
+              "changed_location": 2,
+              "rescued": 0,
+              "harmed": 0,
+              "failed": 12,
+              "c1_failed": 12,
+              "original_recall": 176,
+              "budget_recall": 180,
+              "missing_candidate_found": 4,
+              "wrong_update_fraction": 0.015306122601032257,
+              "c1_wrong_update_fraction": 0.015306122601032257,
+              "current_gain_against_c1": 0.0005790591239929199,
+              "utility_gain_against_c1": 0.00030881166458129883
+            },
+            "last_strict_reload_metrics_equal": true,
+            "initial_parent_all_output_tensors_exact": true,
+            "relation_parameters_changed": true,
+            "max_relation_gradient_norm": 4.5278449058532715,
+            "retained_weights": [
+              "best.pth",
+              "last.pth",
+              "initial.pth"
+            ],
+            "official_tracking_accuracy": false
+          },
+          "data_and_parameters": {
+            "module": "ABC_candidate_relations",
+            "train_clips": 2576,
+            "validation_clips": 196,
+            "batch_size": 336,
+            "lr": 1e-05,
+            "search_value": "gross",
+            "trainable_parameters": {
+              "A": 109187,
+              "B": 117133,
+              "C": 207946
+            }
+          }
+        }
+      ],
+      "training_progress": [
+        {
+          "stage": "fit_sanity",
+          "arm": "ABC_lr4",
+          "last_complete_log_record": {
+            "epoch": 2,
+            "step": 8,
+            "optimizer_steps": 16,
+            "loss": 1.8750178813934326,
+            "parts": {
+              "advantage": 0.05078301206231117,
+              "action_ranking": 0.200334370136261,
+              "harm": 1.7226922512054443,
+              "quality": 0.7928454875946045,
+              "query_write_risk": 0.054532378911972046,
+              "future": 0.1267801821231842,
+              "memory_gate": 1.3703782558441162,
+              "margin_preservation": 0.004739739466458559,
+              "identity_margin": 0.15054111182689667,
+              "search_value": 0.031825583428144455,
+              "search_success": 0.6229265928268433,
+              "candidate_absence": 0.89777672290802,
+              "search_ranking": 1.7002695798873901
+            },
+            "module_gradient_norms": {
+              "A": 0.08552776277065277,
+              "B": 2.9968461990356445,
+              "C": 0.5620715022087097
+            },
+            "elapsed_seconds": 112.17048018192872,
+            "peak_cuda_mib": 18784.357421875
+          },
+          "planned_total_optimizer_steps": 16,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "ABC_lr5",
+          "last_complete_log_record": {
+            "epoch": 2,
+            "step": 8,
+            "optimizer_steps": 16,
+            "loss": 1.9199036359786987,
+            "parts": {
+              "advantage": 0.057525623589754105,
+              "action_ranking": 0.20321378111839294,
+              "harm": 1.762951135635376,
+              "quality": 0.7990595698356628,
+              "query_write_risk": 0.057366993278265,
+              "future": 0.12803372740745544,
+              "memory_gate": 1.3728879690170288,
+              "margin_preservation": 0.001999086933210492,
+              "identity_margin": 0.16364184021949768,
+              "search_value": 0.03414119407534599,
+              "search_success": 0.6677011847496033,
+              "candidate_absence": 0.9390983581542969,
+              "search_ranking": 1.721451997756958
+            },
+            "module_gradient_norms": {
+              "A": 0.08562193810939789,
+              "B": 2.461580991744995,
+              "C": 1.0400171279907227
+            },
+            "elapsed_seconds": 111.91171600017697,
+            "peak_cuda_mib": 18784.357421875
+          },
+          "planned_total_optimizer_steps": 16,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "relations_lr4",
+          "last_complete_log_record": {
+            "epoch": 2,
+            "step": 8,
+            "optimizer_steps": 16,
+            "loss": 1.846987009048462,
+            "parts": {
+              "advantage": 0.03936126083135605,
+              "action_ranking": 0.2044789046049118,
+              "harm": 1.6386429071426392,
+              "quality": 0.7781964540481567,
+              "query_write_risk": 0.04890887439250946,
+              "future": 0.12385132908821106,
+              "memory_gate": 1.370335578918457,
+              "margin_preservation": 0.004461886361241341,
+              "identity_margin": 0.15143446624279022,
+              "search_value": 0.03182760253548622,
+              "search_success": 0.622208297252655,
+              "candidate_absence": 0.8971731066703796,
+              "search_ranking": 1.7005442380905151
+            },
+            "module_gradient_norms": {
+              "A": 0.08606649935245514,
+              "B": 3.0134825706481934,
+              "C": 1.336309790611267
+            },
+            "elapsed_seconds": 112.5411332482472,
+            "peak_cuda_mib": 19084.8583984375
+          },
+          "planned_total_optimizer_steps": 16,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_sanity",
+          "arm": "relations_lr5",
+          "last_complete_log_record": {
+            "epoch": 2,
+            "step": 8,
+            "optimizer_steps": 16,
+            "loss": 1.9128363132476807,
+            "parts": {
+              "advantage": 0.05598688870668411,
+              "action_ranking": 0.19959700107574463,
+              "harm": 1.7559568881988525,
+              "quality": 0.7976806163787842,
+              "query_write_risk": 0.056818146258592606,
+              "future": 0.12771737575531006,
+              "memory_gate": 1.3728818893432617,
+              "margin_preservation": 0.0020027735736221075,
+              "identity_margin": 0.16361276805400848,
+              "search_value": 0.034127626568078995,
+              "search_success": 0.6676288843154907,
+              "candidate_absence": 0.9390456676483154,
+              "search_ranking": 1.7209135293960571
+            },
+            "module_gradient_norms": {
+              "A": 0.08561556041240692,
+              "B": 2.454442024230957,
+              "C": 1.6303215026855469
+            },
+            "elapsed_seconds": 112.41498877573758,
+            "peak_cuda_mib": 19084.8583984375
+          },
+          "planned_total_optimizer_steps": 16,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr4",
+          "last_complete_log_record": {
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.380455732345581,
+            "parts": {
+              "advantage": 0.026815932244062424,
+              "action_ranking": 0.17602160573005676,
+              "harm": 0.5246162414550781,
+              "quality": 0.6219964623451233,
+              "query_write_risk": 0.020159687846899033,
+              "future": 0.08081179857254028,
+              "memory_gate": 1.2724934816360474,
+              "margin_preservation": 0.005962489638477564,
+              "identity_margin": 0.13699179887771606,
+              "search_value": 0.029195746406912804,
+              "search_success": 0.41604241728782654,
+              "candidate_absence": 0.4470524787902832,
+              "search_ranking": 1.7017019987106323
+            },
+            "module_gradient_norms": {
+              "A": 0.13904820382595062,
+              "B": 4.867588996887207,
+              "C": 1.8612407445907593
+            },
+            "elapsed_seconds": 3380.281463028863,
+            "peak_cuda_mib": 18784.357421875
+          },
+          "planned_total_optimizer_steps": 480,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_full",
+          "arm": "ABC_lr5",
+          "last_complete_log_record": {
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.7286489009857178,
+            "parts": {
+              "advantage": 0.04072529822587967,
+              "action_ranking": 0.21529625356197357,
+              "harm": 1.195351481437683,
+              "quality": 0.7443303465843201,
+              "query_write_risk": 0.034210506826639175,
+              "future": 0.12570567429065704,
+              "memory_gate": 1.384291648864746,
+              "margin_preservation": 0.0024813732597976923,
+              "identity_margin": 0.1556304693222046,
+              "search_value": 0.03584935516119003,
+              "search_success": 0.5109072327613831,
+              "candidate_absence": 0.7195569276809692,
+              "search_ranking": 1.7782922983169556
+            },
+            "module_gradient_norms": {
+              "A": 0.09646300226449966,
+              "B": 4.212118148803711,
+              "C": 1.3755918741226196
+            },
+            "elapsed_seconds": 3382.3232160010375,
+            "peak_cuda_mib": 18784.357421875
+          },
+          "planned_total_optimizer_steps": 480,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr4",
+          "last_complete_log_record": {
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.3146612644195557,
+            "parts": {
+              "advantage": 0.02168448641896248,
+              "action_ranking": 0.1452912986278534,
+              "harm": 0.48246273398399353,
+              "quality": 0.5114661455154419,
+              "query_write_risk": 0.01926029473543167,
+              "future": 0.07264261692762375,
+              "memory_gate": 1.2723708152770996,
+              "margin_preservation": 0.006299333646893501,
+              "identity_margin": 0.1362116038799286,
+              "search_value": 0.02927240915596485,
+              "search_success": 0.41602256894111633,
+              "candidate_absence": 0.44780856370925903,
+              "search_ranking": 1.708541989326477
+            },
+            "module_gradient_norms": {
+              "A": 0.25302281975746155,
+              "B": 5.599647045135498,
+              "C": 1.88852858543396
+            },
+            "elapsed_seconds": 3395.557545613032,
+            "peak_cuda_mib": 19084.8583984375
+          },
+          "planned_total_optimizer_steps": 480,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        },
+        {
+          "stage": "fit_full",
+          "arm": "relations_lr5",
+          "last_complete_log_record": {
+            "epoch": 60,
+            "step": 8,
+            "optimizer_steps": 480,
+            "loss": 1.6560289859771729,
+            "parts": {
+              "advantage": 0.0331072062253952,
+              "action_ranking": 0.199661523103714,
+              "harm": 0.9649280905723572,
+              "quality": 0.7357247471809387,
+              "query_write_risk": 0.02790221944451332,
+              "future": 0.11986787617206573,
+              "memory_gate": 1.3841747045516968,
+              "margin_preservation": 0.0027707964181900024,
+              "identity_margin": 0.15453045070171356,
+              "search_value": 0.03584646061062813,
+              "search_success": 0.5108013153076172,
+              "candidate_absence": 0.7185899615287781,
+              "search_ranking": 1.7782267332077026
+            },
+            "module_gradient_norms": {
+              "A": 0.09931796044111252,
+              "B": 4.214574337005615,
+              "C": 1.5685362815856934
+            },
+            "elapsed_seconds": 4636.2081212517805,
+            "peak_cuda_mib": 19084.8583984375
+          },
+          "planned_total_optimizer_steps": 480,
+          "estimated_remaining_training_seconds": 0,
+          "scope": "Actual completed optimizer-log record; estimated remaining time, not full-training/native completion"
+        }
+      ],
+      "completed_full98": {},
+      "partial_full98_prediction_counts": {
+        "ABC_lr4_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "ABC_lr5_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "relations_lr4_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        },
+        "relations_lr5_best": {
+          "written_sequence_files": 3,
+          "written_prediction_rows": 695
+        }
+      },
+      "scope": "Existing pipeline read-only; no NN/report launch/retry; GPU memory/utilization only",
+      "actual_parent_parity": {
+        "passed": true,
+        "sequences": 98,
+        "frames": 49418,
+        "actual_saved_initial_model": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth",
+        "parent": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+        "parent_predictions": "/data/gb/outputs/recoverability_search_gross_control_20261006/predictions",
+        "predictions_byte_exact": true,
+        "decision_fields_exact": [
+          "choice",
+          "original_choice",
+          "pause",
+          "searched_region",
+          "extra_executed",
+          "template_updated",
+          "template_source_frame",
+          "forecast_reference",
+          "memory_target_commit"
+        ],
+        "legacy_C1_parity_or_zero_init_used": false
+      },
+      "GPU_memory_utilization_only": "0, 1180 MiB, 24576 MiB, 40 %\n1, 851 MiB, 24576 MiB, 37 %\n2, 851 MiB, 24576 MiB, 40 %\n3, 851 MiB, 24576 MiB, 36 %\n"
+    },
+    "next_planned_observation": {
+      "next_poll_cst": "2026-10-06T16:46:27.179055+08:00",
+      "after_due_interval_seconds": 240,
+      "pipeline_pid": 4115079,
+      "estimated_wave": {
+        "stage": "FULL98_BEST",
+        "at_cst": "2026-10-06T16:10:27.179055+08:00",
+        "elapsed_seconds": 5465.295990612358,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 70024
+          },
+          {
+            "gpu": 1,
+            "pid": 70025
+          },
+          {
+            "gpu": 2,
+            "pid": 70026
+          },
+          {
+            "gpu": 3,
+            "pid": 70027
+          }
+        ]
+      }
+    },
+    "new_native_metrics_complete": false,
+    "same_original_controller": 4115079,
+    "new_NN_or_training_restart": false
   }
 }

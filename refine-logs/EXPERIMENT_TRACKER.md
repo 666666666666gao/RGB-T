@@ -122,3 +122,8 @@ Original controller4115079 FIT_FULL, actual observation2026-10-06T15:34:39.42343
 ## 2026-10-06T15:51:00.369876+08:00 Actual prefix-event census
 
 Existing consistent overlapping prefixes, no NN/TEST/newlabels or livetraining edits. TRAIN normal4385/recovered590/rightcensored126 observed episodes; last-arrived query inputs cover1667/134/126 distinctepisodes. Known incoming writepause gains cover6 recovered+7 rightcensored episodes; VAL no such gain events. Query-1 classification doesnot classify currentquery outcome, firstfailurequery may have normalincomingstate. Unknown/ambiguous states separately retained106TRAIN/9VAL. Original full60/480 andeightfull98 queue continues; all5+2 ACTIVE_UNMET.
+
+
+## 2026-10-06T16:12:21.071460+08:00 Four raw ABC full training fits closed
+
+Allfour60epochs/480 actualupdates, A/B/C changed/nonzero gradients, frozenC1no grads, best+trueepoch60last strictreload PASS. Bothrelationblocks changed. Actual61epoch records each/244 total. Intake only17 closedtext files, no NN/report replay or weightcleanup. Sameowner4115079 actual2026-10-06T16:11:02.556317+08:00 stageFULL98_BEST; originaleightfull98 then SAMEselected native/reference decision continues, soleobserver34928. Newformalmetrics pending; all5+2 ACTIVE_UNMET.
