@@ -82,3 +82,8 @@ SOURCE reviewPASS/provisional + actual deployed CPU default-exact witness + four
 ## 2026-10-06T11:48:34.655819+08:00 sealed four-fit CPU diagnosis
 
 Actual16cached comparisons/32CPU-head forwards/strictreload PASS; allfour last60 TRAIN true utility positive but reused developer98 negative and predictedpositive. Linear4588 also negative; lossdecrease notdecisiongain. All cachedbest0. Frozenparent futurelabels, unknownmasked; not fullvideo/native efficacy. Collected244historyrows/config/completion/plots, no weight/NPZ copies or liveNN/GPUqueries. Original3801966/sole14340 first12:07 unchanged, all5+2ACTIVE_UNMET.
+
+
+## 2026-10-06T12:30:49.481953+08:00 actual first4 complete full98 acceptance
+
+All4cachedbest0 complete98/49418 and98TXT exactparent each, Cintervention/geometryhold0: no newtrainedgain. Actual12:11 original3801966 and newNN3867094-97 live FULL98_LAST. Same60 endpoints all98 pending, then oneweight bothnative/all5/31attrs/4refs5000. Sole14340/session91871 next2026-10-06T12:45:56.393785+08:00, then240; no replays/liveNNsource edits/cleanup. smoke_onlyTrue isvalidation-split flag, actualsequence/frame limits0; fullinternal notnativeTEST. All5+2ACTIVE_UNMET; Ccache917 encodedfeatures isnotABCraw-input training.
