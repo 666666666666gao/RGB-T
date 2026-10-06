@@ -102,3 +102,8 @@ Four60/840, eightfull98, one epoch0 both245/220703+234/116649 complete. Five78.0
 ## 2026-10-06T14:38:11.111040+08:00 Candidate relation real sanity OOM before optimizer
 
 Owner4102464/allfourworkers closed14:32:51; soleobserver22912/12671 exit1 after14:35scheduledread. GPU chunks+cat+dedup OOM requested7.55GiB while17.86allocated. Zeroactualupdates/models/fullfits/parity/native; not algorithmic negative. MinimalCPU concat/dedup thenfinalGPUtransfer, same rows/dtypes/order/batch/targets. ActualMemAvailable245681688kB. Failurelogs preserved in failed_pre_optimizer_oom, no weights produced/deleted. Source re-review and changed-v2 sanity pending, no unchangedretry. Goalactiveunmet and previouscompletefive kept.
+
+
+## 2026-10-06T14:43:51.162887+08:00 Candidate-relation actual progress
+
+One controller4115079 launched2026-10-06T14:39:21.735409+08:00, actual2026-10-06T14:42:54.141487+08:00 stagePARENT_PARITY. Real completedfit receipts4, no newformalclaim. SOURCE samefamilyPASS/provisional; actual saved pretrainedinitial full98 parent parity pending peractual. Four rawABC configs train A/B/C, not backbone/motion, same2576TRAINstates881seq/196devqueries98seq, oracle/budgeted/action/gross alignedloss. One observer34928, next2026-10-06T14:50:26.444747+08:00,240sec thereafter. Originalclosedfive kept; onebest enough/all+2unmet.

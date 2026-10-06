@@ -1,0 +1,549 @@
+{
+  "observed_at_cst": "2026-10-06T14:42:54.141487+08:00",
+  "owner": {
+    "pid": 4115079,
+    "alive": true,
+    "state": "S",
+    "command": "/data/gb/envs/gola/bin/python -u -m scripts.run_candidate_relation_training --review /data/gb/GOLA/refine-logs/runs/candidate_relation/pipeline_source_review.json --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2 "
+  },
+  "progress": {
+    "stage": "PARENT_PARITY",
+    "at_cst": "2026-10-06T14:42:26.444747+08:00",
+    "elapsed_seconds": 184.56168859126046,
+    "children": [
+      {
+        "gpu": 0,
+        "pid": 4120520
+      },
+      {
+        "gpu": 1,
+        "pid": 4120521
+      },
+      {
+        "gpu": 2,
+        "pid": 4120522
+      },
+      {
+        "gpu": 3,
+        "pid": 4120523
+      }
+    ]
+  },
+  "last_events": [
+    {
+      "stage": "FIT_SANITY",
+      "at_cst": "2026-10-06T14:39:21.885085+08:00",
+      "elapsed_seconds": 0.0020238342694938183,
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 4115083
+        },
+        {
+          "gpu": 1,
+          "pid": 4115084
+        },
+        {
+          "gpu": 2,
+          "pid": 4115085
+        },
+        {
+          "gpu": 3,
+          "pid": 4115086
+        }
+      ]
+    },
+    {
+      "stage": "FIT_SANITY_WORKER_ENDED",
+      "at_cst": "2026-10-06T14:42:17.724163+08:00",
+      "elapsed_seconds": 175.8411159394309,
+      "gpu": 0,
+      "exit_code": 0
+    },
+    {
+      "stage": "FIT_SANITY_WORKER_ENDED",
+      "at_cst": "2026-10-06T14:42:25.579605+08:00",
+      "elapsed_seconds": 183.69655346497893,
+      "gpu": 1,
+      "exit_code": 0
+    },
+    {
+      "stage": "FIT_SANITY_WORKER_ENDED",
+      "at_cst": "2026-10-06T14:42:25.580123+08:00",
+      "elapsed_seconds": 183.69706170121208,
+      "gpu": 2,
+      "exit_code": 0
+    },
+    {
+      "stage": "FIT_SANITY_WORKER_ENDED",
+      "at_cst": "2026-10-06T14:42:26.145004+08:00",
+      "elapsed_seconds": 184.26195411523804,
+      "gpu": 3,
+      "exit_code": 0
+    },
+    {
+      "stage": "FIT_SANITY_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS",
+      "at_cst": "2026-10-06T14:42:26.167818+08:00",
+      "elapsed_seconds": 184.28475694917142,
+      "epochs": 2,
+      "updates_per_arm": 16
+    },
+    {
+      "stage": "PARENT_PARITY",
+      "at_cst": "2026-10-06T14:42:26.444747+08:00",
+      "elapsed_seconds": 184.56168859126046,
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 4120520
+        },
+        {
+          "gpu": 1,
+          "pid": 4120521
+        },
+        {
+          "gpu": 2,
+          "pid": 4120522
+        },
+        {
+          "gpu": 3,
+          "pid": 4120523
+        }
+      ]
+    }
+  ],
+  "last_wave_workers": [
+    {
+      "gpu": 0,
+      "pid": 4120520,
+      "process": {
+        "pid": 4120520,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth --search-value gross --write-verification action --sequence-offset 0 --limit-sequences 13 --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/parent_parity/gpu0/predictions "
+      }
+    },
+    {
+      "gpu": 1,
+      "pid": 4120521,
+      "process": {
+        "pid": 4120521,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth --search-value gross --write-verification action --sequence-offset 13 --limit-sequences 21 --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/parent_parity/gpu1/predictions "
+      }
+    },
+    {
+      "gpu": 2,
+      "pid": 4120522,
+      "process": {
+        "pid": 4120522,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth --search-value gross --write-verification action --sequence-offset 34 --limit-sequences 38 --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/parent_parity/gpu2/predictions "
+      }
+    },
+    {
+      "gpu": 3,
+      "pid": 4120523,
+      "process": {
+        "pid": 4120523,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.evaluate_recoverability --dataset lasher --root /data/wangwj/dataset/LasHeR/traingset --validation-split /data/gb/outputs/c1_initial_seed42/split.json --model /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_sanity/relations_lr5/initial.pth --search-value gross --write-verification action --sequence-offset 72 --limit-sequences 26 --output /data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/parent_parity/gpu3/predictions "
+      }
+    }
+  ],
+  "actual_fits": [
+    {
+      "stage": "fit_sanity",
+      "arm": "ABC_lr4",
+      "training": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 16,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09457724541425705,
+          "B": 3.477571964263916,
+          "C": 1.0938035249710083
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 114.77185090072453,
+        "peak_cuda_mib": 18784.357421875,
+        "best_epoch": 1,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.7770251035690308,
+          "valid_actions": 7251,
+          "current": 0.7523692846298218,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7534797787666321,
+          "utility": 0.7526125311851501,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 17,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0013293623924255371,
+          "utility_gain_against_c1": 0.0005266070365905762
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.7595808506011963,
+          "valid_actions": 7251,
+          "current": 0.7519669532775879,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7531370520591736,
+          "utility": 0.7522187232971191,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 18,
+          "changed_location": 4,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 12,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0009270310401916504,
+          "utility_gain_against_c1": 0.0001327991485595703
+        },
+        "last_strict_reload_metrics_equal": true,
+        "initial_parent_all_output_tensors_exact": null,
+        "relation_parameters_changed": null,
+        "max_relation_gradient_norm": null,
+        "retained_weights": [
+          "best.pth",
+          "last.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "data_and_parameters": {
+        "module": "ABC_recoverability",
+        "train_clips": 2576,
+        "validation_clips": 196,
+        "batch_size": 336,
+        "lr": 0.0001,
+        "search_value": "gross",
+        "trainable_parameters": {
+          "A": 109187,
+          "B": 117133,
+          "C": 86791
+        }
+      }
+    },
+    {
+      "stage": "fit_sanity",
+      "arm": "ABC_lr5",
+      "training": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 16,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09290869534015656,
+          "B": 3.665255069732666,
+          "C": 1.1557687520980835
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 114.42156855389476,
+        "peak_cuda_mib": 18784.357421875,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.8220438957214355,
+          "valid_actions": 7251,
+          "current": 0.7523692846298218,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7534797787666321,
+          "utility": 0.7525104284286499,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 19,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0013293623924255371,
+          "utility_gain_against_c1": 0.00042450428009033203
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.8095448017120361,
+          "valid_actions": 7251,
+          "current": 0.7523692846298218,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7534797787666321,
+          "utility": 0.7525104284286499,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 19,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0013293623924255371,
+          "utility_gain_against_c1": 0.00042450428009033203
+        },
+        "last_strict_reload_metrics_equal": true,
+        "initial_parent_all_output_tensors_exact": null,
+        "relation_parameters_changed": null,
+        "max_relation_gradient_norm": null,
+        "retained_weights": [
+          "best.pth",
+          "last.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "data_and_parameters": {
+        "module": "ABC_recoverability",
+        "train_clips": 2576,
+        "validation_clips": 196,
+        "batch_size": 336,
+        "lr": 1e-05,
+        "search_value": "gross",
+        "trainable_parameters": {
+          "A": 109187,
+          "B": 117133,
+          "C": 86791
+        }
+      }
+    },
+    {
+      "stage": "fit_sanity",
+      "arm": "relations_lr4",
+      "training": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 16,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09488224983215332,
+          "B": 3.477571964263916,
+          "C": 5.623400688171387
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 115.07921558711678,
+        "peak_cuda_mib": 19084.8583984375,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.8220438957214355,
+          "valid_actions": 7251,
+          "current": 0.7523692846298218,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7534797787666321,
+          "utility": 0.7525104284286499,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 19,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0013293623924255371,
+          "utility_gain_against_c1": 0.00042450428009033203
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.7048836946487427,
+          "valid_actions": 7251,
+          "current": 0.7510399222373962,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7524170875549316,
+          "utility": 0.7516517639160156,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 15,
+          "changed_location": 1,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 12,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": -0.0004341602325439453
+        },
+        "last_strict_reload_metrics_equal": true,
+        "initial_parent_all_output_tensors_exact": true,
+        "relation_parameters_changed": true,
+        "max_relation_gradient_norm": 4.175105571746826,
+        "retained_weights": [
+          "best.pth",
+          "last.pth",
+          "initial.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "data_and_parameters": {
+        "module": "ABC_candidate_relations",
+        "train_clips": 2576,
+        "validation_clips": 196,
+        "batch_size": 336,
+        "lr": 0.0001,
+        "search_value": "gross",
+        "trainable_parameters": {
+          "A": 109187,
+          "B": 117133,
+          "C": 207946
+        }
+      }
+    },
+    {
+      "stage": "fit_sanity",
+      "arm": "relations_lr5",
+      "training": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 16,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09272336214780807,
+          "B": 3.6652562618255615,
+          "C": 5.741759777069092
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 114.93291114503518,
+        "peak_cuda_mib": 19084.8583984375,
+        "best_epoch": 0,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.8220438957214355,
+          "valid_actions": 7251,
+          "current": 0.7523692846298218,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7534797787666321,
+          "utility": 0.7525104284286499,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 19,
+          "changed_location": 2,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0013293623924255371,
+          "utility_gain_against_c1": 0.00042450428009033203
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.800649881362915,
+          "valid_actions": 7251,
+          "current": 0.7510399222373962,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7524170875549316,
+          "utility": 0.7514987587928772,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 18,
+          "changed_location": 1,
+          "rescued": 0,
+          "harmed": 0,
+          "failed": 12,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 180,
+          "missing_candidate_found": 4,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.0,
+          "utility_gain_against_c1": -0.000587165355682373
+        },
+        "last_strict_reload_metrics_equal": true,
+        "initial_parent_all_output_tensors_exact": true,
+        "relation_parameters_changed": true,
+        "max_relation_gradient_norm": 4.5278449058532715,
+        "retained_weights": [
+          "best.pth",
+          "last.pth",
+          "initial.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "data_and_parameters": {
+        "module": "ABC_candidate_relations",
+        "train_clips": 2576,
+        "validation_clips": 196,
+        "batch_size": 336,
+        "lr": 1e-05,
+        "search_value": "gross",
+        "trainable_parameters": {
+          "A": 109187,
+          "B": 117133,
+          "C": 207946
+        }
+      }
+    }
+  ],
+  "completed_full98": {},
+  "partial_full98_prediction_counts": {},
+  "scope": "Existing pipeline read-only; no NN/report launch/retry; GPU memory/utilization only",
+  "GPU_memory_utilization_only": "0, 1180 MiB, 24576 MiB, 26 %\n1, 851 MiB, 24576 MiB, 25 %\n2, 851 MiB, 24576 MiB, 33 %\n3, 851 MiB, 24576 MiB, 31 %\n"
+}
