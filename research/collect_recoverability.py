@@ -360,8 +360,9 @@ def main():
     if args.prefix_model:
         from .recoverability_modules import RecoverabilityModules
         prefix_checkpoint = torch.load(args.prefix_model, map_location='cpu', weights_only=False)
-        assert prefix_checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
-        prefix_model = RecoverabilityModules(c1, candidate_relations=prefix_checkpoint['module'] == 'ABC_candidate_relations').to(device)
+        assert prefix_checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations', 'ABC_post_search_relations')
+        prefix_model = RecoverabilityModules(c1, candidate_relations=prefix_checkpoint['module'] in ('ABC_candidate_relations', 'ABC_post_search_relations'),
+                                            post_search_bidirectional=prefix_checkpoint['module'] == 'ABC_post_search_relations').to(device)
         prefix_model.load_state_dict(prefix_checkpoint['model'], strict=True)
         prefix_model.eval().requires_grad_(False)
         args.prefix_threshold = prefix_checkpoint['args']['threshold']

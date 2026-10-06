@@ -1,0 +1,53 @@
+{
+  "status": "IMPLEMENTED_NOT_REVIEWED_OR_DEPLOYED",
+  "previous_complete_commit": "493764630d1f536e0cf31f484d99f194a79118c2",
+  "hypothesis": "Search-after observed two-region bidirectional relations can calibrate the local rival and its keep reference; not yet a proven bug or gain",
+  "parent": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+  "arms": [
+    "one_way_lr5",
+    "post_search_lr5",
+    "one_way_lr3",
+    "post_search_lr3"
+  ],
+  "learning_rates": [
+    1e-05,
+    1e-05,
+    3e-05,
+    3e-05
+  ],
+  "same_parameter_initialization": true,
+  "no_new_parameters": true,
+  "data": "2832 actual-policy TRAIN states/2576 unique times/881 TRAIN videos;196 queries from reused98 developer videos",
+  "batch_size": 336,
+  "epochs": 64,
+  "optimizer_updates_each": 576,
+  "seed": 42,
+  "sanity_first_epochs": 2,
+  "extra_visual_forwards_max": 1,
+  "candidates_local_extra": [
+    5,
+    5
+  ],
+  "training_contexts": "7 equally weighted cases: local-only + six independent local-plus-one; same recipe for both one-way and bidirectional controls",
+  "unexecuted_regions_not_visible": true,
+  "pre_search_outputs_keep_original_local_only": true,
+  "post_search_keep_reference_recomputed": true,
+  "epoch0_behavior_is_not_learning_gain": true,
+  "full_video_selection": "Eight best/last complete98 plus one explicitly labelled bidirectional epoch0 across four disjoint sequence shards; max of nine fixed before both native datasets; initialization gain is not learning gain",
+  "native": "all5/31attributes/curves/fourreference5000pairedCI/mechanisms; actualGT only",
+  "cleanup": "19 ownunused best/last/initial weights after all consumers; keep selected+protected dependencies",
+  "sources": [
+    "research/candidate_relations.py",
+    "research/recoverability_modules.py",
+    "research/recoverability_tracker.py",
+    "research/train_recoverability.py",
+    "research/evaluate_recoverability.py",
+    "research/collect_recoverability.py",
+    "research/check_post_search_relations.py",
+    "scripts/run_post_search_relation_control.py"
+  ],
+  "next_after_this": "bounded cross-frame rejected candidate memory, then risk calibrated selective state commit",
+  "goal_status": "ACTIVE_UNMET",
+  "epoch0_full98_required": true,
+  "epoch0_full98_measured": false
+}

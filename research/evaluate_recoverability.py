@@ -119,10 +119,11 @@ def main():
     torch.cuda.set_device(device)
     c1 = torch.load(args.c1_head, map_location='cpu', weights_only=False)
     checkpoint = torch.load(args.model, map_location='cpu', weights_only=False)
-    assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
+    assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations', 'ABC_post_search_relations')
     assert checkpoint['args']['c1_head'] == args.c1_head
     threshold = checkpoint['args']['threshold']
-    modules = RecoverabilityModules(c1, candidate_relations=checkpoint['module'] == 'ABC_candidate_relations').to(device)
+    modules = RecoverabilityModules(c1, candidate_relations=checkpoint['module'] in ('ABC_candidate_relations', 'ABC_post_search_relations'),
+                                    post_search_bidirectional=checkpoint['module'] == 'ABC_post_search_relations').to(device)
     if not args.zero_init:
         modules.load_state_dict(checkpoint['model'], strict=True)
     modules.eval().requires_grad_(False)

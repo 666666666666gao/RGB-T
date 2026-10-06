@@ -49,6 +49,10 @@ def arguments():
                    help='Keep distinct checkpoint-policy states at the same sequence/query when aggregating rollouts.')
     p.add_argument('--candidate-relations', action='store_true',
                    help='Add a zero-output candidate relation block; start from the full pretrained ABC parent.')
+    p.add_argument('--post-search-bidirectional', action='store_true',
+                   help='After observing one extra region, re-score both sides with the same relation parameters.')
+    p.add_argument('--observed-pair-training', action='store_true',
+                   help='Train local-only and six independent local-plus-one cases; shared matched-control recipe.')
     p.add_argument('--retain-last', action='store_true',
                    help='Keep the actual completed endpoint until full-video selection finishes.')
     return p.parse_args()
@@ -176,9 +180,12 @@ def main():
     checkpoint = None
     if args.init_checkpoint:
         checkpoint = torch.load(args.init_checkpoint, map_location='cpu', weights_only=False)
-        assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
-    continued_relations = checkpoint is not None and checkpoint['module'] == 'ABC_candidate_relations'
-    model = RecoverabilityModules(c1, candidate_relations=continued_relations).to(device)
+        assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations', 'ABC_post_search_relations')
+    continued_relations = checkpoint is not None and checkpoint['module'] in ('ABC_candidate_relations', 'ABC_post_search_relations')
+    assert not args.post_search_bidirectional or (continued_relations and args.observed_pair_training)
+    model = RecoverabilityModules(c1, candidate_relations=continued_relations,
+                                  post_search_bidirectional=args.post_search_bidirectional,
+                                  observed_pair_training=args.observed_pair_training).to(device)
     if checkpoint is not None:
         model.load_state_dict(checkpoint['model'], strict=True)
         initial_checkpoint_weights_exact = all(torch.equal(value.cpu(), checkpoint['model'][key])
@@ -224,7 +231,8 @@ def main():
     optimizer = torch.optim.AdamW(parameters, lr=args.lr, weight_decay=args.weight_decay)
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    model_family = 'ABC_candidate_relations' if has_relations else 'ABC_recoverability'
+    model_family = ('ABC_post_search_relations' if args.post_search_bidirectional else
+                    'ABC_candidate_relations' if has_relations else 'ABC_recoverability')
     config = vars(args) | {'module': model_family, 'train_clips': len(train_jobs),
                            'validation_clips': len(val_jobs), 'train_jobs': train_jobs, 'validation_jobs': val_jobs,
                            'source_configs': train_configs + val_configs,
@@ -236,8 +244,9 @@ def main():
                            'base_GOLA': 'full pretrained frozen visual extractor used by collector',
                            'frozen_c1': True, 'trainable_parameters': {name: sum(p.numel() for p in module.parameters() if p.requires_grad) for name, module in groups.items()},
                            'checkpoint_selection': 'maximum held-out selected rollout utility minus .01 per triggered extra search; strict improvement',
-                           'checkpoint_retention': {'best': True, 'last_until_full_video_selection': args.retain_last,
-                                                    'initial_until_parent_parity': args.candidate_relations},
+                            'checkpoint_retention': {'best': True, 'last_until_full_video_selection': args.retain_last,
+                                                     'initial_until_parent_parity': args.candidate_relations,
+                                                     'initial_for_behavior_control': args.post_search_bidirectional},
                            'search_budget': 'original region plus at most one extra region; extra cost applies even if kept original candidate',
                            'scope': 'causal predicted-prefix TRAIN caches; frozen continuation policy recorded in source_configs; not complete online or official accuracy'}
     (out / 'config.json').write_text(json.dumps(config, indent=2))
@@ -252,7 +261,7 @@ def main():
                     'selection_policy': config['checkpoint_selection']}, out / filename)
 
     save(0, metrics)
-    if args.candidate_relations:
+    if args.candidate_relations or args.post_search_bidirectional:
         save(0, metrics, 'initial.pth')  # Actual pretrained M0; retire after parity consumers.
     (out / 'metrics.json').write_text(json.dumps(records, indent=2))
     print('INITIAL', json.dumps(metrics), flush=True)
@@ -350,7 +359,7 @@ def main():
                'relation_parameters_changed': relations_changed,
                'max_relation_gradient_norm': max_relation_gradient if has_relations else None,
                'retained_weights': (['best.pth'] + (['last.pth'] if args.retain_last else [])
-                                    + (['initial.pth'] if args.candidate_relations else [])),
+                                    + (['initial.pth'] if args.candidate_relations or args.post_search_bidirectional else [])),
                'official_tracking_accuracy': False}
     (out / 'completion.json').write_text(json.dumps(receipt, indent=2))
     print('COMPLETED', json.dumps(receipt), flush=True)

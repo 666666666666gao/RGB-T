@@ -13,7 +13,7 @@ from .bounded_recovery import BoundedRecoveryTracker
 from .candidate_learning import selection_scores
 from .collect_recoverability import decode
 from .collect_rollouts import observe_actions
-from .recoverability_modules import select_actions
+from .recoverability_modules import observed_output, select_actions
 from trackit.core.utils.siamfc_cropping import apply_siamfc_cropping
 from trackit.runner.evaluation.common.siamfc_search_region_cropping_params_provider.simple import SiamFCCroppingParameterSimpleProvider
 
@@ -178,6 +178,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
                 self.insert_region(data, region_searched, extra)
         output = self.modules.decide(data, self.identity_anchor, self.identity_memory) if extra is not None else first
         selected = select_actions(output, data, self.threshold, self.write_verification, self.search_value)
+        output = observed_output(output, torch.tensor([region_searched if extra is not None else 0], device=self.device))
         if self.policy == 'c1':
             region, choice, pause = 0, original[3], False
         else:

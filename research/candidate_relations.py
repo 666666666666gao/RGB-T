@@ -35,3 +35,18 @@ class CandidateRelations(nn.Module):
                                        need_weights=False)[0]
         extra_result = self.normalization(extras + extra_context).reshape(batch, 30, -1)
         return self.output(torch.cat((local_result, extra_result), 1))
+
+    def observed_pairs(self, inputs, valid):
+        """Re-score both sides of each independently observed local+one pair."""
+        batch = len(inputs)
+        source = torch.eye(7, device=inputs.device)[None, :, None].expand(batch, -1, 5, -1)
+        tokens = self.embedding(torch.cat((inputs.reshape(batch, 7, 5, -1), source), -1))
+        result = inputs.new_zeros(batch, 6, 2, 5, 7)
+        rows, regions = valid[:, 1:].any(-1).nonzero(as_tuple=True)
+        if len(rows):
+            pairs = torch.cat((tokens[rows, 0], tokens[rows, regions + 1]), 1)
+            padding = ~torch.cat((valid[rows, 0], valid[rows, regions + 1]), 1)
+            context = self.attention(pairs, pairs, pairs, key_padding_mask=padding,
+                                     need_weights=False)[0]
+            result[rows, regions] = self.output(self.normalization(pairs + context)).reshape(-1, 2, 5, 7)
+        return result

@@ -84,7 +84,8 @@ class InstanceMemory(nn.Module):
 
 
 class RecoverabilityModules(nn.Module):
-    def __init__(self, c1_checkpoint, hidden=128, candidate_relations=False):
+    def __init__(self, c1_checkpoint, hidden=128, candidate_relations=False,
+                 post_search_bidirectional=False, observed_pair_training=False):
         super().__init__()
         assert hidden == c1_checkpoint['args']['hidden']
         self.c1 = CandidateQualityHead(hidden)
@@ -96,6 +97,9 @@ class RecoverabilityModules(nn.Module):
         self.search = nn.Sequential(nn.Linear((hidden * 3 + 23) * 2 + 39 + 48, hidden),
                                     nn.GELU(), nn.Linear(hidden, 13))
         self.relations = CandidateRelations(hidden) if candidate_relations else None
+        assert not post_search_bidirectional or candidate_relations
+        self.post_search_bidirectional = post_search_bidirectional
+        self.observed_pair_training = observed_pair_training
         for module in (self.action, self.search):
             nn.init.zeros_(module[-1].weight)
             nn.init.zeros_(module[-1].bias)
@@ -159,6 +163,7 @@ class RecoverabilityModules(nn.Module):
         action_inputs = torch.cat((inputs, keep_fused[:, None].expand(-1, 35, -1),
                                    keep_roi[:, None].expand(-1, 35, -1), region), -1)
         result = self.action(action_inputs)
+        base_result = result.reshape(batch, 7, 5, 7)
         if self.relations is not None:
             result = result + self.relations(inputs, data['valid'])
         result = result.reshape(batch, 7, 5, 7)
@@ -182,7 +187,47 @@ class RecoverabilityModules(nn.Module):
                   'descriptors': descriptor, 'support': support, 'anchor': anchor,
                   'memory': memory}
         output.update(self.search_decision(inputs, data))
+        if self.post_search_bidirectional:
+            # The action MLP is unchanged; only the observed relation context differs.
+            pairs = torch.stack((base_result[:, :1].expand(-1, 6, -1, -1), base_result[:, 1:]), 2)
+            pairs = pairs + self.relations.observed_pairs(inputs, data['valid'])
+            raw = torch.stack((data['raw_score'][:, :1].expand(-1, 6, -1), data['raw_score'][:, 1:]), 2)
+            quality = torch.stack((data['c1_quality'][:, :1].expand(-1, 6, -1), data['c1_quality'][:, 1:]), 2)
+            pair_advantage = pairs[..., 1:3].tanh()
+            rows = torch.arange(batch, device=inputs.device)[:, None]
+            regions = torch.arange(6, device=inputs.device)[None]
+            reference = pair_advantage[rows, regions, 0, keep[:, None], 0]
+            pair_harm = pairs[..., 3:5].sigmoid()
+            baseline_harm = pair_harm[rows, regions, 0, keep[:, None], 0]
+            pair_scores = pair_advantage - reference[:, :, None, None, None]
+            pair_scores -= .1 * (pair_harm - baseline_harm[:, :, None, None, None]).clamp(min=0)
+            pair_risk = pairs[..., 5].sigmoid() * (raw > .84)
+            keep_risk = pair_risk[rows, regions, 0, keep[:, None]]
+            action_risk = torch.stack((pair_risk, torch.zeros_like(pair_risk)), -1)
+            pair_scores -= .025 * (action_risk - keep_risk[:, :, None, None, None])
+            pair_scores[:, :, 1] -= .01
+            output.update(post_search_scores=pair_scores,
+                          post_search_advantage=pair_advantage - reference[:, :, None, None, None],
+                          post_search_harm_logits=pairs[..., 3:5],
+                          post_search_write_risk_logits=pairs[..., 5],
+                          post_search_quality_logits=torch.logit(quality.float().clamp(1e-5, 1-1e-5)) + pairs[..., 0],
+                          post_search_future_quality=pairs[..., 6].sigmoid())
         return output
+
+
+def observed_output(output, regions):
+    """Use one executed pair per row, including its re-scored keep reference."""
+    if 'post_search_scores' not in output:
+        return output
+    result = dict(output)
+    rows = (regions > 0).nonzero(as_tuple=True)[0]
+    pairs = regions[rows] - 1
+    for field in ('scores', 'advantage', 'harm_logits', 'write_risk_logits', 'quality_logits', 'future_quality'):
+        value = output[field].clone()
+        value[rows, 0] = output['post_search_' + field][rows, pairs, 0]
+        value[rows, regions[rows]] = output['post_search_' + field][rows, pairs, 1]
+        result[field] = value
+    return result
 
 
 def select_actions(output, data, threshold=.03, write_verification='identity', search_value='weighted'):
@@ -200,6 +245,9 @@ def select_actions(output, data, threshold=.03, write_verification='identity', s
     best_region = regional.argmax(1) + 1
     current_quality = output['quality_logits'].sigmoid()[torch.arange(batch, device=device), 0, keep]
     search = ((output['absence_logit'].sigmoid() >= .5) | (current_quality < .5)) & (regional.max(1).values > threshold)
+    # A cache may hold six alternatives. Re-score only the chosen, observed pair.
+    extra_observed = data['valid'][torch.arange(batch, device=device), best_region].any(-1)
+    output = observed_output(output, torch.where(search & extra_observed, best_region, 0))
     valid = data['valid'][..., None].expand(-1, -1, -1, 2).clone()
     writes = data['raw_score'] > .84
     valid[..., 1] &= writes
@@ -270,7 +318,7 @@ def search_supervision_targets(output, data, mode='oracle', threshold=.03, write
     return torch.stack(gains, 1), torch.stack(successes, 1)
 
 
-def budgeted_winner_loss(scores, utility, action_valid, reference, keep, threshold):
+def budgeted_winner_loss(scores, utility, action_valid, reference, keep, threshold, budget_regions=None):
     """Teach the deployed winner against its current rival within each search budget."""
     batch, region_count, candidates, actions = scores.shape
     scores, values, legal = scores.flatten(1), utility.flatten(1), action_valid.flatten(1)
@@ -282,7 +330,7 @@ def budgeted_winner_loss(scores, utility, action_valid, reference, keep, thresho
     decision_values = (values - reference[:, None] - .01 * (regions > 0)[None]
                        - threshold * nonkeep)
     losses = []
-    for region in range(region_count):
+    for region in range(region_count) if budget_regions is None else budget_regions:
         available = legal & ((regions == 0) | (regions == region))[None]
         best_value, winner = decision_values.masked_fill(~available, -torch.inf).max(1)
         winner = torch.where(best_value > 0, winner, keep * actions)
@@ -322,7 +370,22 @@ def write_pair_supervision_loss(scores, utility, action_valid):
 
 
 def objective(model, output, data, search_supervision='oracle', threshold=.03, action_ranking='reference',
-              write_pair_calibration=False, write_verification='identity', search_value='weighted'):
+              write_pair_calibration=False, write_verification='identity', search_value='weighted',
+              independent_pairs=True, search_source=None, budget_regions=None):
+    if model.observed_pair_training and independent_pairs:
+        losses, pieces = [], []
+        for region in range(7):
+            visible = torch.zeros_like(data['valid'])
+            visible[:, 0] = data['valid'][:, 0]
+            visible[:, region] = data['valid'][:, region]
+            context_data = dict(data, valid=visible, action_valid=data['action_valid'] & visible[..., None])
+            context_region = torch.where(data['valid'][:, region].any(-1), region, 0)
+            context = observed_output(output, context_region)
+            loss, parts = objective(model, context, context_data, search_supervision, threshold, action_ranking,
+                                    write_pair_calibration, write_verification, search_value,
+                                    independent_pairs=False, search_source=(output, data), budget_regions=(region,))
+            losses.append(loss); pieces.append(parts)
+        return torch.stack(losses).mean(), {key: sum(p[key] for p in pieces) / 7 for key in pieces[0]}
     batch = len(data['valid'])
     valid, action_valid = data['valid'], data['action_valid']
     current = data['current_iou'].float()
@@ -336,7 +399,7 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
     harm_loss = F.binary_cross_entropy_with_logits(output['harm_logits'][action_valid], harmful.float()[action_valid])
     if action_ranking == 'budgeted':
         ranking_loss = budgeted_winner_loss(output['scores'], utility, action_valid, reference,
-                                           keep, threshold)
+                                           keep, threshold, budget_regions)
     else:
         ranking_loss = ranking_supervision_loss(output['scores'], utility, action_valid, reference, action_ranking)
     quality_loss = F.binary_cross_entropy_with_logits(output['quality_logits'][valid], current[valid])
@@ -367,7 +430,8 @@ def objective(model, output, data, search_supervision='oracle', threshold=.03, a
     preservation = ((student_gap - teacher_gap).square() * pairs).sum() / pairs.sum().clamp(min=1)
     identity = (F.relu(.2 - student_gap) * pairs).sum() / pairs.sum().clamp(min=1)
 
-    region_gain, region_success = search_supervision_targets(output, data, search_supervision, threshold,
+    search_output, search_data = (output, data) if search_source is None else search_source
+    region_gain, region_success = search_supervision_targets(search_output, search_data, search_supervision, threshold,
                                                            write_verification, search_value)
     region_value_loss = F.smooth_l1_loss(output['region_advantage'], region_gain)
     search_success_loss = F.binary_cross_entropy_with_logits(output['region_success_logits'], region_success)

@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE",
+  "run_scope": "DEPLOYED_POST_SEARCH_BIDIRECTIONAL_CONTROL",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_backend_model": null,
+  "actual_backend_reasoning_effort": null,
+  "actual_backend_attested": false,
+  "runtime_verified": false,
+  "reviewed_at": "2026-10-07T07:21:57.114445+08:00",
+  "reviewer_task": "/root/post_search_relation_control_review",
+  "summary": "Final local source has no remaining blocking issue after two concrete pre-deployment defects were corrected and re-read. Source-only PASS; all neural and native execution gates remain pending.",
+  "blocking_issues": [],
+  "non_blocking_findings": [],
+  "resolved_issues": [
+    {
+      "id": "R1",
+      "previous_severity": "BLOCKING",
+      "status": "RESOLVED_IN_SOURCE",
+      "path": "research/check_post_search_relations.py",
+      "lines": [
+        53,
+        54,
+        55
+      ],
+      "defect": "The original local-only check incorrectly required all auxiliary post_search_scores to be zero. The action MLP, risk terms and extra-region cost still populate unavailable pair scores; the deployed path ignores them.",
+      "correction": "Removed the whole-tensor zero assertion. The current check calls observed_output with region zero and compares unchanged scores, quality_logits and advantage, while retaining the original local-only equality.",
+      "related_path": "research/recoverability_modules.py:192-208"
+    },
+    {
+      "id": "R2",
+      "previous_severity": "BLOCKING",
+      "status": "RESOLVED_IN_SOURCE",
+      "path": "scripts/run_post_search_relation_control.py",
+      "lines": [
+        46,
+        49
+      ],
+      "defect": "The first initial-shard merge set smoke_only=False even though the full development98 run retains --split. The existing collector requires receipt[smoke_only] == bool(args.split), so the subsequent GT report would abort.",
+      "correction": "Both merged config and receipt now use smoke_only=True, retaining all 98 sequences, 49418 frames, max_frames=0 and full_shard_union_verified=True.",
+      "related_path": "research/collect_recoverability_metrics.py:196-198"
+    }
+  ],
+  "metadata_correction": {
+    "path": "refine-logs/runs/post_search_relation_control/plan.json",
+    "status": "RESOLVED_IN_SOURCE",
+    "detail": "The unexecuted epoch0 check is now required=true, measured=false; no plan flag claims completed measurement."
+  },
+  "final_plan_reviewed": {
+    "parent": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+    "arms": [
+      "one_way_lr5",
+      "post_search_lr5",
+      "one_way_lr3",
+      "post_search_lr3"
+    ],
+    "learning_rates": [
+      1e-05,
+      1e-05,
+      3e-05,
+      3e-05
+    ],
+    "seed": 42,
+    "batch_size": 336,
+    "full_epochs": 64,
+    "optimizer_updates_per_full_arm": 576,
+    "train_policy_states": 2832,
+    "train_unique_sequence_query_pairs": 2576,
+    "train_sequences": 881,
+    "validation_queries": 196,
+    "reused_development_sequences": 98,
+    "contexts": "Seven equally weighted losses: local-only and six independent local-plus-one cases.",
+    "parameter_change": "No new parameters; identical strictly loaded parent weights, same relation block.",
+    "full_video_candidates": 9,
+    "selection": "Eight best/last checkpoints plus one shared bidirectional epoch0, declared before execution. One maximum development sequence-mean IoU checkpoint is locked before both native datasets.",
+    "epoch0_note": "A selected epoch0 checkpoint or epoch0 behavior difference is not new learning gain.",
+    "initial_full98_shards": [
+      25,
+      25,
+      24,
+      24
+    ],
+    "own_checkpoint_files_created": 20,
+    "own_unused_checkpoint_files_removed_after_all_consumers": 19,
+    "native_sequences": {
+      "lasher": 245,
+      "rgbt234": 234
+    },
+    "native_frames": {
+      "lasher": 220703,
+      "rgbt234": 116649
+    },
+    "native_metrics": 5,
+    "native_attribute_settings": 31
+  },
+  "checks": [
+    {
+      "topic": "Tensor dimensions and autograd",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Observed relation outputs are B x 6 x 2 x 5 x 7. Indexed assembly preserves the differentiable relation branch. Score adjustments mutate newly formed score tensors, not sigmoid/tanh outputs needed by backward; base_result is not overwritten by relation addition."
+    },
+    {
+      "topic": "Causal region independence",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Candidate embedding and memory support are per candidate. Each relation pair contains local tokens and one extra region only; six extras never attend one another. Search uses original local inputs and original local quality before observed_output is applied."
+    },
+    {
+      "topic": "Post-search reference",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Local and extra action outputs are re-scored together with the same local keep index. Advantage, harm baseline and keep write risk are recomputed from that pair; cost is charged once to the extra side. selected outputs and saved diagnostics use the same observed pair."
+    },
+    {
+      "topic": "Matched objective",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Both arms use the same seven-context mean. Each context masks candidate and action legality to local plus its one region. Budgeted ranking is restricted to that region; global pre-search supervision remains based on the original full cache labels. Local-only fallback for unavailable cached extras is the existing visible local context, not extra visual execution."
+    },
+    {
+      "topic": "Data and labels",
+      "status": "SOURCE_INSPECTED",
+      "detail": "The same old and current TRAIN cache roots and reused validation cache are selected. load_data verifies split, valid candidates, action masks and TRAIN/VAL disjointness. Forward accepts DECISION_FIELDS only; GT and future labels enter the objective and offline reports."
+    },
+    {
+      "topic": "Initialization and old behavior",
+      "status": "SOURCE_INSPECTED",
+      "detail": "All four arms strictly load the pretrained relation state before optimization. Old ABC_recoverability and ABC_candidate_relations loaders retain their prior behavior; observed_pair_training defaults false. Only ABC_post_search_relations enables the new inference branch."
+    },
+    {
+      "topic": "Checkpoint reload and epoch0",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Both best and last have strict reload and cache-metric equality gates. Bidirectional initial.pth is saved after epoch0 evaluation and before any optimizer step, then strictly loaded for full-video scoring. New-family loaders are present in evaluation and collection."
+    },
+    {
+      "topic": "Controller dependencies",
+      "status": "SOURCE_INSPECTED",
+      "detail": "The controller requires prior terminal stage, source-review PASS, parent presence, disk room and idle allocated GPUs, then causal check and four real two-epoch sanity runs before full fits. It waits for original child exits and preserves logs on failure, with no unchanged retry."
+    },
+    {
+      "topic": "Initial full98 and selection",
+      "status": "SOURCE_INSPECTED",
+      "detail": "The four initial shards cover offsets 0/25/50/74 with counts 25/25/24/24, verify names and frame lengths against completed original98 metadata and merge retained raw predictions, latency and decisions. All nine candidates use actual GT and the selected path is written before native execution."
+    },
+    {
+      "topic": "Native GT metrics and mechanisms",
+      "status": "SOURCE_INSPECTED",
+      "detail": "Both native datasets receive the same selected path. The existing native controller verifies full sequence/frame unions and actual dataset GT, all five metrics, 19+12 attributes, four-reference seed42/5000 paired sequence bootstrap, curves and mechanism timelines."
+    },
+    {
+      "topic": "Cleanup",
+      "status": "SOURCE_INSPECTED",
+      "detail": "All inference and reporting consumers complete before only fit_sanity/fit_full best, last and applicable initial files are removed. The exact selected path is retained, paths are checked within this run root, and parent/GOLA/C1/old4/motion dependencies are not deletion targets."
+    },
+    {
+      "topic": "Private deployment and observation",
+      "status": "SOURCE_INSPECTED",
+      "detail": "The deployer contains the existing reviewed-source synchronization checks and does not silently start another run after failure. The passive observer first checks at 180 seconds, then uses 240 seconds or a measured near-end fit ETA and excludes zombie processes; no restart or training is embedded in the observer."
+    }
+  ],
+  "verification": {
+    "independent_stdlib_compile": {
+      "status": "PASS",
+      "plan_sources": 8,
+      "private_outer_sources": 2,
+      "private_embedded_payloads": 2,
+      "interpreter": "E:/python.exe -X utf8"
+    },
+    "git_diff_check": {
+      "status": "PASS",
+      "scope": "Six modified tracked research Python files; line-ending notices only."
+    },
+    "local_checker_entrypoint_failure": "The first reviewer compile invocation used PATH python at E:/Scripts/python.exe and exited before reading the script with No pyvenv.cfg file. It was a local interpreter-entrypoint failure; the unchanged compile script then passed with E:/python.exe. No environment was changed.",
+    "executed_experiment_modules": false,
+    "executed_neural_forwards": false,
+    "executed_training": false,
+    "executed_ssh": false,
+    "executed_deployment": false
+  },
+  "remaining_runtime_gates": [
+    "Run and inspect actual causal pair checks, finite backward behavior, keep-reference checks and alternating synchronized scorer timing.",
+    "Run and inspect all four real two-epoch sanity fits, nonzero finite gradients and strict reloads before the four full fits.",
+    "Obtain all eight best/last full98 runs plus the shared epoch0 full98 run and the actual-GT report before selecting one checkpoint.",
+    "Complete both native datasets, paired statistics and mechanism reports before removing unused own weights."
+  ],
+  "interpretation_limits": [
+    "This is a fresh same-family provisional source review, not cross-family acceptance or backend-model attestation.",
+    "Compilation is syntax validation only and does not prove CUDA execution, memory fit, autograd runtime, accuracy, throughput or successful deployment.",
+    "The initial behavior control and reused development98 selection do not provide untouched confirmation or training-seed stability; paired sequence bootstrap is for fixed checkpoints.",
+    "No gain, learning benefit or all-five-plus-two success is established by this review."
+  ],
+  "reviewed_sources": [
+    "research/candidate_relations.py",
+    "research/recoverability_modules.py",
+    "research/recoverability_tracker.py",
+    "research/train_recoverability.py",
+    "research/evaluate_recoverability.py",
+    "research/collect_recoverability.py",
+    "research/check_post_search_relations.py",
+    "scripts/run_post_search_relation_control.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\deploy_post_search_relation_control_20261007.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\observe_post_search_relation_control_20261007.py"
+  ],
+  "adjacent_sources_read": [
+    "scripts/run_current_policy_aggregation.py",
+    "scripts/run_candidate_relation_training.py",
+    "scripts/run_selective_state_native.py",
+    "scripts/run_search_gain_native.py",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_core_metrics.py",
+    "research/collect_candidate_metrics.py",
+    "research/paired_sequence_bootstrap.py",
+    "research/plot_core_metrics.py"
+  ]
+}
