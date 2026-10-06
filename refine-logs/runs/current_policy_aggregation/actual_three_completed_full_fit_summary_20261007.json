@@ -1,0 +1,85 @@
+{
+  "as_of_cst": "2026-10-07T00:05:27.404528+08:00",
+  "actual_complete_full_fits": 3,
+  "arms": [
+    {
+      "arm": "old_lr5",
+      "epochs": 72,
+      "optimizer_updates": 576,
+      "best_epoch": 0,
+      "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+      "initial_pretrained_parameters_and_frozen_C1_verified": true,
+      "best_and_last_strict_reload_verified": true
+    },
+    {
+      "arm": "old_lr3",
+      "epochs": 72,
+      "optimizer_updates": 576,
+      "best_epoch": 0,
+      "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+      "initial_pretrained_parameters_and_frozen_C1_verified": true,
+      "best_and_last_strict_reload_verified": true
+    },
+    {
+      "arm": "aggregate_lr3",
+      "epochs": 64,
+      "optimizer_updates": 576,
+      "best_epoch": 0,
+      "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+      "initial_pretrained_parameters_and_frozen_C1_verified": true,
+      "best_and_last_strict_reload_verified": true
+    }
+  ],
+  "remaining_arm": {
+    "arm": "aggregate_lr5",
+    "gpu": 1,
+    "pid": 602125,
+    "alive": true,
+    "completed": false,
+    "actual_completion": null,
+    "config_epochs": 64,
+    "latest_actual_train_row": {
+      "epoch": 49,
+      "step": 1,
+      "optimizer_steps": 433,
+      "loss": 1.6182081699371338,
+      "parts": {
+        "advantage": 0.030509335920214653,
+        "action_ranking": 0.1806906759738922,
+        "harm": 1.0425076484680176,
+        "quality": 0.7078190445899963,
+        "query_write_risk": 0.02851320430636406,
+        "future": 0.11324366927146912,
+        "memory_gate": 1.3838818073272705,
+        "margin_preservation": 0.002756513189524412,
+        "identity_margin": 0.15640264749526978,
+        "search_value": 0.0318867526948452,
+        "search_success": 0.4933943450450897,
+        "candidate_absence": 0.7285979986190796,
+        "search_ranking": 1.6770079135894775
+      },
+      "module_gradient_norms": {
+        "A": 0.09499633312225342,
+        "B": 4.454981327056885,
+        "C": 1.3886222839355469
+      },
+      "elapsed_seconds": 4420.934751659632,
+      "peak_cuda_mib": 19739.82177734375
+    },
+    "last_five_complete_epoch_seconds": [
+      65.10266723716632,
+      62.56676366785541,
+      62.396950010210276,
+      62.31623486895114,
+      62.3596768877469
+    ],
+    "median_recent_epoch_seconds_including_validation": 62.396950010210276,
+    "estimated_remaining_training_seconds": 991.4182057177854,
+    "estimated_training_end_cst": "2026-10-07T00:21:58.822734+08:00",
+    "estimate_scope": "Latest logged update and last five first-step intervals; excludes final reload and report",
+    "source_model_unchanged": true
+  },
+  "all_four_full_fits_complete": false,
+  "full98_and_new_native_results_complete": false,
+  "profile_scope": "One actual resource/log sample; no model instrumentation or timing guarantee"
+}

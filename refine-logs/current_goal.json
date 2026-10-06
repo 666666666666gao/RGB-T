@@ -7033,7 +7033,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T23:39:03.464775+08:00",
+  "updated_cst": "2026-10-07T00:12:49.610301+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11183,7 +11183,10 @@
     "previous_formal_metrics_complete": true,
     "all_five_plus_two": false,
     "source_main_commit": "a279323a0f98f2e6b0201b08b12c8b80b5652e99",
-    "next_check_cst": "2026-10-06T23:56:08.853442+08:00"
+    "next_check_cst": "2026-10-06T23:56:08.853442+08:00",
+    "actual_completed_full_fit_count": 3,
+    "last_actual_resource_profile_cst": "2026-10-07T00:05:27.404528+08:00",
+    "remaining_arm": "aggregate_lr5"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -42540,5 +42543,90 @@
       "research/collect_recoverability.py": "cf10c4de1e50ead122abd3be754285d88f9859d873b7b08e991138dc826a4690",
       "scripts/run_current_policy_aggregation.py": "98441071acdae2e01e7cff731a2b2d44fce4b2a4eb99f61f70cecd16695419df"
     }
+  },
+  "current_policy_aggregation_partial_full_completion": {
+    "as_of_cst": "2026-10-07T00:05:27.404528+08:00",
+    "actual_complete_full_fits": 3,
+    "arms": [
+      {
+        "arm": "old_lr5",
+        "epochs": 72,
+        "optimizer_updates": 576,
+        "best_epoch": 0,
+        "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+        "initial_pretrained_parameters_and_frozen_C1_verified": true,
+        "best_and_last_strict_reload_verified": true
+      },
+      {
+        "arm": "old_lr3",
+        "epochs": 72,
+        "optimizer_updates": 576,
+        "best_epoch": 0,
+        "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+        "initial_pretrained_parameters_and_frozen_C1_verified": true,
+        "best_and_last_strict_reload_verified": true
+      },
+      {
+        "arm": "aggregate_lr3",
+        "epochs": 64,
+        "optimizer_updates": 576,
+        "best_epoch": 0,
+        "all_ABC_relation_gradients_and_parameter_changes_verified": true,
+        "initial_pretrained_parameters_and_frozen_C1_verified": true,
+        "best_and_last_strict_reload_verified": true
+      }
+    ],
+    "remaining_arm": {
+      "arm": "aggregate_lr5",
+      "gpu": 1,
+      "pid": 602125,
+      "alive": true,
+      "completed": false,
+      "actual_completion": null,
+      "config_epochs": 64,
+      "latest_actual_train_row": {
+        "epoch": 49,
+        "step": 1,
+        "optimizer_steps": 433,
+        "loss": 1.6182081699371338,
+        "parts": {
+          "advantage": 0.030509335920214653,
+          "action_ranking": 0.1806906759738922,
+          "harm": 1.0425076484680176,
+          "quality": 0.7078190445899963,
+          "query_write_risk": 0.02851320430636406,
+          "future": 0.11324366927146912,
+          "memory_gate": 1.3838818073272705,
+          "margin_preservation": 0.002756513189524412,
+          "identity_margin": 0.15640264749526978,
+          "search_value": 0.0318867526948452,
+          "search_success": 0.4933943450450897,
+          "candidate_absence": 0.7285979986190796,
+          "search_ranking": 1.6770079135894775
+        },
+        "module_gradient_norms": {
+          "A": 0.09499633312225342,
+          "B": 4.454981327056885,
+          "C": 1.3886222839355469
+        },
+        "elapsed_seconds": 4420.934751659632,
+        "peak_cuda_mib": 19739.82177734375
+      },
+      "last_five_complete_epoch_seconds": [
+        65.10266723716632,
+        62.56676366785541,
+        62.396950010210276,
+        62.31623486895114,
+        62.3596768877469
+      ],
+      "median_recent_epoch_seconds_including_validation": 62.396950010210276,
+      "estimated_remaining_training_seconds": 991.4182057177854,
+      "estimated_training_end_cst": "2026-10-07T00:21:58.822734+08:00",
+      "estimate_scope": "Latest logged update and last five first-step intervals; excludes final reload and report",
+      "source_model_unchanged": true
+    },
+    "all_four_full_fits_complete": false,
+    "full98_and_new_native_results_complete": false,
+    "profile_scope": "One actual resource/log sample; no model instrumentation or timing guarantee"
   }
 }
