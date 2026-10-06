@@ -132,3 +132,8 @@ Allfour60epochs/480 actualupdates, A/B/C changed/nonzero gradients, frozenC1no g
 ## 2026-10-06T16:38:51.902506+08:00 Saved best decision decomposition
 
 Four storedbest NPZs vs realparent-equivalent epoch0 savedM0, exactsame196 VAL jobs/C1labels, zero new NN/TEST. Actionschanged2/2/4/4; current improved1/1/2/3 queries, allpause0. HighLRrelations admits3 foundcorrect candidates vsM0zero on samequeries; not sustainedonline proof. LowLR utility includes fewer-search costgain, separately reported. Four configs shareseed42; cached selectiondata isnot independentconfirmation. Originaleightfull98 queue continues; all5+2 ACTIVE_UNMET.
+
+
+## 2026-10-06T17:15:13.178740+08:00 First four complete98 and cached/online bridge
+
+Allfourbest NN98/49418 complete, sameoriginalowner4115079 nowFULL98_LAST, original126715/16/17/18 alive at2026-10-06T16:46:29.570523+08:00. Every previously savedchangedcacheaction joinedtoonline; cached3correct-extra highLRrel becomes1at corresponding onlineframes; someprefixdrift hurts andboybackpack drift helps. basketball lowLRrelation current.6643 vsparent0, future3.4322 vsfrozenlabel.7495. abmotocometurn41 bothcurrent0/wrongwriteproxy0 butfuture.7626→.5463, actualalso.7627→.5462; no uniquegeocausationclaim. NoNN/reportreplay; oldABCfieldschema mistake corrected direct, stderrpreserved. ActualeightGT/nativepending/all5+2 ACTIVE_UNMET.
