@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/current_policy_aggregation_20261006/native/lasher/baseline_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/current_policy_aggregation_20261006/native/lasher/baseline_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "baseline",
+        "selected_ABC"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": 1.5555134128123898,
+          "percentile_95_interval_percentage_points": [
+            0.6846084390352504,
+            2.539711101025768
+          ],
+          "improved_sequences": 63,
+          "worsened_sequences": 52,
+          "tied_sequences": 130
+        },
+        "PR": {
+          "mean_delta_percentage_points": 1.7031043477678431,
+          "percentile_95_interval_percentage_points": [
+            0.7501913650826993,
+            2.8032905987237484
+          ],
+          "improved_sequences": 65,
+          "worsened_sequences": 50,
+          "tied_sequences": 130
+        },
+        "SR": {
+          "mean_delta_percentage_points": 1.3021482178721744,
+          "percentile_95_interval_percentage_points": [
+            0.5983972755647249,
+            2.0897716325700046
+          ],
+          "improved_sequences": 69,
+          "worsened_sequences": 52,
+          "tied_sequences": 124
+        }
+      }
+    }
+  }
+}

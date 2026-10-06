@@ -6407,17 +6407,28 @@
       "historical_receipt": "refine-logs/runs/recoverability_search_realization/user_disable_thermal_power_control.json",
       "resumed_collector_pid": 1977211
     },
-    "gpu_assignment_current": {
-      "task": "full ABC plus candidate relation training",
-      "workers": [
-        602124,
-        602125,
-        602126,
-        602127
-      ],
-      "four_gpu_per_wave": true,
-      "max_measured_sanity_Torch_mib": 19739.82177734375
-    },
+    "gpu_assignment_current": [
+      {
+        "gpu": 0,
+        "pid": null,
+        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+      },
+      {
+        "gpu": 1,
+        "pid": null,
+        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+      },
+      {
+        "gpu": 2,
+        "pid": null,
+        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+      },
+      {
+        "gpu": 3,
+        "pid": null,
+        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+      }
+    ],
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
       "current_stage": "FIT_FULL",
@@ -6427,7 +6438,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": "2026-10-07T00:36:16.903819+08:00",
+    "next_check_cst": null,
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7033,7 +7044,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T00:33:13.945401+08:00",
+  "updated_cst": "2026-10-07T07:03:07.474951+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11170,24 +11181,24 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-07T00:33:13.945401+08:00",
+    "updated_cst": "2026-10-07T07:03:07.474951+08:00",
     "authoritative_snapshot": "refine-logs/runs/current_policy_aggregation/current_execution_snapshot.json",
-    "actual_stage": "FULL98_BEST",
-    "pipeline_pid": 589745,
-    "pipeline_complete": false,
+    "actual_stage": "COMPLETE_CURRENT_POLICY_AGGREGATION_FULL_TRAINING_AND_NATIVE",
+    "pipeline_pid": null,
+    "pipeline_complete": true,
     "current_policy_collection_complete": true,
     "four_fit_sanities_complete": true,
     "current_full_fits_complete": true,
-    "current_native_metrics_complete": false,
+    "current_native_metrics_complete": true,
     "previous_full_training_complete": true,
     "previous_formal_metrics_complete": true,
     "all_five_plus_two": false,
     "source_main_commit": "a279323a0f98f2e6b0201b08b12c8b80b5652e99",
-    "next_check_cst": "2026-10-07T00:36:16.903819+08:00",
+    "next_check_cst": null,
     "actual_completed_full_fit_count": 4,
     "last_actual_resource_profile_cst": "2026-10-07T00:05:27.404528+08:00",
-    "remaining_arm": "aggregate_lr5",
-    "last_actual_observation_cst": "2026-10-07T00:32:18.602617+08:00"
+    "remaining_arm": null,
+    "last_actual_observation_cst": "2026-10-07T02:43:48.029898+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -42790,5 +42801,133 @@
     "current_actual_pipeline_stage": "FULL98_BEST",
     "new_formal_accuracy_acceptance": false,
     "no_NN_or_metrics_report_replay": true
+  },
+  "current_policy_aggregation_complete": {
+    "full_fit_summary": {
+      "old_lr5": {
+        "epochs": 72,
+        "optimizer_steps": 576,
+        "train_policy_states": 2576,
+        "unique_train_queries": 2576,
+        "train_policy_count": 1,
+        "best_epoch": 0,
+        "ABC_and_relation_gradients_and_updates_verified": true
+      },
+      "aggregate_lr5": {
+        "epochs": 64,
+        "optimizer_steps": 576,
+        "train_policy_states": 2832,
+        "unique_train_queries": 2576,
+        "train_policy_count": 2,
+        "best_epoch": 0,
+        "ABC_and_relation_gradients_and_updates_verified": true
+      },
+      "old_lr3": {
+        "epochs": 72,
+        "optimizer_steps": 576,
+        "train_policy_states": 2576,
+        "unique_train_queries": 2576,
+        "train_policy_count": 1,
+        "best_epoch": 0,
+        "ABC_and_relation_gradients_and_updates_verified": true
+      },
+      "aggregate_lr3": {
+        "epochs": 64,
+        "optimizer_steps": 576,
+        "train_policy_states": 2832,
+        "unique_train_queries": 2576,
+        "train_policy_count": 2,
+        "best_epoch": 0,
+        "ABC_and_relation_gradients_and_updates_verified": true
+      }
+    },
+    "selected_model": {
+      "selected_candidate": "old_lr5_best",
+      "selected_arm": "old_lr5",
+      "selected_checkpoint": "best",
+      "selected_epoch": 0,
+      "parent_model": "/data/gb/outputs/current_policy_aggregation_20261006/fit_full/old_lr5/best.pth",
+      "state_commit_model": null,
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "native_metrics_completed": false,
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "current_parent": 0.7444150380548322,
+        "old_lr5_best": 0.7444150380548322,
+        "aggregate_lr5_best": 0.7444150380548322,
+        "old_lr3_best": 0.7444150380548322,
+        "aggregate_lr3_best": 0.7444150380548322,
+        "old_lr5_last": 0.727625576949362,
+        "aggregate_lr5_last": 0.7227412990080239,
+        "old_lr3_last": 0.728001272981639,
+        "aggregate_lr3_last": 0.7054091584748563
+      },
+      "selection_scope": "Eight completed checkpoints on reused developer98; selection precedes TEST; not seed-stability evidence"
+    },
+    "native_complete": {
+      "completed": true,
+      "same_state_commit_model_both_datasets": null,
+      "same_ABC_model_both_datasets": "/data/gb/outputs/current_policy_aggregation_20261006/fit_full/old_lr5/best.pth",
+      "model_label": "selected_ABC",
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.30155331814711,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.7031043477678338,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.6574864127439,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.5555134128123598,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.3395735664682,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.3021482178721797,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.03542684456828,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 0.2565692700606945,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 69.4544747423496,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.22188156446030405,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "all_five_plus_two": false,
+      "complete_attribute_settings": 31,
+      "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+      "not_training_seed_stability": true
+    },
+    "actual_complete_at_cst": "2026-10-07T02:42:18.467307+08:00",
+    "original_text_files": 1997,
+    "original_text_bytes": 62591031,
+    "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   }
 }

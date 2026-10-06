@@ -1,0 +1,43 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/current_policy_aggregation_20261006/native/rgbt234/baseline_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/current_policy_aggregation_20261006/native/rgbt234/baseline_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "baseline",
+        "selected_ABC"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.2565692700607477,
+          "percentile_95_interval_percentage_points": [
+            -0.8760541254464503,
+            1.4669425389996356
+          ],
+          "improved_sequences": 39,
+          "worsened_sequences": 30,
+          "tied_sequences": 165
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.22188156446030402,
+          "percentile_95_interval_percentage_points": [
+            -0.4310525378480474,
+            0.9223580410881869
+          ],
+          "improved_sequences": 43,
+          "worsened_sequences": 34,
+          "tied_sequences": 157
+        }
+      }
+    }
+  }
+}

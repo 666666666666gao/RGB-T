@@ -1,0 +1,56 @@
+{
+  "arms": [
+    [
+      "old_lr5",
+      false,
+      1e-05,
+      72
+    ],
+    [
+      "aggregate_lr5",
+      true,
+      1e-05,
+      64
+    ],
+    [
+      "old_lr3",
+      false,
+      3e-05,
+      72
+    ],
+    [
+      "aggregate_lr3",
+      true,
+      3e-05,
+      64
+    ]
+  ],
+  "batch_size": 336,
+  "optimizer_updates_per_full_arm": 576,
+  "seed": 42,
+  "parent": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+  "old_train_roots": [
+    "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3"
+  ],
+  "current_train_roots": [
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu0",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu1",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu2",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu3"
+  ],
+  "validation": "/data/gb/outputs/current_policy_aggregation_20261006/validation",
+  "aggregate_queries": 2832,
+  "aggregate_unique_sequence_query_pairs": 2576,
+  "disk_free_before_bytes": 2656227536896,
+  "output_budget_bytes": 21474836480,
+  "scope": "Same architecture and pretrained epoch5; data aggregation and learning rate controls; no three-seed gate",
+  "selection": "One best of eight full98 checkpoints, fixed before both full native datasets"
+}
