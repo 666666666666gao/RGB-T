@@ -147,3 +147,8 @@ Original all4x60/480 and all8x98/49418 complete. Best relations_lr5 epoch5 .7444
 ## 2026-10-06T18:22:27.679776+08:00 Actual selected-epoch reconstruction and full98 parity PASS; native starts
 
 At18:17:08 exactall98/49418 TXT+9fields pass; no originalweight-byte identity claim. Actual18:19:59 owner253188 ALIVE/newnativeLASHER_SHARDS start18:17:30 four278791-4; bothdataset4x64 sanity passed. Samepreselectedepoch5 all245/220703+234/116649 forthcoming, not newfiveaccuracycomplete. Sole40544 next2026-10-06T18:49:30.452558+08:00 then240/nearETA, no repeats/earlycleanup. GoalACTIVE_UNMET.
+
+
+## 2026-10-06T21:08:01.816466+08:00 Selected raw ABC epoch5 complete native evaluation
+
+Original4x60/480 intact; restoredprefix5/40+archivedcached/full98parity PASS; samebest bothfull245/220703 and234/116649 actualGT five/31attrs/curves/four5000pairs COMPLETE. Actualallfive+2=False. No NN/report replay bycollector/publisher; best protected, owninitial/last cleaned onlyafterconsumers. Scope currentrelations/querypause, nottrustedstate/fullhistoricalrepair.

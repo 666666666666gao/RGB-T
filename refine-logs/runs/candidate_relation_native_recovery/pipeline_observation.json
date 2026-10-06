@@ -1,55 +1,156 @@
 {
-  "observed_at_cst": "2026-10-06T18:19:59.434879+08:00",
+  "observed_at_cst": "2026-10-06T19:36:49.051548+08:00",
   "owner_pid": 253188,
-  "owner_alive": true,
+  "owner_alive": false,
   "progress": {
-    "stage": "RECONSTRUCTED_SELECTED_MODEL_FULL98_PARITY_PASS",
-    "at_cst": "2026-10-06T18:17:08.249431+08:00",
-    "passed": true,
-    "original_four_full60_runs_replayed": false,
-    "prefix_epochs": 5,
-    "prefix_optimizer_steps": 40,
-    "original_full_training_epochs": 60,
-    "original_full_training_optimizer_steps": 480,
-    "epoch0_to5_validation_records_match_atol": 1e-06,
-    "saved_validation_arrays_exact": true,
-    "full98_predictions_byte_exact": true,
-    "full98_decision_fields_exact": [
-      "choice",
-      "original_choice",
-      "pause",
-      "searched_region",
-      "extra_executed",
-      "template_updated",
-      "template_source_frame",
-      "forecast_reference",
-      "memory_target_commit"
-    ],
-    "sequences": 98,
-    "frames": 49418,
-    "scope": "Reconstructed epoch5 verified on original developer98; no claim of archived original weight-byte equality"
+    "stage": "COMPLETE_RECONSTRUCTED_SELECTED_RAW_ABC_BOTH_NATIVE",
+    "at_cst": "2026-10-06T19:33:52.829618+08:00",
+    "native": {
+      "completed": true,
+      "same_state_commit_model_both_datasets": null,
+      "same_ABC_model_both_datasets": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+      "model_label": "selected_ABC",
+      "five_metrics": [
+        {
+          "dataset": "lasher",
+          "metric": "PR",
+          "percent": 78.30155331814711,
+          "baseline_percent": 76.59844897037928,
+          "delta_vs_baseline_pp": 1.7031043477678338,
+          "target_percent": 78.59844897037928,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "NPR",
+          "percent": 74.6574864127439,
+          "baseline_percent": 73.10197299993155,
+          "delta_vs_baseline_pp": 1.5555134128123598,
+          "target_percent": 75.10197299993155,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "lasher",
+          "metric": "SR",
+          "percent": 62.3395735664682,
+          "baseline_percent": 61.03742534859602,
+          "delta_vs_baseline_pp": 1.3021482178721797,
+          "target_percent": 63.03742534859602,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MPR",
+          "percent": 92.03542684456828,
+          "baseline_percent": 91.77885757450758,
+          "delta_vs_baseline_pp": 0.2565692700606945,
+          "target_percent": 93.77885757450758,
+          "meets_plus_two": false
+        },
+        {
+          "dataset": "rgbt234",
+          "metric": "MSR",
+          "percent": 69.4544747423496,
+          "baseline_percent": 69.2325931778893,
+          "delta_vs_baseline_pp": 0.22188156446030405,
+          "target_percent": 71.2325931778893,
+          "meets_plus_two": false
+        }
+      ],
+      "all_five_plus_two": false,
+      "complete_attribute_settings": 31,
+      "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+      "not_training_seed_stability": true
+    },
+    "reconstructed_model": {
+      "selected_candidate": "relations_lr5_best",
+      "selected_arm": "relations_lr5",
+      "selected_checkpoint": "best",
+      "selected_epoch": 5,
+      "parent_model": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+      "state_commit_model": null,
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "native_metrics_completed": false,
+      "improves_protected_parent_on_developer_full98": false,
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "ABC_lr5_best": 0.7419918547892075,
+        "relations_lr5_best": 0.7444150380548322,
+        "ABC_lr4_best": 0.738714010900166,
+        "relations_lr4_best": 0.7205848813011212,
+        "ABC_lr5_last": 0.742695737282,
+        "relations_lr5_last": 0.7262692387320131,
+        "ABC_lr4_last": 0.7232948436605218,
+        "relations_lr4_last": 0.7095730716346498
+      },
+      "selection_scope": "One best of eight full98 models before both native tests; reused developer98, not seed stability or untouched confirmation",
+      "recovered_original_model": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth",
+      "reconstruction_verification": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstruction_verification.json"
+    },
+    "unused_own_weights_removed": 2
   },
   "native_progress": {
-    "stage": "LASHER_SHARDS",
-    "at_cst": "2026-10-06T18:17:30.713730+08:00",
-    "children": [
+    "stage": "COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT",
+    "at_cst": "2026-10-06T19:33:52.813574+08:00",
+    "completed": true,
+    "same_state_commit_model_both_datasets": null,
+    "same_ABC_model_both_datasets": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+    "model_label": "selected_ABC",
+    "five_metrics": [
       {
-        "gpu": 0,
-        "pid": 278791
+        "dataset": "lasher",
+        "metric": "PR",
+        "percent": 78.30155331814711,
+        "baseline_percent": 76.59844897037928,
+        "delta_vs_baseline_pp": 1.7031043477678338,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false
       },
       {
-        "gpu": 1,
-        "pid": 278792
+        "dataset": "lasher",
+        "metric": "NPR",
+        "percent": 74.6574864127439,
+        "baseline_percent": 73.10197299993155,
+        "delta_vs_baseline_pp": 1.5555134128123598,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false
       },
       {
-        "gpu": 2,
-        "pid": 278793
+        "dataset": "lasher",
+        "metric": "SR",
+        "percent": 62.3395735664682,
+        "baseline_percent": 61.03742534859602,
+        "delta_vs_baseline_pp": 1.3021482178721797,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false
       },
       {
-        "gpu": 3,
-        "pid": 278794
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "percent": 92.03542684456828,
+        "baseline_percent": 91.77885757450758,
+        "delta_vs_baseline_pp": 0.2565692700606945,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "percent": 69.4544747423496,
+        "baseline_percent": 69.2325931778893,
+        "delta_vs_baseline_pp": 0.22188156446030405,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false
       }
-    ]
+    ],
+    "all_five_plus_two": false,
+    "complete_attribute_settings": 31,
+    "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+    "not_training_seed_stability": true
   },
   "reconstruction_completion": {
     "completed": true,
@@ -156,8 +257,64 @@
     "frames": 49418,
     "scope": "Reconstructed epoch5 verified on original developer98; no claim of archived original weight-byte equality"
   },
-  "native_complete": null,
+  "native_complete": {
+    "completed": true,
+    "same_state_commit_model_both_datasets": null,
+    "same_ABC_model_both_datasets": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+    "model_label": "selected_ABC",
+    "five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "percent": 78.30155331814711,
+        "baseline_percent": 76.59844897037928,
+        "delta_vs_baseline_pp": 1.7031043477678338,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "percent": 74.6574864127439,
+        "baseline_percent": 73.10197299993155,
+        "delta_vs_baseline_pp": 1.5555134128123598,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "percent": 62.3395735664682,
+        "baseline_percent": 61.03742534859602,
+        "delta_vs_baseline_pp": 1.3021482178721797,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "percent": 92.03542684456828,
+        "baseline_percent": 91.77885757450758,
+        "delta_vs_baseline_pp": 0.2565692700606945,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "percent": 69.4544747423496,
+        "baseline_percent": 69.2325931778893,
+        "delta_vs_baseline_pp": 0.22188156446030405,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false
+      }
+    ],
+    "all_five_plus_two": false,
+    "complete_attribute_settings": 31,
+    "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+    "not_training_seed_stability": true
+  },
   "scope": "Passive primary artifact and liveness read; no neural/model/report execution",
   "reconstruction.log_tail": "59369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}\nCOMPLETED {\"completed\": true, \"epochs\": 5, \"optimizer_steps\": 40, \"modules_changed\": {\"A\": true, \"B\": true, \"C\": true}, \"max_module_gradient_norms\": {\"A\": 0.0961049348115921, \"B\": 3.6652562618255615, \"C\": 5.741759777069092}, \"frozen_modules\": [], \"frozen_module_weights_unchanged\": {}, \"frozen_c1_gradients_absent\": true, \"elapsed_seconds\": 284.56931456085294, \"peak_cuda_mib\": 19084.8583984375, \"best_epoch\": 5, \"best_validation\": {\"clips\": 196, \"loss\": 1.7820472717285156, \"valid_actions\": 7251, \"current\": 0.7544292211532593, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7559369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}, \"strict_reload_metrics_equal\": true, \"last_validation\": {\"clips\": 196, \"loss\": 1.7820472717285156, \"valid_actions\": 7251, \"current\": 0.7544292211532593, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7559369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}, \"last_strict_reload_metrics_equal\": true, \"initial_parent_all_output_tensors_exact\": true, \"relation_parameters_changed\": true, \"max_relation_gradient_norm\": 4.5278449058532715, \"retained_weights\": [\"best.pth\", \"last.pth\", \"initial.pth\"], \"official_tracking_accuracy\": false}\n",
-  "native_controller.log_tail": "{\"stage\": \"LASHER_SANITY\", \"at_cst\": \"2026-10-06T18:17:10.253136+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 277527}, {\"gpu\": 1, \"pid\": 277528}, {\"gpu\": 2, \"pid\": 277529}, {\"gpu\": 3, \"pid\": 277530}]}\n{\"stage\": \"LASHER_SANITY_PASS\", \"at_cst\": \"2026-10-06T18:17:21.014040+08:00\"}\n{\"stage\": \"RGBT234_SANITY\", \"at_cst\": \"2026-10-06T18:17:21.016540+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 278063}, {\"gpu\": 1, \"pid\": 278064}, {\"gpu\": 2, \"pid\": 278065}, {\"gpu\": 3, \"pid\": 278066}]}\n{\"stage\": \"RGBT234_SANITY_PASS\", \"at_cst\": \"2026-10-06T18:17:30.711504+08:00\"}\n{\"stage\": \"LASHER_SHARDS\", \"at_cst\": \"2026-10-06T18:17:30.713730+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 278791}, {\"gpu\": 1, \"pid\": 278792}, {\"gpu\": 2, \"pid\": 278793}, {\"gpu\": 3, \"pid\": 278794}]}\n"
+  "native_controller.log_tail": "6-10-06T18:17:30.713730+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 278791}, {\"gpu\": 1, \"pid\": 278792}, {\"gpu\": 2, \"pid\": 278793}, {\"gpu\": 3, \"pid\": 278794}]}\n{\"stage\": \"LASHER_SHARDS_PASS\", \"at_cst\": \"2026-10-06T19:13:02.705586+08:00\"}\n{\"stage\": \"RGBT234_SHARDS\", \"at_cst\": \"2026-10-06T19:13:02.708110+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 346082}, {\"gpu\": 1, \"pid\": 346083}, {\"gpu\": 2, \"pid\": 346084}, {\"gpu\": 3, \"pid\": 346085}]}\n{\"stage\": \"RGBT234_SHARDS_PASS\", \"at_cst\": \"2026-10-06T19:30:51.228283+08:00\"}\n{\"stage\": \"FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE\", \"at_cst\": \"2026-10-06T19:32:46.323049+08:00\", \"dataset\": \"lasher\", \"metrics\": {\"NPR\": 74.6574864127439, \"PR\": 78.30155331814711, \"SR\": 62.3395735664682}}\n{\"stage\": \"FULL_NATIVE_ACTUAL_GT_REPORT_COMPLETE\", \"at_cst\": \"2026-10-06T19:33:52.813112+08:00\", \"dataset\": \"rgbt234\", \"metrics\": {\"MPR\": 92.03542684456828, \"MSR\": 69.4544747423496}}\n{\"stage\": \"COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT\", \"at_cst\": \"2026-10-06T19:33:52.813574+08:00\", \"completed\": true, \"same_state_commit_model_both_datasets\": null, \"same_ABC_model_both_datasets\": \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"model_label\": \"selected_ABC\", \"five_metrics\": [{\"dataset\": \"lasher\", \"metric\": \"PR\", \"percent\": 78.30155331814711, \"baseline_percent\": 76.59844897037928, \"delta_vs_baseline_pp\": 1.7031043477678338, \"target_percent\": 78.59844897037928, \"meets_plus_two\": false}, {\"dataset\": \"lasher\", \"metric\": \"NPR\", \"percent\": 74.6574864127439, \"baseline_percent\": 73.10197299993155, \"delta_vs_baseline_pp\": 1.5555134128123598, \"target_percent\": 75.10197299993155, \"meets_plus_two\": false}, {\"dataset\": \"lasher\", \"metric\": \"SR\", \"percent\": 62.3395735664682, \"baseline_percent\": 61.03742534859602, \"delta_vs_baseline_pp\": 1.3021482178721797, \"target_percent\": 63.03742534859602, \"meets_plus_two\": false}, {\"dataset\": \"rgbt234\", \"metric\": \"MPR\", \"percent\": 92.03542684456828, \"baseline_percent\": 91.77885757450758, \"delta_vs_baseline_pp\": 0.2565692700606945, \"target_percent\": 93.77885757450758, \"meets_plus_two\": false}, {\"dataset\": \"rgbt234\", \"metric\": \"MSR\", \"percent\": 69.4544747423496, \"baseline_percent\": 69.2325931778893, \"delta_vs_baseline_pp\": 0.22188156446030405, \"target_percent\": 71.2325931778893, \"meets_plus_two\": false}], \"all_five_plus_two\": false, \"complete_attribute_settings\": 31, \"fixed_checkpoint_paired_bootstrap\": \"5000/seed42 versus GOLA/C1/old4/gross_parent\", \"not_training_seed_stability\": true}\n"
 }

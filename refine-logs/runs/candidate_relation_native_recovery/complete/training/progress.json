@@ -1,0 +1,91 @@
+{
+  "stage": "COMPLETE_RECONSTRUCTED_SELECTED_RAW_ABC_BOTH_NATIVE",
+  "at_cst": "2026-10-06T19:33:52.829618+08:00",
+  "native": {
+    "completed": true,
+    "same_state_commit_model_both_datasets": null,
+    "same_ABC_model_both_datasets": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+    "model_label": "selected_ABC",
+    "five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "percent": 78.30155331814711,
+        "baseline_percent": 76.59844897037928,
+        "delta_vs_baseline_pp": 1.7031043477678338,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "percent": 74.6574864127439,
+        "baseline_percent": 73.10197299993155,
+        "delta_vs_baseline_pp": 1.5555134128123598,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "percent": 62.3395735664682,
+        "baseline_percent": 61.03742534859602,
+        "delta_vs_baseline_pp": 1.3021482178721797,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "percent": 92.03542684456828,
+        "baseline_percent": 91.77885757450758,
+        "delta_vs_baseline_pp": 0.2565692700606945,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "percent": 69.4544747423496,
+        "baseline_percent": 69.2325931778893,
+        "delta_vs_baseline_pp": 0.22188156446030405,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false
+      }
+    ],
+    "all_five_plus_two": false,
+    "complete_attribute_settings": 31,
+    "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+    "not_training_seed_stability": true
+  },
+  "reconstructed_model": {
+    "selected_candidate": "relations_lr5_best",
+    "selected_arm": "relations_lr5",
+    "selected_checkpoint": "best",
+    "selected_epoch": 5,
+    "parent_model": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+    "state_commit_model": null,
+    "search_value": "gross",
+    "same_checkpoint_both_native_datasets": true,
+    "native_metrics_completed": false,
+    "improves_protected_parent_on_developer_full98": false,
+    "sequence_mean_iou": {
+      "baseline": 0.7432785069707898,
+      "c1": 0.7394401616015396,
+      "old4": 0.745906102961742,
+      "gross_parent": 0.7461261775861118,
+      "ABC_lr5_best": 0.7419918547892075,
+      "relations_lr5_best": 0.7444150380548322,
+      "ABC_lr4_best": 0.738714010900166,
+      "relations_lr4_best": 0.7205848813011212,
+      "ABC_lr5_last": 0.742695737282,
+      "relations_lr5_last": 0.7262692387320131,
+      "ABC_lr4_last": 0.7232948436605218,
+      "relations_lr4_last": 0.7095730716346498
+    },
+    "selection_scope": "One best of eight full98 models before both native tests; reused developer98, not seed stability or untouched confirmation",
+    "recovered_original_model": "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2/fit_full/relations_lr5/best.pth",
+    "reconstruction_verification": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstruction_verification.json"
+  },
+  "unused_own_weights_removed": 2
+}
