@@ -6410,23 +6410,23 @@
     "gpu_assignment_current": [
       {
         "gpu": 0,
-        "pid": null,
-        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+        "pid": 1315837,
+        "alive": true
       },
       {
         "gpu": 1,
-        "pid": null,
-        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+        "pid": 1315838,
+        "alive": true
       },
       {
         "gpu": 2,
-        "pid": null,
-        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+        "pid": 1315839,
+        "alive": true
       },
       {
         "gpu": 3,
-        "pid": null,
-        "phase": "PREVIOUS_FULL_ROUND_COMPLETE; NEXT_RELATION_CONTROL_NOT_LAUNCHED"
+        "pid": 1315840,
+        "alive": true
       }
     ],
     "gpu_memory_request": {
@@ -6438,7 +6438,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": null,
+    "next_check_cst": "2026-10-07T07:30:36.444958+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7044,7 +7044,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T07:03:07.474951+08:00",
+  "updated_cst": "2026-10-07T07:28:09.569432+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11181,24 +11181,24 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-07T07:03:07.474951+08:00",
-    "authoritative_snapshot": "refine-logs/runs/current_policy_aggregation/current_execution_snapshot.json",
-    "actual_stage": "COMPLETE_CURRENT_POLICY_AGGREGATION_FULL_TRAINING_AND_NATIVE",
-    "pipeline_pid": null,
-    "pipeline_complete": true,
+    "updated_cst": "2026-10-07T07:28:09.569432+08:00",
+    "authoritative_snapshot": "refine-logs/runs/post_search_relation_control/current_execution_snapshot.json",
+    "actual_stage": "FIT_SANITY",
+    "pipeline_pid": 1311071,
+    "pipeline_complete": false,
     "current_policy_collection_complete": true,
     "four_fit_sanities_complete": true,
-    "current_full_fits_complete": true,
-    "current_native_metrics_complete": true,
+    "current_full_fits_complete": false,
+    "current_native_metrics_complete": false,
     "previous_full_training_complete": true,
     "previous_formal_metrics_complete": true,
     "all_five_plus_two": false,
-    "source_main_commit": "a279323a0f98f2e6b0201b08b12c8b80b5652e99",
-    "next_check_cst": null,
+    "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
+    "next_check_cst": "2026-10-07T07:30:36.444958+08:00",
     "actual_completed_full_fit_count": 4,
     "last_actual_resource_profile_cst": "2026-10-07T00:05:27.404528+08:00",
     "remaining_arm": null,
-    "last_actual_observation_cst": "2026-10-07T02:43:48.029898+08:00"
+    "last_actual_observation_cst": "2026-10-07T07:26:38.268474+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -42929,5 +42929,150 @@
     "original_text_files": 1997,
     "original_text_bytes": 62591031,
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
+  },
+  "current_post_search_relation_control": {
+    "updated_cst": "2026-10-07T07:28:09.569432+08:00",
+    "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
+    "actual_launch": {
+      "pid": 1311071,
+      "owner_alive_at_launch": true,
+      "at_cst": "2026-10-07T07:23:22.860831+08:00",
+      "output": "/data/gb/outputs/post_search_relation_control_20261007",
+      "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
+      "first_phase": "CAUSAL_PAIR_CHECK then four real2epoch fit sanities",
+      "full_epochs": 64,
+      "optimizer_updates_per_full_arm": 576,
+      "four_gpu_waves": true,
+      "same_init_and_visual_budget": true,
+      "no_new_parameters": true,
+      "no_three_seed_gate": true
+    },
+    "actual_observation": {
+      "observed_at_cst": "2026-10-07T07:26:38.268474+08:00",
+      "owner_pid": 1311071,
+      "owner_alive": true,
+      "progress": {
+        "stage": "FIT_SANITY",
+        "at_cst": "2026-10-07T07:26:32.428084+08:00",
+        "elapsed_seconds": 190.45243579195812,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 1315837
+          },
+          {
+            "gpu": 1,
+            "pid": 1315838
+          },
+          {
+            "gpu": 2,
+            "pid": 1315839
+          },
+          {
+            "gpu": 3,
+            "pid": 1315840
+          }
+        ]
+      },
+      "observed_phase": {
+        "stage": "FIT_SANITY",
+        "at_cst": "2026-10-07T07:26:32.428084+08:00",
+        "elapsed_seconds": 190.45243579195812,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 1315837
+          },
+          {
+            "gpu": 1,
+            "pid": 1315838
+          },
+          {
+            "gpu": 2,
+            "pid": 1315839
+          },
+          {
+            "gpu": 3,
+            "pid": 1315840
+          }
+        ]
+      },
+      "children_alive": [
+        {
+          "gpu": 0,
+          "pid": 1315837,
+          "alive": true
+        },
+        {
+          "gpu": 1,
+          "pid": 1315838,
+          "alive": true
+        },
+        {
+          "gpu": 2,
+          "pid": 1315839,
+          "alive": true
+        },
+        {
+          "gpu": 3,
+          "pid": 1315840,
+          "alive": true
+        }
+      ],
+      "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
+      "actual_training_rows": [],
+      "closed_causal_pair_check": {
+        "completed": true,
+        "same_loaded_parameters": true,
+        "pre_search_outputs_and_local_only_scores_exact": true,
+        "unobserved_region_does_not_change_other_pair": true,
+        "observed_region_changes_both_sides": true,
+        "single_executed_pair_matches_its_independent_cache_case": true,
+        "post_search_keep_reference_recomputed": true,
+        "both_matched_pair_objectives_backward_finite_relations_gradient": true,
+        "frozen_c1_gradients_absent": true,
+        "optimizer_updates": 0,
+        "causal_input_fields": [
+          "features",
+          "evidence",
+          "raw_score",
+          "boxes",
+          "instance_features",
+          "anchor_features",
+          "image_boxes",
+          "valid",
+          "c1_quality",
+          "original_choice",
+          "history_instance_descriptors",
+          "history_evidence",
+          "history_quality",
+          "history_boxes",
+          "history_frames",
+          "history_write",
+          "history_valid",
+          "motion_means",
+          "motion_log_weights"
+        ],
+        "scorer_ms": {
+          "one_way": {
+            "mean": 728.8010958814994,
+            "p95": 748.9434187300503
+          },
+          "post_search_bidirectional": {
+            "mean": 729.730412629433,
+            "p95": 753.1440840102732
+          }
+        },
+        "timing_scope": "100 alternating synchronised cached module forwards, one actual region, batch1; excludes GOLA and is not full-system FPS",
+        "method_effect_or_formal_accuracy_proven": false
+      }
+    },
+    "next_check_cst": "2026-10-07T07:30:36.444958+08:00",
+    "goal_status": "ACTIVE_UNMET",
+    "full_training_complete": false,
+    "full98_complete": false,
+    "native_complete": false,
+    "first_actual_causal_check_complete": true,
+    "one_checkpoint_both_native_datasets_required": true
   }
 }
