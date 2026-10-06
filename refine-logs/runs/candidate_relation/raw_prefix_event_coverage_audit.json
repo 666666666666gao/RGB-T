@@ -1,0 +1,145 @@
+{
+  "status": "READ_ONLY_ACTUAL_PREFIX_EVENT_COVERAGE",
+  "at_cst": "2026-10-06T15:45:24.982381+08:00",
+  "partitions": {
+    "train": {
+      "states": 2576,
+      "sequence_policy_groups": 881,
+      "known_prefix_frames_deduplicated": 260067,
+      "unknown_prefix_frames_deduplicated": 1080,
+      "observed_episode_counts": {
+        "normal_known_correct_episode": 4385,
+        "recovered_in_observed_prefix": 590,
+        "not_recovered_before_prefix_end": 126
+      },
+      "query_states_by_last_arrived_prefix_observation": {
+        "normal_known_correct_episode": 2119,
+        "not_recovered_before_prefix_end": 172,
+        "recovered_in_observed_prefix": 179,
+        "ambiguous_unknown_initial_or_unconfirmed_prefix": 106
+      },
+      "unique_queried_episodes": {
+        "normal_known_correct_episode": 1667,
+        "not_recovered_before_prefix_end": 126,
+        "recovered_in_observed_prefix": 134
+      },
+      "episodes_with_original_C1_legal_write_pair": {
+        "normal_known_correct_episode": 683,
+        "not_recovered_before_prefix_end": 18,
+        "recovered_in_observed_prefix": 19
+      },
+      "episodes_with_original_C1_pause_gain_gt_003": {
+        "not_recovered_before_prefix_end": 7,
+        "recovered_in_observed_prefix": 6
+      },
+      "episodes_with_any_candidate_pause_gain_gt_003": {
+        "normal_known_correct_episode": 264,
+        "not_recovered_before_prefix_end": 9,
+        "recovered_in_observed_prefix": 7
+      },
+      "source_metadata": [
+        {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 1762
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 179
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 179
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 179
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 179
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 24
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 25
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 25
+        },
+        {
+          "root": "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 24
+        }
+      ],
+      "overlapping_prefix_iou_consistency_atol": 1e-06
+    },
+    "validation": {
+      "states": 196,
+      "sequence_policy_groups": 98,
+      "known_prefix_frames_deduplicated": 24882,
+      "unknown_prefix_frames_deduplicated": 72,
+      "observed_episode_counts": {
+        "normal_known_correct_episode": 395,
+        "recovered_in_observed_prefix": 61,
+        "not_recovered_before_prefix_end": 8
+      },
+      "query_states_by_last_arrived_prefix_observation": {
+        "ambiguous_unknown_initial_or_unconfirmed_prefix": 9,
+        "normal_known_correct_episode": 171,
+        "recovered_in_observed_prefix": 7,
+        "not_recovered_before_prefix_end": 9
+      },
+      "unique_queried_episodes": {
+        "normal_known_correct_episode": 119,
+        "recovered_in_observed_prefix": 7,
+        "not_recovered_before_prefix_end": 8
+      },
+      "episodes_with_original_C1_legal_write_pair": {
+        "normal_known_correct_episode": 73,
+        "not_recovered_before_prefix_end": 2
+      },
+      "episodes_with_original_C1_pause_gain_gt_003": {},
+      "episodes_with_any_candidate_pause_gain_gt_003": {
+        "normal_known_correct_episode": 32
+      },
+      "source_metadata": [
+        {
+          "root": "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/validation",
+          "prefix_model": "/data/gb/outputs/recoverability_write_pair_reference_own_b384_full_20261004/best.pth",
+          "prefix_checkpoint_epoch": 4,
+          "unique_states": 196
+        }
+      ],
+      "overlapping_prefix_iou_consistency_atol": 1e-06
+    }
+  },
+  "definition": "Existing failure_events: three consecutive valid IoU<.2 for failure, three consecutive valid IoU>=.5 for recovery, unknown interrupts streaks. Normal units are maximal known-correct runs outside those failure events; initialization excluded.",
+  "query_assignment": "Last already arrived prefix observation query-1; episodes merged across identical sequence/policy/checkpoint prefixes only after overlapping IoU consistency check. This is TRAIN/developerVAL sampling coverage, not outcome of query action.",
+  "censoring": "Not recovered before longest saved prefix ends is right-censored; it does not mean permanently impossible recovery. Does not introduce H32 or missing future labels.",
+  "NN_forwards": 0,
+  "TEST_access": 0,
+  "new_training_labels": 0,
+  "active_training_modified": false
+}

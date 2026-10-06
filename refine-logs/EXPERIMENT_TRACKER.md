@@ -117,3 +117,8 @@ One controller4115079 launched2026-10-06T14:39:21.735409+08:00, actual2026-10-06
 ## 2026-10-06T15:36:16.920341+08:00 Actual raw ABC supervision coverage
 
 Original controller4115079 FIT_FULL, actual observation2026-10-06T15:34:39.423432+08:00; allfour workersalive. Read-only TRAIN2576/VAL196 states, writepairs4115/455; originalC1keep pausegain>.03 only21/0, candidate-level399/44. ExistingfutureIoUs valid, unknownhistory3378/99 masked. These are states/candidatepairs not independent recoveryevents; no NN/newlabels/TEST or livetraining edits. Original full60/480 plus eightfull98 queue continues, one selectedcheckpoint bothdatasets, all5+2 ACTIVE_UNMET.
+
+
+## 2026-10-06T15:51:00.369876+08:00 Actual prefix-event census
+
+Existing consistent overlapping prefixes, no NN/TEST/newlabels or livetraining edits. TRAIN normal4385/recovered590/rightcensored126 observed episodes; last-arrived query inputs cover1667/134/126 distinctepisodes. Known incoming writepause gains cover6 recovered+7 rightcensored episodes; VAL no such gain events. Query-1 classification doesnot classify currentquery outcome, firstfailurequery may have normalincomingstate. Unknown/ambiguous states separately retained106TRAIN/9VAL. Original full60/480 andeightfull98 queue continues; all5+2 ACTIVE_UNMET.
