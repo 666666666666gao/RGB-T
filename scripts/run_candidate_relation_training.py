@@ -174,34 +174,15 @@ def main():
                  'selection_scope': 'One best of eight full98 models before both native tests; reused developer98, not seed stability or untouched confirmation'}
     (root / 'selected_model.json').write_text(json.dumps(selection, indent=2))
     record('FOUR_FULL_ABC_FITS_EIGHT_FULL98_ONE_MODEL_LOCKED', **selection)
-    if improves_parent:
-        with (root / 'native_controller.log').open('w') as log:
-            subprocess.run([PYTHON, '-u', '-m', 'scripts.run_selective_state_native', '--selection', str(root / 'selected_model.json'),
-                            '--review', args.review, '--output', str(root / 'native')], cwd=REPO, env=environment(''),
-                           stdout=log, stderr=subprocess.STDOUT, check=True)
-        native = read(root / 'native/complete_metrics.json')
-        assert native['completed'] and native['same_ABC_model_both_datasets'] == str(model)
-    else:
-        parent_root = Path('/data/gb/outputs/state_commit_current_future_20261006')
-        parent_selection = read(parent_root / 'selected_model.json')
-        parent_native = read(parent_root / 'native/complete_metrics.json')
-        assert read(parent_root / 'progress.json')['stage'] == 'COMPLETE_FULL_TRAINING_FULL98_BOTH_NATIVE_FIVE_METRICS'
-        assert parent_selection['parent_model'] == PARENT and parent_selection['search_value'] == 'gross'
-        assert parent_selection['selected_epoch'] == 0 and parent_native['completed']
-        assert len(parent_native['five_metrics']) == 5
-        for dataset, expected in [('lasher', (245, 220703)), ('rgbt234', (234, 116649))]:
-            core = read(parent_root / 'native' / dataset / 'core_report/full_report.json')
-            assert core['all_actual_ground_truth_verified'] and (core['sequences'], core['frames']) == expected
-            assert core['variants']['state_commit']['overall_metrics_percent'] == core['variants']['gross_parent']['overall_metrics_percent']
-            for metric in [row for row in parent_native['five_metrics'] if row['dataset'] == dataset]:
-                assert metric['percent'] == core['variants']['gross_parent']['overall_metrics_percent'][metric['metric']]
-        native = {'new_native_inference_executed': False, 'reason': 'No complete-video improvement over protected parent; no unchanged formal replay.',
-                  'retained_incumbent': PARENT, 'retained_incumbent_search_value': 'gross',
-                  'completed_parent_formal_reference': str(parent_root / 'native/complete_metrics.json'),
-                  'verified_completed_parent_five_metrics': parent_native['five_metrics'],
-                  'all_five_plus_two': parent_native['all_five_plus_two']}
-        (root / 'native_not_replayed.json').write_text(json.dumps(native, indent=2))
-    kept = str(model) if improves_parent else None
+    # The user requested full metrics after full training, including negative runs.
+    # Developer IoU chooses one model; it must not suppress either native benchmark.
+    with (root / 'native_controller.log').open('w') as log:
+        subprocess.run([PYTHON, '-u', '-m', 'scripts.run_selective_state_native', '--selection', str(root / 'selected_model.json'),
+                        '--review', args.review, '--output', str(root / 'native')], cwd=REPO, env=environment(''),
+                       stdout=log, stderr=subprocess.STDOUT, check=True)
+    native = read(root / 'native/complete_metrics.json')
+    assert native['completed'] and native['same_ABC_model_both_datasets'] == str(model)
+    kept = str(model)
     removed = []
     for stage in ('fit_sanity', 'fit_full'):
         for name, relations, _ in ARMS:

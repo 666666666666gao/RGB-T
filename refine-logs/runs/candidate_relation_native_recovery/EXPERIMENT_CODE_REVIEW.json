@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE",
+  "reviewed_at": "2026-10-06T18:02:02.236732+08:00",
+  "reviewer_task": "/root/selected_native_recovery_review",
+  "agent_model": "gpt-6-astra",
+  "reasoning": "max",
+  "fork_turns": "none",
+  "model_attribution": "Parent confirmed actual spawn configuration: gpt-6-astra, reasoning_effort=max, fork_turns=none. No separate runtime-backend attestation is exposed to reviewer.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "same_family_provisional": true,
+  "complete_pipeline_source_pass": true,
+  "runtime_acceptance": false,
+  "effectiveness_acceptance": false,
+  "goal_status": "ACTIVE_UNMET",
+  "conclusion": "The current complete candidate-relation pipeline source passes this fresh review after two concrete pre-deployment fixes. No unresolved source blocker remains. This permits the proposed recovery attempt and unconditional native evaluation; it does not certify reproducibility, native accuracy, or the five-metric +2 goal before actual execution.",
+  "workspace": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source",
+  "primary_reviewed_files": [
+    "scripts/run_candidate_relation_training.py",
+    "scripts/recover_candidate_relation_native.py",
+    "research/train_recoverability.py",
+    "scripts/run_selective_state_native.py"
+  ],
+  "supporting_source_inspected": [
+    "scripts/run_search_gain_native.py:partitions",
+    "research/evaluate_recoverability.py",
+    "research/candidate_relations.py",
+    "research/collect_core_metrics.py",
+    "research/paired_sequence_bootstrap.py",
+    "research/collect_recoverability_metrics.py"
+  ],
+  "deployment_helper_reviewed": "C:/Users/gb/.codex_tmp/gola_setup_20261002/deploy_selected_native_recovery_20261006.py",
+  "evidence_root": "refine-logs/runs/candidate_relation/complete_v2/training",
+  "evidence_read": [
+    "selected_model.json",
+    "progress.json",
+    "native_not_replayed.json",
+    "unused_own_weight_cleanup.json",
+    "fit_full/relations_lr5/config.json",
+    "fit_full/relations_lr5/completion.json",
+    "fit_full/relations_lr5/metrics.json",
+    "fit_full/*/completion.json",
+    "full98/*/predictions/inference_completion.json",
+    "full98/relations_lr5_best/predictions/inference_config.json",
+    "full98_report/full_recoverability_report.json"
+  ],
+  "blockers": [],
+  "resolved_during_review": [
+    {
+      "id": "R1",
+      "severity": "blocking before fix",
+      "finding": "The cache source root is /data/wangwj/dataset/LasHeR, while full-video validation requires /data/wangwj/dataset/LasHeR/traingset. The first recovery version would enumerate nonexistent parent-root sequence paths after reconstruction.",
+      "evidence": "Archived selected inference_config.root contains /traingset; archived fit source_configs[0].root does not. Original orchestrator TRAIN_ROOT also contains /traingset.",
+      "resolution": "Current recovery lines 89-93 read original selected inference_config and use its actual root and validation split for inventory. The evaluator receives that same data_root.",
+      "status": "FIXED_AND_REVIEWED"
+    },
+    {
+      "id": "R2",
+      "severity": "reproducibility setup concern before fix",
+      "finding": "The first recovery environment helper only set CUDA_VISIBLE_DEVICES and LD_LIBRARY_PATH, omitting the original CUDA_DEVICE_ORDER, CUBLAS workspace, cache and thread environment.",
+      "resolution": "Current recovery imports the existing run_candidate_relation_training.environment function directly. Reconstruction, parity, and native-controller launch now reuse the original settings without another wrapper.",
+      "status": "FIXED_AND_REVIEWED"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Original completed work and negative selection are represented honestly",
+      "result": "PASS",
+      "details": "All four archived full fits report 60 epochs and 480 optimizer steps; all eight full98 receipts report 98 sequences and 49418 frames. Selected relations_lr5_best is epoch5. Its development IoU 0.7444150380548322 is below protected gross_parent 0.7461261775861118 and above baseline 0.7432785069707898. native_not_replayed records no new formal inference; cleanup records 20 removed weights, including selected best, and kept=null. Historical receipts remain unchanged."
+    },
+    {
+      "name": "Negative developer score cannot suppress required formal evaluation",
+      "result": "PASS",
+      "references": [
+        "scripts/run_candidate_relation_training.py:168",
+        "scripts/run_candidate_relation_training.py:179",
+        "scripts/run_candidate_relation_training.py:185"
+      ],
+      "details": "improves_parent is informational. The selected trained checkpoint always invokes the full native engine. The selected model is always retained after consumers finish, regardless of developer or native score."
+    },
+    {
+      "name": "Five-epoch prefix uses the original optimization definition",
+      "result": "PASS_SOURCE_ONLY",
+      "references": [
+        "scripts/recover_candidate_relation_native.py:40",
+        "scripts/recover_candidate_relation_native.py:58",
+        "research/train_recoverability.py:152",
+        "research/train_recoverability.py:210",
+        "research/train_recoverability.py:247"
+      ],
+      "details": "Ordered nine-cache inputs, validation, C1, initial parent, batch336, seed42, lr1e-5, weight_decay1e-4, threshold0.03, oracle/budgeted/action/gross settings and relation architecture match the archived original. The omitted Boolean flags are asserted false. Trainer seeds CPU/CUDA, preserves input ordering, uses constant-LR AdamW, and uses epochs only as a loop bound and terminal metadata. GPU1 and the original environment are reused. Five epochs give 40 updates. Archived epoch5 is the global best validation utility and the first-five-prefix best."
+    },
+    {
+      "name": "Recovery acceptance precedes native use",
+      "result": "PASS_SOURCE_ONLY",
+      "references": [
+        "scripts/recover_candidate_relation_native.py:73",
+        "scripts/recover_candidate_relation_native.py:78",
+        "scripts/recover_candidate_relation_native.py:84",
+        "scripts/recover_candidate_relation_native.py:120"
+      ],
+      "details": "The completed reconstructed model must be epoch5/40 steps with A/B/C changes and gradients, changed relation parameters, frozen C1, and strict best/last reload. All six epoch0-5 metric records are checked within 1e-6, and every saved best_validation array must match exactly. Four-GPU complete98 verification then checks every prediction file byte-for-byte and the nine required decision fields exactly against the original selected epoch. Native launch follows only after all gates pass. Runtime equality remains pending; the source correctly does not claim original weight-byte identity."
+    },
+    {
+      "name": "Inference configuration and data root agree with archived selected inference",
+      "result": "PASS",
+      "details": "Actual original inference root is LasHeR/traingset. Archived frozen pretrained path, C1 head, motion run, validation split, seed42, learned policy, action write verification and gross search agree with recovery and native defaults. Shared contiguous partitions cover every selected sequence exactly once; receipt count/frame gates and filename union enforce complete98 coverage."
+    },
+    {
+      "name": "One fixed restored checkpoint supplies both full native benchmarks",
+      "result": "PASS_SOURCE_ONLY",
+      "references": [
+        "scripts/recover_candidate_relation_native.py:137",
+        "scripts/run_selective_state_native.py:80",
+        "scripts/run_selective_state_native.py:108",
+        "scripts/run_selective_state_native.py:23"
+      ],
+      "details": "The existing engine accepts COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE and uses selected_ABC. The same selected parent_model with state_commit_model=null is sent to both LasHeR245/220703 and RGBT234/116649. Sanity and full shard commands do not tune or reselect a checkpoint. Merge verifies learned/gross/action configuration, full shards, model paths, complete sequence union, prediction shapes and positive finite timing arrays."
+    },
+    {
+      "name": "Formal metrics, attributes, curves, paired uncertainty, mechanisms and efficiency",
+      "result": "PASS_SOURCE_ONLY",
+      "references": [
+        "scripts/run_selective_state_native.py:142",
+        "scripts/run_selective_state_native.py:150",
+        "scripts/run_selective_state_native.py:161",
+        "research/collect_core_metrics.py:114",
+        "research/paired_sequence_bootstrap.py:18"
+      ],
+      "details": "The engine reads the selected_ABC variant from actual-GT core reports for PR/NPR/SR and MPR/MSR; it does not copy parent metrics. It checks complete native sizes, 19+12 attributes and metric curves; makes four separate paired comparisons versus GOLA/C1/old4/gross_parent with 5000 resamples/seed42; and runs mechanism/timing reporting from selected diagnostics. Fixed-checkpoint sequence uncertainty is explicitly not training-seed stability. Four-worker timing is labeled concurrent, not isolated algorithm speed. The +2 result is computed against GOLA without acting as a completion or retention gate."
+    },
+    {
+      "name": "Weight cleanup follows all consumers and protects the selected model",
+      "result": "PASS_SOURCE_ONLY",
+      "references": [
+        "scripts/run_candidate_relation_training.py:183",
+        "scripts/run_candidate_relation_training.py:193",
+        "scripts/recover_candidate_relation_native.py:147",
+        "scripts/recover_candidate_relation_native.py:149"
+      ],
+      "details": "Both paths wait for successful native completion and verify the same checkpoint before cleanup. Recovery deletes only its own initial.pth and last.pth beneath the new output root and keeps best.pth. Original parent/dependencies are not deleted. Any earlier acceptance failure prevents this cleanup and prevents a fabricated complete-native receipt."
+    },
+    {
+      "name": "Concrete deployment helper",
+      "result": "PASS_SOURCE_ONLY",
+      "details": "The helper requires fixed PASS/scope review, no local launch receipt, no prior archive, no remote output root and no original controller4115079. It checks more than20GiB free space and four idle GPUs under500MiB without querying power/temperature. It archives the two changed source files and current reviewer reports, stages explicit paths only after an empty-index check, verifies remote main against HEAD, and launches one detached recovery process from /data/gb/GOLA with original-root and original environment. Current checked-out branch is main. The helper and its embedded Python payload parse. This review did not run Git mutations, upload, or launch."
+    }
+  ],
+  "checks_performed": {
+    "nine_pipeline_sources_standard_library_ast_parse": "PASS",
+    "deployment_helper_and_embedded_payload_ast_parse": "PASS",
+    "archived_four_full_fit_and_eight_full98_receipt_consistency": "PASS",
+    "archived_epoch_history_and_global_best_epoch5": "PASS",
+    "archived_inference_root_split_and_frozen_dependency_consistency": "PASS",
+    "archived_selected_weight_cleanup_and_native_skip_evidence": "PASS",
+    "scientific_module_imports": false,
+    "NN_training_or_inference_started_by_reviewer": false,
+    "remote_commands_or_live_polling_by_reviewer": false,
+    "scientific_source_edits_by_reviewer": false,
+    "reviewer_output_edits_only": true
+  },
+  "limits": [
+    "Source review and archived JSON consistency only. Reconstructed metric/NPZ/prediction parity has not executed under this review.",
+    "Original removed weight bytes are unavailable, so empirical development parity cannot establish byte-identical parameters.",
+    "The existing 98-sequence developer split is reused. This is one original seed and no claim of untouched validation or seed stability.",
+    "Native accuracy and all-five-plus-two remain pending and ACTIVE_UNMET. Source PASS does not promote the candidate above protected global best.",
+    "Preserve original negative, skip and deletion receipts; do not describe the five-epoch recovery as another completed60-epoch run."
+  ]
+}
