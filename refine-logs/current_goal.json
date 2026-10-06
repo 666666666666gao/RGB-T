@@ -6408,70 +6408,26 @@
       "resumed_collector_pid": 1977211
     },
     "gpu_assignment_current": {
-      "reconstruction": [
-        1
+      "dataset": "lasher",
+      "workers": [
+        {
+          "gpu": 0,
+          "pid": 278791
+        },
+        {
+          "gpu": 1,
+          "pid": 278792
+        },
+        {
+          "gpu": 2,
+          "pid": 278793
+        },
+        {
+          "gpu": 3,
+          "pid": 278794
+        }
       ],
-      "parity_and_native": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "actual_launch": {
-        "pid": 253188,
-        "output": "/data/gb/outputs/candidate_relation_native_recovery_20261006",
-        "log": "/data/gb/setup/candidate_relation_native_recovery_20261006.log",
-        "command": [
-          "/data/gb/envs/gola/bin/python",
-          "-u",
-          "-m",
-          "scripts.recover_candidate_relation_native",
-          "--original-root",
-          "/data/gb/outputs/candidate_relation_raw_ABC_20261006_v2",
-          "--review",
-          "/data/gb/GOLA/refine-logs/runs/candidate_relation_native_recovery/EXPERIMENT_CODE_REVIEW.json",
-          "--output",
-          "/data/gb/outputs/candidate_relation_native_recovery_20261006"
-        ],
-        "at_cst": "2026-10-06T18:02:55.057448+08:00",
-        "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0",
-        "stage": "LAUNCHED_SELECTED_EPOCH5_RECOVERY_PARITY_BOTH_NATIVE",
-        "original_full60_training_repeated": false,
-        "restoration_epochs": 5,
-        "restoration_optimizer_steps": 40,
-        "formal_metrics_completed": false,
-        "same_selected_model_both_datasets": true,
-        "disk_available_bytes": 2666019655680,
-        "GPU_preflight_memory_utilization": [
-          [
-            0,
-            349,
-            24576,
-            0
-          ],
-          [
-            1,
-            20,
-            24576,
-            0
-          ],
-          [
-            2,
-            20,
-            24576,
-            0
-          ],
-          [
-            3,
-            20,
-            24576,
-            0
-          ]
-        ],
-        "temperature_power_queried_or_set": false,
-        "poll_seconds": 240,
-        "scope": "Original full60/480 completed; recovery of preselected epoch5 then full98 parity and actual native benchmarks"
-      }
+      "observed_at_cst": "2026-10-06T18:19:59.434879+08:00"
     },
     "gpu_memory_request": {
       "policy": "Four useful inference workers; small cached C-head fits honestly report actual VRAM; no filler allocation.",
@@ -6482,7 +6438,7 @@
       "current_optimization_started": true,
       "temperature_power_constraints_enabled": false
     },
-    "next_check_cst": null,
+    "next_check_cst": "2026-10-06T18:49:30.452558+08:00",
     "checkpoint_cleanup_total": {
       "removed_weights": 82,
       "nominal_bytes": 124589052,
@@ -7088,7 +7044,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-06T18:03:22.243684+08:00",
+  "updated_cst": "2026-10-06T18:22:27.679776+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -11225,16 +11181,18 @@
     "actual_current_iteration": "current_selective_state_commit_iteration"
   },
   "current_execution_authority": {
-    "updated_cst": "2026-10-06T18:03:22.243684+08:00",
-    "authoritative_snapshot": "refine-logs/runs/candidate_relation_native_recovery/closed_eight_and_recovery_launch_snapshot.json",
+    "updated_cst": "2026-10-06T18:22:27.679776+08:00",
+    "authoritative_snapshot": "refine-logs/runs/candidate_relation_native_recovery/actual_native_start_snapshot.json",
     "pipeline_pid": 253188,
-    "actual_stage": "LAUNCHED_SELECTED_EPOCH5_RECOVERY_PARITY_BOTH_NATIVE",
+    "actual_stage": "LASHER_SHARDS",
     "pipeline_complete": false,
     "original_pipeline_complete": true,
     "full_training_complete": true,
     "all_eight_full98_complete": true,
     "new_formal_metrics_complete": false,
-    "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0"
+    "source_main_commit": "645dc06d960ab331bac2bcbb14fd6b5bac0c5de0",
+    "reconstructed_epoch5_full98_parity_complete": true,
+    "next_check_cst": "2026-10-06T18:49:30.452558+08:00"
   },
   "current_write_episode_supervision_iteration": {
     "status": "ALL4_FULL60_480_AND_BOTH_NATIVE_REPORTS_ACTUALLY_COMPLETE",
@@ -41770,5 +41728,179 @@
     },
     "restoration_pass_not_yet_claimed": true,
     "new_native_metrics_completed": false
+  },
+  "current_candidate_relation_native_start": {
+    "updated_cst": "2026-10-06T18:22:27.679776+08:00",
+    "actual_observation": {
+      "observed_at_cst": "2026-10-06T18:19:59.434879+08:00",
+      "owner_pid": 253188,
+      "owner_alive": true,
+      "progress": {
+        "stage": "RECONSTRUCTED_SELECTED_MODEL_FULL98_PARITY_PASS",
+        "at_cst": "2026-10-06T18:17:08.249431+08:00",
+        "passed": true,
+        "original_four_full60_runs_replayed": false,
+        "prefix_epochs": 5,
+        "prefix_optimizer_steps": 40,
+        "original_full_training_epochs": 60,
+        "original_full_training_optimizer_steps": 480,
+        "epoch0_to5_validation_records_match_atol": 1e-06,
+        "saved_validation_arrays_exact": true,
+        "full98_predictions_byte_exact": true,
+        "full98_decision_fields_exact": [
+          "choice",
+          "original_choice",
+          "pause",
+          "searched_region",
+          "extra_executed",
+          "template_updated",
+          "template_source_frame",
+          "forecast_reference",
+          "memory_target_commit"
+        ],
+        "sequences": 98,
+        "frames": 49418,
+        "scope": "Reconstructed epoch5 verified on original developer98; no claim of archived original weight-byte equality"
+      },
+      "native_progress": {
+        "stage": "LASHER_SHARDS",
+        "at_cst": "2026-10-06T18:17:30.713730+08:00",
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 278791
+          },
+          {
+            "gpu": 1,
+            "pid": 278792
+          },
+          {
+            "gpu": 2,
+            "pid": 278793
+          },
+          {
+            "gpu": 3,
+            "pid": 278794
+          }
+        ]
+      },
+      "reconstruction_completion": {
+        "completed": true,
+        "epochs": 5,
+        "optimizer_steps": 40,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.0961049348115921,
+          "B": 3.6652562618255615,
+          "C": 5.741759777069092
+        },
+        "frozen_modules": [],
+        "frozen_module_weights_unchanged": {},
+        "frozen_c1_gradients_absent": true,
+        "elapsed_seconds": 284.56931456085294,
+        "peak_cuda_mib": 19084.8583984375,
+        "best_epoch": 5,
+        "best_validation": {
+          "clips": 196,
+          "loss": 1.7820472717285156,
+          "valid_actions": 7251,
+          "current": 0.7544292211532593,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7559369206428528,
+          "utility": 0.75532466173172,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 12,
+          "changed_location": 2,
+          "rescued": 1,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 181,
+          "missing_candidate_found": 5,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.003389298915863037,
+          "utility_gain_against_c1": 0.0032387375831604004
+        },
+        "strict_reload_metrics_equal": true,
+        "last_validation": {
+          "clips": 196,
+          "loss": 1.7820472717285156,
+          "valid_actions": 7251,
+          "current": 0.7544292211532593,
+          "c1_current": 0.7510399222373962,
+          "utility_before_search_cost": 0.7559369206428528,
+          "utility": 0.75532466173172,
+          "c1_utility": 0.7520859241485596,
+          "pause": 0,
+          "search_triggered": 12,
+          "changed_location": 2,
+          "rescued": 1,
+          "harmed": 0,
+          "failed": 11,
+          "c1_failed": 12,
+          "original_recall": 176,
+          "budget_recall": 181,
+          "missing_candidate_found": 5,
+          "wrong_update_fraction": 0.015306122601032257,
+          "c1_wrong_update_fraction": 0.015306122601032257,
+          "current_gain_against_c1": 0.003389298915863037,
+          "utility_gain_against_c1": 0.0032387375831604004
+        },
+        "last_strict_reload_metrics_equal": true,
+        "initial_parent_all_output_tensors_exact": true,
+        "relation_parameters_changed": true,
+        "max_relation_gradient_norm": 4.5278449058532715,
+        "retained_weights": [
+          "best.pth",
+          "last.pth",
+          "initial.pth"
+        ],
+        "official_tracking_accuracy": false
+      },
+      "reconstruction_verification": {
+        "passed": true,
+        "original_four_full60_runs_replayed": false,
+        "prefix_epochs": 5,
+        "prefix_optimizer_steps": 40,
+        "original_full_training_epochs": 60,
+        "original_full_training_optimizer_steps": 480,
+        "epoch0_to5_validation_records_match_atol": 1e-06,
+        "saved_validation_arrays_exact": true,
+        "full98_predictions_byte_exact": true,
+        "full98_decision_fields_exact": [
+          "choice",
+          "original_choice",
+          "pause",
+          "searched_region",
+          "extra_executed",
+          "template_updated",
+          "template_source_frame",
+          "forecast_reference",
+          "memory_target_commit"
+        ],
+        "sequences": 98,
+        "frames": 49418,
+        "scope": "Reconstructed epoch5 verified on original developer98; no claim of archived original weight-byte equality"
+      },
+      "native_complete": null,
+      "scope": "Passive primary artifact and liveness read; no neural/model/report execution",
+      "reconstruction.log_tail": "59369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}\nCOMPLETED {\"completed\": true, \"epochs\": 5, \"optimizer_steps\": 40, \"modules_changed\": {\"A\": true, \"B\": true, \"C\": true}, \"max_module_gradient_norms\": {\"A\": 0.0961049348115921, \"B\": 3.6652562618255615, \"C\": 5.741759777069092}, \"frozen_modules\": [], \"frozen_module_weights_unchanged\": {}, \"frozen_c1_gradients_absent\": true, \"elapsed_seconds\": 284.56931456085294, \"peak_cuda_mib\": 19084.8583984375, \"best_epoch\": 5, \"best_validation\": {\"clips\": 196, \"loss\": 1.7820472717285156, \"valid_actions\": 7251, \"current\": 0.7544292211532593, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7559369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}, \"strict_reload_metrics_equal\": true, \"last_validation\": {\"clips\": 196, \"loss\": 1.7820472717285156, \"valid_actions\": 7251, \"current\": 0.7544292211532593, \"c1_current\": 0.7510399222373962, \"utility_before_search_cost\": 0.7559369206428528, \"utility\": 0.75532466173172, \"c1_utility\": 0.7520859241485596, \"pause\": 0, \"search_triggered\": 12, \"changed_location\": 2, \"rescued\": 1, \"harmed\": 0, \"failed\": 11, \"c1_failed\": 12, \"original_recall\": 176, \"budget_recall\": 181, \"missing_candidate_found\": 5, \"wrong_update_fraction\": 0.015306122601032257, \"c1_wrong_update_fraction\": 0.015306122601032257, \"current_gain_against_c1\": 0.003389298915863037, \"utility_gain_against_c1\": 0.0032387375831604004}, \"last_strict_reload_metrics_equal\": true, \"initial_parent_all_output_tensors_exact\": true, \"relation_parameters_changed\": true, \"max_relation_gradient_norm\": 4.5278449058532715, \"retained_weights\": [\"best.pth\", \"last.pth\", \"initial.pth\"], \"official_tracking_accuracy\": false}\n",
+      "native_controller.log_tail": "{\"stage\": \"LASHER_SANITY\", \"at_cst\": \"2026-10-06T18:17:10.253136+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 277527}, {\"gpu\": 1, \"pid\": 277528}, {\"gpu\": 2, \"pid\": 277529}, {\"gpu\": 3, \"pid\": 277530}]}\n{\"stage\": \"LASHER_SANITY_PASS\", \"at_cst\": \"2026-10-06T18:17:21.014040+08:00\"}\n{\"stage\": \"RGBT234_SANITY\", \"at_cst\": \"2026-10-06T18:17:21.016540+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 278063}, {\"gpu\": 1, \"pid\": 278064}, {\"gpu\": 2, \"pid\": 278065}, {\"gpu\": 3, \"pid\": 278066}]}\n{\"stage\": \"RGBT234_SANITY_PASS\", \"at_cst\": \"2026-10-06T18:17:30.711504+08:00\"}\n{\"stage\": \"LASHER_SHARDS\", \"at_cst\": \"2026-10-06T18:17:30.713730+08:00\", \"children\": [{\"gpu\": 0, \"pid\": 278791}, {\"gpu\": 1, \"pid\": 278792}, {\"gpu\": 2, \"pid\": 278793}, {\"gpu\": 3, \"pid\": 278794}]}\n"
+    },
+    "next_planned_observation": {
+      "next_poll_cst": "2026-10-06T18:49:30.452558+08:00",
+      "pipeline_pid": 253188,
+      "minimum_repeat_seconds": 240,
+      "passive_only": true
+    },
+    "new_native_metrics_completed": false,
+    "no_model_training_inference_or_report_replayed": true
   }
 }
