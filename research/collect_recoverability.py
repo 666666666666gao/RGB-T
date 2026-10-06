@@ -96,7 +96,8 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
         else:
             from .recoverability_tracker import RecoverabilityTracker
             tracker = RecoverabilityTracker(extractor, prefix_model, motion, image, initial, args.prefix_threshold,
-                                             write_verification=prefix_write_verification)
+                                             write_verification=prefix_write_verification,
+                                             search_value=args.prefix_search_value)
         evidence = np.zeros(10, dtype=np.float32)
         evidence[:6] = 1
         history = deque([{'descriptor': None, 'instance': None, 'evidence': evidence,
@@ -298,6 +299,8 @@ def main():
     p.add_argument('--future-policy', choices=('c1', 'own'), default='c1',
                    help='Use the frozen C1 teacher or the supplied ABC policy for three future steps.')
     p.add_argument('--prefix-write-verification', choices=('identity', 'action'), default='identity')
+    p.add_argument('--prefix-search-value', choices=('weighted', 'gross'), default='weighted',
+                   help='Execute the supplied prefix/future policy with the deployed search trigger.')
     p.add_argument('--serial-c1-prefix', action='store_true', help='Run only C1 prefix frames individually to match learned-policy prefix execution.')
     p.add_argument('--jobs-file', help='Explicit sequence/query JSON jobs from the chosen TRAIN partition.')
     p.add_argument('--output', required=True)
@@ -357,8 +360,8 @@ def main():
     if args.prefix_model:
         from .recoverability_modules import RecoverabilityModules
         prefix_checkpoint = torch.load(args.prefix_model, map_location='cpu', weights_only=False)
-        assert prefix_checkpoint['module'] == 'ABC_recoverability'
-        prefix_model = RecoverabilityModules(c1).to(device)
+        assert prefix_checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations')
+        prefix_model = RecoverabilityModules(c1, candidate_relations=prefix_checkpoint['module'] == 'ABC_candidate_relations').to(device)
         prefix_model.load_state_dict(prefix_checkpoint['model'], strict=True)
         prefix_model.eval().requires_grad_(False)
         args.prefix_threshold = prefix_checkpoint['args']['threshold']
@@ -380,6 +383,7 @@ def main():
     if prefix_model is not None:
         config['prefix_policy'] = 'frozen learned ABC; actual one-extra-region decisions and verified query writes through query-1'
         config['prefix_checkpoint_epoch'] = prefix_checkpoint['epoch']
+        config['prefix_model_family'] = prefix_checkpoint['module']
         config['prefix_counts_columns'] = ['extra_visual_forwards', 'changed_candidate_indices', 'paused_query_writes', 'template_updates']
     if args.future_policy == 'own':
         config['future_policy'] = 'same frozen ABC checkpoint as prefix; query commits deployed template, identity and motion state; three causal step calls with private per-action histories; future GT only labels'
