@@ -1,0 +1,42 @@
+{
+  "created_cst": "2026-10-07T12:22:33.909993+08:00",
+  "seed": 42,
+  "arms": [
+    [
+      "pre_lr4",
+      "pre",
+      0.0001
+    ],
+    [
+      "encoded_lr4",
+      "encoded",
+      0.0001
+    ],
+    [
+      "pre_lr5",
+      "pre",
+      1e-05
+    ],
+    [
+      "encoded_lr5",
+      "encoded",
+      1e-05
+    ]
+  ],
+  "views_per_sequence": 16,
+  "train_sequences": 881,
+  "validation_sequences": 98,
+  "train_queries": 14096,
+  "validation_queries": 1568,
+  "full_identity_epochs": 32,
+  "fitted_component": "A identity projection only",
+  "main_ABC_not_replaced": true,
+  "native_accuracy": false,
+  "feature_visual_budget": "Identical query forward reused; one fixed self-context per sequence initialization",
+  "frozen_GOLA_and_C1": true,
+  "alpha": 0.1,
+  "temperature": 0.1,
+  "paired_labels": "Actual sampled GT IoU: positive >=0.5, negative <0.2; not full distractor identity labels",
+  "corpus": "Existing supervised frame-pair sampling and template perturbation; not own-policy rollouts",
+  "validation_reused_for_model_selection": true
+}

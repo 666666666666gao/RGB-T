@@ -1,0 +1,33 @@
+{
+  "stage": "fit",
+  "output": "/data/gb/outputs/identity_representation_probe_20261007/fit_sanity/pre_lr5",
+  "root": "/data/wangwj/dataset/LasHeR",
+  "cache": "trackit/datasets/cache/MultiModalObjectTrackingDataset_MemoryMapped/filtered/lasher-train-b00458d848ef249c438f993815ddbb19.np",
+  "split": "/data/gb/outputs/c1_initial_seed42/split.json",
+  "pretrained": "/data/gb/GOLA/pretrained_models/gola_b224.bin",
+  "c1": "/data/gb/outputs/c1_initial_seed42/best.pth",
+  "parent": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+  "partition": "train",
+  "views": 16,
+  "shard": 0,
+  "shards": 4,
+  "limit_sequences": 0,
+  "batch_size": 32,
+  "workers": 4,
+  "inputs": [
+    "/data/gb/outputs/identity_representation_probe_20261007/sanity_features/gpu0",
+    "/data/gb/outputs/identity_representation_probe_20261007/sanity_features/gpu1",
+    "/data/gb/outputs/identity_representation_probe_20261007/sanity_features/gpu2",
+    "/data/gb/outputs/identity_representation_probe_20261007/sanity_features/gpu3"
+  ],
+  "source": "pre",
+  "lr": 1e-05,
+  "epochs": 2,
+  "alpha": 0.1,
+  "seed": 42,
+  "source_parent_epoch": 0,
+  "identity_only_pretraining": true,
+  "native_tracking_accuracy": false,
+  "train_queries": 128,
+  "validation_queries": 128
+}

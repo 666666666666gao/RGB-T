@@ -172,3 +172,8 @@ Two98/49418controls closed21:44:45, source/sampling/protected weights unchanged 
 ## 2026-10-07T12:22:06.369480+08:00 reviewed paired identity representation probe
 
 SOURCE PASS/provisional; real GPU source check and4×2epoch sanity before4×32epoch A projection pretraining. Paired14096 TRAIN/1568 reusedDEV, full881/98 sequence coverage. Main ABC and native5 unchanged; +2 ACTIVE_UNMET. No own-policy trajectory or main-method gain claimed.
+
+
+## 2026-10-07T13:12:47.028046+08:00 actual paired identity representation/A pretraining COMPLETE
+
+4x32epochs/896updates, all881/98 sequences and14096/1568 fixed sampled queries; source GPU PASS, strict reload PASS. encoded_lr4 E9 proxyIoU.553146 vsC1.551385 (+.176124pp;7improve0worse), initial.546415 preserved. This is not full-video/native/completeABC efficacy.7ownunused weights retired afterconsumers; best kept. Main native5 unchanged/all+2UNMET.

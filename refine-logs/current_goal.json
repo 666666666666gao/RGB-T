@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T12:22:06.369480+08:00",
+  "updated_cst": "2026-10-07T13:12:47.028046+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -43361,7 +43361,7 @@
     "current_complete_evaluation_still_first_priority": true
   },
   "current_identity_representation_probe": {
-    "stage": "REVIEWED_SOURCE_READY_FOR_REAL_GPU_SANITY",
+    "stage": "COMPLETE_PAIRED_PROBE_AND_A_PRETRAINING",
     "updated_cst": "2026-10-07T12:22:06.369480+08:00",
     "review": "refine-logs/runs/identity_representation_probe/EXPERIMENT_CODE_REVIEW.json",
     "scope": "Paired representation control and A projection pretraining; not full ABC or native metrics",
@@ -43376,6 +43376,169 @@
     "configurations": 4,
     "same_seed_and_projection_initialization": true,
     "deployment_after_review_PASS": true,
-    "real_sanity_before_full": true
+    "real_sanity_before_full": true,
+    "actual_launch": {
+      "pid": 1780918,
+      "owner_alive_at_launch": true,
+      "at_cst": "2026-10-07T12:22:34.790956+08:00",
+      "output": "/data/gb/outputs/identity_representation_probe_20261007",
+      "source_main_commit": "a6143a003a4f6c0174dea571392a66f54cd5c83b",
+      "first_phase": "REAL_SOURCE_CHECK then four real projection sanities",
+      "scope": "A identity pretraining only; main/native unchanged"
+    },
+    "coverage": {
+      "train": {
+        "sequences": 881,
+        "queries": 14096
+      },
+      "validation": {
+        "sequences": 98,
+        "queries": 1568
+      }
+    },
+    "full_optimizer_updates": 3584,
+    "sanity_optimizer_updates": 32,
+    "selected_model": "/data/gb/outputs/identity_representation_probe_20261007/fit_full/encoded_lr4/best.pth",
+    "selected_epoch": 9,
+    "actual_results": {
+      "pre_lr4": {
+        "completed": true,
+        "epochs": 32,
+        "optimizer_steps": 896,
+        "max_gradient_norm": 1.5246248245239258,
+        "parameters_changed": true,
+        "best_epoch": 17,
+        "strict_reload_metrics_equal": true,
+        "validation_metrics": {
+          "selected_query_mean_iou": 0.5514814257621765,
+          "c1_query_mean_iou": 0.5513848066329956,
+          "rescued": 1,
+          "harmed": 0
+        },
+        "identity_only_pretraining": true,
+        "native_tracking_accuracy": false,
+        "elapsed_seconds": 3.1404198152013123,
+        "peak_cuda_mib": 655.01953125,
+        "source": "pre",
+        "lr": 0.0001,
+        "delta_vs_C1_query_iou_pp": 0.009663497097790241,
+        "paired_sequence_95_interval": [
+          -0.08306245505809784,
+          0.11205293983221054
+        ]
+      },
+      "encoded_lr4": {
+        "completed": true,
+        "epochs": 32,
+        "optimizer_steps": 896,
+        "max_gradient_norm": 14.382701873779297,
+        "parameters_changed": true,
+        "best_epoch": 9,
+        "strict_reload_metrics_equal": true,
+        "validation_metrics": {
+          "selected_query_mean_iou": 0.5531460642814636,
+          "c1_query_mean_iou": 0.5513848066329956,
+          "rescued": 3,
+          "harmed": 0
+        },
+        "identity_only_pretraining": true,
+        "native_tracking_accuracy": false,
+        "elapsed_seconds": 3.175268517807126,
+        "peak_cuda_mib": 655.01953125,
+        "source": "encoded",
+        "lr": 0.0001,
+        "delta_vs_C1_query_iou_pp": 0.1761237233877182,
+        "paired_sequence_95_interval": [
+          0.054040540009737015,
+          0.32331742569804167
+        ]
+      },
+      "pre_lr5": {
+        "completed": true,
+        "epochs": 32,
+        "optimizer_steps": 896,
+        "max_gradient_norm": 1.5744153261184692,
+        "parameters_changed": true,
+        "best_epoch": 1,
+        "strict_reload_metrics_equal": true,
+        "validation_metrics": {
+          "selected_query_mean_iou": 0.5513848066329956,
+          "c1_query_mean_iou": 0.5513848066329956,
+          "rescued": 0,
+          "harmed": 0
+        },
+        "identity_only_pretraining": true,
+        "native_tracking_accuracy": false,
+        "elapsed_seconds": 3.0867743431590497,
+        "peak_cuda_mib": 655.01953125,
+        "source": "pre",
+        "lr": 1e-05,
+        "delta_vs_C1_query_iou_pp": 0.0,
+        "paired_sequence_95_interval": [
+          0.0,
+          0.0
+        ]
+      },
+      "encoded_lr5": {
+        "completed": true,
+        "epochs": 32,
+        "optimizer_steps": 896,
+        "max_gradient_norm": 15.152656555175781,
+        "parameters_changed": true,
+        "best_epoch": 24,
+        "strict_reload_metrics_equal": true,
+        "validation_metrics": {
+          "selected_query_mean_iou": 0.5528928637504578,
+          "c1_query_mean_iou": 0.5513848066329956,
+          "rescued": 3,
+          "harmed": 0
+        },
+        "identity_only_pretraining": true,
+        "native_tracking_accuracy": false,
+        "elapsed_seconds": 2.8568636449053884,
+        "peak_cuda_mib": 655.01953125,
+        "source": "encoded",
+        "lr": 1e-05,
+        "delta_vs_C1_query_iou_pp": 0.15080495178699493,
+        "paired_sequence_95_interval": [
+          0.03434813395142555,
+          0.2956225380301475
+        ]
+      }
+    },
+    "query_change_counts": {
+      "pre_lr4": {
+        "queries": 1568,
+        "improved_queries": 1,
+        "worsened_queries": 1,
+        "tied_queries": 1566,
+        "mean_delta_pp": 0.009663496166467667
+      },
+      "encoded_lr4": {
+        "queries": 1568,
+        "improved_queries": 7,
+        "worsened_queries": 0,
+        "tied_queries": 1561,
+        "mean_delta_pp": 0.1761237206887834
+      },
+      "pre_lr5": {
+        "queries": 1568,
+        "improved_queries": 0,
+        "worsened_queries": 0,
+        "tied_queries": 1568,
+        "mean_delta_pp": 0.0
+      },
+      "encoded_lr5": {
+        "queries": 1568,
+        "improved_queries": 6,
+        "worsened_queries": 0,
+        "tied_queries": 1562,
+        "mean_delta_pp": 0.15080493722795224
+      }
+    },
+    "unused_own_weights_removed": 7,
+    "no_new_native_metrics": true,
+    "full_ABC_integration_and_complete_video_evaluation_still_required": true,
+    "receipt": "refine-logs/runs/identity_representation_probe/actual_complete_intake.json"
   }
 }
