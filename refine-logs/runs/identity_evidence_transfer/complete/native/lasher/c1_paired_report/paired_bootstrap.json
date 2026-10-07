@@ -1,0 +1,53 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/identity_evidence_transfer_20261007/native/lasher/c1_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/identity_evidence_transfer_20261007/native/lasher/c1_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "lasher": {
+      "sequences": 245,
+      "compared_variants": [
+        "c1",
+        "selected_ABC"
+      ],
+      "metrics": {
+        "NPR": {
+          "mean_delta_percentage_points": -0.05060162094686254,
+          "percentile_95_interval_percentage_points": [
+            -1.147511469285934,
+            1.101860115119149
+          ],
+          "improved_sequences": 52,
+          "worsened_sequences": 54,
+          "tied_sequences": 139
+        },
+        "PR": {
+          "mean_delta_percentage_points": -0.19337500367858473,
+          "percentile_95_interval_percentage_points": [
+            -1.415069148833537,
+            1.1075289387928249
+          ],
+          "improved_sequences": 54,
+          "worsened_sequences": 54,
+          "tied_sequences": 137
+        },
+        "SR": {
+          "mean_delta_percentage_points": -0.12942107361799698,
+          "percentile_95_interval_percentage_points": [
+            -1.0553712434527653,
+            0.8433784197016787
+          ],
+          "improved_sequences": 59,
+          "worsened_sequences": 54,
+          "tied_sequences": 132
+        }
+      }
+    }
+  }
+}

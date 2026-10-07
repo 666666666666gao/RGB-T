@@ -1,0 +1,36 @@
+{
+  "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+  "identity_projection": "/data/gb/outputs/identity_representation_probe_20261007/fit_full/encoded_lr4/best.pth",
+  "projection_epoch": 9,
+  "arms": [
+    [
+      "identity_zero",
+      0.0
+    ],
+    [
+      "identity_005",
+      0.05
+    ],
+    [
+      "identity_010",
+      0.1
+    ],
+    [
+      "identity_020",
+      0.2
+    ]
+  ],
+  "current_stage_new_optimizer_updates": 0,
+  "predecessor_real_epochs": 32,
+  "predecessor_real_optimizer_updates": 896,
+  "scope": "Identity evidence transfer control; original ABC states retained, not new complete ABC retraining",
+  "search_budget": "Five local candidates plus at most five from one executed extra visual forward",
+  "fixed_first_context_anchor": true,
+  "motion_dependency_pre_attention_unchanged": true,
+  "all_98_sequences_full_frames": true,
+  "developer_frames_per_arm": 49418,
+  "native_selection": "One dev-selected weight and same complete parent/projection on both full native datasets",
+  "reused_development": true,
+  "formal_TEST_not_used_for_selection": true,
+  "disk_free_before_bytes": 2634505990144
+}

@@ -1,0 +1,3369 @@
+{
+  "created_utc": "2026-10-07T07:30:17.654502+00:00",
+  "dataset": "rgbt234",
+  "actual_data_root": "/data/zhouy/DATASET/RGB-T234",
+  "official_gt_source": "/data/zhouy/DATASET/RGB-T234",
+  "all_actual_ground_truth_verified": true,
+  "sequences": 234,
+  "frames": 116649,
+  "official_protocol": "Original rgbt metric functions and result rounding; LasHeR call order NPR, PR, SR.",
+  "diagnostic_protocol": {
+    "input_boxes": "saved raw XYWH; GT matches the actual dataset",
+    "initialization_excluded": true,
+    "valid_gt": "finite and positive width/height",
+    "rgbt234_quality": "max RGB/TIR IoU over valid modality annotations",
+    "failure": "3 consecutive valid IoU<0.2 frames",
+    "recovery": "3 consecutive valid IoU>=0.5 frames",
+    "delay": "actual frame indices; unknown GT interrupts streaks",
+    "event_is_localization_failure": "not semantic identity ground truth"
+  },
+  "variants": {
+    "c1": {
+      "overall_metrics_percent": {
+        "MPR": 91.81700889694795,
+        "MSR": 69.2340473415621
+      },
+      "efficiency": {
+        "tracking_fps": 46.94289465740012,
+        "latency_p50_ms": 21.322565153241158,
+        "latency_p90_ms": 22.125574573874474,
+        "latency_p95_ms": 22.34298875555396,
+        "latency_p99_ms": 23.027167664840817,
+        "excludes_first_frame_initialization": true,
+        "includes_decode_crop_forward_selection_update": true
+      },
+      "localization_diagnostics": {
+        "valid_tracking_frames": 116415,
+        "failed_tracking_frames": 10868,
+        "failure_events": 151,
+        "recovered_events": 114,
+        "recovery_rate": 0.7549668874172185,
+        "median_recovery_delay_frames": 13.0,
+        "unrecovered_events": 37
+      },
+      "failure_event_records": [
+        {
+          "sequence": "child1",
+          "start_frame_zero_based": 142,
+          "confirmed_frame_zero_based": 144,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 151,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "child1",
+          "start_frame_zero_based": 157,
+          "confirmed_frame_zero_based": 159,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "cycle1",
+          "start_frame_zero_based": 14,
+          "confirmed_frame_zero_based": 16,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 18,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "cycle1",
+          "start_frame_zero_based": 29,
+          "confirmed_frame_zero_based": 31,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 13
+        },
+        {
+          "sequence": "cycle1",
+          "start_frame_zero_based": 60,
+          "confirmed_frame_zero_based": 62,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 143,
+          "delay_frames": 83
+        },
+        {
+          "sequence": "dog1",
+          "start_frame_zero_based": 900,
+          "confirmed_frame_zero_based": 902,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "manypeople1",
+          "start_frame_zero_based": 262,
+          "confirmed_frame_zero_based": 264,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 277,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "twoman2",
+          "start_frame_zero_based": 386,
+          "confirmed_frame_zero_based": 388,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "whiteman1",
+          "start_frame_zero_based": 543,
+          "confirmed_frame_zero_based": 545,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 550,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "baby",
+          "start_frame_zero_based": 286,
+          "confirmed_frame_zero_based": 288,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 12,
+          "confirmed_frame_zero_based": 14,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 35,
+          "delay_frames": 23
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 62,
+          "confirmed_frame_zero_based": 64,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 71,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 87,
+          "confirmed_frame_zero_based": 89,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 91,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "balancebike",
+          "start_frame_zero_based": 146,
+          "confirmed_frame_zero_based": 148,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 165,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "biketwo",
+          "start_frame_zero_based": 261,
+          "confirmed_frame_zero_based": 263,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "call",
+          "start_frame_zero_based": 98,
+          "confirmed_frame_zero_based": 100,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "car37",
+          "start_frame_zero_based": 276,
+          "confirmed_frame_zero_based": 278,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 295,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "caraftertree",
+          "start_frame_zero_based": 168,
+          "confirmed_frame_zero_based": 170,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 195,
+          "delay_frames": 27
+        },
+        {
+          "sequence": "carnotmove",
+          "start_frame_zero_based": 36,
+          "confirmed_frame_zero_based": 38,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 46,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "child",
+          "start_frame_zero_based": 123,
+          "confirmed_frame_zero_based": 125,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 160,
+          "confirmed_frame_zero_based": 162,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 169,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 185,
+          "confirmed_frame_zero_based": 187,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 220,
+          "delay_frames": 35
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 355,
+          "confirmed_frame_zero_based": 357,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 392,
+          "delay_frames": 37
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 395,
+          "confirmed_frame_zero_based": 397,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "child4",
+          "start_frame_zero_based": 410,
+          "confirmed_frame_zero_based": 412,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "children2",
+          "start_frame_zero_based": 3,
+          "confirmed_frame_zero_based": 5,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "children3",
+          "start_frame_zero_based": 85,
+          "confirmed_frame_zero_based": 87,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 117,
+          "delay_frames": 32
+        },
+        {
+          "sequence": "crouch",
+          "start_frame_zero_based": 860,
+          "confirmed_frame_zero_based": 862,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 881,
+          "delay_frames": 21
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 81,
+          "confirmed_frame_zero_based": 83,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 85,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 155,
+          "confirmed_frame_zero_based": 157,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 159,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 200,
+          "confirmed_frame_zero_based": 202,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 204,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "dog11",
+          "start_frame_zero_based": 48,
+          "confirmed_frame_zero_based": 50,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 54,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "dog11",
+          "start_frame_zero_based": 58,
+          "confirmed_frame_zero_based": 60,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 61,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 226,
+          "confirmed_frame_zero_based": 228,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 233,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 267,
+          "confirmed_frame_zero_based": 269,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 336,
+          "delay_frames": 69
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 496,
+          "confirmed_frame_zero_based": 498,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 37,
+          "confirmed_frame_zero_based": 39,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 52,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 70,
+          "confirmed_frame_zero_based": 72,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 81,
+          "delay_frames": 11
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 116,
+          "confirmed_frame_zero_based": 118,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 132,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 318,
+          "confirmed_frame_zero_based": 320,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 348,
+          "delay_frames": 30
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 385,
+          "confirmed_frame_zero_based": 387,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 388,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 414,
+          "confirmed_frame_zero_based": 416,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 417,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 435,
+          "confirmed_frame_zero_based": 437,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 439,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "glass",
+          "start_frame_zero_based": 329,
+          "confirmed_frame_zero_based": 331,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 335,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "glass",
+          "start_frame_zero_based": 354,
+          "confirmed_frame_zero_based": 356,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "hotglass",
+          "start_frame_zero_based": 121,
+          "confirmed_frame_zero_based": 123,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 141,
+          "delay_frames": 20
+        },
+        {
+          "sequence": "kettle",
+          "start_frame_zero_based": 1171,
+          "confirmed_frame_zero_based": 1173,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1229,
+          "delay_frames": 58
+        },
+        {
+          "sequence": "kettle",
+          "start_frame_zero_based": 1293,
+          "confirmed_frame_zero_based": 1295,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1299,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "kettle",
+          "start_frame_zero_based": 1370,
+          "confirmed_frame_zero_based": 1372,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1398,
+          "delay_frames": 28
+        },
+        {
+          "sequence": "kite2",
+          "start_frame_zero_based": 173,
+          "confirmed_frame_zero_based": 175,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man4",
+          "start_frame_zero_based": 23,
+          "confirmed_frame_zero_based": 25,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 27,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "man4",
+          "start_frame_zero_based": 430,
+          "confirmed_frame_zero_based": 432,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1386,
+          "confirmed_frame_zero_based": 1388,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1430,
+          "delay_frames": 44
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1525,
+          "confirmed_frame_zero_based": 1527,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1541,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1549,
+          "confirmed_frame_zero_based": 1551,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1766,
+          "delay_frames": 217
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1808,
+          "confirmed_frame_zero_based": 1810,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1817,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1820,
+          "confirmed_frame_zero_based": 1822,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2024,
+          "delay_frames": 204
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2045,
+          "confirmed_frame_zero_based": 2047,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2058,
+          "delay_frames": 13
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2066,
+          "confirmed_frame_zero_based": 2068,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2117,
+          "delay_frames": 51
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2157,
+          "confirmed_frame_zero_based": 2159,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2940,
+          "delay_frames": 783
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2953,
+          "confirmed_frame_zero_based": 2955,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2965,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2982,
+          "confirmed_frame_zero_based": 2984,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2991,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3210,
+          "confirmed_frame_zero_based": 3212,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 3255,
+          "delay_frames": 45
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 4095,
+          "confirmed_frame_zero_based": 4097,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 4111,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 1027,
+          "confirmed_frame_zero_based": 1029,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1033,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 1701,
+          "confirmed_frame_zero_based": 1703,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1739,
+          "delay_frames": 38
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 2016,
+          "confirmed_frame_zero_based": 2018,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2026,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 2034,
+          "confirmed_frame_zero_based": 2036,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 91,
+          "confirmed_frame_zero_based": 93,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 103,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 150,
+          "confirmed_frame_zero_based": 152,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 160,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 168,
+          "confirmed_frame_zero_based": 170,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 173,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 95,
+          "confirmed_frame_zero_based": 97,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 110,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 271,
+          "confirmed_frame_zero_based": 273,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 287,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 298,
+          "confirmed_frame_zero_based": 300,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man24",
+          "start_frame_zero_based": 159,
+          "confirmed_frame_zero_based": 161,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 238,
+          "delay_frames": 79
+        },
+        {
+          "sequence": "man26",
+          "start_frame_zero_based": 303,
+          "confirmed_frame_zero_based": 305,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 318,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 194,
+          "confirmed_frame_zero_based": 196,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 200,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 229,
+          "confirmed_frame_zero_based": 231,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 249,
+          "delay_frames": 20
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 257,
+          "confirmed_frame_zero_based": 259,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 312,
+          "delay_frames": 55
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 324,
+          "confirmed_frame_zero_based": 326,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 341,
+          "delay_frames": 17
+        },
+        {
+          "sequence": "man29",
+          "start_frame_zero_based": 134,
+          "confirmed_frame_zero_based": 136,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 138,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "man29",
+          "start_frame_zero_based": 144,
+          "confirmed_frame_zero_based": 146,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 246,
+          "delay_frames": 102
+        },
+        {
+          "sequence": "mancross",
+          "start_frame_zero_based": 1,
+          "confirmed_frame_zero_based": 3,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "mancross1",
+          "start_frame_zero_based": 75,
+          "confirmed_frame_zero_based": 77,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 95,
+          "delay_frames": 20
+        },
+        {
+          "sequence": "mandrivecar",
+          "start_frame_zero_based": 255,
+          "confirmed_frame_zero_based": 257,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 288,
+          "delay_frames": 33
+        },
+        {
+          "sequence": "manfaraway",
+          "start_frame_zero_based": 79,
+          "confirmed_frame_zero_based": 81,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 216,
+          "confirmed_frame_zero_based": 218,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 251,
+          "delay_frames": 35
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 361,
+          "confirmed_frame_zero_based": 363,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 367,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 384,
+          "confirmed_frame_zero_based": 386,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 388,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "manoccpart",
+          "start_frame_zero_based": 65,
+          "confirmed_frame_zero_based": 67,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 68,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "manonelecbike",
+          "start_frame_zero_based": 169,
+          "confirmed_frame_zero_based": 171,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 184,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 67,
+          "confirmed_frame_zero_based": 69,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 73,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 399,
+          "confirmed_frame_zero_based": 401,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 402,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 413,
+          "confirmed_frame_zero_based": 415,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 418,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "manwithbasketball",
+          "start_frame_zero_based": 39,
+          "confirmed_frame_zero_based": 41,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "manypeople",
+          "start_frame_zero_based": 33,
+          "confirmed_frame_zero_based": 35,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "manypeople",
+          "start_frame_zero_based": 81,
+          "confirmed_frame_zero_based": 83,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 91,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "manypeople",
+          "start_frame_zero_based": 99,
+          "confirmed_frame_zero_based": 101,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "night2",
+          "start_frame_zero_based": 8,
+          "confirmed_frame_zero_based": 10,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 11,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "nightrun",
+          "start_frame_zero_based": 135,
+          "confirmed_frame_zero_based": 137,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 154,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "nightthreepeople",
+          "start_frame_zero_based": 188,
+          "confirmed_frame_zero_based": 190,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 196,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "nightthreepeople",
+          "start_frame_zero_based": 205,
+          "confirmed_frame_zero_based": 207,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 209,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "oldwoman",
+          "start_frame_zero_based": 166,
+          "confirmed_frame_zero_based": 168,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "people",
+          "start_frame_zero_based": 227,
+          "confirmed_frame_zero_based": 229,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 604,
+          "confirmed_frame_zero_based": 606,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 683,
+          "delay_frames": 79
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 688,
+          "confirmed_frame_zero_based": 690,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 699,
+          "delay_frames": 11
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 898,
+          "confirmed_frame_zero_based": 900,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 928,
+          "delay_frames": 30
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 226,
+          "confirmed_frame_zero_based": 228,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 230,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 241,
+          "confirmed_frame_zero_based": 243,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 286,
+          "delay_frames": 45
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 303,
+          "confirmed_frame_zero_based": 305,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "redcar2",
+          "start_frame_zero_based": 203,
+          "confirmed_frame_zero_based": 205,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 235,
+          "delay_frames": 32
+        },
+        {
+          "sequence": "rmo",
+          "start_frame_zero_based": 196,
+          "confirmed_frame_zero_based": 198,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "run",
+          "start_frame_zero_based": 94,
+          "confirmed_frame_zero_based": 96,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "run1",
+          "start_frame_zero_based": 47,
+          "confirmed_frame_zero_based": 49,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 299,
+          "confirmed_frame_zero_based": 301,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 328,
+          "delay_frames": 29
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 622,
+          "confirmed_frame_zero_based": 624,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 677,
+          "delay_frames": 55
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 725,
+          "confirmed_frame_zero_based": 727,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 757,
+          "delay_frames": 32
+        },
+        {
+          "sequence": "shake",
+          "start_frame_zero_based": 641,
+          "confirmed_frame_zero_based": 643,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 647,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "shake",
+          "start_frame_zero_based": 668,
+          "confirmed_frame_zero_based": 670,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 676,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "soccer",
+          "start_frame_zero_based": 278,
+          "confirmed_frame_zero_based": 280,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 292,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "soccer",
+          "start_frame_zero_based": 1035,
+          "confirmed_frame_zero_based": 1037,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1042,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "soccerinhand",
+          "start_frame_zero_based": 197,
+          "confirmed_frame_zero_based": 199,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "stroller",
+          "start_frame_zero_based": 451,
+          "confirmed_frame_zero_based": 453,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 600,
+          "delay_frames": 149
+        },
+        {
+          "sequence": "threeman2",
+          "start_frame_zero_based": 237,
+          "confirmed_frame_zero_based": 239,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 256,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "threeman2",
+          "start_frame_zero_based": 426,
+          "confirmed_frame_zero_based": 428,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "threewoman2",
+          "start_frame_zero_based": 8,
+          "confirmed_frame_zero_based": 10,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 22,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "threewoman2",
+          "start_frame_zero_based": 67,
+          "confirmed_frame_zero_based": 69,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 74,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "toy1",
+          "start_frame_zero_based": 1667,
+          "confirmed_frame_zero_based": 1669,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "tree3",
+          "start_frame_zero_based": 1608,
+          "confirmed_frame_zero_based": 1610,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "tree5",
+          "start_frame_zero_based": 1518,
+          "confirmed_frame_zero_based": 1520,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1538,
+          "delay_frames": 20
+        },
+        {
+          "sequence": "tree5",
+          "start_frame_zero_based": 1548,
+          "confirmed_frame_zero_based": 1550,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "twoelecbike1",
+          "start_frame_zero_based": 182,
+          "confirmed_frame_zero_based": 184,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 194,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "walking40",
+          "start_frame_zero_based": 267,
+          "confirmed_frame_zero_based": 269,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 112,
+          "confirmed_frame_zero_based": 114,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 119,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 238,
+          "confirmed_frame_zero_based": 240,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 252,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 257,
+          "confirmed_frame_zero_based": 259,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 162,
+          "confirmed_frame_zero_based": 164,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 188,
+          "delay_frames": 26
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 283,
+          "confirmed_frame_zero_based": 285,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 339,
+          "delay_frames": 56
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 378,
+          "confirmed_frame_zero_based": 380,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 392,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "walkingman20",
+          "start_frame_zero_based": 237,
+          "confirmed_frame_zero_based": 239,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 245,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "walkingman20",
+          "start_frame_zero_based": 282,
+          "confirmed_frame_zero_based": 284,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingman41",
+          "start_frame_zero_based": 342,
+          "confirmed_frame_zero_based": 344,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingmantiny",
+          "start_frame_zero_based": 40,
+          "confirmed_frame_zero_based": 42,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingnight",
+          "start_frame_zero_based": 389,
+          "confirmed_frame_zero_based": 391,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 397,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "walkingtogetherright",
+          "start_frame_zero_based": 245,
+          "confirmed_frame_zero_based": 247,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 274,
+          "delay_frames": 29
+        },
+        {
+          "sequence": "walkingtogetherright",
+          "start_frame_zero_based": 595,
+          "confirmed_frame_zero_based": 597,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "whitebag",
+          "start_frame_zero_based": 124,
+          "confirmed_frame_zero_based": 126,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 128,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "whitecar4",
+          "start_frame_zero_based": 138,
+          "confirmed_frame_zero_based": 140,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "woamn46",
+          "start_frame_zero_based": 184,
+          "confirmed_frame_zero_based": 186,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 189,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "woman100",
+          "start_frame_zero_based": 589,
+          "confirmed_frame_zero_based": 591,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 595,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "womanwithbag6",
+          "start_frame_zero_based": 71,
+          "confirmed_frame_zero_based": 73,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 82,
+          "delay_frames": 11
+        }
+      ],
+      "attributes": {
+        "BC": {
+          "sequences": 54,
+          "MPR": 87.19860799624131,
+          "MSR": 62.87478410593761
+        },
+        "CM": {
+          "sequences": 89,
+          "MPR": 90.26443671814789,
+          "MSR": 69.135139393891
+        },
+        "DEF": {
+          "sequences": 76,
+          "MPR": 90.21647385831395,
+          "MSR": 69.24714026907463
+        },
+        "FM": {
+          "sequences": 32,
+          "MPR": 87.15006894991232,
+          "MSR": 63.368918247292015
+        },
+        "HO": {
+          "sequences": 96,
+          "MPR": 89.4074504062384,
+          "MSR": 66.35213657524577
+        },
+        "LI": {
+          "sequences": 63,
+          "MPR": 93.61746001524025,
+          "MSR": 69.69294663661904
+        },
+        "LR": {
+          "sequences": 50,
+          "MPR": 87.71132395951878,
+          "MSR": 64.13216123355919
+        },
+        "MB": {
+          "sequences": 55,
+          "MPR": 89.04668984395471,
+          "MSR": 68.67627060621474
+        },
+        "NO": {
+          "sequences": 41,
+          "MPR": 96.9695710520281,
+          "MSR": 75.32139628193897
+        },
+        "TC": {
+          "sequences": 28,
+          "MPR": 89.6617981702189,
+          "MSR": 66.35725317297643
+        },
+        "PO": {
+          "sequences": 96,
+          "MPR": 91.94075447660197,
+          "MSR": 69.34535391267669
+        },
+        "SC": {
+          "sequences": 120,
+          "MPR": 93.78360035360562,
+          "MSR": 71.46587049957924
+        }
+      },
+      "mean_curves": {
+        "MPR": {
+          "thresholds": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0,
+            14.0,
+            15.0,
+            16.0,
+            17.0,
+            18.0,
+            19.0,
+            20.0,
+            21.0,
+            22.0,
+            23.0,
+            24.0,
+            25.0,
+            26.0,
+            27.0,
+            28.0,
+            29.0,
+            30.0,
+            31.0,
+            32.0,
+            33.0,
+            34.0,
+            35.0,
+            36.0,
+            37.0,
+            38.0,
+            39.0,
+            40.0,
+            41.0,
+            42.0,
+            43.0,
+            44.0,
+            45.0,
+            46.0,
+            47.0,
+            48.0,
+            49.0,
+            50.0
+          ],
+          "values": [
+            0.013929147228809884,
+            0.1261895931535074,
+            0.3484902739275244,
+            0.546174838759389,
+            0.6661550756606575,
+            0.7472286705227424,
+            0.791033462129343,
+            0.8235943452554653,
+            0.8434146209203403,
+            0.8576577841536069,
+            0.8708768997535542,
+            0.8803883109947656,
+            0.8871969907216464,
+            0.8923868116801698,
+            0.8975216690218822,
+            0.9021617109691006,
+            0.906326624557843,
+            0.9099707674015187,
+            0.9128082966126029,
+            0.915814567776487,
+            0.9181700889694796,
+            0.9202774910328465,
+            0.921946965250169,
+            0.923654262444408,
+            0.9253676723327879,
+            0.9269857681710397,
+            0.9282149782039386,
+            0.9298109562216135,
+            0.9309408584052516,
+            0.9323790221793743,
+            0.9336469040354493,
+            0.9346872905677476,
+            0.9359848059365303,
+            0.9368956903064815,
+            0.9377324369677362,
+            0.9385277057147429,
+            0.9392073358428441,
+            0.9399075670676582,
+            0.9405862338972739,
+            0.9412269800029972,
+            0.9417368684913707,
+            0.9425492587465037,
+            0.9431640389658262,
+            0.9438805335320226,
+            0.9443381480485157,
+            0.9449436438069745,
+            0.9455925255486965,
+            0.9462237194461599,
+            0.9469531452757978,
+            0.9476135576649386,
+            0.9482114674304757
+          ]
+        },
+        "MSR": {
+          "thresholds": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2,
+            0.25,
+            0.30000000000000004,
+            0.35000000000000003,
+            0.4,
+            0.45,
+            0.5,
+            0.55,
+            0.6000000000000001,
+            0.65,
+            0.7000000000000001,
+            0.75,
+            0.8,
+            0.8500000000000001,
+            0.9,
+            0.9500000000000001,
+            1.0
+          ],
+          "values": [
+            0.9398590926136424,
+            0.9364121784684667,
+            0.93130103656283,
+            0.9273110383307797,
+            0.9249051816056858,
+            0.921637181117515,
+            0.9159081166123307,
+            0.9097049658048773,
+            0.9000780232309797,
+            0.8894961086730453,
+            0.8748994143591323,
+            0.8512236325047817,
+            0.8119236456173746,
+            0.756077676799387,
+            0.6764837582229937,
+            0.5658156666422764,
+            0.42139333969248066,
+            0.2553514821237135,
+            0.11030159351713592,
+            0.01906680922861201,
+            0.0
+          ]
+        }
+      },
+      "original_inference_config": {
+        "dataset": "rgbt234",
+        "root": "/data/zhouy/DATASET/RGB-T234",
+        "variant": "c1",
+        "pretrained": "pretrained_models/gola_b224.bin",
+        "head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "output": "/data/gb/outputs/online_core_v2/rgbt234_c1/predictions",
+        "device": "cuda:0",
+        "seed": 42,
+        "limit_sequences": 0,
+        "max_frames": 0,
+        "amp_dtype": "float16",
+        "record_mechanisms": true,
+        "scope": "strict online baseline or C1 reranking; no bounded branches/state repair/A/B",
+        "update_threshold": 0.84,
+        "search_area_factor": 4.0,
+        "min_search_object_size": 10.0,
+        "template_area_factor": 2.0,
+        "pretrained_load": {
+          "checkpoint": "pretrained_models/gola_b224.bin",
+          "missing_keys_from_adapter_checkpoint": [
+            "pos_embed",
+            "patch_embed.proj.weight",
+            "patch_embed.proj.bias",
+            "blocks.0.norm1.weight",
+            "blocks.0.norm1.bias",
+            "blocks.0.attn.qkv.bias",
+            "blocks.0.attn.proj.bias",
+            "blocks.0.ls1.gamma",
+            "blocks.0.norm2.weight",
+            "blocks.0.norm2.bias",
+            "blocks.0.mlp.fc1.bias",
+            "blocks.0.mlp.fc2.bias",
+            "blocks.0.ls2.gamma",
+            "blocks.1.norm1.weight",
+            "blocks.1.norm1.bias",
+            "blocks.1.attn.qkv.bias",
+            "blocks.1.attn.proj.bias",
+            "blocks.1.ls1.gamma",
+            "blocks.1.norm2.weight",
+            "blocks.1.norm2.bias",
+            "blocks.1.mlp.fc1.bias",
+            "blocks.1.mlp.fc2.bias",
+            "blocks.1.ls2.gamma",
+            "blocks.2.norm1.weight",
+            "blocks.2.norm1.bias",
+            "blocks.2.attn.qkv.bias",
+            "blocks.2.attn.proj.bias",
+            "blocks.2.ls1.gamma",
+            "blocks.2.norm2.weight",
+            "blocks.2.norm2.bias",
+            "blocks.2.mlp.fc1.bias",
+            "blocks.2.mlp.fc2.bias",
+            "blocks.2.ls2.gamma",
+            "blocks.3.norm1.weight",
+            "blocks.3.norm1.bias",
+            "blocks.3.attn.qkv.bias",
+            "blocks.3.attn.proj.bias",
+            "blocks.3.ls1.gamma",
+            "blocks.3.norm2.weight",
+            "blocks.3.norm2.bias",
+            "blocks.3.mlp.fc1.bias",
+            "blocks.3.mlp.fc2.bias",
+            "blocks.3.ls2.gamma",
+            "blocks.4.norm1.weight",
+            "blocks.4.norm1.bias",
+            "blocks.4.attn.qkv.bias",
+            "blocks.4.attn.proj.bias",
+            "blocks.4.ls1.gamma",
+            "blocks.4.norm2.weight",
+            "blocks.4.norm2.bias",
+            "blocks.4.mlp.fc1.bias",
+            "blocks.4.mlp.fc2.bias",
+            "blocks.4.ls2.gamma",
+            "blocks.5.norm1.weight",
+            "blocks.5.norm1.bias",
+            "blocks.5.attn.qkv.bias",
+            "blocks.5.attn.proj.bias",
+            "blocks.5.ls1.gamma",
+            "blocks.5.norm2.weight",
+            "blocks.5.norm2.bias",
+            "blocks.5.mlp.fc1.bias",
+            "blocks.5.mlp.fc2.bias",
+            "blocks.5.ls2.gamma",
+            "blocks.6.norm1.weight",
+            "blocks.6.norm1.bias",
+            "blocks.6.attn.qkv.bias",
+            "blocks.6.attn.proj.bias",
+            "blocks.6.ls1.gamma",
+            "blocks.6.norm2.weight",
+            "blocks.6.norm2.bias",
+            "blocks.6.mlp.fc1.bias",
+            "blocks.6.mlp.fc2.bias",
+            "blocks.6.ls2.gamma",
+            "blocks.7.norm1.weight",
+            "blocks.7.norm1.bias",
+            "blocks.7.attn.qkv.bias",
+            "blocks.7.attn.proj.bias",
+            "blocks.7.ls1.gamma",
+            "blocks.7.norm2.weight",
+            "blocks.7.norm2.bias",
+            "blocks.7.mlp.fc1.bias",
+            "blocks.7.mlp.fc2.bias",
+            "blocks.7.ls2.gamma",
+            "blocks.8.norm1.weight",
+            "blocks.8.norm1.bias",
+            "blocks.8.attn.qkv.bias",
+            "blocks.8.attn.proj.bias",
+            "blocks.8.ls1.gamma",
+            "blocks.8.norm2.weight",
+            "blocks.8.norm2.bias",
+            "blocks.8.mlp.fc1.bias",
+            "blocks.8.mlp.fc2.bias",
+            "blocks.8.ls2.gamma",
+            "blocks.9.norm1.weight",
+            "blocks.9.norm1.bias",
+            "blocks.9.attn.qkv.bias",
+            "blocks.9.attn.proj.bias",
+            "blocks.9.ls1.gamma",
+            "blocks.9.norm2.weight",
+            "blocks.9.norm2.bias",
+            "blocks.9.mlp.fc1.bias",
+            "blocks.9.mlp.fc2.bias",
+            "blocks.9.ls2.gamma",
+            "blocks.10.norm1.weight",
+            "blocks.10.norm1.bias",
+            "blocks.10.attn.qkv.bias",
+            "blocks.10.attn.proj.bias",
+            "blocks.10.ls1.gamma",
+            "blocks.10.norm2.weight",
+            "blocks.10.norm2.bias",
+            "blocks.10.mlp.fc1.bias",
+            "blocks.10.mlp.fc2.bias",
+            "blocks.10.ls2.gamma",
+            "blocks.11.norm1.weight",
+            "blocks.11.norm1.bias",
+            "blocks.11.attn.qkv.bias",
+            "blocks.11.attn.proj.bias",
+            "blocks.11.ls1.gamma",
+            "blocks.11.norm2.weight",
+            "blocks.11.norm2.bias",
+            "blocks.11.mlp.fc1.bias",
+            "blocks.11.mlp.fc2.bias",
+            "blocks.11.ls2.gamma",
+            "norm.weight",
+            "norm.bias"
+          ],
+          "unexpected_keys": [],
+          "dinov2_pretrained": true
+        },
+        "gpu": "NVIDIA GeForce RTX 3090",
+        "head_training_amp_dtype": "bfloat16",
+        "backbone_attention": "none",
+        "candidate_box_scaling": "float32_multiply_then_double",
+        "timing_excludes_first_frame_initialization": true,
+        "smoke_only": false,
+        "head_epoch": 3,
+        "initialization": "visible.txt first row"
+      }
+    },
+    "selected_ABC": {
+      "overall_metrics_percent": {
+        "MPR": 92.51869306603905,
+        "MSR": 69.77903473444086
+      },
+      "efficiency": {
+        "tracking_fps": 27.991652264410135,
+        "latency_p50_ms": 34.39259668812156,
+        "latency_p90_ms": 36.310921143740416,
+        "latency_p95_ms": 37.521251151338205,
+        "latency_p99_ms": 64.08893181011081,
+        "excludes_first_frame_initialization": true,
+        "includes_decode_crop_forward_selection_update": true
+      },
+      "localization_diagnostics": {
+        "valid_tracking_frames": 116415,
+        "failed_tracking_frames": 10425,
+        "failure_events": 160,
+        "recovered_events": 132,
+        "recovery_rate": 0.825,
+        "median_recovery_delay_frames": 13.5,
+        "unrecovered_events": 28
+      },
+      "failure_event_records": [
+        {
+          "sequence": "child1",
+          "start_frame_zero_based": 142,
+          "confirmed_frame_zero_based": 144,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 151,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "child1",
+          "start_frame_zero_based": 154,
+          "confirmed_frame_zero_based": 156,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "cycle1",
+          "start_frame_zero_based": 9,
+          "confirmed_frame_zero_based": 11,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 33
+        },
+        {
+          "sequence": "cycle1",
+          "start_frame_zero_based": 60,
+          "confirmed_frame_zero_based": 62,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 143,
+          "delay_frames": 83
+        },
+        {
+          "sequence": "dog1",
+          "start_frame_zero_based": 768,
+          "confirmed_frame_zero_based": 770,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "manypeople1",
+          "start_frame_zero_based": 262,
+          "confirmed_frame_zero_based": 264,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 277,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "twoman2",
+          "start_frame_zero_based": 386,
+          "confirmed_frame_zero_based": 388,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "whiteman1",
+          "start_frame_zero_based": 543,
+          "confirmed_frame_zero_based": 545,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 549,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "whiteman1",
+          "start_frame_zero_based": 557,
+          "confirmed_frame_zero_based": 559,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 568,
+          "delay_frames": 11
+        },
+        {
+          "sequence": "whiteman1",
+          "start_frame_zero_based": 796,
+          "confirmed_frame_zero_based": 798,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 813,
+          "delay_frames": 17
+        },
+        {
+          "sequence": "woman1",
+          "start_frame_zero_based": 532,
+          "confirmed_frame_zero_based": 534,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 798,
+          "delay_frames": 266
+        },
+        {
+          "sequence": "baby",
+          "start_frame_zero_based": 286,
+          "confirmed_frame_zero_based": 288,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 292,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "baby",
+          "start_frame_zero_based": 630,
+          "confirmed_frame_zero_based": 632,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 635,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 12,
+          "confirmed_frame_zero_based": 14,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 35,
+          "delay_frames": 23
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 62,
+          "confirmed_frame_zero_based": 64,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 71,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "baketballwaliking",
+          "start_frame_zero_based": 87,
+          "confirmed_frame_zero_based": 89,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 91,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "balancebike",
+          "start_frame_zero_based": 146,
+          "confirmed_frame_zero_based": 148,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 165,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "biketwo",
+          "start_frame_zero_based": 260,
+          "confirmed_frame_zero_based": 262,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "car37",
+          "start_frame_zero_based": 276,
+          "confirmed_frame_zero_based": 278,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 306,
+          "delay_frames": 30
+        },
+        {
+          "sequence": "caraftertree",
+          "start_frame_zero_based": 168,
+          "confirmed_frame_zero_based": 170,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 195,
+          "delay_frames": 27
+        },
+        {
+          "sequence": "carnotmove",
+          "start_frame_zero_based": 36,
+          "confirmed_frame_zero_based": 38,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 46,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "child",
+          "start_frame_zero_based": 123,
+          "confirmed_frame_zero_based": 125,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 160,
+          "confirmed_frame_zero_based": 162,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 169,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 185,
+          "confirmed_frame_zero_based": 187,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 212,
+          "delay_frames": 27
+        },
+        {
+          "sequence": "child3",
+          "start_frame_zero_based": 287,
+          "confirmed_frame_zero_based": 289,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "child4",
+          "start_frame_zero_based": 410,
+          "confirmed_frame_zero_based": 412,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "children2",
+          "start_frame_zero_based": 3,
+          "confirmed_frame_zero_based": 5,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "children3",
+          "start_frame_zero_based": 68,
+          "confirmed_frame_zero_based": 70,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 97,
+          "delay_frames": 29
+        },
+        {
+          "sequence": "children3",
+          "start_frame_zero_based": 108,
+          "confirmed_frame_zero_based": 110,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 117,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "children4",
+          "start_frame_zero_based": 79,
+          "confirmed_frame_zero_based": 81,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "crouch",
+          "start_frame_zero_based": 860,
+          "confirmed_frame_zero_based": 862,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 881,
+          "delay_frames": 21
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 81,
+          "confirmed_frame_zero_based": 83,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 85,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 155,
+          "confirmed_frame_zero_based": 157,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 159,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "diamond",
+          "start_frame_zero_based": 200,
+          "confirmed_frame_zero_based": 202,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 204,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "dog11",
+          "start_frame_zero_based": 48,
+          "confirmed_frame_zero_based": 50,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 52,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 226,
+          "confirmed_frame_zero_based": 228,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 233,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 267,
+          "confirmed_frame_zero_based": 269,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 313,
+          "delay_frames": 46
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 373,
+          "confirmed_frame_zero_based": 375,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 430,
+          "delay_frames": 57
+        },
+        {
+          "sequence": "elecbike2",
+          "start_frame_zero_based": 503,
+          "confirmed_frame_zero_based": 505,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "elecbikeinfrontcar",
+          "start_frame_zero_based": 129,
+          "confirmed_frame_zero_based": 131,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 134,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "face1",
+          "start_frame_zero_based": 177,
+          "confirmed_frame_zero_based": 179,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 295,
+          "delay_frames": 118
+        },
+        {
+          "sequence": "floor-1",
+          "start_frame_zero_based": 91,
+          "confirmed_frame_zero_based": 93,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 98,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 37,
+          "confirmed_frame_zero_based": 39,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 52,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 116,
+          "confirmed_frame_zero_based": 118,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 132,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 148,
+          "confirmed_frame_zero_based": 150,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 157,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 318,
+          "confirmed_frame_zero_based": 320,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 348,
+          "delay_frames": 30
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 385,
+          "confirmed_frame_zero_based": 387,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 388,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 414,
+          "confirmed_frame_zero_based": 416,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 417,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "flower1",
+          "start_frame_zero_based": 435,
+          "confirmed_frame_zero_based": 437,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 438,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "glass",
+          "start_frame_zero_based": 329,
+          "confirmed_frame_zero_based": 331,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 335,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "glass",
+          "start_frame_zero_based": 354,
+          "confirmed_frame_zero_based": 356,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "hotglass",
+          "start_frame_zero_based": 121,
+          "confirmed_frame_zero_based": 123,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 135,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "kettle",
+          "start_frame_zero_based": 1171,
+          "confirmed_frame_zero_based": 1173,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1223,
+          "delay_frames": 52
+        },
+        {
+          "sequence": "kettle",
+          "start_frame_zero_based": 1370,
+          "confirmed_frame_zero_based": 1372,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1398,
+          "delay_frames": 28
+        },
+        {
+          "sequence": "kite2",
+          "start_frame_zero_based": 166,
+          "confirmed_frame_zero_based": 168,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 344,
+          "delay_frames": 178
+        },
+        {
+          "sequence": "kite2",
+          "start_frame_zero_based": 1604,
+          "confirmed_frame_zero_based": 1606,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man4",
+          "start_frame_zero_based": 23,
+          "confirmed_frame_zero_based": 25,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 27,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "man4",
+          "start_frame_zero_based": 430,
+          "confirmed_frame_zero_based": 432,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1296,
+          "confirmed_frame_zero_based": 1298,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1541,
+          "delay_frames": 245
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1549,
+          "confirmed_frame_zero_based": 1551,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1766,
+          "delay_frames": 217
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1808,
+          "confirmed_frame_zero_based": 1810,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1817,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 1820,
+          "confirmed_frame_zero_based": 1822,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2024,
+          "delay_frames": 204
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2045,
+          "confirmed_frame_zero_based": 2047,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2110,
+          "delay_frames": 65
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 2156,
+          "confirmed_frame_zero_based": 2158,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2993,
+          "delay_frames": 837
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3004,
+          "confirmed_frame_zero_based": 3006,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 3256,
+          "delay_frames": 252
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3294,
+          "confirmed_frame_zero_based": 3296,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 3307,
+          "delay_frames": 13
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3611,
+          "confirmed_frame_zero_based": 3613,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 3648,
+          "delay_frames": 37
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3982,
+          "confirmed_frame_zero_based": 3984,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 3985,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "man7",
+          "start_frame_zero_based": 3989,
+          "confirmed_frame_zero_based": 3991,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 4034,
+          "delay_frames": 45
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 1027,
+          "confirmed_frame_zero_based": 1029,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1033,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 1701,
+          "confirmed_frame_zero_based": 1703,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1718,
+          "delay_frames": 17
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 2008,
+          "confirmed_frame_zero_based": 2010,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2026,
+          "delay_frames": 18
+        },
+        {
+          "sequence": "man8",
+          "start_frame_zero_based": 2034,
+          "confirmed_frame_zero_based": 2036,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 2164,
+          "delay_frames": 130
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 91,
+          "confirmed_frame_zero_based": 93,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 103,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 150,
+          "confirmed_frame_zero_based": 152,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 156,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "man22",
+          "start_frame_zero_based": 168,
+          "confirmed_frame_zero_based": 170,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 173,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 95,
+          "confirmed_frame_zero_based": 97,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 110,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 271,
+          "confirmed_frame_zero_based": 273,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 287,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "man23",
+          "start_frame_zero_based": 298,
+          "confirmed_frame_zero_based": 300,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "man24",
+          "start_frame_zero_based": 159,
+          "confirmed_frame_zero_based": 161,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 238,
+          "delay_frames": 79
+        },
+        {
+          "sequence": "man26",
+          "start_frame_zero_based": 303,
+          "confirmed_frame_zero_based": 305,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 318,
+          "delay_frames": 15
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 194,
+          "confirmed_frame_zero_based": 196,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 200,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 229,
+          "confirmed_frame_zero_based": 231,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 249,
+          "delay_frames": 20
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 255,
+          "confirmed_frame_zero_based": 257,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 312,
+          "delay_frames": 57
+        },
+        {
+          "sequence": "man28",
+          "start_frame_zero_based": 324,
+          "confirmed_frame_zero_based": 326,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 340,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "man29",
+          "start_frame_zero_based": 134,
+          "confirmed_frame_zero_based": 136,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 138,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "man29",
+          "start_frame_zero_based": 144,
+          "confirmed_frame_zero_based": 146,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 246,
+          "delay_frames": 102
+        },
+        {
+          "sequence": "man45",
+          "start_frame_zero_based": 166,
+          "confirmed_frame_zero_based": 168,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 172,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "mancross",
+          "start_frame_zero_based": 13,
+          "confirmed_frame_zero_based": 15,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 57,
+          "delay_frames": 44
+        },
+        {
+          "sequence": "mancross",
+          "start_frame_zero_based": 67,
+          "confirmed_frame_zero_based": 69,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 70,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "mancross1",
+          "start_frame_zero_based": 71,
+          "confirmed_frame_zero_based": 73,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 96,
+          "delay_frames": 25
+        },
+        {
+          "sequence": "mandrivecar",
+          "start_frame_zero_based": 272,
+          "confirmed_frame_zero_based": 274,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 283,
+          "delay_frames": 11
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 211,
+          "confirmed_frame_zero_based": 213,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 242,
+          "delay_frames": 31
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 361,
+          "confirmed_frame_zero_based": 363,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 367,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "maninglass",
+          "start_frame_zero_based": 384,
+          "confirmed_frame_zero_based": 386,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 388,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "manonelecbike",
+          "start_frame_zero_based": 169,
+          "confirmed_frame_zero_based": 171,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 181,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 67,
+          "confirmed_frame_zero_based": 69,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 73,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 398,
+          "confirmed_frame_zero_based": 400,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 405,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "manwithbag4",
+          "start_frame_zero_based": 411,
+          "confirmed_frame_zero_based": 413,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 418,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "manwithbasketball",
+          "start_frame_zero_based": 39,
+          "confirmed_frame_zero_based": 41,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "manypeople",
+          "start_frame_zero_based": 33,
+          "confirmed_frame_zero_based": 35,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 42,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "manypeople",
+          "start_frame_zero_based": 78,
+          "confirmed_frame_zero_based": 80,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "nightrun",
+          "start_frame_zero_based": 135,
+          "confirmed_frame_zero_based": 137,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 151,
+          "delay_frames": 16
+        },
+        {
+          "sequence": "nightthreepeople",
+          "start_frame_zero_based": 188,
+          "confirmed_frame_zero_based": 190,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 196,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "nightthreepeople",
+          "start_frame_zero_based": 205,
+          "confirmed_frame_zero_based": 207,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 209,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "notmove",
+          "start_frame_zero_based": 104,
+          "confirmed_frame_zero_based": 106,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 114,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "notmove",
+          "start_frame_zero_based": 239,
+          "confirmed_frame_zero_based": 241,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 257,
+          "delay_frames": 18
+        },
+        {
+          "sequence": "notmove",
+          "start_frame_zero_based": 274,
+          "confirmed_frame_zero_based": 276,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 282,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "people",
+          "start_frame_zero_based": 203,
+          "confirmed_frame_zero_based": 205,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 294,
+          "delay_frames": 91
+        },
+        {
+          "sequence": "people",
+          "start_frame_zero_based": 333,
+          "confirmed_frame_zero_based": 335,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 603,
+          "confirmed_frame_zero_based": 605,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 677,
+          "delay_frames": 74
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 688,
+          "confirmed_frame_zero_based": 690,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 699,
+          "delay_frames": 11
+        },
+        {
+          "sequence": "people1",
+          "start_frame_zero_based": 898,
+          "confirmed_frame_zero_based": 900,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 924,
+          "delay_frames": 26
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 226,
+          "confirmed_frame_zero_based": 228,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 230,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 241,
+          "confirmed_frame_zero_based": 243,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 286,
+          "delay_frames": 45
+        },
+        {
+          "sequence": "push",
+          "start_frame_zero_based": 303,
+          "confirmed_frame_zero_based": 305,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "redbag",
+          "start_frame_zero_based": 686,
+          "confirmed_frame_zero_based": 688,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 729,
+          "delay_frames": 43
+        },
+        {
+          "sequence": "redcar2",
+          "start_frame_zero_based": 203,
+          "confirmed_frame_zero_based": 205,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 235,
+          "delay_frames": 32
+        },
+        {
+          "sequence": "rmo",
+          "start_frame_zero_based": 34,
+          "confirmed_frame_zero_based": 36,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 637,
+          "delay_frames": 603
+        },
+        {
+          "sequence": "run",
+          "start_frame_zero_based": 94,
+          "confirmed_frame_zero_based": 96,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 301,
+          "confirmed_frame_zero_based": 303,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 305,
+          "delay_frames": 4
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 313,
+          "confirmed_frame_zero_based": 315,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 322,
+          "delay_frames": 9
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 622,
+          "confirmed_frame_zero_based": 624,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 677,
+          "delay_frames": 55
+        },
+        {
+          "sequence": "scooter",
+          "start_frame_zero_based": 725,
+          "confirmed_frame_zero_based": 727,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 757,
+          "delay_frames": 32
+        },
+        {
+          "sequence": "shake",
+          "start_frame_zero_based": 641,
+          "confirmed_frame_zero_based": 643,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 647,
+          "delay_frames": 6
+        },
+        {
+          "sequence": "shake",
+          "start_frame_zero_based": 668,
+          "confirmed_frame_zero_based": 670,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 676,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "soccer",
+          "start_frame_zero_based": 278,
+          "confirmed_frame_zero_based": 280,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 292,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "soccer",
+          "start_frame_zero_based": 1035,
+          "confirmed_frame_zero_based": 1037,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1045,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "soccerinhand",
+          "start_frame_zero_based": 192,
+          "confirmed_frame_zero_based": 194,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "stroller",
+          "start_frame_zero_based": 451,
+          "confirmed_frame_zero_based": 453,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 600,
+          "delay_frames": 149
+        },
+        {
+          "sequence": "threeman2",
+          "start_frame_zero_based": 237,
+          "confirmed_frame_zero_based": 239,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 256,
+          "delay_frames": 19
+        },
+        {
+          "sequence": "threeman2",
+          "start_frame_zero_based": 426,
+          "confirmed_frame_zero_based": 428,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "threewoman2",
+          "start_frame_zero_based": 8,
+          "confirmed_frame_zero_based": 10,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 21,
+          "delay_frames": 13
+        },
+        {
+          "sequence": "threewoman2",
+          "start_frame_zero_based": 67,
+          "confirmed_frame_zero_based": 69,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 74,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "toy1",
+          "start_frame_zero_based": 1667,
+          "confirmed_frame_zero_based": 1669,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "tree3",
+          "start_frame_zero_based": 1608,
+          "confirmed_frame_zero_based": 1610,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "tree5",
+          "start_frame_zero_based": 1337,
+          "confirmed_frame_zero_based": 1339,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 1540,
+          "delay_frames": 203
+        },
+        {
+          "sequence": "tree5",
+          "start_frame_zero_based": 1548,
+          "confirmed_frame_zero_based": 1550,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "twoelecbike1",
+          "start_frame_zero_based": 182,
+          "confirmed_frame_zero_based": 184,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 194,
+          "delay_frames": 12
+        },
+        {
+          "sequence": "walking40",
+          "start_frame_zero_based": 260,
+          "confirmed_frame_zero_based": 262,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 112,
+          "confirmed_frame_zero_based": 114,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 119,
+          "delay_frames": 7
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 238,
+          "confirmed_frame_zero_based": 240,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 252,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "walkingman1",
+          "start_frame_zero_based": 257,
+          "confirmed_frame_zero_based": 259,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 162,
+          "confirmed_frame_zero_based": 164,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 188,
+          "delay_frames": 26
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 283,
+          "confirmed_frame_zero_based": 285,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 339,
+          "delay_frames": 56
+        },
+        {
+          "sequence": "walkingman12",
+          "start_frame_zero_based": 378,
+          "confirmed_frame_zero_based": 380,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 392,
+          "delay_frames": 14
+        },
+        {
+          "sequence": "walkingman20",
+          "start_frame_zero_based": 237,
+          "confirmed_frame_zero_based": 239,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 245,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "walkingman20",
+          "start_frame_zero_based": 282,
+          "confirmed_frame_zero_based": 284,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 359,
+          "delay_frames": 77
+        },
+        {
+          "sequence": "walkingman20",
+          "start_frame_zero_based": 383,
+          "confirmed_frame_zero_based": 385,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 478,
+          "delay_frames": 95
+        },
+        {
+          "sequence": "walkingman41",
+          "start_frame_zero_based": 342,
+          "confirmed_frame_zero_based": 344,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingmantiny",
+          "start_frame_zero_based": 40,
+          "confirmed_frame_zero_based": 42,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "walkingtogetherright",
+          "start_frame_zero_based": 245,
+          "confirmed_frame_zero_based": 247,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 274,
+          "delay_frames": 29
+        },
+        {
+          "sequence": "walkingtogetherright",
+          "start_frame_zero_based": 595,
+          "confirmed_frame_zero_based": 597,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 598,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "whitecar4",
+          "start_frame_zero_based": 138,
+          "confirmed_frame_zero_based": 140,
+          "recovered": false,
+          "recovery_start_frame_zero_based": null,
+          "delay_frames": null
+        },
+        {
+          "sequence": "woamn46",
+          "start_frame_zero_based": 184,
+          "confirmed_frame_zero_based": 186,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 189,
+          "delay_frames": 5
+        },
+        {
+          "sequence": "woamn46",
+          "start_frame_zero_based": 195,
+          "confirmed_frame_zero_based": 197,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 203,
+          "delay_frames": 8
+        },
+        {
+          "sequence": "woman100",
+          "start_frame_zero_based": 587,
+          "confirmed_frame_zero_based": 589,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 597,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "womanpink",
+          "start_frame_zero_based": 98,
+          "confirmed_frame_zero_based": 100,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 101,
+          "delay_frames": 3
+        },
+        {
+          "sequence": "womanrun",
+          "start_frame_zero_based": 596,
+          "confirmed_frame_zero_based": 598,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 606,
+          "delay_frames": 10
+        },
+        {
+          "sequence": "womanwithbag6",
+          "start_frame_zero_based": 71,
+          "confirmed_frame_zero_based": 73,
+          "recovered": true,
+          "recovery_start_frame_zero_based": 82,
+          "delay_frames": 11
+        }
+      ],
+      "attributes": {
+        "BC": {
+          "sequences": 54,
+          "MPR": 91.17385713632443,
+          "MSR": 65.37131114683878
+        },
+        "CM": {
+          "sequences": 89,
+          "MPR": 93.08973024032306,
+          "MSR": 70.85733778738283
+        },
+        "DEF": {
+          "sequences": 76,
+          "MPR": 90.31146576527125,
+          "MSR": 69.1840976207122
+        },
+        "FM": {
+          "sequences": 32,
+          "MPR": 88.9838768453073,
+          "MSR": 65.41355802962482
+        },
+        "HO": {
+          "sequences": 96,
+          "MPR": 88.71073422118378,
+          "MSR": 66.01745673742195
+        },
+        "LI": {
+          "sequences": 63,
+          "MPR": 95.34718649675979,
+          "MSR": 70.80755350244054
+        },
+        "LR": {
+          "sequences": 50,
+          "MPR": 90.05634031402872,
+          "MSR": 65.88799493452449
+        },
+        "MB": {
+          "sequences": 55,
+          "MPR": 94.86373779178547,
+          "MSR": 72.34232343168613
+        },
+        "NO": {
+          "sequences": 41,
+          "MPR": 98.64514523005647,
+          "MSR": 76.51568268960813
+        },
+        "TC": {
+          "sequences": 28,
+          "MPR": 91.89390190073884,
+          "MSR": 68.67825632307272
+        },
+        "PO": {
+          "sequences": 96,
+          "MPR": 93.63221601861649,
+          "MSR": 70.49838070070041
+        },
+        "SC": {
+          "sequences": 120,
+          "MPR": 92.8454076326124,
+          "MSR": 71.04434956893344
+        }
+      },
+      "mean_curves": {
+        "MPR": {
+          "thresholds": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0,
+            14.0,
+            15.0,
+            16.0,
+            17.0,
+            18.0,
+            19.0,
+            20.0,
+            21.0,
+            22.0,
+            23.0,
+            24.0,
+            25.0,
+            26.0,
+            27.0,
+            28.0,
+            29.0,
+            30.0,
+            31.0,
+            32.0,
+            33.0,
+            34.0,
+            35.0,
+            36.0,
+            37.0,
+            38.0,
+            39.0,
+            40.0,
+            41.0,
+            42.0,
+            43.0,
+            44.0,
+            45.0,
+            46.0,
+            47.0,
+            48.0,
+            49.0,
+            50.0
+          ],
+          "values": [
+            0.014188019073272053,
+            0.1276847415589855,
+            0.3524980924977281,
+            0.5525226331873484,
+            0.6746737718443331,
+            0.7566391238115612,
+            0.8010655965564684,
+            0.8336850675779244,
+            0.8533639095566018,
+            0.8672740843969646,
+            0.8802251268354307,
+            0.8894416142255276,
+            0.8957274991256099,
+            0.900756922670612,
+            0.9054718695710744,
+            0.9098699299245397,
+            0.9137270149199431,
+            0.9171963224716353,
+            0.9198375910290671,
+            0.9228543817512,
+            0.9251869306603905,
+            0.9272374764025502,
+            0.9288916413793401,
+            0.9305711459130753,
+            0.9320885095833927,
+            0.9334664959250235,
+            0.9345039308683147,
+            0.9358812966634801,
+            0.9370797349095388,
+            0.9384265939319272,
+            0.9397545282619734,
+            0.9408746212798834,
+            0.9420285786739981,
+            0.9428892958626128,
+            0.9438899651041802,
+            0.9447947443605977,
+            0.9453779860111795,
+            0.9460465143828637,
+            0.9466487606146458,
+            0.9473354226346195,
+            0.9479168319566843,
+            0.9486948942073906,
+            0.9493047270211246,
+            0.9498714504828756,
+            0.9503668371945727,
+            0.9509271238472919,
+            0.951508551301858,
+            0.9521346413123716,
+            0.9527391921803325,
+            0.9532919781400363,
+            0.9537818351762996
+          ]
+        },
+        "MSR": {
+          "thresholds": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2,
+            0.25,
+            0.30000000000000004,
+            0.35000000000000003,
+            0.4,
+            0.45,
+            0.5,
+            0.55,
+            0.6000000000000001,
+            0.65,
+            0.7000000000000001,
+            0.75,
+            0.8,
+            0.8500000000000001,
+            0.9,
+            0.9500000000000001,
+            1.0
+          ],
+          "values": [
+            0.94413920861127,
+            0.9411232169109679,
+            0.9367032876853344,
+            0.9340383050449179,
+            0.931657547987506,
+            0.929100560896465,
+            0.9248220235224144,
+            0.9192078284987864,
+            0.9100303568631527,
+            0.8993447425564225,
+            0.8845085771638393,
+            0.8600898165306227,
+            0.819420322660735,
+            0.7628278992537696,
+            0.6814142860767154,
+            0.568588540127147,
+            0.422254815117564,
+            0.2552731182738631,
+            0.11002920184242773,
+            0.01902363860865709,
+            0.0
+          ]
+        }
+      },
+      "original_inference_config": {
+        "dataset": "rgbt234",
+        "root": "/data/zhouy/DATASET/RGB-T234",
+        "model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+        "pretrained": "pretrained_models/gola_b224.bin",
+        "c1_head": "/data/gb/outputs/c1_initial_seed42/best.pth",
+        "motion_run": "/data/gb/outputs/abc_joint_v1_seed42",
+        "output": "/data/gb/outputs/identity_evidence_transfer_20261007/native/rgbt234/predictions",
+        "validation_split": null,
+        "sequence_offset": 0,
+        "limit_sequences": 0,
+        "max_frames": 0,
+        "zero_init": false,
+        "parity_check": false,
+        "policy": "learned",
+        "disable_search": false,
+        "search_value": "gross",
+        "unsafe_writes": false,
+        "write_verification": "action",
+        "seed": 42,
+        "commit_model": null,
+        "state_commit_model": null,
+        "identity_projection": "/data/gb/outputs/identity_representation_probe_20261007/fit_full/encoded_lr4/best.pth",
+        "identity_weight": 0.05,
+        "commit_continuation": "frame",
+        "threshold": 0.03,
+        "head_epoch": 0,
+        "ABC_model_family": "ABC_candidate_relations",
+        "model_training_seed": 42,
+        "scope": "causal single path, bounded instance memory, learned one-extra-region search and query-only safe write",
+        "smoke_only": false,
+        "pretrained_load": {
+          "checkpoint": "pretrained_models/gola_b224.bin",
+          "missing_keys_from_adapter_checkpoint": [
+            "pos_embed",
+            "patch_embed.proj.weight",
+            "patch_embed.proj.bias",
+            "blocks.0.norm1.weight",
+            "blocks.0.norm1.bias",
+            "blocks.0.attn.qkv.bias",
+            "blocks.0.attn.proj.bias",
+            "blocks.0.ls1.gamma",
+            "blocks.0.norm2.weight",
+            "blocks.0.norm2.bias",
+            "blocks.0.mlp.fc1.bias",
+            "blocks.0.mlp.fc2.bias",
+            "blocks.0.ls2.gamma",
+            "blocks.1.norm1.weight",
+            "blocks.1.norm1.bias",
+            "blocks.1.attn.qkv.bias",
+            "blocks.1.attn.proj.bias",
+            "blocks.1.ls1.gamma",
+            "blocks.1.norm2.weight",
+            "blocks.1.norm2.bias",
+            "blocks.1.mlp.fc1.bias",
+            "blocks.1.mlp.fc2.bias",
+            "blocks.1.ls2.gamma",
+            "blocks.2.norm1.weight",
+            "blocks.2.norm1.bias",
+            "blocks.2.attn.qkv.bias",
+            "blocks.2.attn.proj.bias",
+            "blocks.2.ls1.gamma",
+            "blocks.2.norm2.weight",
+            "blocks.2.norm2.bias",
+            "blocks.2.mlp.fc1.bias",
+            "blocks.2.mlp.fc2.bias",
+            "blocks.2.ls2.gamma",
+            "blocks.3.norm1.weight",
+            "blocks.3.norm1.bias",
+            "blocks.3.attn.qkv.bias",
+            "blocks.3.attn.proj.bias",
+            "blocks.3.ls1.gamma",
+            "blocks.3.norm2.weight",
+            "blocks.3.norm2.bias",
+            "blocks.3.mlp.fc1.bias",
+            "blocks.3.mlp.fc2.bias",
+            "blocks.3.ls2.gamma",
+            "blocks.4.norm1.weight",
+            "blocks.4.norm1.bias",
+            "blocks.4.attn.qkv.bias",
+            "blocks.4.attn.proj.bias",
+            "blocks.4.ls1.gamma",
+            "blocks.4.norm2.weight",
+            "blocks.4.norm2.bias",
+            "blocks.4.mlp.fc1.bias",
+            "blocks.4.mlp.fc2.bias",
+            "blocks.4.ls2.gamma",
+            "blocks.5.norm1.weight",
+            "blocks.5.norm1.bias",
+            "blocks.5.attn.qkv.bias",
+            "blocks.5.attn.proj.bias",
+            "blocks.5.ls1.gamma",
+            "blocks.5.norm2.weight",
+            "blocks.5.norm2.bias",
+            "blocks.5.mlp.fc1.bias",
+            "blocks.5.mlp.fc2.bias",
+            "blocks.5.ls2.gamma",
+            "blocks.6.norm1.weight",
+            "blocks.6.norm1.bias",
+            "blocks.6.attn.qkv.bias",
+            "blocks.6.attn.proj.bias",
+            "blocks.6.ls1.gamma",
+            "blocks.6.norm2.weight",
+            "blocks.6.norm2.bias",
+            "blocks.6.mlp.fc1.bias",
+            "blocks.6.mlp.fc2.bias",
+            "blocks.6.ls2.gamma",
+            "blocks.7.norm1.weight",
+            "blocks.7.norm1.bias",
+            "blocks.7.attn.qkv.bias",
+            "blocks.7.attn.proj.bias",
+            "blocks.7.ls1.gamma",
+            "blocks.7.norm2.weight",
+            "blocks.7.norm2.bias",
+            "blocks.7.mlp.fc1.bias",
+            "blocks.7.mlp.fc2.bias",
+            "blocks.7.ls2.gamma",
+            "blocks.8.norm1.weight",
+            "blocks.8.norm1.bias",
+            "blocks.8.attn.qkv.bias",
+            "blocks.8.attn.proj.bias",
+            "blocks.8.ls1.gamma",
+            "blocks.8.norm2.weight",
+            "blocks.8.norm2.bias",
+            "blocks.8.mlp.fc1.bias",
+            "blocks.8.mlp.fc2.bias",
+            "blocks.8.ls2.gamma",
+            "blocks.9.norm1.weight",
+            "blocks.9.norm1.bias",
+            "blocks.9.attn.qkv.bias",
+            "blocks.9.attn.proj.bias",
+            "blocks.9.ls1.gamma",
+            "blocks.9.norm2.weight",
+            "blocks.9.norm2.bias",
+            "blocks.9.mlp.fc1.bias",
+            "blocks.9.mlp.fc2.bias",
+            "blocks.9.ls2.gamma",
+            "blocks.10.norm1.weight",
+            "blocks.10.norm1.bias",
+            "blocks.10.attn.qkv.bias",
+            "blocks.10.attn.proj.bias",
+            "blocks.10.ls1.gamma",
+            "blocks.10.norm2.weight",
+            "blocks.10.norm2.bias",
+            "blocks.10.mlp.fc1.bias",
+            "blocks.10.mlp.fc2.bias",
+            "blocks.10.ls2.gamma",
+            "blocks.11.norm1.weight",
+            "blocks.11.norm1.bias",
+            "blocks.11.attn.qkv.bias",
+            "blocks.11.attn.proj.bias",
+            "blocks.11.ls1.gamma",
+            "blocks.11.norm2.weight",
+            "blocks.11.norm2.bias",
+            "blocks.11.mlp.fc1.bias",
+            "blocks.11.mlp.fc2.bias",
+            "blocks.11.ls2.gamma",
+            "norm.weight",
+            "norm.bias"
+          ],
+          "unexpected_keys": [],
+          "dinov2_pretrained": true
+        },
+        "new_abc_parameters": 534234,
+        "frozen_motion_memory_and_predictor_parameters": 158412,
+        "total_loaded_parameters_including_unused_frozen_motion_heads": 89040560,
+        "persistent_memory_slots_per_sensor": {
+          "identity": 4,
+          "frozen_motion": 4
+        },
+        "motion_history_capacity": 8,
+        "max_extra_visual_forwards_per_frame": 1,
+        "max_actual_candidates_per_frame": 10,
+        "amp_dtype": "float16",
+        "gt_input": "only first annotation initializes; later GT only offline scoring",
+        "past_outputs_never_rewritten": true,
+        "arbitrary_historical_state_restoration": false,
+        "timing_excludes_initialization": true,
+        "timing_excludes_diagnostic_transfer_and_serialization": true,
+        "bootstrap_training_future_policy": "frozen continuation policy recorded in training source_configs; not recomputed by this evaluator",
+        "initialization": "visible.txt first row",
+        "identity_projection_epoch": 9,
+        "new_identity_projection_parameters": 99968,
+        "identity_scope": "Fixed paired-pretrained identity residual; original ABC states and motion descriptors preserved",
+        "identity_anchor": "Protected first template self-context, one initializer forward per sequence",
+        "identity_pretraining_scope": "Supervised frame pairs; not complete-ABC retraining or own-policy states",
+        "full_shard_union_verified": true
+      }
+    }
+  },
+  "paired_against": "c1",
+  "paired_frame_diagnostics": {
+    "selected_ABC": {
+      "baseline_correct_frames": 100377,
+      "baseline_failed_frames": 10868,
+      "baseline_correct_but_variant_failed_frames": 1652,
+      "baseline_failed_but_variant_correct_frames": 2013,
+      "valid_tracking_frames": 116415,
+      "official_metric_delta_percentage_points": {
+        "MPR": 0.7016841690910951,
+        "MSR": 0.5449873928787525
+      }
+    }
+  },
+  "mechanism_measurements_pending": [
+    "Candidate Recall@K and mis-rejected-candidate recovery need candidate timelines.",
+    "State/identity-switch events and memory contamination need update/branch timelines.",
+    "A memory-budget and B forecast calibration curves require the corresponding modules.",
+    "Existing runs do not record inference peak CUDA memory; final instrumented runs must."
+  ]
+}

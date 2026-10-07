@@ -1,0 +1,43 @@
+{
+  "method": "paired equal-weight sequence bootstrap; shared resamples across metrics",
+  "scope": "fixed checkpoints, not repeated training-seed uncertainty",
+  "args": {
+    "reports": [
+      "/data/gb/outputs/identity_evidence_transfer_20261007/native/rgbt234/baseline_paired_report/full_report.json"
+    ],
+    "output": "/data/gb/outputs/identity_evidence_transfer_20261007/native/rgbt234/baseline_paired_report/paired_bootstrap.json",
+    "iterations": 5000,
+    "seed": 42
+  },
+  "datasets": {
+    "rgbt234": {
+      "sequences": 234,
+      "compared_variants": [
+        "baseline",
+        "selected_ABC"
+      ],
+      "metrics": {
+        "MPR": {
+          "mean_delta_percentage_points": 0.7398354915315292,
+          "percentile_95_interval_percentage_points": [
+            -0.5619304777770363,
+            2.174275623467157
+          ],
+          "improved_sequences": 39,
+          "worsened_sequences": 37,
+          "tied_sequences": 158
+        },
+        "MSR": {
+          "mean_delta_percentage_points": 0.5464415565515606,
+          "percentile_95_interval_percentage_points": [
+            -0.1593558940711573,
+            1.352302871185279
+          ],
+          "improved_sequences": 42,
+          "worsened_sequences": 41,
+          "tied_sequences": 151
+        }
+      }
+    }
+  }
+}
