@@ -45395,12 +45395,30 @@
     }
   },
   "current_policy_train_traces": {
-    "stage": "SOURCE_PASS_PENDING_REAL_SANITY",
+    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
     "TRAIN_sequences": 881,
     "DEV_sequences_excluded": 98,
     "frozen_policy": "E5/gross/action, original complete GOLA-B/C1/ABC",
     "new_optimizer_updates": 0,
     "actual_intervention_support_needed": true,
-    "prior437_configs_inventory_full_TRACE_missing": true
+    "prior437_configs_inventory_full_TRACE_missing": true,
+    "launch": {
+      "pid": 2290902,
+      "at_cst": "2026-10-07T19:31:07.689689+08:00",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.run_current_policy_train_traces",
+        "--review",
+        "refine-logs/runs/current_policy_train_traces/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/current_policy_train_traces_20261007"
+      ],
+      "output": "/data/gb/outputs/current_policy_train_traces_20261007",
+      "source_commit": "a10a744e97587fcf6e4ab19e762476191d4e2014",
+      "owner_started_once": true,
+      "real_sanity_completed": false
+    }
   }
 }
