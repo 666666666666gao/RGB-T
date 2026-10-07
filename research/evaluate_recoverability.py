@@ -39,6 +39,8 @@ def arguments():
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--commit-model', help='Optional trained query search/appearance commit head; parent model stays fixed.')
     parser.add_argument('--state-commit-model', help='Optional C candidate/output/geometry commit extension trained on actual matched states.')
+    parser.add_argument('--identity-projection', help='Trained encoded ROI projection: fixed identity-evidence transfer control.')
+    parser.add_argument('--identity-weight', type=float, default=0.)
     parser.add_argument('--commit-continuation', choices=('frame', 'teacher_horizon'), default='frame',
                         help='Fixed-weight control: after a commit intervention use frozen old4 for the head training horizon.')
     return parser.parse_args()
@@ -47,6 +49,9 @@ def arguments():
 @torch.inference_mode()
 def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head=None, state_commit_head=None):
     tracker_type, kwargs = RecoverabilityTracker, {}
+    if args.identity_projection:
+        from .identity_evidence import IdentityEvidenceTracker
+        tracker_type = IdentityEvidenceTracker
     if commit_head is not None:
         from .geometry_commit import GeometryCommitTracker
         tracker_type, kwargs = GeometryCommitTracker, {'commit_head':commit_head}
@@ -61,6 +66,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
                                     initial, threshold, args.policy, not args.disable_search, not args.unsafe_writes,
                                     args.write_verification, search_value=args.search_value, **kwargs)
     anchors = [value.clone() for value in (tracker.anchor, tracker.identity_anchor, tracker.motion_anchor)]
+    semantic_anchor = tracker.encoded_identity_anchor.clone() if args.identity_projection else None
     predictions, latencies, decisions = [initial.copy()], [], []
     for frame in range(1, len(visible)):
         torch.cuda.synchronize(device)
@@ -71,6 +77,8 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
         # Timeline transfer and file serialization are outside measured tracking latency.
         decisions.append({key: value.cpu().numpy().copy() for key, value in tracker.last_decision.items()})
     assert all(torch.equal(before, after) for before, after in zip(anchors, (tracker.anchor, tracker.identity_anchor, tracker.motion_anchor)))
+    if semantic_anchor is not None:
+        assert torch.equal(semantic_anchor, tracker.encoded_identity_anchor)
     assert len(decisions) == len(latencies) == len(predictions) - 1
     for box, decision in zip(predictions[1:], decisions):
         region, candidate = divmod(int(decision['choice']), 5)
@@ -110,6 +118,8 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
 def main():
     args = arguments()
     assert not (args.commit_model and args.state_commit_model)
+    assert args.identity_projection or args.identity_weight == 0
+    assert not args.identity_projection or not (args.commit_model or args.state_commit_model or args.zero_init or args.parity_check)
     assert args.commit_continuation == 'frame' or args.commit_model
     assert not args.parity_check or args.zero_init or args.policy == 'c1'
     torch.manual_seed(args.seed)
@@ -122,10 +132,16 @@ def main():
     assert checkpoint['module'] in ('ABC_recoverability', 'ABC_candidate_relations', 'ABC_post_search_relations')
     assert checkpoint['args']['c1_head'] == args.c1_head
     threshold = checkpoint['args']['threshold']
-    modules = RecoverabilityModules(c1, candidate_relations=checkpoint['module'] in ('ABC_candidate_relations', 'ABC_post_search_relations'),
+    module_type = RecoverabilityModules
+    if args.identity_projection:
+        from .identity_evidence import IdentityEvidenceModules
+        module_type = IdentityEvidenceModules
+    modules = module_type(c1, candidate_relations=checkpoint['module'] in ('ABC_candidate_relations', 'ABC_post_search_relations'),
                                     post_search_bidirectional=checkpoint['module'] == 'ABC_post_search_relations').to(device)
     if not args.zero_init:
         modules.load_state_dict(checkpoint['model'], strict=True)
+    if args.identity_projection:
+        modules.configure_identity(args.identity_projection, args.identity_weight)
     modules.eval().requires_grad_(False)
     commit_head = None
     state_commit_head = None
@@ -161,7 +177,11 @@ def main():
     motion.load_state_dict(motion_checkpoint['model'], strict=True)
     motion.eval().requires_grad_(False)
     assert motion_config['motion_history'] == 8 and motion_config['modes'] == motion_checkpoint['horizon'] == 3
-    extractor = InstanceExtractor(args.pretrained, c1['args']['candidates'], .45, c1['args']['nms_iou']).to(device)
+    extractor_type = InstanceExtractor
+    if args.identity_projection:
+        from .identity_representation_probe import PairedInstanceExtractor
+        extractor_type = PairedInstanceExtractor
+    extractor = extractor_type(args.pretrained, c1['args']['candidates'], .45, c1['args']['nms_iou']).to(device)
     assert c1['args']['candidates'] == 5
     sequences = sorted(p for p in Path(args.root).iterdir() if p.is_dir())
     if args.validation_split:
@@ -204,6 +224,12 @@ def main():
                       new_state_commit_parameters=sum(p.numel() for p in state_commit_head.parameters()),
                       state_commit_scope='C extension selects current output, appearance pause and current-frame parent geometry; causal continuous deployment')
         config['total_loaded_parameters_including_unused_frozen_motion_heads'] += config['new_state_commit_parameters']
+    if args.identity_projection:
+        config.update(identity_projection_epoch=modules.identity_checkpoint_epoch,
+                      new_identity_projection_parameters=sum(p.numel() for p in modules.identity_projection.parameters()),
+                      identity_scope='Fixed paired-pretrained identity residual; original ABC states and motion descriptors preserved',
+                      identity_anchor='Protected first template self-context, one initializer forward per sequence',
+                      identity_pretraining_scope='Supervised frame pairs; not complete-ABC retraining or own-policy states')
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()
     torch.cuda.reset_peak_memory_stats(device)

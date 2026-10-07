@@ -24,8 +24,8 @@ from trackit.datasets.MMOT.specialization.memory_mapped.dataset import MultiModa
 
 
 class PairedInstanceExtractor(InstanceExtractor):
-    def __init__(self, checkpoint):
-        super().__init__(checkpoint)
+    def __init__(self, checkpoint, candidates=5, window_penalty=.45, nms_iou=.7):
+        super().__init__(checkpoint, candidates, window_penalty, nms_iou)
         self.normalized_tokens = None
         self.norm_hook = self.base.norm.register_forward_hook(self.capture_tokens)
 

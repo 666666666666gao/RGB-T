@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_IDENTITY_EVIDENCE_PIPELINE_SOURCE",
+  "at_cst": "2026-10-07T13:48:32+08:00",
+  "reviewer_agent": "/root/identity_evidence_transfer_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "INDEPENDENTLY_UNATTESTED",
+  "actual_reasoning_effort": "INDEPENDENTLY_UNATTESTED",
+  "attribution_note": "Requested routing follows the installed local Codex policy. The reviewer cannot independently attest the serving backend or actual effort.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "fresh_source_review": true,
+  "review_mode": "source-only; no SSH, GPU, inference, training, or model imports",
+  "plan": "refine-logs/EXPERIMENT_PLAN.md, 2026-10-07 paired-pretrained identity evidence continuous transfer",
+  "source_files": [
+    "research/identity_evidence.py",
+    "research/check_identity_evidence.py",
+    "research/identity_representation_probe.py",
+    "research/recoverability_tracker.py",
+    "research/evaluate_recoverability.py",
+    "scripts/run_identity_evidence.py",
+    "scripts/run_selective_state_native.py"
+  ],
+  "relevant_dependencies_read": [
+    "research/recoverability_modules.py",
+    "research/candidate_relations.py",
+    "research/candidate_learning.py",
+    "research/collect_recoverability.py",
+    "research/collect_rollouts.py",
+    "research/bounded_recovery.py",
+    "trackit/models/methods/GOLA/gola_full_finetune.py",
+    "research/collect_recoverability_metrics.py",
+    "research/collect_core_metrics.py",
+    "research/paired_sequence_bootstrap.py",
+    "scripts/run_candidate_relation_training.py",
+    "scripts/run_search_gain_native.py"
+  ],
+  "blocking": [],
+  "nonblocking": [],
+  "resolved_findings": [
+    {
+      "original_severity": "NONBLOCKING",
+      "issue": "The initial all-state parity receipt exceeded its direct assertion coverage: branch masks, committed tensors, pending entries, score/box deques and history lengths were not compared explicitly.",
+      "resolution": "The executor added direct comparisons of those existing fields, frame, branch metadata and all original anchors, and renamed the receipt to zero_residual_all_parent_states_exact.",
+      "final_source_reread": "research/check_identity_evidence.py reread after the executor patch; corrected assertions are present and use the existing Branch state schema."
+    }
+  ],
+  "correctness_findings": [
+    "The new module strictly loads the existing ABC parent before adding the encoded projection; projection keys match the prior producer, with encoded source and epoch 9 checked. Local completed predecessor metadata records encoded_lr4, 32 epochs and 896 optimizer steps.",
+    "The actual normalized GOLA token order matches the two ROI/template slices. Runtime candidate features have B x 7 x 5 x 2 x 768 geometry; normalized projections and protected B x 2 x 128 anchor produce B x 7 x 5 support.",
+    "The initializer is the normalized first-template self-context with d=z and bilinearly resized x. It is computed once per sequence, then preserved. FP16 cache round trip followed by FP32 projection matches the predecessor feature/fit path.",
+    "Original A identity memory and B pre-attention motion features remain in their original update paths. The encoded residual changes final candidate scores equally for regular and pause actions; original search, quality and write evidence are retained. Zero weight skips score arithmetic exactly.",
+    "Only local observations and at most one executed extra region enter valid candidate slots. Existing selection masks exclude unexecuted regions. Future images and later GT do not enter the tracker; actual GT is read after inference by the metric collectors.",
+    "The four real-video sanity children precede full inference and include zero-parent output/decision/state parity, frozen anchors and gradients, residual algebra, and GT/unobserved encoded-input invariance. Their completion is a runtime gate, not a result of this review.",
+    "The four coefficients are fixed at 0, 0.05, 0.1 and 0.2. Each FULL98 invocation is untruncated and checked for 98 sequences and 49418 frames. The zero arm is checked against parent prediction bytes and every archived original decision array.",
+    "FULL98 collection uses actual GT and all five planned reference directories. Selection is restricted to the four arms, uses sequence_mean_iou from the actual report schema, and preserves the zero arm on exact ties. The chosen parent, projection and weight are written before native evaluation.",
+    "Native launch and shard merge carry and verify the same parent/projection/weight on LasHeR 245/220703 and RGBT234 234/116649. Full shard union checks, actual-GT core metrics, all five metrics, 31 attributes, curves and paired sequence bootstrap outputs are wired to the existing collector schemas.",
+    "The controller has a finite four-arm/full-native workload, a 20 GiB disk preflight, and GPU memory/utilization checks. It waits for all children and closes logs before testing wave exit codes. Failed children stop subsequent stages; no unchanged retry or new weight cleanup is introduced."
+  ],
+  "validation": {
+    "independent_local_AST_parse": "PASS",
+    "parsed_source_count": 7,
+    "model_imports": 0,
+    "reviewer_NN_executed": false,
+    "reviewer_remote_commands_executed": false,
+    "real_GPU_sanity": "PENDING",
+    "FULL98_runtime": "PENDING",
+    "native_runtime": "PENDING"
+  },
+  "required_runtime_gates": [
+    "The four planned real-video sanity checks must complete successfully before any FULL98 wave.",
+    "Complete all four FULL98 arms and zero-parent archive parity before selecting the single native policy.",
+    "Native four-card sanity must pass before complete frame-balanced native shards and actual-GT reports."
+  ],
+  "current_stage_new_optimizer_updates": 0,
+  "prior_projection_actual_epochs": 32,
+  "prior_projection_actual_optimizer_updates": 896,
+  "experiment_scope": "Fixed trained identity-evidence transfer control on the retained complete ABC parent; not new complete-ABC training or seed-stability evidence.",
+  "main_goal_status": "ACTIVE_UNMET",
+  "conclusion": "Source PASS after rereading the executor's parity-assertion patch. No unresolved blocking or nonblocking source finding. Runtime sanity and efficacy remain unverified."
+}

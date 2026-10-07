@@ -177,3 +177,8 @@ SOURCE PASS/provisional; real GPU source check and4×2epoch sanity before4×32ep
 ## 2026-10-07T13:12:47.028046+08:00 actual paired identity representation/A pretraining COMPLETE
 
 4x32epochs/896updates, all881/98 sequences and14096/1568 fixed sampled queries; source GPU PASS, strict reload PASS. encoded_lr4 E9 proxyIoU.553146 vsC1.551385 (+.176124pp;7improve0worse), initial.546415 preserved. This is not full-video/native/completeABC efficacy.7ownunused weights retired afterconsumers; best kept. Main native5 unchanged/all+2UNMET.
+
+
+## 2026-10-07T13:51:05.108161+08:00 reviewed identity transfer runtime control
+
+SOURCE PASS/provisional. Prior selected identity projection32epochs/896updates completed; current stage0new updates. Four coefficients same completeABC/visualbudget, realzero/causal sanity before4full98 andsame selectedconfiguration bothfullnative. Native results pending. +2 ACTIVE_UNMET.

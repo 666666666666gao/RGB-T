@@ -19,6 +19,8 @@ from trackit.runner.evaluation.common.siamfc_search_region_cropping_params_provi
 
 
 class RecoverabilityTracker(BoundedRecoveryTracker):
+    observation_fields = ('features', 'evidence', 'raw_score', 'boxes', 'instance_features', 'valid')
+
     def __init__(self, extractor, modules, motion, image, init_box, threshold=.03,
                  policy='learned', search_enabled=True, safe_writes=True, write_verification='identity',
                  search_value='weighted'):
@@ -61,7 +63,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
 
     def original_inputs(self, observation, distribution, history):
         candidates, quality, boxes, choice = observation
-        fields = ('features', 'evidence', 'raw_score', 'boxes', 'instance_features', 'valid')
+        fields = self.observation_fields
         data = {key: torch.zeros((1, 7, *candidates[key].shape[1:]),
                                  dtype=candidates[key].dtype, device=self.device) for key in fields}
         data.update(image_boxes=torch.zeros((1, 7, 5, 4), device=self.device),
@@ -75,7 +77,7 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
 
     def insert_region(self, data, region, observation):
         candidates, quality, boxes, _ = observation
-        for key in ('features', 'evidence', 'raw_score', 'boxes', 'instance_features', 'valid'):
+        for key in self.observation_fields:
             data[key][:, region] = candidates[key]
         data['image_boxes'][:, region] = torch.as_tensor(boxes, device=self.device).float()[None]
         data['c1_quality'][:, region] = quality[None]
