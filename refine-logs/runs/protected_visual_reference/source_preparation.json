@@ -1,0 +1,53 @@
+{
+  "prepared_at_cst": "2026-10-07T15:55:43.128908+08:00",
+  "source_files": [
+    "research/protected_visual_reference.py",
+    "research/check_protected_visual_reference.py",
+    "research/audit_protected_reference_metrics.py",
+    "research/recoverability_tracker.py",
+    "research/evaluate_recoverability.py",
+    "scripts/run_protected_visual_reference.py",
+    "scripts/run_selective_state_native.py",
+    "research/collect_recoverability_metrics.py"
+  ],
+  "stage": "SOURCE_REVIEW_PENDING_NO_NEW_NN",
+  "scope": "Matched causal state-propagation control; not new trained ABC",
+  "evidence": "Previous forced-alternative/parent-geometry controls cancel harm but do not improve parent; current identity transfer0.05 loses LasHeR and increases RGBT234 without +2",
+  "modes": [
+    "parent",
+    "geometry",
+    "visual",
+    "visual_motion"
+  ],
+  "frozen_pretrained_ABC_preserved": true,
+  "reference_is_model_prediction_not_GT": true,
+  "source_changes_geometry_plus_template_in_visual_modes": true,
+  "private_template_writes_not_used_for_visual_primary_or_anchor_extra": true,
+  "geometry_mode_still_reads_private_ABC_template_and_not_native_GOLA": true,
+  "visual_motion_changes_motion_memory_as_well_as_geometry": true,
+  "model_inputs": "Past/current only, GTfirstrow initializes; future/GTlabels are offline only",
+  "full_developer": {
+    "sequences": 98,
+    "frames": 49418,
+    "reused": true,
+    "arms": 4
+  },
+  "formal": {
+    "lasher": [
+      245,
+      220703
+    ],
+    "rgbt234": [
+      234,
+      116649
+    ],
+    "one_preselected_complete_policy": true,
+    "full_five_plus31attrs": true
+  },
+  "new_optimizer_updates": 0,
+  "planned_visual_budget": "One primary forward and at most one executed extra forward",
+  "review_status": "PASS",
+  "owner_started": false,
+  "power_temperature_operations": false,
+  "acceptance_status": "source_only_same_family_provisional"
+}

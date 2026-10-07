@@ -31,6 +31,8 @@ def merge(root, dataset, definition, selection):
         assert config['model'] == selection['parent_model'] and config['state_commit_model'] == selection['state_commit_model']
         if 'identity_projection' in selection:
             assert config['identity_projection'] == selection['identity_projection'] and config['identity_weight'] == selection['identity_weight']
+        if 'reference_mode' in selection:
+            assert config['reference_mode'] == selection['reference_mode']
         assert config['dataset'] == dataset and config['root'] == DATA[dataset] and config['search_value'] == 'gross'
         assert config['write_verification'] == 'action' and config['policy'] == 'learned'
         assert not any(config[k] for k in ('unsafe_writes', 'disable_search', 'zero_init', 'parity_check'))
@@ -79,7 +81,7 @@ def main():
     p.add_argument('--output', required=True)
     args = p.parse_args()
     selection, review = read(args.selection), read(args.review)
-    assert review['status'] == 'PASS' and review['scope'] in ('COMPLETE_STATE_COMMIT_PIPELINE_SOURCE', 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE', 'COMPLETE_IDENTITY_EVIDENCE_PIPELINE_SOURCE')
+    assert review['status'] == 'PASS' and review['scope'] in ('COMPLETE_STATE_COMMIT_PIPELINE_SOURCE', 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE', 'COMPLETE_IDENTITY_EVIDENCE_PIPELINE_SOURCE', 'COMPLETE_PROTECTED_REFERENCE_PIPELINE_SOURCE')
     label = 'state_commit' if review['scope'] == 'COMPLETE_STATE_COMMIT_PIPELINE_SOURCE' else 'selected_ABC'
     assert selection['same_checkpoint_both_native_datasets'] and not selection['native_metrics_completed']
     root = Path(args.output)
@@ -117,6 +119,8 @@ def main():
                     command += ['--state-commit-model', selection['state_commit_model']]
                 if 'identity_projection' in selection:
                     command += ['--identity-projection', selection['identity_projection'], '--identity-weight', str(selection['identity_weight'])]
+                if 'reference_mode' in selection:
+                    command += ['--reference-mode', selection['reference_mode']]
                 env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu), CUDA_DEVICE_ORDER='PCI_BUS_ID',
                            LD_LIBRARY_PATH='/data/gb/envs/gola/lib', PYTHONPATH=str(REPO),
                            TORCH_HOME='/data/gb/cache/torch', XDG_CACHE_HOME='/data/gb/cache',
@@ -162,6 +166,9 @@ def main():
             cpu('research.collect_recoverability_metrics', '--dataset', dataset, '--root', data,
                 '--labels', label, '--runs', str(run / 'predictions'), '--reference-labels', *references,
                 '--references', *[r + '/predictions' for r in references.values()], '--output', str(run / 'mechanism_report'))
+            if 'reference_mode' in selection:
+                cpu('research.audit_protected_reference_metrics', '--dataset', dataset, '--root', data,
+                    '--predictions', str(run / 'predictions'), '--output', str(run / 'reference_metrics'))
         report = read(run / 'core_report/full_report.json')
         assert report['all_actual_ground_truth_verified'] and (report['sequences'], report['frames']) == EXPECTED[dataset]
         values = report['variants'][label]['overall_metrics_percent']
@@ -182,6 +189,9 @@ def main():
     if 'identity_projection' in selection:
         complete.update(same_identity_projection_both_datasets=selection['identity_projection'],
                         same_identity_weight_both_datasets=selection['identity_weight'])
+    if 'reference_mode' in selection:
+        complete.update(same_reference_mode_both_datasets=selection['reference_mode'], new_optimizer_updates=0,
+                        scope='State propagation control with original pretrained ABC retained; not new ABC training')
     (root / 'complete_metrics.json').write_text(json.dumps(complete, indent=2))
     record('COMPLETE_BOTH_NATIVE_FULL_FIVE_METRICS_ACTUAL_GT', **complete)
 

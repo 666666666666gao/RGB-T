@@ -158,11 +158,15 @@ class RecoverabilityTracker(BoundedRecoveryTracker):
         return branch, write, memory_rates, verified
 
     @torch.inference_mode()
+    def local_observation(self, image):
+        return observe_actions([(self, self.branch, image)], self.extractor, self.head)[0]
+
+    @torch.inference_mode()
     def step(self, image):
         self.frame += 1
         parent = self.branch
         self.extractor.proposal_policy = 'peaks'
-        original = observe_actions([(self, parent, image)], self.extractor, self.head)[0]
+        original = self.local_observation(image)
         history = self.history_inputs()
         distribution = self.motion_model.motion(history['history_boxes'], history['history_frames'],
                                                  history['history_valid'], history['history_quality'],

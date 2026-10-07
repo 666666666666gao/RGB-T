@@ -179,7 +179,7 @@ def main():
                               'candidate_recall': 'IoU>=.5 among valid actual proposals; original5 vs original plus executed extra5, same pre-action state',
                               'harm_rescue': 'same-state frozen C1 selection versus chosen current box; not independent future-rollout causality',
                               'memory_mass': 'target slot EMA localization provenance and selected maximum-support source; normalized feature purity not asserted',
-                              'template_pollution': 'actual pre-frame template source localization; unknownGT excluded; no semantic distractor labels',
+                               'template_pollution': 'ABC pre-frame template-state source localization; normally visual input, but PRIVATE state in protected visual modes (see per-variant template_provenance_scope). UnknownGT excluded; no semantic distractor labels.',
                               'state_commit_geometry': 'When selective-state fields exist: committed same-frame search reference and motion observation versus actual GT. Localization proxies, unknownGT excluded; correct active-template source does not imply no earlier wrong writes or causal recovery benefit.',
                               'motion': 'frozen bootstrap motion forecast, sensor-specific labels; not new motion model training',
                               'timing': 'instrumented tracking including decode/crop/update; concurrent-load comparisons descriptive'},
@@ -264,6 +264,13 @@ def main():
                                                         for key in bins[0][index]}} for index in range(10)]
             value['motion'] = {modality: aggregate_motion([record[modality] for record in motion]) for modality in motion[0]}
             all_events.extend({'variant': label, **event} for event in events)
+        if config.get('reference_mode') in ('visual', 'visual_motion'):
+            value['template_provenance_scope'] = {
+                'template_write_pause_and_active_template_counters': 'Private ABC state, not the actual primary visual template',
+                'wrong_query_writes_prevented_is_private_state_only': True,
+                'not_evidence_of_primary_visual_pollution_prevention': True,
+                'actual_primary_template_source_report': 'reference_metrics/reference_metrics.json',
+                'reference_is_GOLA_prediction_not_verified_identity': True}
         report['variants'][label] = value
         means[label] = np.asarray(seq_means)
     resamples = np.random.default_rng(42).integers(0, len(names), size=(5000, len(names)))

@@ -41,6 +41,8 @@ def arguments():
     parser.add_argument('--state-commit-model', help='Optional C candidate/output/geometry commit extension trained on actual matched states.')
     parser.add_argument('--identity-projection', help='Trained encoded ROI projection: fixed identity-evidence transfer control.')
     parser.add_argument('--identity-weight', type=float, default=0.)
+    parser.add_argument('--reference-mode', choices=('parent', 'geometry', 'visual', 'visual_motion'),
+                        help='Matched protected-reference propagation control; no new training.')
     parser.add_argument('--commit-continuation', choices=('frame', 'teacher_horizon'), default='frame',
                         help='Fixed-weight control: after a commit intervention use frozen old4 for the head training horizon.')
     return parser.parse_args()
@@ -49,6 +51,9 @@ def arguments():
 @torch.inference_mode()
 def track(visible, infrared, initial, extractor, modules, motion, device, args, threshold, commit_head=None, state_commit_head=None):
     tracker_type, kwargs = RecoverabilityTracker, {}
+    if args.reference_mode:
+        from .protected_visual_reference import ProtectedVisualReferenceTracker
+        tracker_type, kwargs = ProtectedVisualReferenceTracker, {'reference_mode': args.reference_mode}
     if args.identity_projection:
         from .identity_evidence import IdentityEvidenceTracker
         tracker_type = IdentityEvidenceTracker
@@ -119,6 +124,7 @@ def main():
     args = arguments()
     assert not (args.commit_model and args.state_commit_model)
     assert args.identity_projection or args.identity_weight == 0
+    assert not args.reference_mode or not (args.identity_projection or args.commit_model or args.state_commit_model or args.zero_init or args.parity_check)
     assert not args.identity_projection or not (args.commit_model or args.state_commit_model or args.zero_init or args.parity_check)
     assert args.commit_continuation == 'frame' or args.commit_model
     assert not args.parity_check or args.zero_init or args.policy == 'c1'
@@ -230,6 +236,13 @@ def main():
                       identity_scope='Fixed paired-pretrained identity residual; original ABC states and motion descriptors preserved',
                       identity_anchor='Protected first template self-context, one initializer forward per sequence',
                       identity_pretraining_scope='Supervised frame pairs; not complete-ABC retraining or own-policy states')
+    if args.reference_mode:
+        config.update(reference_scope='Shared visual stream: output and protected search/template/motion reference are separate model predictions',
+                      reference_is_ground_truth=False, new_optimizer_updates=0,
+                      native_GOLA_reference_expected=args.reference_mode in ('visual', 'visual_motion'),
+                      ABC_template_state_kept_private=True,
+                      ABC_private_templates_are_primary_visual_sources=args.reference_mode in ('parent', 'geometry'),
+                      private_template_counter_scope='In visual modes ABC template writes/pause/source counters describe private state, not actual primary visual input; reference_metrics reports actual primary sources')
     (out / 'inference_config.json').write_text(json.dumps(config, indent=2))
     records, all_latency, started = [], [], time.perf_counter()
     torch.cuda.reset_peak_memory_stats(device)
