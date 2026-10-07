@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T16:01:05.365023+08:00",
+  "updated_cst": "2026-10-07T16:06:29.959289+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -44229,7 +44229,7 @@
     "conclusion_scope": "Frozen C1 paired proxy only; not deployed ABC score bound or native metrics"
   },
   "current_protected_visual_reference": {
-    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
+    "stage": "FOUR_REAL_SANITY_PASS_FULL98_RUNNING",
     "updated_cst": "2026-10-07T16:01:05.365023+08:00",
     "modes": [
       "parent",
@@ -44260,6 +44260,115 @@
       "source_commit": "7d9d700285390b76091b41145d936d7baa381c00",
       "owner_started_once": true,
       "real_sanity_completed": false
-    }
+    },
+    "actual_real_sanity_pass": true,
+    "actual_full98_start": {
+      "published_at_cst": "2026-10-07T16:06:29.959289+08:00",
+      "observed_at_cst": "2026-10-07T16:05:00.035048+08:00",
+      "original_owner_pid": 2082222,
+      "actual_real_sanity": {
+        "visual_motion": {
+          "completed": true,
+          "sequence": "rightbiggreenboy",
+          "frames": 64,
+          "reference_mode": "visual_motion",
+          "all_parent_decisions_and_states_exact": false,
+          "protected_native_reference_bitwise_exact": true,
+          "private_bad_state_injected_only_in_sanity": 4,
+          "protected_motion_history_and_memory_exact": true,
+          "original_A_B_C_loaded_and_frozen": true,
+          "optimizer_updates": 0,
+          "native_accuracy": false,
+          "peak_cuda_allocated_mib": 467.8603515625
+        },
+        "parent": {
+          "completed": true,
+          "sequence": "10rightblackboy",
+          "frames": 64,
+          "reference_mode": "parent",
+          "all_parent_decisions_and_states_exact": true,
+          "protected_native_reference_bitwise_exact": null,
+          "private_bad_state_injected_only_in_sanity": null,
+          "protected_motion_history_and_memory_exact": false,
+          "original_A_B_C_loaded_and_frozen": true,
+          "optimizer_updates": 0,
+          "native_accuracy": false,
+          "peak_cuda_allocated_mib": 463.20751953125
+        },
+        "geometry": {
+          "completed": true,
+          "sequence": "blkboy",
+          "frames": 64,
+          "reference_mode": "geometry",
+          "all_parent_decisions_and_states_exact": false,
+          "protected_native_reference_bitwise_exact": null,
+          "private_bad_state_injected_only_in_sanity": null,
+          "protected_motion_history_and_memory_exact": false,
+          "original_A_B_C_loaded_and_frozen": true,
+          "optimizer_updates": 0,
+          "native_accuracy": false,
+          "peak_cuda_allocated_mib": 462.8046875
+        },
+        "visual": {
+          "completed": true,
+          "sequence": "folddenumbrellainhand",
+          "frames": 64,
+          "reference_mode": "visual",
+          "all_parent_decisions_and_states_exact": false,
+          "protected_native_reference_bitwise_exact": true,
+          "private_bad_state_injected_only_in_sanity": 4,
+          "protected_motion_history_and_memory_exact": false,
+          "original_A_B_C_loaded_and_frozen": true,
+          "optimizer_updates": 0,
+          "native_accuracy": false,
+          "peak_cuda_allocated_mib": 451.4208984375
+        }
+      },
+      "original_full98_workers": [
+        {
+          "gpu": 0,
+          "pid": 2082879,
+          "alive": true,
+          "output": "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+          "expected_frames": 49418,
+          "closed_sequences": 10,
+          "closed_frames": 2887
+        },
+        {
+          "gpu": 1,
+          "pid": 2082880,
+          "alive": true,
+          "output": "/data/gb/outputs/protected_visual_reference_20261007/full98/geometry/predictions",
+          "expected_frames": 49418,
+          "closed_sequences": 10,
+          "closed_frames": 2887
+        },
+        {
+          "gpu": 2,
+          "pid": 2082881,
+          "alive": true,
+          "output": "/data/gb/outputs/protected_visual_reference_20261007/full98/visual/predictions",
+          "expected_frames": 49418,
+          "closed_sequences": 10,
+          "closed_frames": 2887
+        },
+        {
+          "gpu": 3,
+          "pid": 2082882,
+          "alive": true,
+          "output": "/data/gb/outputs/protected_visual_reference_20261007/full98/visual_motion/predictions",
+          "expected_frames": 49418,
+          "closed_sequences": 10,
+          "closed_frames": 2887
+        }
+      ],
+      "native_metrics_completed": false,
+      "new_optimizer_updates": 0,
+      "full98_native_reference_gate_precision": "Saved three-decimal XYWH, whereas real M0 uses unrounded bitwise equality",
+      "sole_observer_session": 38129,
+      "dependent_complete_collector_session": 58984
+    },
+    "sole_observer_session": 38129,
+    "dependent_complete_collector_session": 58984
   }
 }
