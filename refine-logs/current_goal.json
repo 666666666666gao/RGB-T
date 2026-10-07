@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T11:38:56.992973+08:00",
+  "updated_cst": "2026-10-07T11:54:44.014642+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42932,7 +42932,7 @@
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   },
   "current_post_search_relation_control": {
-    "updated_cst": "2026-10-07T11:38:56.992973+08:00",
+    "updated_cst": "2026-10-07T11:54:44.014642+08:00",
     "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
     "actual_launch": {
       "pid": 1311071,
@@ -42949,86 +42949,193 @@
       "no_three_seed_gate": true
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-07T11:32:27.355273+08:00",
+      "observed_at_cst": "2026-10-07T11:53:50.203811+08:00",
       "owner_pid": 1311071,
-      "owner_alive": true,
+      "owner_alive": false,
       "progress": {
-        "stage": "ONE_MODEL_LOCKED_BEFORE_NATIVE",
-        "at_cst": "2026-10-07T10:31:11.132900+08:00",
-        "elapsed_seconds": 11269.157255958766,
-        "selected_candidate": "one_way_lr5_best",
-        "selected_arm": "one_way_lr5",
-        "selected_checkpoint": "best",
-        "selected_epoch": 0,
-        "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
-        "state_commit_model": null,
-        "search_value": "gross",
-        "same_checkpoint_both_native_datasets": true,
-        "native_metrics_completed": false,
-        "sequence_mean_iou": {
-          "baseline": 0.7432785069707898,
-          "c1": 0.7394401616015396,
-          "old4": 0.745906102961742,
-          "gross_parent": 0.7461261775861118,
-          "current_parent": 0.7444150380548322,
-          "one_way_lr5_best": 0.7444150380548322,
-          "post_search_lr5_best": 0.7429178211142045,
-          "one_way_lr3_best": 0.7444150380548322,
-          "post_search_lr3_best": 0.7415015978916236,
-          "one_way_lr5_last": 0.7148452050853672,
-          "post_search_lr5_last": 0.7185514046673305,
-          "one_way_lr3_last": 0.7144554006929378,
-          "post_search_lr3_last": 0.7199979233906126,
-          "post_search_initial": 0.7436684556301696
+        "stage": "COMPLETE_POST_SEARCH_RELATION_CONTROL_AND_NATIVE",
+        "at_cst": "2026-10-07T11:52:08.474842+08:00",
+        "elapsed_seconds": 16126.499196454883,
+        "native": {
+          "completed": true,
+          "same_state_commit_model_both_datasets": null,
+          "same_ABC_model_both_datasets": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "model_label": "selected_ABC",
+          "five_metrics": [
+            {
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.30155331814711,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.7031043477678338,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.6574864127439,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.5555134128123598,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.3395735664682,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.3021482178721797,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.03542684456828,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 0.2565692700606945,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 69.4544747423496,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.22188156446030405,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
+            }
+          ],
+          "all_five_plus_two": false,
+          "complete_attribute_settings": 31,
+          "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+          "not_training_seed_stability": true
         },
-        "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+        "selected_model": {
+          "selected_candidate": "one_way_lr5_best",
+          "selected_arm": "one_way_lr5",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "state_commit_model": null,
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "native_metrics_completed": false,
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "current_parent": 0.7444150380548322,
+            "one_way_lr5_best": 0.7444150380548322,
+            "post_search_lr5_best": 0.7429178211142045,
+            "one_way_lr3_best": 0.7444150380548322,
+            "post_search_lr3_best": 0.7415015978916236,
+            "one_way_lr5_last": 0.7148452050853672,
+            "post_search_lr5_last": 0.7185514046673305,
+            "one_way_lr3_last": 0.7144554006929378,
+            "post_search_lr3_last": 0.7199979233906126,
+            "post_search_initial": 0.7436684556301696
+          },
+          "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+        },
+        "unused_own_weights_removed": 19
       },
       "observed_phase": {
-        "stage": "RGBT234_SHARDS",
-        "at_cst": "2026-10-07T11:30:57.337364+08:00",
-        "children": [
-          {
-            "gpu": 0,
-            "pid": 1700618
+        "stage": "COMPLETE_POST_SEARCH_RELATION_CONTROL_AND_NATIVE",
+        "at_cst": "2026-10-07T11:52:08.474842+08:00",
+        "elapsed_seconds": 16126.499196454883,
+        "native": {
+          "completed": true,
+          "same_state_commit_model_both_datasets": null,
+          "same_ABC_model_both_datasets": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "model_label": "selected_ABC",
+          "five_metrics": [
+            {
+              "dataset": "lasher",
+              "metric": "PR",
+              "percent": 78.30155331814711,
+              "baseline_percent": 76.59844897037928,
+              "delta_vs_baseline_pp": 1.7031043477678338,
+              "target_percent": 78.59844897037928,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "NPR",
+              "percent": 74.6574864127439,
+              "baseline_percent": 73.10197299993155,
+              "delta_vs_baseline_pp": 1.5555134128123598,
+              "target_percent": 75.10197299993155,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "lasher",
+              "metric": "SR",
+              "percent": 62.3395735664682,
+              "baseline_percent": 61.03742534859602,
+              "delta_vs_baseline_pp": 1.3021482178721797,
+              "target_percent": 63.03742534859602,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MPR",
+              "percent": 92.03542684456828,
+              "baseline_percent": 91.77885757450758,
+              "delta_vs_baseline_pp": 0.2565692700606945,
+              "target_percent": 93.77885757450758,
+              "meets_plus_two": false
+            },
+            {
+              "dataset": "rgbt234",
+              "metric": "MSR",
+              "percent": 69.4544747423496,
+              "baseline_percent": 69.2325931778893,
+              "delta_vs_baseline_pp": 0.22188156446030405,
+              "target_percent": 71.2325931778893,
+              "meets_plus_two": false
+            }
+          ],
+          "all_five_plus_two": false,
+          "complete_attribute_settings": 31,
+          "fixed_checkpoint_paired_bootstrap": "5000/seed42 versus GOLA/C1/old4/gross_parent",
+          "not_training_seed_stability": true
+        },
+        "selected_model": {
+          "selected_candidate": "one_way_lr5_best",
+          "selected_arm": "one_way_lr5",
+          "selected_checkpoint": "best",
+          "selected_epoch": 0,
+          "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "state_commit_model": null,
+          "search_value": "gross",
+          "same_checkpoint_both_native_datasets": true,
+          "native_metrics_completed": false,
+          "sequence_mean_iou": {
+            "baseline": 0.7432785069707898,
+            "c1": 0.7394401616015396,
+            "old4": 0.745906102961742,
+            "gross_parent": 0.7461261775861118,
+            "current_parent": 0.7444150380548322,
+            "one_way_lr5_best": 0.7444150380548322,
+            "post_search_lr5_best": 0.7429178211142045,
+            "one_way_lr3_best": 0.7444150380548322,
+            "post_search_lr3_best": 0.7415015978916236,
+            "one_way_lr5_last": 0.7148452050853672,
+            "post_search_lr5_last": 0.7185514046673305,
+            "one_way_lr3_last": 0.7144554006929378,
+            "post_search_lr3_last": 0.7199979233906126,
+            "post_search_initial": 0.7436684556301696
           },
-          {
-            "gpu": 1,
-            "pid": 1700619
-          },
-          {
-            "gpu": 2,
-            "pid": 1700620
-          },
-          {
-            "gpu": 3,
-            "pid": 1700621
-          }
-        ]
+          "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+        },
+        "unused_own_weights_removed": 19
       },
-      "children_alive": [
-        {
-          "gpu": 0,
-          "pid": 1700618,
-          "alive": true
-        },
-        {
-          "gpu": 1,
-          "pid": 1700619,
-          "alive": true
-        },
-        {
-          "gpu": 2,
-          "pid": 1700620,
-          "alive": true
-        },
-        {
-          "gpu": 3,
-          "pid": 1700621,
-          "alive": true
-        }
-      ],
+      "children_alive": [],
       "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
-      "estimated_phase_seconds_from_prior_native": 1069,
       "closed_causal_pair_check": {
         "completed": true,
         "same_loaded_parameters": true,
@@ -43075,11 +43182,11 @@
         "method_effect_or_formal_accuracy_proven": false
       }
     },
-    "next_check_cst": "2026-10-07T11:45:46.337364+08:00",
+    "next_check_cst": null,
     "goal_status": "ACTIVE_UNMET",
     "full_training_complete": true,
     "full98_complete": true,
-    "native_complete": false,
+    "native_complete": true,
     "first_actual_causal_check_complete": true,
     "four_actual_fit_sanities_complete": true,
     "actual_fit_sanity_updates": 72,
@@ -43165,7 +43272,61 @@
       "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
     },
     "new_learning_gain_established": false,
-    "all_four_training_endpoints_below_current_parent": true
+    "all_four_training_endpoints_below_current_parent": true,
+    "complete_receipt": "refine-logs/runs/post_search_relation_control/actual_completed_artifact_intake.json",
+    "native_five_metrics": [
+      {
+        "dataset": "lasher",
+        "metric": "PR",
+        "percent": 78.30155331814711,
+        "baseline_percent": 76.59844897037928,
+        "delta_vs_baseline_pp": 1.7031043477678338,
+        "target_percent": 78.59844897037928,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "NPR",
+        "percent": 74.6574864127439,
+        "baseline_percent": 73.10197299993155,
+        "delta_vs_baseline_pp": 1.5555134128123598,
+        "target_percent": 75.10197299993155,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "lasher",
+        "metric": "SR",
+        "percent": 62.3395735664682,
+        "baseline_percent": 61.03742534859602,
+        "delta_vs_baseline_pp": 1.3021482178721797,
+        "target_percent": 63.03742534859602,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MPR",
+        "percent": 92.03542684456828,
+        "baseline_percent": 91.77885757450758,
+        "delta_vs_baseline_pp": 0.2565692700606945,
+        "target_percent": 93.77885757450758,
+        "meets_plus_two": false
+      },
+      {
+        "dataset": "rgbt234",
+        "metric": "MSR",
+        "percent": 69.4544747423496,
+        "baseline_percent": 69.2325931778893,
+        "delta_vs_baseline_pp": 0.22188156446030405,
+        "target_percent": 71.2325931778893,
+        "meets_plus_two": false
+      }
+    ],
+    "all_five_plus_two": false,
+    "selected_epoch": 0,
+    "selected_candidate": "one_way_lr5_best",
+    "same_model_both_datasets": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+    "unused_own_weights_removed": 19,
+    "all_consumers_closed_before_cleanup": true
   },
   "completed_rgbt234_parent_loss_diagnostic": {
     "record": "refine-logs/runs/current_policy_aggregation/rgbt234_parent_loss_diagnostic_20261007/summary.json",

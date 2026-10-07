@@ -1,0 +1,57 @@
+{
+  "arms": [
+    [
+      "one_way_lr5",
+      false,
+      1e-05
+    ],
+    [
+      "post_search_lr5",
+      true,
+      1e-05
+    ],
+    [
+      "one_way_lr3",
+      false,
+      3e-05
+    ],
+    [
+      "post_search_lr3",
+      true,
+      3e-05
+    ]
+  ],
+  "init": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+  "seed": 42,
+  "batch_size": 336,
+  "full_epochs": 64,
+  "optimizer_updates_per_full_arm": 576,
+  "train_policy_states": 2832,
+  "train_unique_queries": 2576,
+  "train_sequences": 881,
+  "validation_queries": 196,
+  "validation_sequences": 98,
+  "train_roots": [
+    "/data/gb/outputs/recoverability_best_native_policy_merged_20261005/own/train",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu0_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu1_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu2_20261005",
+    "/data/gb/outputs/recoverability_train_events_collect_full_gpu3_20261005",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu0",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu1",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu2",
+    "/data/gb/outputs/recoverability_write_events_collection_20261005/full_gpu3",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu0",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu1",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu2",
+    "/data/gb/outputs/current_relation_policy_collection_20261006/train/full/gpu3"
+  ],
+  "validation": "/data/gb/outputs/current_policy_aggregation_20261006/validation",
+  "observed_pair_training": true,
+  "disk_free_before_bytes": 2654708285440,
+  "search_budget": "local plus at most one extra visual forward, 5+5 candidates",
+  "independent_cases": "local-only plus six separate local+one cases; no extra-extra context",
+  "no_new_parameters": true,
+  "epoch0_behavior_change_reported_separately": true,
+  "selection": "one best of eight trained best/last checkpoints plus one explicitly reported bidirectional epoch0; locked before both native datasets"
+}
