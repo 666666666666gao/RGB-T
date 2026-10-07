@@ -167,3 +167,8 @@ Two98/49418controls closed21:44:45, source/sampling/protected weights unchanged 
 ## 2026-10-06T22:59:55.908976+08:00 Actual current-state collection and four full-data fit sanities closed; full fit starts
 
 452labels closed22:45:05/83rawtexts SHA; true aggregate2832states/2576times/2policies/881TRAIN; 196currentVAL same98disjoint. Four2epoch actualupdates16/18/16/18, allABC+relationschanged/nonzerograd/C1frozen/bestlastreloadPASS; maxTorch19739.822MiB. New589745 full72/64epochs576each FIT_FULL2026-10-06T22:50:13.065747+08:00, four602124-7 actuallyALIVE2026-10-06T22:50:39.853002+08:00. All8full98 thenoneheadbothnative queued, notyetcomplete. Sole45148 handoffafter36780exit, next2026-10-06T23:56:08.853442+08:00/240sec/nearETA; no newpower-temp/data move/restarts. GoalACTIVE_UNMET.
+
+
+## 2026-10-07T12:22:06.369480+08:00 reviewed paired identity representation probe
+
+SOURCE PASS/provisional; real GPU source check and4×2epoch sanity before4×32epoch A projection pretraining. Paired14096 TRAIN/1568 reusedDEV, full881/98 sequence coverage. Main ABC and native5 unchanged; +2 ACTIVE_UNMET. No own-policy trajectory or main-method gain claimed.

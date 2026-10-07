@@ -1,0 +1,99 @@
+{
+  "review_date": "2026-10-07",
+  "reviewer_task": "/root/identity_representation_probe_review",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "model_attribution": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_backend_execution_independently_attested": false
+  },
+  "verdict": "PASS",
+  "scope": {
+    "source_files": [
+      "research/identity_representation_probe.py",
+      "scripts/run_identity_representation_probe.py"
+    ],
+    "plan_file": "refine-logs/EXPERIMENT_PLAN.md",
+    "plan_lines": [245, 254],
+    "experiment": "Paired pre-attention versus jointly attended ROI representation probe and A identity projection pretraining only",
+    "main_ABC_native_efficacy_acceptance": false
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "original_severity": "BLOCKING",
+      "file": "scripts/run_identity_representation_probe.py",
+      "lines": [36, 39],
+      "problem": "The original sequential assert(handle.wait() == 0) exited the controller on the first failed child before waiting for the remaining already-started owned children or closing their logs.",
+      "smallest_correction": "Collect every child's wait return code, close every log, then assert all return codes are zero.",
+      "fixed_by": "parent executor during this review",
+      "actual_source_reread": true,
+      "reverification": "Executed the current wave function extracted from the actual source with four fake process handles and first return code 1. All four handles were waited and all four logs closed before AssertionError; no process or GPU job was launched.",
+      "status": "FIXED_AND_REVERIFIED"
+    }
+  ],
+  "source_checks": [
+    {
+      "topic": "Feature capture and geometry",
+      "status": "PASS",
+      "file": "research/identity_representation_probe.py",
+      "lines": [26, 49],
+      "evidence": "The base.norm hook captures the final jointly attended token sequence. Search slices 64:320 and 384:640 and first-template slices 0:64 and 320:384 agree with the existing GOLA fusion layout. Both candidate sources pool the same normalized predicted boxes with the existing area-weighted instance_pool; candidate generation and C1 scoring occur once per query. The code correctly disclaims independent sensor reliability."
+    },
+    {
+      "topic": "Frozen models, fixed first-frame anchor, and GT boundary",
+      "status": "PASS",
+      "file": "research/identity_representation_probe.py",
+      "lines": [83, 203],
+      "evidence": "The inherited full pretrained GOLA is frozen and in eval mode; C1 is frozen and in eval mode. CandidateTrainingData uses an unjittered sequence frame-zero z. Initialization supplies d=z and x=upsampled z, then caches both anchors by sequence; current query images do not enter that initialization. The sampled gt field is used for IoU supervision, not feature extraction. The GPU check is implemented to compare original fields/output tensors exactly and perturb GT labels without changing features."
+    },
+    {
+      "topic": "Sequence and shard coverage",
+      "status": "PASS",
+      "file": "research/identity_representation_probe.py",
+      "lines": [52, 71],
+      "evidence": "The local existing split contains 881 TRAIN and 98 validation names with no overlap. The shard construction gives TRAIN counts [3536,3520,3520,3520] and validation counts [400,400,384,384]; a local enumeration verified complete, unique sample indices covering 14096 and 1568 samples. FixedSequencePairs rejects loss of requested sequences by the existing valid-frame filter. Fit rejects duplicate sample indices and TRAIN/validation sequence overlap; the controller checks the final 98/1568 validation scope."
+    },
+    {
+      "topic": "Matched projection training and actual-update checks",
+      "status": "PASS",
+      "file": "research/identity_representation_probe.py",
+      "lines": [74, 80, 207, 212, 233, 307],
+      "evidence": "All four arms strictly load the same parent memory.projection into the existing 768-to-128 LayerNorm/Linear/GELU architecture. Seed, initialization RNG consumption, data order, valid/IoU supervision, batch512, 32 epochs, and skip decisions match across sources and learning rates. The objective uses valid positives IoU>=0.5 versus valid negatives IoU<0.2 at temperature0.1. Training requires finite loss/gradient, positive actual updates and gradient norm, and changed parameters; the controller checks equal update counts."
+    },
+    {
+      "topic": "Selection, epoch zero, and reload",
+      "status": "PASS",
+      "file": "research/identity_representation_probe.py",
+      "lines": [215, 230, 258, 307],
+      "evidence": "The decision proxy is the frozen C1 score plus alpha0.1 times cosine residual relative to the C1 winner. Metrics use actual sampled GT IoU. Epoch zero is evaluated and saved in history; only strict development-IoU improvement replaces an arm's checkpoint. The selected checkpoint is loaded strictly and both metrics and every selected sample IoU must reproduce exactly."
+    },
+    {
+      "topic": "Staging, uncertainty scope, and protected cleanup",
+      "status": "PASS",
+      "file": "scripts/run_identity_representation_probe.py",
+      "lines": [62, 123],
+      "evidence": "The controller performs the real source check, then four-GPU 16-sequence-per-partition x8-view extraction and four actual two-epoch fits before full extraction and training. Fixed 5000 resamples operate on paired mean deltas for the 98 development sequences. Development reuse is disclosed and no native accuracy/full ABC efficacy is claimed. Cleanup runs after all fit consumers and reload checks, removes only seven enumerated trial best.pth files inside the fixed owned root, and keeps the selected prototype without replacing the main method or its parent dependencies. Only GPU memory, not temperature or power, is queried."
+    }
+  ],
+  "executed_local_validation": {
+    "current_source_AST_parse": "PASS for both files using existing CPython 3.11.14",
+    "existing_local_split_counts_and_disjointness": "PASS: 881/98, disjoint",
+    "four_shard_sample_enumeration": "PASS: unique and complete 14096/1568",
+    "fixed_owner_failure_path_simulation": "PASS: four waits and four log closes before failure assertion",
+    "remote_commands": 0,
+    "GPU_or_training_jobs": 0,
+    "deployment_performed": false
+  },
+  "acceptance_limits": [
+    "This is source-review acceptance after the minimal controller fix, not a claim that the real GPU source check, extraction, projection training, or reload has already run.",
+    "The implemented real source and sanity gates must pass before the controller's full stage is accepted.",
+    "Development-selection intervals are descriptive paired sequence intervals, not independent test confidence or seed stability.",
+    "The all-five native baseline-plus-two objective remains unmet; a selected A prototype does not establish full ABC efficacy."
+  ],
+  "reviewer_source_edits": false,
+  "reviewer_wrote_only_requested_review_records": true
+}

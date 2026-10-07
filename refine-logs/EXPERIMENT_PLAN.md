@@ -240,3 +240,15 @@ Retain best and actual endpoint through eight FULL98/49418 runs in two four-card
 ## 2026-10-07 搜索后双向关系最小对照
 
 前置策略聚合完整轮次已经结束，五项与父模型相同，all+2仍未达标。实施既定单向与搜索后双向对照：相同epoch5参数、2832策略状态/2576唯一时刻/881TRAIN、196复用开发查询、seed42、batch336、64epochs/576updates；两学习率组成四卡四组。所有组使用相同七种独立观察上下文的训练损失，六种extra不互相读取。搜索前沿用局部，搜索后只重评分实际local+one并同步keep参考。先真实因果/梯度/成本检查与2epoch sanity，再完整训练、8x98 best/last与一份显式双向epoch0四卡分片完整98、九候选预选同一权重两正式数据集/五项/31属性/配对区间；epoch0行为与学习收益分开记录。所有消费者完成后只清理19份本轮无用best/last/initial权重。实现不是实证收益，详见refine-logs/runs/post_search_relation_control/plan.json。
+
+
+## 2026-10-07 身份表征配对对照与 A 投影预训练（本轮主方法正式结果已闭合后）
+
+- 已完成双向关联控制未建立新增收益，选模回到单向epoch0；五项+2仍0/5。下一步先验证表示，而非把现有弱候选描述无限延长历史。
+- 两个描述来源：现有pre-attention ROI与同一次完整GOLA联合注意力后的RGB/TIR空间流ROI。后者两路已交互，不称作独立传感器可靠性。五候选、原坐标与C1分数保持完全一致；保护首帧身份描述在固定首模板self-context中初始化并按序列缓存，不用当前查询重编码锚点。初始化visual cost单独统计。
+- 使用现有CandidateTrainingData监督帧对采样（含原有模板扰动），881 TRAIN和98重复开发序列各固定16样本，总14096/1568；这是表征/定位代理诊断，不是自身策略轨迹，也不是LasHeR SR。只有GT初始化/训练采样和监督，GT字段不得进入特征提取。
+- 先真实GPU核验原base权重、候选字段与定位输出逐张量相同，改变GT标签不改变特征；再4卡小语料（各分区16序列×8视图）和四组2epoch投影sanity。通过后4卡完整特征提取与四组32epoch投影预训练。
+- 四组=pre/encoded ×lr1e-4/1e-5；同当前parent A投影初始化、seed42、128维、batch512、温度0.1、C1残差权重0.1。正候选IoU>=.5、负候选IoU<.2，未知不当负；监督是定位代理，不宣称精确干扰物身份。actual updates四组相同并逐组核验参数改变/严格重载；epoch0单列。
+- 保存逐样本两种描述/真实GT质量/坐标/C1分数、所有epoch指标和完整端点记录；固定开发序列5000次配对区间不是seed稳定性。仅据代理选优不能替代完整ABC及两数据集正式评测。后续若采用新描述，必须同步collector、在线描述和历史锚点，保持冻结运动依赖原输入，并完成全部ABC再训练/完整视频/正式指标验收。
+- 所有试验消费者结束后只保留一个最佳A预训练权重，清理7个本轮其他投影权重；原完整主方法与依赖权重受保护，数据集不移动。磁盘已测2.6TB余量；四卡实测可用，温度/功率限制与查询继续取消。
+- 代码：research/identity_representation_probe.py、scripts/run_identity_representation_probe.py。按experiment-bridge要求先fresh Codex/Astra max审查，未通过前不部署。目标保持三个模块主方法五项全+2。
