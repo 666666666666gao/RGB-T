@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "完整预训练GOLA/C1冻结，A/B/C已真实训练；恢复已选epoch5并核对原预测，使用同一份权重完成LasHeR与RGBT234正式五项及全部属性/曲线/配对区间，保留最佳权重。五项均比完整本地GOLA高2百分点才完成，单个最佳seed即可。",
+  "execution_objective": "以完整预训练GOLA-B/C1冻结底座持续完善A/B/C的身份记忆、预算搜索和风险状态决策；新增模块已实际训练，按完整开发视频选定一个最佳checkpoint，统一完成LasHeR与RGBT234五项正式指标及全部属性/曲线/配对区间/机制成本证据。五项均比完整本地GOLA高2百分点才完成，单个最佳seed即可。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -7034,17 +7034,18 @@
         "LASHER_SHARDS": 2700,
         "RGBT234_SHARDS": 1200
       }
-    }
+    },
+    "current_execution_metadata_authority": "current_post_search_relation_control.actual_observation; older dated operation fields are historical snapshots"
   },
   "model_selection": {
     "policy": "One best checkpoint/config sufficient",
     "correction_cst": "2026-10-03T22:24:00+08:00",
-    "criterion": "Developer full98 sequenceIoU selects one among four sparse-cache bests and four actual60 endpoints before both native tests; no three-positive-seed requirement",
+    "criterion": "本轮四组64epoch的四份缓存best及四份真实末轮，加单列双向epoch0，共九候选；以完整开发98条视频的序列等权IoU统一选一个，在两正式测试前锁定，不跨数据集拼接最好成绩。",
     "other_seeds_required_to_improve": false,
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T09:05:15.529885+08:00",
+  "updated_cst": "2026-10-07T09:38:21.225652+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42931,7 +42932,7 @@
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   },
   "current_post_search_relation_control": {
-    "updated_cst": "2026-10-07T09:05:15.529885+08:00",
+    "updated_cst": "2026-10-07T09:38:21.225652+08:00",
     "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
     "actual_launch": {
       "pid": 1311071,
@@ -42948,74 +42949,74 @@
       "no_three_seed_gate": true
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-07T09:03:00.898453+08:00",
+      "observed_at_cst": "2026-10-07T09:35:06.958514+08:00",
       "owner_pid": 1311071,
       "owner_alive": true,
       "progress": {
-        "stage": "FULL98_BEST",
-        "at_cst": "2026-10-07T09:00:22.480811+08:00",
-        "elapsed_seconds": 5820.505158494692,
+        "stage": "FULL98_LAST",
+        "at_cst": "2026-10-07T09:34:40.269035+08:00",
+        "elapsed_seconds": 7878.293389731087,
         "children": [
           {
             "gpu": 0,
-            "pid": 1465542
+            "pid": 1522945
           },
           {
             "gpu": 1,
-            "pid": 1465543
+            "pid": 1522946
           },
           {
             "gpu": 2,
-            "pid": 1465544
+            "pid": 1522947
           },
           {
             "gpu": 3,
-            "pid": 1465545
+            "pid": 1522948
           }
         ]
       },
       "observed_phase": {
-        "stage": "FULL98_BEST",
-        "at_cst": "2026-10-07T09:00:22.480811+08:00",
-        "elapsed_seconds": 5820.505158494692,
+        "stage": "FULL98_LAST",
+        "at_cst": "2026-10-07T09:34:40.269035+08:00",
+        "elapsed_seconds": 7878.293389731087,
         "children": [
           {
             "gpu": 0,
-            "pid": 1465542
+            "pid": 1522945
           },
           {
             "gpu": 1,
-            "pid": 1465543
+            "pid": 1522946
           },
           {
             "gpu": 2,
-            "pid": 1465544
+            "pid": 1522947
           },
           {
             "gpu": 3,
-            "pid": 1465545
+            "pid": 1522948
           }
         ]
       },
       "children_alive": [
         {
           "gpu": 0,
-          "pid": 1465542,
+          "pid": 1522945,
           "alive": true
         },
         {
           "gpu": 1,
-          "pid": 1465543,
+          "pid": 1522946,
           "alive": true
         },
         {
           "gpu": 2,
-          "pid": 1465544,
+          "pid": 1522947,
           "alive": true
         },
         {
           "gpu": 3,
-          "pid": 1465545,
+          "pid": 1522948,
           "alive": true
         }
       ],
@@ -43090,6 +43091,21 @@
       },
       "planned_near_end_cst": "2026-10-07T09:31:16.451465+08:00",
       "no_new_inference_or_speed_claim": true
+    },
+    "four_best_full98_inference_complete": true,
+    "completed_best_video_sequences": 392,
+    "completed_best_video_frames": 197672,
+    "one_way_parent_prediction_identity_sequences": 196,
+    "best_wave_receipt": "refine-logs/runs/post_search_relation_control/actual_closed_best_video_wave_intake.json",
+    "developer_last_phase_eta": {
+      "previous_actual_last_seconds": {
+        "aggregate_lr3_last": 2206.9410133031197,
+        "aggregate_lr5_last": 1894.0459356443025,
+        "old_lr3_last": 2277.459777136799,
+        "old_lr5_last": 1881.481304105837
+      },
+      "planned_near_end_cst": "2026-10-07T10:09:37.728812+08:00",
+      "scope": "Passive wait schedule from prior full-video wall time; not current speed or an acceleration claim"
     }
   },
   "completed_rgbt234_parent_loss_diagnostic": {
