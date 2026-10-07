@@ -1,0 +1,73 @@
+{
+  "status": "SOURCE_DATAFLOW_VERIFIED_NOT_PERFORMANCE_DIAGNOSIS",
+  "scientific_revision": "7691742b3fc121d80684aef262e56d04ef7d757f",
+  "source_files": {
+    "trackit/models/methods/GOLA/modules/patch_embed.py": {
+      "working_raw_sha256": "e9b5d5fb372b28ca547eb0c5a7398906408123cc763a96ccc38cb157138b2199",
+      "scientific_Git_raw_sha256": "4e34361c60884cf3f17c811bd458792ce88355435967c339c4550ba80a160f15",
+      "raw_bytes_equal": false,
+      "source_content_equal_after_CRLF_normalization": true
+    },
+    "trackit/models/methods/GOLA/gola_full_finetune.py": {
+      "working_raw_sha256": "37f3fc67f55839b4239d63269a9af31ea1f179c142c3cdd911cc1d52eb92dfa0",
+      "scientific_Git_raw_sha256": "077e172a888bb165aceec59294a20281a8ae2d436c760735f30cf939dfe1d0df",
+      "raw_bytes_equal": false,
+      "source_content_equal_after_CRLF_normalization": true
+    },
+    "research/candidate_learning.py": {
+      "working_raw_sha256": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+      "scientific_Git_raw_sha256": "8be4343269326765aa83f1683036b204e8b58e1d0528d64810f759ad3301f7f7",
+      "raw_bytes_equal": true,
+      "source_content_equal_after_CRLF_normalization": true
+    },
+    "research/collect_recoverability.py": {
+      "working_raw_sha256": "544f3dea0ab90e22639984e421cb7f74729cd000ab5b910c79c1bb6fb1460668",
+      "scientific_Git_raw_sha256": "544f3dea0ab90e22639984e421cb7f74729cd000ab5b910c79c1bb6fb1460668",
+      "raw_bytes_equal": true,
+      "source_content_equal_after_CRLF_normalization": true
+    },
+    "research/recoverability_tracker.py": {
+      "working_raw_sha256": "0106da3bbaf6d17df95b2691b5a7e182dc4f724f568a54d7954282d1371c4d41",
+      "scientific_Git_raw_sha256": "0106da3bbaf6d17df95b2691b5a7e182dc4f724f568a54d7954282d1371c4d41",
+      "raw_bytes_equal": true,
+      "source_content_equal_after_CRLF_normalization": true
+    },
+    "research/recoverability_modules.py": {
+      "working_raw_sha256": "9b4a427434fc4708a0e0d0898382e6cc91b386873cbabfe17eff9407cdd41ff7",
+      "scientific_Git_raw_sha256": "9b4a427434fc4708a0e0d0898382e6cc91b386873cbabfe17eff9407cdd41ff7",
+      "raw_bytes_equal": true,
+      "source_content_equal_after_CRLF_normalization": true
+    }
+  },
+  "patch_embed_forward_calls": [
+    "self.proj",
+    "x.flatten(2).transpose",
+    "self.norm",
+    "x.flatten"
+  ],
+  "facts": {
+    "instance_anchor": "Each sensor is separately patch-embedded and foreground-pooled, before position/type addition and Transformer blocks.",
+    "candidate_instance_descriptor": "Area-overlap weighted pooling of each sensor patch_embed output within the predicted candidate box; not a Transformer-encoded instance ROI.",
+    "C1_candidate_features": "Selected search locations after joint template/RGB/TIR attention and final norm; the returned search_i stream already depends on jointly observed inputs.",
+    "memory_projection": "A separately constructed LayerNorm/Linear/GELU initialized with C1 projection weights; no alias to frozen C1 projection. All four fit configurations have no frozen A/B/C module.",
+    "stored_history": "The current accepted candidate instance descriptor is stored; other candidates do not form persistent identity tracklets in this path."
+  },
+  "code_locations": {
+    "patch_projection": "trackit/models/methods/GOLA/modules/patch_embed.py:22",
+    "joint_transformer": "trackit/models/methods/GOLA/gola_full_finetune.py:95",
+    "sensor_instance_ROI": "research/collect_recoverability.py:44",
+    "sensor_initial_anchor": "research/recoverability_tracker.py:36",
+    "selected_instance_update": "research/recoverability_tracker.py:138",
+    "independent_projection": "research/recoverability_modules.py:23"
+  },
+  "not_proven": [
+    "These feature choices explain the completed native score deficits.",
+    "Transformer ROI descriptors or a new instance encoder improve accuracy.",
+    "Every projection parameter actually changed; current receipts verify module-level changes.",
+    "Jointly attended stream outputs are independent sensor reliability evidence."
+  ],
+  "future_evidence_order": "Close current bidirectional complete evaluation first; before persistent candidate memory, compare the current descriptor with stronger region representations under the same memory/candidate/visual budget, and keep modality identity and reliability claims separate.",
+  "no_neural_operation": true,
+  "no_current_NN_source_recipe_or_selection_change": true,
+  "new_formal_accuracy": false
+}
