@@ -245,3 +245,7 @@ Fresh source review PASS; 4frame-balanced disjoint shards with4real64frame sanit
 ## 2026-10-07T22:30:15.960064+08:00 首次事件GPUsanity失败→标量修复
 
 原881TRAIN已全部成功关闭，完整16452H3查询覆盖881、maxq12737。新owner2564398/4children全部因同一CUDA标量保存失败，0updates/weights/native。np.bool_(bool(...))最小修复freshdeltaSOURCEPASS，原目录保留；只新_scalarfix事件sanity/队列，不重复原NN。
+
+## 2026-10-07T22:53:20.339846+08:00 全部真实事件sanity通过，完整标签四卡运行
+
+4prefixexactPASS；realq2 wholegradient3.73e-9；long12737B32 backward11790MiB；4×2epoch/8actualupdates ABC/C1/reload/initialparityPASS。原2593052–55全16452TRAIN状态采集LIVE，完整24epoch/49440updates未启动，newformalNONE。sole96793 next2026-10-08T06:06:53.883656+08:00，不重启。

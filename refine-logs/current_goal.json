@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T22:30:15.960064+08:00",
+  "updated_cst": "2026-10-07T22:53:20.339846+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -45395,7 +45395,7 @@
     }
   },
   "current_policy_train_traces": {
-    "stage": "FULL_REAL_SANITY_PASS_CPU_CLOSED_EVENT_MINING",
+    "stage": "COMPLETE_CLOSED_881_TRAIN_464663",
     "TRAIN_sequences": 881,
     "DEV_sequences_excluded": 98,
     "frozen_policy": "E5/gross/action, original complete GOLA-B/C1/ABC",
@@ -45487,10 +45487,13 @@
     "real_sanity_observation_cst": "2026-10-07T19:49:09.978091+08:00",
     "owner_alive_in_event_input_read": true,
     "near_end_sole_observer_kept": true,
-    "full_TRACE_completion_not_yet_observed": true
+    "full_TRACE_completion_not_yet_observed": false,
+    "sole_observer_session_73426": "CLOSED_0",
+    "raw_continuous_collection_completed": true,
+    "new_official_TEST_metrics": false
   },
   "current_policy_train_events": {
-    "stage": "CPU_CLOSED_SNAPSHOT_COMPLETE_FULL_TRAIN_PENDING",
+    "stage": "FULL_CLOSED_881_CPU_EVENT_INVENTORY_COMPLETE",
     "review": {
       "status": "PASS",
       "scope": "CURRENT_POLICY_TRAIN_EVENT_MINING_SOURCE",
@@ -45576,10 +45579,14 @@
     "next": "Use current-policy event jobs for causal exact prefix replay and same-state H3 action supervision; obey requiredmaxprefix. Full881 event inventory follows original observer; no duplicate NNjob.",
     "completion_collector": "collect_current_train_trace_events_complete_20261007.py",
     "completion_collector_session": 21180,
-    "partial_CPU_mining_session_77442": "CLOSED_0"
+    "partial_CPU_mining_session_77442": "CLOSED_0",
+    "full_H3_jobs": 16452,
+    "longest_query": 12737,
+    "completion_collector_session_21180": "CLOSED_0",
+    "actual_inventory_path": "refine-logs/runs/current_event_rollout_fit/first_failed_attempt/full_TRAIN_CPU_events/report.json"
   },
   "current_event_rollout_training": {
-    "stage": "REVISED_ORIGINAL_OWNER_LAUNCHED_REAL_SANITY_PENDING",
+    "stage": "ALL_REAL_SANITY_PASS_FULL_EVENT_LABEL_COLLECTION",
     "scope": "Architecture fixed; completeABC optimization from actual E5/gross/action event states, not88Mend-to-endtraining",
     "original_trace_owner_kept": 2310613,
     "source_review": {
@@ -45677,7 +45684,7 @@
       "research/check_event_training_sanity.py",
       "scripts/run_current_event_rollout_training.py"
     ],
-    "next": "Originaltrace completes, then realprefix/gradient/capacity/fitsanity gate, full event collection, fullfit and bothnative",
+    "next": "Original4GPU all16452TRAIN events then1824DEV causal action labels, full4x24epoch optimization, 8full98+parent selection, SAMEtwo native datasets",
     "launch": {
       "pid": 2564398,
       "at_cst": "2026-10-07T22:21:30.848594+08:00",
@@ -45786,6 +45793,367 @@
       "changed_scalar_source": true,
       "full881not_restarted": true,
       "real_revised_sanity_not_yet_observed": true
+    },
+    "original_owner_kept": 2578767,
+    "sole_observer_session": 96793,
+    "actual_gpu_children": [
+      2593052,
+      2593053,
+      2593054,
+      2593055
+    ],
+    "observed_at_cst": "2026-10-07T22:41:48.098247+08:00",
+    "real_collection_sanity": {
+      "collect_sanity/gpu2/completion.json": {
+        "completed": true,
+        "partition": "validation",
+        "clips": 2,
+        "sequences": 1,
+        "records": [
+          {
+            "sequence": "ab_bolster",
+            "queries": 2,
+            "max_query": 8133,
+            "replayed_visual_prefix_frames": 8133,
+            "duplicate_prefix_replays": 0,
+            "all_actual_prefix_outputs_and_decisions_exact": true,
+            "valid_actions": 73,
+            "executed_extra_label_crops": 12
+          }
+        ],
+        "valid_actions": 73,
+        "exact_actual_prefix_parity": true,
+        "decision_input_contains_future": false,
+        "new_optimizer_updates": 0,
+        "native_TEST_accuracy": false,
+        "elapsed_seconds": 362.652175063733,
+        "peak_cuda_mib": 527.7373046875
+      },
+      "collect_sanity/gpu0/completion.json": {
+        "completed": true,
+        "partition": "train",
+        "clips": 2,
+        "sequences": 1,
+        "records": [
+          {
+            "sequence": "whiteboy`head",
+            "queries": 2,
+            "max_query": 12737,
+            "replayed_visual_prefix_frames": 12737,
+            "duplicate_prefix_replays": 0,
+            "all_actual_prefix_outputs_and_decisions_exact": true,
+            "valid_actions": 75,
+            "executed_extra_label_crops": 12
+          }
+        ],
+        "valid_actions": 75,
+        "exact_actual_prefix_parity": true,
+        "decision_input_contains_future": false,
+        "new_optimizer_updates": 0,
+        "native_TEST_accuracy": false,
+        "elapsed_seconds": 493.9261261979118,
+        "peak_cuda_mib": 528.41943359375
+      },
+      "collect_sanity/gpu3/completion.json": {
+        "completed": true,
+        "partition": "validation",
+        "clips": 1,
+        "sequences": 1,
+        "records": [
+          {
+            "sequence": "10rightblackboy",
+            "queries": 1,
+            "max_query": 1,
+            "replayed_visual_prefix_frames": 1,
+            "duplicate_prefix_replays": 0,
+            "all_actual_prefix_outputs_and_decisions_exact": true,
+            "valid_actions": 41,
+            "executed_extra_label_crops": 6
+          }
+        ],
+        "valid_actions": 41,
+        "exact_actual_prefix_parity": true,
+        "decision_input_contains_future": false,
+        "new_optimizer_updates": 0,
+        "native_TEST_accuracy": false,
+        "elapsed_seconds": 4.370417603757232,
+        "peak_cuda_mib": 527.66357421875
+      },
+      "collect_sanity/gpu1/completion.json": {
+        "completed": true,
+        "partition": "train",
+        "clips": 2,
+        "sequences": 1,
+        "records": [
+          {
+            "sequence": "10crosswhite",
+            "queries": 2,
+            "max_query": 2,
+            "replayed_visual_prefix_frames": 2,
+            "duplicate_prefix_replays": 0,
+            "all_actual_prefix_outputs_and_decisions_exact": true,
+            "valid_actions": 80,
+            "executed_extra_label_crops": 12
+          }
+        ],
+        "valid_actions": 80,
+        "exact_actual_prefix_parity": true,
+        "decision_input_contains_future": false,
+        "new_optimizer_updates": 0,
+        "native_TEST_accuracy": false,
+        "elapsed_seconds": 8.499282428063452,
+        "peak_cuda_mib": 524.6806640625
+      }
+    },
+    "real_capacity_sanity": {
+      "passed": true,
+      "actual_shared_prefix_boundary": true,
+      "gradient_witness": {
+        "query": [
+          "10crosswhite",
+          2
+        ],
+        "observed_history_writes": 1,
+        "verified_modality_writes": 2
+      },
+      "full_objective_gradient_max_error": 3.725290298461914e-09,
+      "sequential_parallel_losses": [
+        1.3143742084503174,
+        1.3143742084503174
+      ],
+      "capacity": {
+        "batch": 32,
+        "actual_longest_query": [
+          "whiteboy`head",
+          12737
+        ],
+        "history_length": 12737,
+        "forward_backward_seconds": 0.8296376969665289,
+        "peak_allocated_cuda_mib": 11790.4462890625,
+        "peak_reserved_cuda_mib": 14446.0
+      },
+      "optimizer_updates": 0,
+      "original_parent_weights_unchanged": true,
+      "native_TEST_accuracy": false
+    },
+    "real_fit_sanity": {
+      "fit_sanity/reference_lr5/completion.json": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 2,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09578703343868256,
+          "B": 0.5767825245857239,
+          "C": 3.0242950916290283
+        },
+        "frozen_C1_weights_exact": true,
+        "GOLA_and_motion_new_gradients": false,
+        "peak_cuda_mib": 1542.46533203125,
+        "elapsed_seconds": 0.6908332840539515,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 0,
+            "validation": {
+              "clips": 3,
+              "loss": 1.8501155376434326,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          },
+          "last.pth": {
+            "epoch": 2,
+            "validation": {
+              "clips": 3,
+              "loss": 1.848710536956787,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          }
+        },
+        "native_TEST_metrics_new": false
+      },
+      "fit_sanity/budgeted_lr3e6/completion.json": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 2,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09454209357500076,
+          "B": 0.5760350227355957,
+          "C": 3.8444888591766357
+        },
+        "frozen_C1_weights_exact": true,
+        "GOLA_and_motion_new_gradients": false,
+        "peak_cuda_mib": 1542.46533203125,
+        "elapsed_seconds": 0.689382310025394,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 0,
+            "validation": {
+              "clips": 3,
+              "loss": 1.9166463613510132,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          },
+          "last.pth": {
+            "epoch": 2,
+            "validation": {
+              "clips": 3,
+              "loss": 1.9038856029510498,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          }
+        },
+        "native_TEST_metrics_new": false
+      },
+      "fit_sanity/budgeted_lr5/completion.json": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 2,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09489038586616516,
+          "B": 0.5767835974693298,
+          "C": 3.8444888591766357
+        },
+        "frozen_C1_weights_exact": true,
+        "GOLA_and_motion_new_gradients": false,
+        "peak_cuda_mib": 1542.46533203125,
+        "elapsed_seconds": 0.7614708240143955,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 0,
+            "validation": {
+              "clips": 3,
+              "loss": 1.9166463613510132,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          },
+          "last.pth": {
+            "epoch": 2,
+            "validation": {
+              "clips": 3,
+              "loss": 1.9028586149215698,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          }
+        },
+        "native_TEST_metrics_new": false
+      },
+      "fit_sanity/reference_lr3e6/completion.json": {
+        "completed": true,
+        "epochs": 2,
+        "optimizer_steps": 2,
+        "modules_changed": {
+          "A": true,
+          "B": true,
+          "C": true
+        },
+        "max_module_gradient_norms": {
+          "A": 0.09544327855110168,
+          "B": 0.5760347247123718,
+          "C": 3.0242950916290283
+        },
+        "frozen_C1_weights_exact": true,
+        "GOLA_and_motion_new_gradients": false,
+        "peak_cuda_mib": 1542.46533203125,
+        "elapsed_seconds": 0.6967144832015038,
+        "checkpoints": {
+          "best.pth": {
+            "epoch": 0,
+            "validation": {
+              "clips": 3,
+              "loss": 1.8501155376434326,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          },
+          "last.pth": {
+            "epoch": 2,
+            "validation": {
+              "clips": 3,
+              "loss": 1.8496925830841064,
+              "utility": 0.7828407287597656,
+              "parent_utility": 0.7828407287597656,
+              "utility_gain": 0.0,
+              "current_iou": 0.7830279469490051,
+              "parent_current_iou": 0.7830279469490051,
+              "changed_actions": 0,
+              "current_harms_against_parent": 0
+            },
+            "strict_reload": true
+          }
+        },
+        "native_TEST_metrics_new": false
+      }
+    },
+    "actual_sanity_optimizer_updates": 8,
+    "complete24epoch_optimizer_updates": 0,
+    "original_trace_not_restarted": true,
+    "next_read": {
+      "next_poll_cst": "2026-10-08T06:06:53.883656+08:00",
+      "owner_pid": 2578767,
+      "sole_observer": true,
+      "minimum_repeat_seconds": 240
     }
   }
 }
