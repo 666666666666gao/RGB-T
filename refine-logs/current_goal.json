@@ -7044,7 +7044,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T08:41:44.976356+08:00",
+  "updated_cst": "2026-10-07T09:05:15.529885+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42931,7 +42931,7 @@
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   },
   "current_post_search_relation_control": {
-    "updated_cst": "2026-10-07T08:41:44.976356+08:00",
+    "updated_cst": "2026-10-07T09:05:15.529885+08:00",
     "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
     "actual_launch": {
       "pid": 1311071,
@@ -42948,197 +42948,78 @@
       "no_three_seed_gate": true
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-07T08:38:56.852621+08:00",
+      "observed_at_cst": "2026-10-07T09:03:00.898453+08:00",
       "owner_pid": 1311071,
       "owner_alive": true,
       "progress": {
-        "stage": "FIT_FULL",
-        "at_cst": "2026-10-07T07:29:37.050108+08:00",
-        "elapsed_seconds": 375.0744549706578,
+        "stage": "FULL98_BEST",
+        "at_cst": "2026-10-07T09:00:22.480811+08:00",
+        "elapsed_seconds": 5820.505158494692,
         "children": [
           {
             "gpu": 0,
-            "pid": 1320972
+            "pid": 1465542
           },
           {
             "gpu": 1,
-            "pid": 1320973
+            "pid": 1465543
           },
           {
             "gpu": 2,
-            "pid": 1320974
+            "pid": 1465544
           },
           {
             "gpu": 3,
-            "pid": 1320975
+            "pid": 1465545
           }
         ]
       },
       "observed_phase": {
-        "stage": "FIT_FULL",
-        "at_cst": "2026-10-07T07:29:37.050108+08:00",
-        "elapsed_seconds": 375.0744549706578,
+        "stage": "FULL98_BEST",
+        "at_cst": "2026-10-07T09:00:22.480811+08:00",
+        "elapsed_seconds": 5820.505158494692,
         "children": [
           {
             "gpu": 0,
-            "pid": 1320972
+            "pid": 1465542
           },
           {
             "gpu": 1,
-            "pid": 1320973
+            "pid": 1465543
           },
           {
             "gpu": 2,
-            "pid": 1320974
+            "pid": 1465544
           },
           {
             "gpu": 3,
-            "pid": 1320975
+            "pid": 1465545
           }
         ]
       },
       "children_alive": [
         {
           "gpu": 0,
-          "pid": 1320972,
-          "alive": false
+          "pid": 1465542,
+          "alive": true
         },
         {
           "gpu": 1,
-          "pid": 1320973,
+          "pid": 1465543,
           "alive": true
         },
         {
           "gpu": 2,
-          "pid": 1320974,
-          "alive": false
+          "pid": 1465544,
+          "alive": true
         },
         {
           "gpu": 3,
-          "pid": 1320975,
-          "alive": false
+          "pid": 1465545,
+          "alive": true
         }
       ],
       "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
-      "actual_training_rows": [
-        {
-          "arm": "one_way_lr5",
-          "epoch": 64,
-          "step": 9,
-          "optimizer_steps": 576,
-          "loss": 1.506689429283142,
-          "parts": {
-            "advantage": 0.02319724831197943,
-            "action_ranking": 0.16128071823290416,
-            "harm": 0.7389810596193586,
-            "quality": 0.4516740526471819,
-            "query_write_risk": 0.041313450783491135,
-            "future": 0.10114528664520808,
-            "memory_gate": 1.4484134231294905,
-            "margin_preservation": 0.002967553778684565,
-            "identity_margin": 0.1411013017807688,
-            "search_value": 0.03356478735804558,
-            "search_success": 0.4969366490840912,
-            "candidate_absence": 0.7114346623420715,
-            "search_ranking": 1.7283216714859009
-          },
-          "module_gradient_norms": {
-            "A": 0.16123558580875397,
-            "B": 7.287991523742676,
-            "C": 1.311537504196167
-          },
-          "elapsed_seconds": 3998.237024608068,
-          "peak_cuda_mib": 19845.23828125
-        },
-        {
-          "arm": "post_search_lr5",
-          "epoch": 44,
-          "step": 1,
-          "optimizer_steps": 388,
-          "loss": 1.621010661125183,
-          "parts": {
-            "advantage": 0.030729423942310468,
-            "action_ranking": 0.19630261617047445,
-            "harm": 1.0621315836906433,
-            "quality": 0.47073635033198763,
-            "query_write_risk": 0.044055450707674026,
-            "future": 0.11506684018032891,
-            "memory_gate": 1.4509891612189156,
-            "margin_preservation": 0.003134375537878701,
-            "identity_margin": 0.1551218522446496,
-            "search_value": 0.0330149382352829,
-            "search_success": 0.5177532434463501,
-            "candidate_absence": 0.7503505945205688,
-            "search_ranking": 1.6686732769012451
-          },
-          "module_gradient_norms": {
-            "A": 0.155351459980011,
-            "B": 2.817000150680542,
-            "C": 1.5322566032409668
-          },
-          "elapsed_seconds": 4072.2517599780113,
-          "peak_cuda_mib": 19973.23486328125
-        },
-        {
-          "arm": "one_way_lr3",
-          "epoch": 64,
-          "step": 9,
-          "optimizer_steps": 576,
-          "loss": 1.3221876621246338,
-          "parts": {
-            "advantage": 0.019222945773175786,
-            "action_ranking": 0.14483213211808885,
-            "harm": 0.46088777269635883,
-            "quality": 0.39574419600622995,
-            "query_write_risk": 0.0357988676322358,
-            "future": 0.07379412544625145,
-            "memory_gate": 1.326561416898455,
-            "margin_preservation": 0.002238301477128906,
-            "identity_margin": 0.14230271109512874,
-            "search_value": 0.028073299676179886,
-            "search_success": 0.4527224004268646,
-            "candidate_absence": 0.525412917137146,
-            "search_ranking": 1.6986188888549805
-          },
-          "module_gradient_norms": {
-            "A": 0.1753663569688797,
-            "B": 10.557861328125,
-            "C": 0.5068471431732178
-          },
-          "elapsed_seconds": 4002.2156400349922,
-          "peak_cuda_mib": 19845.23828125
-        },
-        {
-          "arm": "post_search_lr3",
-          "epoch": 64,
-          "step": 9,
-          "optimizer_steps": 576,
-          "loss": 1.3212875127792358,
-          "parts": {
-            "advantage": 0.019377355064664568,
-            "action_ranking": 0.14463116973638535,
-            "harm": 0.458148935011455,
-            "quality": 0.39641644273485455,
-            "query_write_risk": 0.03601758022393499,
-            "future": 0.07090016880205699,
-            "memory_gate": 1.3259810890470232,
-            "margin_preservation": 0.0022473714780062437,
-            "identity_margin": 0.14237231016159058,
-            "search_value": 0.02806928940117359,
-            "search_success": 0.45271581411361694,
-            "candidate_absence": 0.5254628658294678,
-            "search_ranking": 1.6985634565353394
-          },
-          "module_gradient_norms": {
-            "A": 0.1767032891511917,
-            "B": 10.55544662475586,
-            "C": 0.5063046216964722
-          },
-          "elapsed_seconds": 4038.106126861181,
-          "peak_cuda_mib": 19973.23486328125
-        }
-      ],
-      "estimated_phase_seconds_from_closed_sanity": 4096.611783519387,
       "closed_causal_pair_check": {
         "completed": true,
         "same_loaded_parameters": true,
@@ -43185,9 +43066,9 @@
         "method_effect_or_formal_accuracy_proven": false
       }
     },
-    "next_check_cst": "2026-10-07T08:42:55.008645+08:00",
+    "next_check_cst": "2026-10-07T09:06:59.037659+08:00",
     "goal_status": "ACTIVE_UNMET",
-    "full_training_complete": false,
+    "full_training_complete": true,
     "full98_complete": false,
     "native_complete": false,
     "first_actual_causal_check_complete": true,
@@ -43195,7 +43076,21 @@
     "actual_fit_sanity_updates": 72,
     "one_checkpoint_both_native_datasets_required": true,
     "three_full_fits_closed_actual_updates": 1728,
-    "three_full_fits_receipt": "refine-logs/runs/post_search_relation_control/actual_three_closed_full_fit_intake.json"
+    "three_full_fits_receipt": "refine-logs/runs/post_search_relation_control/actual_three_closed_full_fit_intake.json",
+    "actual_full_fit_optimizer_updates": 2304,
+    "actual_full_fit_epochs_per_arm": 64,
+    "full_fit_receipt": "refine-logs/runs/post_search_relation_control/actual_four_full_fit_intake.json",
+    "developer_best_phase_eta": {
+      "source": "Four previous completed full98 best runs; different current policies can change duration",
+      "previous_actual_seconds": {
+        "aggregate_lr3_best": 1910.918476662133,
+        "aggregate_lr5_best": 1900.6336348787881,
+        "old_lr3_best": 2033.970653555356,
+        "old_lr5_best": 1906.4559648442082
+      },
+      "planned_near_end_cst": "2026-10-07T09:31:16.451465+08:00",
+      "no_new_inference_or_speed_claim": true
+    }
   },
   "completed_rgbt234_parent_loss_diagnostic": {
     "record": "refine-logs/runs/current_policy_aggregation/rgbt234_parent_loss_diagnostic_20261007/summary.json",
