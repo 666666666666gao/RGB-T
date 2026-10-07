@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T18:34:21.652086+08:00",
+  "updated_cst": "2026-10-07T18:45:15.905709+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -44561,33 +44561,52 @@
     }
   },
   "current_query_consistency": {
-    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
-    "updated_cst": "2026-10-07T18:34:21.652086+08:00",
-    "samples": "First16actualbatch from4completedTRAINshards, oldfailurestratum",
-    "new_optimizer_updates": 0,
-    "purpose": "Measure serialquery/groupedquery and cache-state/actual-online-state discrepancies before new training",
-    "reviewed": true,
-    "source_files": [
-      "research/probe_current_query_consistency.py",
-      "scripts/run_current_query_consistency.py"
-    ],
-    "launch": {
-      "pid": 2208209,
-      "at_cst": "2026-10-07T18:34:42.635281+08:00",
-      "command": [
-        "/data/gb/envs/gola/bin/python",
-        "-u",
-        "-m",
-        "scripts.run_current_query_consistency",
-        "--review",
-        "refine-logs/runs/current_query_consistency/EXPERIMENT_CODE_REVIEW.json",
-        "--output",
-        "/data/gb/outputs/current_query_consistency_20261007"
-      ],
-      "output": "/data/gb/outputs/current_query_consistency_20261007",
-      "source_commit": "eb53d5c3b06b05fbccc93bc0d42ba38674eb5206",
-      "owner_started_once": true,
-      "real_sanity_completed": false
-    }
+    "stage": "COMPLETE_64_REAL_TRAIN_QUERIES",
+    "actual_complete": {
+      "at_cst": "2026-10-07T18:45:15.905709+08:00",
+      "original_owner_pid": 2208209,
+      "summary": {
+        "serial_grouped_original_choice_disagreements": 0,
+        "grouped_existing_cache_choice_disagreements": 0,
+        "memory_reconstruction_decision_changes": 0,
+        "actual_vs_reconstructed_identity_anchor": {
+          "non_exact": 0,
+          "max_abs": 0.0
+        },
+        "actual_vs_reconstructed_identity_memory": {
+          "non_exact": 52,
+          "max_abs": 2.682209014892578e-07
+        },
+        "cached_motion_vs_actual": {
+          "non_exact": 64,
+          "max_abs": 4.76837158203125e-07
+        },
+        "cached_motion_log_weights_vs_actual": {
+          "non_exact": 42,
+          "max_abs": 4.76837158203125e-07
+        },
+        "rebuilt_motion_vs_actual": {
+          "non_exact": 52,
+          "max_abs": 4.76837158203125e-07
+        },
+        "rebuilt_motion_log_weights_vs_actual": {
+          "non_exact": 15,
+          "max_abs": 4.76837158203125e-07
+        },
+        "memory_reconstruction_local_score_difference": {
+          "non_exact": 49,
+          "max_abs": 7.450580596923828e-09
+        },
+        "queries": 64,
+        "new_optimizer_updates": 0,
+        "no_new_model_weights": true,
+        "partition": "TRAIN",
+        "first_original_batch_per_GPU": true,
+        "old_failure_stratum_not_representative": true
+      },
+      "archive_files": 27,
+      "no_NN_restarted_by_collector": true
+    },
+    "final_agent_interpretation_pending": true
   }
 }
