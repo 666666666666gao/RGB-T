@@ -7044,7 +7044,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T08:02:07.236034+08:00",
+  "updated_cst": "2026-10-07T08:41:44.976356+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42931,7 +42931,7 @@
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   },
   "current_post_search_relation_control": {
-    "updated_cst": "2026-10-07T07:32:59.716043+08:00",
+    "updated_cst": "2026-10-07T08:41:44.976356+08:00",
     "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
     "actual_launch": {
       "pid": 1311071,
@@ -42948,7 +42948,7 @@
       "no_three_seed_gate": true
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-07T07:30:39.066752+08:00",
+      "observed_at_cst": "2026-10-07T08:38:56.852621+08:00",
       "owner_pid": 1311071,
       "owner_alive": true,
       "progress": {
@@ -43001,7 +43001,7 @@
         {
           "gpu": 0,
           "pid": 1320972,
-          "alive": true
+          "alive": false
         },
         {
           "gpu": 1,
@@ -43011,44 +43011,131 @@
         {
           "gpu": 2,
           "pid": 1320974,
-          "alive": true
+          "alive": false
         },
         {
           "gpu": 3,
           "pid": 1320975,
-          "alive": true
+          "alive": false
         }
       ],
       "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
       "actual_training_rows": [
         {
-          "arm": "post_search_lr5",
-          "epoch": 1,
-          "step": 1,
-          "optimizer_steps": 1,
-          "loss": 1.899129867553711,
+          "arm": "one_way_lr5",
+          "epoch": 64,
+          "step": 9,
+          "optimizer_steps": 576,
+          "loss": 1.506689429283142,
           "parts": {
-            "advantage": 0.06010422429868153,
-            "action_ranking": 0.19158748643738882,
-            "harm": 1.659389819417681,
-            "quality": 0.4900754136698587,
-            "query_write_risk": 0.06559607812336513,
-            "future": 0.12462866306304932,
-            "memory_gate": 1.4709728445325578,
-            "margin_preservation": 0.0028596907920603242,
-            "identity_margin": 0.1684956955058234,
-            "search_value": 0.03697981312870979,
-            "search_success": 0.6610593795776367,
-            "candidate_absence": 1.1208151578903198,
-            "search_ranking": 1.7337018251419067
+            "advantage": 0.02319724831197943,
+            "action_ranking": 0.16128071823290416,
+            "harm": 0.7389810596193586,
+            "quality": 0.4516740526471819,
+            "query_write_risk": 0.041313450783491135,
+            "future": 0.10114528664520808,
+            "memory_gate": 1.4484134231294905,
+            "margin_preservation": 0.002967553778684565,
+            "identity_margin": 0.1411013017807688,
+            "search_value": 0.03356478735804558,
+            "search_success": 0.4969366490840912,
+            "candidate_absence": 0.7114346623420715,
+            "search_ranking": 1.7283216714859009
           },
           "module_gradient_norms": {
-            "A": 0.1440938115119934,
-            "B": 3.079406261444092,
-            "C": 1.849573016166687
+            "A": 0.16123558580875397,
+            "B": 7.287991523742676,
+            "C": 1.311537504196167
           },
-          "elapsed_seconds": 7.404863408766687,
-          "peak_cuda_mib": 19936.49462890625
+          "elapsed_seconds": 3998.237024608068,
+          "peak_cuda_mib": 19845.23828125
+        },
+        {
+          "arm": "post_search_lr5",
+          "epoch": 44,
+          "step": 1,
+          "optimizer_steps": 388,
+          "loss": 1.621010661125183,
+          "parts": {
+            "advantage": 0.030729423942310468,
+            "action_ranking": 0.19630261617047445,
+            "harm": 1.0621315836906433,
+            "quality": 0.47073635033198763,
+            "query_write_risk": 0.044055450707674026,
+            "future": 0.11506684018032891,
+            "memory_gate": 1.4509891612189156,
+            "margin_preservation": 0.003134375537878701,
+            "identity_margin": 0.1551218522446496,
+            "search_value": 0.0330149382352829,
+            "search_success": 0.5177532434463501,
+            "candidate_absence": 0.7503505945205688,
+            "search_ranking": 1.6686732769012451
+          },
+          "module_gradient_norms": {
+            "A": 0.155351459980011,
+            "B": 2.817000150680542,
+            "C": 1.5322566032409668
+          },
+          "elapsed_seconds": 4072.2517599780113,
+          "peak_cuda_mib": 19973.23486328125
+        },
+        {
+          "arm": "one_way_lr3",
+          "epoch": 64,
+          "step": 9,
+          "optimizer_steps": 576,
+          "loss": 1.3221876621246338,
+          "parts": {
+            "advantage": 0.019222945773175786,
+            "action_ranking": 0.14483213211808885,
+            "harm": 0.46088777269635883,
+            "quality": 0.39574419600622995,
+            "query_write_risk": 0.0357988676322358,
+            "future": 0.07379412544625145,
+            "memory_gate": 1.326561416898455,
+            "margin_preservation": 0.002238301477128906,
+            "identity_margin": 0.14230271109512874,
+            "search_value": 0.028073299676179886,
+            "search_success": 0.4527224004268646,
+            "candidate_absence": 0.525412917137146,
+            "search_ranking": 1.6986188888549805
+          },
+          "module_gradient_norms": {
+            "A": 0.1753663569688797,
+            "B": 10.557861328125,
+            "C": 0.5068471431732178
+          },
+          "elapsed_seconds": 4002.2156400349922,
+          "peak_cuda_mib": 19845.23828125
+        },
+        {
+          "arm": "post_search_lr3",
+          "epoch": 64,
+          "step": 9,
+          "optimizer_steps": 576,
+          "loss": 1.3212875127792358,
+          "parts": {
+            "advantage": 0.019377355064664568,
+            "action_ranking": 0.14463116973638535,
+            "harm": 0.458148935011455,
+            "quality": 0.39641644273485455,
+            "query_write_risk": 0.03601758022393499,
+            "future": 0.07090016880205699,
+            "memory_gate": 1.3259810890470232,
+            "margin_preservation": 0.0022473714780062437,
+            "identity_margin": 0.14237231016159058,
+            "search_value": 0.02806928940117359,
+            "search_success": 0.45271581411361694,
+            "candidate_absence": 0.5254628658294678,
+            "search_ranking": 1.6985634565353394
+          },
+          "module_gradient_norms": {
+            "A": 0.1767032891511917,
+            "B": 10.55544662475586,
+            "C": 0.5063046216964722
+          },
+          "elapsed_seconds": 4038.106126861181,
+          "peak_cuda_mib": 19973.23486328125
         }
       ],
       "estimated_phase_seconds_from_closed_sanity": 4096.611783519387,
@@ -43098,7 +43185,7 @@
         "method_effect_or_formal_accuracy_proven": false
       }
     },
-    "next_check_cst": "2026-10-07T08:34:53.661892+08:00",
+    "next_check_cst": "2026-10-07T08:42:55.008645+08:00",
     "goal_status": "ACTIVE_UNMET",
     "full_training_complete": false,
     "full98_complete": false,
@@ -43106,7 +43193,9 @@
     "first_actual_causal_check_complete": true,
     "four_actual_fit_sanities_complete": true,
     "actual_fit_sanity_updates": 72,
-    "one_checkpoint_both_native_datasets_required": true
+    "one_checkpoint_both_native_datasets_required": true,
+    "three_full_fits_closed_actual_updates": 1728,
+    "three_full_fits_receipt": "refine-logs/runs/post_search_relation_control/actual_three_closed_full_fit_intake.json"
   },
   "completed_rgbt234_parent_loss_diagnostic": {
     "record": "refine-logs/runs/current_policy_aggregation/rgbt234_parent_loss_diagnostic_20261007/summary.json",
