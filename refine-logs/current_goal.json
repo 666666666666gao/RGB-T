@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-08T00:25:32.480642+08:00",
+  "updated_cst": "2026-10-08T00:56:04.828053+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -45794,8 +45794,8 @@
       "full881not_restarted": true,
       "real_revised_sanity_not_yet_observed": true
     },
-    "original_owner_kept": 2578767,
-    "sole_observer_session": 96793,
+    "original_owner_kept": null,
+    "sole_observer_session": null,
     "actual_gpu_children": [
       2593052,
       2593053,
@@ -46318,8 +46318,8 @@
       ],
       "no_NN_or_optimizer": true
     },
-    "next_owner_observation": "2026-10-08T06:06:53.883656+08:00",
-    "original_owner_not_restarted": true,
+    "next_owner_observation": "2026-10-08T06:31:33.834231+08:00",
+    "original_owner_not_restarted": false,
     "closed_action_opportunity_CPU": {
       "CPU_only": true,
       "closed_videos": 16,
@@ -46335,6 +46335,813 @@
       "objective": ".7 currentIoU +.3 H3futuremean -.1 wrong-updatefraction; .01 per oracle extra region / actual parent request",
       "scope": "Four shards first4 closed TRAIN videos; biased reused subset/GT-assisted upper bound, not deployable or native accuracy",
       "new_NN_or_optimizer": false
+    },
+    "frame_count_failure_and_resume": {
+      "status": "ACTUAL_FOUR_RESUMED_COLLECTORS_ALIVE",
+      "old_owner": 2578767,
+      "old_children": [
+        2593052,
+        2593053,
+        2593054,
+        2593055
+      ],
+      "authoritative_failure": "GPU1/2 exited at native/cached frame-count equality; only3 unannotated suffix mismatches across881, exact path prefixes",
+      "source_review": {
+        "status": "PASS",
+        "scope": "COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE",
+        "review_proof_scope": "Narrow frame-suffix and explicit interrupted-collection resume delta in exactly two files against 451a243c8d6d114c47d9c7b8a68a65889ce756d5; existing downstream pipeline retained, not a fresh whole-pipeline audit.",
+        "reviewed_at_cst": "2026-10-08T00:52:00.138631+08:00",
+        "reviewer_task": "/root/event_frame_suffix_resume_review",
+        "requested_model": "gpt-6-astra",
+        "requested_reasoning_effort": "max",
+        "actual_backend_model": "UNATTESTED",
+        "actual_backend_reasoning_effort": "UNATTESTED",
+        "review_independence": "same-family",
+        "acceptance_status": "provisional",
+        "base_commit": "451a243c8d6d114c47d9c7b8a68a65889ce756d5",
+        "source_sha256": {
+          "research/collect_event_rollouts.py": "9dbfb9b8c36aaed237914cf546eb9333eae84f9b8d5fdda7bfe637121be14c4c",
+          "scripts/run_current_event_rollout_training.py": "e31a7968af01033763ed41d84b9bcd53f948bf3d687c0fc765fe0a71b64d5cc2"
+        },
+        "blocking_issues": [],
+        "non_blocking_issues": [],
+        "resolved_findings": [
+          {
+            "severity_at_discovery": "BLOCKING",
+            "file": "research/collect_event_rollouts.py",
+            "line": 196,
+            "issue": "The first resume draft compared JSON-decoded saved regions (list) with the runtime REGIONS tuple, so its full-dict equality always failed.",
+            "evidence": "REGIONS is a tuple at research/collect_recoverability.py:28; all four archived collect_sanity config.json files persist it as a JSON list. The original failure was reproduced with those configs.",
+            "fix": "Current RHS uses json.loads(json.dumps(config)); both sides exclude only resume. Parent applied the minimal fix during review.",
+            "verification": "The exact current AST comparison evaluates true for all four archived configs with runtime REGIONS restored to a tuple and resume=True; changes to seed, partition, prefix_model, storage_schema and an actual query_frame are all rejected."
+          }
+        ],
+        "evidence": {
+          "frame_alignment": "refine-logs/runs/current_event_rollout_fit/scalarfix/frame_alignment_CPU.json",
+          "primary_failure": "refine-logs/runs/current_event_rollout_fit/scalarfix/terminated_shards_primary.json",
+          "saved_plan": "refine-logs/runs/current_event_rollout_fit/scalarfix/closed_sanity/plan.json",
+          "capacity": "refine-logs/runs/current_event_rollout_fit/scalarfix/closed_sanity/capacity_sanity.json",
+          "label_integrity": "refine-logs/runs/current_event_rollout_fit/scalarfix/parent_H3_same_cache_GT_CPU_integrity.json",
+          "all_881_TRAIN_sequences_audited": true,
+          "mismatches": [
+            {
+              "sequence": "ab_boyfromtrees",
+              "native_frames": 276,
+              "cache_frames": 209,
+              "cache_exact_native_path_prefix": true,
+              "query_count": 1,
+              "max_query": 1
+            },
+            {
+              "sequence": "ab_righthandfoamboard",
+              "native_frames": 169,
+              "cache_frames": 157,
+              "cache_exact_native_path_prefix": true,
+              "query_count": 9,
+              "max_query": 141
+            },
+            {
+              "sequence": "rightofthe4girls",
+              "native_frames": 933,
+              "cache_frames": 925,
+              "cache_exact_native_path_prefix": true,
+              "query_count": 91,
+              "max_query": 775
+            }
+          ],
+          "all_16452_TRAIN_H3_cached_GT_valid": true,
+          "recorded_failed_shards": {
+            "gpu1": {
+              "closed_videos": 28,
+              "closed_queries": 236
+            },
+            "gpu2": {
+              "closed_videos": 31,
+              "closed_queries": 1109
+            }
+          },
+          "recorded_failure": "Both original shard logs terminate at collect_sequence line 71 exact total frame-count assertion.",
+          "archived_prefix_sanity_count": 4,
+          "archived_capacity_batch_size": 32,
+          "archived_longest_query": 12737,
+          "archived_full_objective_gradient_max_error": 3.725290298461914e-09,
+          "archived_sanity_optimizer_steps": {
+            "reference_lr5": 2,
+            "reference_lr3e6": 2,
+            "budgeted_lr5": 2,
+            "budgeted_lr3e6": 2
+          }
+        },
+        "source_findings": [
+          "The cached sequences are exact annotated prefixes of longer native image streams. Allowing len(boxes) >= len(sequence)-1 is sufficient for this observed defect; max_query+3 remains inside the cache for every affected sequence.",
+          "Exact per-frame box, choice, pause and template-write comparisons are unchanged. A normalized AST comparison confirms collect_sequence has no semantic delta besides the global == to >= comparison.",
+          "Resume is explicit. It compares all persisted configuration fields except the new resume flag, rejects completion.json, checks each closed row against all requested query_frames and history_frames=arange(max_query), and validates progress counts and unique sequence membership.",
+          "A sequence enters progress.jsonl only after both NPZ files are fully written. The resumed loop skips only validated closed rows, appends to progress.jsonl and recollects an unclosed sequence without adopting partial artifacts. Full EventRolloutData schema and causal-boundary validation still runs before training.",
+          "The queue permits only the original COLLECT_FULL_TRAIN stage, reads the saved plan, checks original arms and complete train/validation video membership, preserves finished sanity artifacts and passes --resume only to the four TRAIN collectors. DEV collection begins normally.",
+          "AST equality confirms the original read, environment, groups, record, cpu, wave, collect_command and fit functions and every postcollection statement through full training, DEV selection, native evaluation and own-weight cleanup are unchanged.",
+          "Saved plan has 16452 unique TRAIN queries over 881 videos and 1824 unique DEV queries over 98 videos, disjoint videos both across shards and between partitions. Four 24-epoch arms retain batch32/seed42, reference or budgeted ranking and lr1e-5 or3e-6. Eight best/last full98 evaluations and protected-parent selection still feed one selected checkpoint to both native datasets."
+        ],
+        "validation": {
+          "python": "E:/python.exe, CPython 3.12.6",
+          "two_source_AST_parse_and_compile": "PASS",
+          "actual_config_comparison_with_archived_configs": "PASS: 4 accepted; 20 deliberate config/query differences rejected",
+          "three_affected_sequence_query_H3_boundaries": "PASS",
+          "plan_query_uniqueness_shard_and_partition_disjointness": "PASS",
+          "archived_four_sanity_fit_receipts": "PASS: actual completed2epochs/2updates per arm, ABC changed, C1 frozen, strict reloads",
+          "downstream_AST_identity_against_base": "PASS",
+          "git_diff_check": "PASS; only Git LF-to-CRLF working-copy notices"
+        },
+        "operational_boundary": {
+          "review_is_source_and_archived_evidence_only": true,
+          "NN_calls": 0,
+          "optimizer_updates": 0,
+          "production_source_imports": 0,
+          "remote_queries": 0,
+          "deployment_executed": false,
+          "processes_stopped": false,
+          "production_outputs_modified": false,
+          "execution_plan_requires": "Before restarting, stop only original owned owner/collectors and old owned observer; archive original wave/owner logs and all four config/progress/jsonl files. The unchanged wave helper opens stage logs with w, so archive precedes resume. Then deploy the two reviewed files and run explicit same-root --resume-collection with one observer for the new owner.",
+          "execution_plan_status": "Described by parent; not executed or independently attested by this reviewer.",
+          "no_new_accuracy_or_full_training_completion_claim": true
+        }
+      },
+      "launch": {
+        "at_cst": "2026-10-08T00:52:30.524210+08:00",
+        "pid": 2782399,
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "scripts.run_current_event_rollout_training",
+          "--review",
+          "refine-logs/runs/current_event_rollout_fit/scalarfix/frame_suffix_resume_review.json",
+          "--output",
+          "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix",
+          "--resume-collection"
+        ],
+        "owner_log": "/data/gb/setup/current_event_rollout_training_20261008_frame_suffix_resume_owner.log",
+        "original_owner_terminal": true,
+        "original_child_pids": [
+          2593052,
+          2593053,
+          2593054,
+          2593055
+        ],
+        "archive": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/failed_frame_count_evidence_20261008",
+        "preserved_closed_artifacts": [
+          {
+            "gpu": 0,
+            "sequences": 116,
+            "queries": 1551
+          },
+          {
+            "gpu": 1,
+            "sequences": 28,
+            "queries": 236
+          },
+          {
+            "gpu": 2,
+            "sequences": 31,
+            "queries": 1109
+          },
+          {
+            "gpu": 3,
+            "sequences": 112,
+            "queries": 1311
+          }
+        ],
+        "old_closed_NN_not_repeated": true,
+        "recipe_unchanged": true,
+        "full24_training_not_yet_completed": true
+      },
+      "observer": {
+        "at_cst": "2026-10-08T00:52:43.486287+08:00",
+        "local_observer_pid": 50996,
+        "source": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\observe_frame_suffix_resume_20261008.py",
+        "log": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\current_event_rollout_fit\\scalarfix\\resumed_sole_observer.log",
+        "previous_observer_pid": 51492,
+        "previous_observer_exact_command_verified": "E:/python.exe -X utf8 C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\observe_current_event_scalarfix_20261007.py",
+        "previous_observer_terminal": true,
+        "new_owner_pid": 2782399,
+        "first_poll_cst": "2026-10-08T00:55:30.524210+08:00",
+        "later_poll_min_seconds": 240,
+        "only_one_observer": true,
+        "NN_started_by_observer": false
+      },
+      "actual_observation": {
+        "observed_at_cst": "2026-10-08T00:55:33.347912+08:00",
+        "owner_pid": 2782399,
+        "owner_alive": true,
+        "progress": {
+          "stage": "COLLECT_FULL_TRAIN",
+          "at_cst": "2026-10-08T00:52:30.937136+08:00",
+          "elapsed_seconds": 0.061840302310884,
+          "children": [
+            {
+              "gpu": 0,
+              "pid": 2782404,
+              "command": [
+                "/data/gb/envs/gola/bin/python",
+                "-u",
+                "-m",
+                "research.collect_event_rollouts",
+                "--partition",
+                "train",
+                "--jobs-file",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0_jobs.json",
+                "--reference-traces",
+                "/data/gb/outputs/current_policy_train_traces_20261007/full",
+                "--reference-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--prefix-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--output",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+                "--resume"
+              ]
+            },
+            {
+              "gpu": 1,
+              "pid": 2782405,
+              "command": [
+                "/data/gb/envs/gola/bin/python",
+                "-u",
+                "-m",
+                "research.collect_event_rollouts",
+                "--partition",
+                "train",
+                "--jobs-file",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1_jobs.json",
+                "--reference-traces",
+                "/data/gb/outputs/current_policy_train_traces_20261007/full",
+                "--reference-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--prefix-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--output",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1",
+                "--resume"
+              ]
+            },
+            {
+              "gpu": 2,
+              "pid": 2782406,
+              "command": [
+                "/data/gb/envs/gola/bin/python",
+                "-u",
+                "-m",
+                "research.collect_event_rollouts",
+                "--partition",
+                "train",
+                "--jobs-file",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2_jobs.json",
+                "--reference-traces",
+                "/data/gb/outputs/current_policy_train_traces_20261007/full",
+                "--reference-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--prefix-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--output",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2",
+                "--resume"
+              ]
+            },
+            {
+              "gpu": 3,
+              "pid": 2782407,
+              "command": [
+                "/data/gb/envs/gola/bin/python",
+                "-u",
+                "-m",
+                "research.collect_event_rollouts",
+                "--partition",
+                "train",
+                "--jobs-file",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3_jobs.json",
+                "--reference-traces",
+                "/data/gb/outputs/current_policy_train_traces_20261007/full",
+                "--reference-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--prefix-model",
+                "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+                "--output",
+                "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3",
+                "--resume"
+              ]
+            }
+          ]
+        },
+        "read_only": true,
+        "children": [
+          {
+            "gpu": 0,
+            "pid": 2782404,
+            "command": [
+              "/data/gb/envs/gola/bin/python",
+              "-u",
+              "-m",
+              "research.collect_event_rollouts",
+              "--partition",
+              "train",
+              "--jobs-file",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0_jobs.json",
+              "--reference-traces",
+              "/data/gb/outputs/current_policy_train_traces_20261007/full",
+              "--reference-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--prefix-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--output",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+              "--resume"
+            ],
+            "alive": true,
+            "progress.json": {
+              "completed_queries": 1551,
+              "queries": 4144,
+              "completed_sequences": 116,
+              "sequences": 219,
+              "elapsed_seconds": 7886.558865165804,
+              "peak_cuda_mib": 531.2216796875
+            },
+            "config_summary": {
+              "clips": 4144
+            }
+          },
+          {
+            "gpu": 1,
+            "pid": 2782405,
+            "command": [
+              "/data/gb/envs/gola/bin/python",
+              "-u",
+              "-m",
+              "research.collect_event_rollouts",
+              "--partition",
+              "train",
+              "--jobs-file",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1_jobs.json",
+              "--reference-traces",
+              "/data/gb/outputs/current_policy_train_traces_20261007/full",
+              "--reference-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--prefix-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--output",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1",
+              "--resume"
+            ],
+            "alive": true,
+            "progress.json": {
+              "completed_queries": 266,
+              "queries": 4129,
+              "completed_sequences": 33,
+              "sequences": 220,
+              "elapsed_seconds": 1396.6251422041096,
+              "peak_cuda_mib": 531.302734375
+            },
+            "config_summary": {
+              "clips": 4129
+            }
+          },
+          {
+            "gpu": 2,
+            "pid": 2782406,
+            "command": [
+              "/data/gb/envs/gola/bin/python",
+              "-u",
+              "-m",
+              "research.collect_event_rollouts",
+              "--partition",
+              "train",
+              "--jobs-file",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2_jobs.json",
+              "--reference-traces",
+              "/data/gb/outputs/current_policy_train_traces_20261007/full",
+              "--reference-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--prefix-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--output",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2",
+              "--resume"
+            ],
+            "alive": true,
+            "progress.json": {
+              "completed_queries": 1120,
+              "queries": 4110,
+              "completed_sequences": 34,
+              "sequences": 221,
+              "elapsed_seconds": 6302.710850794334,
+              "peak_cuda_mib": 530.93408203125
+            },
+            "config_summary": {
+              "clips": 4110
+            }
+          },
+          {
+            "gpu": 3,
+            "pid": 2782407,
+            "command": [
+              "/data/gb/envs/gola/bin/python",
+              "-u",
+              "-m",
+              "research.collect_event_rollouts",
+              "--partition",
+              "train",
+              "--jobs-file",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3_jobs.json",
+              "--reference-traces",
+              "/data/gb/outputs/current_policy_train_traces_20261007/full",
+              "--reference-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--prefix-model",
+              "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+              "--output",
+              "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3",
+              "--resume"
+            ],
+            "alive": true,
+            "progress.json": {
+              "completed_queries": 1311,
+              "queries": 4069,
+              "completed_sequences": 112,
+              "sequences": 221,
+              "elapsed_seconds": 6756.359108137898,
+              "peak_cuda_mib": 531.2216796875
+            },
+            "config_summary": {
+              "clips": 4069
+            }
+          }
+        ],
+        "closed_collection_receipts": {
+          "collect_sanity/gpu2/completion.json": {
+            "completed": true,
+            "partition": "validation",
+            "clips": 2,
+            "sequences": 1,
+            "records": [
+              {
+                "sequence": "ab_bolster",
+                "queries": 2,
+                "max_query": 8133,
+                "replayed_visual_prefix_frames": 8133,
+                "duplicate_prefix_replays": 0,
+                "all_actual_prefix_outputs_and_decisions_exact": true,
+                "valid_actions": 73,
+                "executed_extra_label_crops": 12
+              }
+            ],
+            "valid_actions": 73,
+            "exact_actual_prefix_parity": true,
+            "decision_input_contains_future": false,
+            "new_optimizer_updates": 0,
+            "native_TEST_accuracy": false,
+            "elapsed_seconds": 362.652175063733,
+            "peak_cuda_mib": 527.7373046875
+          },
+          "collect_sanity/gpu0/completion.json": {
+            "completed": true,
+            "partition": "train",
+            "clips": 2,
+            "sequences": 1,
+            "records": [
+              {
+                "sequence": "whiteboy`head",
+                "queries": 2,
+                "max_query": 12737,
+                "replayed_visual_prefix_frames": 12737,
+                "duplicate_prefix_replays": 0,
+                "all_actual_prefix_outputs_and_decisions_exact": true,
+                "valid_actions": 75,
+                "executed_extra_label_crops": 12
+              }
+            ],
+            "valid_actions": 75,
+            "exact_actual_prefix_parity": true,
+            "decision_input_contains_future": false,
+            "new_optimizer_updates": 0,
+            "native_TEST_accuracy": false,
+            "elapsed_seconds": 493.9261261979118,
+            "peak_cuda_mib": 528.41943359375
+          },
+          "collect_sanity/gpu3/completion.json": {
+            "completed": true,
+            "partition": "validation",
+            "clips": 1,
+            "sequences": 1,
+            "records": [
+              {
+                "sequence": "10rightblackboy",
+                "queries": 1,
+                "max_query": 1,
+                "replayed_visual_prefix_frames": 1,
+                "duplicate_prefix_replays": 0,
+                "all_actual_prefix_outputs_and_decisions_exact": true,
+                "valid_actions": 41,
+                "executed_extra_label_crops": 6
+              }
+            ],
+            "valid_actions": 41,
+            "exact_actual_prefix_parity": true,
+            "decision_input_contains_future": false,
+            "new_optimizer_updates": 0,
+            "native_TEST_accuracy": false,
+            "elapsed_seconds": 4.370417603757232,
+            "peak_cuda_mib": 527.66357421875
+          },
+          "collect_sanity/gpu1/completion.json": {
+            "completed": true,
+            "partition": "train",
+            "clips": 2,
+            "sequences": 1,
+            "records": [
+              {
+                "sequence": "10crosswhite",
+                "queries": 2,
+                "max_query": 2,
+                "replayed_visual_prefix_frames": 2,
+                "duplicate_prefix_replays": 0,
+                "all_actual_prefix_outputs_and_decisions_exact": true,
+                "valid_actions": 80,
+                "executed_extra_label_crops": 12
+              }
+            ],
+            "valid_actions": 80,
+            "exact_actual_prefix_parity": true,
+            "decision_input_contains_future": false,
+            "new_optimizer_updates": 0,
+            "native_TEST_accuracy": false,
+            "elapsed_seconds": 8.499282428063452,
+            "peak_cuda_mib": 524.6806640625
+          }
+        },
+        "closed_fit_receipts": {
+          "fit_sanity/reference_lr5/completion.json": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 2,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09578703343868256,
+              "B": 0.5767825245857239,
+              "C": 3.0242950916290283
+            },
+            "frozen_C1_weights_exact": true,
+            "GOLA_and_motion_new_gradients": false,
+            "peak_cuda_mib": 1542.46533203125,
+            "elapsed_seconds": 0.6908332840539515,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 0,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.8501155376434326,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              },
+              "last.pth": {
+                "epoch": 2,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.848710536956787,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              }
+            },
+            "native_TEST_metrics_new": false
+          },
+          "fit_sanity/budgeted_lr3e6/completion.json": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 2,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09454209357500076,
+              "B": 0.5760350227355957,
+              "C": 3.8444888591766357
+            },
+            "frozen_C1_weights_exact": true,
+            "GOLA_and_motion_new_gradients": false,
+            "peak_cuda_mib": 1542.46533203125,
+            "elapsed_seconds": 0.689382310025394,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 0,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.9166463613510132,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              },
+              "last.pth": {
+                "epoch": 2,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.9038856029510498,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              }
+            },
+            "native_TEST_metrics_new": false
+          },
+          "fit_sanity/budgeted_lr5/completion.json": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 2,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09489038586616516,
+              "B": 0.5767835974693298,
+              "C": 3.8444888591766357
+            },
+            "frozen_C1_weights_exact": true,
+            "GOLA_and_motion_new_gradients": false,
+            "peak_cuda_mib": 1542.46533203125,
+            "elapsed_seconds": 0.7614708240143955,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 0,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.9166463613510132,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              },
+              "last.pth": {
+                "epoch": 2,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.9028586149215698,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              }
+            },
+            "native_TEST_metrics_new": false
+          },
+          "fit_sanity/reference_lr3e6/completion.json": {
+            "completed": true,
+            "epochs": 2,
+            "optimizer_steps": 2,
+            "modules_changed": {
+              "A": true,
+              "B": true,
+              "C": true
+            },
+            "max_module_gradient_norms": {
+              "A": 0.09544327855110168,
+              "B": 0.5760347247123718,
+              "C": 3.0242950916290283
+            },
+            "frozen_C1_weights_exact": true,
+            "GOLA_and_motion_new_gradients": false,
+            "peak_cuda_mib": 1542.46533203125,
+            "elapsed_seconds": 0.6967144832015038,
+            "checkpoints": {
+              "best.pth": {
+                "epoch": 0,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.8501155376434326,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              },
+              "last.pth": {
+                "epoch": 2,
+                "validation": {
+                  "clips": 3,
+                  "loss": 1.8496925830841064,
+                  "utility": 0.7828407287597656,
+                  "parent_utility": 0.7828407287597656,
+                  "utility_gain": 0.0,
+                  "current_iou": 0.7830279469490051,
+                  "parent_current_iou": 0.7830279469490051,
+                  "changed_actions": 0,
+                  "current_harms_against_parent": 0
+                },
+                "strict_reload": true
+              }
+            },
+            "native_TEST_metrics_new": false
+          }
+        },
+        "capacity_sanity": {
+          "passed": true,
+          "actual_shared_prefix_boundary": true,
+          "gradient_witness": {
+            "query": [
+              "10crosswhite",
+              2
+            ],
+            "observed_history_writes": 1,
+            "verified_modality_writes": 2
+          },
+          "full_objective_gradient_max_error": 3.725290298461914e-09,
+          "sequential_parallel_losses": [
+            1.3143742084503174,
+            1.3143742084503174
+          ],
+          "capacity": {
+            "batch": 32,
+            "actual_longest_query": [
+              "whiteboy`head",
+              12737
+            ],
+            "history_length": 12737,
+            "forward_backward_seconds": 0.8296376969665289,
+            "peak_allocated_cuda_mib": 11790.4462890625,
+            "peak_reserved_cuda_mib": 14446.0
+          },
+          "optimizer_updates": 0,
+          "original_parent_weights_unchanged": true,
+          "native_TEST_accuracy": false
+        }
+      },
+      "closed_videos_preserved": 287,
+      "closed_queries_preserved": 4207,
+      "full24_native_metrics_still_pending": true,
+      "unchanged_architecture_reward_data_recipe": true
+    },
+    "sole_file_backed_observer": {
+      "at_cst": "2026-10-08T00:52:43.486287+08:00",
+      "local_observer_pid": 50996,
+      "source": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\observe_frame_suffix_resume_20261008.py",
+      "log": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\current_event_rollout_fit\\scalarfix\\resumed_sole_observer.log",
+      "previous_observer_pid": 51492,
+      "previous_observer_exact_command_verified": "E:/python.exe -X utf8 C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\observe_current_event_scalarfix_20261007.py",
+      "previous_observer_terminal": true,
+      "new_owner_pid": 2782399,
+      "first_poll_cst": "2026-10-08T00:55:30.524210+08:00",
+      "later_poll_min_seconds": 240,
+      "only_one_observer": true,
+      "NN_started_by_observer": false
+    },
+    "sole_observer_next_node": {
+      "next_poll_cst": "2026-10-08T06:31:33.834231+08:00",
+      "owner_pid": 2782399,
+      "sole_observer": true,
+      "minimum_repeat_seconds": 240
     }
   }
 }

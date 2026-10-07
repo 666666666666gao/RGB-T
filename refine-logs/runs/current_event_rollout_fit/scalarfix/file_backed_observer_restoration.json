@@ -1,0 +1,49 @@
+{
+  "at_cst": "2026-10-08T00:38:03.110541+08:00",
+  "local_observer_pid": 51492,
+  "previous_tool_session": 96793,
+  "previous_local_observer_proven_absent": true,
+  "original_remote_owner_pid": 2578767,
+  "original_NN_not_restarted": true,
+  "next_poll": "2026-10-08T06:06:53.883656+08:00",
+  "log": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\refine-logs\\runs\\current_event_rollout_fit\\scalarfix\\file_backed_observer.log",
+  "health": {
+    "at_cst": "2026-10-08T00:38:04.534939+08:00",
+    "owner": {
+      "pid": 2578767,
+      "alive": true,
+      "state": "S",
+      "command": "/data/gb/envs/gola/bin/python -u -m scripts.run_current_event_rollout_training --review refine-logs/runs/current_event_rollout_fit/EXPERIMENT_CODE_REVIEW.json --output /data/gb/outputs/current_event_rollout_training_20261007_scalarfix "
+    },
+    "stage": "COLLECT_FULL_TRAIN",
+    "children": [
+      {
+        "pid": 2593052,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.collect_event_rollouts --partition train --jobs-file /data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0_jobs.json --reference-traces /data/gb/outputs/current_policy_train_traces_20261007/full --reference-model /data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth --prefix-model /data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth --output /data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0 "
+      },
+      {
+        "pid": 2593053,
+        "alive": false,
+        "state": "Z",
+        "command": ""
+      },
+      {
+        "pid": 2593054,
+        "alive": false,
+        "state": "Z",
+        "command": ""
+      },
+      {
+        "pid": 2593055,
+        "alive": true,
+        "state": "R",
+        "command": "/data/gb/envs/gola/bin/python -u -m research.collect_event_rollouts --partition train --jobs-file /data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3_jobs.json --reference-traces /data/gb/outputs/current_policy_train_traces_20261007/full --reference-model /data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth --prefix-model /data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth --output /data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3 "
+      }
+    ],
+    "GPU_utilization_memory": "0, 40, 1266, 24576\n1, 0, 20, 24576\n2, 0, 20, 24576\n3, 39, 937, 24576\n",
+    "data_gb_free_GiB": 2447.352554321289,
+    "read_only": true
+  }
+}

@@ -68,7 +68,9 @@ def collect_sequence(sequence, jobs, reference_file, extractor, head, motion, pr
         boxes = reference['boxes_xyxy'].reshape(len(choices), 35, 4)[np.arange(len(choices)), choices]
         pauses = reference['pause'].copy()
         writes = reference['template_updated'].copy()
-    assert max(wanted) + 3 < len(sequence) and len(boxes) == len(sequence) - 1
+    # Three TRAIN videos have unannotated image suffixes absent from this
+    # annotation cache. Their cached paths match the native prefix exactly.
+    assert max(wanted) + 3 < len(sequence) and len(boxes) >= len(sequence) - 1
     rows, queries, prefix_history = [], [], None
     for frame in range(1, max(wanted) + 1):
         if frame in wanted:
@@ -135,6 +137,7 @@ def main():
     p.add_argument('--reference-traces', required=True, help='Completed exact locked-policy timelines; one file per sequence')
     p.add_argument('--reference-model', required=True, help='Preserved checkpoint recorded by these timelines; must equal all current policy tensors')
     p.add_argument('--output', required=True)
+    p.add_argument('--resume', action='store_true', help='Keep closed per-video artifacts after a proven interrupted collection')
     p.add_argument('--seed', type=int, default=42)
     args = p.parse_args()
     torch.manual_seed(args.seed)
@@ -174,7 +177,7 @@ def main():
     dataset = MultiModalObjectTrackingDataset_MemoryMapped.load(args.root, args.cache)
     sequences = {dataset[i].get_name(): i for i in range(len(dataset))}
     output = Path(args.output)
-    output.mkdir(parents=True, exist_ok=False)
+    output.mkdir(parents=True, exist_ok=args.resume)
     device = torch.device('cuda:0')
     extractor, head, motion, prefix = models(args, device)
     config = vars(args) | dict(storage_schema='causal_sequence_prefix_v1', jobs=jobs, regions=REGIONS,
@@ -187,10 +190,33 @@ def main():
         motion_input='Exact online frozen motion anchors/memory/history at query-1, not a reconstructed quantized prefix',
         query_extra_regions='Six independent training actions; deployment still local plus at mostone observed extra',
         pretrained_load=extractor.load_receipt, new_optimizer_updates=0, native_TEST_accuracy=False)
-    (output / 'config.json').write_text(json.dumps(config, indent=2))
-    rows, started = [], time.perf_counter()
-    with (output / 'progress.jsonl').open('w') as stream:
+    rows, previous_elapsed, previous_peak = [], 0., 0.
+    if args.resume:
+        saved = json.loads((output / 'config.json').read_text())
+        assert {key: value for key, value in saved.items() if key != 'resume'} == {key: value for key, value in json.loads(json.dumps(config)).items() if key != 'resume'}
+        assert not (output / 'completion.json').exists()
+        rows = [json.loads(line) for line in (output / 'progress.jsonl').read_text().splitlines()]
+        for row in rows:
+            name = row['sequence']
+            expected = sorted(job['query_frame'] for job in groups[name])
+            assert row['all_actual_prefix_outputs_and_decisions_exact'] and row['queries'] == len(expected)
+            with np.load(output / (name + '_queries.npz')) as archive:
+                assert np.array_equal(archive['query_frames'], expected)
+            with np.load(output / (name + '_prefix.npz')) as archive:
+                assert np.array_equal(archive['history_frames'], np.arange(max(expected)))
+        progress = json.loads((output / 'progress.json').read_text())
+        assert progress['completed_sequences'] == len(rows)
+        assert progress['completed_queries'] == sum(row['queries'] for row in rows)
+        previous_elapsed, previous_peak = progress['elapsed_seconds'], progress['peak_cuda_mib']
+    else:
+        (output / 'config.json').write_text(json.dumps(config, indent=2))
+    completed = {row['sequence'] for row in rows}
+    assert len(completed) == len(rows) and completed <= groups.keys()
+    started = time.perf_counter()
+    with (output / 'progress.jsonl').open('a' if args.resume else 'w') as stream:
         for name in sorted(groups):
+            if name in completed:
+                continue
             sequence = dataset[sequences[name]]
             for job in groups[name]:
                 q = job['query_frame']
@@ -202,14 +228,14 @@ def main():
             stream.write(json.dumps(row) + '\n')
             stream.flush()
             progress = dict(completed_queries=sum(row['queries'] for row in rows), queries=len(jobs),
-                completed_sequences=len(rows), sequences=len(groups), elapsed_seconds=time.perf_counter()-started,
-                peak_cuda_mib=torch.cuda.max_memory_allocated(device)/2**20)
+                completed_sequences=len(rows), sequences=len(groups), elapsed_seconds=previous_elapsed+time.perf_counter()-started,
+                peak_cuda_mib=max(previous_peak, torch.cuda.max_memory_allocated(device)/2**20))
             (output / 'progress.json').write_text(json.dumps(progress))
             print(json.dumps(progress), flush=True)
     receipt = dict(completed=True, partition=args.partition, clips=len(jobs), sequences=len(rows), records=rows,
         valid_actions=sum(row['valid_actions'] for row in rows), exact_actual_prefix_parity=True,
         decision_input_contains_future=False, new_optimizer_updates=0, native_TEST_accuracy=False,
-        elapsed_seconds=time.perf_counter()-started, peak_cuda_mib=torch.cuda.max_memory_allocated(device)/2**20)
+        elapsed_seconds=previous_elapsed+time.perf_counter()-started, peak_cuda_mib=max(previous_peak, torch.cuda.max_memory_allocated(device)/2**20))
     (output / 'completion.json').write_text(json.dumps(receipt, indent=2))
     print(json.dumps(receipt), flush=True)
 

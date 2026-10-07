@@ -60,11 +60,14 @@ def main():
     p.add_argument('--review', required=True)
     p.add_argument('--output', required=True)
     p.add_argument('--predecessor-pid', type=int, default=2310613)
+    p.add_argument('--resume-collection', action='store_true', help='Resume closed video artifacts after the diagnosed frame-count assertion')
     args = p.parse_args()
     review = read(args.review)
     assert review['status'] == 'PASS' and review['scope'] == 'COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE'
     root = Path(args.output)
-    root.mkdir(parents=True, exist_ok=False)
+    root.mkdir(parents=True, exist_ok=args.resume_collection)
+    if args.resume_collection:
+        assert read(root/'progress.json')['stage'] == 'COLLECT_FULL_TRAIN'
     started = time.perf_counter()
 
     def record(stage, **fields):
@@ -102,41 +105,6 @@ def main():
         assert all(code == 0 for _,code in exits), (stage, exits, 'Primary logs retained; no unchanged retry')
         record(stage.upper()+'_ALL_PROCESSES_CLOSED_PASS', exits=exits)
 
-    split = read(SPLIT)
-    assert len(split['train']) == 881 and len(split['validation']) == 98 and not set(split['train']) & set(split['validation'])
-    done = read(DEV/'inference_completion.json')
-    assert done['completed'] and done['sequences'] == 98 and done['frames'] == 49418
-    assert {row['sequence'] for row in done['records']} == set(split['validation'])
-    dev_queries, dev_counts, dev_failures = [], Counter(), []
-    for row in done['records']:
-        queries, counts, failures = mine_sequence(DEV, row, DATA)
-        dev_queries.extend(queries); dev_counts.update(counts)
-        dev_failures.extend(dict(sequence=row['sequence'], **event) for event in failures)
-    dev_jobs = [dict(sequence=row['sequence'], query_frame=row['query_frame']) for row in dev_queries if row['H3_collector_eligible']]
-    (root/'DEV_events.json').write_text(json.dumps(dict(jobs=dev_jobs, queries=dev_queries, counts=dict(dev_counts),
-        failures=dev_failures, repeated_developer_partition=True, future_GT_for_labels_only=True), indent=2))
-    record('WAIT_ORIGINAL_FULL_TRAIN_OWNER', predecessor_pid=args.predecessor_pid, DEV_event_jobs=len(dev_jobs),
-           scope='CPU mining and queued commands; new NN/optimizer0, original four GPU jobs untouched')
-    while read(TRACE/'progress.json')['stage'] != 'COMPLETE_CURRENT_POLICY_FULL_TRAIN_TRACES':
-        assert Path('/proc',str(args.predecessor_pid)).exists(), 'Predecessor ended without successful completion; inspect its primary log'
-        time.sleep(240)
-    complete = read(TRACE/'progress.json')
-    assert complete['train_sequences'] == 881 and complete['frames'] == 464663
-    cpu('research.mine_current_policy_events', '--trace-root', TRACE, '--output', root/'TRAIN_events')
-    inventory = read(root/'TRAIN_events/report.json')
-    assert inventory['full_TRAIN_inventory'] and inventory['closed_sequences'] == 881 and inventory['closed_frames'] == 464663
-    train_jobs = read(root/'TRAIN_events/jobs.json')['jobs']
-    assert {row['sequence'] for row in train_jobs} == set(split['train']), 'Report omitted videos before claiming all881 training coverage'
-    assert {row['sequence'] for row in dev_jobs} == set(split['validation'])
-    shards = dict(train=groups(train_jobs), validation=groups(dev_jobs))
-    (root/'plan.json').write_text(json.dumps(dict(TRAIN_jobs=len(train_jobs), DEV_jobs=len(dev_jobs),
-        shard_jobs=shards, ARMS=ARMS, epochs=24, batch_size=32, seed=42, threshold=.03,
-        same_architecture='ABC_candidate_relations', initialization=PARENT, storage_schema='causal_sequence_prefix_v1',
-        order=['four_real_prefix_sanity','long32_full_backward','four_ABC_sanity_fits','all_event_collection',
-               'full_collection_capacity','four_complete24epoch_fits','eight_full98','one_model_both_native'],
-        queue_helper='Existing project subprocess waves; successful closed receipts before dependencies, no screen/output-early termination',
-        untouched_confirmation=False), indent=2))
-
     def collect_command(partition, rows, output):
         jobs = output.parent/(output.name+'_jobs.json')
         jobs.parent.mkdir(parents=True, exist_ok=True)
@@ -145,46 +113,92 @@ def main():
                 '--jobs-file', str(jobs), '--reference-traces', str(TRACE/'full' if partition == 'train' else DEV),
                 '--reference-model', PARENT if partition == 'train' else DEV_MODEL, '--prefix-model', PARENT, '--output', str(output)]
 
-    # Early plus late query from each real video checks shared storage and that
-    # private futures leave the main prefix unchanged. One TRAIN video carries
-    # the global longest actual query for the capacity witness.
-    selected = []
-    for partition in ('train', 'validation'):
-        videos = {}
-        for job in train_jobs if partition == 'train' else dev_jobs:
-            videos.setdefault(job['sequence'], []).append(job)
-        ordered = sorted(videos, key=lambda name:max(row['query_frame'] for row in videos[name]), reverse=True)
-        early = min(videos, key=lambda name:min(row['query_frame'] for row in videos[name]))
-        short_write_query = None
-        if partition == 'train':
-            # q=1 has no actual memory update. Find a real early post-write
-            # state so the sequential-vs-parallel full gradient check matters.
-            for item in read(root/'TRAIN_events/closed_inventory.json'):
-                name = item['sequence']
-                if name==ordered[0]:continue
-                folder = TRACE/'full'/f"gpu{item['gpu']}"/'predictions'
-                gt = ground_truth(DATA,name,'lasher')
-                with np.load(folder/(name+'_recoverability_decisions.npz')) as archive:
-                    for index in np.flatnonzero(archive['template_updated'][:30]):
-                        q = int(index)+2
-                        if q+3<len(gt) and np.isfinite(gt[q:q+4]).all() and (gt[q:q+4,2:]>0).all():
-                            early,short_write_query = name,dict(sequence=name,query_frame=q)
-                            break
-                if short_write_query is not None:break
-            assert short_write_query is not None
-        assert ordered[0] != early
-        for name in (ordered[0], early):
-            rows = sorted(videos[name], key=lambda row:row['query_frame'])
-            chosen = [rows[i] for i in sorted({0,len(rows)-1})]
-            if name==early and short_write_query is not None:
-                chosen=sorted({row['query_frame']:row for row in [*chosen,short_write_query]}.values(),key=lambda row:row['query_frame'])
-            selected.append((partition,chosen))
-    sanity_dirs = [root/'collect_sanity'/f'gpu{gpu}' for gpu in range(4)]
-    wave('collect_sanity', [collect_command(partition, rows, sanity_dirs[gpu]) for gpu,(partition,rows) in enumerate(selected)])
-    sanity_train, sanity_val = list(map(str,sanity_dirs[:2])), list(map(str,sanity_dirs[2:]))
-    cpu('scripts.validate_event_collection', '--roots', *sanity_dirs)
-    wave('capacity_sanity', [[PYTHON,'-u','-m','research.check_event_training_sanity','--train',*sanity_train,
-        '--validation',*sanity_val,'--model',PARENT,'--batch-size','32','--output',str(root/'capacity_sanity.json')]])
+    split = read(SPLIT)
+    assert len(split['train']) == 881 and len(split['validation']) == 98 and not set(split['train']) & set(split['validation'])
+    if args.resume_collection:
+        plan = read(root/'plan.json')
+        assert plan['initialization'] == PARENT and plan['epochs'] == 24 and plan['batch_size'] == 32
+        assert plan['ARMS'] == [list(arm) for arm in ARMS]
+        shards = plan['shard_jobs']
+        assert len(shards['train']) == len(shards['validation']) == 4
+        assert {row['sequence'] for rows in shards['train'] for row in rows} == set(split['train'])
+        assert {row['sequence'] for rows in shards['validation'] for row in rows} == set(split['validation'])
+        record('RESUME_CLOSED_VIDEO_COLLECTION', unchanged_24epoch_recipe=True,
+               previous_sanity_receipts_preserved=True, no_closed_video_NN_repeated=True)
+    else:
+        done = read(DEV/'inference_completion.json')
+        assert done['completed'] and done['sequences'] == 98 and done['frames'] == 49418
+        assert {row['sequence'] for row in done['records']} == set(split['validation'])
+        dev_queries, dev_counts, dev_failures = [], Counter(), []
+        for row in done['records']:
+            queries, counts, failures = mine_sequence(DEV, row, DATA)
+            dev_queries.extend(queries); dev_counts.update(counts)
+            dev_failures.extend(dict(sequence=row['sequence'], **event) for event in failures)
+        dev_jobs = [dict(sequence=row['sequence'], query_frame=row['query_frame']) for row in dev_queries if row['H3_collector_eligible']]
+        (root/'DEV_events.json').write_text(json.dumps(dict(jobs=dev_jobs, queries=dev_queries, counts=dict(dev_counts),
+            failures=dev_failures, repeated_developer_partition=True, future_GT_for_labels_only=True), indent=2))
+        record('WAIT_ORIGINAL_FULL_TRAIN_OWNER', predecessor_pid=args.predecessor_pid, DEV_event_jobs=len(dev_jobs),
+               scope='CPU mining and queued commands; new NN/optimizer0, original four GPU jobs untouched')
+        while read(TRACE/'progress.json')['stage'] != 'COMPLETE_CURRENT_POLICY_FULL_TRAIN_TRACES':
+            assert Path('/proc',str(args.predecessor_pid)).exists(), 'Predecessor ended without successful completion; inspect its primary log'
+            time.sleep(240)
+        complete = read(TRACE/'progress.json')
+        assert complete['train_sequences'] == 881 and complete['frames'] == 464663
+        cpu('research.mine_current_policy_events', '--trace-root', TRACE, '--output', root/'TRAIN_events')
+        inventory = read(root/'TRAIN_events/report.json')
+        assert inventory['full_TRAIN_inventory'] and inventory['closed_sequences'] == 881 and inventory['closed_frames'] == 464663
+        train_jobs = read(root/'TRAIN_events/jobs.json')['jobs']
+        assert {row['sequence'] for row in train_jobs} == set(split['train']), 'Report omitted videos before claiming all881 training coverage'
+        assert {row['sequence'] for row in dev_jobs} == set(split['validation'])
+        shards = dict(train=groups(train_jobs), validation=groups(dev_jobs))
+        (root/'plan.json').write_text(json.dumps(dict(TRAIN_jobs=len(train_jobs), DEV_jobs=len(dev_jobs),
+            shard_jobs=shards, ARMS=ARMS, epochs=24, batch_size=32, seed=42, threshold=.03,
+            same_architecture='ABC_candidate_relations', initialization=PARENT, storage_schema='causal_sequence_prefix_v1',
+            order=['four_real_prefix_sanity','long32_full_backward','four_ABC_sanity_fits','all_event_collection',
+                   'full_collection_capacity','four_complete24epoch_fits','eight_full98','one_model_both_native'],
+            queue_helper='Existing project subprocess waves; successful closed receipts before dependencies, no screen/output-early termination',
+            untouched_confirmation=False), indent=2))
+
+        # Early plus late query from each real video checks shared storage and that
+        # private futures leave the main prefix unchanged. One TRAIN video carries
+        # the global longest actual query for the capacity witness.
+        selected = []
+        for partition in ('train', 'validation'):
+            videos = {}
+            for job in train_jobs if partition == 'train' else dev_jobs:
+                videos.setdefault(job['sequence'], []).append(job)
+            ordered = sorted(videos, key=lambda name:max(row['query_frame'] for row in videos[name]), reverse=True)
+            early = min(videos, key=lambda name:min(row['query_frame'] for row in videos[name]))
+            short_write_query = None
+            if partition == 'train':
+                # q=1 has no actual memory update. Find a real early post-write
+                # state so the sequential-vs-parallel full gradient check matters.
+                for item in read(root/'TRAIN_events/closed_inventory.json'):
+                    name = item['sequence']
+                    if name==ordered[0]:continue
+                    folder = TRACE/'full'/f"gpu{item['gpu']}"/'predictions'
+                    gt = ground_truth(DATA,name,'lasher')
+                    with np.load(folder/(name+'_recoverability_decisions.npz')) as archive:
+                        for index in np.flatnonzero(archive['template_updated'][:30]):
+                            q = int(index)+2
+                            if q+3<len(gt) and np.isfinite(gt[q:q+4]).all() and (gt[q:q+4,2:]>0).all():
+                                early,short_write_query = name,dict(sequence=name,query_frame=q)
+                                break
+                    if short_write_query is not None:break
+                assert short_write_query is not None
+            assert ordered[0] != early
+            for name in (ordered[0], early):
+                rows = sorted(videos[name], key=lambda row:row['query_frame'])
+                chosen = [rows[i] for i in sorted({0,len(rows)-1})]
+                if name==early and short_write_query is not None:
+                    chosen=sorted({row['query_frame']:row for row in [*chosen,short_write_query]}.values(),key=lambda row:row['query_frame'])
+                selected.append((partition,chosen))
+        sanity_dirs = [root/'collect_sanity'/f'gpu{gpu}' for gpu in range(4)]
+        wave('collect_sanity', [collect_command(partition, rows, sanity_dirs[gpu]) for gpu,(partition,rows) in enumerate(selected)])
+        sanity_train, sanity_val = list(map(str,sanity_dirs[:2])), list(map(str,sanity_dirs[2:]))
+        cpu('scripts.validate_event_collection', '--roots', *sanity_dirs)
+        wave('capacity_sanity', [[PYTHON,'-u','-m','research.check_event_training_sanity','--train',*sanity_train,
+            '--validation',*sanity_val,'--model',PARENT,'--batch-size','32','--output',str(root/'capacity_sanity.json')]])
 
     def fit(stage, epochs, train, validation):
         commands=[]
@@ -206,10 +220,14 @@ def main():
             assert config['train_clips']==count
         record(stage.upper()+'_ALL_ABC_GRADIENTS_UPDATES_RELOAD_PASS', updates_per_arm=epochs*math.ceil(count/32))
 
-    fit('fit_sanity', 2, sanity_train, sanity_val)
+    if not args.resume_collection:
+        fit('fit_sanity', 2, sanity_train, sanity_val)
     for partition in ('train','validation'):
-        wave('collect_full_'+partition, [collect_command(partition, rows, root/'collection'/partition/f'gpu{gpu}')
-                                        for gpu,rows in enumerate(shards[partition])])
+        commands = [collect_command(partition, rows, root/'collection'/partition/f'gpu{gpu}')
+                    for gpu, rows in enumerate(shards[partition])]
+        if args.resume_collection and partition == 'train':
+            commands = [command + ['--resume'] for command in commands]
+        wave('collect_full_'+partition, commands)
     train=[str(root/'collection/train'/f'gpu{gpu}') for gpu in range(4)]
     validation=[str(root/'collection/validation'/f'gpu{gpu}') for gpu in range(4)]
     cpu('scripts.validate_event_collection','--roots',*train,*validation)

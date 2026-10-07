@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE",
+  "review_proof_scope": "Narrow frame-suffix and explicit interrupted-collection resume delta in exactly two files against 451a243c8d6d114c47d9c7b8a68a65889ce756d5; existing downstream pipeline retained, not a fresh whole-pipeline audit.",
+  "reviewed_at_cst": "2026-10-08T00:52:00.138631+08:00",
+  "reviewer_task": "/root/event_frame_suffix_resume_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_backend_model": "UNATTESTED",
+  "actual_backend_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "base_commit": "451a243c8d6d114c47d9c7b8a68a65889ce756d5",
+  "source_sha256": {
+    "research/collect_event_rollouts.py": "9dbfb9b8c36aaed237914cf546eb9333eae84f9b8d5fdda7bfe637121be14c4c",
+    "scripts/run_current_event_rollout_training.py": "e31a7968af01033763ed41d84b9bcd53f948bf3d687c0fc765fe0a71b64d5cc2"
+  },
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "resolved_findings": [
+    {
+      "severity_at_discovery": "BLOCKING",
+      "file": "research/collect_event_rollouts.py",
+      "line": 196,
+      "issue": "The first resume draft compared JSON-decoded saved regions (list) with the runtime REGIONS tuple, so its full-dict equality always failed.",
+      "evidence": "REGIONS is a tuple at research/collect_recoverability.py:28; all four archived collect_sanity config.json files persist it as a JSON list. The original failure was reproduced with those configs.",
+      "fix": "Current RHS uses json.loads(json.dumps(config)); both sides exclude only resume. Parent applied the minimal fix during review.",
+      "verification": "The exact current AST comparison evaluates true for all four archived configs with runtime REGIONS restored to a tuple and resume=True; changes to seed, partition, prefix_model, storage_schema and an actual query_frame are all rejected."
+    }
+  ],
+  "evidence": {
+    "frame_alignment": "refine-logs/runs/current_event_rollout_fit/scalarfix/frame_alignment_CPU.json",
+    "primary_failure": "refine-logs/runs/current_event_rollout_fit/scalarfix/terminated_shards_primary.json",
+    "saved_plan": "refine-logs/runs/current_event_rollout_fit/scalarfix/closed_sanity/plan.json",
+    "capacity": "refine-logs/runs/current_event_rollout_fit/scalarfix/closed_sanity/capacity_sanity.json",
+    "label_integrity": "refine-logs/runs/current_event_rollout_fit/scalarfix/parent_H3_same_cache_GT_CPU_integrity.json",
+    "all_881_TRAIN_sequences_audited": true,
+    "mismatches": [
+      {
+        "sequence": "ab_boyfromtrees",
+        "native_frames": 276,
+        "cache_frames": 209,
+        "cache_exact_native_path_prefix": true,
+        "query_count": 1,
+        "max_query": 1
+      },
+      {
+        "sequence": "ab_righthandfoamboard",
+        "native_frames": 169,
+        "cache_frames": 157,
+        "cache_exact_native_path_prefix": true,
+        "query_count": 9,
+        "max_query": 141
+      },
+      {
+        "sequence": "rightofthe4girls",
+        "native_frames": 933,
+        "cache_frames": 925,
+        "cache_exact_native_path_prefix": true,
+        "query_count": 91,
+        "max_query": 775
+      }
+    ],
+    "all_16452_TRAIN_H3_cached_GT_valid": true,
+    "recorded_failed_shards": {
+      "gpu1": {
+        "closed_videos": 28,
+        "closed_queries": 236
+      },
+      "gpu2": {
+        "closed_videos": 31,
+        "closed_queries": 1109
+      }
+    },
+    "recorded_failure": "Both original shard logs terminate at collect_sequence line 71 exact total frame-count assertion.",
+    "archived_prefix_sanity_count": 4,
+    "archived_capacity_batch_size": 32,
+    "archived_longest_query": 12737,
+    "archived_full_objective_gradient_max_error": 3.725290298461914e-09,
+    "archived_sanity_optimizer_steps": {
+      "reference_lr5": 2,
+      "reference_lr3e6": 2,
+      "budgeted_lr5": 2,
+      "budgeted_lr3e6": 2
+    }
+  },
+  "source_findings": [
+    "The cached sequences are exact annotated prefixes of longer native image streams. Allowing len(boxes) >= len(sequence)-1 is sufficient for this observed defect; max_query+3 remains inside the cache for every affected sequence.",
+    "Exact per-frame box, choice, pause and template-write comparisons are unchanged. A normalized AST comparison confirms collect_sequence has no semantic delta besides the global == to >= comparison.",
+    "Resume is explicit. It compares all persisted configuration fields except the new resume flag, rejects completion.json, checks each closed row against all requested query_frames and history_frames=arange(max_query), and validates progress counts and unique sequence membership.",
+    "A sequence enters progress.jsonl only after both NPZ files are fully written. The resumed loop skips only validated closed rows, appends to progress.jsonl and recollects an unclosed sequence without adopting partial artifacts. Full EventRolloutData schema and causal-boundary validation still runs before training.",
+    "The queue permits only the original COLLECT_FULL_TRAIN stage, reads the saved plan, checks original arms and complete train/validation video membership, preserves finished sanity artifacts and passes --resume only to the four TRAIN collectors. DEV collection begins normally.",
+    "AST equality confirms the original read, environment, groups, record, cpu, wave, collect_command and fit functions and every postcollection statement through full training, DEV selection, native evaluation and own-weight cleanup are unchanged.",
+    "Saved plan has 16452 unique TRAIN queries over 881 videos and 1824 unique DEV queries over 98 videos, disjoint videos both across shards and between partitions. Four 24-epoch arms retain batch32/seed42, reference or budgeted ranking and lr1e-5 or3e-6. Eight best/last full98 evaluations and protected-parent selection still feed one selected checkpoint to both native datasets."
+  ],
+  "validation": {
+    "python": "E:/python.exe, CPython 3.12.6",
+    "two_source_AST_parse_and_compile": "PASS",
+    "actual_config_comparison_with_archived_configs": "PASS: 4 accepted; 20 deliberate config/query differences rejected",
+    "three_affected_sequence_query_H3_boundaries": "PASS",
+    "plan_query_uniqueness_shard_and_partition_disjointness": "PASS",
+    "archived_four_sanity_fit_receipts": "PASS: actual completed2epochs/2updates per arm, ABC changed, C1 frozen, strict reloads",
+    "downstream_AST_identity_against_base": "PASS",
+    "git_diff_check": "PASS; only Git LF-to-CRLF working-copy notices"
+  },
+  "operational_boundary": {
+    "review_is_source_and_archived_evidence_only": true,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "production_source_imports": 0,
+    "remote_queries": 0,
+    "deployment_executed": false,
+    "processes_stopped": false,
+    "production_outputs_modified": false,
+    "execution_plan_requires": "Before restarting, stop only original owned owner/collectors and old owned observer; archive original wave/owner logs and all four config/progress/jsonl files. The unchanged wave helper opens stage logs with w, so archive precedes resume. Then deploy the two reviewed files and run explicit same-root --resume-collection with one observer for the new owner.",
+    "execution_plan_status": "Described by parent; not executed or independently attested by this reviewer.",
+    "no_new_accuracy_or_full_training_completion_claim": true
+  }
+}
