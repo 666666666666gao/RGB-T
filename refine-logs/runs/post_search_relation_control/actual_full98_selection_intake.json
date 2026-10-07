@@ -1,0 +1,823 @@
+{
+  "archive": "/data/gb/setup/post_search_full98_selection_text_20261007.tar.gz",
+  "archive_sha256": "3f6299ccc4c030278b6b47de2f1cab527e40df7a09a16315f3513216032ae92c",
+  "manifest": [
+    {
+      "path": "selected_model.json",
+      "bytes": 1174,
+      "sha256": "e5a305213465f55f7bf9f554086a3d1102148f847bc8a6e4bd20bb9ebf2103ad"
+    },
+    {
+      "path": "full98_report/full_recoverability_report.json",
+      "bytes": 931666,
+      "sha256": "9ee2dc473d20a70d2f54ecf148151c9362781f6b308de3ab9f4aa7e6d06e00be"
+    },
+    {
+      "path": "full98_report/interventions.csv",
+      "bytes": 5415213,
+      "sha256": "7b2890cf880e95cf81658d3de0e3acd0bc2b225b7d1dd65d6e5b31865d30fabe"
+    },
+    {
+      "path": "full98_report/per_sequence.csv",
+      "bytes": 286774,
+      "sha256": "cf615f9953622b863f7b982baf7d566a1757853a98cf0ab92edd258dc5d4b373"
+    },
+    {
+      "path": "full98_report/recoverability_metrics_completed.txt",
+      "bytes": 83,
+      "sha256": "ec8a7fb20cba8e825469e36dbab8a6818b2196c285d790e701f753ab78f783b9"
+    },
+    {
+      "path": "full98/post_search_initial/predictions/inference_completion.json",
+      "bytes": 47818,
+      "sha256": "d58284b681f6520364c5179e0997be6be851be73c35cf4f4bb857c370c304cb2"
+    },
+    {
+      "path": "full98/post_search_initial/predictions/inference_config.json",
+      "bytes": 6006,
+      "sha256": "006a48fe55f86f4cac267b6b0acc5c9c73332a7a7d7ae9d01ae854b7825f104a"
+    },
+    {
+      "path": "initial_shards/gpu0/inference_completion.json",
+      "bytes": 12538,
+      "sha256": "87319b982b8772369afd7e80b83c73c8768582917ccb13f4b7d8f45801af419d"
+    },
+    {
+      "path": "initial_shards/gpu0/inference_config.json",
+      "bytes": 5951,
+      "sha256": "9442e9c4527b753bcb4d84de38c1f888cf482eb050327bfe78b41ad600c47669"
+    },
+    {
+      "path": "initial_shards/gpu1/inference_completion.json",
+      "bytes": 12558,
+      "sha256": "584d6b767b8aaa97e03e82efc147d028da00698c02b1f5a01fd8cbe2a90470e7"
+    },
+    {
+      "path": "initial_shards/gpu1/inference_config.json",
+      "bytes": 5952,
+      "sha256": "e5c78d8b6f3d021d73efe5e2a88ccb27bb2eb3695a7acf2e8feb5fe2ab0f5300"
+    },
+    {
+      "path": "initial_shards/gpu2/inference_completion.json",
+      "bytes": 12065,
+      "sha256": "04cfa4d91875028ea4fa9a009ec18e89809af0b16f81288a2f541fded4e9ce47"
+    },
+    {
+      "path": "initial_shards/gpu2/inference_config.json",
+      "bytes": 5952,
+      "sha256": "b7e09633f0174a45934b745ce81d6c849677aee043922fd5e988e635b4cb7d14"
+    },
+    {
+      "path": "initial_shards/gpu3/inference_completion.json",
+      "bytes": 12142,
+      "sha256": "982b5bcfe76a2ee823e4b672e4700d8c69de69706d05704dd6ef80ae597568b7"
+    },
+    {
+      "path": "initial_shards/gpu3/inference_config.json",
+      "bytes": 5952,
+      "sha256": "f82f126da312edd9bcb5906e5bd21e20d2d66d5152ffae5f7078001f50c62d5f"
+    }
+  ],
+  "full98_sequence_mean_iou": {
+    "baseline": 0.7432785069707898,
+    "c1": 0.7394401616015396,
+    "old4": 0.745906102961742,
+    "gross_parent": 0.7461261775861118,
+    "current_parent": 0.7444150380548322,
+    "one_way_lr5_best": 0.7444150380548322,
+    "post_search_lr5_best": 0.7429178211142045,
+    "one_way_lr3_best": 0.7444150380548322,
+    "post_search_lr3_best": 0.7415015978916236,
+    "one_way_lr5_last": 0.7148452050853672,
+    "post_search_lr5_last": 0.7185514046673305,
+    "one_way_lr3_last": 0.7144554006929378,
+    "post_search_lr3_last": 0.7199979233906126,
+    "post_search_initial": 0.7436684556301696
+  },
+  "selection": {
+    "selected_candidate": "one_way_lr5_best",
+    "selected_arm": "one_way_lr5",
+    "selected_checkpoint": "best",
+    "selected_epoch": 0,
+    "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+    "state_commit_model": null,
+    "search_value": "gross",
+    "same_checkpoint_both_native_datasets": true,
+    "native_metrics_completed": false,
+    "sequence_mean_iou": {
+      "baseline": 0.7432785069707898,
+      "c1": 0.7394401616015396,
+      "old4": 0.745906102961742,
+      "gross_parent": 0.7461261775861118,
+      "current_parent": 0.7444150380548322,
+      "one_way_lr5_best": 0.7444150380548322,
+      "post_search_lr5_best": 0.7429178211142045,
+      "one_way_lr3_best": 0.7444150380548322,
+      "post_search_lr3_best": 0.7415015978916236,
+      "one_way_lr5_last": 0.7148452050853672,
+      "post_search_lr5_last": 0.7185514046673305,
+      "one_way_lr3_last": 0.7144554006929378,
+      "post_search_lr3_last": 0.7199979233906126,
+      "post_search_initial": 0.7436684556301696
+    },
+    "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+  },
+  "initial_shards": [
+    {
+      "gpu": 0,
+      "sequences": 25,
+      "frames": 21486,
+      "wall_seconds": 882.0021939869039
+    },
+    {
+      "gpu": 1,
+      "sequences": 25,
+      "frames": 9290,
+      "wall_seconds": 378.00511906296015
+    },
+    {
+      "gpu": 2,
+      "sequences": 24,
+      "frames": 8546,
+      "wall_seconds": 366.27059055585414
+    },
+    {
+      "gpu": 3,
+      "sequences": 24,
+      "frames": 10096,
+      "wall_seconds": 408.0648694219999
+    }
+  ],
+  "paired": {
+    "one_way_lr5_best_vs_baseline": {
+      "mean_iou_delta_percentage_points": 0.11365310840425315,
+      "paired_sequence_95_ci": [
+        -0.2966963534077919,
+        0.5473318278418318
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 16,
+      "tied_sequences": 67,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_best_vs_baseline": {
+      "mean_iou_delta_percentage_points": -0.03606858565852723,
+      "paired_sequence_95_ci": [
+        -0.7377088334791613,
+        0.5874605525229316
+      ],
+      "improved_sequences": 22,
+      "worsened_sequences": 15,
+      "tied_sequences": 61,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_best_vs_baseline": {
+      "mean_iou_delta_percentage_points": 0.11365310840425315,
+      "paired_sequence_95_ci": [
+        -0.2966963534077919,
+        0.5473318278418318
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 16,
+      "tied_sequences": 67,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_best_vs_baseline": {
+      "mean_iou_delta_percentage_points": -0.17769090791660405,
+      "paired_sequence_95_ci": [
+        -0.8196104469995178,
+        0.3797567171465954
+      ],
+      "improved_sequences": 16,
+      "worsened_sequences": 17,
+      "tied_sequences": 65,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_last_vs_baseline": {
+      "mean_iou_delta_percentage_points": -2.843330188542265,
+      "paired_sequence_95_ci": [
+        -5.269301576518609,
+        -0.909818820248158
+      ],
+      "improved_sequences": 16,
+      "worsened_sequences": 30,
+      "tied_sequences": 52,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_last_vs_baseline": {
+      "mean_iou_delta_percentage_points": -2.4727102303459234,
+      "paired_sequence_95_ci": [
+        -4.570811401708329,
+        -0.8340330205802803
+      ],
+      "improved_sequences": 14,
+      "worsened_sequences": 31,
+      "tied_sequences": 53,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_last_vs_baseline": {
+      "mean_iou_delta_percentage_points": -2.8823106277851855,
+      "paired_sequence_95_ci": [
+        -5.405539687587438,
+        -0.7741006496514496
+      ],
+      "improved_sequences": 21,
+      "worsened_sequences": 40,
+      "tied_sequences": 37,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_last_vs_baseline": {
+      "mean_iou_delta_percentage_points": -2.3280583580177074,
+      "paired_sequence_95_ci": [
+        -4.485524267789706,
+        -0.560028148709774
+      ],
+      "improved_sequences": 16,
+      "worsened_sequences": 37,
+      "tied_sequences": 45,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_initial_vs_baseline": {
+      "mean_iou_delta_percentage_points": 0.03899486593800084,
+      "paired_sequence_95_ci": [
+        -0.3396594886367749,
+        0.44679803362151665
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 16,
+      "tied_sequences": 67,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_best_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.49748764532926276,
+      "paired_sequence_95_ci": [
+        -0.24041379413316213,
+        1.3671017260417628
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 7,
+      "tied_sequences": 78,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_best_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.3477659512664826,
+      "paired_sequence_95_ci": [
+        -0.5546022285308286,
+        1.3678623858580605
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 9,
+      "tied_sequences": 66,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_best_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.49748764532926276,
+      "paired_sequence_95_ci": [
+        -0.24041379413316213,
+        1.3671017260417628
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 7,
+      "tied_sequences": 78,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_best_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.20614362900840558,
+      "paired_sequence_95_ci": [
+        -0.630895573992407,
+        1.0228863218971214
+      ],
+      "improved_sequences": 19,
+      "worsened_sequences": 10,
+      "tied_sequences": 69,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_last_vs_c1": {
+      "mean_iou_delta_percentage_points": -2.459495651617255,
+      "paired_sequence_95_ci": [
+        -4.8358003742045526,
+        -0.5871018173353791
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 26,
+      "tied_sequences": 57,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_last_vs_c1": {
+      "mean_iou_delta_percentage_points": -2.088875693420914,
+      "paired_sequence_95_ci": [
+        -4.139535973138861,
+        -0.5378549843449291
+      ],
+      "improved_sequences": 14,
+      "worsened_sequences": 26,
+      "tied_sequences": 58,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_last_vs_c1": {
+      "mean_iou_delta_percentage_points": -2.4984760908601746,
+      "paired_sequence_95_ci": [
+        -4.939586392784598,
+        -0.4745261319837086
+      ],
+      "improved_sequences": 20,
+      "worsened_sequences": 41,
+      "tied_sequences": 37,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_last_vs_c1": {
+      "mean_iou_delta_percentage_points": -1.944223821092698,
+      "paired_sequence_95_ci": [
+        -3.889890339318592,
+        -0.41238326557982113
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 36,
+      "tied_sequences": 47,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_initial_vs_c1": {
+      "mean_iou_delta_percentage_points": 0.42282940286301046,
+      "paired_sequence_95_ci": [
+        -0.2784950913772399,
+        1.2958304198621535
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 7,
+      "tied_sequences": 78,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_best_vs_old4": {
+      "mean_iou_delta_percentage_points": -0.14910649069096293,
+      "paired_sequence_95_ci": [
+        -0.6198818059014363,
+        0.24164492958559136
+      ],
+      "improved_sequences": 9,
+      "worsened_sequences": 17,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_best_vs_old4": {
+      "mean_iou_delta_percentage_points": -0.2988281847537433,
+      "paired_sequence_95_ci": [
+        -0.9158359211351622,
+        0.19923813273758903
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 16,
+      "tied_sequences": 59,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_best_vs_old4": {
+      "mean_iou_delta_percentage_points": -0.14910649069096293,
+      "paired_sequence_95_ci": [
+        -0.6198818059014363,
+        0.24164492958559136
+      ],
+      "improved_sequences": 9,
+      "worsened_sequences": 17,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_best_vs_old4": {
+      "mean_iou_delta_percentage_points": -0.4404505070118202,
+      "paired_sequence_95_ci": [
+        -1.1705537754798172,
+        0.1524528683786051
+      ],
+      "improved_sequences": 19,
+      "worsened_sequences": 17,
+      "tied_sequences": 62,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_last_vs_old4": {
+      "mean_iou_delta_percentage_points": -3.1060897876374804,
+      "paired_sequence_95_ci": [
+        -5.490812452048224,
+        -1.1934476682942898
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 37,
+      "tied_sequences": 46,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_last_vs_old4": {
+      "mean_iou_delta_percentage_points": -2.7354698294411395,
+      "paired_sequence_95_ci": [
+        -4.859146514701208,
+        -1.0664598587619343
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 36,
+      "tied_sequences": 47,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_last_vs_old4": {
+      "mean_iou_delta_percentage_points": -3.145070226880401,
+      "paired_sequence_95_ci": [
+        -5.607874631691374,
+        -1.1124421741187815
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 44,
+      "tied_sequences": 31,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_last_vs_old4": {
+      "mean_iou_delta_percentage_points": -2.5908179571129235,
+      "paired_sequence_95_ci": [
+        -4.7450971309480545,
+        -0.7983067649927648
+      ],
+      "improved_sequences": 18,
+      "worsened_sequences": 40,
+      "tied_sequences": 40,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_initial_vs_old4": {
+      "mean_iou_delta_percentage_points": -0.2237647331572152,
+      "paired_sequence_95_ci": [
+        -0.6702390235088275,
+        0.11283619797902977
+      ],
+      "improved_sequences": 9,
+      "worsened_sequences": 17,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_best_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -0.1711139531279526,
+      "paired_sequence_95_ci": [
+        -0.625715887947533,
+        0.19793913214953046
+      ],
+      "improved_sequences": 10,
+      "worsened_sequences": 16,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_best_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -0.320835647190733,
+      "paired_sequence_95_ci": [
+        -0.9319927433036788,
+        0.16790433676109165
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 16,
+      "tied_sequences": 59,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_best_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -0.1711139531279526,
+      "paired_sequence_95_ci": [
+        -0.625715887947533,
+        0.19793913214953046
+      ],
+      "improved_sequences": 10,
+      "worsened_sequences": 16,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_best_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -0.46245796944880985,
+      "paired_sequence_95_ci": [
+        -1.19189650036968,
+        0.12720682393033983
+      ],
+      "improved_sequences": 19,
+      "worsened_sequences": 17,
+      "tied_sequences": 62,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_last_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -3.1280972500744704,
+      "paired_sequence_95_ci": [
+        -5.519654343441275,
+        -1.1887680638151497
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 37,
+      "tied_sequences": 46,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_last_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -2.757477291878129,
+      "paired_sequence_95_ci": [
+        -4.896431021581453,
+        -1.0700560629077283
+      ],
+      "improved_sequences": 15,
+      "worsened_sequences": 36,
+      "tied_sequences": 47,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_last_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -3.1670776893173915,
+      "paired_sequence_95_ci": [
+        -5.6138456304028646,
+        -1.1430827625084308
+      ],
+      "improved_sequences": 23,
+      "worsened_sequences": 44,
+      "tied_sequences": 31,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_last_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -2.6128254195499134,
+      "paired_sequence_95_ci": [
+        -4.758613436568168,
+        -0.8113923375819343
+      ],
+      "improved_sequences": 17,
+      "worsened_sequences": 41,
+      "tied_sequences": 40,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_initial_vs_gross_parent": {
+      "mean_iou_delta_percentage_points": -0.24577219559420493,
+      "paired_sequence_95_ci": [
+        -0.682699899923472,
+        0.06104394437848037
+      ],
+      "improved_sequences": 10,
+      "worsened_sequences": 16,
+      "tied_sequences": 72,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_best_vs_current_parent": {
+      "mean_iou_delta_percentage_points": 0.0,
+      "paired_sequence_95_ci": [
+        0.0,
+        0.0
+      ],
+      "improved_sequences": 0,
+      "worsened_sequences": 0,
+      "tied_sequences": 98,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_best_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -0.14972169406278035,
+      "paired_sequence_95_ci": [
+        -0.7063261172721726,
+        0.2730399537020606
+      ],
+      "improved_sequences": 19,
+      "worsened_sequences": 8,
+      "tied_sequences": 71,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_best_vs_current_parent": {
+      "mean_iou_delta_percentage_points": 0.0,
+      "paired_sequence_95_ci": [
+        0.0,
+        0.0
+      ],
+      "improved_sequences": 0,
+      "worsened_sequences": 0,
+      "tied_sequences": 98,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_best_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -0.29134401632085716,
+      "paired_sequence_95_ci": [
+        -0.8394286366396992,
+        0.1188957922417313
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 11,
+      "tied_sequences": 74,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr5_last_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -2.9569832969465173,
+      "paired_sequence_95_ci": [
+        -5.3837489329013275,
+        -1.048646202078255
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 29,
+      "tied_sequences": 56,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr5_last_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -2.5863633387501768,
+      "paired_sequence_95_ci": [
+        -4.7101881259119684,
+        -0.9526773738225702
+      ],
+      "improved_sequences": 13,
+      "worsened_sequences": 28,
+      "tied_sequences": 57,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "one_way_lr3_last_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -2.9959637361894385,
+      "paired_sequence_95_ci": [
+        -5.46880864380848,
+        -0.9978952859281373
+      ],
+      "improved_sequences": 21,
+      "worsened_sequences": 40,
+      "tied_sequences": 37,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_lr3_last_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -2.441711466421961,
+      "paired_sequence_95_ci": [
+        -4.501357605216538,
+        -0.7556446358682922
+      ],
+      "improved_sequences": 14,
+      "worsened_sequences": 38,
+      "tied_sequences": 46,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    },
+    "post_search_initial_vs_current_parent": {
+      "mean_iou_delta_percentage_points": -0.0746582424662523,
+      "paired_sequence_95_ci": [
+        -0.2239747273987569,
+        0.0
+      ],
+      "improved_sequences": 0,
+      "worsened_sequences": 1,
+      "tied_sequences": 97,
+      "bootstrap_resamples": 5000,
+      "scope": "fixed checkpoint sequence resampling, descriptive development results; not native metrics or training-seed uncertainty"
+    }
+  },
+  "full98_complete": true,
+  "native_complete": false,
+  "scope": "Nine original full98 developer runs and actual-GT report, pre-TEST one-checkpoint selection; not native benchmark metrics",
+  "original_native_observation": {
+    "observed_at_cst": "2026-10-07T10:35:23.597683+08:00",
+    "owner_pid": 1311071,
+    "owner_alive": true,
+    "progress": {
+      "stage": "ONE_MODEL_LOCKED_BEFORE_NATIVE",
+      "at_cst": "2026-10-07T10:31:11.132900+08:00",
+      "elapsed_seconds": 11269.157255958766,
+      "selected_candidate": "one_way_lr5_best",
+      "selected_arm": "one_way_lr5",
+      "selected_checkpoint": "best",
+      "selected_epoch": 0,
+      "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+      "state_commit_model": null,
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "native_metrics_completed": false,
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "current_parent": 0.7444150380548322,
+        "one_way_lr5_best": 0.7444150380548322,
+        "post_search_lr5_best": 0.7429178211142045,
+        "one_way_lr3_best": 0.7444150380548322,
+        "post_search_lr3_best": 0.7415015978916236,
+        "one_way_lr5_last": 0.7148452050853672,
+        "post_search_lr5_last": 0.7185514046673305,
+        "one_way_lr3_last": 0.7144554006929378,
+        "post_search_lr3_last": 0.7199979233906126,
+        "post_search_initial": 0.7436684556301696
+      },
+      "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+    },
+    "observed_phase": {
+      "stage": "LASHER_SHARDS",
+      "at_cst": "2026-10-07T10:31:33.888105+08:00",
+      "children": [
+        {
+          "gpu": 0,
+          "pid": 1618754
+        },
+        {
+          "gpu": 1,
+          "pid": 1618755
+        },
+        {
+          "gpu": 2,
+          "pid": 1618756
+        },
+        {
+          "gpu": 3,
+          "pid": 1618757
+        }
+      ]
+    },
+    "children_alive": [
+      {
+        "gpu": 0,
+        "pid": 1618754,
+        "alive": true
+      },
+      {
+        "gpu": 1,
+        "pid": 1618755,
+        "alive": true
+      },
+      {
+        "gpu": 2,
+        "pid": 1618756,
+        "alive": true
+      },
+      {
+        "gpu": 3,
+        "pid": 1618757,
+        "alive": true
+      }
+    ],
+    "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
+    "estimated_phase_seconds_from_prior_native": 3332,
+    "closed_causal_pair_check": {
+      "completed": true,
+      "same_loaded_parameters": true,
+      "pre_search_outputs_and_local_only_scores_exact": true,
+      "unobserved_region_does_not_change_other_pair": true,
+      "observed_region_changes_both_sides": true,
+      "single_executed_pair_matches_its_independent_cache_case": true,
+      "post_search_keep_reference_recomputed": true,
+      "both_matched_pair_objectives_backward_finite_relations_gradient": true,
+      "frozen_c1_gradients_absent": true,
+      "optimizer_updates": 0,
+      "causal_input_fields": [
+        "features",
+        "evidence",
+        "raw_score",
+        "boxes",
+        "instance_features",
+        "anchor_features",
+        "image_boxes",
+        "valid",
+        "c1_quality",
+        "original_choice",
+        "history_instance_descriptors",
+        "history_evidence",
+        "history_quality",
+        "history_boxes",
+        "history_frames",
+        "history_write",
+        "history_valid",
+        "motion_means",
+        "motion_log_weights"
+      ],
+      "scorer_ms": {
+        "one_way": {
+          "mean": 728.8010958814994,
+          "p95": 748.9434187300503
+        },
+        "post_search_bidirectional": {
+          "mean": 729.730412629433,
+          "p95": 753.1440840102732
+        }
+      },
+      "timing_scope": "100 alternating synchronised cached module forwards, one actual region, batch1; excludes GOLA and is not full-system FPS",
+      "method_effect_or_formal_accuracy_proven": false
+    }
+  }
+}

@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T10:06:17.304311+08:00",
+  "updated_cst": "2026-10-07T11:38:56.992973+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42932,7 +42932,7 @@
     "record": "refine-logs/runs/current_policy_aggregation/actual_completed_artifact_intake.json"
   },
   "current_post_search_relation_control": {
-    "updated_cst": "2026-10-07T09:38:21.225652+08:00",
+    "updated_cst": "2026-10-07T11:38:56.992973+08:00",
     "source_main_commit": "7691742b3fc121d80684aef262e56d04ef7d757f",
     "actual_launch": {
       "pid": 1311071,
@@ -42949,78 +42949,86 @@
       "no_three_seed_gate": true
     },
     "actual_observation": {
-      "observed_at_cst": "2026-10-07T09:35:06.958514+08:00",
+      "observed_at_cst": "2026-10-07T11:32:27.355273+08:00",
       "owner_pid": 1311071,
       "owner_alive": true,
       "progress": {
-        "stage": "FULL98_LAST",
-        "at_cst": "2026-10-07T09:34:40.269035+08:00",
-        "elapsed_seconds": 7878.293389731087,
-        "children": [
-          {
-            "gpu": 0,
-            "pid": 1522945
-          },
-          {
-            "gpu": 1,
-            "pid": 1522946
-          },
-          {
-            "gpu": 2,
-            "pid": 1522947
-          },
-          {
-            "gpu": 3,
-            "pid": 1522948
-          }
-        ]
+        "stage": "ONE_MODEL_LOCKED_BEFORE_NATIVE",
+        "at_cst": "2026-10-07T10:31:11.132900+08:00",
+        "elapsed_seconds": 11269.157255958766,
+        "selected_candidate": "one_way_lr5_best",
+        "selected_arm": "one_way_lr5",
+        "selected_checkpoint": "best",
+        "selected_epoch": 0,
+        "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+        "state_commit_model": null,
+        "search_value": "gross",
+        "same_checkpoint_both_native_datasets": true,
+        "native_metrics_completed": false,
+        "sequence_mean_iou": {
+          "baseline": 0.7432785069707898,
+          "c1": 0.7394401616015396,
+          "old4": 0.745906102961742,
+          "gross_parent": 0.7461261775861118,
+          "current_parent": 0.7444150380548322,
+          "one_way_lr5_best": 0.7444150380548322,
+          "post_search_lr5_best": 0.7429178211142045,
+          "one_way_lr3_best": 0.7444150380548322,
+          "post_search_lr3_best": 0.7415015978916236,
+          "one_way_lr5_last": 0.7148452050853672,
+          "post_search_lr5_last": 0.7185514046673305,
+          "one_way_lr3_last": 0.7144554006929378,
+          "post_search_lr3_last": 0.7199979233906126,
+          "post_search_initial": 0.7436684556301696
+        },
+        "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
       },
       "observed_phase": {
-        "stage": "FULL98_LAST",
-        "at_cst": "2026-10-07T09:34:40.269035+08:00",
-        "elapsed_seconds": 7878.293389731087,
+        "stage": "RGBT234_SHARDS",
+        "at_cst": "2026-10-07T11:30:57.337364+08:00",
         "children": [
           {
             "gpu": 0,
-            "pid": 1522945
+            "pid": 1700618
           },
           {
             "gpu": 1,
-            "pid": 1522946
+            "pid": 1700619
           },
           {
             "gpu": 2,
-            "pid": 1522947
+            "pid": 1700620
           },
           {
             "gpu": 3,
-            "pid": 1522948
+            "pid": 1700621
           }
         ]
       },
       "children_alive": [
         {
           "gpu": 0,
-          "pid": 1522945,
+          "pid": 1700618,
           "alive": true
         },
         {
           "gpu": 1,
-          "pid": 1522946,
+          "pid": 1700619,
           "alive": true
         },
         {
           "gpu": 2,
-          "pid": 1522947,
+          "pid": 1700620,
           "alive": true
         },
         {
           "gpu": 3,
-          "pid": 1522948,
+          "pid": 1700621,
           "alive": true
         }
       ],
       "scope": "Read-only owner/progress/closed receipts/current train log; no NN/reports/cleanup",
+      "estimated_phase_seconds_from_prior_native": 1069,
       "closed_causal_pair_check": {
         "completed": true,
         "same_loaded_parameters": true,
@@ -43067,10 +43075,10 @@
         "method_effect_or_formal_accuracy_proven": false
       }
     },
-    "next_check_cst": "2026-10-07T09:06:59.037659+08:00",
+    "next_check_cst": "2026-10-07T11:45:46.337364+08:00",
     "goal_status": "ACTIVE_UNMET",
     "full_training_complete": true,
-    "full98_complete": false,
+    "full98_complete": true,
     "native_complete": false,
     "first_actual_causal_check_complete": true,
     "four_actual_fit_sanities_complete": true,
@@ -43106,7 +43114,58 @@
       },
       "planned_near_end_cst": "2026-10-07T10:09:37.728812+08:00",
       "scope": "Passive wait schedule from prior full-video wall time; not current speed or an acceleration claim"
-    }
+    },
+    "full98_completed_candidate_runs": 9,
+    "full98_completed_video_runs": 882,
+    "full98_completed_frames": 444762,
+    "full98_sequence_mean_iou": {
+      "baseline": 0.7432785069707898,
+      "c1": 0.7394401616015396,
+      "old4": 0.745906102961742,
+      "gross_parent": 0.7461261775861118,
+      "current_parent": 0.7444150380548322,
+      "one_way_lr5_best": 0.7444150380548322,
+      "post_search_lr5_best": 0.7429178211142045,
+      "one_way_lr3_best": 0.7444150380548322,
+      "post_search_lr3_best": 0.7415015978916236,
+      "one_way_lr5_last": 0.7148452050853672,
+      "post_search_lr5_last": 0.7185514046673305,
+      "one_way_lr3_last": 0.7144554006929378,
+      "post_search_lr3_last": 0.7199979233906126,
+      "post_search_initial": 0.7436684556301696
+    },
+    "full98_report_receipt": "refine-logs/runs/post_search_relation_control/actual_full98_selection_intake.json",
+    "last_wave_receipt": "refine-logs/runs/post_search_relation_control/actual_closed_last_video_wave_intake.json",
+    "pre_test_selected_model": {
+      "selected_candidate": "one_way_lr5_best",
+      "selected_arm": "one_way_lr5",
+      "selected_checkpoint": "best",
+      "selected_epoch": 0,
+      "parent_model": "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+      "state_commit_model": null,
+      "search_value": "gross",
+      "same_checkpoint_both_native_datasets": true,
+      "native_metrics_completed": false,
+      "sequence_mean_iou": {
+        "baseline": 0.7432785069707898,
+        "c1": 0.7394401616015396,
+        "old4": 0.745906102961742,
+        "gross_parent": 0.7461261775861118,
+        "current_parent": 0.7444150380548322,
+        "one_way_lr5_best": 0.7444150380548322,
+        "post_search_lr5_best": 0.7429178211142045,
+        "one_way_lr3_best": 0.7444150380548322,
+        "post_search_lr3_best": 0.7415015978916236,
+        "one_way_lr5_last": 0.7148452050853672,
+        "post_search_lr5_last": 0.7185514046673305,
+        "one_way_lr3_last": 0.7144554006929378,
+        "post_search_lr3_last": 0.7199979233906126,
+        "post_search_initial": 0.7436684556301696
+      },
+      "selection_scope": "Eight matched trained checkpoints plus explicit bidirectional epoch0 on reused developer98; locked before TEST; epoch0 is not new learning gain"
+    },
+    "new_learning_gain_established": false,
+    "all_four_training_endpoints_below_current_parent": true
   },
   "completed_rgbt234_parent_loss_diagnostic": {
     "record": "refine-logs/runs/current_policy_aggregation/rgbt234_parent_loss_diagnostic_20261007/summary.json",
