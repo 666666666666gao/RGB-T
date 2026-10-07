@@ -285,3 +285,7 @@ Four true fits lr1e-3/lr1e-4 x plain/meaningful4weight. Parent frozen full E5 AB
 ## 2026-10-07T19:30:49.039005+08:00 Current-policy full881TRAIN trajectory collection
 
 Fresh source review PASS; 4frame-balanced disjoint shards with4real64frame sanity thenfull. Frozen E5/gross/action,0updates/weights, noDEV/TEST; actual-event mining and newrisk training later. Inventory437configs confirms nofull881currentTRAINtrace. No raw training/officialaccuracy claim.
+
+## 2026-10-07T20:51:51.213665+08:00 当前策略全TRAIN事件监督入口
+
+原881TRAIN因果采集在四卡运行，真实4×64帧sanity通过；不改动主模型/配置。本次CPU复用真实已关闭489序列、225266帧产生8178条H3候选作业，实际干预317。标签与完整计数见current_policy_train_events/closed_snapshot/report.json。后续以真实prefix replay构造同状态动作展开，max-prefix显式5342，正常对照保留，不把近阈值代理/圆整框当真实状态。本阶段优化0/正式指标0；全881完成后再采集全事件库存，不能把CPU清单当完整训练或五项+2达标。

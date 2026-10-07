@@ -1,0 +1,148 @@
+{
+  "completed": true,
+  "CPU_only": true,
+  "no_new_NN": true,
+  "reports": {
+    "sanity": {
+      "output": "/data/gb/outputs/current_policy_train_traces_20261007/cpu_events_20261007_204838_sanity",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.mine_current_policy_events",
+        "--trace-root",
+        "/data/gb/outputs/current_policy_train_traces_20261007",
+        "--output",
+        "/data/gb/outputs/current_policy_train_traces_20261007/cpu_events_20261007_204838_sanity",
+        "--sequences-per-shard",
+        "1"
+      ],
+      "report": {
+        "created_cst": "2026-10-07T20:48:41.851054+08:00",
+        "trace_root": "/data/gb/outputs/current_policy_train_traces_20261007",
+        "policy": {
+          "model": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "family": "ABC_candidate_relations",
+          "epoch": 5,
+          "search_value": "gross",
+          "write_verification": "action"
+        },
+        "scope": "CPU TRAIN event mining; completed sequences only; no optimizer, new weights or native TEST accuracy",
+        "closed_sequences": 4,
+        "closed_frames": 1180,
+        "planned_sequences": 881,
+        "planned_frames": 464663,
+        "full_TRAIN_inventory": false,
+        "counts": {
+          "actual_intervention": 2,
+          "intervention_iou_drop_gt_0.1": 1,
+          "intervention_iou_gain_gt_0.1": 1,
+          "recoverable_missed_candidate": 1,
+          "extra_reintroduced_but_rejected": 1,
+          "wrong_localization_template_write": 0,
+          "known_tracking_frames": 1176,
+          "failed_tracking_frames": 28,
+          "actual_extra_forwards": 11,
+          "failure_events": 1,
+          "recovered_events": 1,
+          "censored_failure_events": 0
+        },
+        "query_representatives": 15,
+        "tags": {
+          "normal_control": 8,
+          "extra_reintroduced_but_rejected": 1,
+          "failure_turn_-2": 1,
+          "failure_turn_-1": 1,
+          "failure_turn_+0": 1,
+          "actual_intervention": 2,
+          "failure_turn_+1": 1,
+          "intervention_iou_drop_gt_0.1": 1,
+          "recoverable_missed_candidate": 1,
+          "failure_turn_+3": 1,
+          "intervention_iou_gain_gt_0.1": 1,
+          "observed_recovery_start": 1
+        },
+        "H3_jobs": 11,
+        "ineligible_H3_queries": 4,
+        "required_collector_max_prefix": 116,
+        "H3_collection_contract": "Pass --max-prefix required_collector_max_prefix; the default1024 can reject full-video late queries",
+        "labels": "Actual dataset GT only after predictions; IoU localization proxies, not full distractor semantic identities",
+        "near_threshold_events": "Not mined: stored predicted_advantage omits final harm/write net score; cannot claim a net-margin threshold",
+        "states": "Queries are timestamps for causal prefix replay, never states reconstructed from rounded text predictions",
+        "event_sampling": "All GT-known actual interventions; largest gap per contiguous missed/write episode; failure offsets -2,-1,0,+1,+3; observed recovery; up to2 normal controls persequence",
+        "censored_failures": "Not recovered within recorded sequence, not proven permanently unrecoverable"
+      }
+    },
+    "closed_snapshot": {
+      "output": "/data/gb/outputs/current_policy_train_traces_20261007/cpu_events_20261007_204838_closed_snapshot",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.mine_current_policy_events",
+        "--trace-root",
+        "/data/gb/outputs/current_policy_train_traces_20261007",
+        "--output",
+        "/data/gb/outputs/current_policy_train_traces_20261007/cpu_events_20261007_204838_closed_snapshot",
+        "--sequences-per-shard",
+        "0"
+      ],
+      "report": {
+        "created_cst": "2026-10-07T20:48:47.342572+08:00",
+        "trace_root": "/data/gb/outputs/current_policy_train_traces_20261007",
+        "policy": {
+          "model": "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "family": "ABC_candidate_relations",
+          "epoch": 5,
+          "search_value": "gross",
+          "write_verification": "action"
+        },
+        "scope": "CPU TRAIN event mining; completed sequences only; no optimizer, new weights or native TEST accuracy",
+        "closed_sequences": 489,
+        "closed_frames": 225266,
+        "planned_sequences": 881,
+        "planned_frames": 464663,
+        "full_TRAIN_inventory": false,
+        "counts": {
+          "actual_intervention": 317,
+          "intervention_iou_drop_gt_0.1": 64,
+          "intervention_iou_gain_gt_0.1": 110,
+          "recoverable_missed_candidate": 7248,
+          "extra_reintroduced_but_rejected": 2663,
+          "wrong_localization_template_write": 2877,
+          "known_tracking_frames": 223970,
+          "failed_tracking_frames": 36671,
+          "actual_extra_forwards": 25308,
+          "failure_events": 743,
+          "recovered_events": 635,
+          "censored_failure_events": 108
+        },
+        "query_representatives": 8590,
+        "tags": {
+          "normal_control": 974,
+          "failure_turn_-2": 734,
+          "failure_turn_-1": 731,
+          "failure_turn_+0": 743,
+          "extra_reintroduced_but_rejected": 1912,
+          "failure_turn_+1": 743,
+          "failure_turn_+3": 740,
+          "recoverable_missed_candidate": 2371,
+          "observed_recovery_start": 635,
+          "actual_intervention": 317,
+          "intervention_iou_gain_gt_0.1": 110,
+          "intervention_iou_drop_gt_0.1": 64,
+          "wrong_localization_template_write": 169
+        },
+        "H3_jobs": 8178,
+        "ineligible_H3_queries": 412,
+        "required_collector_max_prefix": 5342,
+        "H3_collection_contract": "Pass --max-prefix required_collector_max_prefix; the default1024 can reject full-video late queries",
+        "labels": "Actual dataset GT only after predictions; IoU localization proxies, not full distractor semantic identities",
+        "near_threshold_events": "Not mined: stored predicted_advantage omits final harm/write net score; cannot claim a net-margin threshold",
+        "states": "Queries are timestamps for causal prefix replay, never states reconstructed from rounded text predictions",
+        "event_sampling": "All GT-known actual interventions; largest gap per contiguous missed/write episode; failure offsets -2,-1,0,+1,+3; observed recovery; up to2 normal controls persequence",
+        "censored_failures": "Not recovered within recorded sequence, not proven permanently unrecoverable"
+      }
+    }
+  }
+}
