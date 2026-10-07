@@ -128,6 +128,15 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
                     'evidence': candidates['evidence'][0, choice].cpu().numpy().copy(),
                     'quality': float(quality[choice]), 'box': box.copy(), 'frame': frame,
                     'write': bool(tracker.last_decision['template_updated'])})
+    return collect_contexts(contexts, extractor, head, motion, device, args, prefix_model,
+                            future_policy, prefix_write_verification)
+
+
+@torch.inference_mode()
+def collect_contexts(contexts, extractor, head, motion, device, args, prefix_model=None,
+                     future_policy='c1', prefix_write_verification='identity'):
+    """Label queries from existing causal contexts, preserving the old rollout."""
+    assert future_policy in ('c1', 'own') and (future_policy != 'own' or prefix_model is not None)
     images = [read_pair(*paths(c['sequence'], c['query']), device) for c in contexts]
     original = observe_actions([(c['tracker'], c['branch'], im) for c, im in zip(contexts, images)], extractor, head)
     rows = [history_arrays(c, obs[0]['anchor_features'][0].cpu().numpy(), args.max_prefix)
@@ -141,7 +150,13 @@ def collect_batch(jobs, dataset, extractor, head, motion, device, args, prefix_m
                            'history_boxes', 'history_frames', 'history_write', 'history_valid')}
     anchor, memory, _ = motion.history_memory(history)
     distribution = motion.motion(history['history_boxes'].float(), history['history_frames'], history['history_valid'],
-                                 history['history_quality'].float(), anchor, memory)
+                                  history['history_quality'].float(), anchor, memory)
+    return label_contexts(contexts, images, original, rows, distribution, extractor, head, device, args, future_policy)
+
+
+@torch.inference_mode()
+def label_contexts(contexts, images, original, rows, distribution, extractor, head, device, args, future_policy):
+    """Shared visual-region and private-future action labeling at a fixed state."""
     reference = distribution['reference'].cpu().numpy().astype(np.float64)
     size = np.maximum(reference[:, 2:] - reference[:, :2], 10.)
     center = reference.reshape(-1, 2, 2).mean(1)

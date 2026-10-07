@@ -81,7 +81,7 @@ def main():
     p.add_argument('--output', required=True)
     args = p.parse_args()
     selection, review = read(args.selection), read(args.review)
-    assert review['status'] == 'PASS' and review['scope'] in ('COMPLETE_STATE_COMMIT_PIPELINE_SOURCE', 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE', 'COMPLETE_IDENTITY_EVIDENCE_PIPELINE_SOURCE', 'COMPLETE_PROTECTED_REFERENCE_PIPELINE_SOURCE')
+    assert review['status'] == 'PASS' and review['scope'] in ('COMPLETE_STATE_COMMIT_PIPELINE_SOURCE', 'COMPLETE_CANDIDATE_RELATION_PIPELINE_SOURCE', 'COMPLETE_IDENTITY_EVIDENCE_PIPELINE_SOURCE', 'COMPLETE_PROTECTED_REFERENCE_PIPELINE_SOURCE', 'COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE')
     label = 'state_commit' if review['scope'] == 'COMPLETE_STATE_COMMIT_PIPELINE_SOURCE' else 'selected_ABC'
     assert selection['same_checkpoint_both_native_datasets'] and not selection['native_metrics_completed']
     root = Path(args.output)

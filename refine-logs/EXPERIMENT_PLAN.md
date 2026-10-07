@@ -289,3 +289,7 @@ Fresh source review PASS; 4frame-balanced disjoint shards with4real64frame sanit
 ## 2026-10-07T20:51:51.213665+08:00 当前策略全TRAIN事件监督入口
 
 原881TRAIN因果采集在四卡运行，真实4×64帧sanity通过；不改动主模型/配置。本次CPU复用真实已关闭489序列、225266帧产生8178条H3候选作业，实际干预317。标签与完整计数见current_policy_train_events/closed_snapshot/report.json。后续以真实prefix replay构造同状态动作展开，max-prefix显式5342，正常对照保留，不把近阈值代理/圆整框当真实状态。本阶段优化0/正式指标0；全881完成后再采集全事件库存，不能把CPU清单当完整训练或五项+2达标。
+
+## 2026-10-07T22:21:08.335265+08:00 当前策略关键事件→共享因果前缀→完整ABC训练→同一模型双native
+
+源码freshPASS，原owner2310613未重启。架构不变；CPU共享历史/每batch CUDA、并行等价记忆公式；真实GPUsanity/最长batch32尚待观察。完整4×24epoch，8best/last full98+父策略选一份，统一245/234正式5指标/31attrs/paired，即使负结果也完成。详见ONEhandoff与current_event_rollout_fit源码复核；本发布观察到新优化0，新native0，目标仍ACTIVE_UNMET0/5。
