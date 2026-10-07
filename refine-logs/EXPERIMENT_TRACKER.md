@@ -222,3 +222,8 @@ Prior identity transfer bothfullnative audited, +2unmet. Four state-propagation 
 ## 2026-10-07T18:45:15.905709+08:00 Current query consistency actual COMPLETE
 
 64 TRAIN queries; 0 optimizer; summary={"serial_grouped_original_choice_disagreements": 0, "grouped_existing_cache_choice_disagreements": 0, "memory_reconstruction_decision_changes": 0, "actual_vs_reconstructed_identity_anchor": {"non_exact": 0, "max_abs": 0.0}, "actual_vs_reconstructed_identity_memory": {"non_exact": 52, "max_abs": 2.682209014892578e-07}, "cached_motion_vs_actual": {"non_exact": 64, "max_abs": 4.76837158203125e-07}, "cached_motion_log_weights_vs_actual": {"non_exact": 42, "max_abs": 4.76837158203125e-07}, "rebuilt_motion_vs_actual": {"non_exact": 52, "max_abs": 4.76837158203125e-07}, "rebuilt_motion_log_weights_vs_actual": {"non_exact": 15, "max_abs": 4.76837158203125e-07}, "memory_reconstruction_local_score_difference": {"non_exact": 49, "max_abs": 7.450580596923828e-09}, "queries": 64, "new_optimizer_updates": 0, "no_new_model_weights": true, "partition": "TRAIN", "first_original_batch_per_GPU": true, "old_failure_stratum_not_representative": true}. Full diagnostic input differences are not native accuracy or unique causal attribution.
+
+
+## 2026-10-07T19:06:07.286115+08:00 C residual risk calibration SOURCE PASS
+
+4full128epoch fits pending; newmainABCsteps0. Parent-query tiny numerical drift not causal cache bug. FullGOLA+2 remains0/5.

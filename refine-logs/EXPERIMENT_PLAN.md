@@ -275,3 +275,8 @@ Order: fresh source review PASS → four real64frame sanity (parent all original
 ## 2026-10-07T18:34:21.652086+08:00 CURRENT_QUERY_CONSISTENCY diagnostic
 
 Source reviewed2files. Priorprotectedcontrol full4full98+bothnative complete negative versusparent. Fourfirst1TRAINsanity thenfourfirst16actualsourcebatches, samefrozenE5/modelpolicy; compare serial vs batch16 query and cache-reconstructed A/B versus actualonline states. GT onlyinitial/postpred, nofuture/Test/optimizer. Scope64oldfailurestratum, notfullTRAIN, extra64/fullfuture/variance notcovered. Newtrainingrequiresactualevidence, no automaticlarge recollection ifdifferencesirrelevant.
+
+
+## 2026-10-07T19:06:07.286115+08:00 C action residual risk calibration feasibility
+
+Four true fits lr1e-3/lr1e-4 x plain/meaningful4weight. Parent frozen full E5 ABC/C1, own-state256 TRAIN/196 DEV H3 targets;128epochs512steps each/3 sequence-bootstrap heads. Compare mean vs disagreement penalty at same cached action count, population ranking is not online policy. Require source review, real2epoch sanity, fullfit actual gradients, parent frozen and best/last strict reload. No new official accuracy or fullABC end-to-end fitting claimed; only after support integrate causally for full98 and both formal.

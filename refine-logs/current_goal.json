@@ -4,7 +4,7 @@
   "authority": "用户授权：选择一个最佳 seed/checkpoint 即可；四卡用于有效任务；增加真实批量显存；不再限制温度和功率。",
   "system_goal_objective": "完成所有模块的接入，确保我们所有三个模块的主方法能比baseline全面高两个点",
   "system_goal_text_edit_supported": false,
-  "execution_objective": "以完整预训练GOLA-B/C1冻结底座持续完善A/B/C的身份记忆、预算搜索和风险状态决策；新增模块已实际训练，按完整开发视频选定一个最佳checkpoint，统一完成LasHeR与RGBT234五项正式指标及全部属性/曲线/配对区间/机制成本证据。五项均比完整本地GOLA高2百分点才完成，单个最佳seed即可。",
+  "execution_objective": "保留完整预训练GOLA-B/C1及已训练A/B/C，围绕候选身份区别、合法新证据交互和风险状态提交推进；从连续开发视频预选一个最佳同配置checkpoint，完整评测LasHeR PR/NPR/SR及RGBT234 MPR/MSR、全属性曲线与配对区间。五项均超过本地完整GOLA-B至少2百分点才完成；不要求三个seed。",
   "scope": {
     "datasets": [
       "LasHeR",
@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T18:45:15.905709+08:00",
+  "updated_cst": "2026-10-07T19:06:07.286115+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42504,10 +42504,10 @@
     "requires_original_completed_stage_and_owner_terminal": true
   },
   "post_current_round_evidence_priority": {
-    "stage": "VERIFY_CURRENT_QUERY_AND_STATE_CONSISTENCY_BEFORE_NEW_TRAINING",
-    "fixed_reference_controls_rejected": true,
-    "main_goal": "CompleteA/B/C allfive native metrics >= fullGOLA+2pp",
-    "no_new_architecture_claim_from_config_or_numeric_fixes": true
+    "stage": "TRAIN_AND_CHECK_C_RESIDUAL_CALIBRATION_AT_EQUAL_CACHED_INTERVENTION_COUNT",
+    "query_discrepancy_not_supported_in_checked_subset": true,
+    "next": "If learned calibration is supported, integrate causally and complete parent-M0/full98/both-native; do not infer that cache gain is native gain or three-module necessity",
+    "complete_main_goal": "One full A/B/C method allfive metrics >= fullGOLA+2pp"
   },
   "current_policy_aggregation_partial_full_completion": {
     "as_of_cst": "2026-10-07T00:05:27.404528+08:00",
@@ -44607,6 +44607,23 @@
       "archive_files": 27,
       "no_NN_restarted_by_collector": true
     },
-    "final_agent_interpretation_pending": true
+    "final_agent_interpretation_pending": false,
+    "root_interpretation": "64oldfailurestratum TRAIN queries:0 serial/grouped C1keep differences,0 A reconstruction local decision differences; tiny errors do not justify recollection or claim full query/future parity."
+  },
+  "current_action_risk_calibration_probe": {
+    "stage": "SOURCE_PASS_PENDING_REAL_SANITY",
+    "source_files": [
+      "research/probe_action_risk_calibration.py",
+      "scripts/run_action_risk_calibration_probe.py"
+    ],
+    "parent_ABC_frozen": true,
+    "TRAIN_queries": 256,
+    "DEV_queries": 196,
+    "new_main_ABC_optimizer_steps": 0,
+    "committee_heads": 3,
+    "full_epochs": 128,
+    "full_steps_per_arm": 512,
+    "same_frequency_report": "Cached batch ranking only, not valid online deployment or video recovery",
+    "causal_proof_or_gain_promised": false
   }
 }
