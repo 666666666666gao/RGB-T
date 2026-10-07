@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T13:51:05.108161+08:00",
+  "updated_cst": "2026-10-07T13:57:36.528275+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -43498,7 +43498,7 @@
     "receipt": "refine-logs/runs/identity_representation_probe/actual_complete_intake.json"
   },
   "current_identity_evidence_transfer": {
-    "stage": "ORIGINAL_OWNER_LAUNCHED_REAL_SANITY_PENDING",
+    "stage": "ALL_FOUR_REAL_SANITY_PASS_FULL98_RUNNING",
     "updated_cst": "2026-10-07T13:51:05.108161+08:00",
     "prior_paired_projection_pretraining_completed": true,
     "prior_projection_epochs": 32,
@@ -43534,6 +43534,123 @@
       "owner_started_once": true,
       "source_review_PASS": true,
       "real_sanity_completed": false
+    },
+    "observed_at_cst": "2026-10-07T13:55:32.660647+08:00",
+    "actual_full98_children": [
+      {
+        "gpu": 0,
+        "pid": 1892120,
+        "alive": true,
+        "output": "/data/gb/outputs/identity_evidence_transfer_20261007/full98/identity_zero/predictions",
+        "expected_frames": 49418,
+        "closed_sequences": 10,
+        "closed_frames": 2887
+      },
+      {
+        "gpu": 1,
+        "pid": 1892121,
+        "alive": true,
+        "output": "/data/gb/outputs/identity_evidence_transfer_20261007/full98/identity_005/predictions",
+        "expected_frames": 49418,
+        "closed_sequences": 10,
+        "closed_frames": 2887
+      },
+      {
+        "gpu": 2,
+        "pid": 1892122,
+        "alive": true,
+        "output": "/data/gb/outputs/identity_evidence_transfer_20261007/full98/identity_010/predictions",
+        "expected_frames": 49418,
+        "closed_sequences": 10,
+        "closed_frames": 2887
+      },
+      {
+        "gpu": 3,
+        "pid": 1892123,
+        "alive": true,
+        "output": "/data/gb/outputs/identity_evidence_transfer_20261007/full98/identity_020/predictions",
+        "expected_frames": 49418,
+        "closed_sequences": 10,
+        "closed_frames": 2887
+      }
+    ],
+    "closed_real_sanity": {
+      "identity_020": {
+        "completed": true,
+        "sequence": "rightbiggreenboy",
+        "frames": 64,
+        "identity_weight_checked": 0.2,
+        "zero_residual_boxes_and_all_parent_decisions_exact": true,
+        "zero_residual_all_parent_states_exact": true,
+        "original_pre_attention_motion_and_memory_preserved": true,
+        "protected_self_context_anchor_unchanged": true,
+        "original_quality_search_and_write_evidence_exact": true,
+        "unobserved_encoded_regions_and_GT_do_not_change_actions": true,
+        "trained_projection_loaded": true,
+        "frozen_gradients_absent": true,
+        "new_optimizer_updates": 0,
+        "native_accuracy": false,
+        "peak_cuda_allocated_mib": 802.08544921875
+      },
+      "identity_zero": {
+        "completed": true,
+        "sequence": "10rightblackboy",
+        "frames": 64,
+        "identity_weight_checked": 0.0,
+        "zero_residual_boxes_and_all_parent_decisions_exact": true,
+        "zero_residual_all_parent_states_exact": true,
+        "original_pre_attention_motion_and_memory_preserved": true,
+        "protected_self_context_anchor_unchanged": true,
+        "original_quality_search_and_write_evidence_exact": true,
+        "unobserved_encoded_regions_and_GT_do_not_change_actions": true,
+        "trained_projection_loaded": true,
+        "frozen_gradients_absent": true,
+        "new_optimizer_updates": 0,
+        "native_accuracy": false,
+        "peak_cuda_allocated_mib": 803.81103515625
+      },
+      "identity_010": {
+        "completed": true,
+        "sequence": "folddenumbrellainhand",
+        "frames": 64,
+        "identity_weight_checked": 0.1,
+        "zero_residual_boxes_and_all_parent_decisions_exact": true,
+        "zero_residual_all_parent_states_exact": true,
+        "original_pre_attention_motion_and_memory_preserved": true,
+        "protected_self_context_anchor_unchanged": true,
+        "original_quality_search_and_write_evidence_exact": true,
+        "unobserved_encoded_regions_and_GT_do_not_change_actions": true,
+        "trained_projection_loaded": true,
+        "frozen_gradients_absent": true,
+        "new_optimizer_updates": 0,
+        "native_accuracy": false,
+        "peak_cuda_allocated_mib": 789.88232421875
+      },
+      "identity_005": {
+        "completed": true,
+        "sequence": "blkboy",
+        "frames": 64,
+        "identity_weight_checked": 0.05,
+        "zero_residual_boxes_and_all_parent_decisions_exact": true,
+        "zero_residual_all_parent_states_exact": true,
+        "original_pre_attention_motion_and_memory_preserved": true,
+        "protected_self_context_anchor_unchanged": true,
+        "original_quality_search_and_write_evidence_exact": true,
+        "unobserved_encoded_regions_and_GT_do_not_change_actions": true,
+        "trained_projection_loaded": true,
+        "frozen_gradients_absent": true,
+        "new_optimizer_updates": 0,
+        "native_accuracy": false,
+        "peak_cuda_allocated_mib": 803.81103515625
+      }
+    },
+    "full98_completed": false,
+    "sole_observer_next_node": {
+      "next_poll_cst": "2026-10-07T14:55:14.487186+08:00",
+      "owner_pid": 1891539,
+      "first_read_seconds": 240,
+      "minimum_repeat_seconds": 240,
+      "sole_observer": true
     }
   }
 }

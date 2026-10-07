@@ -182,3 +182,8 @@ SOURCE PASS/provisional; real GPU source check and4×2epoch sanity before4×32ep
 ## 2026-10-07T13:51:05.108161+08:00 reviewed identity transfer runtime control
 
 SOURCE PASS/provisional. Prior selected identity projection32epochs/896updates completed; current stage0new updates. Four coefficients same completeABC/visualbudget, realzero/causal sanity before4full98 andsame selectedconfiguration bothfullnative. Native results pending. +2 ACTIVE_UNMET.
+
+
+## 2026-10-07T13:57:36.528275+08:00 identity transfer actual GPU gate
+
+Four real sanity receipts PASS; parent output/decisions/states zero-parity, protected anchor, unseen-region and GT action invariance verified. Actual originalowner1891539/fourFULL98 workers live. Current0newupdates; fullGT/devselection/native pending, +2 ACTIVE_UNMET.
