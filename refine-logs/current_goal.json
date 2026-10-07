@@ -44561,7 +44561,7 @@
     }
   },
   "current_query_consistency": {
-    "stage": "SOURCE_PASS_PENDING_REAL_M0",
+    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
     "updated_cst": "2026-10-07T18:34:21.652086+08:00",
     "samples": "First16actualbatch from4completedTRAINshards, oldfailurestratum",
     "new_optimizer_updates": 0,
@@ -44570,6 +44570,24 @@
     "source_files": [
       "research/probe_current_query_consistency.py",
       "scripts/run_current_query_consistency.py"
-    ]
+    ],
+    "launch": {
+      "pid": 2208209,
+      "at_cst": "2026-10-07T18:34:42.635281+08:00",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.run_current_query_consistency",
+        "--review",
+        "refine-logs/runs/current_query_consistency/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/current_query_consistency_20261007"
+      ],
+      "output": "/data/gb/outputs/current_query_consistency_20261007",
+      "source_commit": "eb53d5c3b06b05fbccc93bc0d42ba38674eb5206",
+      "owner_started_once": true,
+      "real_sanity_completed": false
+    }
   }
 }
