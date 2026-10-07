@@ -43498,7 +43498,7 @@
     "receipt": "refine-logs/runs/identity_representation_probe/actual_complete_intake.json"
   },
   "current_identity_evidence_transfer": {
-    "stage": "REVIEWED_SOURCE_PENDING_REAL_SANITY",
+    "stage": "ORIGINAL_OWNER_LAUNCHED_REAL_SANITY_PENDING",
     "updated_cst": "2026-10-07T13:51:05.108161+08:00",
     "prior_paired_projection_pretraining_completed": true,
     "prior_projection_epochs": 32,
@@ -43515,6 +43515,25 @@
     "developer_frames_per_arm": 49418,
     "same_complete_policy_both_formal_datasets": true,
     "goal_status": "ACTIVE_UNMET",
-    "native_metrics_new": false
+    "native_metrics_new": false,
+    "launch": {
+      "pid": 1891539,
+      "at_cst": "2026-10-07T13:51:29.898418+08:00",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.run_identity_evidence",
+        "--review",
+        "refine-logs/runs/identity_evidence_transfer/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/identity_evidence_transfer_20261007"
+      ],
+      "output": "/data/gb/outputs/identity_evidence_transfer_20261007",
+      "source_commit": "b35f2de5b811f56371099ce446b99d0a355d2dd4",
+      "owner_started_once": true,
+      "source_review_PASS": true,
+      "real_sanity_completed": false
+    }
   }
 }
