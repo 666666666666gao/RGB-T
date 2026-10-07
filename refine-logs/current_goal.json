@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-08T05:45:16.865124+08:00",
+  "updated_cst": "2026-10-08T06:24:08.358119+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -47960,62 +47960,228 @@
       "valid_actions": 144367
     },
     "latest_direct_process_health": {
-      "at_cst": "2026-10-08T05:39:57.627369+08:00",
+      "at_cst": "2026-10-08T06:19:52.570126+08:00",
       "owner": {
         "pid": 2809287,
         "alive": true,
         "state": "S"
       },
-      "stage": "COLLECT_FULL_TRAIN",
+      "stage": "COLLECT_FULL_VALIDATION",
       "children": [
         {
           "gpu": 0,
           "process": {
-            "pid": 2809292,
-            "alive": false
+            "pid": 3194875,
+            "alive": true,
+            "state": "R"
           },
-          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
-          "closed_receipts": [
-            "completion.json"
-          ]
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu0",
+          "closed_receipts": []
         },
         {
           "gpu": 1,
           "process": {
-            "pid": 2809293,
+            "pid": 3194876,
             "alive": true,
             "state": "R"
           },
-          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1",
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu1",
           "closed_receipts": []
         },
         {
           "gpu": 2,
           "process": {
-            "pid": 2809294,
-            "alive": false,
-            "state": "Z"
+            "pid": 3194877,
+            "alive": true,
+            "state": "R"
           },
-          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2",
-          "closed_receipts": [
-            "completion.json"
-          ]
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu2",
+          "closed_receipts": []
         },
         {
           "gpu": 3,
           "process": {
-            "pid": 2809295,
-            "alive": false,
-            "state": "Z"
+            "pid": 3194878,
+            "alive": true,
+            "state": "R"
           },
-          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3",
-          "closed_receipts": [
-            "completion.json"
-          ]
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu3",
+          "closed_receipts": []
         }
       ],
       "CPU_only_process_health": true,
       "new_NN_or_optimizer": false
+    },
+    "complete_TRAIN_event_receipts": {
+      "status": "PASS",
+      "at_cst": "2026-10-08T06:21:23.548552+08:00",
+      "closed_success_event": {
+        "stage": "COLLECT_FULL_TRAIN_ALL_PROCESSES_CLOSED_PASS",
+        "at_cst": "2026-10-08T06:16:05.897010+08:00",
+        "elapsed_seconds": 18444.568621960003,
+        "exits": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "shards": [
+        {
+          "gpu": 0,
+          "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+          "clips": 4144,
+          "sequences": 219,
+          "valid_actions": 144367,
+          "exact_actual_prefix_parity": true,
+          "decision_input_contains_future": false
+        },
+        {
+          "gpu": 1,
+          "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1",
+          "clips": 4129,
+          "sequences": 220,
+          "valid_actions": 144264,
+          "exact_actual_prefix_parity": true,
+          "decision_input_contains_future": false
+        },
+        {
+          "gpu": 2,
+          "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2",
+          "clips": 4110,
+          "sequences": 221,
+          "valid_actions": 143792,
+          "exact_actual_prefix_parity": true,
+          "decision_input_contains_future": false
+        },
+        {
+          "gpu": 3,
+          "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3",
+          "clips": 4069,
+          "sequences": 221,
+          "valid_actions": 142418,
+          "exact_actual_prefix_parity": true,
+          "decision_input_contains_future": false
+        }
+      ],
+      "clips": 16452,
+      "sequences": 881,
+      "valid_actions": 574841,
+      "actual_original_four_process_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exact_native_prefix_receipts_all": true,
+      "scope": "Complete TRAIN receipt/config/plan membership and successful process exits; full serialized tensor validation remains in queued TRAIN+DEV verifier",
+      "current_stage": "COLLECT_FULL_VALIDATION",
+      "DEV_expected_jobs": 1824,
+      "current_children": [
+        {
+          "gpu": 0,
+          "pid": 3194875,
+          "command": [
+            "/data/gb/envs/gola/bin/python",
+            "-u",
+            "-m",
+            "research.collect_event_rollouts",
+            "--partition",
+            "validation",
+            "--jobs-file",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu0_jobs.json",
+            "--reference-traces",
+            "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+            "--reference-model",
+            "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+            "--prefix-model",
+            "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+            "--output",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu0"
+          ]
+        },
+        {
+          "gpu": 1,
+          "pid": 3194876,
+          "command": [
+            "/data/gb/envs/gola/bin/python",
+            "-u",
+            "-m",
+            "research.collect_event_rollouts",
+            "--partition",
+            "validation",
+            "--jobs-file",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu1_jobs.json",
+            "--reference-traces",
+            "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+            "--reference-model",
+            "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+            "--prefix-model",
+            "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+            "--output",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu1"
+          ]
+        },
+        {
+          "gpu": 2,
+          "pid": 3194877,
+          "command": [
+            "/data/gb/envs/gola/bin/python",
+            "-u",
+            "-m",
+            "research.collect_event_rollouts",
+            "--partition",
+            "validation",
+            "--jobs-file",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu2_jobs.json",
+            "--reference-traces",
+            "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+            "--reference-model",
+            "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+            "--prefix-model",
+            "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+            "--output",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu2"
+          ]
+        },
+        {
+          "gpu": 3,
+          "pid": 3194878,
+          "command": [
+            "/data/gb/envs/gola/bin/python",
+            "-u",
+            "-m",
+            "research.collect_event_rollouts",
+            "--partition",
+            "validation",
+            "--jobs-file",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu3_jobs.json",
+            "--reference-traces",
+            "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+            "--reference-model",
+            "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+            "--prefix-model",
+            "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+            "--output",
+            "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/validation/gpu3"
+          ]
+        }
+      ],
+      "CPU_only": true,
+      "new_NN_or_optimizer": false,
+      "queue_recipe_changed": false
     }
   }
 }
