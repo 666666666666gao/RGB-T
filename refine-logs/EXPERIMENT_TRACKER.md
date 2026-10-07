@@ -212,3 +212,8 @@ Prior identity transfer bothfullnative audited, +2unmet. Four state-propagation 
 ## 2026-10-07T17:43:39.950853+08:00 protected reference controls full pipeline actual COMPLETE
 
 4full98+same locked reference_modeparent/parent both complete native. Actual five=[{"dataset": "lasher", "metric": "PR", "percent": 78.30155331814711, "baseline_percent": 76.59844897037928, "delta_vs_baseline_pp": 1.7031043477678338, "target_percent": 78.59844897037928, "meets_plus_two": false}, {"dataset": "lasher", "metric": "NPR", "percent": 74.6574864127439, "baseline_percent": 73.10197299993155, "delta_vs_baseline_pp": 1.5555134128123598, "target_percent": 75.10197299993155, "meets_plus_two": false}, {"dataset": "lasher", "metric": "SR", "percent": 62.3395735664682, "baseline_percent": 61.03742534859602, "delta_vs_baseline_pp": 1.3021482178721797, "target_percent": 63.03742534859602, "meets_plus_two": false}, {"dataset": "rgbt234", "metric": "MPR", "percent": 92.03542684456828, "baseline_percent": 91.77885757450758, "delta_vs_baseline_pp": 0.2565692700606945, "target_percent": 93.77885757450758, "meets_plus_two": false}, {"dataset": "rgbt234", "metric": "MSR", "percent": 69.4544747423496, "baseline_percent": 69.2325931778893, "delta_vs_baseline_pp": 0.22188156446030405, "target_percent": 71.2325931778893, "meets_plus_two": false}]; all+2=False. OriginalNNowner2082222 COMPLETE, no inference restart by intake. Currentstage0optimization; matched controls, not new training. Full native/31attrs/curves/paired/mechanism raw reports collected.
+
+
+## 2026-10-07T18:34:21.652086+08:00 real query consistency sourcePASS, runtimepending
+
+0newupdates/weights; 4×query1 then4×query16 onoriginalTRAINshards. Priorbothnativecomplete+2false.

@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T17:43:39.950853+08:00",
+  "updated_cst": "2026-10-07T18:34:21.652086+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42504,11 +42504,10 @@
     "requires_original_completed_stage_and_owner_terminal": true
   },
   "post_current_round_evidence_priority": {
-    "updated_cst": "2026-10-07T17:43:39.950853+08:00",
-    "stage": "AUDIT_COMPLETED_IDENTITY_TRANSFER_NATIVE_AND_PLAN_NEXT_ACTUAL_PROGRESS",
-    "completed_full98_and_native": true,
-    "all_five_plus_two": false,
-    "new_optimizer_updates": 0
+    "stage": "VERIFY_CURRENT_QUERY_AND_STATE_CONSISTENCY_BEFORE_NEW_TRAINING",
+    "fixed_reference_controls_rejected": true,
+    "main_goal": "CompleteA/B/C allfive native metrics >= fullGOLA+2pp",
+    "no_new_architecture_claim_from_config_or_numeric_fixes": true
   },
   "current_policy_aggregation_partial_full_completion": {
     "as_of_cst": "2026-10-07T00:05:27.404528+08:00",
@@ -44550,6 +44549,27 @@
     "native_metrics_new": true,
     "full98_completed": true,
     "all_five_plus_two": false,
-    "final_agent_claim_audit_pending": true
+    "final_agent_claim_audit_pending": false,
+    "root_audit": {
+      "all4full98_and_bothnative_completed": true,
+      "all3newcontrols_belowparent": true,
+      "no_new_learning_gain": true,
+      "all_five_plus_two": false,
+      "GTreports_complete": true,
+      "original_observer_and_collector_terminal": true,
+      "publication_repaired_without_NN_replay": true
+    }
+  },
+  "current_query_consistency": {
+    "stage": "SOURCE_PASS_PENDING_REAL_M0",
+    "updated_cst": "2026-10-07T18:34:21.652086+08:00",
+    "samples": "First16actualbatch from4completedTRAINshards, oldfailurestratum",
+    "new_optimizer_updates": 0,
+    "purpose": "Measure serialquery/groupedquery and cache-state/actual-online-state discrepancies before new training",
+    "reviewed": true,
+    "source_files": [
+      "research/probe_current_query_consistency.py",
+      "scripts/run_current_query_consistency.py"
+    ]
   }
 }
