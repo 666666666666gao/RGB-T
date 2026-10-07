@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T19:30:49.039005+08:00",
+  "updated_cst": "2026-10-07T19:43:35.790556+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -45395,7 +45395,7 @@
     }
   },
   "current_policy_train_traces": {
-    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
+    "stage": "REVISED_SOURCE_PASS_AFTER_STOPPED_PREFLIGHT",
     "TRAIN_sequences": 881,
     "DEV_sequences_excluded": 98,
     "frozen_policy": "E5/gross/action, original complete GOLA-B/C1/ABC",
@@ -45419,6 +45419,35 @@
       "source_commit": "a10a744e97587fcf6e4ab19e762476191d4e2014",
       "owner_started_once": true,
       "real_sanity_completed": false
-    }
+    },
+    "original_failed_attempt": {
+      "original_launch": {
+        "pid": 2290902,
+        "at_cst": "2026-10-07T19:31:07.689689+08:00",
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "scripts.run_current_policy_train_traces",
+          "--review",
+          "refine-logs/runs/current_policy_train_traces/EXPERIMENT_CODE_REVIEW.json",
+          "--output",
+          "/data/gb/outputs/current_policy_train_traces_20261007"
+        ],
+        "output": "/data/gb/outputs/current_policy_train_traces_20261007",
+        "source_commit": "a10a744e97587fcf6e4ab19e762476191d4e2014",
+        "owner_started_once": true,
+        "real_sanity_completed": false
+      },
+      "first_terminal_observed_at": "2026-10-07T19:36:16.992248+08:00",
+      "original_owner_error": "Traceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/scripts/run_current_policy_train_traces.py\", line 84, in <module>\n    if __name__=='__main__':main()\n  File \"/data/gb/GOLA/scripts/run_current_policy_train_traces.py\", line 32, in main\n    assert [row[0] for row in values]==[0,1,2,3] and all(row[1]<500 and row[2]==0 for row in values)\nAssertionError\n",
+      "current_GPU_memory_utilization": "0, 349, 0\n1, 20, 0\n2, 20, 0\n3, 20, 0\n",
+      "no_python_ML_GPU_processes_observed": true,
+      "non_ML_desktop_allocation_mib": 312,
+      "original_failed_values_missing": true,
+      "original_NN_started": false,
+      "changed_source_before_new_attempt": true
+    },
+    "no_unconfirmed_process_stopped": true
   }
 }

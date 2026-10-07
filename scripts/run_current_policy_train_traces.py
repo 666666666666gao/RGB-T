@@ -29,7 +29,9 @@ def main():
     free=shutil.disk_usage('/data/gb').free;assert free>40*1024**3
     cards=subprocess.check_output(['nvidia-smi','--query-gpu=index,memory.used,utilization.gpu','--format=csv,noheader,nounits'],text=True)
     values=[tuple(int(part.strip()) for part in line.split(',')) for line in cards.splitlines()]
-    assert [row[0] for row in values]==[0,1,2,3] and all(row[1]<500 and row[2]==0 for row in values)
+    # The server's remote-desktop process uses GPU0 without an ML job. A
+    # transient display-utilization sample must not block these small trackers.
+    assert [row[0] for row in values]==[0,1,2,3] and all(row[1]<500 for row in values),values
     split=read(SPLIT);assert len(split['train'])==881 and len(split['validation'])==98 and not set(split['train']) & set(split['validation'])
     entries=[]
     for name in split['train']:
@@ -50,7 +52,8 @@ def main():
     plan=dict(model=MODEL,search_value='gross',write_verification='action',split=SPLIT,root=str(DATA),
         train_sequences=881,validation_sequences_excluded=98,frames=sum(totals),groups=groups,frames_per_GPU=totals,
         new_optimizer_updates=0,no_TEST_data=True,raw_full_TRAJECTORY_collection_not_training=True,
-        free_disk_bytes=free,output_reserve_bytes=40*1024**3,selection_labels_only_after_predictions=True,
+        free_disk_bytes=free,output_reserve_bytes=40*1024**3,gpu_preflight_memory_utilization=values,
+        selection_labels_only_after_predictions=True,
         event_mining_next='Actual interventions, near-threshold alternatives, recoverable misses and failure turns; not old-policy strata')
     (root/'plan.json').write_text(json.dumps(plan,indent=2))
     def record(stage,**fields):

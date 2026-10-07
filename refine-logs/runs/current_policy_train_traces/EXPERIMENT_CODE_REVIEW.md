@@ -1,5 +1,5 @@
-PASS — CURRENT_POLICY_FULL_TRAIN_TRACE_SOURCE
+PASS — CURRENT_POLICY_FULL_TRAIN_TRACE_SOURCE, rescue source review
 
-Fresh Astra/max requested, fork none; same-family/provisional, backend not independently attested. Source-only, no edits or runtime execution.
+Original2290902 stopped before NN at compositeGPUpreflight. Current diagnostic has remote-desktop allocation312MiB, GPU0total349MiB, others20MiB, all observedutil0; initial failing values not logged, so unique originalcause unknown. Minimal reviewed revision removes only zeroutil demand; retains indices0..3/memory<500MiB/40GiBfree disk, records values in assert andplan. No process killed, no power/temp or automatic retry. Preserve initial stopped launch separately and run actual four sanity stages before full.
 
-0 BLOCKING, 0 non-blocking. TRAIN filtering before explicit shard filtering, exact membership assertions exclude DEV/missing sequences. Frame-balanced groups cover supplied TRAIN entries; real64frame sanity chooses group's longest sequence before the one-sequence limit. Default evaluator unchanged; split/shard output smoke_only and GT scoring false. First-row initializer, causal frames, prediction/decision lengths consistent. All four children drained/logs closed before checking exits; receipts require actual expected sequences/frames. Controller accurately calls this collection. Full881 runtime, subsequent actual event mining, new optimization and +2 goal remain unverified.
+0 blocking; source-only, no NN. Fresh reviewer continuation in same review task, Astra/max requested, same-family/provisional, backend not independently attested. All original partition/causal/frame receipt checks unchanged.
