@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-08T01:39:50.909140+08:00",
+  "updated_cst": "2026-10-08T05:45:16.865124+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -47941,6 +47941,81 @@
       "scope": "Same biased first4 closed videos per original shard:367 TRAIN queries, GT-assisted H3 upper bound; actual chosen region only, not deployable performance/native accuracy",
       "new_NN_or_optimizer": false,
       "architecture_reward_or_recipe_changed": false
+    },
+    "gpu0_closed_CPU_validation": {
+      "status": "PASS",
+      "at_cst": "2026-10-08T05:38:44.869857+08:00",
+      "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+      "validator_record": {
+        "root": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+        "clips": 4144,
+        "videos": 219,
+        "partition": "train",
+        "schema": "causal_sequence_prefix_v1",
+        "exact_prefix_receipt": true
+      },
+      "CPU_only": true,
+      "new_NN_or_optimizer": false,
+      "actual_original_collector_closed": true,
+      "valid_actions": 144367
+    },
+    "latest_direct_process_health": {
+      "at_cst": "2026-10-08T05:39:57.627369+08:00",
+      "owner": {
+        "pid": 2809287,
+        "alive": true,
+        "state": "S"
+      },
+      "stage": "COLLECT_FULL_TRAIN",
+      "children": [
+        {
+          "gpu": 0,
+          "process": {
+            "pid": 2809292,
+            "alive": false
+          },
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu0",
+          "closed_receipts": [
+            "completion.json"
+          ]
+        },
+        {
+          "gpu": 1,
+          "process": {
+            "pid": 2809293,
+            "alive": true,
+            "state": "R"
+          },
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu1",
+          "closed_receipts": []
+        },
+        {
+          "gpu": 2,
+          "process": {
+            "pid": 2809294,
+            "alive": false,
+            "state": "Z"
+          },
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu2",
+          "closed_receipts": [
+            "completion.json"
+          ]
+        },
+        {
+          "gpu": 3,
+          "process": {
+            "pid": 2809295,
+            "alive": false,
+            "state": "Z"
+          },
+          "output": "/data/gb/outputs/current_event_rollout_training_20261007_scalarfix/collection/train/gpu3",
+          "closed_receipts": [
+            "completion.json"
+          ]
+        }
+      ],
+      "CPU_only_process_health": true,
+      "new_NN_or_optimizer": false
     }
   }
 }
