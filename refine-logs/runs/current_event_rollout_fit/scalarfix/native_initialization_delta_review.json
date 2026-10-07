@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE",
+  "review_proof_scope": "Only the native first-frame initialization delta in research/collect_event_rollouts.py against committed suffix/resume source 131e261046fe7ae4cff5f69da3228ca99fadca45. Prior resume review remains applicable; this is not a fresh whole-pipeline audit.",
+  "reviewed_at_cst": "2026-10-08T01:08:07.205624+08:00",
+  "reviewer_task": "/root/event_frame_suffix_resume_review",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_backend_model": "UNATTESTED",
+  "actual_backend_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "base_commit": "131e261046fe7ae4cff5f69da3228ca99fadca45",
+  "source_sha256": {
+    "research/collect_event_rollouts.py": "36c4ca3f69ad5d88c56e563c257bcce3a95fbb5a4cb53afb8576887ad89774d7",
+    "scripts/run_current_event_rollout_training.py": "e31a7968af01033763ed41d84b9bcd53f948bf3d687c0fc765fe0a71b64d5cc2"
+  },
+  "changed_files": [
+    "research/collect_event_rollouts.py"
+  ],
+  "unchanged_queue_source": "scripts/run_current_event_rollout_training.py",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "evidence": {
+    "CPU_audit": "refine-logs/runs/current_event_rollout_fit/scalarfix/initial_box_alignment_CPU.json",
+    "CPU_audit_stdout": "refine-logs/runs/current_event_rollout_fit/scalarfix/initial_box_alignment_CPU_stdout.txt",
+    "TRAIN_sequences": 881,
+    "DEV_sequences": 98,
+    "total_sequences": 979,
+    "only_initialization_mismatch": {
+      "sequence": "rightgreen",
+      "partition": "train",
+      "native_initial_xyxy": [
+        899.0,
+        298.0,
+        961.0,
+        488.0
+      ],
+      "cached_initial_xyxy": [
+        899.0,
+        298.0,
+        960.0,
+        488.0
+      ]
+    },
+    "native_reference_parser": "research/evaluate_recoverability.py:267",
+    "causal_tracker_initial_history": "research/recoverability_tracker.py:49",
+    "previous_suffix_resume_review": "refine-logs/runs/current_event_rollout_fit/scalarfix/frame_suffix_resume_review.json",
+    "NN_failure_claimed": false,
+    "meaning": "Existing CPU audit proves a one-pixel initializer input mismatch for rightgreen; no neural rollout failure or new accuracy result is inferred."
+  },
+  "review_refinement": {
+    "initial_draft": "np.loadtxt(..., delimiter=comma, ndmin=2)[0] selected the same audited row but was not literally the native first-line parser.",
+    "current_source": "Parent replaced it with open/readline/np.fromstring(..., sep=comma), shape==(4,) and the same in-place XYWH-to-XYXY conversion.",
+    "classification": "Exact-native-parser alignment resolved during review; not an observed NN failure."
+  },
+  "findings": [
+    "The collector path is Path(args.root)/traingset/sequence.get_name()/init.txt, matching native LasHeR TRAIN/DEV sequence paths under the queue DATA root.",
+    "The first-line parse assignment, shape assertion and XYWH-to-XYXY conversion are AST-identical to native evaluate_recoverability. No later annotation line is read by the initializer.",
+    "The identical initial array reaches the tracker and context initial/history box at frame0. Tracker initialization also copies it into its frame0 motion history and template-source box. This preserves native causal state before query1.",
+    "Future and current supervision still use the existing cached sequence boxes in label_contexts and main GT checks. Frame0 annotation is the allowed initialization input; no q/H3 future label is introduced into decision input.",
+    "Replacing only the three new initialization AST statements by the prior one makes the entire collector AST identical to base. The explicit resume checks, closed-row reuse, frame suffix allowance, per-frame box/choice/pause/write equality, label generation and serialization are unchanged.",
+    "The queue source is unchanged against base. Prior sanity/capacity/fit gates, four 24-epoch arms, seed42/batch32, full98 selection, same model on both native datasets and dependent own-weight cleanup are preserved.",
+    "The all979 audit gives identical initializer values for the other978 sequences. The parent reports rightgreen is still unclosed; closed outputs for those unaffected sequences remain compatible with this delta. This source-only review did not query current remote progress."
+  ],
+  "validation": {
+    "collector_AST_parse_and_compile": "PASS",
+    "exact_native_parser_assignment_shape_conversion_AST": "PASS",
+    "whole_collector_AST_equal_after_reverting_only_initializer": "PASS",
+    "queue_source_text_unchanged_against_base": "PASS",
+    "existing_CPU_audit_979_sequences_only_rightgreen_mismatch": "PASS",
+    "local_python": "E:/python.exe, CPython 3.12.6",
+    "local_numpy_probe": {
+      "status": "UNAVAILABLE",
+      "error": "ModuleNotFoundError: No module named numpy",
+      "effect": "No parser/NN runtime test claimed; no environment installation. Review uses exact AST equality and existing CPU audit."
+    }
+  },
+  "operational_boundary": {
+    "source_only": true,
+    "remote_queries": 0,
+    "NN_calls": 0,
+    "optimizer_updates": 0,
+    "production_module_imports": 0,
+    "deployment_executed": false,
+    "processes_stopped": false,
+    "production_outputs_modified": false,
+    "parent_reported_state": {
+      "owner_pid": 2782399,
+      "collector_pids": [
+        2782404,
+        2782405,
+        2782406,
+        2782407
+      ],
+      "closed_videos": 287,
+      "closed_queries": 4207,
+      "observed_at_cst": "2026-10-08T00:55:33+08:00",
+      "rightgreen_not_yet_closed": true,
+      "independently_queried_by_reviewer": false
+    },
+    "parent_execution_plan": "After PASS, preserve original logs and all additional closed artifacts, stop only owned current owner/collectors/observer, deploy the updated collector and explicitly resume collection in the same root with one observer for the new owner. Existing gates and full training recipe are reused unchanged.",
+    "execution_attested_by_reviewer": false
+  }
+}

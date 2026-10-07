@@ -53,7 +53,12 @@ def models(args, device):
 
 @torch.inference_mode()
 def collect_sequence(sequence, jobs, reference_file, extractor, head, motion, prefix, device, args, output):
-    initial = sequence[0].get_bounding_box().copy()
+    # Initialize exactly as the locked native policy; the training cache clips
+    # rightgreen's first box by one pixel at the image boundary.
+    with (Path(args.root) / 'traingset' / sequence.get_name() / 'init.txt').open() as labels:
+        initial = np.fromstring(labels.readline().strip(), sep=',')
+    assert initial.shape == (4,)
+    initial[2:] += initial[:2]
     image = read_pair(*paths(sequence, 0), device)
     tracker = RecoverabilityTracker(extractor, prefix, motion, image, initial, args.prefix_threshold,
                                    write_verification='action', search_value='gross')
