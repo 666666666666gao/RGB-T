@@ -187,3 +187,8 @@ SOURCE PASS/provisional. Prior selected identity projection32epochs/896updates c
 ## 2026-10-07T13:57:36.528275+08:00 identity transfer actual GPU gate
 
 Four real sanity receipts PASS; parent output/decisions/states zero-parity, protected anchor, unseen-region and GT action invariance verified. Actual originalowner1891539/fourFULL98 workers live. Current0newupdates; fullGT/devselection/native pending, +2 ACTIVE_UNMET.
+
+
+## 2026-10-07T14:49:57.073566+08:00 existing paired supervision CPU audit actual COMPLETE
+
+14096/1568 labels,0GPU/model/image/update. Stable-correct pair fractions91.7683%/93.9520%. 53of67developer missed positives exceed max0.2 correction for C1+alpha.1 cosine proxy; NOT ABC/native bound. Current BCE quality already correct; no speculative loss patch. Originalowner1891539/fullpipeline unchanged/ACTIVE_UNMET.

@@ -1,0 +1,161 @@
+{
+  "completed": true,
+  "partitions": {
+    "train": {
+      "queries": 14096,
+      "sequences": 881,
+      "c1_query_mean_iou": 0.5331059098243713,
+      "oracle_query_mean_iou": 0.5893230438232422,
+      "current_query_oracle_gap_pp": 5.62171745300293,
+      "has_positive_negative_pair_queries": 9741,
+      "positive_negative_pairs": 36578,
+      "frozen_c1_failed_queries": 4562,
+      "failed_with_correct_candidate": 750,
+      "missed_positive_queries": 802,
+      "missed_positive_without_any_training_pair": 2,
+      "possible_localization_gain_above_005_queries": 1781,
+      "possible_localization_gain_without_any_training_pair": 966,
+      "template_perturbed_queries": 4241,
+      "easiest_correct_candidate_c1_score_deficit": {
+        "min": 0.000538170337677002,
+        "p25": 0.16111267358064651,
+        "median": 0.30759675800800323,
+        "p75": 0.4301086887717247,
+        "p95": 0.6173920273780822,
+        "max": 0.8886672258377075
+      },
+      "identity_only_proxy_bound": {
+        "0.05": {
+          "max_cosine_score_correction": 0.1,
+          "missed_positive_deficit_exceeds_bound": 668,
+          "failed_recallable_deficit_exceeds_bound": 620
+        },
+        "0.1": {
+          "max_cosine_score_correction": 0.2,
+          "missed_positive_deficit_exceeds_bound": 555,
+          "failed_recallable_deficit_exceeds_bound": 518
+        },
+        "0.2": {
+          "max_cosine_score_correction": 0.4,
+          "missed_positive_deficit_exceeds_bound": 250,
+          "failed_recallable_deficit_exceeds_bound": 236
+        }
+      },
+      "strata": {
+        "keep_correct": {
+          "queries": 8964,
+          "pair_supervised_queries": 8941,
+          "training_pairs": 33567,
+          "positive_present": 8964,
+          "oracle_quality_above_keep_005": 16
+        },
+        "keep_ambiguous": {
+          "queries": 570,
+          "pair_supervised_queries": 50,
+          "training_pairs": 142,
+          "positive_present": 52,
+          "oracle_quality_above_keep_005": 63
+        },
+        "keep_failed_positive_present": {
+          "queries": 750,
+          "pair_supervised_queries": 750,
+          "training_pairs": 2869,
+          "positive_present": 750,
+          "oracle_quality_above_keep_005": 750
+        },
+        "keep_failed_positive_missing": {
+          "queries": 3812,
+          "pair_supervised_queries": 0,
+          "training_pairs": 0,
+          "positive_present": 0,
+          "oracle_quality_above_keep_005": 952
+        }
+      }
+    },
+    "validation": {
+      "queries": 1568,
+      "sequences": 98,
+      "c1_query_mean_iou": 0.5513848066329956,
+      "oracle_query_mean_iou": 0.5951088070869446,
+      "current_query_oracle_gap_pp": 4.372396469116211,
+      "has_positive_negative_pair_queries": 1089,
+      "positive_negative_pairs": 4084,
+      "frozen_c1_failed_queries": 477,
+      "failed_with_correct_candidate": 61,
+      "missed_positive_queries": 67,
+      "missed_positive_without_any_training_pair": 0,
+      "possible_localization_gain_above_005_queries": 176,
+      "possible_localization_gain_without_any_training_pair": 108,
+      "template_perturbed_queries": 453,
+      "easiest_correct_candidate_c1_score_deficit": {
+        "min": 0.002396225929260254,
+        "p25": 0.22823166102170944,
+        "median": 0.3396473824977875,
+        "p75": 0.4823397547006607,
+        "p95": 0.6129227280616758,
+        "max": 0.7866306304931641
+      },
+      "identity_only_proxy_bound": {
+        "0.05": {
+          "max_cosine_score_correction": 0.1,
+          "missed_positive_deficit_exceeds_bound": 61,
+          "failed_recallable_deficit_exceeds_bound": 55
+        },
+        "0.1": {
+          "max_cosine_score_correction": 0.2,
+          "missed_positive_deficit_exceeds_bound": 53,
+          "failed_recallable_deficit_exceeds_bound": 49
+        },
+        "0.2": {
+          "max_cosine_score_correction": 0.4,
+          "missed_positive_deficit_exceeds_bound": 30,
+          "failed_recallable_deficit_exceeds_bound": 29
+        }
+      },
+      "strata": {
+        "keep_correct": {
+          "queries": 1027,
+          "pair_supervised_queries": 1022,
+          "training_pairs": 3837,
+          "positive_present": 1027,
+          "oracle_quality_above_keep_005": 1
+        },
+        "keep_ambiguous": {
+          "queries": 64,
+          "pair_supervised_queries": 6,
+          "training_pairs": 17,
+          "positive_present": 6,
+          "oracle_quality_above_keep_005": 7
+        },
+        "keep_failed_positive_present": {
+          "queries": 61,
+          "pair_supervised_queries": 61,
+          "training_pairs": 230,
+          "positive_present": 61,
+          "oracle_quality_above_keep_005": 61
+        },
+        "keep_failed_positive_missing": {
+          "queries": 416,
+          "pair_supervised_queries": 0,
+          "training_pairs": 0,
+          "positive_present": 0,
+          "oracle_quality_above_keep_005": 107
+        }
+      }
+    }
+  },
+  "optimizer_updates": 0,
+  "model_inference_calls": 0,
+  "image_reads": 0,
+  "CUDA_operations": 0,
+  "formal_TEST_access": false,
+  "scope": "Existing supervised paired crops and C1 proxy; not own-policy states or deployed ABC utility",
+  "thresholds": {
+    "positive_iou": 0.5,
+    "negative_iou": 0.2,
+    "minimum_localization_gain": 0.05
+  },
+  "missing_pairs_definition": "No valid positive IoU>=.5 versus negative IoU<.2 pair; unknown not made negative",
+  "bounds_definition": "Only a mathematical ceiling for frozen C1+alpha*cosine proxy; not a learned margin or native recovery rate",
+  "elapsed_seconds": 0.10437189508229494
+}
