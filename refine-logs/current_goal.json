@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-08T01:12:01.067649+08:00",
+  "updated_cst": "2026-10-08T01:39:50.909140+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -47919,6 +47919,28 @@
       "preserved_closed_queries": 4729,
       "unchanged_recipe": true,
       "full24_and_native_still_pending": true
+    },
+    "actual_observed_region_CPU_opportunity": {
+      "CPU_only": true,
+      "closed_videos": 16,
+      "closed_queries": 367,
+      "actual_extra_executed_queries": 247,
+      "exact_actual_available_masks_and_float32_boxes": true,
+      "actual_observed_GT_utility_gain_gt_003": 279,
+      "local_only_GT_utility_gain_gt_003": 170,
+      "observed_GT_best_extra_actions": 186,
+      "observed_positive_gain_lower_H3_mean": 20,
+      "parent_failed_queries": 218,
+      "failed_with_actual_available_correct": 180,
+      "actual_extra_introduced_correct_missing_local": 151,
+      "parent_failed_utility_optimum_correct": 177,
+      "all_regions_GT_net_gain_gt_003": 331,
+      "GT_search_allocation_gap_gt_003": 189,
+      "utility": ".7 currentIoU+.3 H3futuremean-.1 wrong-updatefraction",
+      "cost": "Observed decision-only comparison cancels the already incurred search cost; global region oracle pays .01 iff it chooses extra, actual parent/observed set pay actual request .01",
+      "scope": "Same biased first4 closed videos per original shard:367 TRAIN queries, GT-assisted H3 upper bound; actual chosen region only, not deployable performance/native accuracy",
+      "new_NN_or_optimizer": false,
+      "architecture_reward_or_recipe_changed": false
     }
   }
 }
