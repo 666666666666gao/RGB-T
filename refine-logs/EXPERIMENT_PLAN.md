@@ -280,3 +280,8 @@ Source reviewed2files. Priorprotectedcontrol full4full98+bothnative complete neg
 ## 2026-10-07T19:06:07.286115+08:00 C action residual risk calibration feasibility
 
 Four true fits lr1e-3/lr1e-4 x plain/meaningful4weight. Parent frozen full E5 ABC/C1, own-state256 TRAIN/196 DEV H3 targets;128epochs512steps each/3 sequence-bootstrap heads. Compare mean vs disagreement penalty at same cached action count, population ranking is not online policy. Require source review, real2epoch sanity, fullfit actual gradients, parent frozen and best/last strict reload. No new official accuracy or fullABC end-to-end fitting claimed; only after support integrate causally for full98 and both formal.
+
+
+## 2026-10-07T19:30:49.039005+08:00 Current-policy full881TRAIN trajectory collection
+
+Fresh source review PASS; 4frame-balanced disjoint shards with4real64frame sanity thenfull. Frozen E5/gross/action,0updates/weights, noDEV/TEST; actual-event mining and newrisk training later. Inventory437configs confirms nofull881currentTRAINtrace. No raw training/officialaccuracy claim.

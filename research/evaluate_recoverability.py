@@ -24,6 +24,8 @@ def arguments():
     parser.add_argument('--motion-run', default='/data/gb/outputs/abc_joint_v1_seed42')
     parser.add_argument('--output', required=True)
     parser.add_argument('--validation-split')
+    parser.add_argument('--train-split', help='Collect the locked current policy on TRAIN only; not official test accuracy.')
+    parser.add_argument('--sequence-list', help='Explicit JSON sequence shard after split filtering.')
     parser.add_argument('--sequence-offset', type=int, default=0)
     parser.add_argument('--limit-sequences', type=int, default=0)
     parser.add_argument('--max-frames', type=int, default=0)
@@ -122,6 +124,7 @@ def track(visible, infrared, initial, extractor, modules, motion, device, args, 
 
 def main():
     args = arguments()
+    assert not (args.train_split and args.validation_split)
     assert not (args.commit_model and args.state_commit_model)
     assert args.identity_projection or args.identity_weight == 0
     assert not args.reference_mode or not (args.identity_projection or args.commit_model or args.state_commit_model or args.zero_init or args.parity_check)
@@ -195,13 +198,23 @@ def main():
         assert args.dataset == 'lasher' and not set(split['train']) & set(split['validation'])
         sequences = [p for p in sequences if p.name in split['validation']]
         assert {p.name for p in sequences} == set(split['validation'])
+    if args.train_split:
+        split = json.loads(Path(args.train_split).read_text())
+        assert args.dataset == 'lasher' and not set(split['train']) & set(split['validation'])
+        sequences = [p for p in sequences if p.name in split['train']]
+        assert {p.name for p in sequences} == set(split['train'])
+    if args.sequence_list:
+        names = json.loads(Path(args.sequence_list).read_text())['sequences']
+        assert names and len(set(names)) == len(names)
+        sequences = [p for p in sequences if p.name in names]
+        assert {p.name for p in sequences} == set(names)
     sequences = sequences[args.sequence_offset:]
     if args.limit_sequences:
         sequences = sequences[:args.limit_sequences]
     assert sequences
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    smoke = bool(args.validation_split or args.sequence_offset or args.limit_sequences or args.max_frames or args.zero_init or args.parity_check)
+    smoke = bool(args.train_split or args.validation_split or args.sequence_list or args.sequence_offset or args.limit_sequences or args.max_frames or args.zero_init or args.parity_check)
     config = vars(args) | {'threshold': threshold, 'head_epoch': 0 if args.zero_init else checkpoint['epoch'],
                            'ABC_model_family': checkpoint['module'],
                            'model_training_seed': checkpoint['args']['seed'],

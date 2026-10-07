@@ -7045,7 +7045,7 @@
     "same_checkpoint_both_datasets": true,
     "minimum_seed_count_required": false
   },
-  "updated_cst": "2026-10-07T19:17:36.632279+08:00",
+  "updated_cst": "2026-10-07T19:30:49.039005+08:00",
   "current_full_video_coverage": {
     "corrected_unique_video_coverage": {
       "train": 881,
@@ -42504,7 +42504,7 @@
     "requires_original_completed_stage_and_owner_terminal": true
   },
   "post_current_round_evidence_priority": {
-    "stage": "BUILD_CURRENT_POLICY_EVENT_SUPPORTED_C_SUPERVISION",
+    "stage": "COLLECT_COMPLETE_CURRENT_POLICY_TRAIN_TRAJECTORIES_THEN_EVENT_LABELS",
     "source_consistency_probe_closed": true,
     "risk_calibration_probe_closed_negative": true,
     "next_actual_work": "Inspect/reuse current-policy continuous TRAIN traces; if absent, run the locked parent on TRAIN with all four cards, sample actual interventions and candidate opportunities only after predictions, then matched-label collection. Full raw-video coverage is collection, not optimization.",
@@ -42514,7 +42514,9 @@
       "No unchanged-cache longer H32/value/regression fitting",
       "No promotion of epoch0 initialization as trained main method"
     ],
-    "final_acceptance": "One preselected complete ABC model/config, both datasets all five metrics >= local full GOLA-B+2pp; attributes/curves/paired comparisons/efficiency and honest three-module controls. One best seed allowed; no new datasets or power/temperature constraints."
+    "final_acceptance": "One preselected complete ABC model/config, both datasets all five metrics >= local full GOLA-B+2pp; attributes/curves/paired comparisons/efficiency and honest three-module controls. One best seed allowed; no new datasets or power/temperature constraints.",
+    "prerequisite_found_missing": true,
+    "scope": "Complete actual 881TRAIN inference is data collection, not complete88M or A/B/C optimization."
   },
   "current_policy_aggregation_partial_full_completion": {
     "as_of_cst": "2026-10-07T00:05:27.404528+08:00",
@@ -45391,5 +45393,14 @@
         "query_collector_65382": "CLOSED_0"
       }
     }
+  },
+  "current_policy_train_traces": {
+    "stage": "SOURCE_PASS_PENDING_REAL_SANITY",
+    "TRAIN_sequences": 881,
+    "DEV_sequences_excluded": 98,
+    "frozen_policy": "E5/gross/action, original complete GOLA-B/C1/ABC",
+    "new_optimizer_updates": 0,
+    "actual_intervention_support_needed": true,
+    "prior437_configs_inventory_full_TRACE_missing": true
   }
 }
