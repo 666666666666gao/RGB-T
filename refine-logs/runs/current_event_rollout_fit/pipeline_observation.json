@@ -1,0 +1,217 @@
+{
+  "observed_at_cst": "2026-10-07T22:24:33.586777+08:00",
+  "owner_pid": 2564398,
+  "owner_alive": false,
+  "progress": {
+    "stage": "COLLECT_SANITY",
+    "at_cst": "2026-10-07T22:21:45.751851+08:00",
+    "elapsed_seconds": 14.553405163809657,
+    "children": [
+      {
+        "gpu": 0,
+        "pid": 2564677,
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.collect_event_rollouts",
+          "--partition",
+          "train",
+          "--jobs-file",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0_jobs.json",
+          "--reference-traces",
+          "/data/gb/outputs/current_policy_train_traces_20261007/full",
+          "--reference-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--prefix-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--output",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0"
+        ]
+      },
+      {
+        "gpu": 1,
+        "pid": 2564678,
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.collect_event_rollouts",
+          "--partition",
+          "train",
+          "--jobs-file",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1_jobs.json",
+          "--reference-traces",
+          "/data/gb/outputs/current_policy_train_traces_20261007/full",
+          "--reference-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--prefix-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--output",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1"
+        ]
+      },
+      {
+        "gpu": 2,
+        "pid": 2564679,
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.collect_event_rollouts",
+          "--partition",
+          "validation",
+          "--jobs-file",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2_jobs.json",
+          "--reference-traces",
+          "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+          "--reference-model",
+          "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "--prefix-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--output",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2"
+        ]
+      },
+      {
+        "gpu": 3,
+        "pid": 2564680,
+        "command": [
+          "/data/gb/envs/gola/bin/python",
+          "-u",
+          "-m",
+          "research.collect_event_rollouts",
+          "--partition",
+          "validation",
+          "--jobs-file",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3_jobs.json",
+          "--reference-traces",
+          "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+          "--reference-model",
+          "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+          "--prefix-model",
+          "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+          "--output",
+          "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3"
+        ]
+      }
+    ]
+  },
+  "read_only": true,
+  "children": [
+    {
+      "gpu": 0,
+      "pid": 2564677,
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.collect_event_rollouts",
+        "--partition",
+        "train",
+        "--jobs-file",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0_jobs.json",
+        "--reference-traces",
+        "/data/gb/outputs/current_policy_train_traces_20261007/full",
+        "--reference-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--prefix-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--output",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0"
+      ],
+      "alive": false,
+      "config_summary": {
+        "clips": 2
+      }
+    },
+    {
+      "gpu": 1,
+      "pid": 2564678,
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.collect_event_rollouts",
+        "--partition",
+        "train",
+        "--jobs-file",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1_jobs.json",
+        "--reference-traces",
+        "/data/gb/outputs/current_policy_train_traces_20261007/full",
+        "--reference-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--prefix-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--output",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1"
+      ],
+      "alive": false,
+      "config_summary": {
+        "clips": 2
+      }
+    },
+    {
+      "gpu": 2,
+      "pid": 2564679,
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.collect_event_rollouts",
+        "--partition",
+        "validation",
+        "--jobs-file",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2_jobs.json",
+        "--reference-traces",
+        "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+        "--reference-model",
+        "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+        "--prefix-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--output",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2"
+      ],
+      "alive": false,
+      "config_summary": {
+        "clips": 2
+      }
+    },
+    {
+      "gpu": 3,
+      "pid": 2564680,
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "research.collect_event_rollouts",
+        "--partition",
+        "validation",
+        "--jobs-file",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3_jobs.json",
+        "--reference-traces",
+        "/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions",
+        "--reference-model",
+        "/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth",
+        "--prefix-model",
+        "/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth",
+        "--output",
+        "/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3"
+      ],
+      "alive": false,
+      "config_summary": {
+        "clips": 1
+      }
+    }
+  ],
+  "closed_collection_receipts": {},
+  "closed_fit_receipts": {},
+  "owner_log_tail": "{\"stage\": \"WAIT_ORIGINAL_FULL_TRAIN_OWNER\", \"at_cst\": \"2026-10-07T22:21:32.056491+08:00\", \"elapsed_seconds\": 0.858043777756393, \"predecessor_pid\": 2310613, \"DEV_event_jobs\": 1824, \"scope\": \"CPU mining and queued commands; new NN/optimizer0, original four GPU jobs untouched\"}\n{\"stage\": \"COLLECT_SANITY\", \"at_cst\": \"2026-10-07T22:21:45.751851+08:00\", \"elapsed_seconds\": 14.553405163809657, \"children\": [{\"gpu\": 0, \"pid\": 2564677, \"command\": [\"/data/gb/envs/gola/bin/python\", \"-u\", \"-m\", \"research.collect_event_rollouts\", \"--partition\", \"train\", \"--jobs-file\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0_jobs.json\", \"--reference-traces\", \"/data/gb/outputs/current_policy_train_traces_20261007/full\", \"--reference-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--prefix-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--output\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu0\"]}, {\"gpu\": 1, \"pid\": 2564678, \"command\": [\"/data/gb/envs/gola/bin/python\", \"-u\", \"-m\", \"research.collect_event_rollouts\", \"--partition\", \"train\", \"--jobs-file\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1_jobs.json\", \"--reference-traces\", \"/data/gb/outputs/current_policy_train_traces_20261007/full\", \"--reference-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--prefix-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--output\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu1\"]}, {\"gpu\": 2, \"pid\": 2564679, \"command\": [\"/data/gb/envs/gola/bin/python\", \"-u\", \"-m\", \"research.collect_event_rollouts\", \"--partition\", \"validation\", \"--jobs-file\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2_jobs.json\", \"--reference-traces\", \"/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions\", \"--reference-model\", \"/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth\", \"--prefix-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--output\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu2\"]}, {\"gpu\": 3, \"pid\": 2564680, \"command\": [\"/data/gb/envs/gola/bin/python\", \"-u\", \"-m\", \"research.collect_event_rollouts\", \"--partition\", \"validation\", \"--jobs-file\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3_jobs.json\", \"--reference-traces\", \"/data/gb/outputs/protected_visual_reference_20261007/full98/parent/predictions\", \"--reference-model\", \"/data/gb/outputs/post_search_relation_control_20261007/fit_full/one_way_lr5/best.pth\", \"--prefix-model\", \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"--output\", \"/data/gb/outputs/current_event_rollout_training_20261007/collect_sanity/gpu3\"]}]}\nTraceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/scripts/run_current_event_rollout_training.py\", line 269, in <module>\n    if __name__ == '__main__':main()\n  File \"/data/gb/GOLA/scripts/run_current_event_rollout_training.py\", line 183, in main\n    wave('collect_sanity', [collect_command(partition, rows, sanity_dirs[gpu]) for gpu,(partition,rows) in enumerate(selected)])\n  File \"/data/gb/GOLA/scripts/run_current_event_rollout_training.py\", line 102, in wave\n    assert all(code == 0 for _,code in exits), (stage, exits, 'Primary logs retained; no unchanged retry')\nAssertionError: ('collect_sanity', [(0, 1), (1, 1), (2, 1), (3, 1)], 'Primary logs retained; no unchanged retry')\n",
+  "primary_log_tails": {
+    "collect_sanity_gpu2.log": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nTraceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 218, in <module>\n    main()\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 200, in main\n    row = collect_sequence(sequence, groups[name], references[name], extractor, head, motion, prefix, device, args, output)\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 105, in collect_sequence\n    rows[-1]['parent_search_triggered'] = np.bool_(tracker.last_decision['search_requested'])\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/_tensor.py\", line 1151, in __array__\n    return self.numpy().astype(dtype, copy=False)\nTypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.\n",
+    "mine_current_policy_events.log": "{\"created_cst\": \"2026-10-07T22:21:45.252304+08:00\", \"trace_root\": \"/data/gb/outputs/current_policy_train_traces_20261007\", \"policy\": {\"model\": \"/data/gb/outputs/candidate_relation_native_recovery_20261006/reconstructed_epoch5/best.pth\", \"family\": \"ABC_candidate_relations\", \"epoch\": 5, \"search_value\": \"gross\", \"write_verification\": \"action\"}, \"scope\": \"CPU TRAIN event mining; completed sequences only; no optimizer, new weights or native TEST accuracy\", \"closed_sequences\": 881, \"closed_frames\": 464663, \"planned_sequences\": 881, \"planned_frames\": 464663, \"full_TRAIN_inventory\": true, \"counts\": {\"actual_intervention\": 596, \"intervention_iou_drop_gt_0.1\": 132, \"intervention_iou_gain_gt_0.1\": 231, \"recoverable_missed_candidate\": 15548, \"extra_reintroduced_but_rejected\": 5454, \"wrong_localization_template_write\": 6773, \"known_tracking_frames\": 462295, \"failed_tracking_frames\": 74733, \"actual_extra_forwards\": 50037, \"failure_events\": 1530, \"recovered_events\": 1354, \"censored_failure_events\": 176}, \"query_representatives\": 17198, \"tags\": {\"normal_control\": 1757, \"failure_turn_-2\": 1516, \"failure_turn_-1\": 1513, \"failure_turn_+0\": 1530, \"extra_reintroduced_but_rejected\": 3812, \"failure_turn_+1\": 1530, \"failure_turn_+3\": 1524, \"recoverable_missed_candidate\": 4686, \"observed_recovery_start\": 1354, \"actual_intervention\": 596, \"intervention_iou_gain_gt_0.1\": 231, \"intervention_iou_drop_gt_0.1\": 132, \"wrong_localization_template_write\": 309}, \"H3_jobs\": 16452, \"ineligible_H3_queries\": 746, \"required_collector_max_prefix\": 12737, \"H3_collection_contract\": \"Pass --max-prefix required_collector_max_prefix; the default1024 can reject full-video late queries\", \"labels\": \"Actual dataset GT only after predictions; IoU localization proxies, not full distractor semantic identities\", \"near_threshold_events\": \"Not mined: stored predicted_advantage omits final harm/write net score; cannot claim a net-margin threshold\", \"states\": \"Queries are timestamps for causal prefix replay, never states reconstructed from rounded text predictions\", \"event_sampling\": \"All GT-known actual interventions; largest gap per contiguous missed/write episode; failure offsets -2,-1,0,+1,+3; observed recovery; up to2 normal controls persequence\", \"censored_failures\": \"Not recovered within recorded sequence, not proven permanently unrecoverable\"}\n",
+    "collect_sanity_gpu1.log": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nTraceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 218, in <module>\n    main()\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 200, in main\n    row = collect_sequence(sequence, groups[name], references[name], extractor, head, motion, prefix, device, args, output)\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 105, in collect_sequence\n    rows[-1]['parent_search_triggered'] = np.bool_(tracker.last_decision['search_requested'])\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/_tensor.py\", line 1151, in __array__\n    return self.numpy().astype(dtype, copy=False)\nTypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.\n",
+    "collect_sanity_gpu0.log": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nTraceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 218, in <module>\n    main()\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 200, in main\n    row = collect_sequence(sequence, groups[name], references[name], extractor, head, motion, prefix, device, args, output)\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 105, in collect_sequence\n    rows[-1]['parent_search_triggered'] = np.bool_(tracker.last_decision['search_requested'])\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/_tensor.py\", line 1151, in __array__\n    return self.numpy().astype(dtype, copy=False)\nTypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.\n",
+    "collect_sanity_gpu3.log": "/data/gb/envs/gola/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n/data/gb/GOLA/research/collect_rollouts.py:76: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)\n  return float(box_iou(torch.from_numpy(box), torch.from_numpy(target)))\nTraceback (most recent call last):\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/gb/envs/gola/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 218, in <module>\n    main()\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 200, in main\n    row = collect_sequence(sequence, groups[name], references[name], extractor, head, motion, prefix, device, args, output)\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/data/gb/GOLA/research/collect_event_rollouts.py\", line 105, in collect_sequence\n    rows[-1]['parent_search_triggered'] = np.bool_(tracker.last_decision['search_requested'])\n  File \"/data/gb/envs/gola/lib/python3.10/site-packages/torch/_tensor.py\", line 1151, in __array__\n    return self.numpy().astype(dtype, copy=False)\nTypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.\n"
+  }
+}

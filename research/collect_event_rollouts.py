@@ -102,7 +102,7 @@ def collect_sequence(sequence, jobs, reference_file, extractor, head, motion, pr
         assert bool(tracker.last_decision['template_updated']) == bool(writes[frame - 1])
         if frame in wanted:
             rows[-1]['parent_flat_action'] = np.int64(2 * int(tracker.last_decision['choice']) + int(tracker.last_decision['pause']))
-            rows[-1]['parent_search_triggered'] = np.bool_(tracker.last_decision['search_requested'])
+            rows[-1]['parent_search_triggered'] = np.bool_(bool(tracker.last_decision['search_requested']))
         candidate, quality, _, choice = tracker.last_observation
         context['branch'] = tracker.branch
         context['history'].append(dict(descriptor=candidate['modality_features'][0, choice].cpu().numpy().copy(),

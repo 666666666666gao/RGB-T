@@ -7,12 +7,27 @@
   "requested_reasoning": "max",
   "review_classification": "Same-family provisional; backend independently unattested; source PASS is not runtime PASS",
   "runtime_gates_pending": [
-    "Original881TRAIN successful closed completion and GPU release",
+    "Original881TRAIN already successfully closed; revised GPU sanity stillpending",
     "Four real shared-prefix collection sanity runs with exact per-frame parity",
     "Real verified-write full-objective gradients and batch32 longest-history backward",
     "Four successful sanity fits with allABC gradients/parameter changes/frozenC1/strict reload",
     "AllTRAIN/DEV collection completion and parent decision parity before full optimization",
     "Four full24epoch fits, eight full98 and protectedparent selection, same one model both native datasets"
   ],
-  "reviewer_performed_NN_or_deployment": false
+  "reviewer_performed_NN_or_deployment": false,
+  "actual_first_sanity_failure": "Closed all4 children/owner2564398 before optimization; original logs retained",
+  "one_line_scalar_fix_review": {
+    "status": "PASS",
+    "scope": "COMPLETE_CURRENT_EVENT_ROLLOUT_PIPELINE_SOURCE",
+    "blocking_issues": 0,
+    "reviewer": "/root/current_event_rollout_fit_review",
+    "classification": "Same-family provisional, backend unattested; source PASS not GPU runtime PASS",
+    "actual_primary_failure": "All4 logs: np.bool_(CUDA search_requested) triggers TypeError before first query artifact closure",
+    "minimal_fix": "np.bool_(bool(tracker.last_decision['search_requested']))",
+    "other_current_path_conversions_checked": "Other conversions use .cpu().numpy() or explicit int/float/bool; no second same defect found",
+    "failed_attempt_kept": "/data/gb/outputs/current_event_rollout_training_20261007",
+    "full881_original_TRACE_not_restarted": true,
+    "longest_real_query_gate": 12737,
+    "no_reviewer_GPU_or_deployment": true
+  }
 }

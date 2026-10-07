@@ -241,3 +241,7 @@ Fresh source review PASS; 4frame-balanced disjoint shards with4real64frame sanit
 ## 2026-10-07T22:21:08.335265+08:00 当前策略关键事件→共享因果前缀→完整ABC训练→同一模型双native
 
 源码freshPASS，原owner2310613未重启。架构不变；CPU共享历史/每batch CUDA、并行等价记忆公式；真实GPUsanity/最长batch32尚待观察。完整4×24epoch，8best/last full98+父策略选一份，统一245/234正式5指标/31attrs/paired，即使负结果也完成。详见ONEhandoff与current_event_rollout_fit源码复核；本发布观察到新优化0，新native0，目标仍ACTIVE_UNMET0/5。
+
+## 2026-10-07T22:30:15.960064+08:00 首次事件GPUsanity失败→标量修复
+
+原881TRAIN已全部成功关闭，完整16452H3查询覆盖881、maxq12737。新owner2564398/4children全部因同一CUDA标量保存失败，0updates/weights/native。np.bool_(bool(...))最小修复freshdeltaSOURCEPASS，原目录保留；只新_scalarfix事件sanity/队列，不重复原NN。
