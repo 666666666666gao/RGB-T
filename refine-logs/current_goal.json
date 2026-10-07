@@ -44611,7 +44611,7 @@
     "root_interpretation": "64oldfailurestratum TRAIN queries:0 serial/grouped C1keep differences,0 A reconstruction local decision differences; tiny errors do not justify recollection or claim full query/future parity."
   },
   "current_action_risk_calibration_probe": {
-    "stage": "SOURCE_PASS_PENDING_REAL_SANITY",
+    "stage": "ORIGINAL_OWNER_LAUNCHED_SANITY_PENDING",
     "source_files": [
       "research/probe_action_risk_calibration.py",
       "scripts/run_action_risk_calibration_probe.py"
@@ -44624,6 +44624,24 @@
     "full_epochs": 128,
     "full_steps_per_arm": 512,
     "same_frequency_report": "Cached batch ranking only, not valid online deployment or video recovery",
-    "causal_proof_or_gain_promised": false
+    "causal_proof_or_gain_promised": false,
+    "launch": {
+      "pid": 2254482,
+      "at_cst": "2026-10-07T19:07:04.415220+08:00",
+      "command": [
+        "/data/gb/envs/gola/bin/python",
+        "-u",
+        "-m",
+        "scripts.run_action_risk_calibration_probe",
+        "--review",
+        "refine-logs/runs/action_risk_calibration_probe/EXPERIMENT_CODE_REVIEW.json",
+        "--output",
+        "/data/gb/outputs/action_risk_calibration_probe_20261007"
+      ],
+      "output": "/data/gb/outputs/action_risk_calibration_probe_20261007",
+      "source_commit": "fca811f0527acdb20b06d39baa8ed666a97800e3",
+      "owner_started_once": true,
+      "real_sanity_completed": false
+    }
   }
 }
