@@ -58,5 +58,25 @@
     "next_step": "Wait for current full training and LasHeR report before full counterfactual collection/future-head fitting",
     "running_20_epoch_training_unchanged": true,
     "not_done": "No full collection, future-utility head training, persistent rejected-tracklet memory or +2 evidence yet"
+  },
+  "future_action_runtime": {
+    "source": "future_actions.py",
+    "class": "CADTrackFuturePolicy",
+    "head_parameters": 37426,
+    "input": "275 current/historical evidence dimensions; no future images or GT",
+    "objective": "Relative matched future utility, within-context action ranking and future harm",
+    "actions": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "parent_behavior_preserved_at_zero_initialization": true,
+    "future_visual_search_budget": "Reuse actual native local or local+one observed context; no additional backbone forward",
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_RUNTIME_AND_TWO_UPDATE_HEAD_SANITY_PASS",
+    "not_done": "Full future-head trainer/checkpoint/evaluation entry-point integration and full teacher-state data remain pending; current20ep still trains current-IoU C",
+    "next": "Keep current full20ep and formalLas results; use its selected fixed teacher for full future-action fitting and deployment validation"
   }
 }

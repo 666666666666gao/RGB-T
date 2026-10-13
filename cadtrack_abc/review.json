@@ -72,5 +72,20 @@
     "collector_cli_executor_status": "CPU_COMPLETE_SINGLE_TRAIN_QUERY_COLLECTION_PASS",
     "collector_cli_queries": 1,
     "collector_cli_action_labels": 210
+  },
+  "future_action_runtime": {
+    "status": "PASS_SOURCE_ONLY",
+    "blocking_findings": 0,
+    "reviewer": "/root/cad_future_actions_review",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_model_and_effort_attested": false,
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "reviewer_response": "275维正确，输出/相对utility/harm形状[B,K,6]，context原生候选policy参考和排序方向正确。零初始化value0/harm logits-3，分数严格0，实际阈值.03返回原生observation/state只增加2诊断字段。B1 argmax/divmod正确；介入后的box/choice/提交/geometry_reference/selected_quality与选中候选一致；原生step一次，advance_candidate无backbone，实际预算0/1额外搜索。未来图像仅训练rollout，GT仅标签；forward/features/runtime无泄漏。训练适配需从raw utility按context重算参考，而非直接用旧全query advantage；age=frame-1符合完整逐帧前缀。五文件AST通过；本地无Torch，评审未执行张量/梯度/重载，不访问服务器/GPU、不改文件。",
+    "scope": "Source-only review; execution evidence is separately attributed to the CPU witness.",
+    "cpu_executor_status": "FUTURE_C_RUNTIME_AND_ACTUAL_LABEL_HEAD_SANITY_PASS",
+    "future_head_optimizer_sanity_updates": 2,
+    "future_full_training_complete": false
   }
 }
