@@ -22,7 +22,7 @@
     "one best development checkpoint",
     "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
   ],
-  "status": "FULL_TRAINING_RUNNING_SOURCE_REVIEW_PASS_TWO_GPU_SANITY_PASS",
+  "status": "NATIVE20_TRAINING_COMPLETE_FULL_LASHER_EVALUATION_RUNNING",
   "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
   "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
   "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
@@ -31,7 +31,7 @@
     "LasHeR_NPR",
     "LasHeR_SR"
   ],
-  "not_results": "Two-GPU real-data sanity passed and normal training is running; no formal CAD-enhanced metrics yet. Prior GOLA scores are historical, not CAD results.",
+  "not_results": "Actual20epochs/3140updates/history/selected checkpoint verified; enhanced native LasHeR full245 testing is running. No formal PR/NPR/SR or +2 proof yet. Future-action fit and persistent rejected-tracklet memory are not completed.",
   "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
   "current_targets": {
     "LasHeR_PR": 74.74,
@@ -140,5 +140,39 @@
     "state_file_limitation": "An artifact validation exception stops the wrapper and dependencies without VERIFIED_COMPLETE, but queue_state can retain RUNNING/COMMANDS_EXITED_SUCCESSFULLY. A monitor must use process exit and required receipts together; the state file alone does not establish liveness or completion.",
     "started": false,
     "formal_metrics_complete": false
+  },
+  "native_round_completion": {
+    "status": "ACTUAL_NATIVE20_TRAINING_HISTORY_AND_SELECTED_CHECKPOINT_VERIFIED",
+    "observed_utc": "2026-10-13T21:19:18.837994+00:00",
+    "epochs": 20,
+    "optimizer_updates": 3140,
+    "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "best_epoch": 2,
+    "best_updates": 314,
+    "best_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "best_validation_clip_iou": 0.8159592297612405,
+    "validation_scope": "196 development clips, not formal LasHeR SR or full98 video selection.",
+    "strict_reload_receipt": true,
+    "train_sequences": 881,
+    "validation_sequences": 98,
+    "pretrained_epoch": 14,
+    "pretrained_strict_tensors": 250,
+    "base_parameters": 103138437,
+    "trainable_parameters": 414164,
+    "physical_gpus_manifest": "2,3",
+    "logged_gradient_records": 160,
+    "logged_nonzero_gradient_records_by_group": {
+      "A": 160,
+      "B_motion": 160,
+      "B_search": 160,
+      "C": 160,
+      "relations": 159
+    },
+    "first_epoch_seconds": 3487.4232950210007,
+    "last_epoch_seconds": 2773.5216701379977,
+    "training_elapsed_seconds": 57333.926296597,
+    "cuda_initialized": false,
+    "full_formal_metrics_complete": false,
+    "scope": "Read-only actual completed training/history/checkpoint evidence; no extra NN training, baseline inference, GPU statistics, or full test scores."
   }
 }
