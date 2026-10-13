@@ -2371,5 +2371,96 @@
   "full_collection_started": false,
   "future_head_trained": false,
   "formal_metrics_complete": false,
-  "main_training_restarted": false
+  "main_training_restarted": false,
+  "collector_cli_sanity": {
+    "verification": {
+      "status": "CPU_COMPLETE_SINGLE_TRAIN_QUERY_COLLECTION_PASS",
+      "queries": 1,
+      "sequence": "10crosswhite",
+      "frame": 5,
+      "split": "train",
+      "actions": 210,
+      "context_candidate_counts": [
+        5,
+        10,
+        10,
+        10
+      ],
+      "horizon": 3,
+      "teacher_epoch": 2,
+      "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+      "reference_action": [
+        0,
+        0,
+        "policy"
+      ],
+      "reference_advantage": 0.0,
+      "utility_range": [
+        0.2061884105205536,
+        0.892195999622345
+      ],
+      "positive_advantage_actions": 13,
+      "harmful_actions": 168,
+      "frozen_continuation_teacher": true,
+      "future_gt_labels_only": true,
+      "full_predicted_prefix": true,
+      "all_native_state_reconstructions_equal": true,
+      "excluded_official_test": true,
+      "device": "cpu",
+      "cuda_initialized": false,
+      "seconds": 313.96315015000073,
+      "artifact": "/home/gaob/CADTrack-ABC/outputs/action_collection_sanity_20261013/5c6b6fcbf18b_10crosswhite_000005.pt",
+      "scope": "Collector program sanity on one TRAIN query, not full collection, optimizer training, formal metrics or gain evidence.",
+      "main_training_restarted": false,
+      "future_head_trained": false
+    },
+    "collection_receipt": {
+      "completed": true,
+      "model_family": "CADTrackABC-native-current-quality",
+      "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+      "queries": 1,
+      "records": [
+        {
+          "model_family": "CADTrackABC-native-current-quality",
+          "teacher": "/home/gaob/CADTrack-ABC/outputs/action_collection_sanity_20261013/teacher.pth",
+          "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+          "teacher_epoch": 2,
+          "sequence": "10crosswhite",
+          "frame": 5,
+          "split": "train",
+          "horizon": 3,
+          "modes": [
+            "policy",
+            "pause_identity",
+            "defer_geometry",
+            "accept_geometry",
+            "rgb_only",
+            "tir_only"
+          ],
+          "threshold": 0.03,
+          "reference_action": [
+            0,
+            0,
+            "policy"
+          ],
+          "native_state_reconstruction_equal": true,
+          "full_predicted_prefix_from_frame0": true,
+          "file": "5c6b6fcbf18b_10crosswhite_000005.pt",
+          "action_labels": 210,
+          "seconds_since_start": 308.0279893509978
+        }
+      ],
+      "device": "cpu",
+      "first_gt_only_initialization": true,
+      "future_gt_labels_only": true,
+      "context_budget": "local or local+one of three independent motion regions; no cross-region feature mixing",
+      "utility": ".7 current_IoU + .3 valid_future_mean_IoU - .1 mean(wrong_appearance_fraction,wrong_geometry_fraction) - .01 mean_extra_forwards",
+      "commit_proxy": "Wrong means selected localization IoU<.2 on valid GT, not semantic identity truth.",
+      "not_results": "TRAIN/DEV teacher counterfactual labels; not formal metrics and not trained future-head results."
+    },
+    "collector_process_terminal": true,
+    "own_temporary_teacher_removed": true,
+    "raw_log": "{\"event\": \"query_complete\", \"model_family\": \"CADTrackABC-native-current-quality\", \"teacher\": \"/home/gaob/CADTrack-ABC/outputs/action_collection_sanity_20261013/teacher.pth\", \"teacher_sha256\": \"5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988\", \"teacher_epoch\": 2, \"sequence\": \"10crosswhite\", \"frame\": 5, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_10crosswhite_000005.pt\", \"action_labels\": 210, \"seconds_since_start\": 308.0279893509978}\n",
+    "transport_result": "Local SSH observation returned255/Connection reset; authoritative server completion and artifact checks show success; not rerun."
+  }
 }
