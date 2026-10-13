@@ -24,7 +24,7 @@ def main():
     receipts = [json.loads((predictions / ('complete_shard' + str(i) + '.json')).read_text()) for i in range(2)]
     assert all(r['completed'] for r in receipts)
     assert receipts[0]['checkpoint'] == receipts[1]['checkpoint']
-    expected, expected_frames = (245, 220703) if args.dataset == 'lasher' else (234, 116649)
+    expected = 245 if args.dataset == 'lasher' else 234
     names = list(evaluator.ALL)
     assert len(names) == expected and {p.name for p in root.iterdir() if p.is_dir()} == set(names)
     assert {p.stem for p in predictions.glob('*.txt')} == set(names)
@@ -41,7 +41,12 @@ def main():
         boxes = np.loadtxt(predictions / (name + '.txt'), ndmin=2)
         assert boxes.shape == (len(ground_truth), 4) and np.isfinite(boxes).all()
         frame_count += len(ground_truth)
-    assert frame_count == expected_frames == sum(r['frames'] for r in records)
+    assert frame_count == sum(r['frames'] for r in records)
+    # LasHeR was inventoried locally. RGBT234's newly downloaded version is
+    # inventoried independently by download_rgbt234; do not substitute the old
+    # server's different historical frame total for this dataset's actual GT.
+    if args.dataset == 'lasher':
+        assert frame_count == 220703
     tracker = 'CADTrack_ABC'
     evaluator(tracker, str(predictions))
     metrics = ['NPR', 'PR', 'SR'] if args.dataset == 'lasher' else ['MPR', 'MSR']
