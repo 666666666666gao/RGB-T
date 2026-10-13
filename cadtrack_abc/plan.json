@@ -119,5 +119,26 @@
     },
     "not_proven": "No critical event occurred in this16-frame sanity. Full event counts, label coverage, training improvements and formal metrics remain unverified.",
     "next": "Inspect current native20ep/fullLas report first; then sample full trajectories using its selected fixed teacher, collect matched action labels and fit future head."
+  },
+  "deferred_future_pipeline": {
+    "source": "future_pipeline.py",
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_PARENT_GUARD_PASS_NOT_STARTED",
+    "prerequisite": "Actual native20epochs/3140updates/strict reload/full LasHeR245 sequences220703 frames PR,NPR,SR and one matching selected checkpoint; inspect that result before manually launching.",
+    "stages": [
+      "Frozen selected native teacher copy",
+      "Complete881TRAIN/98DEV trajectory sampling on GPU2,3",
+      "H3 six-action matched label collection on GPU2,3",
+      "Strict packet merge",
+      "Future head20epochs only, batch64, GPU2",
+      "Six snapshots0/1/2/5/10/20 full98 continuous development on GPU2,3",
+      "One best checkpoint selection including neutral epoch0",
+      "Full LasHeR245/220703 explicit future_actions inference on GPU2,3",
+      "Official PR/NPR/SR, attributes, curves, per-sequence and mechanism reports"
+    ],
+    "cleanup": "Listed own candidate weights only after copying/strict reload best; temporary teacher copy only after full score/byte comparison. Preserve parent best and supplied pretrain.",
+    "limits": "LasHeR only; no baseline rerun, GPU0/1, additional datasets, retry, automatic next round, or automatic overall-goal completion.",
+    "state_file_limitation": "An artifact validation exception stops the wrapper and dependencies without VERIFIED_COMPLETE, but queue_state can retain RUNNING/COMMANDS_EXITED_SUCCESSFULLY. A monitor must use process exit and required receipts together; the state file alone does not establish liveness or completion.",
+    "started": false,
+    "formal_metrics_complete": false
   }
 }
