@@ -222,6 +222,8 @@ class CADTrackABC(nn.Module):
         return {'box': chosen_box, 'choice': choice, 'local': local, 'local_scored': local_scored,
                 'pair': pair, 'scored': scored, 'distribution': distribution, 'search_logits': search_logits,
                 'extra_forwards': extra_count, 'geometry_commit': geometry_commit, 'write': write,
+                'template_commit': write[:, None] & verified, 'target_memory_commit': identity_commit,
+                'geometry_reference': next_box, 'keep_box': clip_boxes(local['boxes'][:, 0], images),
                 'selected_quality': selected_quality.sigmoid().detach()}, state
 
     def training_losses(self, observation, targets, future, future_valid, state):

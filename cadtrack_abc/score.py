@@ -82,6 +82,15 @@ def main():
     if args.dataset == 'lasher':
         report['baseline_metrics_percent_user_provided'] = {'PR': 72.74, 'NPR': 69.16, 'SR': 57.84}
         report['delta_percentage_points_vs_user_reference'] = {metric: overall[metric] - report['baseline_metrics_percent_user_provided'][metric] for metric in metrics}
+        report['lasher_stage_goal'] = {
+            'targets_percent': {'PR': 74.74, 'NPR': 71.16, 'SR': 59.84},
+            'per_metric_reached': {metric: overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + 2 for metric in metrics},
+            'all_three_reached': all(overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + 2 for metric in metrics),
+            'scope': 'Fixed model point estimates against user reference; does not prove independent module contributions or paired uncertainty.'}
+        from .mechanism_summary import summarize_lasher
+        mechanism = summarize_lasher(root, predictions, names)
+        (output / 'mechanism_report.json').write_text(json.dumps(mechanism, indent=2))
+        report['mechanism_report'] = str(output / 'mechanism_report.json')
     (output / 'full_report.json').write_text(json.dumps(report, indent=2))
     with (output / 'per_sequence.csv').open('w', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=['sequence'] + metrics)

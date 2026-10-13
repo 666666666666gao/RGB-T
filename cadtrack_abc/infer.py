@@ -54,6 +54,10 @@ def main():
                                 'extra_forwards': observation['extra_forwards'],
                                 'geometry_commit': bool(observation['geometry_commit'][0]),
                                 'template_write_requested': bool(observation['write'][0]),
+                                'template_commit_rgb_tir': observation['template_commit'][0].cpu().tolist(),
+                                'target_memory_commit_rgb_tir': observation['target_memory_commit'][0].cpu().tolist(),
+                                'next_geometry_reference_xywh': observation['geometry_reference'][0].cpu().tolist(),
+                                'keep_box_xywh': observation['keep_box'][0].cpu().tolist(),
                                 'candidate_boxes_xyxy': observation['pair']['boxes'][0].cpu().tolist(),
                                 'predicted_quality': observation['selected_quality'][0].item()})
         np.savetxt(output / (sequence.name + '.txt'), np.stack(boxes), delimiter='\t', fmt='%.3f')

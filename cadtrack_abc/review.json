@@ -6,10 +6,49 @@
   "actual_model_and_effort_attested": false,
   "review_independence": "same-family",
   "acceptance_status": "provisional",
-  "fixed_blockers": ["Motion labels now time:time+3, aligned with time-1 history", "Eight-step clips exercise complete motion inputs and template updates", "Checkpoint pickle import no longer depends on unvendored multigpu"],
-  "verified": ["A/B port AST matches original implementations", "Static feature dimensions399/295 correct", "GT only enters initialization/loss, not step", "Frozen base eval; trainable groups have loss paths", "881/98 split disjoint and official test excluded"],
-  "not_verified_by_reviewer": ["Actual PyTorch tensor strict load", "GPU forward/backward", "DDP execution", "Formal five metrics"],
+  "fixed_blockers": [
+    "Motion labels now time:time+3, aligned with time-1 history",
+    "Eight-step clips exercise complete motion inputs and template updates",
+    "Checkpoint pickle import no longer depends on unvendored multigpu"
+  ],
+  "verified": [
+    "A/B port AST matches original implementations",
+    "Static feature dimensions399/295 correct",
+    "GT only enters initialization/loss, not step",
+    "Frozen base eval; trainable groups have loss paths",
+    "881/98 split disjoint and official test excluded"
+  ],
+  "not_verified_by_reviewer": [
+    "Actual PyTorch tensor strict load",
+    "GPU forward/backward",
+    "DDP execution",
+    "Formal five metrics"
+  ],
   "scope": "Current-IoU advantage/risk CAD adapter; not claimed identical to GOLA counterfactual future-value policy",
   "evaluation_source_review": "WARN: first-GT-only, same checkpoint, GPU2/3, actual GT and full completion checks correct; actual metrics not yet computed and final RGBT234 data count must be checked",
-  "actual_sanity_executor": {"world_size":2,"optimizer_updates":2,"strict_base_tensors":250,"strict_best_reload":true,"A_changed_tensors":9,"B_motion_changed_tensors":4,"B_search_changed_tensors":4,"C_changed_tensors":2,"relations_changed_tensors":4}
+  "actual_sanity_executor": {
+    "world_size": 2,
+    "optimizer_updates": 2,
+    "strict_base_tensors": 250,
+    "strict_best_reload": true,
+    "A_changed_tensors": 9,
+    "B_motion_changed_tensors": 4,
+    "B_search_changed_tensors": 4,
+    "C_changed_tensors": 2,
+    "relations_changed_tensors": 4
+  },
+  "diagnostic_instrumentation_executor": {
+    "policy_ast_unchanged_except_returned_diagnostics": true,
+    "numpy_fixture_status": "PASS",
+    "fixture_model_evaluated": false,
+    "verified": [
+      "Known IoU cases",
+      "same-state rescue/harm counts",
+      "new-candidate recall vs acceptance",
+      "actual RGB/TIR commits vs write requests",
+      "invalid-GT event masking",
+      "right-censored recovery events"
+    ],
+    "runtime_scope": "New formal diagnostics not yet run on trained-model full videos; current model training is unchanged."
+  }
 }
