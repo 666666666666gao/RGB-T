@@ -37,5 +37,26 @@
     "LasHeR_PR": 74.74,
     "LasHeR_NPR": 71.16,
     "LasHeR_SR": 59.84
+  },
+  "future_action_collection": {
+    "purpose": "Prepare native same-state future action consequences missing from the current-IoU C adaptation",
+    "source": [
+      "counterfactual.py",
+      "collect_actions.py"
+    ],
+    "status": "SOURCE_REVIEW_PASS_CPU_REAL_TRAIN_STATE_WITNESS_PASS",
+    "action_modes": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "prefix": "Full deployed-teacher predicted prefix from sequence frame0; only initial GT initializes the state",
+    "search_budget": "Three independent offline local+one-region probe contexts; each simulated action sees only one and has at most one extra visual forward",
+    "next_step": "Wait for current full training and LasHeR report before full counterfactual collection/future-head fitting",
+    "running_20_epoch_training_unchanged": true,
+    "not_done": "No full collection, future-utility head training, persistent rejected-tracklet memory or +2 evidence yet"
   }
 }

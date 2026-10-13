@@ -50,5 +50,24 @@
       "right-censored recovery events"
     ],
     "runtime_scope": "New formal diagnostics not yet run on trained-model full videos; current model training is unchanged."
+  },
+  "future_action_collector": {
+    "reviewer": "/root/cad_counterfactual_review",
+    "source_status": "PASS",
+    "initial_source_verdict": "FAIL",
+    "fixed_blockers": [
+      "Geometry-only modes no longer also pause both identity commits",
+      "Excluded modalities cannot update non-target or uncertain slots"
+    ],
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_model_and_effort_attested": false,
+    "reviewer_response": "修正后复审PASS，当前源码范围内阻断项0。defer_geometry/accept_geometry只改变几何接纳并保留普通双模态身份写入；按permit[:,None,:,None]屏蔽被暂停模态的全部四个记忆槽；rgb_only/tir_only明确限制提交而非视觉输入。policy新增掩码全真，不改变原策略重建。独立重算实际清单：881 TRAIN、98 DEV互斥，等于979实际训练目录并集，与245官方测试目录交集0。缓存只含local5或local+一个独立区域10，三个离线探测区域不混合；完整预测前缀、统一冻结教师、GT标签用途、效用分母和单步0/1额外搜索预算静态检查通过。五文件AST通过；评审本身未运行Torch/模型/服务器。review_independence=same-family；acceptance_status=provisional；请求gpt-6-astra/max，实际模型和力度UNATTESTED。",
+    "cpu_executor_status": "CPU_REAL_TRAIN_STATE_WITNESS_PASS",
+    "formal_metrics_complete": false,
+    "future_head_trained": false,
+    "running_policy_changed": false
   }
 }
