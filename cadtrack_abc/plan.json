@@ -32,7 +32,7 @@
     "LasHeR_SR"
   ],
   "not_results": "Two-GPU real-data sanity passed and normal training is running; no formal CAD-enhanced metrics yet. Prior GOLA scores are historical, not CAD results.",
-  "evaluation_focus": "LasHeR only for the current round; RGBT234 deferred by user, baseline reference pending",
+  "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
   "current_targets": {
     "LasHeR_PR": 74.74,
     "LasHeR_NPR": 71.16,
@@ -76,7 +76,27 @@
     "parent_behavior_preserved_at_zero_initialization": true,
     "future_visual_search_budget": "Reuse actual native local or local+one observed context; no additional backbone forward",
     "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_RUNTIME_AND_TWO_UPDATE_HEAD_SANITY_PASS",
-    "not_done": "Full future-head trainer/checkpoint/evaluation entry-point integration and full teacher-state data remain pending; current20ep still trains current-IoU C",
+    "not_done": "Full teacher-state data collection, full future-head fit, full98-video selection, formalLas results and persistent rejected-tracklet memory remain pending.",
     "next": "Keep current full20ep and formalLas results; use its selected fixed teacher for full future-action fitting and deployment validation"
+  },
+  "future_training_entries": {
+    "sources": [
+      "future_data.py",
+      "merge_action_packets.py",
+      "train_future_actions.py",
+      "validate_future_actions.py",
+      "select_future_actions.py",
+      "collect_actions.py",
+      "infer.py"
+    ],
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_CLI_SANITY_PASS",
+    "frozen_dependencies": "Strictly loaded supplied pureCAD pretrain and selected teacher nativeABC; future fit trains only37426 head parameters.",
+    "data": "Immutable teacher full predicted prefixes;881TRAIN/98DEV, four independent5/10/10/10 candidate contexts x6actions; same-state future utility recomputed per context.",
+    "selection": "Snapshots0/1/2/5/10/20 all evaluated on full98 continuous development videos; sequence-equal IoU chooses one best including initialization control; cache gain is diagnostic only.",
+    "cleanup": "Selectedbest strictly reloaded; delete only enumerated owncandidate weights, keep originalfixedteacher/pretrain and receipts.",
+    "formal_entry": "cadtrack_abc.infer --policy future_actions then unchanged official cadtrack_abc.score for fullLas245/220703 PR/NPR/SR/attributes/curves/perseq/mechanisms.",
+    "next": "Wait for current20epoch pipeline and fullLas report before full future data collection/GPU training. Do not restart current job or run another formal training concurrently.",
+    "full_future_training_complete": false,
+    "formal_metrics_complete": false
   }
 }

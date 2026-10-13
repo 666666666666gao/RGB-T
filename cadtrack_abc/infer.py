@@ -15,6 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--checkpoint', required=True)
+    parser.add_argument('--policy', choices=['native', 'future_actions'], default='native')
     parser.add_argument('--dataset', choices=['lasher', 'rgbt234'], required=True)
     parser.add_argument('--root', required=True)
     parser.add_argument('--output', required=True)
@@ -24,9 +25,19 @@ def main():
     config = json.loads(Path(args.config).read_text())
     torch.cuda.set_device(0)
     torch.set_num_threads(4)
-    model = CADTrackABC(config['pretrained'], config['threshold']).cuda().eval()
+    if args.policy == 'future_actions':
+        from .future_actions import CADTrackFuturePolicy
+        model = CADTrackFuturePolicy(config['pretrained'], config['threshold']).cuda().eval()
+    else:
+        model = CADTrackABC(config['pretrained'], config['threshold']).cuda().eval()
     payload = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
     model.abc.load_state_dict(payload['abc'], strict=True)
+    if args.policy == 'future_actions':
+        assert payload['policy_family'] == 'future_actions'
+        assert payload['config']['pretrained'] == config['pretrained'] and payload['config']['threshold'] == config['threshold']
+        model.future_action.load_state_dict(payload['future_action'], strict=True)
+    else:
+        assert 'future_action' not in payload
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     all_sequences = sorted(p for p in Path(args.root).iterdir() if p.is_dir())
@@ -60,6 +71,9 @@ def main():
                                 'keep_box_xywh': observation['keep_box'][0].cpu().tolist(),
                                 'candidate_boxes_xyxy': observation['pair']['boxes'][0].cpu().tolist(),
                                 'predicted_quality': observation['selected_quality'][0].item()})
+            if args.policy == 'future_actions':
+                diagnostics[-1].update(future_mode=observation['future_mode'],
+                                       future_net_advantage=observation['future_net_advantage'])
         np.savetxt(output / (sequence.name + '.txt'), np.stack(boxes), delimiter='\t', fmt='%.3f')
         np.save(output / (sequence.name + '_latency.npy'), np.array(latencies))
         (output / (sequence.name + '_mechanisms.json')).write_text(json.dumps(diagnostics))
@@ -72,6 +86,7 @@ def main():
                'sequences': len(records), 'frames': sum(r['frames'] for r in records),
                'peak_memory_gb': torch.cuda.max_memory_allocated() / 1e9,
                'strict_base_and_abc_load': True, 'first_box_only_initialization': True}
+    receipt['policy_family'] = args.policy
     (output / ('complete_shard' + str(args.shard) + '.json')).write_text(json.dumps(receipt, indent=2))
 
 

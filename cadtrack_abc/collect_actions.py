@@ -12,6 +12,7 @@ from .counterfactual import (ACTION_MODES, advance_candidate, assert_same_state,
                              decision_cache, label_rollout, observe_query, parent_action, rollout)
 from .data import read_pair
 from .model import CADTrackABC
+from .future_actions import CADTrackFuturePolicy
 
 
 @torch.inference_mode()
@@ -19,6 +20,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--teacher', required=True, help='Fixed modules checkpoint, not the live overwritten best file.')
+    parser.add_argument('--teacher-policy', choices=['native', 'future_actions'], default='native')
     parser.add_argument('--manifest', required=True)
     parser.add_argument('--queries', required=True, help='JSON list of sequence/frame objects, zero-based frame.')
     parser.add_argument('--split', choices=['train', 'validation'], required=True)
@@ -28,6 +30,7 @@ def main():
     parser.add_argument('--modes', nargs='+', choices=ACTION_MODES, default=list(ACTION_MODES))
     args = parser.parse_args()
     assert args.horizon >= 1 and 'policy' in args.modes and len(set(args.modes)) == len(args.modes)
+    assert args.teacher_policy == 'native' or set(args.modes) == set(ACTION_MODES)
     torch.set_num_threads(4)
     config = json.loads(Path(args.config).read_text())
     manifest = json.loads(Path(args.manifest).read_text())
@@ -41,8 +44,16 @@ def main():
     payload = torch.load(args.teacher, map_location='cpu', weights_only=False)
     assert payload['config']['pretrained'] == config['pretrained']
     assert payload['config']['threshold'] == config['threshold']
-    model = CADTrackABC(config['pretrained'], config['threshold']).to(args.device).eval().requires_grad_(False)
+    policy = CADTrackABC if args.teacher_policy == 'native' else CADTrackFuturePolicy
+    model = policy(config['pretrained'], config['threshold']).to(args.device).eval().requires_grad_(False)
     model.abc.load_state_dict(payload['abc'], strict=True)
+    if args.teacher_policy == 'future_actions':
+        assert payload['policy_family'] == 'future_actions'
+        model.future_action.load_state_dict(payload['future_action'], strict=True)
+    else:
+        assert 'future_action' not in payload
+    model_family = ('CADTrackABC-native-current-quality' if args.teacher_policy == 'native'
+                    else 'CADTrackFuturePolicy-future-actions')
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     records, start = [], time.perf_counter()
@@ -66,8 +77,9 @@ def main():
             images = [read_pair(rgb[frame], tir[frame])]
             times = torch.tensor([frame], device=model.device)
             query = observe_query(model, images, prior)
-            reference = parent_action(model, query)
             native, native_state = model.step(images, times, clone_state(prior))
+            reference = (parent_action(model, query) if args.teacher_policy == 'native' else
+                         (int(native['extra_forwards'] > 0), int(native['choice'][0]), native['future_mode']))
             native_trace, reconstructed = advance_candidate(model, images, times, prior, query, *reference)
             assert torch.equal(native_trace['box'], native['box']) and int(native['choice'][0]) == reference[1]
             assert_same_state(native_state, reconstructed)
@@ -87,7 +99,7 @@ def main():
                 label['advantage'] = label['utility'] - reference_label['utility']
                 label['harm'] = bool(label['advantage'] < -.05)
             filename = teacher_sha[:12] + '_' + name + '_' + str(frame).zfill(6) + '.pt'
-            record = {'model_family': 'CADTrackABC-native-current-quality', 'teacher': args.teacher,
+            record = {'model_family': model_family, 'teacher': args.teacher,
                       'teacher_sha256': teacher_sha, 'teacher_epoch': payload['epoch'], 'sequence': name,
                       'frame': frame, 'split': args.split, 'horizon': args.horizon, 'modes': args.modes,
                       'threshold': config['threshold'], 'reference_action': reference,
@@ -99,7 +111,7 @@ def main():
             # Keep the actual deployed teacher's query state, not an intervention.
             state = native_state
             next_frame = frame + 1
-    receipt = {'completed': True, 'model_family': 'CADTrackABC-native-current-quality', 'teacher_sha256': teacher_sha,
+    receipt = {'completed': True, 'model_family': model_family, 'teacher_sha256': teacher_sha,
                'queries': len(records), 'records': records, 'device': args.device,
                'first_gt_only_initialization': True, 'future_gt_labels_only': True,
                'context_budget': 'local or local+one of three independent motion regions; no cross-region feature mixing',
