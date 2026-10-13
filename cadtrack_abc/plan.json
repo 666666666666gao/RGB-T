@@ -98,5 +98,26 @@
     "next": "Wait for current20epoch pipeline and fullLas report before full future data collection/GPU training. Do not restart current job or run another formal training concurrently.",
     "full_future_training_complete": false,
     "formal_metrics_complete": false
+  },
+  "future_query_sampling": {
+    "source": "sample_action_queries.py",
+    "purpose": "Address actual historical query-coverage gap (1 among721 observed failure transitions), without claiming the historical rate describes this CAD teacher.",
+    "policy": "Explicit native/future strict checkpoint family, selected immutable teacher, all predictions from frame0 initialGT; no laterGT in state/crop.",
+    "sampling": "Two per-video uniform queries plus first loss_transition, wrong_identity_commit and missed_correct_candidate windows at offsets[-2,-1,0,1,3], valid H3 supervision only; reasons retained in packet query_spec.",
+    "scope": "881TRAIN or98DEV only, sharded on2/3 for later full collection; official245 excluded.",
+    "status": "SOURCE_REVIEW_PASS_REAL_CPU16_FRAME_PROGRAM_SANITY_PASS",
+    "full_sampling_complete": false,
+    "full_action_collection_complete": false,
+    "actual_input_inventory": {
+      "train": 881,
+      "development": 98,
+      "all_train_root": 979,
+      "official_test": 245,
+      "test_overlap": 0,
+      "all_first_boxes_valid_wh": true,
+      "minimum_eligible_H3_queries_per_video": 23
+    },
+    "not_proven": "No critical event occurred in this16-frame sanity. Full event counts, label coverage, training improvements and formal metrics remain unverified.",
+    "next": "Inspect current native20ep/fullLas report first; then sample full trajectories using its selected fixed teacher, collect matched action labels and fit future head."
   }
 }

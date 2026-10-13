@@ -102,6 +102,7 @@ def main():
             record = {'model_family': model_family, 'teacher': args.teacher,
                       'teacher_sha256': teacher_sha, 'teacher_epoch': payload['epoch'], 'sequence': name,
                       'frame': frame, 'split': args.split, 'horizon': args.horizon, 'modes': args.modes,
+                      'query_spec': item,
                       'threshold': config['threshold'], 'reference_action': reference,
                       'native_state_reconstruction_equal': True, 'full_predicted_prefix_from_frame0': True}
             torch.save({'metadata': record, 'decision': decision_cache(query, prior), 'labels': action_labels}, output / filename)
