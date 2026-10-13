@@ -1,0 +1,18 @@
+{
+  "task": "Port existing bounded memory, identity-motion prediction and candidate/risk selection to the supplied module-free CADTrack baseline, then train on server2028 GPU2,3",
+  "baseline": {"LasHeR_PR":72.74,"LasHeR_NPR":69.16,"LasHeR_SR":57.84,"source":"user_provided","rerun":false},
+  "adaptation": {
+    "A": "Reuse InstanceMemory: protected initial anchor, two target / non-target / unknown slots per sensor; ROI evidence; causal discriminative-margin preservation",
+    "B": "Reuse IdentityMotion: eight causal geometric states, three motion modes, three future-frame horizon; local-only absence / extra-region value prediction, at most one extra visual region online",
+    "C": "CAD-specific newly trained current quality / relative IoU advantage / localization risk / geometry acceptance, with candidate relations and independent RGB/TIR template commits",
+    "scope_note": "Initial native adaptation; C1 weights and GOLA-specific counterfactual action labels are not transplanted. Current-region supervised advantage is not represented as learned long-horizon action utility or exact old-policy equivalence. Memory sensor gates classify identity support, not separately annotated sensor reliability."
+  },
+  "training": "Real raw-video causal clips from all881 training sequences, eight predicted transitions per clip (exercising full motion history and template update), first clip box as initialization, all subsequent crop/state/history updates use model outputs. GT/future annotations used only in losses. 98 disjoint development sequences; official245-sequence test never enters training.",
+  "milestones": ["strict pretrained load","independent implementation review","two-GPU actual-data forward/backward/checkpoint sanity","20epochs x20000clips normal DDP training","one best development checkpoint","full enhanced LasHeR and RGBT234 metrics, no baseline rerun"],
+  "status": "FULL_TRAINING_RUNNING_SOURCE_REVIEW_PASS_TWO_GPU_SANITY_PASS",
+  "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
+  "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
+  "data": "Existing LasHeR reused in place; RGBT234 path search in progress. No other datasets.",
+  "full_metrics": ["LasHeR_PR","LasHeR_NPR","LasHeR_SR","RGBT234_MPR","RGBT234_MSR"],
+  "not_results": "No CAD-enhanced training or formal scores exist yet; previous GOLA scores are historical and not CAD results."
+}
