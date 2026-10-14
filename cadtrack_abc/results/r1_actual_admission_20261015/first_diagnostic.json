@@ -1,0 +1,137 @@
+{
+  "observed_utc": "2026-10-14T19:52:04.337923+00:00",
+  "controller_pid": 4089586,
+  "controller_exists": true,
+  "jobs": [
+    {
+      "pid": 4089657,
+      "process_exists": true,
+      "physical_gpu": 2,
+      "policy": "future_actions",
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_future_actions",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--teacher",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+        "--manifest",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+        "--train-index",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "--validation-index",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions",
+        "--epochs",
+        "20",
+        "--batch",
+        "64",
+        "--lr",
+        "0.0001",
+        "--workers",
+        "4",
+        "--device",
+        "cuda",
+        "--policy",
+        "future_actions"
+      ],
+      "cuda_device_setting": [
+        "CUDA_VISIBLE_DEVICES=2"
+      ],
+      "completed_epochs": 2,
+      "latest_epoch": {
+        "epoch": 2,
+        "updates": 160,
+        "train_loss": 0.1533866995961668,
+        "formal_metrics": null,
+        "cached_validation": {
+          "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+          "queries": 605,
+          "interventions": 53,
+          "extra_region_queries": 0,
+          "formal_metrics": null,
+          "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+        }
+      },
+      "history_elapsed_seconds": 253.25401139259338,
+      "completed_fit": null
+    },
+    {
+      "pid": 4089658,
+      "process_exists": true,
+      "physical_gpu": 3,
+      "policy": "search_actions",
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_future_actions",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--teacher",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+        "--manifest",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+        "--train-index",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "--validation-index",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions",
+        "--epochs",
+        "20",
+        "--batch",
+        "64",
+        "--lr",
+        "0.0001",
+        "--workers",
+        "4",
+        "--device",
+        "cuda",
+        "--policy",
+        "search_actions"
+      ],
+      "cuda_device_setting": [
+        "CUDA_VISIBLE_DEVICES=3"
+      ],
+      "completed_epochs": 2,
+      "latest_epoch": {
+        "epoch": 2,
+        "updates": 160,
+        "train_loss": 0.2131542885809177,
+        "formal_metrics": null,
+        "cached_validation": {
+          "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+          "queries": 605,
+          "interventions": 52,
+          "extra_region_queries": 0,
+          "formal_metrics": null,
+          "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+        }
+      },
+      "history_elapsed_seconds": 249.85601139068604,
+      "completed_fit": null
+    }
+  ],
+  "child_exits.json": null,
+  "fits_complete.json": null,
+  "gpu_memory_utilization_csv": "2, 366, 23759, 0\n3, 366, 23759, 0\n",
+  "visual_sanity": {
+    "status": "ACTUAL_GPU_NEUTRAL_AND_PROBABILITY_RANK1_VISUAL_STATE_SANITY_PASS",
+    "physical_gpu": 2,
+    "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "sequence": "10crosswhite",
+    "frame": 4,
+    "zero_heads_native_box_choice_and_all9_state_fields_equal": true,
+    "probability_rank_test": 1,
+    "actual_motion_mode": 0,
+    "actual_visual_forwards": 2,
+    "at_most_one_extra_visual_forward": true,
+    "searched_candidate_box_and_all9_state_fields_equal": true,
+    "optimizer_updates": 0,
+    "full_training_started": false,
+    "formal_metrics": null,
+    "scope": "One real TRAIN state; probability-rank1 forced only as routing fixture. Not trained search evidence or performance."
+  }
+}

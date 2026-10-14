@@ -379,24 +379,24 @@
     "selection": "Complete98 continuous DEV; cached queries do not select the final model.",
     "checkpoint_cleanup": "Scheduled candidates only after all required selected/trained full reports; keep trained_best until result audit if distinct.",
     "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
-    "rgbt210_status": "Official6,857,321,678-byte RAR download via local network to project dataset started; extraction/inventory pending.",
+    "rgbt210_status": "Original download failed at301830263 bytes; finite49x128MiB Range resume with4 connections launched, no completion claim.",
     "rgbt210_root": null,
     "baseline_other_datasets": "PureCAD full baseline and protocol required; no GOLA or enhanced-parent substitution.",
     "R1": "Close frozen-search future-C and search+C after existing H3 labels, then full98 selection and all three full benchmarks.",
     "R2": "Train fusion/head control, then competitive compressed history prompt before fusion and soft multifuture localization; frozen ViT extraction must be separate from trainable head.",
     "R3": "Validated full A+B+C, equal-budget controls and full eight combinations; no independent contribution proven yet.",
-    "new_full_fit_started": false,
+    "new_full_fit_started": true,
     "goal_completion_proven": false,
     "historical_records": "Earlier+2/LasHeR-only records retained unchanged as historical; this section supersedes their acceptance scope.",
     "source_status": "SOURCE_PASS_WITH_NONBLOCKING_NOTES",
     "cpu_source_checks": "CPU_SOURCE_FIXTURES_AND_TWO_REAL_INVENTORIES_PASS",
-    "source_runtime_location": "Prepared server namespace until existing infer/collection jobs finish; current running sources unchanged."
+    "source_runtime_location": "Six qualified runtime files promoted after original NN jobs exited; original8 core files unchanged."
   },
   "pure_cad_other_benchmark_preparation_20261015": {
     "scope": "Fill genuinely missing pure CAD baseline references on RGBT234, then RGBT210 once ready. Never rerun LasHeR baseline.",
     "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
     "protocol": "Original CAD test crop, centered Hann argmax, Center head mapping and clipping; two templates, update every5 on weighted response>0.65.",
-    "status": "PURE_RGBT234_BASELINE_ADMITTED",
+    "status": "RGBT234_FULL_COMPLETE",
     "sanity": "Original tracker methods extracted from current server source; same supplied pure network through a dict-field adapter, two real TRAIN prefixes, exact box/confidence/template parity and actual template updates.",
     "first_dataset": "rgbt234",
     "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
@@ -453,13 +453,37 @@
       }
     ],
     "observed_utc": "2026-10-14T18:38:42.783569+00:00",
-    "formal_metrics": null,
-    "next_observation_bjt": "2026-10-15 03:30:00",
+    "formal_metrics": {
+      "MPR": 89.88130707509919,
+      "MSR": 66.31030440376779
+    },
+    "next_observation_bjt": null,
     "early_baseline_progress_poll": false,
-    "preprocessing_correction": "Pure-only singleton batch stride6, after controlled actual-input diagnosis; shared data/model unchanged."
+    "preprocessing_correction": "Pure-only singleton batch stride6, after controlled actual-input diagnosis; shared data/model unchanged.",
+    "completion": {
+      "completed": true,
+      "dataset": "rgbt234",
+      "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+      "epoch": 14,
+      "model_role": "pure_cad_baseline",
+      "inference_exit_codes": [
+        0,
+        0
+      ],
+      "score_exit_code": 0,
+      "full_report": "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/reports/full_report.json",
+      "sequences": 234,
+      "frames": 116649,
+      "overall_metrics_percent": {
+        "MPR": 89.88130707509919,
+        "MSR": 66.31030440376779
+      },
+      "observed_utc": "2026-10-14T19:17:49.609061+00:00"
+    },
+    "baseline_lasher_rerun": false
   },
   "r1_matched_pair_20261015": {
-    "status": "SOURCE_AND_CPU_CHECKS_PASS_PREPARED_ONLY",
+    "status": "ACTUAL_FULL_FITS_RUNNING",
     "purpose": "Close frozen-search future-C versus trained search+C with the existing native label set.",
     "policies": [
       "future_actions",
@@ -489,18 +513,82 @@
     "frozen": "Native A/B coordinates/visual backbone; these two small-head fits are R1, not R2 or full A/B/C retraining.",
     "formal": "Same selected checkpoint per family across full LasHeR/RGBT210/RGBT234; distinct best trained checkpoint also fully scored if epoch0 wins.",
     "launch_requires": [
-      "All four H3 label receipts, original collection drivers exited",
-      "Pure baseline234 children and scoring complete",
-      "Original RGB210 download checksum, extraction and actual210 inventory",
-      "Fresh source review, CPU execution checks and actual search-routing GPU sanity",
-      "GPU2/3 available"
+      "All four H3 labels completed and original drivers exited",
+      "Pure baseline234 full inference/scoring completed",
+      "Fresh source/CPU checks and real GPU visual sanity",
+      "GPU2/3 free at admission"
     ],
-    "command": null,
-    "command_requires_actual_rgbt210_root": true,
-    "new_main_training_started": false,
+    "command": [
+      "/data/wangwj/envs/CADTrack/bin/python",
+      "/home/gaob/CADTrack-ABC/prepared/r1_fits_admission_20261015/run_r1_matched_fits_only_remote.py"
+    ],
+    "command_requires_actual_rgbt210_root": false,
+    "new_main_training_started": true,
     "full_new_results_complete": false,
     "source_review": "PASS_0_BLOCKS_SAME_FAMILY_PROVISIONAL",
     "cpu_checks": "R1_PAIR_CPU_HEAD_AND_COMMAND_CHECKS_PASS",
-    "actual_cuda_fit_started": false
+    "actual_cuda_fit_started": true,
+    "controller_pid": 4089586,
+    "fit_root": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015",
+    "formal_evaluation_requires": "RGBT210 real archive completion/extraction/inventory; two actual fit receipts before --fit-root reuse.",
+    "latest_actual_progress": [
+      {
+        "pid": 4089657,
+        "physical_gpu": 2,
+        "policy": "future_actions",
+        "completed_epochs": 2,
+        "latest_epoch": {
+          "epoch": 2,
+          "updates": 160,
+          "train_loss": 0.1533866995961668,
+          "formal_metrics": null,
+          "cached_validation": {
+            "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+            "queries": 605,
+            "interventions": 53,
+            "extra_region_queries": 0,
+            "formal_metrics": null,
+            "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+          }
+        }
+      },
+      {
+        "pid": 4089658,
+        "physical_gpu": 3,
+        "policy": "search_actions",
+        "completed_epochs": 2,
+        "latest_epoch": {
+          "epoch": 2,
+          "updates": 160,
+          "train_loss": 0.2131542885809177,
+          "formal_metrics": null,
+          "cached_validation": {
+            "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+            "queries": 605,
+            "interventions": 52,
+            "extra_region_queries": 0,
+            "formal_metrics": null,
+            "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+          }
+        }
+      }
+    ],
+    "observer_pid": 39336,
+    "next_observation_bjt": "2026-10-15 04:27:30",
+    "observer_interval_after_first_seconds": 240,
+    "estimated_fit_finish_bjt": "2026-10-15 approximately04:30 from first2 epochs; not a deadline guarantee."
+  },
+  "full_native_action_collection_20261014": {
+    "status": "FULL_NATIVE_H3_LABELS_COMPLETE",
+    "queries": 5697,
+    "train_queries": 5092,
+    "validation_queries": 605,
+    "action_labels": 1196370,
+    "original_driver_pids": [
+      3314719,
+      3314720
+    ],
+    "original_drivers_exited": true,
+    "collection_root": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014"
   }
 }
