@@ -1,0 +1,67 @@
+{
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "scope": {
+    "status": "SOURCE_PREPARED_NOT_DEPLOYED",
+    "purpose": "Close frozen-search future-C versus trained search+C with the existing native label set.",
+    "policies": [
+      "future_actions",
+      "search_actions"
+    ],
+    "fit_assignment": {
+      "future_actions": 2,
+      "search_actions": 3
+    },
+    "full_evaluation": "Serialize the two family rounds; each uses one worker per GPU2/3 for every full98 snapshot and all three official datasets.",
+    "initialization": "Same native epoch2 teacher, same future-head init, seed42, isolated DataLoader shuffle generator.",
+    "training": {
+      "epochs": 20,
+      "batch": 64,
+      "lr": 0.0001,
+      "queries": 5092,
+      "train_sequences": 881,
+      "dev_queries": 605,
+      "dev_sequences": 98,
+      "updates_per_policy": 1600
+    },
+    "data": "Reuse all four sampling and action shards; exact original packet references in the completed fit are checked before reuse.",
+    "trainable_parameters": {
+      "future_actions": 37426,
+      "search_actions": 76678
+    },
+    "frozen": "Native A/B coordinates/visual backbone; these two small-head fits are R1, not R2 or full A/B/C retraining.",
+    "formal": "Same selected checkpoint per family across full LasHeR/RGBT210/RGBT234; distinct best trained checkpoint also fully scored if epoch0 wins.",
+    "launch_requires": [
+      "All four H3 label receipts, original collection drivers exited",
+      "Pure baseline234 children and scoring complete",
+      "Original RGB210 download checksum, extraction and actual210 inventory",
+      "Fresh source review, CPU execution checks and actual search-routing GPU sanity",
+      "GPU2/3 available"
+    ],
+    "command": null,
+    "command_requires_actual_rgbt210_root": true,
+    "new_main_training_started": false,
+    "full_new_results_complete": false
+  },
+  "files_sha256": {
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\r1_pair_pipeline.py": "b78fdf0fd883265f5024f8f727f4d8fc8042169c9f966d3e5f1d3ba393425e79",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\future_pipeline.py": "5d412022fc49e866b85eac1239eef9dd7072d15010da636bbafeab5eadefc42d",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\train_future_actions.py": "9b884f7053e3b2dacfaccbbee3a81ce07593c8b048419d94dc537c9e0eaad527",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\future_data.py": "6f61f13c252b9def203d4bc12a4e1835a4c04d075aa3e465a2b5ea9b8b42d9c1",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\future_actions.py": "4b62d5b3d5a6d8a485f4caf7cdaf6dcee603cbbd32e7c001d492c6d99496cf38",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\search_actions.py": "3358cf2b76a6a831f96c0745bdae27dc0e40093955fbcf509f5d61a02e262ec8",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\select_future_actions.py": "d5ca1d507d5ed70f56dae7c967942a61e7de37a70c95a6fe3214ebfa9fbcf553",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\validate_future_actions.py": "a909bf4780fd78fddf8085741d160488544f7eacaea8760070ec5a5eecc9a985",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\merge_action_packets.py": "b7becb97a2194d4bea171a86b7aceba62995d51bdc96bb37d5135caadd7f4ab4",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\infer.py": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\score.py": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\config.json": "92c673aa715afa69c0ea02220e2db9c6335c6dfd8ed60c775ffabe61e8807de9",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\plan.json": "3e0dfd68f025f4a1aef253e9c38f413b99af6b2aeb5d70c27909669c689b73dd",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\environment.json": "ba6e4a41e3eb1d93dbe51f9f3abcd9ca0a96bdce6515a877ab7f98c42077719e"
+  },
+  "instructions": "Fresh SOURCE review only. New explicit completed-fit reuse, isolated sampler RNG, minimal fit receipt metadata, and matched pair driver. Check exact packet matching/no retraining, same seeds/update/data and legal conditional reuse, sequential complete two-card selection/testing, all selected/trained full reports and cleanup boundaries. Never fake readiness; do not SSH/GPU/NN or edit. Report blocking/nonblocking issues and save response.md/json with verdict, blocking_issues, requested/actual attribution. No fallback, speculative compatibility or hashing schemes."
+}

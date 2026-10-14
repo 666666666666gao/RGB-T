@@ -1,0 +1,97 @@
+{
+  "status": "R1_PAIR_CPU_HEAD_AND_COMMAND_CHECKS_PASS",
+  "checks": [
+    {
+      "case": "actual_head_initialization_shuffle",
+      "old_orders_differ": true,
+      "isolated_orders_equal": true,
+      "isolated_first16": [
+        28,
+        41,
+        42,
+        21,
+        44,
+        46,
+        18,
+        39,
+        50,
+        63,
+        6,
+        47,
+        11,
+        8,
+        29,
+        0
+      ],
+      "synthetic_indices": 64
+    },
+    {
+      "case": "real_two_packet_cpu_future_actions",
+      "updates": 2,
+      "train_queries": 2,
+      "strict_reload": true,
+      "frozen_abc_exact": true,
+      "receipt_metadata_verified": true,
+      "temporary_weights_retired_by_fixture_cleanup": true
+    },
+    {
+      "case": "real_two_packet_cpu_search_actions",
+      "updates": 2,
+      "train_queries": 2,
+      "strict_reload": true,
+      "frozen_abc_exact": true,
+      "receipt_metadata_verified": true,
+      "temporary_weights_retired_by_fixture_cleanup": true
+    },
+    {
+      "case": "full_pair",
+      "fits": 2,
+      "fit_devices": {
+        "future_actions": "2",
+        "search_actions": "3"
+      },
+      "full_rounds": [
+        "future_actions",
+        "search_actions"
+      ],
+      "synthetic_reports": 12,
+      "reused_fits_not_rerun": true,
+      "real_training": false,
+      "real_metrics": false
+    },
+    {
+      "case": "failed_fit",
+      "fits": 2,
+      "fit_devices": {
+        "future_actions": "2",
+        "search_actions": "3"
+      },
+      "full_rounds": [],
+      "synthetic_reports": 0,
+      "reused_fits_not_rerun": true,
+      "real_training": false,
+      "real_metrics": false
+    },
+    {
+      "case": "wrong_reused_packet",
+      "fits": 2,
+      "fit_devices": {
+        "future_actions": "2",
+        "search_actions": "3"
+      },
+      "full_rounds": [
+        "future_actions"
+      ],
+      "synthetic_reports": 0,
+      "reused_fits_not_rerun": true,
+      "real_training": false,
+      "real_metrics": false
+    }
+  ],
+  "actual_small_head_optimizer_updates": 4,
+  "actual_packets_per_policy": 2,
+  "cuda_initialized": false,
+  "full_main_fit_started": false,
+  "actual_rgbt210_inventory": false,
+  "scope": "Actual CPU head updates/reloads and synthetic orchestration receipts. No vision inference or formal benchmark result; temporary fixture weights cleaned."
+}

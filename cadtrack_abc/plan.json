@@ -457,5 +457,50 @@
     "next_observation_bjt": "2026-10-15 03:30:00",
     "early_baseline_progress_poll": false,
     "preprocessing_correction": "Pure-only singleton batch stride6, after controlled actual-input diagnosis; shared data/model unchanged."
+  },
+  "r1_matched_pair_20261015": {
+    "status": "SOURCE_AND_CPU_CHECKS_PASS_PREPARED_ONLY",
+    "purpose": "Close frozen-search future-C versus trained search+C with the existing native label set.",
+    "policies": [
+      "future_actions",
+      "search_actions"
+    ],
+    "fit_assignment": {
+      "future_actions": 2,
+      "search_actions": 3
+    },
+    "full_evaluation": "Serialize the two family rounds; each uses one worker per GPU2/3 for every full98 snapshot and all three official datasets.",
+    "initialization": "Same native epoch2 teacher, same future-head init, seed42, isolated DataLoader shuffle generator.",
+    "training": {
+      "epochs": 20,
+      "batch": 64,
+      "lr": 0.0001,
+      "queries": 5092,
+      "train_sequences": 881,
+      "dev_queries": 605,
+      "dev_sequences": 98,
+      "updates_per_policy": 1600
+    },
+    "data": "Reuse all four sampling and action shards; exact original packet references in the completed fit are checked before reuse.",
+    "trainable_parameters": {
+      "future_actions": 37426,
+      "search_actions": 76678
+    },
+    "frozen": "Native A/B coordinates/visual backbone; these two small-head fits are R1, not R2 or full A/B/C retraining.",
+    "formal": "Same selected checkpoint per family across full LasHeR/RGBT210/RGBT234; distinct best trained checkpoint also fully scored if epoch0 wins.",
+    "launch_requires": [
+      "All four H3 label receipts, original collection drivers exited",
+      "Pure baseline234 children and scoring complete",
+      "Original RGB210 download checksum, extraction and actual210 inventory",
+      "Fresh source review, CPU execution checks and actual search-routing GPU sanity",
+      "GPU2/3 available"
+    ],
+    "command": null,
+    "command_requires_actual_rgbt210_root": true,
+    "new_main_training_started": false,
+    "full_new_results_complete": false,
+    "source_review": "PASS_0_BLOCKS_SAME_FAMILY_PROVISIONAL",
+    "cpu_checks": "R1_PAIR_CPU_HEAD_AND_COMMAND_CHECKS_PASS",
+    "actual_cuda_fit_started": false
   }
 }

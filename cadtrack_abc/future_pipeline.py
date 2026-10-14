@@ -93,6 +93,7 @@ def main():
     parser.add_argument('--sampling-root', help='Completed native TRAIN/DEV query root; reuse all four verified shards instead of repeating trajectories.')
     parser.add_argument('--collection-root', help='Completed native TRAIN/DEV action root; requires matching --sampling-root and reuses all four label shards.')
     parser.add_argument('--policy', choices=['future_actions', 'search_actions'], default='future_actions')
+    parser.add_argument('--fit-root', help='Reuse a completed matching20-epoch fit; still run full98 selection and all formal reports.')
     parser.add_argument('--rgbt210-root', required=True)
     parser.add_argument('--rgbt234-root', required=True)
     parser.add_argument('--lasher-target-gain', type=float, default=6.)
@@ -206,15 +207,31 @@ def main():
         assert merged['completed'] and merged['teacher_sha256'] == teacher_sha and merged['sequences'] == len(expected)
         indices[split] = index
         verified(phase, {'index': str(index), 'queries': merged['queries'], 'sequences': merged['sequences']})
-    fit = output / 'fit'
-    run('fit', [['cadtrack_abc.train_future_actions', '--config', str(config_path), '--teacher', str(teacher),
-                 '--manifest', str(manifest), '--train-index', str(indices['train']), '--validation-index', str(indices['validation']),
-                 '--output', str(fit), '--epochs', '20', '--batch', '64', '--workers', '4', '--device', 'cuda', '--policy', args.policy]], [2])
+    fit = Path(args.fit_root).resolve() if args.fit_root else output / 'fit'
+    if args.fit_root:
+        state['phases']['fit'] = {'status': 'REUSED_COMPLETED_MATCHED_FIT', 'fit_root': str(fit), 'commands': []}
+        store()
+    else:
+        run('fit', [['cadtrack_abc.train_future_actions', '--config', str(config_path), '--teacher', str(teacher),
+                     '--manifest', str(manifest), '--train-index', str(indices['train']), '--validation-index', str(indices['validation']),
+                     '--output', str(fit), '--epochs', '20', '--batch', '64', '--workers', '4', '--device', 'cuda', '--policy', args.policy]], [2])
     fitted = json.loads((fit / 'fit_complete.json').read_text())
     query_count = json.loads(indices['train'].read_text())['queries']
     assert fitted['status'] == ('SEARCH_ACTION_FIT_COMPLETE' if args.policy == 'search_actions' else 'FUTURE_HEAD_FIT_COMPLETE') and fitted['epochs'] == 20
     assert fitted['updates'] == ((query_count + 63) // 64) * 20 and fitted['train_sequences'] == 881
     assert fitted['strict_head_reload'] and fitted['teacher_sha256'] == teacher_sha
+    if args.fit_root:
+        assert fitted['policy_family'] == args.policy and fitted['train_queries'] == query_count
+        assert fitted['training_hyperparameters'] == {'batch': 64, 'lr': 1e-4,
+            'seed': config['seed'], 'teacher_policy': 'native'}
+        for split in ['train', 'validation']:
+            source_index = Path(fitted[split + '_index'])
+            reused = json.loads(source_index.read_text())
+            merged = json.loads(indices[split].read_text())
+            def packet_records(index, source):
+                return {(row['sequence'], row['frame'], str((index.parent / row['file']).resolve()))
+                        for row in source['records']}
+            assert packet_records(source_index, reused) == packet_records(indices[split], merged)
     verified('fit', {'epochs': fitted['epochs'], 'updates': fitted['updates'], 'candidates': fitted['candidates']})
     development = output / 'development'
     for candidate in fitted['candidates']:

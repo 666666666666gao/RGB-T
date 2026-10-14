@@ -90,7 +90,8 @@ def main():
     assert teacher['config']['pretrained'] == config['pretrained'] and teacher['config']['threshold'] == config['threshold']
     train_data = FuturePackets(args.train_index, manifest, 'train', teacher_sha, config['threshold'], args.teacher_policy)
     train_loader = DataLoader(train_data, batch_size=args.batch, shuffle=True, num_workers=args.workers,
-                              collate_fn=collate_packets)
+                              collate_fn=collate_packets,
+                              generator=torch.Generator().manual_seed(config['seed']))
     val_loader = None
     if not args.sanity:
         assert train_data.names == set(manifest['train_sequences']) and len(train_data.names) == 881
@@ -179,6 +180,10 @@ def main():
                 'train_sequences': len(train_data.names), 'candidates': candidates, 'changed_head_tensors': changed,
                 'strict_head_reload': True, 'full_video_selection_complete': False, 'formal_metrics_complete': False,
                 'seconds': time.perf_counter() - started}
+    terminal['train_index'] = str(Path(args.train_index).resolve())
+    terminal['validation_index'] = str(Path(args.validation_index).resolve()) if args.validation_index else None
+    terminal['training_hyperparameters'] = {'batch': args.batch, 'lr': args.lr,
+        'seed': config['seed'], 'teacher_policy': args.teacher_policy}
     (output / 'fit_complete.json').write_text(json.dumps(terminal, indent=2))
     print(json.dumps(terminal), flush=True)
 
