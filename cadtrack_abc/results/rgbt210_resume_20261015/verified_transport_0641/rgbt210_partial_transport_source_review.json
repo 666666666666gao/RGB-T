@@ -1,0 +1,552 @@
+{
+  "review_kind": "fresh_source_and_broken_stream_rescue_review",
+  "reviewed_utc": "2026-10-14T22:37:50.322929+00:00",
+  "verdict": "PASS",
+  "blocking_count": 0,
+  "blocking": [],
+  "nonblocking": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_scope": "Dataset-only fixed-offset transport rescue. Offline source inspection, compilation, exact local part stats and 4096-byte boundary comparison. No network, SSH execution, neural work, environment change or source/input/data modification. The only reviewer output is this JSON.",
+  "reviewed_inputs": [
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\prepare_rgbt210_verified_transport_resume.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\receive_rgbt210_verified_remaining.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\send_rgbt210_verified_remaining.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_verified_transport_resume_plan.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\inspect_rgbt210_resume_boundary_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_http500_remaining_inventory.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_ssh_quote_probe.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\inspect_rgbt210_transport_failure_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_http500_finish_progress.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_download_progress.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\complete_rgbt210_http500_remaining_20261015.py"
+  ],
+  "failure_basis": {
+    "original_session": 30429,
+    "reported_actual_exit_code": 1,
+    "reported_primary_error": "BrokenPipeError at transfer.stdin.write(data)",
+    "failure_observation_provenance": "Parent supplied original-session observation; plan records it. Raw original terminal traceback was not among supplied files.",
+    "primary_original_ssh_stderr_available": false,
+    "source_evidence": "Original complete_rgbt210_http500_remaining_20261015.py sends all data before communicate() and writes stdout/stderr files only afterward; a BrokenPipe before communicate leaves those primary pipe logs uncaptured.",
+    "cause_established": false,
+    "read_only_quote_probe_exit_code": 0,
+    "quote_probe_reproduces_saved_remote_bytes": true
+  },
+  "inventory_checks": {
+    "current_local_parts": 49,
+    "indices_exact_0_through_48": true,
+    "offsets_contiguous": true,
+    "initial_server_prefix_bytes": 301830263,
+    "total_current_local_bytes": 6555491415,
+    "all49_actual_sizes_match_expected": true,
+    "saved_inventory_actual_bytes_are_historical": true,
+    "completed_progress_agrees_with_fresh_sizes": true,
+    "first_part": 26,
+    "first_part_archive_offset": 3791491191,
+    "first_part_skip_bytes": 35772416,
+    "first_part_send_bytes": 98445312,
+    "server_start": 3827263607,
+    "boundary_archive_offset": 3827259511,
+    "boundary_bytes_compared": 4096,
+    "boundary_bytes_exactly_equal": true,
+    "remaining_transfer_bytes": 3030058071,
+    "expected_archive_bytes": 6857321678,
+    "saved_remote_free_bytes": 724910940160,
+    "saved_remote_marker_absent": true,
+    "saved_remote_magic_is_rar4": true
+  },
+  "source_checks": [
+    "All three sources compile under E:\\python.exe. Neither transport script was imported or executed.",
+    "Evaluating only the preparer receiver-string and receipt expressions exactly reproduces the saved receiver source and plan. No preparer writes were executed.",
+    "Preparer checks the actual local sizes of every one of the 49 parts, and directly compares local part026 boundary bytes with the saved remote tail. The supplied contiguous offsets and exact byte totals were independently recomputed.",
+    "Receiver lines 8-13 check the fixed 3827263607-byte starting size, absent marker and exact 4096-byte tail before opening the archive for append. Its only write mode on the archive is ab; there is no truncate, overwrite or prefix rewrite.",
+    "Receiver lines 14-23 append the incoming suffix, close the stream, require exactly 6857321678 total bytes, compute the existing whole-archive SHA256 receipt field, then create the completion marker. A failed size assertion or digest computation cannot reach the marker write.",
+    "Receiver retains extraction_complete=False and inventory_verified=False. The marker asserts transfer completion only, not archive extraction, dataset verification or any model metric.",
+    "Sender lines 17-20 open actual stdout/stderr files before starting the sole SSH child and pass those open files as its stdout/stderr. Evidence no longer depends on draining PIPEs after all stdin writes; a BrokenPipe can propagate while child diagnostics remain directed to disk.",
+    "Sender sends only rows 26 through 48 in order. It skips 35772416 bytes in part26, checks each current size and exact read/write length, and totals exactly 3030058071 bytes before closing stdin.",
+    "Sender waits for SSH exit zero and validates remote status/expected bytes before writing local completion. There is one Popen invocation and no connection retry loop, generic except, fallback, compatibility or environment logic.",
+    "The remote command runs the reviewed receiver script from its fixed path. No shell data interpolation, package installation or NN command is introduced."
+  ],
+  "offline_checks": {
+    "compile_count": 3,
+    "generated_receiver_and_plan_match": true,
+    "actual_part_stat_count": 49,
+    "actual_boundary_bytes_compared": 4096,
+    "exact_send_span_count": 23,
+    "sources_and_json_bytes_unchanged": true,
+    "part_sizes_and_mtimes_unchanged": true
+  },
+  "send_spans": [
+    {
+      "part": 26,
+      "local_offset": 35772416,
+      "bytes": 98445312
+    },
+    {
+      "part": 27,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 28,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 29,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 30,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 31,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 32,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 33,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 34,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 35,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 36,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 37,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 38,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 39,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 40,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 41,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 42,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 43,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 44,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 45,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 46,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 47,
+      "local_offset": 0,
+      "bytes": 134217728
+    },
+    {
+      "part": 48,
+      "local_offset": 0,
+      "bytes": 113040471
+    }
+  ],
+  "part_snapshots": [
+    {
+      "index": 0,
+      "offset": 301830263,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007488056331000
+    },
+    {
+      "index": 1,
+      "offset": 436047991,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007721570152100
+    },
+    {
+      "index": 2,
+      "offset": 570265719,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007482461534500
+    },
+    {
+      "index": 3,
+      "offset": 704483447,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007680039908800
+    },
+    {
+      "index": 4,
+      "offset": 838701175,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009051324496500
+    },
+    {
+      "index": 5,
+      "offset": 972918903,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009051414674600
+    },
+    {
+      "index": 6,
+      "offset": 1107136631,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009152616082200
+    },
+    {
+      "index": 7,
+      "offset": 1241354359,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009184692077900
+    },
+    {
+      "index": 8,
+      "offset": 1375572087,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009411303240700
+    },
+    {
+      "index": 9,
+      "offset": 1509789815,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015634570342100
+    },
+    {
+      "index": 10,
+      "offset": 1644007543,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009645771939800
+    },
+    {
+      "index": 11,
+      "offset": 1778225271,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009698512452700
+    },
+    {
+      "index": 12,
+      "offset": 1912442999,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009902807812400
+    },
+    {
+      "index": 13,
+      "offset": 2046660727,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009957845450600
+    },
+    {
+      "index": 14,
+      "offset": 2180878455,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010157838944200
+    },
+    {
+      "index": 15,
+      "offset": 2315096183,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010217367428000
+    },
+    {
+      "index": 16,
+      "offset": 2449313911,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010415522442600
+    },
+    {
+      "index": 17,
+      "offset": 2583531639,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010475601050400
+    },
+    {
+      "index": 18,
+      "offset": 2717749367,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010676915398800
+    },
+    {
+      "index": 19,
+      "offset": 2851967095,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010731969211800
+    },
+    {
+      "index": 20,
+      "offset": 2986184823,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010890433931600
+    },
+    {
+      "index": 21,
+      "offset": 3120402551,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015718865057900
+    },
+    {
+      "index": 22,
+      "offset": 3254620279,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015697954178800
+    },
+    {
+      "index": 23,
+      "offset": 3388838007,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011115864751200
+    },
+    {
+      "index": 24,
+      "offset": 3523055735,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011348733176200
+    },
+    {
+      "index": 25,
+      "offset": 3657273463,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011376447842000
+    },
+    {
+      "index": 26,
+      "offset": 3791491191,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011614098397100
+    },
+    {
+      "index": 27,
+      "offset": 3925708919,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011634566415900
+    },
+    {
+      "index": 28,
+      "offset": 4059926647,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011873719036700
+    },
+    {
+      "index": 29,
+      "offset": 4194144375,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011896856084300
+    },
+    {
+      "index": 30,
+      "offset": 4328362103,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012130033944600
+    },
+    {
+      "index": 31,
+      "offset": 4462579831,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012155735752500
+    },
+    {
+      "index": 32,
+      "offset": 4596797559,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012387970480800
+    },
+    {
+      "index": 33,
+      "offset": 4731015287,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012414314361200
+    },
+    {
+      "index": 34,
+      "offset": 4865233015,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015875628656700
+    },
+    {
+      "index": 35,
+      "offset": 4999450743,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012646916347900
+    },
+    {
+      "index": 36,
+      "offset": 5133668471,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012777138758700
+    },
+    {
+      "index": 37,
+      "offset": 5267886199,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012940188430800
+    },
+    {
+      "index": 38,
+      "offset": 5402103927,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013052448385900
+    },
+    {
+      "index": 39,
+      "offset": 5536321655,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013201874548100
+    },
+    {
+      "index": 40,
+      "offset": 5670539383,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013316291213300
+    },
+    {
+      "index": 41,
+      "offset": 5804757111,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015780482104700
+    },
+    {
+      "index": 42,
+      "offset": 5938974839,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792015917487171700
+    },
+    {
+      "index": 43,
+      "offset": 6073192567,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792016137560948900
+    },
+    {
+      "index": 44,
+      "offset": 6207410295,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792016171954908700
+    },
+    {
+      "index": 45,
+      "offset": 6341628023,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792016402888439800
+    },
+    {
+      "index": 46,
+      "offset": 6475845751,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792016434390603300
+    },
+    {
+      "index": 47,
+      "offset": 6610063479,
+      "expected_bytes": 134217728,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792016663289347300
+    },
+    {
+      "index": 48,
+      "offset": 6744281207,
+      "expected_bytes": 113040471,
+      "actual_bytes": 113040471,
+      "mtime_ns": 1792016661085137600
+    }
+  ],
+  "limitations": [
+    "Source admission only. Successful transport, current live server state and server deployment identity were not executed or independently queried by this reviewer; runtime fixed-size/boundary checks must run.",
+    "Direct boundary equality validates this observed append boundary, not every prefix byte. Existing whole-archive SHA256 is a completion receipt without an authoritative published digest comparison; extraction and dataset inventory remain pending.",
+    "Original BrokenPipe cause remains unknown because original SSH stderr was not captured. A successful read-only quoting probe does not establish the cause or predict upload success.",
+    "Four existing GPU2/3 evaluations and the full three-dataset goal are outside this transport review; no experiment completion is claimed."
+  ],
+  "suggested_changes": []
+}
