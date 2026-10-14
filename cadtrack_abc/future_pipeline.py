@@ -52,12 +52,31 @@ def validate_sampling(sampling, expected, teacher_sha):
     return receipts
 
 
+def validate_collection(folders, sampling, teacher_sha):
+    receipts = [json.loads((folder / 'collection_complete.json').read_text()) for folder in folders]
+    for shard, (folder, receipt) in enumerate(zip(folders, receipts)):
+        queries = json.loads((sampling / ('queries_shard' + str(shard) + '.json')).read_text())
+        expected = {(query['sequence'], query['frame']) for query in queries}
+        assert receipt['completed'] and receipt['teacher_sha256'] == teacher_sha
+        assert receipt['model_family'] == 'CADTrackABC-native-current-quality' and receipt['action_batch'] == 64
+        records = receipt['records']
+        assert receipt['queries'] == len(records) == len(expected)
+        assert {(record['sequence'], record['frame']) for record in records} == expected
+        assert all(record['horizon'] == 3 and record['action_labels'] == 210
+                   and record['native_state_reconstruction_equal'] and record['full_predicted_prefix_from_frame0']
+                   and (folder / record['file']).is_file() for record in records)
+    return receipts
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--output', required=True, help='New future-round directory; current native output is never reused.')
     parser.add_argument('--sampling-root', help='Completed native TRAIN/DEV query root; reuse all four verified shards instead of repeating trajectories.')
+    parser.add_argument('--collection-root', help='Completed native TRAIN/DEV action root; requires matching --sampling-root and reuses all four label shards.')
+    parser.add_argument('--policy', choices=['future_actions', 'search_actions'], default='future_actions')
     args = parser.parse_args()
+    assert not args.collection_root or args.sampling_root
     config_path = Path(args.config).resolve()
     config = json.loads(config_path.read_text())
     assert config['physical_gpus'] == [2, 3] and config['evaluation_focus'] == 'lasher'
@@ -66,6 +85,7 @@ def main():
     inventory = json.loads((parent / 'manifest.json').read_text())
     parent_teacher_sha = hashlib.sha256(parent_checkpoint.read_bytes()).hexdigest()
     sampled_existing = {}
+    collected_existing = {}
     if args.sampling_root:
         sampling_root = Path(args.sampling_root).resolve()
         # Require both splits before any new process: each existing card runs
@@ -73,6 +93,9 @@ def main():
         for split in ['train', 'validation']:
             expected = set(inventory['train_sequences' if split == 'train' else 'validation_sequences'])
             sampled_existing[split] = validate_sampling(sampling_root / ('queries_' + split), expected, parent_teacher_sha)
+            if args.collection_root:
+                folders = [Path(args.collection_root).resolve() / ('collection_' + split) / ('shard' + str(shard)) for shard in range(2)]
+                collected_existing[split] = validate_collection(folders, sampling_root / ('queries_' + split), parent_teacher_sha)
     output = Path(args.output).resolve()
     assert output != parent
     output.mkdir(parents=True, exist_ok=False)
@@ -87,6 +110,7 @@ def main():
              'parent_metrics_percent': parent_report['overall_metrics_percent'],
              'teacher': str(teacher), 'teacher_sha256': teacher_sha,
              'physical_gpus': [2, 3], 'baseline_rerun': False, 'evaluation_focus': 'lasher',
+             'policy_family': args.policy,
              'started_unix': time.time(), 'phases': {}}
 
     def store():
@@ -131,15 +155,20 @@ def main():
             run(phase, sample_commands, [2, 3])
             sampled = validate_sampling(sampling, expected, teacher_sha)
         verified(phase, {'sequences': len(expected), 'queries': sum(receipt['queries'] for receipt in sampled)})
-        folders = [output / ('collection_' + split) / ('shard' + str(shard)) for shard in range(2)]
+        collection_root = Path(args.collection_root).resolve() if args.collection_root else output
+        folders = [collection_root / ('collection_' + split) / ('shard' + str(shard)) for shard in range(2)]
         collect_commands = [['cadtrack_abc.collect_actions', '--config', str(config_path), '--teacher', str(teacher),
                              '--manifest', str(manifest), '--split', split, '--queries', str(sampling / ('queries_shard' + str(shard) + '.json')),
                              '--output', str(folders[shard]), '--device', 'cuda', '--horizon', '3'] for shard in range(2)]
         for command in collect_commands:
             command.extend(['--action-batch', '64'])
         phase = 'collect_' + split
-        run(phase, collect_commands, [2, 3])
-        receipts = [json.loads((folder / 'collection_complete.json').read_text()) for folder in folders]
+        if args.collection_root:
+            receipts = collected_existing[split]
+            state['phases'][phase] = {'status': 'REUSED_COMPLETED_NATIVE_COLLECTION', 'collection': str(collection_root), 'commands': []}
+        else:
+            run(phase, collect_commands, [2, 3])
+            receipts = validate_collection(folders, sampling, teacher_sha)
         assert all(receipt['completed'] and receipt['teacher_sha256'] == teacher_sha
                    and receipt['model_family'] == 'CADTrackABC-native-current-quality' for receipt in receipts)
         assert all(receipts[shard]['queries'] == sampled[shard]['queries'] for shard in range(2))
@@ -155,10 +184,10 @@ def main():
     fit = output / 'fit'
     run('fit', [['cadtrack_abc.train_future_actions', '--config', str(config_path), '--teacher', str(teacher),
                  '--manifest', str(manifest), '--train-index', str(indices['train']), '--validation-index', str(indices['validation']),
-                 '--output', str(fit), '--epochs', '20', '--batch', '64', '--workers', '4', '--device', 'cuda']], [2])
+                 '--output', str(fit), '--epochs', '20', '--batch', '64', '--workers', '4', '--device', 'cuda', '--policy', args.policy]], [2])
     fitted = json.loads((fit / 'fit_complete.json').read_text())
     query_count = json.loads(indices['train'].read_text())['queries']
-    assert fitted['status'] == 'FUTURE_HEAD_FIT_COMPLETE' and fitted['epochs'] == 20
+    assert fitted['status'] == ('SEARCH_ACTION_FIT_COMPLETE' if args.policy == 'search_actions' else 'FUTURE_HEAD_FIT_COMPLETE') and fitted['epochs'] == 20
     assert fitted['updates'] == ((query_count + 63) // 64) * 20 and fitted['train_sequences'] == 881
     assert fitted['strict_head_reload'] and fitted['teacher_sha256'] == teacher_sha
     verified('fit', {'epochs': fitted['epochs'], 'updates': fitted['updates'], 'candidates': fitted['candidates']})
@@ -168,24 +197,24 @@ def main():
         destination = development / checkpoint.stem
         phase = 'develop_' + checkpoint.stem
         commands = [['cadtrack_abc.validate_future_actions', '--config', str(config_path), '--checkpoint', str(checkpoint),
-                     '--manifest', str(manifest), '--output', str(destination), '--shard', str(shard)] for shard in range(2)]
+                     '--manifest', str(manifest), '--output', str(destination), '--shard', str(shard), '--policy', args.policy] for shard in range(2)]
         run(phase, commands, [2, 3])
         receipts = [json.loads((destination / ('development_shard' + str(shard) + '.json')).read_text()) for shard in range(2)]
         assert all(receipt['completed'] and receipt['full_videos'] and not receipt['sanity'] for receipt in receipts)
         assert sum(receipt['sequences'] for receipt in receipts) == 98
         verified(phase, {'sequences': 98, 'checkpoint': str(checkpoint)})
     run('select', [['cadtrack_abc.select_future_actions', '--fit', str(fit), '--manifest', str(manifest),
-                    '--development', str(development)]], [2])
+                    '--development', str(development), '--policy', args.policy]], [2])
     selected = json.loads((fit / 'selection.json').read_text())
     assert selected['full98_development_selection_complete'] and selected['strict_future_head_reload']
     best = selected['best_checkpoint']
     verified('select', {'checkpoint': best, 'selected': selected['selected']})
     predictions = output / 'lasher_predictions'
-    commands = [['cadtrack_abc.infer', '--config', str(config_path), '--checkpoint', best, '--policy', 'future_actions',
+    commands = [['cadtrack_abc.infer', '--config', str(config_path), '--checkpoint', best, '--policy', args.policy,
                  '--dataset', 'lasher', '--root', config['test_root'], '--output', str(predictions), '--shard', str(shard)] for shard in range(2)]
     run('formal_inference', commands, [2, 3])
     receipts = [json.loads((predictions / ('complete_shard' + str(shard) + '.json')).read_text()) for shard in range(2)]
-    assert all(receipt['completed'] and receipt['policy_family'] == 'future_actions' and receipt['checkpoint'] == best for receipt in receipts)
+    assert all(receipt['completed'] and receipt['policy_family'] == args.policy and receipt['checkpoint'] == best for receipt in receipts)
     assert sum(receipt['sequences'] for receipt in receipts) == 245 and sum(receipt['frames'] for receipt in receipts) == 220703
     verified('formal_inference', {'checkpoint': best, 'sequences': 245, 'frames': 220703})
     report_directory = output / 'lasher_report'

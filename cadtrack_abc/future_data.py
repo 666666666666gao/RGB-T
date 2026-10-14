@@ -50,11 +50,13 @@ class FuturePackets(Dataset):
         assert context in (0, 1)
         reference_candidate, reference_mode = metadata['reference_action'][1:]
         reference_utility = contexts[context][2][reference_candidate, ACTION_MODES.index(reference_mode)]
-        return {'contexts': contexts, 'observed_context': context, 'reference_utility': reference_utility}
+        return {'contexts': contexts, 'observed_context': context, 'reference_utility': reference_utility,
+                'search_input': decision['search_input'].squeeze(0)}
 
 
 def collate_packets(packets):
     return {'contexts': [tuple(torch.stack([p['contexts'][context][item] for p in packets])
                                for item in range(3)) for context in range(4)],
             'observed_context': torch.tensor([p['observed_context'] for p in packets]),
-            'reference_utility': torch.stack([p['reference_utility'] for p in packets])}
+            'reference_utility': torch.stack([p['reference_utility'] for p in packets]),
+            'search_input': torch.stack([p['search_input'] for p in packets])}

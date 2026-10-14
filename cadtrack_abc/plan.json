@@ -294,5 +294,57 @@
       "deployment_gain_threshold": 0.04,
       "inference": "Current B never supplies extra candidates in complete native trajectories; fitting only C cannot fix this candidate-generation bottleneck."
     }
+  },
+  "search_action_training": {
+    "status": "SOURCE_AND_BOUNDED_CPU_CHECKS_PASS_FULL_COLLECTION_AND_VISUAL_SANITY_PENDING",
+    "family": "search_actions",
+    "sources": [
+      "search_actions.py",
+      "future_data.py",
+      "train_future_actions.py",
+      "future_pipeline.py",
+      "infer.py",
+      "validate_future_actions.py",
+      "select_future_actions.py"
+    ],
+    "new_trainable_parameters": 76678,
+    "frozen": "Native e2 ABC, supplied pureCAD base, motion coordinates and cached instance descriptors.",
+    "search_input": "295 local-only evidence dimensions; predicts gains for stable probability-ordered three motion modes.",
+    "objective": "Current C actual selected action utility in each independent context minus C local selected utility; detached target, not oracle maximum.",
+    "online": "No search or one extra image region; C sees only legal local/that extra evidence; state committed once.",
+    "default_future_actions_control_preserved": true,
+    "full_training_complete": false,
+    "cpu_checks": {
+      "real_queries": 2,
+      "action_labels": 420,
+      "cpu_head_updates": 2,
+      "cli_sanity_updates": 2,
+      "unchanged_control_loss_exact": true,
+      "strict_both_head_reload": true,
+      "native_abc_values_unchanged": true,
+      "cuda_initialized": false,
+      "visual_runtime_mocked": true,
+      "actual_gpu_visual_runtime_verified": false
+    },
+    "fitting": {
+      "epochs": 20,
+      "batch": 64,
+      "train_queries": 5092,
+      "expected_updates": 1600,
+      "checkpoint_epochs": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20
+      ],
+      "selection": "One best only after full98 continuous DEV; full245 official metrics next."
+    },
+    "collection_reuse": "--sampling-root and --collection-root: validate all four existing completed native shards before new fit; never recollect current 5697 queries.",
+    "prepared_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.future_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/native_search_action_round_20261015 --sampling-root /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014 --collection-root /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014 --policy search_actions",
+    "command_executed": false,
+    "persistent_rejected_tracklet_memory_complete": false,
+    "limitations": "Fixed native prefix/H3 native continuation labels; no deployment-distribution or +2 claim. Real visual routing test must pass after current collectors release GPU2/3."
   }
 }

@@ -15,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--checkpoint', required=True)
-    parser.add_argument('--policy', choices=['native', 'future_actions'], default='native')
+    parser.add_argument('--policy', choices=['native', 'future_actions', 'search_actions'], default='native')
     parser.add_argument('--dataset', choices=['lasher', 'rgbt234'], required=True)
     parser.add_argument('--root', required=True)
     parser.add_argument('--output', required=True)
@@ -25,17 +25,22 @@ def main():
     config = json.loads(Path(args.config).read_text())
     torch.cuda.set_device(0)
     torch.set_num_threads(4)
-    if args.policy == 'future_actions':
+    if args.policy == 'search_actions':
+        from .search_actions import CADTrackSearchActionPolicy
+        model = CADTrackSearchActionPolicy(config['pretrained'], config['threshold']).cuda().eval()
+    elif args.policy == 'future_actions':
         from .future_actions import CADTrackFuturePolicy
         model = CADTrackFuturePolicy(config['pretrained'], config['threshold']).cuda().eval()
     else:
         model = CADTrackABC(config['pretrained'], config['threshold']).cuda().eval()
     payload = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
     model.abc.load_state_dict(payload['abc'], strict=True)
-    if args.policy == 'future_actions':
-        assert payload['policy_family'] == 'future_actions'
+    if args.policy in ('future_actions', 'search_actions'):
+        assert payload['policy_family'] == args.policy
         assert payload['config']['pretrained'] == config['pretrained'] and payload['config']['threshold'] == config['threshold']
         model.future_action.load_state_dict(payload['future_action'], strict=True)
+        if args.policy == 'search_actions':
+            model.search_action.load_state_dict(payload['search_action'], strict=True)
     else:
         assert 'future_action' not in payload
     output = Path(args.output)
@@ -71,9 +76,13 @@ def main():
                                 'keep_box_xywh': observation['keep_box'][0].cpu().tolist(),
                                 'candidate_boxes_xyxy': observation['pair']['boxes'][0].cpu().tolist(),
                                 'predicted_quality': observation['selected_quality'][0].item()})
-            if args.policy == 'future_actions':
+            if args.policy in ('future_actions', 'search_actions'):
                 diagnostics[-1].update(future_mode=observation['future_mode'],
                                        future_net_advantage=observation['future_net_advantage'])
+            if args.policy == 'search_actions':
+                diagnostics[-1].update(search_region_rank=observation['search_region_rank'],
+                                       search_region_mode=observation['search_region_mode'],
+                                       search_net_gain=observation['search_net_gain'])
         np.savetxt(output / (sequence.name + '.txt'), np.stack(boxes), delimiter='\t', fmt='%.3f')
         np.save(output / (sequence.name + '_latency.npy'), np.array(latencies))
         (output / (sequence.name + '_mechanisms.json')).write_text(json.dumps(diagnostics))

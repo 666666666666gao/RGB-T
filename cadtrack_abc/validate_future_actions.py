@@ -9,6 +9,7 @@ import torch
 
 from .data import iou, read_pair, xyxy
 from .future_actions import CADTrackFuturePolicy
+from .search_actions import CADTrackSearchActionPolicy
 
 
 @torch.inference_mode()
@@ -16,6 +17,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--checkpoint', required=True)
+    parser.add_argument('--policy', choices=['future_actions', 'search_actions'], default='future_actions')
     parser.add_argument('--manifest', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--shard', type=int, default=0)
@@ -35,12 +37,15 @@ def main():
     torch.set_num_threads(4)
     if args.device == 'cuda':
         torch.cuda.set_device(0)
-    model = CADTrackFuturePolicy(config['pretrained'], config['threshold']).to(args.device).eval()
+    policy = CADTrackSearchActionPolicy if args.policy == 'search_actions' else CADTrackFuturePolicy
+    model = policy(config['pretrained'], config['threshold']).to(args.device).eval()
     payload = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
-    assert payload['policy_family'] == 'future_actions'
+    assert payload['policy_family'] == args.policy
     assert payload['config']['pretrained'] == config['pretrained'] and payload['config']['threshold'] == config['threshold']
     model.abc.load_state_dict(payload['abc'], strict=True)
     model.future_action.load_state_dict(payload['future_action'], strict=True)
+    if args.policy == 'search_actions':
+        model.search_action.load_state_dict(payload['search_action'], strict=True)
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     records, started = [], time.perf_counter()
@@ -70,7 +75,7 @@ def main():
         print(json.dumps(record), flush=True)
     receipt = {'completed': not args.sanity, 'full_videos': not args.sanity, 'sanity': args.sanity,
                'checkpoint': str(Path(args.checkpoint).resolve()), 'epoch': payload['epoch'],
-               'policy_family': 'future_actions', 'shard': args.shard, 'shards': args.shards,
+               'policy_family': args.policy, 'shard': args.shard, 'shards': args.shards,
                'records': records, 'sequences': len(records), 'seconds': time.perf_counter() - started,
                'scope': 'Repeated TRAIN-held-out development set; positive-width/height IoU, not official LasHeR SR.',
                'strict_abc_and_future_head_load': True, 'first_gt_only_state_initialization': True,
