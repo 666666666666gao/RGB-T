@@ -1,0 +1,178 @@
+{
+  "task": "Port existing bounded memory, identity-motion prediction and candidate/risk selection to the supplied module-free CADTrack baseline, then train on server2028 GPU2,3",
+  "baseline": {
+    "LasHeR_PR": 72.74,
+    "LasHeR_NPR": 69.16,
+    "LasHeR_SR": 57.84,
+    "source": "user_provided",
+    "rerun": false
+  },
+  "adaptation": {
+    "A": "Reuse InstanceMemory: protected initial anchor, two target / non-target / unknown slots per sensor; ROI evidence; causal discriminative-margin preservation",
+    "B": "Reuse IdentityMotion: eight causal geometric states, three motion modes, three future-frame horizon; local-only absence / extra-region value prediction, at most one extra visual region online",
+    "C": "CAD-specific newly trained current quality / relative IoU advantage / localization risk / geometry acceptance, with candidate relations and independent RGB/TIR template commits",
+    "scope_note": "Initial native adaptation; C1 weights and GOLA-specific counterfactual action labels are not transplanted. Current-region supervised advantage is not represented as learned long-horizon action utility or exact old-policy equivalence. Memory sensor gates classify identity support, not separately annotated sensor reliability."
+  },
+  "training": "Real raw-video causal clips from all881 training sequences, eight predicted transitions per clip (exercising full motion history and template update), first clip box as initialization, all subsequent crop/state/history updates use model outputs. GT/future annotations used only in losses. 98 disjoint development sequences; official245-sequence test never enters training.",
+  "milestones": [
+    "strict pretrained load",
+    "independent implementation review",
+    "two-GPU actual-data forward/backward/checkpoint sanity",
+    "20epochs x20000clips normal DDP training",
+    "one best development checkpoint",
+    "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
+  ],
+  "status": "NATIVE20_TRAINING_COMPLETE_FULL_LASHER_EVALUATION_RUNNING",
+  "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
+  "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
+  "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
+  "full_metrics": [
+    "LasHeR_PR",
+    "LasHeR_NPR",
+    "LasHeR_SR"
+  ],
+  "not_results": "Actual20epochs/3140updates/history/selected checkpoint verified; enhanced native LasHeR full245 testing is running. No formal PR/NPR/SR or +2 proof yet. Future-action fit and persistent rejected-tracklet memory are not completed.",
+  "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
+  "current_targets": {
+    "LasHeR_PR": 74.74,
+    "LasHeR_NPR": 71.16,
+    "LasHeR_SR": 59.84
+  },
+  "future_action_collection": {
+    "purpose": "Prepare native same-state future action consequences missing from the current-IoU C adaptation",
+    "source": [
+      "counterfactual.py",
+      "collect_actions.py"
+    ],
+    "status": "SOURCE_REVIEW_PASS_CPU_STATE_AND_COMPLETE_SINGLE_QUERY_COLLECTION_SANITY_PASS",
+    "action_modes": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "prefix": "Full deployed-teacher predicted prefix from sequence frame0; only initial GT initializes the state",
+    "search_budget": "Three independent offline local+one-region probe contexts; each simulated action sees only one and has at most one extra visual forward",
+    "next_step": "Wait for current full training and LasHeR report before full counterfactual collection/future-head fitting",
+    "running_20_epoch_training_unchanged": true,
+    "not_done": "No full collection, future-utility head training, persistent rejected-tracklet memory or +2 evidence yet"
+  },
+  "future_action_runtime": {
+    "source": "future_actions.py",
+    "class": "CADTrackFuturePolicy",
+    "head_parameters": 37426,
+    "input": "275 current/historical evidence dimensions; no future images or GT",
+    "objective": "Relative matched future utility, within-context action ranking and future harm",
+    "actions": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "parent_behavior_preserved_at_zero_initialization": true,
+    "future_visual_search_budget": "Reuse actual native local or local+one observed context; no additional backbone forward",
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_RUNTIME_AND_TWO_UPDATE_HEAD_SANITY_PASS",
+    "not_done": "Full teacher-state data collection, full future-head fit, full98-video selection, formalLas results and persistent rejected-tracklet memory remain pending.",
+    "next": "Keep current full20ep and formalLas results; use its selected fixed teacher for full future-action fitting and deployment validation"
+  },
+  "future_training_entries": {
+    "sources": [
+      "future_data.py",
+      "merge_action_packets.py",
+      "train_future_actions.py",
+      "validate_future_actions.py",
+      "select_future_actions.py",
+      "collect_actions.py",
+      "infer.py"
+    ],
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_CLI_SANITY_PASS",
+    "frozen_dependencies": "Strictly loaded supplied pureCAD pretrain and selected teacher nativeABC; future fit trains only37426 head parameters.",
+    "data": "Immutable teacher full predicted prefixes;881TRAIN/98DEV, four independent5/10/10/10 candidate contexts x6actions; same-state future utility recomputed per context.",
+    "selection": "Snapshots0/1/2/5/10/20 all evaluated on full98 continuous development videos; sequence-equal IoU chooses one best including initialization control; cache gain is diagnostic only.",
+    "cleanup": "Selectedbest strictly reloaded; delete only enumerated owncandidate weights, keep originalfixedteacher/pretrain and receipts.",
+    "formal_entry": "cadtrack_abc.infer --policy future_actions then unchanged official cadtrack_abc.score for fullLas245/220703 PR/NPR/SR/attributes/curves/perseq/mechanisms.",
+    "next": "Wait for current20epoch pipeline and fullLas report before full future data collection/GPU training. Do not restart current job or run another formal training concurrently.",
+    "full_future_training_complete": false,
+    "formal_metrics_complete": false
+  },
+  "future_query_sampling": {
+    "source": "sample_action_queries.py",
+    "purpose": "Address actual historical query-coverage gap (1 among721 observed failure transitions), without claiming the historical rate describes this CAD teacher.",
+    "policy": "Explicit native/future strict checkpoint family, selected immutable teacher, all predictions from frame0 initialGT; no laterGT in state/crop.",
+    "sampling": "Two per-video uniform queries plus first loss_transition, wrong_identity_commit and missed_correct_candidate windows at offsets[-2,-1,0,1,3], valid H3 supervision only; reasons retained in packet query_spec.",
+    "scope": "881TRAIN or98DEV only, sharded on2/3 for later full collection; official245 excluded.",
+    "status": "SOURCE_REVIEW_PASS_REAL_CPU16_FRAME_PROGRAM_SANITY_PASS",
+    "full_sampling_complete": false,
+    "full_action_collection_complete": false,
+    "actual_input_inventory": {
+      "train": 881,
+      "development": 98,
+      "all_train_root": 979,
+      "official_test": 245,
+      "test_overlap": 0,
+      "all_first_boxes_valid_wh": true,
+      "minimum_eligible_H3_queries_per_video": 23
+    },
+    "not_proven": "No critical event occurred in this16-frame sanity. Full event counts, label coverage, training improvements and formal metrics remain unverified.",
+    "next": "Inspect current native20ep/fullLas report first; then sample full trajectories using its selected fixed teacher, collect matched action labels and fit future head."
+  },
+  "deferred_future_pipeline": {
+    "source": "future_pipeline.py",
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_PARENT_GUARD_PASS_NOT_STARTED",
+    "prerequisite": "Actual native20epochs/3140updates/strict reload/full LasHeR245 sequences220703 frames PR,NPR,SR and one matching selected checkpoint; inspect that result before manually launching.",
+    "stages": [
+      "Frozen selected native teacher copy",
+      "Complete881TRAIN/98DEV trajectory sampling on GPU2,3",
+      "H3 six-action matched label collection on GPU2,3",
+      "Strict packet merge",
+      "Future head20epochs only, batch64, GPU2",
+      "Six snapshots0/1/2/5/10/20 full98 continuous development on GPU2,3",
+      "One best checkpoint selection including neutral epoch0",
+      "Full LasHeR245/220703 explicit future_actions inference on GPU2,3",
+      "Official PR/NPR/SR, attributes, curves, per-sequence and mechanism reports"
+    ],
+    "cleanup": "Listed own candidate weights only after copying/strict reload best; temporary teacher copy only after full score/byte comparison. Preserve parent best and supplied pretrain.",
+    "limits": "LasHeR only; no baseline rerun, GPU0/1, additional datasets, retry, automatic next round, or automatic overall-goal completion.",
+    "state_file_limitation": "An artifact validation exception stops the wrapper and dependencies without VERIFIED_COMPLETE, but queue_state can retain RUNNING/COMMANDS_EXITED_SUCCESSFULLY. A monitor must use process exit and required receipts together; the state file alone does not establish liveness or completion.",
+    "started": false,
+    "formal_metrics_complete": false
+  },
+  "native_round_completion": {
+    "status": "ACTUAL_NATIVE20_TRAINING_HISTORY_AND_SELECTED_CHECKPOINT_VERIFIED",
+    "observed_utc": "2026-10-13T21:19:18.837994+00:00",
+    "epochs": 20,
+    "optimizer_updates": 3140,
+    "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "best_epoch": 2,
+    "best_updates": 314,
+    "best_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "best_validation_clip_iou": 0.8159592297612405,
+    "validation_scope": "196 development clips, not formal LasHeR SR or full98 video selection.",
+    "strict_reload_receipt": true,
+    "train_sequences": 881,
+    "validation_sequences": 98,
+    "pretrained_epoch": 14,
+    "pretrained_strict_tensors": 250,
+    "base_parameters": 103138437,
+    "trainable_parameters": 414164,
+    "physical_gpus_manifest": "2,3",
+    "logged_gradient_records": 160,
+    "logged_nonzero_gradient_records_by_group": {
+      "A": 160,
+      "B_motion": 160,
+      "B_search": 160,
+      "C": 160,
+      "relations": 159
+    },
+    "first_epoch_seconds": 3487.4232950210007,
+    "last_epoch_seconds": 2773.5216701379977,
+    "training_elapsed_seconds": 57333.926296597,
+    "cuda_initialized": false,
+    "full_formal_metrics_complete": false,
+    "scope": "Read-only actual completed training/history/checkpoint evidence; no extra NN training, baseline inference, GPU statistics, or full test scores."
+  }
+}

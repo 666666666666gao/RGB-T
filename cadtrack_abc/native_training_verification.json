@@ -35,9 +35,68 @@
   },
   "formal_evaluation_stage_snapshot_utc": "2026-10-13T21:15:19.364566+00:00",
   "full_lasher_evaluation_started": true,
-  "full_lasher_evaluation_complete": false,
-  "next_required_evidence": "Both245-sequence/220703-frame shard receipts and official PR,NPR,SR report with this selected checkpoint.",
+  "full_lasher_evaluation_complete": true,
+  "next_required_evidence": "Native20 round closed; future-action full fit, persistent rejected candidate memory, effective modules and +2 performance remain pending. No next round automatically launched.",
   "goal_completion_proven": false,
   "future_action_full_training_complete": false,
-  "scope": "Native A/B/C20-epoch round is complete; full test and future-utility training are separate, still incomplete."
+  "scope": "Historical training verification snapshot preserved; appended later full245/220703 LasHeR evidence. Training completion is distinct from target success.",
+  "full_formal_lasher_closure": {
+    "status": "NATIVE20_AND_FULL_LASHER_COMPLETE_TARGET_UNMET",
+    "observed_utc": "2026-10-14T00:39:28.774952+00:00",
+    "training_epochs": 20,
+    "optimizer_updates": 3140,
+    "selected_epoch": 2,
+    "selected_updates": 314,
+    "checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "checkpoint_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "sequences": 245,
+    "frames": 220703,
+    "metrics_percent": {
+      "NPR": 68.92760991460622,
+      "PR": 72.4190140757939,
+      "SR": 57.666882375069136
+    },
+    "baseline_percent_user_provided": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "delta_percentage_points_vs_user_reference": {
+      "NPR": -0.23239008539377437,
+      "PR": -0.3209859242060986,
+      "SR": -0.17311762493086746
+    },
+    "targets_percent": {
+      "PR": 74.74,
+      "NPR": 71.16,
+      "SR": 59.84
+    },
+    "all_three_plus2": false,
+    "full_lasher_evaluation_complete": true,
+    "other_datasets": "Deferred by user; data remains in place.",
+    "timing": {
+      "fps": 9.748130329313545,
+      "latency_p50_ms": 98.81522999785375,
+      "latency_p95_ms": 174.95305230258964,
+      "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+    },
+    "attribute_count": 19,
+    "extra_visual_forwards": 0,
+    "fresh_audit_verdict": "warn",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "baseline_rerun": false,
+    "paired_baseline_ci": null,
+    "goal_completion_proven": false,
+    "future_action_full_training_complete": false,
+    "persistent_rejected_tracklets_complete": false,
+    "original_pipeline_terminated": true,
+    "next_training_started": false,
+    "last_checkpoint_removed": true,
+    "best_retained": true,
+    "supplied_pretrain_retained": true,
+    "local_old_observer_closed": true,
+    "report_directory": "cadtrack_abc/results/native_lasher_20261014",
+    "scope": "Complete native20 raw-video module-training round and one-model full LasHeR test; future-action training and independent module efficacy remain unproved."
+  }
 }

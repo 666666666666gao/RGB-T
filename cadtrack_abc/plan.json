@@ -22,7 +22,7 @@
     "one best development checkpoint",
     "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
   ],
-  "status": "NATIVE20_TRAINING_COMPLETE_FULL_LASHER_EVALUATION_RUNNING",
+  "status": "NATIVE20_AND_FULL_LASHER_COMPLETE_TARGET_UNMET",
   "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
   "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
   "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
@@ -31,7 +31,7 @@
     "LasHeR_NPR",
     "LasHeR_SR"
   ],
-  "not_results": "Actual20epochs/3140updates/history/selected checkpoint verified; enhanced native LasHeR full245 testing is running. No formal PR/NPR/SR or +2 proof yet. Future-action fit and persistent rejected-tracklet memory are not completed.",
+  "not_results": "Native20epochs/3140updates and selected epoch2 full LasHeR245/220703 are completed. PR72.4190140758/NPR68.9276099146/SR57.6668823751, all below user-provided reference; all+2 unmet. No additional training is running. Full future-action fit and persistent rejected-tracklet memory remain incomplete.",
   "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
   "current_targets": {
     "LasHeR_PR": 74.74,
@@ -174,5 +174,64 @@
     "cuda_initialized": false,
     "full_formal_metrics_complete": false,
     "scope": "Read-only actual completed training/history/checkpoint evidence; no extra NN training, baseline inference, GPU statistics, or full test scores."
+  },
+  "native_formal_round_closure": {
+    "status": "NATIVE20_AND_FULL_LASHER_COMPLETE_TARGET_UNMET",
+    "observed_utc": "2026-10-14T00:39:28.774952+00:00",
+    "training_epochs": 20,
+    "optimizer_updates": 3140,
+    "selected_epoch": 2,
+    "selected_updates": 314,
+    "checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "checkpoint_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "sequences": 245,
+    "frames": 220703,
+    "metrics_percent": {
+      "NPR": 68.92760991460622,
+      "PR": 72.4190140757939,
+      "SR": 57.666882375069136
+    },
+    "baseline_percent_user_provided": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "delta_percentage_points_vs_user_reference": {
+      "NPR": -0.23239008539377437,
+      "PR": -0.3209859242060986,
+      "SR": -0.17311762493086746
+    },
+    "targets_percent": {
+      "PR": 74.74,
+      "NPR": 71.16,
+      "SR": 59.84
+    },
+    "all_three_plus2": false,
+    "full_lasher_evaluation_complete": true,
+    "other_datasets": "Deferred by user; data remains in place.",
+    "timing": {
+      "fps": 9.748130329313545,
+      "latency_p50_ms": 98.81522999785375,
+      "latency_p95_ms": 174.95305230258964,
+      "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+    },
+    "attribute_count": 19,
+    "extra_visual_forwards": 0,
+    "fresh_audit_verdict": "warn",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "baseline_rerun": false,
+    "paired_baseline_ci": null,
+    "goal_completion_proven": false,
+    "future_action_full_training_complete": false,
+    "persistent_rejected_tracklets_complete": false,
+    "original_pipeline_terminated": true,
+    "next_training_started": false,
+    "last_checkpoint_removed": true,
+    "best_retained": true,
+    "supplied_pretrain_retained": true,
+    "local_old_observer_closed": true,
+    "report_directory": "cadtrack_abc/results/native_lasher_20261014",
+    "scope": "Complete native20 raw-video module-training round and one-model full LasHeR test; future-action training and independent module efficacy remain unproved."
   }
 }

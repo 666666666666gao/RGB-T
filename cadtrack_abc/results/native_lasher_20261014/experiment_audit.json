@@ -1,0 +1,379 @@
+{
+  "audit_skill": "experiment-audit",
+  "generated_at_utc": "2026-10-14 00:42:14 UTC",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "numerical_integrity": "PASS",
+  "performance_target_status": "UNMET",
+  "reason_code": "zero_extra_search_execution_and_limited_effectiveness_evidence",
+  "checks": {
+    "A": {
+      "status": "pass",
+      "summary": "Dataset GT only, first-box-only online initialization; native installed toolkit semantics reproduced from all raw data.",
+      "evidence": [
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py:35",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py:51",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/infer.py:52",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/dataset/basedataset.py:22",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:332",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:290",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:246"
+      ],
+      "details": "Dataset GT only, first-box-only online initialization; native installed toolkit semantics reproduced from all raw data."
+    },
+    "B": {
+      "status": "pass",
+      "summary": "Standard frame/sequence denominators and GT width/height normalization; no prediction-statistic normalization. Baseline is explicitly user-provided, unrerun.",
+      "evidence": [
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/utils.py:118",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/utils.py:156",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:357",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:319",
+        "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py:276",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py:83",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/full_report.json:404"
+      ],
+      "details": "Standard frame/sequence denominators and GT width/height normalization; no prediction-statistic normalization. Baseline is explicitly user-provided, unrerun."
+    },
+    "C": {
+      "status": "pass",
+      "summary": "All listed results exist and match server bytes; 20 epochs/3140 updates, selected epoch2/update314 checkpoint, exact full245 coverage, CSV/report/curves/attributes/mechanisms/latency verified. Earlier status snapshots are not completed-result claims.",
+      "evidence": [
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/complete.json:2",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/history.jsonl:2",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/history.jsonl:20",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_predictions/complete_shard0.json:748",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_predictions/complete_shard1.json:742",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/full_report.json:5",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/native_training_verification.json:36",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/train.py:52"
+      ],
+      "details": "All listed results exist and match server bytes; 20 epochs/3140 updates, selected epoch2/update314 checkpoint, exact full245 coverage, CSV/report/curves/attributes/mechanisms/latency verified. Earlier status snapshots are not completed-result claims."
+    },
+    "D": {
+      "status": "warn",
+      "summary": "Required metrics and mechanism functions are called and recorded. Extra visual search exists but was exercised zero times in this formal inference; every recorded candidate set has only5 local candidates. Neural modules cannot be treated as independently effective from this result.",
+      "evidence": [
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/pipeline.py:44",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py:53",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py:91",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/model.py:160",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/model.py:163",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json:5",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json:10"
+      ],
+      "details": "Required metrics and mechanism functions are called and recorded. Extra visual search exists but was exercised zero times in this formal inference; every recorded candidate set has only5 local candidates. Neural modules cannot be treated as independently effective from this result."
+    },
+    "E": {
+      "status": "warn",
+      "summary": "One native configuration/seed42 and one LasHeR full test. Training uses881-sequence causal8-step clips, dev selection196 clips from98 sequences, frozen base. Concurrent two-GPU timing is not a matched baseline speed comparison. No component causality, multi-seed robustness, future-utility or cross-dataset evidence.",
+      "evidence": [
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/config.json:9",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/config.json:13",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/config.json:17",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/train.py:62",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/train.py:68",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/data.py:83",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/baseline.py:31",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/full_report.json:402",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/full_report.json:1899",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/plan.json:14",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/plan.json:99"
+      ],
+      "details": "One native configuration/seed42 and one LasHeR full test. Training uses881-sequence causal8-step clips, dev selection196 clips from98 sequences, frozen base. Concurrent two-GPU timing is not a matched baseline speed comparison. No component causality, multi-seed robustness, future-utility or cross-dataset evidence."
+    },
+    "F": {
+      "status": "pass",
+      "classification": {
+        "official_scores": "real_gt",
+        "mechanism_diagnostics": "real_gt-assisted localization proxies; not semantic-identity ground truth"
+      },
+      "summary": "Candidate recall, rescue/harm and erroneous writes use actual GT IoU; same-state immediate comparisons do not prove future causal utility.",
+      "evidence": [
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/mechanism_summary.py:52",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/mechanism_summary.py:59",
+        "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/mechanism_summary.py:81",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json:7927",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json:7931",
+        "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json:7932"
+      ],
+      "details": "Candidate recall, rescue/harm and erroneous writes use actual GT IoU; same-state immediate comparisons do not prove future causal utility."
+    }
+  },
+  "independent_recomputation": {
+    "official": {
+      "counts": {
+        "frames": 220703,
+        "invalid_any_le0": 1260,
+        "invalid_wh": 533,
+        "noninteger_gt": 0,
+        "prediction_invalid_wh": 0,
+        "first_match": 245,
+        "image_counts_match": 245,
+        "toolkit_gt_equal": 245
+      },
+      "gt_sha256_aggregate": "f9f4d88d468c7e76828feed3e59ef46575aacaf4ce6cef72bf122422e944bd89",
+      "pred_sha256_aggregate": "0458445a2d89900fc79a0963f909a52ff221c18ae6f4329a3f8068d2628273f1",
+      "examples": {
+        "invalid": [
+          "2girlup",
+          224,
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "positive_wh_invalid_xy": [
+          "ab_bolstershaking",
+          340,
+          [
+            455,
+            0,
+            75,
+            117
+          ]
+        ]
+      },
+      "per_sequence_max_error": 2.842170943040401e-14,
+      "mismatches": [],
+      "metrics": {
+        "NPR": 68.92760991460618,
+        "PR": 72.41901407579383,
+        "SR": 57.666882375069136
+      },
+      "curve_max_errors": {
+        "NPR": 6.661338147750939e-16,
+        "PR": 6.661338147750939e-16,
+        "SR": 4.440892098500626e-16
+      }
+    },
+    "mechanism": {
+      "counts_exact": true,
+      "counts": {
+        "tracked_frames": 220458,
+        "valid_gt_frames": 219925,
+        "extra_visual_forwards": 0,
+        "candidate_recalled_frames": 149706,
+        "local_candidate_recalled_frames": 149706,
+        "newly_recalled_frames": 0,
+        "newly_recalled_selected_frames": 0,
+        "alternative_selections": 1048,
+        "same_state_immediate_rescues": 126,
+        "same_state_immediate_harms": 136,
+        "failure_frames": 67934,
+        "geometry_commit_frames": 196377,
+        "incorrect_geometry_commit_frames": 47086,
+        "template_request_frames": 28470,
+        "template_commit_frames": 28441,
+        "incorrect_template_commit_frames": 5887,
+        "target_memory_commit_frames": 190856,
+        "incorrect_target_memory_commit_frames": 43239
+      },
+      "modal_template_exact": true,
+      "modal_memory_exact": true,
+      "events_exact": true,
+      "perseq_iou_max_error": 2.6645352591003757e-15,
+      "frame_equal_iou": 0.5227178467751785,
+      "seq_equal_iou": 0.5877928922289398,
+      "candidate_count_histogram": {
+        "5": 220458
+      }
+    },
+    "metadata": {
+      "config": {
+        "server": "2028",
+        "pretrained": "/home/gaob/CADTrack_ep0014.pth.tar",
+        "pretrained_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+        "train_root": "/data/wangwj/dataset/LasHeR/trainingset",
+        "test_root": "/data/wangwj/dataset/LasHeR/testingset",
+        "rgbt234_root": null,
+        "output": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013",
+        "epochs": 20,
+        "samples_per_epoch": 20000,
+        "batch_per_gpu": 64,
+        "workers": 4,
+        "clip_steps": 8,
+        "val_samples": 196,
+        "lr": 0.0001,
+        "lr_drop_epoch": 10,
+        "seed": 42,
+        "threshold": 0.03,
+        "physical_gpus": [
+          2,
+          3
+        ],
+        "baseline_rerun": false,
+        "rgbt234_verified_frames": 116649,
+        "evaluation_focus": "lasher",
+        "deferred_datasets": [
+          "rgbt234"
+        ]
+      },
+      "latency": {
+        "count": 220458,
+        "sum": 22615.41367959167,
+        "fps": 9.748130329313545,
+        "p50_ms": 98.81522999785375,
+        "p95_ms": 174.95305230258964
+      },
+      "shard_partition_exact": true,
+      "logged_updates": 160,
+      "logged_gradient_nonzero": {
+        "A": 160,
+        "B_motion": 160,
+        "B_search": 160,
+        "C": 160,
+        "relations": 159
+      },
+      "all_logged_gradients_finite": true,
+      "logged_epoch_complete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "log_terminal": {
+        "status": "TRAINING_COMPLETE",
+        "epochs": 20,
+        "updates": 3140,
+        "best_validation_clip_iou": 0.8159592297612405,
+        "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+        "strict_reload_passed": true,
+        "formal_test_metrics": null,
+        "elapsed_seconds": 57333.926296597
+      },
+      "attribute_max_error": 7.105427357601002e-14,
+      "pretrain_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+      "pretrain_bytes": 1236957664,
+      "rgbt234_dataset_exists": true
+    }
+  },
+  "selected_checkpoint": {
+    "path": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "epoch": 2,
+    "updates": 314,
+    "method": "SHA256 and stdlib pickle opcode inspection; did not execute or load the neural network."
+  },
+  "performance": {
+    "PR": 72.4190140757939,
+    "NPR": 68.92760991460622,
+    "SR": 57.666882375069136,
+    "delta_percentage_points": {
+      "PR": -0.3209859242060986,
+      "NPR": -0.23239008539377437,
+      "SR": -0.17311762493086746
+    },
+    "all_targets_reached": false
+  },
+  "metadata_caveats": [
+    "manifest TRAINING_RUNNING is written at startup; dated native_training_verification and plan snapshots predate final evaluation. Preserve historical observations when recording current completion.",
+    "pipeline pending 'rgbt234: data unavailable' is emitted when config root is null. Actual downloaded dataset exists and plan explicitly defers it; describe this run as LasHeR-only/deferred RGBT234.",
+    "Local/server config bytes differ solely by CRLF vs LF; normalized hash matches."
+  ],
+  "limits": [
+    "No new NN inference or strict neural reload was performed. Strict reload execution is supported by original receipts, not a new audit model execution.",
+    "The installed native rgbt toolkit was inspected and independently reproduced; no external upstream commit attestation was performed.",
+    "Only supplied evaluation/implementation/result artifacts were audited; no unprovided paper/narrative claim is certified.",
+    "160 logged gradient records do not establish nonzero gradients on every one of3140 optimizer updates."
+  ],
+  "receipts_path": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/independent_native20_audit_20261014/receipts.json",
+  "input_sha_manifest_path": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/independent_native20_audit_20261014/audited_inputs_sha256.json",
+  "verdict": "WARN",
+  "reviewer_model": "gpt-6-astra",
+  "reviewer_reasoning": "max",
+  "reviewer_family": "openai",
+  "executor_model": "UNATTESTED",
+  "executor_family": "openai",
+  "generated_at": "2026-10-14T00:46:37.494498+00:00",
+  "date": "2026-10-14",
+  "agent_id": "/root/cad_native_full_experiment_audit",
+  "verdict_id": "/root/cad_native_full_experiment_audit",
+  "trace_path": ".aris/traces/experiment-audit/2026-10-14_run01/",
+  "audited_source_commit": "21307161445e0d9e0fe4013213589d87d7c705fc",
+  "audited_input_hashes": {
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/score.py": "sha256:ba1266247f005596dae0929031a6c42ba146e43aff15794ac7bf321394a3f0a4",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/infer.py": "sha256:d5fb20814a45934c6626b5fefa905296ba39773c2963c470531a2c9a0f62d3e6",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/mechanism_summary.py": "sha256:be0bb2e838c6216ed4c94c0bd4ce2cbff349e49a8d63b45c9a51eaee74893fd9",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/pipeline.py": "sha256:b8617738babb453cd2082ae32be56245ac9a807b3fc6848fd59c8162b1ae94b4",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/train.py": "sha256:16fd045800fa9338d7b3c8a50c37edb49250dee6d8cf833aeccf7eddfd3c040b",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/model.py": "sha256:4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/baseline.py": "sha256:c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/data.py": "sha256:7a608de3e43827e3ac6cfe5322bcfe3ce5d737deafda9b0d8645598b6e436c6d",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/config.json": "sha256:92c673aa715afa69c0ea02220e2db9c6335c6dfd8ed60c775ffabe61e8807de9",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/plan.json": "sha256:d8eed30537cb0cdf89deb73e30c03b7c610e372fa3c4885cb20ca28025bc8c73",
+    "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/native_training_verification.json": "sha256:a5082bd30fcccb45f527b86e6f21e3591c51dcb2347242075d59d3b3b0471a78",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/complete.json": "sha256:2a63172cc41de019d92673a252f4ace92a06880f953fc183b716907bf730c255",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/manifest.json": "sha256:3bcee924320760a6c3a23bb676873582b3a931f0ba4d9a6cc7594dba044ccb63",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/history.jsonl": "sha256:4e2a53c81a11eb9a02b558a75c033c4cc31336acf80023ea8b212bf0862d3c98",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/pipeline_complete.json": "sha256:94a5ed8ffd29fb93e9f65ceb5d1d852b6c1a6a6ac2347364e660d37969983fea",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_predictions/complete_shard0.json": "sha256:20fb16c2502fdc07e36f5143ebe6f00c5a8f3492c5619a91385e3974e25e6d9e",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_predictions/complete_shard1.json": "sha256:d34e71af77af25568951317b75bf07ee7c2485055a936d0ff6d25361bf319b3b",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/full_report.json": "sha256:583655751526cffc4668026b904c28cab19c03ab01eaaa40669c69aced38e286",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/per_sequence.csv": "sha256:9751cee565531b0ef3e8f0fc0e38ab6b29f09e7cf33c0eb7201ac37895055da4",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/native_formal_results_20261014/lasher_report/mechanism_report.json": "sha256:6acef37255415bf4aba66374e7b13cc34974e27b7e2bbbf4d8521e55d7daf268",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/score.py": "sha256:ba1266247f005596dae0929031a6c42ba146e43aff15794ac7bf321394a3f0a4",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/infer.py": "sha256:d5fb20814a45934c6626b5fefa905296ba39773c2963c470531a2c9a0f62d3e6",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/mechanism_summary.py": "sha256:be0bb2e838c6216ed4c94c0bd4ce2cbff349e49a8d63b45c9a51eaee74893fd9",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/pipeline.py": "sha256:b8617738babb453cd2082ae32be56245ac9a807b3fc6848fd59c8162b1ae94b4",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/train.py": "sha256:16fd045800fa9338d7b3c8a50c37edb49250dee6d8cf833aeccf7eddfd3c040b",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/model.py": "sha256:4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/baseline.py": "sha256:c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/data.py": "sha256:7a608de3e43827e3ac6cfe5322bcfe3ce5d737deafda9b0d8645598b6e436c6d",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json": "sha256:409a41e510dcccaa81e055f5e2eab07b7fa1ad3822e3e02ca018841c4dc701e6",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/plan.json": "sha256:d8eed30537cb0cdf89deb73e30c03b7c610e372fa3c4885cb20ca28025bc8c73",
+    "/home/gaob/CADTrack-ABC/cadtrack_abc/native_training_verification.json": "sha256:a5082bd30fcccb45f527b86e6f21e3591c51dcb2347242075d59d3b3b0471a78",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/complete.json": "sha256:2a63172cc41de019d92673a252f4ace92a06880f953fc183b716907bf730c255",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json": "sha256:3bcee924320760a6c3a23bb676873582b3a931f0ba4d9a6cc7594dba044ccb63",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/history.jsonl": "sha256:4e2a53c81a11eb9a02b558a75c033c4cc31336acf80023ea8b212bf0862d3c98",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/pipeline_complete.json": "sha256:94a5ed8ffd29fb93e9f65ceb5d1d852b6c1a6a6ac2347364e660d37969983fea",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_predictions/complete_shard0.json": "sha256:20fb16c2502fdc07e36f5143ebe6f00c5a8f3492c5619a91385e3974e25e6d9e",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_predictions/complete_shard1.json": "sha256:d34e71af77af25568951317b75bf07ee7c2485055a936d0ff6d25361bf319b3b",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_report/full_report.json": "sha256:583655751526cffc4668026b904c28cab19c03ab01eaaa40669c69aced38e286",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_report/per_sequence.csv": "sha256:9751cee565531b0ef3e8f0fc0e38ab6b29f09e7cf33c0eb7201ac37895055da4",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_report/mechanism_report.json": "sha256:6acef37255415bf4aba66374e7b13cc34974e27b7e2bbbf4d8521e55d7daf268",
+    "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth": "sha256:5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/dataset/basedataset.py": "sha256:96449e8090c4f1892fd9c8ea6ce34b12bf2b081e9400208870b1eee1d577b9d8",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/base.py": "sha256:e6d5108a443948ad1dc09dabf4b23490e46483a8906843057527a210c13a2a63",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/metrics.py": "sha256:9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/utils.py": "sha256:5a95cbafef8371222e35179da58abf461ed03482695efdaad5ff904a077ba994",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/dataset/lasher_dataset.py": "sha256:2dddcbdc71e9d7562efe9677fe8fa724b6cbb720cacd6f6289b25b4205daf08a",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/__init__.py": "sha256:73b199fb056e71ebe556775a73635bf2374be645deb5350c220bfe1bdd5bb0ee",
+    "/data/wangwj/RGBT_toolkit-master/src/rgbt/metrics/__init__.py": "sha256:bfe07fdfffa1e251f2bfe01de32794a8ce8a7ecd1ef4f543a6def2050610fb7d"
+  },
+  "raw_data_aggregate_hashes": {
+    "gt_sha256": "f9f4d88d468c7e76828feed3e59ef46575aacaf4ce6cef72bf122422e944bd89",
+    "prediction_sha256": "0458445a2d89900fc79a0963f909a52ff221c18ae6f4329a3f8068d2628273f1",
+    "algorithm": "SHA256 over official toolkit lashertest.txt sequence order; for each sequence concatenate UTF8(sequence name), one NUL byte, and unmodified file bytes.",
+    "gt_path": "/data/wangwj/dataset/LasHeR/testingset/{sequence}/init.txt",
+    "prediction_path": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/lasher_predictions/{sequence}.txt"
+  },
+  "private_trace_response_sha256": "03c069c5b24a7e54412638a8431511f1ae5dfe521247088f67bab90c7061b53d",
+  "original_reviewer_verdict_sha256": "c7c6b51eb91ac84ae4fe07406d9b87d0d54a1b54de8e4fb2ee175ad42214661e",
+  "private_raw_receipts_sha256": "87bfc3509612436a9183233f657cfabda34769e266e08e5c083de3615fe71ea5",
+  "state_metadata_update_note": "plan/native_training_verification are subsequently updated to final completion without changing inference, GT or raw metrics; original audited metadata copies are retained in audit_input_snapshots."
+}
