@@ -483,7 +483,7 @@
     "baseline_lasher_rerun": false
   },
   "r1_matched_pair_20261015": {
-    "status": "ACTUAL_FULL_FITS_RUNNING",
+    "status": "FULL20_FITS_COMPLETE_FULL98_MAIN_STARTED",
     "purpose": "Close frozen-search future-C versus trained search+C with the existing native label set.",
     "policies": [
       "future_actions",
@@ -573,10 +573,173 @@
         }
       }
     ],
-    "observer_pid": 39336,
-    "next_observation_bjt": "2026-10-15 04:27:30",
+    "observer_pid": null,
+    "next_observation_bjt": "2026-10-15 05:02:00",
     "observer_interval_after_first_seconds": 240,
-    "estimated_fit_finish_bjt": "2026-10-15 approximately04:30 from first2 epochs; not a deadline guarantee."
+    "estimated_fit_finish_bjt": "2026-10-15 approximately04:30 from first2 epochs; not a deadline guarantee.",
+    "completed_fits": {
+      "future_actions": {
+        "status": "FUTURE_HEAD_FIT_COMPLETE",
+        "policy_family": "future_actions",
+        "trainable_parameters": 37426,
+        "native_abc_frozen": true,
+        "motion_region_coordinates_frozen": true,
+        "epochs": 20,
+        "updates": 1600,
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "train_queries": 5092,
+        "train_sequences": 881,
+        "candidates": [
+          {
+            "epoch": 0,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch00.pth"
+          },
+          {
+            "epoch": 1,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth"
+          },
+          {
+            "epoch": 2,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth"
+          },
+          {
+            "epoch": 5,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth"
+          },
+          {
+            "epoch": 10,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth"
+          },
+          {
+            "epoch": 20,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth"
+          }
+        ],
+        "changed_head_tensors": [
+          "future_action.network.0.weight",
+          "future_action.network.0.bias",
+          "future_action.network.1.weight",
+          "future_action.network.1.bias",
+          "future_action.network.3.weight",
+          "future_action.network.3.bias"
+        ],
+        "strict_head_reload": true,
+        "full_video_selection_complete": false,
+        "formal_metrics_complete": false,
+        "seconds": 2528.5709556269867,
+        "train_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "validation_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "training_hyperparameters": {
+          "batch": 64,
+          "lr": 0.0001,
+          "seed": 42,
+          "teacher_policy": "native"
+        }
+      },
+      "search_actions": {
+        "status": "SEARCH_ACTION_FIT_COMPLETE",
+        "policy_family": "search_actions",
+        "trainable_parameters": 76678,
+        "native_abc_frozen": true,
+        "motion_region_coordinates_frozen": true,
+        "epochs": 20,
+        "updates": 1600,
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "train_queries": 5092,
+        "train_sequences": 881,
+        "candidates": [
+          {
+            "epoch": 0,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth"
+          },
+          {
+            "epoch": 1,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch01.pth"
+          },
+          {
+            "epoch": 2,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch02.pth"
+          },
+          {
+            "epoch": 5,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch05.pth"
+          },
+          {
+            "epoch": 10,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth"
+          },
+          {
+            "epoch": 20,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch20.pth"
+          }
+        ],
+        "changed_head_tensors": [
+          "future_action.network.0.weight",
+          "future_action.network.0.bias",
+          "future_action.network.1.weight",
+          "future_action.network.1.bias",
+          "future_action.network.3.weight",
+          "future_action.network.3.bias",
+          "search_action.network.0.weight",
+          "search_action.network.0.bias",
+          "search_action.network.1.weight",
+          "search_action.network.1.bias",
+          "search_action.network.3.weight",
+          "search_action.network.3.bias"
+        ],
+        "strict_head_reload": true,
+        "full_video_selection_complete": false,
+        "formal_metrics_complete": false,
+        "seconds": 2524.58432188601,
+        "train_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "validation_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "training_hyperparameters": {
+          "batch": 64,
+          "lr": 0.0001,
+          "seed": 42,
+          "teacher_policy": "native"
+        }
+      }
+    },
+    "actual_fit_child_exit_codes": [
+      0,
+      0
+    ],
+    "original_fit_observer_native_exit_code": 0,
+    "full98_development": {
+      "status": "ACTUAL_TWO_GPU_FULL98_INITIALIZATION_CANDIDATE_RUNNING",
+      "observed_utc": "2026-10-14T20:45:42.757467+00:00",
+      "jobs": [
+        {
+          "pid": 4137907,
+          "physical_gpu": 2,
+          "gpu_uuid": "GPU-966900b1-520e-00e3-3be3-ba55d3fd1968",
+          "used_mib": 830,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_future_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00 --policy search_actions --shard 0 "
+        },
+        {
+          "pid": 4137944,
+          "physical_gpu": 3,
+          "gpu_uuid": "GPU-e087b67f-9495-4385-6bde-335c5760d96e",
+          "used_mib": 830,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_future_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00 --policy search_actions --shard 1 "
+        }
+      ],
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth",
+      "destination": "/home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00",
+      "policy": "search_actions",
+      "checkpoint_epoch": 0,
+      "local_native_sessions": [
+        29892,
+        38749
+      ],
+      "complete": false,
+      "full98_selected_model": false,
+      "formal_metrics": null,
+      "next_observation_bjt": "2026-10-15 05:02:00",
+      "scope": "First of six complete-development checkpoints; epoch0 is the neutral initialization control."
+    },
+    "actual_full_new_formal_metrics_complete": false
   },
   "full_native_action_collection_20261014": {
     "status": "FULL_NATIVE_H3_LABELS_COMPLETE",
