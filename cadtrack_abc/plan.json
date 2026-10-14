@@ -22,7 +22,7 @@
     "one best development checkpoint",
     "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
   ],
-  "status": "NATIVE20_AND_FULL_LASHER_COMPLETE_TARGET_UNMET",
+  "status": "FULL_NATIVE_TEACHER_SAMPLING_RUNNING_TARGET_UNMET",
   "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
   "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
   "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
@@ -31,7 +31,7 @@
     "LasHeR_NPR",
     "LasHeR_SR"
   ],
-  "not_results": "Native20epochs/3140updates and selected epoch2 full LasHeR245/220703 are completed. PR72.4190140758/NPR68.9276099146/SR57.6668823751, all below user-provided reference; all+2 unmet. No additional training is running. Full future-action fit and persistent rejected-tracklet memory remain incomplete.",
+  "not_results": "Native20/fullLas remain PR72.4190140758/NPR68.9276099146/SR57.6668823751, below supplied baseline. New two-GPU full881TRAIN/98DEV trajectory sampling is running; no new optimizer or formal metrics this stage. Full future-action fit and persistent rejected-tracklet memory remain incomplete.",
   "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
   "current_targets": {
     "LasHeR_PR": 74.74,
@@ -44,7 +44,7 @@
       "counterfactual.py",
       "collect_actions.py"
     ],
-    "status": "SOURCE_REVIEW_PASS_CPU_STATE_AND_COMPLETE_SINGLE_QUERY_COLLECTION_SANITY_PASS",
+    "status": "BOUNDED_TWO_QUERY_ACTUAL_BATCH64_AND_TRACED_PARITY_PASS_FULL_COLLECTION_PENDING",
     "action_modes": [
       "policy",
       "pause_identity",
@@ -55,7 +55,7 @@
     ],
     "prefix": "Full deployed-teacher predicted prefix from sequence frame0; only initial GT initializes the state",
     "search_budget": "Three independent offline local+one-region probe contexts; each simulated action sees only one and has at most one extra visual forward",
-    "next_step": "Wait for current full training and LasHeR report before full counterfactual collection/future-head fitting",
+    "next_step": "Finish full TRAIN/DEV query sampling, then collect action labels using reviewed native action-batch64.",
     "running_20_epoch_training_unchanged": true,
     "not_done": "No full collection, future-utility head training, persistent rejected-tracklet memory or +2 evidence yet"
   },
@@ -105,7 +105,7 @@
     "policy": "Explicit native/future strict checkpoint family, selected immutable teacher, all predictions from frame0 initialGT; no laterGT in state/crop.",
     "sampling": "Two per-video uniform queries plus first loss_transition, wrong_identity_commit and missed_correct_candidate windows at offsets[-2,-1,0,1,3], valid H3 supervision only; reasons retained in packet query_spec.",
     "scope": "881TRAIN or98DEV only, sharded on2/3 for later full collection; official245 excluded.",
-    "status": "SOURCE_REVIEW_PASS_REAL_CPU16_FRAME_PROGRAM_SANITY_PASS",
+    "status": "FULL_NATIVE_TEACHER_SAMPLING_RUNNING",
     "full_sampling_complete": false,
     "full_action_collection_complete": false,
     "actual_input_inventory": {
@@ -118,7 +118,8 @@
       "minimum_eligible_H3_queries_per_video": 23
     },
     "not_proven": "No critical event occurred in this16-frame sanity. Full event counts, label coverage, training improvements and formal metrics remain unverified.",
-    "next": "Inspect current native20ep/fullLas report first; then sample full trajectories using its selected fixed teacher, collect matched action labels and fit future head."
+    "next": "Verify four shard receipts and full514083 frames, then collect counterfactual labels. No automatic optimizer training.",
+    "output": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014"
   },
   "deferred_future_pipeline": {
     "source": "future_pipeline.py",
@@ -233,5 +234,21 @@
     "local_old_observer_closed": true,
     "report_directory": "cadtrack_abc/results/native_lasher_20261014",
     "scope": "Complete native20 raw-video module-training round and one-model full LasHeR test; future-action training and independent module efficacy remain unproved."
+  },
+  "continuation_20261014": {
+    "evidence": "cadtrack_abc/results/batched_actions_20261014",
+    "actual_teacher_epoch": 2,
+    "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "frame_inventory": {
+      "train": 461883,
+      "development": 52200,
+      "total": 514083
+    },
+    "query_sampler_policy_batch": 1,
+    "action_collector_batch": 64,
+    "batch_parity_scope": "Two actual TRAIN states, all420 candidate/mode actions, H3; label rtol=atol1e-4; original mixed1e-5 failure retained.",
+    "first_observation_not_before_utc": "2026-10-14T09:00:14.933943+00:00",
+    "observe_seconds": 240,
+    "performance_goal_achieved": false
   }
 }

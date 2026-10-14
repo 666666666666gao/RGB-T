@@ -105,6 +105,8 @@ def main():
         collect_commands = [['cadtrack_abc.collect_actions', '--config', str(config_path), '--teacher', str(teacher),
                              '--manifest', str(manifest), '--split', split, '--queries', str(sampling / ('queries_shard' + str(shard) + '.json')),
                              '--output', str(folders[shard]), '--device', 'cuda', '--horizon', '3'] for shard in range(2)]
+        for command in collect_commands:
+            command.extend(['--action-batch', '64'])
         phase = 'collect_' + split
         run(phase, collect_commands, [2, 3])
         receipts = [json.loads((folder / 'collection_complete.json').read_text()) for folder in folders]

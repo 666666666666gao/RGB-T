@@ -13,6 +13,7 @@ from .counterfactual import (ACTION_MODES, advance_candidate, assert_same_state,
 from .data import read_pair
 from .model import CADTrackABC
 from .future_actions import CADTrackFuturePolicy
+from .batched_actions import collect_batched_labels
 
 
 @torch.inference_mode()
@@ -28,9 +29,11 @@ def main():
     parser.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')
     parser.add_argument('--horizon', type=int, default=3)
     parser.add_argument('--modes', nargs='+', choices=ACTION_MODES, default=list(ACTION_MODES))
+    parser.add_argument('--action-batch', type=int, default=1, help='Independent native action rollouts per visual batch; 1 retains the serial reference.')
     args = parser.parse_args()
     assert args.horizon >= 1 and 'policy' in args.modes and len(set(args.modes)) == len(args.modes)
     assert args.teacher_policy == 'native' or set(args.modes) == set(ACTION_MODES)
+    assert args.action_batch >= 1 and (args.action_batch == 1 or args.teacher_policy == 'native')
     torch.set_num_threads(4)
     config = json.loads(Path(args.config).read_text())
     manifest = json.loads(Path(args.manifest).read_text())
@@ -85,15 +88,20 @@ def main():
             assert_same_state(native_state, reconstructed)
             future_images = [read_pair(rgb[f], tir[f]) for f in range(frame + 1, frame + args.horizon + 1)]
             future_frames = list(range(frame + 1, frame + args.horizon + 1))
-            action_labels = []
-            for context, candidate_set in enumerate(query['candidates']):
-                for candidate in range(candidate_set['boxes'].shape[1]):
-                    for mode in args.modes:
-                        trace, advanced = advance_candidate(model, images, times, prior, query, context, candidate, mode)
-                        traces = [trace] + rollout(model, advanced, future_images, future_frames)
-                        labeled = label_rollout(traces, labels[frame:frame + args.horizon + 1])
-                        assert torch.isfinite(labeled['utility'])
-                        action_labels.append(dict(context=context, candidate=candidate, mode=mode, **labeled))
+            if args.action_batch > 1:
+                action_labels = collect_batched_labels(model, images[0], frame, prior, query, future_images,
+                                                       future_frames, labels[frame:frame + args.horizon + 1],
+                                                       args.modes, args.action_batch)
+            else:
+                action_labels = []
+                for context, candidate_set in enumerate(query['candidates']):
+                    for candidate in range(candidate_set['boxes'].shape[1]):
+                        for mode in args.modes:
+                            trace, advanced = advance_candidate(model, images, times, prior, query, context, candidate, mode)
+                            traces = [trace] + rollout(model, advanced, future_images, future_frames)
+                            labeled = label_rollout(traces, labels[frame:frame + args.horizon + 1])
+                            assert torch.isfinite(labeled['utility'])
+                            action_labels.append(dict(context=context, candidate=candidate, mode=mode, **labeled))
             reference_label = next(r for r in action_labels if (r['context'], r['candidate'], r['mode']) == reference)
             for label in action_labels:
                 label['advantage'] = label['utility'] - reference_label['utility']
@@ -104,6 +112,7 @@ def main():
                       'frame': frame, 'split': args.split, 'horizon': args.horizon, 'modes': args.modes,
                       'query_spec': item,
                       'threshold': config['threshold'], 'reference_action': reference,
+                      'action_batch': args.action_batch,
                       'native_state_reconstruction_equal': True, 'full_predicted_prefix_from_frame0': True}
             torch.save({'metadata': record, 'decision': decision_cache(query, prior), 'labels': action_labels}, output / filename)
             record.update(file=filename, action_labels=len(action_labels), seconds_since_start=time.perf_counter() - start)
@@ -113,6 +122,7 @@ def main():
             state = native_state
             next_frame = frame + 1
     receipt = {'completed': True, 'model_family': model_family, 'teacher_sha256': teacher_sha,
+               'action_batch': args.action_batch,
                'queries': len(records), 'records': records, 'device': args.device,
                'first_gt_only_initialization': True, 'future_gt_labels_only': True,
                'context_budget': 'local or local+one of three independent motion regions; no cross-region feature mixing',

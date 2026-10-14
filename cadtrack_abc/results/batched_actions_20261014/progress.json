@@ -1,0 +1,230 @@
+{
+  "status": "FULL_NATIVE_TEACHER_SAMPLING_RUNNING_TARGET_UNMET",
+  "timestamp_utc": "2026-10-14T01:49:17.337816+00:00",
+  "physical_gpus": [
+    2,
+    3
+  ],
+  "sampling_launch": {
+    "status": "FULL_NATIVE_TEACHER_TRAJECTORY_SAMPLING_LAUNCHED",
+    "started_utc": "2026-10-14T01:45:14.933943+00:00",
+    "jobs": [
+      {
+        "pid": 2644513,
+        "physical_gpu": 2,
+        "shard": 0,
+        "commands": [
+          [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.sample_action_queries",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--teacher",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "--teacher-policy",
+            "native",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--split",
+            "train",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train",
+            "--device",
+            "cuda",
+            "--horizon",
+            "3",
+            "--shard",
+            "0"
+          ],
+          [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.sample_action_queries",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--teacher",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "--teacher-policy",
+            "native",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--split",
+            "validation",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation",
+            "--device",
+            "cuda",
+            "--horizon",
+            "3",
+            "--shard",
+            "0"
+          ]
+        ],
+        "log": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/sampling_shard0.log",
+        "actual_cmdline": ""
+      },
+      {
+        "pid": 2644514,
+        "physical_gpu": 3,
+        "shard": 1,
+        "commands": [
+          [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.sample_action_queries",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--teacher",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "--teacher-policy",
+            "native",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--split",
+            "train",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train",
+            "--device",
+            "cuda",
+            "--horizon",
+            "3",
+            "--shard",
+            "1"
+          ],
+          [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.sample_action_queries",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--teacher",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "--teacher-policy",
+            "native",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--split",
+            "validation",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation",
+            "--device",
+            "cuda",
+            "--horizon",
+            "3",
+            "--shard",
+            "1"
+          ]
+        ],
+        "log": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/sampling_shard1.log",
+        "actual_cmdline": "/data/wangwj/envs/CADTrack/bin/python /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/driver_shard1.py "
+      }
+    ],
+    "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "train_sequences": 881,
+    "train_frames": 461883,
+    "development_sequences": 98,
+    "development_frames": 52200,
+    "sampled_frame_inventory": [
+      244684,
+      269399
+    ],
+    "physical_gpus": [
+      2,
+      3
+    ],
+    "estimated_hours": [
+      7.5,
+      9.0
+    ],
+    "native_formal_results_unchanged": true,
+    "training_updates": 0,
+    "action_label_collection_started": false,
+    "future_head_fit_started": false,
+    "sampling_policy_batch": 1,
+    "batch_action_collector_qualification_required_for_this_stage": false,
+    "parent_full_lasher_metrics": {
+      "NPR": 68.92760991460622,
+      "PR": 72.4190140757939,
+      "SR": 57.666882375069136
+    },
+    "official_test_used": false,
+    "baseline_rerun": false,
+    "launch_gpu_memory_only": "2, 1\n3, 1",
+    "source_snapshot_sha256": {
+      "sample_action_queries.py": "8eb0a6ae8563f929eeede8f5d2f37a9992fd6acd57f9d8e9a8da2e720e03e423",
+      "model.py": "4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+      "ported_modules.py": "5c038fcd2b346541a109fb79597f42122082a7d4def49c745957cb8515ce87bb",
+      "baseline.py": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f"
+    },
+    "scope": "Full881TRAIN/98DEV causal teacher trajectories and event queries; optimizer fitting follows later. No automatic next training."
+  },
+  "sampling_admission": {
+    "status": "TWO_ACTUAL_NATIVE_SAMPLERS_ADMITTED",
+    "observed_utc": "2026-10-14T01:45:47.093815+00:00",
+    "jobs": [
+      {
+        "driver_pid": 2644513,
+        "physical_gpu": 2,
+        "sampler": {
+          "pid": 2644515,
+          "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.sample_action_queries --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train --device cuda --horizon 3 --shard 0 "
+        },
+        "log_tail": "{\"sequence\": \"10crosswhite\", \"frames\": 249, \"queries\": 2, \"uniform_queries\": 2, \"first_events\": {}, \"event_counts\": {\"loss_transition\": 0, \"wrong_identity_commit\": 0, \"missed_correct_candidate\": 0}, \"failure_frames\": 0, \"template_write_frames\": 48, \"target_memory_write_frames\": 247, \"search_gates\": {\"absence_gate_frames\": 1, \"gain_gate_frames\": 0, \"triggered_frames\": 0, \"failed_absence_gate_frames\": 0, \"failed_gain_gate_frames\": 0, \"failed_triggered_frames\": 0, \"local_missing_frames\": 0, \"local_missing_triggered_frames\": 0}, \"search_cues_order\": [\"predicted_absence_probability\", \"predicted_extra_gain\", \"local_keep_quality\"], \"search_cues_mean\": [0.00176019111090535, -0.024569430726490194, 0.808860274692697], \"search_cues_min\": [0.0006394080701284111, -0.04773728549480438, 0.39704814553260803], \"search_cues_max\": [0.004903532098978758, -0.009713335894048214, 0.9922814965248108], \"prefix_from_frame0\": true, \"full_video\": true}\n"
+      },
+      {
+        "driver_pid": 2644514,
+        "physical_gpu": 3,
+        "sampler": {
+          "pid": 2644516,
+          "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.sample_action_queries --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train --device cuda --horizon 3 --shard 1 "
+        },
+        "log_tail": ""
+      }
+    ],
+    "training_updates": 0,
+    "official_test_used": false,
+    "power_temperature_queried": false
+  },
+  "sole_local_observer": {
+    "pid": 13140,
+    "command": [
+      "E:\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\wait_full_sampling_near_eta.py"
+    ],
+    "started_utc": "2026-10-14T01:48:08.709027+00:00",
+    "first_remote_observation_not_before_utc": "2026-10-14T09:00:14.933943+00:00",
+    "interval_after_deadline_seconds": 240,
+    "no_interim_remote_queries": true,
+    "no_automatic_training": true
+  },
+  "previous_formal_metrics": {
+    "NPR": 68.92760991460622,
+    "PR": 72.4190140757939,
+    "SR": 57.666882375069136
+  },
+  "new_formal_metrics": null,
+  "optimizer_training_started_this_stage": false,
+  "full_action_collection_complete": false,
+  "future_action_fit_complete": false,
+  "persistent_rejected_tracklets_complete": false,
+  "original_strict_mixed_failure_preserved": true,
+  "baseline_rerun": false,
+  "review_attribution": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning": "max",
+    "actual_model": "UNATTESTED",
+    "independence": "same-family",
+    "acceptance": "provisional"
+  },
+  "review_responses": {
+    "source": "审查结论：**PASS_SOURCE_ONLY；BLOCKING 0；整体 WARN（运行等价性尚未验证）**。比较基准为 `0d49521996e513a053cdd325be3b5dac952fca55`，包含未跟踪的新文件 `batched_actions.py`。\n\n- **逐动作状态提交正确。** [batched_actions.py:13](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:13) 使用 `repeat` 创建各行独立状态；[第 30 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:30) 按各动作的 context/candidate 收集原有证据。几何接受/延迟、年龄、RGB/TIR 模板掩码、目标记忆提交及被排除模态全部记忆槽冻结，与 `counterfactual.py:81–131` 的串行实现一致。历史、帧号、有效性和质量更新也一致。\n- **没有发现跨行动或跨区域特征混合。** 未来批处理调用位于 [batched_actions.py:81](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:81)。native step 虽在任一行触发时统一计算额外区域，但 [model.py:179](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/model.py:179) 恢复未触发行的局部分数，[第 194 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/model.py:194) 恢复其局部 quality/risk/geometry/gate/descriptor。注意力保留 batch 维；collector 加载后执行 `.eval()`，视觉头的 BatchNorm 不使用当前批统计。\n- **未来视觉成本归属正确。** [batched_actions.py:85](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:85) 重算的每行触发条件与 `model.py:160` 相同，因此传给标签函数的是每行 `0/1`，没有把 native step 的整批 `extra_count` 误当成单行动成本。当前帧成本仍为 `context > 0`。\n- **顺序、标签及隔离正确。** [batched_actions.py:104](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:104) 保留 context→candidate→mode 顺序；默认共 210 行，batch64 分为 `64/64/64/18`。[第 95 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/batched_actions.py:95) 按行恢复原有单行 trace 形状，并将成本恢复为 Python `int`，其余标签继续使用原来的 `label_rollout`。GT 仅进入标签计算；未来图像只进入已经独立展开的未来状态。主序列仍在 [collect_actions.py:122](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/collect_actions.py:122) 接续原生状态。\n- **入口范围符合计划。** [collect_actions.py:32](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/collect_actions.py:32) 默认保留串行路径，并拒绝 future-actions teacher 使用批量路径；[future_pipeline.py:108](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/future_pipeline.py:108) 显式添加 `--action-batch 64`。未发现此次 diff 改动网络、目标、划分或指标。\n\n**NON-BLOCKING 范围限制：**\n\n- [collect_actions.py:86](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/collect_actions.py:86) 的现有重建断言在批量分支之前，验证的是串行 `advance_candidate`；因此输出中的 `native_state_reconstruction_equal` 不能作为批量等价性证明。\n- 源码正确不能证明 batch64 的实际数值一致性、显存可行性或加速比。新模块目前未跟踪，发布时需一并包含。\n\n**采用前所需检查：**\n\n1. 固定同一 native teacher、完整预测前缀和一个 TRAIN 查询，比较串行与 batch64 的全部 210 个 H3 标签；核对动作顺序、参考动作、每个标签字段、reference advantage=0、harm，以及整数/布尔字段精确一致。浮点误差需报告容差和实测最大差异。\n2. 对逐行动推进比较全部九个状态字段及 prior 未改动；覆盖六种模式、模板写入、被禁止模态所有记忆槽及最后 18 行。\n3. 用受控混合触发行检查未来成本逐行为 `0/1`，未触发行保持局部决策；然后在获准的 server2028 物理 GPU2/3 上验证 batch64 实际运行及耗时。\n\n本次仅执行源码读取、Git 比较和三个文件的 stdlib AST 解析，全部解析通过；未执行模型、NN、GPU查询或启动任务，未修改文件。请求路由为 Astra/max，实际路由 **UNATTESTED**；`review_independence=same-family`，`acceptance_status=provisional`。\n",
+    "sampler": "**PASS_SOURCE_ONLY；BLOCKING 0。** 新增采样统计未改变策略、状态更新或查询选择；启动命令符合两卡各自 TRAIN→DEV 的限定流程。\n\n- [sample_action_queries.py:93](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/sample_action_queries.py:93) 先完成 native step；新增 gate 统计只读取 observation。`absent`、`gain`、`triggered` 与现有 native 条件一致，并核对实际 `extra_forwards`。统计均未传入模型或状态。\n- [第 112 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/sample_action_queries.py:112) 的失败和 local-missing 计数仅使用有效 GT、且发生在预测之后。原有事件识别、均匀采样、窗口和 RNG 未改动。cue 均值分母 `count - 1` 正确排除初始化帧。\n- [启动脚本第 11 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:11) 要求成功的 420-action parity 状态及混合触发行成本 `[0,1]`；其字段与检查器实际写出结构匹配。第 17 行将教师绑定到该 probe 和已知 selected checkpoint。\n- [第 28 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:28) 只创建 GPU2、GPU3 两个 driver；每个 driver 用 `subprocess.run(..., check=True)` 依次执行本卡 TRAIN 和 DEV 分片，TRAIN 失败不会进入 DEV。两卡输出文件按 split/shard 区分，新根目录 `exist_ok=False`，没有覆盖旧任务或自动启动动作标签采集、优化器、baseline、官方测试的路径。\n- sampler 固定 native teacher、严格载入并冻结；实际归档 manifest 为互斥的 881 TRAIN／98 DEV，对应分片 `441/440` 和 `49/49`。本地归档也确认原轮次 20 epochs／3140 updates、strict reload，以及完整 LasHeR 245／220703；这些是历史归档核对，未查询当前远端状态。\n\n**NON-BLOCKING 范围限制：**\n\n- [启动脚本第 14 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:14) 自身只验证父轮次完成文件存在。当前已核验归档满足所需前置条件，但不能把这一条 `is_file()` 描述为脚本重新核验了 native20/fullLas 全部内容。\n- [第 43 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:43) 收集的是启动瞬间 driver 的 `/proc` cmdline；launch receipt 不证明 sampler 持续运行或全量完成。启动后应以实际 sampler 进程与最终四份 sampling receipt 确认运行和完成，不从 PID 或预计小时数推断。\n- `local_missing_frames` 具体指**合法局部五候选的最高 IoU<0.5**；`failed_*` 指选中框 IoU<0.2 条件计数。它们不能解释为真实物理缺席或语义身份错误，也不是正式训练/测试指标。\n\n两个受审文件均通过 stdlib AST 解析。本次无文件修改，无模型/NN、GPU、网络或进程查询；未启动任务，未检查正在运行的 parity 进度。实际模型路由 **UNATTESTED**，`same-family / provisional`。\n",
+    "launcher": "**PASS_SOURCE_ONLY；BLOCKING 0。** 这次解耦正确：单样本 native teacher 的完整轨迹采样不调用 batch action collector，因此其运行资格与批量标签等价性资格独立。\n\n- [launcher 第 12 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:12) 复用 `validate_parent`。[校验函数第 24 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/future_pipeline.py:24) 检查 TRAINING_COMPLETE、20 epochs、3140 updates、strict reload，完整 LasHeR 245／220703、PR/NPR/SR 以及三个结果文件指向同一 best。launcher 第 15 行仍检查既定 best SHA。\n- [sampler 第 93 行](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/sample_action_queries.py:93) 每次传入一个图像和一个帧号，沿原生状态推进；launcher 明确使用 `--teacher-policy native`。该路径没有 `collect_actions` 或 `collect_batched_labels` 调用。\n- [launcher 第 26 行](C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_full_native_future_sampling_remote.py:26) 仍只生成两个 driver，各自绑定 GPU2／GPU3，依次执行本 shard 的 TRAIN→DEV；`check=True` 使 TRAIN 失败时不进入 DEV。命令列表只有 `sample_action_queries`，没有后续 label collection、fit、baseline 或官方测试。\n- 导入 `future_pipeline.validate_parent` 不会启动整个 pipeline：[future_pipeline.py:179](C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/future_pipeline.py:179) 保留 `__main__` 入口保护。新增 `sampling_policy_batch=1` 和本阶段不要求 batch collector 资格的 metadata 与执行路径一致。\n\n本结论不覆盖 batch64 标签采集资格。旧失败 probe 仍未通过；新 CPU comparison 依父任务说明仍待结论，未推断 PASS。`LAUNCHED` 回执也只记录启动，不能代替持续运行或完整采样完成证据。\n\n本次三个相关文件通过 stdlib AST 解析；仅读取源码并保存 trace，未执行 NN、SSH、GPU或进程查询，未修改生产源码。实际路由 **UNATTESTED**，`same-family / provisional`。\n\n003 的完整请求、答复和 metadata 已保存并回读核验；002 三文件也已回读逐字匹配。文件分别为 `003-launcher.request.txt`、`003-launcher.response.md`、`003-launcher.meta.json`，位于指定的 `2026-10-14_batched_run01` 目录。\n",
+    "numeric_rescue": "复核结论：**这两个 TRAIN 查询的实际采集程序与 traced replay 比较通过；在此限定范围内，没有发现未解决的 blocker。** Requested Astra/max，actual route **UNATTESTED**，same-family/provisional。\n\n- **实际程序验证已闭合。** 比较器读取原串行和新 batch64 的完成收据，检查同一教师、两个查询、每查询 210 标签、reference action 与原生状态重建标记；动作标识、`future_valid`、`harm` 严格相同，reference advantage 为零。数值标签保持 `rtol=atol=1e-4`，utility、advantage 最大绝对差分别为 `1.6570091e-5`、`2.3663044e-5`。先前“尚未比较原始串行全程序产物”的缺口已补齐。见 [实际程序比较器](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/compare_actual_batch_collector_remote.py:10) 和 [成功输出](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/compare_actual_batch_collector_remote.stdout.txt:2)。\n- **traced replay 的覆盖与输出一致。** 两查询共 420 actions、1260 future steps，六个决策字段共比较 7560 次；1260 个 local crop 和 171 个已提交 template crop 的 transform/pixels 相同。这些裁剪由实际使用的框通过原 `crop_batch` 在 CPU 重建比较。future extra 为 0，因此没有自然 H3 extra-crop 的覆盖结论。`harm < -.05` 与生产代码一致，新结果写入 `comparison_harm05.json`。见 [比较范围与阈值](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/compare_numeric_replay_remote.py:48)、[裁剪比较](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/compare_numeric_replay_remote.py:38) 和 [生产 harm 定义](/C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source/cadtrack_abc/collect_actions.py:107)。\n- **原失败保留，数值解释获得了限定支持。** 两帧 fixed-B2 混合/同类对照的九个状态字段误差均为零，检查过的决策相同；singleton 的 box 最大差仍为 `0.002532958984375`，原 `1e-5` 检查仍失败。它支持本次状态的差异与 batch size 数值路径有关，未定位到某个具体算子或驱动原因。见 [实际诊断收据](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/numeric_replay_snapshot_remote.stdout.txt:1) 与 [控制比较实现](/C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/diagnose_batched_actions_remote.py:47)。\n\n表述边界：`future_iou` 最大绝对差为 `1.2892485e-4`，通过的是相对与绝对组合容差，不能写成“所有绝对误差小于 `1e-4`”。decision **contexts** 各字段通过 `rtol=atol=1e-6`；这不代表整个 decision cache 或 NN 状态逐位相同。没有全局等价、速度提升或 all-ABC/+2 达标结论。\n\n已将两条完整请求、这份完整答复和归属信息保存为原 rescue 目录中的 `002-request.txt`、`002-request-increment.txt`、`002-response.md`、`002-meta.json`，并回读核对。仅进行本地只读复核与指定 trace 保存；未修改比较器、生产代码或人类交接，未执行 NN、SSH、GPU 或进程查询。\n"
+  }
+}

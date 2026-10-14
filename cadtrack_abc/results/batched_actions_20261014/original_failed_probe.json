@@ -1,0 +1,112 @@
+{
+  "observed_utc": "2026-10-14T01:12:44.222664+00:00",
+  "jobs": [
+    {
+      "label": "serial",
+      "pid": 2578267,
+      "live": false,
+      "actual_cmdline": "",
+      "receipt": {
+        "completed": true,
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "action_batch": 1,
+        "queries": 2,
+        "records": [
+          {
+            "model_family": "CADTrackABC-native-current-quality",
+            "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+            "teacher_epoch": 2,
+            "sequence": "10crosswhite",
+            "frame": 4,
+            "split": "train",
+            "horizon": 3,
+            "modes": [
+              "policy",
+              "pause_identity",
+              "defer_geometry",
+              "accept_geometry",
+              "rgb_only",
+              "tir_only"
+            ],
+            "query_spec": {
+              "sequence": "10crosswhite",
+              "frame": 4,
+              "sampling_reasons": [
+                "batch_parity_real_state"
+              ]
+            },
+            "threshold": 0.03,
+            "reference_action": [
+              0,
+              0,
+              "policy"
+            ],
+            "action_batch": 1,
+            "native_state_reconstruction_equal": true,
+            "full_predicted_prefix_from_frame0": true,
+            "file": "5c6b6fcbf18b_10crosswhite_000004.pt",
+            "action_labels": 210,
+            "seconds_since_start": 18.017555381011334
+          },
+          {
+            "model_family": "CADTrackABC-native-current-quality",
+            "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+            "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+            "teacher_epoch": 2,
+            "sequence": "10crosswhite",
+            "frame": 5,
+            "split": "train",
+            "horizon": 3,
+            "modes": [
+              "policy",
+              "pause_identity",
+              "defer_geometry",
+              "accept_geometry",
+              "rgb_only",
+              "tir_only"
+            ],
+            "query_spec": {
+              "sequence": "10crosswhite",
+              "frame": 5,
+              "sampling_reasons": [
+                "batch_parity_real_state"
+              ]
+            },
+            "threshold": 0.03,
+            "reference_action": [
+              0,
+              0,
+              "policy"
+            ],
+            "action_batch": 1,
+            "native_state_reconstruction_equal": true,
+            "full_predicted_prefix_from_frame0": true,
+            "file": "5c6b6fcbf18b_10crosswhite_000005.pt",
+            "action_labels": 210,
+            "seconds_since_start": 32.785842088007485
+          }
+        ],
+        "device": "cuda",
+        "first_gt_only_initialization": true,
+        "future_gt_labels_only": true,
+        "context_budget": "local or local+one of three independent motion regions; no cross-region feature mixing",
+        "utility": ".7 current_IoU + .3 valid_future_mean_IoU - .1 mean(wrong_appearance_fraction,wrong_geometry_fraction) - .01 mean_extra_forwards",
+        "commit_proxy": "Wrong means selected localization IoU<.2 on valid GT, not semantic identity truth.",
+        "not_results": "TRAIN/DEV teacher counterfactual labels; not formal metrics and not trained future-head results."
+      },
+      "log_tail": "{\"event\": \"query_complete\", \"model_family\": \"CADTrackABC-native-current-quality\", \"teacher\": \"/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth\", \"teacher_sha256\": \"5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988\", \"teacher_epoch\": 2, \"sequence\": \"10crosswhite\", \"frame\": 4, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"10crosswhite\", \"frame\": 4, \"sampling_reasons\": [\"batch_parity_real_state\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 1, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_10crosswhite_000004.pt\", \"action_labels\": 210, \"seconds_since_start\": 18.017555381011334}\n{\"event\": \"query_complete\", \"model_family\": \"CADTrackABC-native-current-quality\", \"teacher\": \"/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth\", \"teacher_sha256\": \"5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988\", \"teacher_epoch\": 2, \"sequence\": \"10crosswhite\", \"frame\": 5, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"10crosswhite\", \"frame\": 5, \"sampling_reasons\": [\"batch_parity_real_state\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 1, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_10crosswhite_000005.pt\", \"action_labels\": 210, \"seconds_since_start\": 32.785842088007485}\n"
+    },
+    {
+      "label": "batch64",
+      "pid": 2578268,
+      "live": false,
+      "actual_cmdline": "",
+      "receipt": null,
+      "log_tail": "Traceback (most recent call last):\n  File \"/data/wangwj/envs/CADTrack/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/data/wangwj/envs/CADTrack/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/check_batched_initial_commits.py\", line 110, in <module>\n    main()\n  File \"/data/wangwj/envs/CADTrack/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/check_batched_initial_commits.py\", line 87, in main\n    torch.testing.assert_close(a, b[row:row + 1], rtol=1e-5, atol=1e-5)\n  File \"/data/wangwj/envs/CADTrack/lib/python3.10/site-packages/torch/testing/_comparison.py\", line 1600, in assert_close\n    raise error_metas[0].to_error(msg)\nAssertionError: Tensor-likes are not close!\n\nMismatched elements: 2 / 4 (50.0%)\nGreatest absolute difference: 0.002532958984375 at index (0, 3) (up to 1e-05 allowed)\nGreatest relative difference: 3.4470169339329004e-05 at index (0, 3) (up to 1e-05 allowed)\nTraceback (most recent call last):\n  File \"/home/gaob/CADTrack-ABC/outputs/batched_actions_probe_20261014/batch64_driver.py\", line 2, in <module>\n    subprocess.run(['/data/wangwj/envs/CADTrack/bin/python', '-m', 'cadtrack_abc.check_batched_initial_commits'],cwd='/home/gaob/CADTrack-ABC',check=True)\n  File \"/data/wangwj/envs/CADTrack/lib/python3.10/subprocess.py\", line 526, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/data/wangwj/envs/CADTrack/bin/python', '-m', 'cadtrack_abc.check_batched_initial_commits']' returned non-zero exit status 1.\n"
+    }
+  ],
+  "initial_commit_receipt_present": false,
+  "initial_commit_receipt": null
+}

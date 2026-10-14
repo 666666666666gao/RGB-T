@@ -1,0 +1,155 @@
+{
+  "status": "FULL_NATIVE_TEACHER_TRAJECTORY_SAMPLING_LAUNCHED",
+  "started_utc": "2026-10-14T01:45:14.933943+00:00",
+  "jobs": [
+    {
+      "pid": 2644513,
+      "physical_gpu": 2,
+      "shard": 0,
+      "commands": [
+        [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.sample_action_queries",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--teacher",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+          "--teacher-policy",
+          "native",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--split",
+          "train",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train",
+          "--device",
+          "cuda",
+          "--horizon",
+          "3",
+          "--shard",
+          "0"
+        ],
+        [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.sample_action_queries",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--teacher",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+          "--teacher-policy",
+          "native",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--split",
+          "validation",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation",
+          "--device",
+          "cuda",
+          "--horizon",
+          "3",
+          "--shard",
+          "0"
+        ]
+      ],
+      "log": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/sampling_shard0.log",
+      "actual_cmdline": ""
+    },
+    {
+      "pid": 2644514,
+      "physical_gpu": 3,
+      "shard": 1,
+      "commands": [
+        [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.sample_action_queries",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--teacher",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+          "--teacher-policy",
+          "native",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--split",
+          "train",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train",
+          "--device",
+          "cuda",
+          "--horizon",
+          "3",
+          "--shard",
+          "1"
+        ],
+        [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.sample_action_queries",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--teacher",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+          "--teacher-policy",
+          "native",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--split",
+          "validation",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation",
+          "--device",
+          "cuda",
+          "--horizon",
+          "3",
+          "--shard",
+          "1"
+        ]
+      ],
+      "log": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/sampling_shard1.log",
+      "actual_cmdline": "/data/wangwj/envs/CADTrack/bin/python /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/driver_shard1.py "
+    }
+  ],
+  "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+  "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+  "train_sequences": 881,
+  "train_frames": 461883,
+  "development_sequences": 98,
+  "development_frames": 52200,
+  "sampled_frame_inventory": [
+    244684,
+    269399
+  ],
+  "physical_gpus": [
+    2,
+    3
+  ],
+  "estimated_hours": [
+    7.5,
+    9.0
+  ],
+  "native_formal_results_unchanged": true,
+  "training_updates": 0,
+  "action_label_collection_started": false,
+  "future_head_fit_started": false,
+  "sampling_policy_batch": 1,
+  "batch_action_collector_qualification_required_for_this_stage": false,
+  "parent_full_lasher_metrics": {
+    "NPR": 68.92760991460622,
+    "PR": 72.4190140757939,
+    "SR": 57.666882375069136
+  },
+  "official_test_used": false,
+  "baseline_rerun": false,
+  "launch_gpu_memory_only": "2, 1\n3, 1",
+  "source_snapshot_sha256": {
+    "sample_action_queries.py": "8eb0a6ae8563f929eeede8f5d2f37a9992fd6acd57f9d8e9a8da2e720e03e423",
+    "model.py": "4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+    "ported_modules.py": "5c038fcd2b346541a109fb79597f42122082a7d4def49c745957cb8515ce87bb",
+    "baseline.py": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f"
+  },
+  "scope": "Full881TRAIN/98DEV causal teacher trajectories and event queries; optimizer fitting follows later. No automatic next training."
+}

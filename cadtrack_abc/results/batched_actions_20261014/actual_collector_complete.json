@@ -1,0 +1,90 @@
+{
+  "completed": true,
+  "model_family": "CADTrackABC-native-current-quality",
+  "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+  "action_batch": 64,
+  "queries": 2,
+  "records": [
+    {
+      "model_family": "CADTrackABC-native-current-quality",
+      "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+      "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+      "teacher_epoch": 2,
+      "sequence": "10crosswhite",
+      "frame": 4,
+      "split": "train",
+      "horizon": 3,
+      "modes": [
+        "policy",
+        "pause_identity",
+        "defer_geometry",
+        "accept_geometry",
+        "rgb_only",
+        "tir_only"
+      ],
+      "query_spec": {
+        "sequence": "10crosswhite",
+        "frame": 4,
+        "sampling_reasons": [
+          "batch_parity_real_state"
+        ]
+      },
+      "threshold": 0.03,
+      "reference_action": [
+        0,
+        0,
+        "policy"
+      ],
+      "action_batch": 64,
+      "native_state_reconstruction_equal": true,
+      "full_predicted_prefix_from_frame0": true,
+      "file": "5c6b6fcbf18b_10crosswhite_000004.pt",
+      "action_labels": 210,
+      "seconds_since_start": 9.42941928099026
+    },
+    {
+      "model_family": "CADTrackABC-native-current-quality",
+      "teacher": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+      "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+      "teacher_epoch": 2,
+      "sequence": "10crosswhite",
+      "frame": 5,
+      "split": "train",
+      "horizon": 3,
+      "modes": [
+        "policy",
+        "pause_identity",
+        "defer_geometry",
+        "accept_geometry",
+        "rgb_only",
+        "tir_only"
+      ],
+      "query_spec": {
+        "sequence": "10crosswhite",
+        "frame": 5,
+        "sampling_reasons": [
+          "batch_parity_real_state"
+        ]
+      },
+      "threshold": 0.03,
+      "reference_action": [
+        0,
+        0,
+        "policy"
+      ],
+      "action_batch": 64,
+      "native_state_reconstruction_equal": true,
+      "full_predicted_prefix_from_frame0": true,
+      "file": "5c6b6fcbf18b_10crosswhite_000005.pt",
+      "action_labels": 210,
+      "seconds_since_start": 17.43321680999361
+    }
+  ],
+  "device": "cuda",
+  "first_gt_only_initialization": true,
+  "future_gt_labels_only": true,
+  "context_budget": "local or local+one of three independent motion regions; no cross-region feature mixing",
+  "utility": ".7 current_IoU + .3 valid_future_mean_IoU - .1 mean(wrong_appearance_fraction,wrong_geometry_fraction) - .01 mean_extra_forwards",
+  "commit_proxy": "Wrong means selected localization IoU<.2 on valid GT, not semantic identity truth.",
+  "not_results": "TRAIN/DEV teacher counterfactual labels; not formal metrics and not trained future-head results."
+}

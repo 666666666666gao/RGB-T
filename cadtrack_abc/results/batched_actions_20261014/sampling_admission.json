@@ -1,0 +1,27 @@
+{
+  "status": "TWO_ACTUAL_NATIVE_SAMPLERS_ADMITTED",
+  "observed_utc": "2026-10-14T01:45:47.093815+00:00",
+  "jobs": [
+    {
+      "driver_pid": 2644513,
+      "physical_gpu": 2,
+      "sampler": {
+        "pid": 2644515,
+        "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.sample_action_queries --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train --device cuda --horizon 3 --shard 0 "
+      },
+      "log_tail": "{\"sequence\": \"10crosswhite\", \"frames\": 249, \"queries\": 2, \"uniform_queries\": 2, \"first_events\": {}, \"event_counts\": {\"loss_transition\": 0, \"wrong_identity_commit\": 0, \"missed_correct_candidate\": 0}, \"failure_frames\": 0, \"template_write_frames\": 48, \"target_memory_write_frames\": 247, \"search_gates\": {\"absence_gate_frames\": 1, \"gain_gate_frames\": 0, \"triggered_frames\": 0, \"failed_absence_gate_frames\": 0, \"failed_gain_gate_frames\": 0, \"failed_triggered_frames\": 0, \"local_missing_frames\": 0, \"local_missing_triggered_frames\": 0}, \"search_cues_order\": [\"predicted_absence_probability\", \"predicted_extra_gain\", \"local_keep_quality\"], \"search_cues_mean\": [0.00176019111090535, -0.024569430726490194, 0.808860274692697], \"search_cues_min\": [0.0006394080701284111, -0.04773728549480438, 0.39704814553260803], \"search_cues_max\": [0.004903532098978758, -0.009713335894048214, 0.9922814965248108], \"prefix_from_frame0\": true, \"full_video\": true}\n"
+    },
+    {
+      "driver_pid": 2644514,
+      "physical_gpu": 3,
+      "sampler": {
+        "pid": 2644516,
+        "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.sample_action_queries --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train --device cuda --horizon 3 --shard 1 "
+      },
+      "log_tail": ""
+    }
+  ],
+  "training_updates": 0,
+  "official_test_used": false,
+  "power_temperature_queried": false
+}

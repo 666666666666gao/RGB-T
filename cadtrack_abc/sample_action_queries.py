@@ -83,6 +83,12 @@ def main():
         previous_quality, previous_valid = 1., True
         first_events, event_counts = {}, dict.fromkeys(EVENT_TYPES, 0)
         failure_frames, template_writes, target_memory_writes = 0, 0, 0
+        gate_counts = dict(absence_gate_frames=0, gain_gate_frames=0, triggered_frames=0,
+                           failed_absence_gate_frames=0, failed_gain_gate_frames=0, failed_triggered_frames=0,
+                           local_missing_frames=0, local_missing_triggered_frames=0)
+        search_sum = np.zeros(3, dtype=np.float64)
+        search_min = np.full(3, np.inf)
+        search_max = np.full(3, -np.inf)
         for frame in range(1, count):
             observation, state = model.step([read_pair(rgb[frame], tir[frame])], torch.tensor([frame]), state)
             assert int(state['age'][0]) == frame and int(state['frames'][0, -1]) == frame
@@ -90,11 +96,31 @@ def main():
             memory_commit = bool(observation['target_memory_commit'].any())
             template_writes += int(template_commit)
             target_memory_writes += int(memory_commit)
+            cues = torch.stack((observation['search_logits'][0, 0].sigmoid(),
+                                observation['search_logits'][0, 1].tanh(),
+                                observation['local_scored']['quality'][0, 0].sigmoid())).cpu().numpy()
+            absent = bool(cues[0] > .5 or cues[2] < .5)
+            gain = bool(cues[1] > config['threshold'] + .01)
+            triggered = absent and gain
+            assert int(observation['extra_forwards']) == int(triggered)
+            gate_counts['absence_gate_frames'] += int(absent)
+            gate_counts['gain_gate_frames'] += int(gain)
+            gate_counts['triggered_frames'] += int(triggered)
+            search_sum += cues
+            search_min = np.minimum(search_min, cues)
+            search_max = np.maximum(search_max, cues)
             if valid[frame]:
                 target = xyxy(torch.tensor(truth[frame:frame + 1], device=model.device))
                 quality = float(iou(xyxy(observation['box']), target)[0])
                 candidate_best = float(iou(observation['pair']['boxes'], target[:, None]).max())
+                local_best = float(iou(observation['local']['boxes'], target[:, None]).max())
                 failure_frames += int(quality < .2)
+                if quality < .2:
+                    gate_counts['failed_absence_gate_frames'] += int(absent)
+                    gate_counts['failed_gain_gate_frames'] += int(gain)
+                    gate_counts['failed_triggered_frames'] += int(triggered)
+                gate_counts['local_missing_frames'] += int(local_best < .5)
+                gate_counts['local_missing_triggered_frames'] += int(local_best < .5 and triggered)
                 events = {'loss_transition': previous_valid and previous_quality >= .5 and quality < .2,
                           'wrong_identity_commit': quality < .2 and (template_commit or memory_commit),
                           'missed_correct_candidate': quality < .2 and candidate_best >= .5}
@@ -117,6 +143,10 @@ def main():
                   'uniform_queries': 2, 'first_events': first_events, 'event_counts': event_counts,
                   'failure_frames': failure_frames, 'template_write_frames': template_writes,
                   'target_memory_write_frames': target_memory_writes,
+                  'search_gates': gate_counts,
+                  'search_cues_order': ['predicted_absence_probability', 'predicted_extra_gain', 'local_keep_quality'],
+                  'search_cues_mean': (search_sum / (count - 1)).tolist(),
+                  'search_cues_min': search_min.tolist(), 'search_cues_max': search_max.tolist(),
                   'prefix_from_frame0': True, 'full_video': not args.sanity}
         records.append(record)
         print(json.dumps(record), flush=True)
