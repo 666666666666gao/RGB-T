@@ -1,0 +1,18 @@
+{
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "review_scope": "FRESH_SOURCE_RESCUE_AFTER_ACTUAL_SHORT_EOF",
+  "files_sha256": {
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\finish_rgbt210_partial_parts_20261015.py": "4ed0dade7eae86604f69cc7bfefd59e148ff5b42fa0f1fe8c498e0eb51ea74c4",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\download_rgbt210_to_server.py": "ff04cff2582c55486dd0e5b5d5d51cf3632a4f181cdf4baae2656b3b020892b1",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\resume_rgbt210_bounded_ranges.py": "aa7acb3b20aaa817f0a4f06ae89bffd4f1babeb039756bb73d6a338626000c52",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_download_progress.json": "95e516324bb091809ea8e0e2099b24d0bfbb9e7bf6db42097ec35ca8057c54a1",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_partial_parts_inventory.json": "fe3e14f5eede17c862ce680c3c428fda4b99c35d04f07b27074d724d20a252fc",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_small_range_after_short_read.json": "61a5da8c24e53a7678b42b54890ed21b0d0217ea339f3d9a2470a78f7ee716c8",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_range_probe_after_eof.json": "0a9c0607a27f28b8eef4da711e5f918577f2de79618bdd7e74db12345e76cb00",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\extract_verify_official_rgbt210_remote.py": "2f854228b2858e024ad5570028fb618e64e1cb07232834f81827214dc284910c"
+  },
+  "actual_failure": "Original full stream session6307 trueexit1 at301830263/6857321678. Changed128MiB4connection script original61895 trueexit1 at part6 count80853066<134217728. Actual12partial files contain975558858 bytes; manifest records all49 ranges including37missingfiles; no server append ever happened. Source transcript preserved; exact remaining5579932557. Three1MiB gap probes independently completed exact206 ranges. Both model fits continue unchanged; next NN intake04:27:30 only.",
+  "plan": "Cleanly reimplement only data recovery after2actual failures. Keep existing verified ranges/partials; only fetch actual gaps in8MiB reads with2connections. Use response.read(wanted) so real short EOF returns length; retry only a short body at most3 attempts for the identical range, no general try/except/retry/fallback. Only complete response bytes appended locally. All49 pieces correct size before ordered server append and exact whole length+existing SHA receipt. No NN, package/env change, dataset move, or final experiment completion claim.",
+  "instructions": "Fresh read-only review8inputs and relevant concrete deps. Optional small offline mocks for short-body retry/atomic append/ordering; no network/SSH/NN/source mutations/derivedagents. Write response.json and response.md in trace with verdict, blocking_issues list and actual checks/limits. Use minimal direct correct fixes, no invented edgecases/hash frameworks. Actual model/effort UNATTESTED if routing not exposed; same-family/provisional."
+}

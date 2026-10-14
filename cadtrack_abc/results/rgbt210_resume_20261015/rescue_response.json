@@ -1,0 +1,94 @@
+{
+  "verdict": "PASS",
+  "blocking_issues": [],
+  "non_blocking_issues": [],
+  "review_scope": "FRESH_SOURCE_RESCUE_AFTER_ACTUAL_SHORT_EOF",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "summary": "未发现当前输入和恢复路径中的真实缺陷。有限短读重试、完整响应后追加、缺失片段创建、全段有序拼接与完成收据的控制顺序正确。无需代码修改。",
+  "input_verification": {
+    "request": "request.json",
+    "files_read": 8,
+    "all_request_sha256_matched": true,
+    "python_sources_syntax_checked": 4,
+    "candidate_sha256": "4ed0dade7eae86604f69cc7bfefd59e148ff5b42fa0f1fe8c498e0eb51ea74c4",
+    "source_or_input_files_modified": false
+  },
+  "inventory_checks": {
+    "status": "PASS",
+    "original_remote_prefix_bytes": 301830263,
+    "expected_archive_bytes": 6857321678,
+    "ranges": 49,
+    "indices_exactly_0_through_48": true,
+    "range_offsets_contiguous": true,
+    "last_range_end_inclusive": 6857321677,
+    "actual_local_files": 12,
+    "complete_parts": 4,
+    "partial_parts": 8,
+    "missing_parts": 37,
+    "all_local_file_sizes_match_manifest": true,
+    "reused_local_bytes": 975558858,
+    "missing_bytes": 5579932557,
+    "minimum_successful_range_requests": 670,
+    "prior_source_provenance": "旧脚本按 index 对应的明确 206 Content-Range 写入独占新文件；每个部分文件是对应范围的连续前缀。当前 manifest 与旧范围生成公式、实际文件长度一致。",
+    "saved_probe_checks": "3 个 1 MiB gap probe 的起点、范围、206 状态、声明长度与实际长度全部一致；原 prefix 后 1024 字节 probe 也一致。未发起新探测。"
+  },
+  "local_space_check": {
+    "status": "PASS",
+    "resolved_private_path": "D:\\Program Files\\UserCache\\gb\\codex_tmp\\cadtrack_abc_20261013",
+    "free_bytes_observed": 11233886208,
+    "required_missing_plus_1gib_bytes": 6653674381,
+    "note": ".codex_tmp 是指向 D 盘的 junction；使用实际目标路径的 shutil.disk_usage 结果。"
+  },
+  "offline_checks": {
+    "status": "PASS",
+    "count": 11,
+    "method": "AST 提取未改动的 finish 函数、传输循环和远端代码字符串；以内存文件及真实 http.client.HTTPResponse 解析合成 HTTP 响应。未执行脚本顶层网络或 SSH 操作。",
+    "checks": [
+      "两次真实 HTTPResponse 短 EOF 后第三次完整响应：请求范围相同，前两次不写入，成功体只追加一次。",
+      "三次短 body 后断言失败，保留既有部分文件字节。",
+      "缺失片段创建空文件，从 manifest offset 开始下载。",
+      "完整片段零请求、零写入复用。",
+      "8 MiB 请求上限、下一窗口起点与五字节尾窗无重复或缺口。",
+      "错误 status、Content-Range、Content-Length 均一次失败且不追加。",
+      "非短读异常直接传播，不重试、不吞错。",
+      "49 个倒序 completed 记录经原始传输循环按 index 正序拼接。",
+      "原始远端代码保留 prefix，精确整长后生成 SHA 收据，extraction_complete 和 inventory_verified 保持 false。",
+      "远端模拟传输缺少一个字节时，不生成下载完成收据。",
+      "远端模拟 prefix 长度不符时，不追加、不生成收据。"
+    ]
+  },
+  "source_checks": {
+    "max_concurrent_workers": 2,
+    "request_limit_bytes": 8388608,
+    "maximum_attempts_per_short_range": 3,
+    "general_exception_retry_or_fallback": false,
+    "remote_append_after_all_49_parts_complete": true,
+    "remote_prefix_size_rechecked_before_append": true,
+    "receipt_after_exact_remote_length_and_successful_transfer": true,
+    "extraction_source_gate": "已有 extract 脚本要求 7zip 解压成功退出，再检查精确 210 个官方序列名称、两模态帧数与真实 init.txt；仅全部通过后写 rgbt210_complete.json。"
+  },
+  "limits": [
+    "原会话 6307/61895 的 exit 1 来自任务提供的失败记录；本审查未再次获取这些会话或远端状态。",
+    "没有进行真实恢复下载、远端追加、RAR CRC 解压或 210 序列运行时验收。1 MiB 探测成功不能证明整个 8 MiB 恢复过程必然成功。",
+    "局部写入保证是短响应未完整验证前不追加；未宣称操作系统崩溃时具有文件系统事务原子性。",
+    "保留既有 SHA 收据机制；旧片段未逐字节重新下载对比，整包完整性仍须后续真实 RAR 校验。",
+    "本次未查询或修改 R1 两项 NN。full98、三 benchmark、全部模块及全面 baseline +2（Las 最新规划 +6）仍待真实结果。"
+  ],
+  "actions": {
+    "network_calls": 0,
+    "ssh_calls": 0,
+    "neural_calls": 0,
+    "installations": 0,
+    "subagents_spawned": 0,
+    "mock_fixture_storage": "in-memory only",
+    "output_files": ["response.json", "response.md"]
+  },
+  "required_code_changes": [],
+  "runtime_recovery_status": "NOT_EXECUTED_BY_REVIEW",
+  "research_goal_status": "ACTIVE_UNMET"
+}
