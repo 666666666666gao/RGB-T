@@ -1,0 +1,48 @@
+{
+  "verdict": "FAIL",
+  "blocking_count": 1,
+  "blocking": [
+    {
+      "id": "B1",
+      "title": "Long-job adoption is based only on startup-inclusive short-job speedup",
+      "file": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\benchmark_full98_concurrency_remote.py",
+      "line": 135,
+      "evidence": "Each serial phase starts and finishes two separate model processes; each parallel phase overlaps their initialization. The recommendation tests only serial / parallel > 1.10. The reused CLI constructs the model and loads weights at lines 41-48, then starts its receipt.seconds timer at line 51. The runner already retains these child durations as tracking_seconds at line 75 but does not use them for adoption.",
+      "impact": "The end-to-end ratio correctly measures this four-video workload, but its recommendation can attribute overlapped process/model startup to sustained tracking throughput and therefore does not support increasing concurrency for long full98 jobs.",
+      "minimal_required_patch": "Keep the existing end-to-end result. For each serial phase use sum(child.tracking_seconds); for each parallel phase use max(child.tracking_seconds). Sum those phase values by condition and report their serial/parallel ratio as approximate_tracking_window_speedup. Recommend adoption only if both the existing end-to-end ratio and this separate ratio exceed 1.10 and predictions remain equal. Explicitly label the new estimate approximate because there is no common tracking-start barrier. Keep the existing resource evidence for the memory-adequacy decision. No model/CLI changes are required."
+    }
+  ],
+  "nonblocking": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_model": "gpt-6-astra",
+  "requested_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_effort": "UNATTESTED",
+  "review_round": 1,
+  "review_method": "Fresh static source review only; no NN, network, subprocess benchmark, or input mutation was executed.",
+  "reviewed_files": [
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\benchmark_full98_concurrency_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\remote28.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\validate_future_actions.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\search_actions.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\inspect_full98_benchmark_work_remote.stdout.txt"
+  ],
+  "verified_correct": [
+    "All four phases use the same epoch1 checkpoint, search_actions policy, fixed98 manifest, shards3/33 of49, and complete video loops without sanity truncation.",
+    "The recorded work inspection gives shard3=657 frames and shard33=677 frames, totaling1334 frames for every phase and2668 frames for each condition.",
+    "Order is serial1, parallel1, parallel2, serial2. Whole-phase timing includes process/model startup, decoding, child completion, and receipt validation.",
+    "Every successful child must actually exit0 and provide matching completed epoch1/checkpoint/policy/shard/name/frame receipts; predictions are byte-compared across all four phases.",
+    "The runner checks physical GPU3 memory and compute-process emptiness before launch; children inherit CUDA_VISIBLE_DEVICES=3 and select visible CUDA device0. There is no GPU2 launch, production-task termination, or restart operation.",
+    "Sampler fields are timestamp/index/memory/utilization only. CPU sampling uses /proc/stat deltas. No temperature or power query is present.",
+    "Only the new profile output tree is written. The reused CLI runs inference_mode/eval with strict checkpoint loading and creates no optimizer or checkpoint output. PYTHONDONTWRITEBYTECODE is set for model subprocesses.",
+    "Fixed finite videos/frames satisfy the clarified bounded-work requirement. Cleanup targets only Popen handles created by this runner. The previously raised timeout concern is withdrawn; no speculative timeout or escalation logic is requested.",
+    "Ground truth after frame0 is used for development scoring only after the causal run. The benchmark result declares formal_metrics=null and does not claim official validation accuracy."
+  ],
+  "interpretation_limits": [
+    "No runtime speedup, memory headroom, GPU utilization, or prediction agreement has been measured by this review.",
+    "Child tracking_seconds includes video initialization, decoding, tracking, development IoU calculation and output writes. It excludes model construction/loading and process teardown; it is not a pure GPU-kernel timer.",
+    "GPU utilization and memory are sampled for the whole benchmark; their summary is descriptive rather than a per-condition causal attribution.",
+    "The parent clarified that both original epoch1 full98 workers have now exited0. This review did not query their remote state."
+  ]
+}

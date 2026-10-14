@@ -1,0 +1,161 @@
+{
+  "status": "FULL_VIDEO_EQUAL_WORK_CONCURRENCY_BENCHMARK_COMPLETE",
+  "started_utc": "2026-10-14T21:48:22.351719+00:00",
+  "ended_utc": "2026-10-14T21:51:50.488830+00:00",
+  "physical_gpu": 3,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch01.pth",
+  "epoch": 1,
+  "work": {
+    "3": {
+      "names": [
+        "2girlinrain",
+        "man_with_black_clothes2"
+      ],
+      "frames": 657
+    },
+    "33": {
+      "names": [
+        "easy_rightblkboywithgirl",
+        "stubesideswhitecar"
+      ],
+      "frames": 677
+    }
+  },
+  "phases": [
+    {
+      "name": "serial1",
+      "concurrent_workers": 1,
+      "started_utc": "2026-10-14T21:48:22.354211+00:00",
+      "ended_utc": "2026-10-14T21:49:30.159585+00:00",
+      "wall_seconds": 67.80553992898786,
+      "frames": 1334,
+      "frames_per_second": 19.67390867172633,
+      "cpu_busy_percent": 10.198461759726817,
+      "cpu_iowait_percent": 0.22853252300169288,
+      "children": [
+        {
+          "shard": 3,
+          "child_exit_code": 0,
+          "frames": 657,
+          "tracking_seconds": 24.183417116000783,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/serial1/worker3"
+        },
+        {
+          "shard": 33,
+          "child_exit_code": 0,
+          "frames": 677,
+          "tracking_seconds": 31.022978129971307,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/serial1/worker33"
+        }
+      ]
+    },
+    {
+      "name": "parallel1",
+      "concurrent_workers": 2,
+      "started_utc": "2026-10-14T21:49:30.160601+00:00",
+      "ended_utc": "2026-10-14T21:50:09.664025+00:00",
+      "wall_seconds": 39.50322293798672,
+      "frames": 1334,
+      "frames_per_second": 33.769396539977286,
+      "cpu_busy_percent": 11.748426590451515,
+      "cpu_iowait_percent": 0.19793594032027576,
+      "children": [
+        {
+          "shard": 3,
+          "child_exit_code": 0,
+          "frames": 657,
+          "tracking_seconds": 30.174245136993704,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/parallel1/worker3"
+        },
+        {
+          "shard": 33,
+          "child_exit_code": 0,
+          "frames": 677,
+          "tracking_seconds": 32.07718073599972,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/parallel1/worker33"
+        }
+      ]
+    },
+    {
+      "name": "parallel2",
+      "concurrent_workers": 2,
+      "started_utc": "2026-10-14T21:50:09.665306+00:00",
+      "ended_utc": "2026-10-14T21:50:50.979604+00:00",
+      "wall_seconds": 41.314221108012134,
+      "frames": 1334,
+      "frames_per_second": 32.289123798616046,
+      "cpu_busy_percent": 11.457967888497638,
+      "cpu_iowait_percent": 0.1808275186999476,
+      "children": [
+        {
+          "shard": 3,
+          "child_exit_code": 0,
+          "frames": 657,
+          "tracking_seconds": 31.956274463998852,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/parallel2/worker3"
+        },
+        {
+          "shard": 33,
+          "child_exit_code": 0,
+          "frames": 677,
+          "tracking_seconds": 34.06876263601589,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/parallel2/worker33"
+        }
+      ]
+    },
+    {
+      "name": "serial2",
+      "concurrent_workers": 1,
+      "started_utc": "2026-10-14T21:50:50.980923+00:00",
+      "ended_utc": "2026-10-14T21:51:50.370528+00:00",
+      "wall_seconds": 59.389525976992445,
+      "frames": 1334,
+      "frames_per_second": 22.461873167952085,
+      "cpu_busy_percent": 10.121417856949222,
+      "cpu_iowait_percent": 0.17696102941619427,
+      "children": [
+        {
+          "shard": 3,
+          "child_exit_code": 0,
+          "frames": 657,
+          "tracking_seconds": 20.901031338988105,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/serial2/worker3"
+        },
+        {
+          "shard": 33,
+          "child_exit_code": 0,
+          "frames": 677,
+          "tracking_seconds": 25.13351778400829,
+          "extra_forwards": 0,
+          "folder": "/home/gaob/CADTrack-ABC/profile_output/full98_concurrency_20261015_0530/serial2/worker33"
+        }
+      ]
+    }
+  ],
+  "frames_per_condition": 2668,
+  "serial_seconds": 127.1950659059803,
+  "parallel_seconds": 80.81744404599885,
+  "aggregate_throughput_speedup": 1.573856577715879,
+  "serial_tracking_seconds": 101.24094436896848,
+  "parallel_tracking_seconds": 66.14594337201561,
+  "approximate_tracking_window_speedup": 1.5305692111695022,
+  "tracking_window_scope": "Receipt timing excludes model load. Concurrent max is an approximate window; workers have no common launch barrier.",
+  "peak_memory_used_mib": 1675,
+  "minimum_free_mib": 22901,
+  "mean_gpu_utilization_percent": 44.45192307692308,
+  "predictions_byte_equal_across_all_phases": true,
+  "original_running_jobs_changed": false,
+  "production_source_changed": false,
+  "optimizer_updates": 0,
+  "temperature_or_power_queried": false,
+  "formal_metrics": null,
+  "scope": "Four complete DEV videos per phase, same checkpoint and work; serial/parallel/parallel/serial order. End-to-end timing includes process/model startup and decoding. Short throughput study, not accuracy result.",
+  "recommendation": "Two workers per card"
+}

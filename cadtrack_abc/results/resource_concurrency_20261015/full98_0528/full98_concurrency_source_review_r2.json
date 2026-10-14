@@ -1,0 +1,39 @@
+{
+  "verdict": "PASS",
+  "blocking_count": 0,
+  "blocking": [],
+  "nonblocking": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_model": "gpt-6-astra",
+  "requested_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_effort": "UNATTESTED",
+  "review_round": 2,
+  "prior_review": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\full98_concurrency_source_review.json",
+  "prior_source_snapshot": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\benchmark_full98_concurrency_r1_before_tracking_window.py",
+  "reviewed_runner": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\benchmark_full98_concurrency_remote.py",
+  "reviewed_cli": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\validate_future_actions.py",
+  "review_method": "Static source review of the exact R1-to-R2 diff, retaining the prior complete runner/CLI/transport review. No NN or network execution and no benchmark-input changes.",
+  "resolved_blocking": [
+    {
+      "id": "B1",
+      "resolution": "The runner now separately sums child tracking_seconds for each serial phase and takes the maximum child tracking_seconds for each parallel phase, then sums each condition and reports approximate_tracking_window_speedup. The recommendation requires both this ratio and the end-to-end ratio to exceed1.10, plus byte-equal predictions. It explicitly states that model loading is excluded and no common launch barrier exists."
+    }
+  ],
+  "verified_correct": [
+    "R2 changes only the additional tracking-window calculation, its output/scope text, and the stricter adoption predicate.",
+    "Both timing ratios compare the same2668 frames per condition. End-to-end phase duration remains unchanged and includes startup through actual child completion/receipt validation.",
+    "Each phase runs the same four complete DEV videos with657+677=1334 frames, same epoch1 checkpoint and fixed shard3/shard33 inputs. All eight actual child exit codes must be0 before successful completion.",
+    "Prediction byte equality is still checked across serial1, parallel1, parallel2 and serial2, and remains necessary for adoption.",
+    "GPU3 preflight, CUDA_VISIBLE_DEVICES=3, non-temperature/non-power resource sampling, unique profile output directory and own-child cleanup are unchanged.",
+    "No production source or checkpoint write, optimizer update, task restart, external model call, or formal-metric claim was added.",
+    "Fixed work is finite; no unsupported hard-runtime or timeout requirement is imposed."
+  ],
+  "interpretation_limits": [
+    "PASS authorizes the scoped source implementation for the controlled benchmark; it is not a measured throughput or memory-adequacy result.",
+    "The tracking-window ratio is an approximation from child durations without synchronized starts. It includes video initialization, decoding, tracking, scoring and output writes rather than only GPU computation.",
+    "The operator still needs the actual successful receipts, measured memory headroom, both timing ratios and prediction agreement before increasing production concurrency. Four DEV videos cannot establish a full98 performance guarantee.",
+    "GPU2's newly launched E2 shard1 is parent-reported stable background work; this review did not query remote state. The benchmark runner launches only on GPU3."
+  ]
+}
