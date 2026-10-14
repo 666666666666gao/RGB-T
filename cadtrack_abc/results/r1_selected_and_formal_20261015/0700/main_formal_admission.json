@@ -1,0 +1,113 @@
+{
+  "observed_utc": "2026-10-14T23:00:19.453835+00:00",
+  "controller_pid": 81003,
+  "original_native_session": 28531,
+  "selected_epoch": 10,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "checkpoint_sha256": "a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8",
+  "configuration_sha256": "409a41e510dcccaa81e055f5e2eab07b7fa1ad3822e3e02ca018841c4dc701e6",
+  "source_sha256": {
+    "baseline.py": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f",
+    "data.py": "7a608de3e43827e3ac6cfe5322bcfe3ce5d737deafda9b0d8645598b6e436c6d",
+    "model.py": "4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+    "collect_actions.py": "826e9ca77f5c68498ed4227ac019aaed8b469a9ef6a49b49b917a599663972aa",
+    "future_actions.py": "4b62d5b3d5a6d8a485f4caf7cdaf6dcee603cbbd32e7c001d492c6d99496cf38",
+    "pure_baseline_tracker.py": "26d4a94fafad25356017da2ebcfd0a1a99bfaa288df32a5c80f671a7d2553415",
+    "infer_baseline.py": "7f73227106891f5318a2cb8fef605facb8774bd662ac925a525776628ae5e538",
+    "baseline_pipeline.py": "48c3b2a293dfd7f29b59173987cde0279c70cfe65a6582cd1fcb4ece03b22933",
+    "future_pipeline.py": "5d412022fc49e866b85eac1239eef9dd7072d15010da636bbafeab5eadefc42d",
+    "train_future_actions.py": "9b884f7053e3b2dacfaccbbee3a81ce07593c8b048419d94dc537c9e0eaad527",
+    "r1_pair_pipeline.py": "b78fdf0fd883265f5024f8f727f4d8fc8042169c9f966d3e5f1d3ba393425e79",
+    "select_future_actions.py": "d5ca1d507d5ed70f56dae7c967942a61e7de37a70c95a6fe3214ebfa9fbcf553",
+    "infer.py": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39",
+    "score.py": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+  },
+  "main_jobs": [
+    {
+      "pid": 81006,
+      "physical_gpu": 2,
+      "command": [
+        "cadtrack_abc.infer",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--checkpoint",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+        "--policy",
+        "search_actions",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_main_reports_20261015/selected/lasher_predictions",
+        "--shard",
+        "0",
+        "--shards",
+        "2"
+      ]
+    },
+    {
+      "pid": 81007,
+      "physical_gpu": 2,
+      "command": [
+        "cadtrack_abc.infer",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--checkpoint",
+        "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+        "--policy",
+        "search_actions",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_main_reports_20261015/selected/lasher_predictions",
+        "--shard",
+        "1",
+        "--shards",
+        "2"
+      ]
+    }
+  ],
+  "actual_gpu_jobs": [
+    {
+      "pid": 81006,
+      "physical_gpu": 2,
+      "used_mib": 830
+    },
+    {
+      "pid": 81007,
+      "physical_gpu": 2,
+      "used_mib": 830
+    },
+    {
+      "pid": 74449,
+      "physical_gpu": 3,
+      "used_mib": 832
+    },
+    {
+      "pid": 74342,
+      "physical_gpu": 3,
+      "used_mib": 832
+    }
+  ],
+  "concurrency_per_physical_gpu": {
+    "2": 2,
+    "3": 2
+  },
+  "main_full98_selection_complete": true,
+  "main_inference_started": true,
+  "formal_metrics_complete": false,
+  "current_dataset": "lasher",
+  "original_user_baseline_rerun": false,
+  "optimizer_updates": 0,
+  "temperature_or_power_queried": false,
+  "first_necessary_formal_observation_bjt": "2026-10-15 08:20:00",
+  "wall_time_estimate": "About1.5-2.5hours for full LasHeR from06:59; same-card dual inference and mandatory diagnostics. Estimate only.",
+  "control_original_sessions": [
+    46511,
+    25976
+  ],
+  "first_control_observation_bjt": "2026-10-15 07:12:00"
+}
