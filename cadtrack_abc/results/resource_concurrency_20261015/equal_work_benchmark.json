@@ -1,0 +1,98 @@
+{
+  "status": "EQUAL_REAL_QUERY_SERIAL_VS_TWO_WORKER_BENCHMARK_COMPLETE",
+  "started_utc": "2026-10-14T17:00:06.629862+00:00",
+  "observed_utc": "2026-10-14T17:03:22.963136+00:00",
+  "physical_gpu": 2,
+  "primary_pid": 3314721,
+  "original_primary_resumed": true,
+  "gpu3_unchanged": true,
+  "equal_queries_per_condition": 10,
+  "equal_action_labels_per_condition": 2100,
+  "serial_wall_seconds": 110.07989281899063,
+  "parallel_wall_seconds": 85.2493346859992,
+  "aggregate_throughput_speedup": 1.2912698172302504,
+  "phases": [
+    {
+      "name": "single_a",
+      "queries": 5,
+      "labels": 1050,
+      "wall_seconds": 59.733699275995605,
+      "collector_seconds": 48.743136762990616
+    },
+    {
+      "name": "single_b",
+      "queries": 5,
+      "labels": 1050,
+      "wall_seconds": 50.346193542995024,
+      "collector_seconds": 44.10075998300454
+    },
+    {
+      "name": "parallel_a",
+      "queries": 5,
+      "labels": 1050,
+      "wall_seconds": 85.2493346859992,
+      "collector_seconds": 78.5234677749977
+    },
+    {
+      "name": "parallel_b",
+      "queries": 5,
+      "labels": 1050,
+      "wall_seconds": 85.2493346859992,
+      "collector_seconds": 77.50216853801976
+    }
+  ],
+  "queries": [
+    {
+      "sequence": "1strowrightgirl",
+      "frame": 38,
+      "sampling_reasons": [
+        "loss_transition:-2",
+        "missed_correct_candidate:-2",
+        "wrong_identity_commit:-2"
+      ]
+    },
+    {
+      "sequence": "1strowrightgirl",
+      "frame": 39,
+      "sampling_reasons": [
+        "loss_transition:-1",
+        "missed_correct_candidate:-1",
+        "wrong_identity_commit:-1"
+      ]
+    },
+    {
+      "sequence": "1strowrightgirl",
+      "frame": 40,
+      "sampling_reasons": [
+        "loss_transition:0",
+        "missed_correct_candidate:0",
+        "wrong_identity_commit:0"
+      ]
+    },
+    {
+      "sequence": "1strowrightgirl",
+      "frame": 41,
+      "sampling_reasons": [
+        "loss_transition:1",
+        "missed_correct_candidate:1",
+        "wrong_identity_commit:1"
+      ]
+    },
+    {
+      "sequence": "1strowrightgirl",
+      "frame": 43,
+      "sampling_reasons": [
+        "loss_transition:3",
+        "missed_correct_candidate:3",
+        "wrong_identity_commit:3"
+      ]
+    }
+  ],
+  "original_memory_used_mib": 3252,
+  "gpu_capacity_mib": 24576,
+  "recommendation": "Two workers fit and improved this workload.",
+  "full_collection_modified": false,
+  "new_optimizer_updates": 0,
+  "formal_metrics": null,
+  "scope": "Same five real TRAIN queries per worker, including initialization, full-prefix decoding and H3 batch64 labels. Short window; production tail still requires monitoring."
+}

@@ -1,0 +1,82 @@
+{
+  "status": "FULL_NATIVE_PARENT_RGBT234_PARALLEL_EVALUATION_LAUNCHED",
+  "started_utc": "2026-10-14T17:15:08.590233+00:00",
+  "jobs": [
+    {
+      "pid": 3945235,
+      "physical_gpu": 2,
+      "shard": 0,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--checkpoint",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+        "--policy",
+        "native",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "pid": 3945236,
+      "physical_gpu": 3,
+      "shard": 1,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--checkpoint",
+        "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+        "--policy",
+        "native",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions",
+        "--shard",
+        "1"
+      ]
+    }
+  ],
+  "existing_collectors": [
+    {
+      "pid": 3314721,
+      "physical_gpu": 2,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard0.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard0 --device cuda --horizon 3 --action-batch 64 ",
+      "state": "State:\tR (running)"
+    },
+    {
+      "pid": 3314722,
+      "physical_gpu": 3,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard1.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard1 --device cuda --horizon 3 --action-batch 64 ",
+      "state": "State:\tR (running)"
+    }
+  ],
+  "gpu_memory_only_before_launch": "2, 3252, 24576\n3, 3322, 24576\n",
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+  "epoch": 2,
+  "dataset_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+  "sequences": 234,
+  "expected_frames": 116649,
+  "scope": "Existing fully trained native e2 enhanced parent; NOT the pure baseline or newly trained search_actions.",
+  "original_collectors_modified": false,
+  "original_drivers_modified": false,
+  "duplicate_collection_started": false,
+  "scoring_started": false,
+  "new_optimizer_updates": 0,
+  "formal_metrics": null,
+  "rationale": "User expanded formal evaluation to three benchmarks; this distinct missing parent evaluation reuses an already qualified inference path."
+}

@@ -1,0 +1,178 @@
+{
+  "status": "READ_ONLY_30SECOND_COLLECTION_RESOURCE_PROFILE",
+  "started_utc": "2026-10-14T16:48:49.953400+00:00",
+  "observed_utc": "2026-10-14T16:49:20.110050+00:00",
+  "window_seconds": 30.081211069977144,
+  "cpu_logical_cores": 112,
+  "load_average": [
+    11.34130859375,
+    8.943359375,
+    8.625
+  ],
+  "cpu_busy_percent": 7.107999845361897,
+  "cpu_idle_percent": 92.2148636954343,
+  "cpu_iowait_percent": 0.6771364592037922,
+  "system_memory_total_kib": 259229884,
+  "system_memory_available_kib": 246731932,
+  "gpu_summary": {
+    "2": {
+      "samples": 30,
+      "memory_used_min_mib": 3252,
+      "memory_used_max_mib": 3252,
+      "memory_total_mib": 24576,
+      "minimum_free_mib": 21324,
+      "mean_gpu_utilization_percent": 37.166666666666664,
+      "minimum_gpu_utilization_percent": 0,
+      "maximum_gpu_utilization_percent": 100,
+      "mean_memory_utilization_percent": 14.033333333333333
+    },
+    "3": {
+      "samples": 30,
+      "memory_used_min_mib": 3322,
+      "memory_used_max_mib": 3322,
+      "memory_total_mib": 24576,
+      "minimum_free_mib": 21254,
+      "mean_gpu_utilization_percent": 35.666666666666664,
+      "minimum_gpu_utilization_percent": 0,
+      "maximum_gpu_utilization_percent": 100,
+      "mean_memory_utilization_percent": 13.7
+    }
+  },
+  "jobs": [
+    {
+      "driver_pid": 3314719,
+      "collector_pid": 3314721,
+      "physical_gpu": 2,
+      "shard": 0,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard0.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard0 --device cuda --horizon 3 --action-batch 64 ",
+      "before": {
+        "cpu_ticks": 3931201,
+        "rss_kib": 1867904,
+        "threads": 121,
+        "read_bytes": 19819872256,
+        "write_bytes": 2044342272
+      },
+      "records_before": 2234,
+      "cpu_percent_one_core_basis": 142.64718232314377,
+      "after": {
+        "cpu_ticks": 3935492,
+        "rss_kib": 1867904,
+        "threads": 121,
+        "read_bytes": 19923857408,
+        "write_bytes": 2045267968
+      },
+      "records_after": 2235,
+      "window_completed_queries": 1,
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "twolinefirstone-gai",
+        "frame": 1269,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "twolinefirstone-gai",
+          "frame": 1269,
+          "sampling_reasons": [
+            "uniform"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_twolinefirstone-gai_001269.pt",
+        "action_labels": 210,
+        "seconds_since_start": 27008.471907457002
+      },
+      "recent_query_interval_seconds": 12.691327719151623,
+      "recent_scope": "Last up to100 query completions including their intervening prefix work; not constant-cost events."
+    },
+    {
+      "driver_pid": 3314720,
+      "collector_pid": 3314722,
+      "physical_gpu": 3,
+      "shard": 1,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard1.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard1 --device cuda --horizon 3 --action-batch 64 ",
+      "before": {
+        "cpu_ticks": 3909253,
+        "rss_kib": 1876564,
+        "threads": 121,
+        "read_bytes": 21797216256,
+        "write_bytes": 2031636480
+      },
+      "records_before": 2222,
+      "cpu_percent_one_core_basis": 146.9355734952914,
+      "after": {
+        "cpu_ticks": 3913673,
+        "rss_kib": 1879804,
+        "threads": 121,
+        "read_bytes": 21881036800,
+        "write_bytes": 2032558080
+      },
+      "records_after": 2223,
+      "window_completed_queries": 1,
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "rightredboy954",
+        "frame": 541,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "rightredboy954",
+          "frame": 541,
+          "sampling_reasons": [
+            "uniform"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_rightredboy954_000541.pt",
+        "action_labels": 210,
+        "seconds_since_start": 27017.268598163006
+      },
+      "recent_query_interval_seconds": 12.400947371333416,
+      "recent_scope": "Last up to100 query completions including their intervening prefix work; not constant-cost events."
+    }
+  ],
+  "home_free_bytes": 730212806656,
+  "additional_neural_jobs_started": 0,
+  "current_jobs_modified": false,
+  "temperature_or_power_queried": false,
+  "limitation": "GPU utilization is sampled activity, not measured SM throughput; concurrency speedup untested."
+}

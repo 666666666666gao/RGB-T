@@ -1,0 +1,256 @@
+{
+  "status": "READ_ONLY_PARALLEL_RESOURCE_WINDOW_COMPLETE",
+  "started_utc": "2026-10-14T17:25:01.540823+00:00",
+  "observed_utc": "2026-10-14T17:25:31.709438+00:00",
+  "window_seconds": 30.08710976698785,
+  "logical_cpu_cores": 112,
+  "load_average": [
+    9.728515625,
+    10.29541015625,
+    9.72802734375
+  ],
+  "cpu_busy_percent": 9.887781363860606,
+  "cpu_iowait_percent": 0.15245805174658084,
+  "available_system_memory_kib": 243993704,
+  "gpu_summary": {
+    "2": {
+      "samples": 30,
+      "peak_used_mib": 4087,
+      "minimum_free_mib": 20489,
+      "total_mib": 24576,
+      "mean_gpu_utilization_percent": 93.3,
+      "min_gpu_utilization_percent": 65,
+      "max_gpu_utilization_percent": 100
+    },
+    "3": {
+      "samples": 30,
+      "peak_used_mib": 4157,
+      "minimum_free_mib": 20419,
+      "total_mib": 24576,
+      "mean_gpu_utilization_percent": 90.83333333333333,
+      "min_gpu_utilization_percent": 63,
+      "max_gpu_utilization_percent": 100
+    }
+  },
+  "jobs": [
+    {
+      "kind": "action_collection",
+      "physical_gpu": 2,
+      "shard": 0,
+      "event": "query_complete",
+      "before": {
+        "pid": 3314721,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard0.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard0 --device cuda --horizon 3 --action-batch 64 ",
+        "state": "R (running)",
+        "cpu_ticks": 4209530,
+        "rss_kib": 1858180,
+        "threads": 121
+      },
+      "records_before": 2401,
+      "after": {
+        "pid": 3314721,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard0.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard0 --device cuda --horizon 3 --action-batch 64 ",
+        "state": "R (running)",
+        "cpu_ticks": 4213511,
+        "rss_kib": 2042284,
+        "threads": 121
+      },
+      "cpu_percent_one_core_basis": 132.31580004962885,
+      "records_after": 2404,
+      "completed_during_window": 3,
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "whitemotoout",
+        "frame": 18,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "whitemotoout",
+          "frame": 18,
+          "sampling_reasons": [
+            "uniform"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_whitemotoout_000018.pt",
+        "action_labels": 210,
+        "seconds_since_start": 29188.024629487
+      },
+      "recent_seconds_per_query": 11.69721868093951,
+      "recent_query_scope": "Variable prefix lengths; descriptive progress, not matched workload throughput."
+    },
+    {
+      "kind": "action_collection",
+      "physical_gpu": 3,
+      "shard": 1,
+      "event": "query_complete",
+      "before": {
+        "pid": 3314722,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard1.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard1 --device cuda --horizon 3 --action-batch 64 ",
+        "state": "D (disk sleep)",
+        "cpu_ticks": 4224886,
+        "rss_kib": 1869084,
+        "threads": 121
+      },
+      "records_before": 2370,
+      "after": {
+        "pid": 3314722,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard1.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard1 --device cuda --horizon 3 --action-batch 64 ",
+        "state": "R (running)",
+        "cpu_ticks": 4229047,
+        "rss_kib": 1877184,
+        "threads": 121
+      },
+      "cpu_percent_one_core_basis": 138.298428537178,
+      "records_after": 2372,
+      "completed_during_window": 2,
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "the4thboy",
+        "frame": 165,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "the4thboy",
+          "frame": 165,
+          "sampling_reasons": [
+            "loss_transition:-2",
+            "missed_correct_candidate:-2",
+            "wrong_identity_commit:-2"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_the4thboy_000165.pt",
+        "action_labels": 210,
+        "seconds_since_start": 29190.194795015996
+      },
+      "recent_seconds_per_query": 14.204790295575595,
+      "recent_query_scope": "Variable prefix lengths; descriptive progress, not matched workload throughput."
+    },
+    {
+      "kind": "parent_rgbt234_evaluation",
+      "physical_gpu": 2,
+      "shard": 0,
+      "event": "sequence_complete",
+      "before": {
+        "pid": 3945235,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --policy native --dataset rgbt234 --root /home/gaob/CADTrack-ABC/dataset/rgbt234 --output /home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions --shard 0 ",
+        "state": "R (running)",
+        "cpu_ticks": 119619,
+        "rss_kib": 1651388,
+        "threads": 121
+      },
+      "records_before": 34,
+      "after": {
+        "pid": 3945235,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --policy native --dataset rgbt234 --root /home/gaob/CADTrack-ABC/dataset/rgbt234 --output /home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions --shard 0 ",
+        "state": "R (running)",
+        "cpu_ticks": 125729,
+        "rss_kib": 1651388,
+        "threads": 121
+      },
+      "cpu_percent_one_core_basis": 203.07700032736307,
+      "records_after": 35,
+      "completed_during_window": 1,
+      "last_record": {
+        "event": "sequence_complete",
+        "shard": 0,
+        "index": 35,
+        "sequence": "green",
+        "frames": 491,
+        "seconds": 31.700315371941542,
+        "extra_forwards": 0
+      },
+      "completed_frames": 10419,
+      "summed_inference_seconds": 608.4935706163524
+    },
+    {
+      "kind": "parent_rgbt234_evaluation",
+      "physical_gpu": 3,
+      "shard": 1,
+      "event": "sequence_complete",
+      "before": {
+        "pid": 3945236,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --policy native --dataset rgbt234 --root /home/gaob/CADTrack-ABC/dataset/rgbt234 --output /home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions --shard 1 ",
+        "state": "R (running)",
+        "cpu_ticks": 127155,
+        "rss_kib": 1650464,
+        "threads": 121
+      },
+      "records_before": 31,
+      "after": {
+        "pid": 3945236,
+        "present": true,
+        "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth --policy native --dataset rgbt234 --root /home/gaob/CADTrack-ABC/dataset/rgbt234 --output /home/gaob/CADTrack-ABC/outputs/native_parent_rgbt234_20261015/predictions --shard 1 ",
+        "state": "R (running)",
+        "cpu_ticks": 132990,
+        "rss_kib": 1650464,
+        "threads": 121
+      },
+      "cpu_percent_one_core_basis": 193.93687347138518,
+      "records_after": 32,
+      "completed_during_window": 1,
+      "last_record": {
+        "event": "sequence_complete",
+        "shard": 1,
+        "index": 32,
+        "sequence": "fog",
+        "frames": 672,
+        "seconds": 37.39365957508562,
+        "extra_forwards": 0
+      },
+      "completed_frames": 11997,
+      "summed_inference_seconds": 607.3763075143215
+    }
+  ],
+  "original_jobs_modified": false,
+  "temperature_or_power_queried": false,
+  "limitation": "Short equal-work collection benchmark showed 1.2913x throughput; heterogeneous evaluation plus collection throughput is not independently established by this resource window."
+}
