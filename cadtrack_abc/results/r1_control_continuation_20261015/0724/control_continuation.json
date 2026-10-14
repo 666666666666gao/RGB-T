@@ -1,0 +1,131 @@
+{
+  "observed_utc": "2026-10-14T23:24:30.057861+00:00",
+  "controller_pid": 85361,
+  "controller_actual_pid_live": true,
+  "status": "RUNNING",
+  "parent_observation": {
+    "observed_utc": "2026-10-14T23:24:00.485845+00:00",
+    "jobs": [
+      {
+        "pid": 74342,
+        "shard": 0,
+        "actual_pid_live": false,
+        "exit_receipt_present": true
+      },
+      {
+        "pid": 74449,
+        "shard": 1,
+        "actual_pid_live": false,
+        "exit_receipt_present": true
+      }
+    ]
+  },
+  "phases": {
+    "develop_epoch00": {
+      "status": "REUSED_VERIFIED_COMPLETE",
+      "original_native_sessions": [
+        46511,
+        25976
+      ],
+      "original_child_exit_codes": [
+        0,
+        0
+      ],
+      "evidence": {
+        "sequences": 98,
+        "frames": 52200,
+        "sequence_equal_mean_iou": 0.6498416023214861,
+        "extra_forwards": 0,
+        "future_interventions": 0
+      }
+    },
+    "develop_epoch01": {
+      "status": "RUNNING",
+      "commands": [
+        [
+          "cadtrack_abc.validate_future_actions",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+          "--policy",
+          "future_actions",
+          "--shard",
+          "0",
+          "--shards",
+          "2"
+        ],
+        [
+          "cadtrack_abc.validate_future_actions",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+          "--policy",
+          "future_actions",
+          "--shard",
+          "1",
+          "--shards",
+          "2"
+        ]
+      ],
+      "started_utc": "2026-10-14T23:24:00.555841+00:00",
+      "jobs": [
+        {
+          "pid": 104046,
+          "physical_gpu": 3,
+          "command": [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ]
+        },
+        {
+          "pid": 104047,
+          "physical_gpu": 3,
+          "command": [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        }
+      ]
+    }
+  },
+  "reports": {},
+  "child_queries_owned_by_existing_chain": true,
+  "additional_neural_pid_queries": false,
+  "new_neural_jobs_started": false
+}
