@@ -32,22 +32,52 @@ def validate_parent(parent):
     return checkpoint, report
 
 
+def validate_sampling(sampling, expected, teacher_sha):
+    receipts = [json.loads((sampling / ('sampling_shard' + str(shard) + '.json')).read_text())
+                for shard in range(2)]
+    assert all(receipt['program_complete'] and receipt['full_shard_queries_complete']
+               and receipt['full_sequence_rollouts'] and not receipt['sanity']
+               and receipt['teacher_sha256'] == teacher_sha
+               and receipt['model_family'] == 'CADTrackABC-native-current-quality'
+               and receipt['horizon'] == 3
+               for receipt in receipts)
+    assert sum(receipt['sequences'] for receipt in receipts) == len(expected)
+    assert {record['sequence'] for receipt in receipts for record in receipt['records']} == expected
+    for shard, receipt in enumerate(receipts):
+        queries = json.loads((sampling / ('queries_shard' + str(shard) + '.json')).read_text())
+        assert receipt['shard'] == shard and receipt['shards'] == 2
+        assert receipt['queries'] == len(queries)
+        assert len({(query['sequence'], query['frame']) for query in queries}) == len(queries)
+        assert {query['sequence'] for query in queries} == {record['sequence'] for record in receipt['records']}
+    return receipts
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--output', required=True, help='New future-round directory; current native output is never reused.')
+    parser.add_argument('--sampling-root', help='Completed native TRAIN/DEV query root; reuse all four verified shards instead of repeating trajectories.')
     args = parser.parse_args()
     config_path = Path(args.config).resolve()
     config = json.loads(config_path.read_text())
     assert config['physical_gpus'] == [2, 3] and config['evaluation_focus'] == 'lasher'
     parent = Path(config['output']).resolve()
     parent_checkpoint, parent_report = validate_parent(parent)
+    inventory = json.loads((parent / 'manifest.json').read_text())
+    parent_teacher_sha = hashlib.sha256(parent_checkpoint.read_bytes()).hexdigest()
+    sampled_existing = {}
+    if args.sampling_root:
+        sampling_root = Path(args.sampling_root).resolve()
+        # Require both splits before any new process: each existing card runs
+        # TRAIN then DEV, so TRAIN-only completion does not free the cards.
+        for split in ['train', 'validation']:
+            expected = set(inventory['train_sequences' if split == 'train' else 'validation_sequences'])
+            sampled_existing[split] = validate_sampling(sampling_root / ('queries_' + split), expected, parent_teacher_sha)
     output = Path(args.output).resolve()
     assert output != parent
     output.mkdir(parents=True, exist_ok=False)
     project = Path(__file__).resolve().parent.parent
     manifest = parent / 'manifest.json'
-    inventory = json.loads(manifest.read_text())
     assert len(inventory['train_sequences']) == 881 and len(inventory['validation_sequences']) == 98
     teacher = output / 'teacher.pth'
     shutil.copyfile(parent_checkpoint, teacher)
@@ -88,18 +118,18 @@ def main():
 
     indices = {}
     for split in ['train', 'validation']:
-        sampling = output / ('queries_' + split)
+        sampling = (sampling_root if args.sampling_root else output) / ('queries_' + split)
         sample_commands = [['cadtrack_abc.sample_action_queries', '--config', str(config_path), '--teacher', str(teacher),
                             '--manifest', str(manifest), '--split', split, '--output', str(sampling), '--device', 'cuda',
                             '--shard', str(shard)] for shard in range(2)]
         phase = 'sample_' + split
-        run(phase, sample_commands, [2, 3])
-        sampled = [json.loads((sampling / ('sampling_shard' + str(shard) + '.json')).read_text()) for shard in range(2)]
         expected = set(inventory['train_sequences' if split == 'train' else 'validation_sequences'])
-        assert all(receipt['program_complete'] and receipt['full_shard_queries_complete'] and receipt['full_sequence_rollouts']
-                   and not receipt['sanity'] and receipt['teacher_sha256'] == teacher_sha for receipt in sampled)
-        assert sum(receipt['sequences'] for receipt in sampled) == len(expected)
-        assert {record['sequence'] for receipt in sampled for record in receipt['records']} == expected
+        if args.sampling_root:
+            sampled = sampled_existing[split]
+            state['phases'][phase] = {'status': 'REUSED_COMPLETED_NATIVE_SAMPLING', 'sampling': str(sampling), 'commands': []}
+        else:
+            run(phase, sample_commands, [2, 3])
+            sampled = validate_sampling(sampling, expected, teacher_sha)
         verified(phase, {'sequences': len(expected), 'queries': sum(receipt['queries'] for receipt in sampled)})
         folders = [output / ('collection_' + split) / ('shard' + str(shard)) for shard in range(2)]
         collect_commands = [['cadtrack_abc.collect_actions', '--config', str(config_path), '--teacher', str(teacher),

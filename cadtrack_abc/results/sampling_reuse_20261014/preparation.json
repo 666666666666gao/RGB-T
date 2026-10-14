@@ -1,0 +1,72 @@
+{
+  "status": "SOURCE_AND_CPU_PREREQUISITE_FIXTURES_PASS_NOT_EXECUTED",
+  "timestamp_utc": "2026-10-14T01:59:48.725002+00:00",
+  "change": "Explicit --sampling-root reuses current complete native H3 TRAIN/DEV queries; validates all four shards before output or any process.",
+  "current_sampling_root": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
+  "fixture_tests": {
+    "status": "CPU_REUSE_GUARD_FIXTURE_PASS",
+    "tests_run": 7,
+    "failures": 0,
+    "errors": 0,
+    "actual_full_sampling_complete": false,
+    "models_loaded": 0,
+    "neural_forwards": 0,
+    "optimizer_updates": 0,
+    "scope": "Temporary synthetic completion/query fixtures test pipeline prerequisite order only, not actual sampling or performance."
+  },
+  "review_response": "PASS_SOURCE_ONLY. The minimal sampling reuse change is correct for the supplied native sampling workflow. No BLOCKING defect found; no source patch requested.\n\nReview basis: cadtrack_abc/future_pipeline.py against 9314807d8053edbf7502657a5cbbce9919708c17, plus the actual sampler, collector, packet merger, fitter, development selection code, archived native manifest, and saved sampling launcher source. The relevant diff contains only future_pipeline.py: 38 insertions and 8 deletions. This review did not execute any project module.\n\nCorrect behavior:\n\n- future_pipeline.py:35-52 checks both receipts for each split: completion flags, full trajectories, non-sanity, the native model family, H3, matching teacher identity, complete expected sequence names, two-shard identity, parsed query counts, unique sequence/frame queries, and each query file's sequence membership against its receipt. main():69-75 validates both TRAIN and DEV before output.mkdir at line 78 or any subprocess. A TRAIN-only completion cannot enter collection.\n- The checks match sample_action_queries.py. The sampler derives disjoint shards from sorted fixed manifest names, validates split separation, selects valid H3 query positions, writes the query JSON at line 155, and writes the completion receipt only after the full shard has finished at line 169. The saved launch source executes TRAIN then DEV sequentially on each card and has no automatic collection/fitting stage. Requiring all four receipts addresses the actual overlap risk of beginning collection while the existing drivers are still sampling DEV.\n- The original parent completion checks remain. Reuse compares each receipt's teacher SHA to the selected parent checkpoint before output creation; the downstream teacher is still copied from that checkpoint and compared byte-for-byte. Both the sampler and collector use native teacher policy by default, and the collector remains H3. No teacher-policy switch was introduced.\n- At future_pipeline.py:127-132, supplying --sampling-root uses the validated receipts and never calls run() for either sample phase. Collection consumes the matching existing queries_shard0/1.json paths. There is no recovery or fallback path and no sampler process is launched by this branch.\n- The archived native manifest contains 881 unique TRAIN names and 98 unique DEV names with zero overlap. Collection and packet loading still enforce split membership; optimization consumes TRAIN packets, while DEV packets are used by no-grad diagnostics. Complete 98-video checkpoint selection still precedes official 245-video inference/scoring. No label, loss, selection criterion, metric, baseline, dataset, or training parameter changed.\n- The runner still assigns one child to each physical GPU 2/3 for two-shard phases and waits for every child before proceeding. Single-child phases remain on GPU 2. This change adds no extra child, background continuation, or GPU reassignment.\n\nChecks actually executed: stdlib AST parsing of future_pipeline.py passed (exit 0); a stdlib read of the archived manifest confirmed TRAIN 881/881 unique, DEV 98/98 unique, overlap 0; read-only Git diff/stat and direct source inspection. No NN/model import, remote command, running-job/process query, GPU query, power/temperature read, observer, or launch occurred.\n\nNON-BLOCKING scope limits:\n\n- This is a source review, not evidence that the live samplers have finished or that the physical GPUs are currently available. The supplied sampling admission is not represented as completion. Runtime completion must be assessed through the already scheduled admission/observation procedure; this review made no progress query.\n- The continuation remains the existing future-head fitting round. It supplies no new evidence of full A/B/C independent effectiveness or LasHeR +2 attainment. Required PR/NPR/SR remain 74.74/71.16/59.84 against the user-supplied baseline, and no new score is claimed here.\n- Requested reviewer route: gpt-6-astra, max. Actual model/effort route: UNATTESTED. This is a fresh-context, same-family review with provisional acceptance; no cross-family claim.\n",
+  "review_metadata": {
+    "run_id": "2026-10-14_sampling_reuse_run01",
+    "reviewer_task": "/root/cad_sampling_reuse_review",
+    "skill": "experiment-bridge",
+    "skill_path": "C:/Users/gb/.codex/skills/experiment-bridge/SKILL.md",
+    "execution_policy_path": "C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md",
+    "repository": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source",
+    "base_commit": "9314807d8053edbf7502657a5cbbce9919708c17",
+    "changed_source": "cadtrack_abc/future_pipeline.py",
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "max",
+    "actual_model": "UNATTESTED",
+    "actual_reasoning_effort": "UNATTESTED",
+    "actual_route": "UNATTESTED",
+    "review_independence": "same-family",
+    "context": "fresh",
+    "acceptance_status": "provisional",
+    "source_verdict": "PASS_SOURCE_ONLY",
+    "blocking_findings": [],
+    "non_blocking_scope_limits": [
+      "Live sampling completion and current GPU availability were not queried or verified.",
+      "Full A/B/C effectiveness and LasHeR +2 attainment are not established by this continuation source review.",
+      "Requested Astra/max model route is not attestable from reviewer-visible runtime metadata."
+    ],
+    "checks": {
+      "stdlib_ast_parse_exit": 0,
+      "archived_manifest_train_count": 881,
+      "archived_manifest_train_unique": 881,
+      "archived_manifest_dev_count": 98,
+      "archived_manifest_dev_unique": 98,
+      "archived_manifest_split_overlap": 0,
+      "relevant_diff_insertions": 38,
+      "relevant_diff_deletions": 8,
+      "project_module_execution": false,
+      "nn_execution": false,
+      "remote_queries": false,
+      "running_job_or_process_queries": false,
+      "gpu_queries": false,
+      "power_or_temperature_queries": false,
+      "observers_launched": false,
+      "source_or_public_docs_edited": false
+    },
+    "artifacts": {
+      "request": "request.txt",
+      "response": "response.md",
+      "metadata": "meta.json"
+    }
+  },
+  "future_round_launched": false,
+  "new_optimizer_updates": 0,
+  "new_neural_forwards": 0,
+  "new_formal_metrics": null,
+  "actual_sampling_completion_checked_this_turn": false,
+  "scope": "Pipeline stage reuse preparation only; no new method effectiveness or goal completion evidence."
+}

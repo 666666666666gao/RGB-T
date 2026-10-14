@@ -140,7 +140,18 @@
     "limits": "LasHeR only; no baseline rerun, GPU0/1, additional datasets, retry, automatic next round, or automatic overall-goal completion.",
     "state_file_limitation": "An artifact validation exception stops the wrapper and dependencies without VERIFIED_COMPLETE, but queue_state can retain RUNNING/COMMANDS_EXITED_SUCCESSFULLY. A monitor must use process exit and required receipts together; the state file alone does not establish liveness or completion.",
     "started": false,
-    "formal_metrics_complete": false
+    "formal_metrics_complete": false,
+    "sampling_reuse": {
+      "status": "SOURCE_AND_CPU_PREREQUISITE_FIXTURES_PASS_NOT_EXECUTED",
+      "source_argument": "--sampling-root",
+      "completed_native_four_shards_required_before_any_new_job": true,
+      "source_review": "same-family/provisional; actual routing UNATTESTED",
+      "cpu_fixture_tests_passed": 7,
+      "next_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.future_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/native_future_round_20261014 --sampling-root /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
+      "command_executed": false,
+      "repeated_sampling_when_reusing": false,
+      "performance_goal_achieved": false
+    }
   },
   "native_round_completion": {
     "status": "ACTUAL_NATIVE20_TRAINING_HISTORY_AND_SELECTED_CHECKPOINT_VERIFIED",
