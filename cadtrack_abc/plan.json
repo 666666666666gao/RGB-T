@@ -22,7 +22,7 @@
     "one best development checkpoint",
     "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
   ],
-  "status": "FULL_NATIVE_TEACHER_SAMPLING_RUNNING_TARGET_UNMET",
+  "status": "FULL_SAMPLING_COMPLETE_NATIVE_H3_ACTION_COLLECTION_RUNNING_TARGET_UNMET",
   "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
   "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
   "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
@@ -31,7 +31,7 @@
     "LasHeR_NPR",
     "LasHeR_SR"
   ],
-  "not_results": "Native20/fullLas remain PR72.4190140758/NPR68.9276099146/SR57.6668823751, below supplied baseline. New two-GPU full881TRAIN/98DEV trajectory sampling is running; no new optimizer or formal metrics this stage. Full future-action fit and persistent rejected-tracklet memory remain incomplete.",
+  "not_results": "Native20/fullLas PR72.4190140758/NPR68.9276099146/SR57.6668823751 remains below supplied baseline. 881TRAIN/98DEV full514081-frame sampling complete;5697 queries. Native H3 batch64 action labels running on GPU2,3;1196370 labels planned. No new optimizer updates or formal metrics. Full trajectories expose inactive native search (gain gate0); frozen-B future-C fit is a control, not a completed full-method repair. Search/action fitting and persistent rejected-tracklet memory remain incomplete.",
   "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
   "current_targets": {
     "LasHeR_PR": 74.74,
@@ -44,7 +44,7 @@
       "counterfactual.py",
       "collect_actions.py"
     ],
-    "status": "BOUNDED_TWO_QUERY_ACTUAL_BATCH64_AND_TRACED_PARITY_PASS_FULL_COLLECTION_PENDING",
+    "status": "FULL_NATIVE_H3_ACTION_COLLECTION_RUNNING",
     "action_modes": [
       "policy",
       "pause_identity",
@@ -55,9 +55,9 @@
     ],
     "prefix": "Full deployed-teacher predicted prefix from sequence frame0; only initial GT initializes the state",
     "search_budget": "Three independent offline local+one-region probe contexts; each simulated action sees only one and has at most one extra visual forward",
-    "next_step": "Finish full TRAIN/DEV query sampling, then collect action labels using reviewed native action-batch64.",
-    "running_20_epoch_training_unchanged": true,
-    "not_done": "No full collection, future-utility head training, persistent rejected-tracklet memory or +2 evidence yet"
+    "next_step": "Verify all four collection receipts, then fit search and action decisions using these actual labels.",
+    "running_20_epoch_training_unchanged": false,
+    "not_done": "Full label collection, new search/action optimization and new full LasHeR metrics remain pending."
   },
   "future_action_runtime": {
     "source": "future_actions.py",
@@ -77,7 +77,7 @@
     "future_visual_search_budget": "Reuse actual native local or local+one observed context; no additional backbone forward",
     "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_RUNTIME_AND_TWO_UPDATE_HEAD_SANITY_PASS",
     "not_done": "Full teacher-state data collection, full future-head fit, full98-video selection, formalLas results and persistent rejected-tracklet memory remain pending.",
-    "next": "Keep current full20ep and formalLas results; use its selected fixed teacher for full future-action fitting and deployment validation"
+    "next": "Frozen-search future-C remains a controlled reference; actual native search gain never exceeds deployment threshold on full TRAIN/DEV."
   },
   "future_training_entries": {
     "sources": [
@@ -95,7 +95,7 @@
     "selection": "Snapshots0/1/2/5/10/20 all evaluated on full98 continuous development videos; sequence-equal IoU chooses one best including initialization control; cache gain is diagnostic only.",
     "cleanup": "Selectedbest strictly reloaded; delete only enumerated owncandidate weights, keep originalfixedteacher/pretrain and receipts.",
     "formal_entry": "cadtrack_abc.infer --policy future_actions then unchanged official cadtrack_abc.score for fullLas245/220703 PR/NPR/SR/attributes/curves/perseq/mechanisms.",
-    "next": "Wait for current20epoch pipeline and fullLas report before full future data collection/GPU training. Do not restart current job or run another formal training concurrently.",
+    "next": "After full labels, implement and validate search/action fitting; do not silently equate head-only optimization with all three modules.",
     "full_future_training_complete": false,
     "formal_metrics_complete": false
   },
@@ -105,8 +105,8 @@
     "policy": "Explicit native/future strict checkpoint family, selected immutable teacher, all predictions from frame0 initialGT; no laterGT in state/crop.",
     "sampling": "Two per-video uniform queries plus first loss_transition, wrong_identity_commit and missed_correct_candidate windows at offsets[-2,-1,0,1,3], valid H3 supervision only; reasons retained in packet query_spec.",
     "scope": "881TRAIN or98DEV only, sharded on2/3 for later full collection; official245 excluded.",
-    "status": "FULL_NATIVE_TEACHER_SAMPLING_RUNNING",
-    "full_sampling_complete": false,
+    "status": "FULL_881_TRAIN_98_DEV_NATIVE_SAMPLING_COMPLETE",
+    "full_sampling_complete": true,
     "full_action_collection_complete": false,
     "actual_input_inventory": {
       "train": 881,
@@ -117,13 +117,16 @@
       "all_first_boxes_valid_wh": true,
       "minimum_eligible_H3_queries_per_video": 23
     },
-    "not_proven": "No critical event occurred in this16-frame sanity. Full event counts, label coverage, training improvements and formal metrics remain unverified.",
-    "next": "Verify four shard receipts and full514083 frames, then collect counterfactual labels. No automatic optimizer training.",
-    "output": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014"
+    "not_proven": "Collected failure events are localization proxies. Sampling completion is not training or formal performance.",
+    "next": "Complete current H3 matched action consequences; do not repeat full trajectory sampling.",
+    "output": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
+    "actual_frames": 514081,
+    "train_queries": 5092,
+    "development_queries": 605
   },
   "deferred_future_pipeline": {
     "source": "future_pipeline.py",
-    "status": "SOURCE_REVIEW_PASS_ACTUAL_PARENT_GUARD_PASS_NOT_STARTED",
+    "status": "NOT_STARTED_FROZEN_SEARCH_HEAD_ONLY_CONTROL",
     "prerequisite": "Actual native20epochs/3140updates/strict reload/full LasHeR245 sequences220703 frames PR,NPR,SR and one matching selected checkpoint; inspect that result before manually launching.",
     "stages": [
       "Frozen selected native teacher copy",
@@ -150,7 +153,8 @@
       "next_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.future_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/native_future_round_20261014 --sampling-root /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
       "command_executed": false,
       "repeated_sampling_when_reusing": false,
-      "performance_goal_achieved": false
+      "performance_goal_achieved": false,
+      "next_command_role": "Prepared control only; not the repaired full main method."
     }
   },
   "native_round_completion": {
@@ -251,15 +255,44 @@
     "actual_teacher_epoch": 2,
     "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
     "frame_inventory": {
-      "train": 461883,
+      "train": 461881,
       "development": 52200,
-      "total": 514083
+      "total": 514081
     },
     "query_sampler_policy_batch": 1,
     "action_collector_batch": 64,
     "batch_parity_scope": "Two actual TRAIN states, all420 candidate/mode actions, H3; label rtol=atol1e-4; original mixed1e-5 failure retained.",
     "first_observation_not_before_utc": "2026-10-14T09:00:14.933943+00:00",
     "observe_seconds": 240,
-    "performance_goal_achieved": false
+    "performance_goal_achieved": false,
+    "old_frame_forecast_erratum": "Two blank init.txt lines (boyouttrees,girlbikeinlight) counted as frames; no image or valid annotation missing.",
+    "action_collection": {
+      "output": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014",
+      "driver_pids": [
+        3314719,
+        3314720
+      ],
+      "collector_pids": [
+        3314721,
+        3314722
+      ],
+      "admitted_queries": 84,
+      "admitted_action_labels": 17640,
+      "planned_queries": 5697,
+      "planned_action_labels": 1196370,
+      "observer_pid": 33496,
+      "first_remote_observation_not_before_utc": "2026-10-14T19:25:12.915219+00:00",
+      "expected_finish_utc": "2026-10-14T19:30:12.915219+00:00",
+      "optimizer_updates": 0,
+      "full_collection_complete": false
+    },
+    "search_failure_evidence": {
+      "train_gain_gate_frames": 0,
+      "development_gain_gate_frames": 0,
+      "train_gain_max": 0.008494846522808075,
+      "development_gain_max": 0.006406825967133045,
+      "deployment_gain_threshold": 0.04,
+      "inference": "Current B never supplies extra candidates in complete native trajectories; fitting only C cannot fix this candidate-generation bottleneck."
+    }
   }
 }

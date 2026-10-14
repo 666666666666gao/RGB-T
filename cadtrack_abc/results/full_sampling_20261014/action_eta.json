@@ -1,0 +1,53 @@
+{
+  "started_utc": "2026-10-14T09:18:54.117942+00:00",
+  "workers": [
+    {
+      "shard": 0,
+      "physical_gpu": 2,
+      "queries": 2783,
+      "expected_seconds": 33698.397803849395,
+      "parts": [
+        {
+          "split": "train",
+          "queries": 2462,
+          "prefix_frames": 148915,
+          "expected_prefix_seconds": 10295.156886537648,
+          "label_seconds": 19705.3556
+        },
+        {
+          "split": "validation",
+          "queries": 321,
+          "prefix_frames": 13858,
+          "expected_prefix_seconds": 1128.66551731175,
+          "label_seconds": 2569.2198
+        }
+      ]
+    },
+    {
+      "shard": 1,
+      "physical_gpu": 3,
+      "queries": 2914,
+      "expected_seconds": 36678.79727717366,
+      "parts": [
+        {
+          "split": "train",
+          "queries": 2630,
+          "prefix_frames": 161092,
+          "expected_prefix_seconds": 11716.965601308568,
+          "label_seconds": 21049.994
+        },
+        {
+          "split": "validation",
+          "queries": 284,
+          "prefix_frames": 21892,
+          "expected_prefix_seconds": 1638.7584758650926,
+          "label_seconds": 2273.0792
+        }
+      ]
+    }
+  ],
+  "expected_finish_utc": "2026-10-14T19:30:12.915219+00:00",
+  "first_observation_not_before_utc": "2026-10-14T19:25:12.915219+00:00",
+  "basis": "Actual complete sampling prefix throughput + actual 8.0038-second batch64 query witness; estimate, not completion evidence.",
+  "observe_interval_after_deadline_seconds": 240
+}

@@ -1,0 +1,193 @@
+{
+  "status": "TWO_ACTUAL_NATIVE_ACTION_COLLECTORS_ADMITTED",
+  "observed_utc": "2026-10-14T09:27:09.443472+00:00",
+  "jobs": [
+    {
+      "driver_pid": 3314719,
+      "physical_gpu": 2,
+      "shard": 0,
+      "driver_exists": true,
+      "children": [
+        {
+          "pid": 3314721,
+          "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard0.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard0 --device cuda --horizon 3 --action-batch 64 "
+        }
+      ],
+      "completed_queries": 38,
+      "first_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "10crosswhite",
+        "frame": 163,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "10crosswhite",
+          "frame": 163,
+          "sampling_reasons": [
+            "uniform"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_10crosswhite_000163.pt",
+        "action_labels": 210,
+        "seconds_since_start": 15.393361149996053
+      },
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "1strowrightgirl",
+        "frame": 43,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "1strowrightgirl",
+          "frame": 43,
+          "sampling_reasons": [
+            "loss_transition:3",
+            "missed_correct_candidate:3",
+            "wrong_identity_commit:3"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_1strowrightgirl_000043.pt",
+        "action_labels": 210,
+        "seconds_since_start": 457.5166208890005
+      },
+      "log_tail": "ce\": \"1strowrightgirl\", \"frame\": 41, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"1strowrightgirl\", \"frame\": 41, \"sampling_reasons\": [\"loss_transition:1\", \"missed_correct_candidate:1\", \"wrong_identity_commit:1\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 64, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_1strowrightgirl_000041.pt\", \"action_labels\": 210, \"seconds_since_start\": 448.96852052900067}\n{\"event\": \"query_complete\", \"model_family\": \"CADTrackABC-native-current-quality\", \"teacher\": \"/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth\", \"teacher_sha256\": \"5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988\", \"teacher_epoch\": 2, \"sequence\": \"1strowrightgirl\", \"frame\": 43, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"1strowrightgirl\", \"frame\": 43, \"sampling_reasons\": [\"loss_transition:3\", \"missed_correct_candidate:3\", \"wrong_identity_commit:3\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 64, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_1strowrightgirl_000043.pt\", \"action_labels\": 210, \"seconds_since_start\": 457.5166208890005}\n"
+    },
+    {
+      "driver_pid": 3314720,
+      "physical_gpu": 3,
+      "shard": 1,
+      "driver_exists": true,
+      "children": [
+        {
+          "pid": 3314722,
+          "cmdline": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_train/queries_shard1.json --split train --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_train/shard1 --device cuda --horizon 3 --action-batch 64 "
+        }
+      ],
+      "completed_queries": 46,
+      "first_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "10phone_boy",
+        "frame": 40,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "10phone_boy",
+          "frame": 40,
+          "sampling_reasons": [
+            "uniform"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_10phone_boy_000040.pt",
+        "action_labels": 210,
+        "seconds_since_start": 12.123313258998678
+      },
+      "last_record": {
+        "event": "query_complete",
+        "model_family": "CADTrackABC-native-current-quality",
+        "teacher": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth",
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "teacher_epoch": 2,
+        "sequence": "1strowright2ndgirl",
+        "frame": 91,
+        "split": "train",
+        "horizon": 3,
+        "modes": [
+          "policy",
+          "pause_identity",
+          "defer_geometry",
+          "accept_geometry",
+          "rgb_only",
+          "tir_only"
+        ],
+        "query_spec": {
+          "sequence": "1strowright2ndgirl",
+          "frame": 91,
+          "sampling_reasons": [
+            "loss_transition:0",
+            "missed_correct_candidate:0",
+            "wrong_identity_commit:0"
+          ]
+        },
+        "threshold": 0.03,
+        "reference_action": [
+          0,
+          0,
+          "policy"
+        ],
+        "action_batch": 64,
+        "native_state_reconstruction_equal": true,
+        "full_predicted_prefix_from_frame0": true,
+        "file": "5c6b6fcbf18b_1strowright2ndgirl_000091.pt",
+        "action_labels": 210,
+        "seconds_since_start": 483.38894815299136
+      },
+      "log_tail": "irl\", \"frame\": 90, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"1strowright2ndgirl\", \"frame\": 90, \"sampling_reasons\": [\"loss_transition:-1\", \"missed_correct_candidate:-1\", \"wrong_identity_commit:-1\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 64, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_1strowright2ndgirl_000090.pt\", \"action_labels\": 210, \"seconds_since_start\": 474.8202809619979}\n{\"event\": \"query_complete\", \"model_family\": \"CADTrackABC-native-current-quality\", \"teacher\": \"/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth\", \"teacher_sha256\": \"5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988\", \"teacher_epoch\": 2, \"sequence\": \"1strowright2ndgirl\", \"frame\": 91, \"split\": \"train\", \"horizon\": 3, \"modes\": [\"policy\", \"pause_identity\", \"defer_geometry\", \"accept_geometry\", \"rgb_only\", \"tir_only\"], \"query_spec\": {\"sequence\": \"1strowright2ndgirl\", \"frame\": 91, \"sampling_reasons\": [\"loss_transition:0\", \"missed_correct_candidate:0\", \"wrong_identity_commit:0\"]}, \"threshold\": 0.03, \"reference_action\": [0, 0, \"policy\"], \"action_batch\": 64, \"native_state_reconstruction_equal\": true, \"full_predicted_prefix_from_frame0\": true, \"file\": \"5c6b6fcbf18b_1strowright2ndgirl_000091.pt\", \"action_labels\": 210, \"seconds_since_start\": 483.38894815299136}\n"
+    }
+  ],
+  "updates": 0,
+  "neural_fit_started": false,
+  "baseline_rerun": false
+}
