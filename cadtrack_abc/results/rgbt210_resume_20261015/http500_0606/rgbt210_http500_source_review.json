@@ -1,0 +1,473 @@
+{
+  "review_kind": "fresh_source_and_failure_rescue_review",
+  "reviewed_utc": "2026-10-14T22:05:45.424364+00:00",
+  "verdict": "PASS",
+  "blocking_count": 0,
+  "blocking": [],
+  "nonblocking": [],
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_scope": "Dataset-only HTTP500 recovery source. No network request, SSH execution, neural work, environment change, data move or source/input edit performed by this reviewer.",
+  "failure_basis": {
+    "session": 53052,
+    "reported_actual_exit_code": 1,
+    "reported_primary_error": "urllib.error.HTTPError: HTTP Error 500: Internal Server Error at urlopen",
+    "provenance": "Parent supplied original-session observation; inventory records the same observation. Raw terminal traceback was not independently replayed or available among the named inputs."
+  },
+  "reviewed_inputs": [
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\complete_rgbt210_http500_remaining_20261015.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\prepare_rgbt210_http500_remaining.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\finish_rgbt210_partial_parts_20261015.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\remote28.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_http500_remaining_inventory.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_partial_parts_inventory.json",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\rgbt210_download_progress.json"
+  ],
+  "input_preservation": {
+    "source_and_json_bytes_unchanged_during_checks": true,
+    "all49_part_sizes_and_mtimes_unchanged_during_checks": true
+  },
+  "inventory_checks": {
+    "index_count": 49,
+    "indices_exact_0_through_48": true,
+    "offsets_contiguous": true,
+    "first_offset": 301830263,
+    "exclusive_end": 6857321678,
+    "local_part_target_bytes": 6555491415,
+    "actual_reused_bytes": 5469467623,
+    "missing_bytes": 1086023792,
+    "already_complete_parts": 37,
+    "incomplete_parts": 12,
+    "parts_match_current_inventory": true,
+    "offsets_sizes_preserved_from_prior_inventory": true,
+    "bytes_monotonic_from_prior_inventory": true,
+    "remaining_range_count": 131,
+    "maximum_total_range_attempts": 393,
+    "maximum_connections": 2,
+    "maximum_request_bytes": 8388608
+  },
+  "disk_check": {
+    "resolved_private": "D:\\Program Files\\UserCache\\gb\\codex_tmp\\cadtrack_abc_20261013",
+    "inventory_recorded_free_bytes": 6732013568,
+    "review_observed_free_bytes": 6731919360,
+    "required_missing_plus_1GiB": 2159765616,
+    "passed": true
+  },
+  "source_checks": [
+    "All four Python inputs parse under E:\\python.exe 3.12.6. The source module was not imported or executed in full; isolated finish/admission code used memory filesystem and network/subprocess stubs.",
+    "Read-only replay of prepare source-transform nodes exactly reproduces reviewed source after normal text newline handling. Fixed indices, offsets, expected lengths, destination and prior receipt semantics remain intact.",
+    "The only new handler catches HTTPError. Only status 500 before the final attempt retries. Short bodies and HTTP500 share three total attempts per range; other errors propagate.",
+    "Status 206, exact Content-Range, declared length and actual body length must all match before one append. Each successful append advances by its positive exact range length.",
+    "Current local part lengths and local space are checked before the read-only server prefix/completion-marker guard and worker admission. The SSH admission command has no mutation.",
+    "A failed future prevents the all49 gate and transfer. The existing executor context may finish its finite queued parts before propagating a failure; no successful archive receipt is emitted on that path.",
+    "Only after all49 parts are full and totals match does numeric-order transfer begin. Remote prefix is rechecked before append; final size precedes existing SHA256/remote receipt. Local completion requires SSH return code zero.",
+    "remote28.py executes supplied Python through existing 2028 SSH, saves stdout/stderr, and propagates failure; it was inspected and never run.",
+    "Concrete diff adds no fallback, generic handler, compatibility layer, dataset move, environment operation or NN operation."
+  ],
+  "offline_behavior_checks": [
+    {
+      "name": "HTTP500_then_success",
+      "passed": true,
+      "requests": 2,
+      "written_bytes": 17,
+      "exception": null,
+      "http500_waits": 1
+    },
+    {
+      "name": "two_HTTP500_then_success",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 17,
+      "exception": null,
+      "http500_waits": 2
+    },
+    {
+      "name": "three_HTTP500_stop_without_append",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 0,
+      "exception": "HTTPError",
+      "http500_waits": 2
+    },
+    {
+      "name": "HTTP500_short_full_share_three_attempts",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 17,
+      "exception": null,
+      "http500_waits": 1
+    },
+    {
+      "name": "short_HTTP500_full_share_three_attempts",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 17,
+      "exception": null,
+      "http500_waits": 1
+    },
+    {
+      "name": "three_short_bodies_stop_without_append",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 0,
+      "exception": "AssertionError",
+      "http500_waits": 0
+    },
+    {
+      "name": "two_HTTP500_then_short_stop",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 0,
+      "exception": "AssertionError",
+      "http500_waits": 2
+    },
+    {
+      "name": "two_short_then_HTTP500_stop",
+      "passed": true,
+      "requests": 3,
+      "written_bytes": 0,
+      "exception": "HTTPError",
+      "http500_waits": 0
+    },
+    {
+      "name": "HTTP503_propagates_without_retry",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "HTTPError",
+      "http500_waits": 0
+    },
+    {
+      "name": "URLError_propagates_without_retry",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "URLError",
+      "http500_waits": 0
+    },
+    {
+      "name": "TimeoutError_propagates_without_retry",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "TimeoutError",
+      "http500_waits": 0
+    },
+    {
+      "name": "bad_status_stops_without_append",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "AssertionError",
+      "http500_waits": 0
+    },
+    {
+      "name": "bad_range_stops_without_append",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "AssertionError",
+      "http500_waits": 0
+    },
+    {
+      "name": "bad_length_stops_without_append",
+      "passed": true,
+      "requests": 1,
+      "written_bytes": 0,
+      "exception": "AssertionError",
+      "http500_waits": 0
+    },
+    {
+      "name": "complete_part_has_no_request",
+      "passed": true,
+      "requests": 0,
+      "written_bytes": 0,
+      "exception": null,
+      "http500_waits": 0
+    },
+    {
+      "name": "real_nonaligned_part21_covers_exact_gap",
+      "passed": true,
+      "requests": 8,
+      "written_bytes": 59064304,
+      "exception": null,
+      "http500_waits": 0
+    },
+    {
+      "name": "second_range_HTTP500_cannot_reuse_old_body",
+      "passed": true,
+      "requests": 4,
+      "written_bytes": 8388608,
+      "exception": "HTTPError",
+      "http500_waits": 2
+    },
+    {
+      "name": "second_range_short_cannot_reuse_old_body",
+      "passed": true,
+      "requests": 4,
+      "written_bytes": 8388608,
+      "exception": "AssertionError",
+      "http500_waits": 0
+    }
+  ],
+  "offline_behavior_check_count": 18,
+  "mocked_admission_check_passed": true,
+  "reviewer_tooling_note": "First offline harness stopped before behavioral tests on a reviewer-only comparison of raw CRLF bytes against universal-newline read_text output. Normalized the reviewer comparison, reran all checks successfully; no reviewed source or input was changed.",
+  "limitations": [
+    "Source admission evidence only; no actual successful download or independent current remote state is claimed. Runtime must execute existing server prefix/marker checks.",
+    "Existing SHA256 records the completed server archive, without an authoritative published digest comparison. Extraction, archive integrity and dataset inventory remain incomplete in the receipt.",
+    "Finite work and three attempts per range establish bounded work. No hard whole-task timeout is claimed or newly required."
+  ],
+  "part_snapshots": [
+    {
+      "index": 0,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007488056331000
+    },
+    {
+      "index": 1,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007721570152100
+    },
+    {
+      "index": 2,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007482461534500
+    },
+    {
+      "index": 3,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792007680039908800
+    },
+    {
+      "index": 4,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009051324496500
+    },
+    {
+      "index": 5,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009051414674600
+    },
+    {
+      "index": 6,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009152616082200
+    },
+    {
+      "index": 7,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009184692077900
+    },
+    {
+      "index": 8,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009411303240700
+    },
+    {
+      "index": 9,
+      "actual_bytes": 117440512,
+      "mtime_ns": 1792009412222578800
+    },
+    {
+      "index": 10,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009645771939800
+    },
+    {
+      "index": 11,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009698512452700
+    },
+    {
+      "index": 12,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009902807812400
+    },
+    {
+      "index": 13,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792009957845450600
+    },
+    {
+      "index": 14,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010157838944200
+    },
+    {
+      "index": 15,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010217367428000
+    },
+    {
+      "index": 16,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010415522442600
+    },
+    {
+      "index": 17,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010475601050400
+    },
+    {
+      "index": 18,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010676915398800
+    },
+    {
+      "index": 19,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010731969211800
+    },
+    {
+      "index": 20,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792010890433931600
+    },
+    {
+      "index": 21,
+      "actual_bytes": 75153424,
+      "mtime_ns": 1792010862840230100
+    },
+    {
+      "index": 22,
+      "actual_bytes": 101102551,
+      "mtime_ns": 1792011063711930000
+    },
+    {
+      "index": 23,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011115864751200
+    },
+    {
+      "index": 24,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011348733176200
+    },
+    {
+      "index": 25,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011376447842000
+    },
+    {
+      "index": 26,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011614098397100
+    },
+    {
+      "index": 27,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011634566415900
+    },
+    {
+      "index": 28,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011873719036700
+    },
+    {
+      "index": 29,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792011896856084300
+    },
+    {
+      "index": 30,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012130033944600
+    },
+    {
+      "index": 31,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012155735752500
+    },
+    {
+      "index": 32,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012387970480800
+    },
+    {
+      "index": 33,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012414314361200
+    },
+    {
+      "index": 34,
+      "actual_bytes": 58720256,
+      "mtime_ns": 1792012500334004500
+    },
+    {
+      "index": 35,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012646916347900
+    },
+    {
+      "index": 36,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012777138758700
+    },
+    {
+      "index": 37,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792012940188430800
+    },
+    {
+      "index": 38,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013052448385900
+    },
+    {
+      "index": 39,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013201874548100
+    },
+    {
+      "index": 40,
+      "actual_bytes": 134217728,
+      "mtime_ns": 1792013316291213300
+    },
+    {
+      "index": 41,
+      "actual_bytes": 100663296,
+      "mtime_ns": 1792013412043378900
+    },
+    {
+      "index": 42,
+      "actual_bytes": 50331648,
+      "mtime_ns": 1792013404142204200
+    },
+    {
+      "index": 43,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013452341878100
+    },
+    {
+      "index": 44,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013452342728100
+    },
+    {
+      "index": 45,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013457349684900
+    },
+    {
+      "index": 46,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013457352767200
+    },
+    {
+      "index": 47,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013462355765100
+    },
+    {
+      "index": 48,
+      "actual_bytes": 0,
+      "mtime_ns": 1792013462358183600
+    }
+  ],
+  "suggested_changes": []
+}
