@@ -1,0 +1,119 @@
+{
+  "status": "PURE_CAD_RGBT234_FULL_BASELINE_ADMITTED",
+  "observed_utc": "2026-10-14T18:38:42.783569+00:00",
+  "controller_pid": 4027100,
+  "command": [
+    "/data/wangwj/envs/CADTrack/bin/python",
+    "-m",
+    "cadtrack_abc.baseline_pipeline",
+    "--checkpoint",
+    "/home/gaob/CADTrack_ep0014.pth.tar",
+    "--dataset",
+    "rgbt234",
+    "--root",
+    "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "--output",
+    "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015"
+  ],
+  "jobs": [
+    {
+      "pid": 4027101,
+      "physical_gpu": 2,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "pid": 4027102,
+      "physical_gpu": 3,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+        "--shard",
+        "1"
+      ]
+    }
+  ],
+  "existing_collectors": [
+    {
+      "pid": 3969349,
+      "gpu_uuid": "GPU-966900b1-520e-00e3-3be3-ba55d3fd1968",
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation/queries_shard0.json --split validation --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_validation/shard0 --device cuda --horizon 3 --action-batch 64 "
+    },
+    {
+      "pid": 4014232,
+      "gpu_uuid": "GPU-e087b67f-9495-4385-6bde-335c5760d96e",
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.collect_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --teacher /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/teacher.pth --teacher-policy native --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --queries /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014/queries_validation/queries_shard1.json --split validation --output /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014/collection_validation/shard1 --device cuda --horizon 3 --action-batch 64 "
+    }
+  ],
+  "sanity_exit_code": 0,
+  "sanity": {
+    "status": "REAL_TRAIN_NATIVE_PROTOCOL_PARITY_PASS",
+    "physical_gpu": 2,
+    "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+    "checkpoint_epoch": 14,
+    "strict_loaded_tensors": 250,
+    "checkpoint_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+    "source_files_sha256": {
+      "lib/train/data/processing_utils.py": "7aca916f5e5f62e1865fbd322ffb63dc08197c544a241938b6c822d4bfb89bf6",
+      "lib/test/tracker/data_utils.py": "873337d0419ecfdd08b64123cdc22a4936ccdd6af98a092bc2106c32cf401fe5",
+      "lib/test/utils/hann.py": "94de2151485d5911797afc5a2a431a4dcf99c6b293835b5b2d86bb27945bd504",
+      "lib/utils/box_ops.py": "cee9d309a9c4a6c5f00fab575719bc7bf8d865127c91b10d4fb233996a111fbc",
+      "lib/test/tracker/cadtrack.py": "6e0863824a890d6a16b9da5a7b5acd3e9f7bad3c4dd37f0a818c63aa38e433f2"
+    },
+    "rows": [
+      {
+        "sequence": "10crosswhite",
+        "frames": 41,
+        "template_updates": 8,
+        "boxes_confidence_templates_exact": true
+      },
+      {
+        "sequence": "1strowrightgirl",
+        "frames": 41,
+        "template_updates": 2,
+        "boxes_confidence_templates_exact": true
+      }
+    ],
+    "neural_tracking_steps": 160,
+    "official_test_frames_used": 0,
+    "optimizer_updates": 0,
+    "peak_cuda_allocated_mib": 457.98583984375,
+    "scope": "Original tracker methods with a field-name adapter around the same module-free supplied network; proves test-policy parity, not historical LasHeR score reproduction."
+  },
+  "initial_gpu_memory_csv": "2, 2814, 24576\n3, 2886, 24576\n",
+  "admission_gpu_memory_utilization_csv": "2, 3645, 24576, 100\n3, 3717, 24576, 100\n",
+  "maximum_neural_jobs_per_card": 2,
+  "original_collectors_modified": false,
+  "baseline_lasher_rerun": false,
+  "expected_sequences": 234,
+  "expected_frames": 116649,
+  "estimated_duration_minutes": [
+    45,
+    60
+  ],
+  "estimate_basis": "Previously completed native enhanced parent on same dataset and concurrent cards; approximate, pure baseline has fewer decision operations.",
+  "formal_scores": null,
+  "new_optimizer_updates": 0
+}

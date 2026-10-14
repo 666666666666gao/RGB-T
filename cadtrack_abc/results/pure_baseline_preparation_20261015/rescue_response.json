@@ -1,0 +1,138 @@
+{
+  "verdict": "RESCUE_FIX_SUPPORTED_FULL_SANITY_PENDING",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "reviewed_at_utc": "2026-10-14T18:35:27.738523+00:00",
+  "blocking_issues": [
+    {
+      "id": "RUNTIME_PARITY_R1",
+      "status": "OBSERVED_FAILURE_WITH_SUPPORTED_MINIMAL_FIX_FULL_SANITY_PENDING",
+      "description": "The original required exact sanity failed at 10crosswhite frame 1. Normalized values and resize factor matched, but singleton batch stride differed. The full exact native-policy sanity must pass after the pure crop view correction before formal evaluation. This is the existing runtime gate, not a request for additional defensive code.",
+      "location": "Original PureCADTracker.crop return and sanity assertion at frame 1"
+    }
+  ],
+  "nonblocking_issues": [],
+  "inputs_read": [
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_sanity_failure_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_parity_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_stride_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_parity_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_stride_remote.py"
+  ],
+  "evidence": {
+    "original_failure_sequence": "10crosswhite",
+    "original_failure_frame": 1,
+    "formal_baseline_output_exists_in_failure_capture": false,
+    "input_values_exact": true,
+    "resize_factor": 1.3544973544973544,
+    "raw_own_stride": [
+      393216,
+      1,
+      1536,
+      6
+    ],
+    "native_stride": [
+      6,
+      1,
+      1536,
+      6
+    ],
+    "both_channels_last": true,
+    "raw_repeat_fields": {
+      "score": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "size": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "offset": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "fused": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "modality": {
+        "equal": true,
+        "max_abs_error": 0.0
+      }
+    },
+    "native_vs_view_fields": {
+      "score": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "size": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "offset": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "fused": {
+        "equal": true,
+        "max_abs_error": 0.0
+      },
+      "modality": {
+        "equal": true,
+        "max_abs_error": 0.0
+      }
+    },
+    "raw_vs_native_fields": {
+      "score": {
+        "equal": false,
+        "max_abs_error": 6.520748138427734e-05
+      },
+      "size": {
+        "equal": false,
+        "max_abs_error": 0.0006958842277526855
+      },
+      "offset": {
+        "equal": false,
+        "max_abs_error": 0.0009403228759765625
+      },
+      "fused": {
+        "equal": false,
+        "max_abs_error": 0.0020852088928222656
+      },
+      "modality": {
+        "equal": false,
+        "max_abs_error": 0.0025121569633483887
+      }
+    },
+    "all_modules_evaluation": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false
+  },
+  "diagnosis": "The controlled diagnostic holds templates and network fixed. Re-viewing the same own tensor with own[0].unsqueeze(0) changes only its singleton batch stride and restores bit-identical native score, size, offset, fused and modality outputs on this actual TRAIN input. This supports the stride mismatch as the cause of the observed search-forward discrepancy. It does not identify a specific CUDA kernel or certify the remaining trajectory.",
+  "minimal_fix": {
+    "file": "cadtrack_abc/pure_baseline_tracker.py",
+    "function": "PureCADTracker.crop",
+    "return_expression": "return tensor[0].unsqueeze(0), size / float(transform[0, 2])",
+    "rationale": "Single-image extraction and re-insertion of the batch dimension preserves values and restores the native singleton batch stride. The pure tracker uses this crop for search, initial template and template updates.",
+    "reviewer_applied": false
+  },
+  "remaining_validation": "Review the exact revised source and then run the existing two-TRAIN-prefix exact box/confidence/template/frame checks, including actual template updates, before any formal baseline. Retain the same exact equality requirements and retain R1 source/failure evidence.",
+  "limits": [
+    "No SSH, GPU, NN execution or source edits by this reviewer.",
+    "The controlled evidence covers one actual first-frame search forward with common templates; it does not certify the revised initial-template/update trajectories, full sanity or dataset scores.",
+    "No evidence supports changing shared crop/model/config, the warm environment, backend flags or tolerances.",
+    "The original SOURCE_PASS remains a source-only historical review; the observed runtime failure is recorded separately and must not be relabeled as a pass."
+  ],
+  "preservation": {
+    "prior_response_md_json_unchanged": true,
+    "diagnostic_sources_and_outputs_unchanged": true,
+    "written_outputs": [
+      "rescue_response.md",
+      "rescue_response.json"
+    ]
+  }
+}

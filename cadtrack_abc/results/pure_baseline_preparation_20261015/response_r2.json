@@ -1,0 +1,94 @@
+{
+  "verdict": "SOURCE_PASS",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "REVISED_SOURCE_REVIEW_AFTER_REAL_STRIDE_PARITY_FAILURE",
+  "reviewed_at_utc": "2026-10-14T18:37:45.912760+00:00",
+  "reviewer_task": "/root/pure_cad_baseline_protocol_review",
+  "review_kind": "Required revised source review after preserved R1 source review, actual sanity failure and bounded rescue diagnosis",
+  "source_accepted": true,
+  "runtime_certified": false,
+  "results_certified": false,
+  "deployment_performed": false,
+  "files_reviewed": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\pure_baseline_tracker.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\infer_baseline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline_pipeline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\data.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\score.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\environment.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\plan.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\lib\\models\\layers\\head.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\experiments\\cadtrack\\cadtrack.yaml",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_protocol_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_remaining_protocol_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\sanity_pure_cad_native_protocol_r2_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\launch_pure_cad_baseline_rgbt234_r2_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_sanity_failure_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_parity_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_stride_remote.stdout.txt"
+  ],
+  "checks": {
+    "r2_listed_files_read_and_existing_hashes_matched_before_and_after": 17,
+    "r1_snapshot_files_matched_original_request_and_manifest": 14,
+    "unchanged_common_inputs_vs_r1": 11,
+    "python_sources_compiled_without_import_or_execution": 9,
+    "pure_tracker_ast_delta_exactly_tensor_index_unsqueeze_return": true,
+    "sanity_ast_delta_only_distinct_r2_output_path": true,
+    "launcher_ast_delta_only_r2_sanity_tool_output_log_paths": true,
+    "strict_sanity_assertions_unchanged": true,
+    "shared_data_model_config_backend_tolerances_unchanged": true
+  },
+  "correctness_observations": [
+    {
+      "topic": "Evidence-grounded minimal correction",
+      "assessment": "PureCADTracker.crop line 32 now returns tensor[0].unsqueeze(0) with the unchanged resize factor. The function always builds a one-image batch, so this restores the captured native singleton batch stride without changing values or crop geometry. The saved controlled actual-input diagnostic shows native versus that view exactly equal for score, size, offset, fused and modality; raw-own repeat is also exactly equal.",
+      "evidence": [
+        "cadtrack_abc/pure_baseline_tracker.py:27-32",
+        "diagnose_pure_cad_stride_remote.stdout.txt"
+      ]
+    },
+    {
+      "topic": "Scope isolation",
+      "assessment": "The only tracker semantic change is the crop return view, with a factual comment. All 11 other common listed inputs retain their original seals, including shared data, base model, head, configuration, scoring, inference, pipeline, environment and original native source captures. No backend flags, tolerance or checkpoint choice changed."
+    },
+    {
+      "topic": "Fresh R2 sanity evidence",
+      "assessment": "R2 uses a distinct sanity script path, output directory, log and receipt path. Exact initial/template tensors, boxes, confidence and counters over two real TRAIN prefixes remain required, with at least one actual template update. The supplied epoch14/250-tensor assertion and checkpoint identity check remain. The original failed sanity output is not reused."
+    },
+    {
+      "topic": "Launch sequencing and original safeguards",
+      "assessment": "Checked sanity exit and R2 receipt precede any full-baseline process. The formal output remains guarded as absent; the R1 failure capture reports it absent. The unchanged admission logic reuses the warm interpreter, checks GPU2/3 free memory and current collectors, and starts only one baseline shard per card. The unchanged pipeline supervises both exits and checked actual-GT CPU scoring. New inference still excludes LasHeR and feeds only the first GT box into tracking."
+    }
+  ],
+  "r1_failure_status": "Preserved actual failure. The R2 source addresses the observed stride cause and may proceed to the existing runtime gate; no full R2 sanity pass is claimed here.",
+  "remaining_runtime_prerequisites": [
+    "Deploy the exact reviewed R2 source and helpers, then obtain the actual two-prefix exact parity and template-update receipt with exit zero.",
+    "The existing R2 launcher must satisfy its current GPU2/3 admission checks; formal evaluation remains gated by successful sanity.",
+    "Only actual child exits, scorer exit and complete actual-GT reports establish full RGBT234 completion; RGBT210 remains deferred until its real inventory is ready."
+  ],
+  "limits": [
+    "No SSH, GPU, NN, checkpoint loading, dataset image reading, source edits or deployment by this reviewer.",
+    "The controlled stride evidence covers one actual search input with common templates. It supports the source fix but does not certify the revised full trajectory or runtime parity.",
+    "The historical user LasHeR score/configuration is not reproduced or certified, and the LasHeR baseline remains excluded.",
+    "Same-family provisional source acceptance is not an independent runtime/result audit or a speed claim."
+  ],
+  "preservation": {
+    "r2_inputs_unchanged": true,
+    "r1_snapshots_unchanged": true,
+    "initial_response_and_rescue_reports_unchanged": true,
+    "request_files_unchanged": true,
+    "written_outputs": [
+      "response_r2.md",
+      "response_r2.json"
+    ]
+  },
+  "next_step": "Root may proceed with the already authorized R2 sanity-first launcher after reading this zero-block revised source verdict; formal evaluation remains conditioned on actual sanity success."
+}

@@ -1,0 +1,124 @@
+{
+  "verdict": "SOURCE_PASS",
+  "blocking_issues": [],
+  "nonblocking_issues": [],
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "SOURCE_REVIEW_BEFORE_DEPLOYMENT",
+  "reviewed_at_utc": "2026-10-14T18:30:29.510089+00:00",
+  "reviewer_task": "/root/pure_cad_baseline_protocol_review",
+  "source_accepted": true,
+  "runtime_certified": false,
+  "results_certified": false,
+  "deployment_performed": false,
+  "files_reviewed": [
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\pure_baseline_tracker.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\infer_baseline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline_pipeline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\data.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\score.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\environment.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\plan.json",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\lib\\models\\layers\\head.py",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\experiments\\cadtrack\\cadtrack.yaml",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\sanity_pure_cad_native_protocol_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\launch_pure_cad_baseline_rgbt234_remote.py",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_protocol_remote.stdout.txt",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_remaining_protocol_remote.stdout.txt"
+  ],
+  "preservation": {
+    "input_files": 14,
+    "all_request_file_hashes_matched_before_and_after": true,
+    "request_bytes_unchanged": true,
+    "input_mutations": 0,
+    "outputs_written": [
+      "response.md",
+      "response.json"
+    ]
+  },
+  "local_checks": {
+    "python_sources_compiled_without_import_or_execution": 9,
+    "native_reference_json_records_read": 7,
+    "native_python_reference_records_parsed": 6,
+    "center_cal_bbox_ast_identical_to_server": true,
+    "yaml_text_identical_to_server_after_normal_newline_decoding": true,
+    "interpreter": "C:\\Users\\gb\\AppData\\Roaming\\uv\\python\\cpython-3.10.19-windows-x86_64-none\\python.exe",
+    "source_or_model_code_imported": false
+  },
+  "correctness_observations": [
+    {
+      "topic": "Pure supplied checkpoint",
+      "assessment": "CleanCADTrack strictly loads payload[net], freezes the complete network and sets eval mode. The required sanity asserts epoch 14 and 250 loaded tensors; the launcher checks the supplied checkpoint identity using its existing check.",
+      "evidence": [
+        "cadtrack_abc/baseline.py:20-31",
+        "sanity_pure_cad_native_protocol_remote.py:60-62",
+        "launch_pure_cad_baseline_rgbt234_remote.py:35-37"
+      ]
+    },
+    {
+      "topic": "Native tracker policy",
+      "assessment": "The crop uses double-precision box geometry before integer extraction, identical square side/rounding/zero padding/resize and six-channel normalization. Centered Hann, weighted argmax Center decoding, mean-box scaling, previous-center mapping, margin-10 clipping, weighted confidence >0.65 every five frames and protected initial template agree with the captured native code. The local Center cal_bbox AST and configuration text match the server captures.",
+      "evidence": [
+        "cadtrack_abc/pure_baseline_tracker.py:14-64",
+        "cadtrack_abc/data.py:10-33",
+        "cadtrack_abc/vendor/CADTrack/lib/models/layers/head.py:141-159",
+        "read_pure_cad_protocol_remote.stdout.txt",
+        "read_pure_cad_remaining_protocol_remote.stdout.txt"
+      ]
+    },
+    {
+      "topic": "Causal inference and scope",
+      "assessment": "Only labels[0] initializes the tracker; later frame calls pass images only. Shards enumerate disjoint alternating sequence lists. Both new CLI choices exclude LasHeR. The bounded sanity uses two TRAIN sequences, not official LasHeR evaluation.",
+      "evidence": [
+        "cadtrack_abc/infer_baseline.py:18-50",
+        "cadtrack_abc/baseline_pipeline.py:14",
+        "sanity_pure_cad_native_protocol_remote.py:78-102"
+      ]
+    },
+    {
+      "topic": "Actual-GT scoring",
+      "assessment": "After both inference processes exit zero, the reused scorer replaces toolkit GT with actual dataset-root annotations, checks the official sequence set and each prediction frame count, and invokes dataset-specific metrics. RGBT234 uses separate visible/infrared GT and MPR/MSR. The pipeline labels the completed report as pure CAD baseline; no enhanced-parent outputs are substituted for GT.",
+      "evidence": [
+        "cadtrack_abc/score.py:23-57",
+        "cadtrack_abc/baseline_pipeline.py:35-59"
+      ]
+    },
+    {
+      "topic": "Warm environment and admission",
+      "assessment": "The launcher uses the recorded existing CADTrack interpreter with no installation or rebuild. It requires >=12000 MiB free on the requested GPU2/3 query and exactly two current collect_actions compute processes on distinct GPU UUIDs. The GPU2 sanity is supervised to exit before one baseline process is started on each physical card. The controller itself has no CUDA visibility, preserving the authorized maximum of two independent NN jobs per card under the supplied current-workload scope.",
+      "evidence": [
+        "cadtrack_abc/environment.json:2-14",
+        "launch_pure_cad_baseline_rgbt234_remote.py:11-44",
+        "cadtrack_abc/baseline_pipeline.py:21-31"
+      ]
+    },
+    {
+      "topic": "Sanity and supervised completion",
+      "assessment": "The sanity extracts the actual original tracker/utilities, supplies only a field-name adapter around the same pure network, and requires exact initial/template tensors, boxes, confidence and frame counters across 2 x 40 predicted transitions plus at least one actual template update. Nonzero sanity stops the launcher. The full pipeline waits for both original children, records their exits, rejects nonzero exits, runs checked CPU scoring and writes completion only afterward. Fresh output paths prevent treating an old run as this run.",
+      "evidence": [
+        "sanity_pure_cad_native_protocol_remote.py:29-109",
+        "launch_pure_cad_baseline_rgbt234_remote.py:14-15,31-44",
+        "cadtrack_abc/baseline_pipeline.py:20,35-59"
+      ]
+    }
+  ],
+  "scope_and_runtime_limits": [
+    "This is source acceptance only. No SSH, GPU access, neural forward, checkpoint load, dataset image read, inference, scoring run or deployment was performed by the reviewer.",
+    "The actual two-TRAIN-prefix parity receipt, current capacity/admission and final child/scorer exits remain runtime obligations. Source checks do not certify exact runtime parity, actual tensor values, full results or completion.",
+    "The reference is the captured original CAD test policy around the supplied module-free checkpoint; it is not evidence that the historical user LasHeR result used an identical configuration. The user-provided LasHeR baseline must not be rerun.",
+    "RGBT210 remains a later run after its real dataset is ready. This reviewed launcher admits RGBT234 only and does not establish RGBT210 inventory or scores.",
+    "The authorized matched-work 1.2913x capacity result is supplied task context, not a benchmark reproduced by this reviewer. Co-running baseline latency cannot establish an isolated or paired speed advantage.",
+    "Scorer invocation and GT routing were reviewed, but the external toolkit implementation and actual installed runtime were not independently executed in this source-only review."
+  ],
+  "native_capture_note": "Read all three records in the first partial capture and all four records in the separate remaining-source capture. Preserved both files as supplied; did not recast the initial partial retrieval as a successful complete retrieval.",
+  "reviewer_tool_notes": [
+    "An initial PowerShell metadata command had an invalid foreach pipeline and failed before any write; its corrected read-only command succeeded.",
+    "The default python resolved to E:\\Scripts\\python.exe and failed with No pyvenv.cfg file. Checks then ran with an already installed explicit CPython 3.10.19 path; no environment repair or package installation was performed."
+  ],
+  "next_step": "Root may proceed with the already authorized manual deployment of this sanity-first RGBT234 launcher after reading this zero-block source verdict. Only genuine runtime receipts can establish admission, parity and full-score completion."
+}

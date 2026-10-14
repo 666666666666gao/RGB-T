@@ -391,5 +391,71 @@
     "source_status": "SOURCE_PASS_WITH_NONBLOCKING_NOTES",
     "cpu_source_checks": "CPU_SOURCE_FIXTURES_AND_TWO_REAL_INVENTORIES_PASS",
     "source_runtime_location": "Prepared server namespace until existing infer/collection jobs finish; current running sources unchanged."
+  },
+  "pure_cad_other_benchmark_preparation_20261015": {
+    "scope": "Fill genuinely missing pure CAD baseline references on RGBT234, then RGBT210 once ready. Never rerun LasHeR baseline.",
+    "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+    "protocol": "Original CAD test crop, centered Hann argmax, Center head mapping and clipping; two templates, update every5 on weighted response>0.65.",
+    "status": "PURE_RGBT234_BASELINE_ADMITTED",
+    "sanity": "Original tracker methods extracted from current server source; same supplied pure network through a dict-field adapter, two real TRAIN prefixes, exact box/confidence/template parity and actual template updates.",
+    "first_dataset": "rgbt234",
+    "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "sequences": 234,
+    "frames": 116649,
+    "gpu_admission": "User authorized max two independent NN jobs/card after positive matched-work benchmark; require one current collector per card and >=12000MiB free.",
+    "source_review_required": true,
+    "estimated_runtime_minutes": [
+      45,
+      60
+    ],
+    "reference_limits": "Matches actual original test code around module-free checkpoint, not proof of exact historical user LasHeR configuration.",
+    "source_review": "R2_SOURCE_PASS_0_BLOCKS",
+    "real_train_parity": "2x40 predicted frames exact, ten actual template updates",
+    "actual_controller_pid": 4027100,
+    "actual_jobs": [
+      {
+        "pid": 4027101,
+        "physical_gpu": 2,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.infer_baseline",
+          "--checkpoint",
+          "/home/gaob/CADTrack_ep0014.pth.tar",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+          "--shard",
+          "0"
+        ]
+      },
+      {
+        "pid": 4027102,
+        "physical_gpu": 3,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.infer_baseline",
+          "--checkpoint",
+          "/home/gaob/CADTrack_ep0014.pth.tar",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+          "--shard",
+          "1"
+        ]
+      }
+    ],
+    "observed_utc": "2026-10-14T18:38:42.783569+00:00",
+    "formal_metrics": null,
+    "next_observation_bjt": "2026-10-15 03:30:00",
+    "early_baseline_progress_poll": false,
+    "preprocessing_correction": "Pure-only singleton batch stride6, after controlled actual-input diagnosis; shared data/model unchanged."
   }
 }

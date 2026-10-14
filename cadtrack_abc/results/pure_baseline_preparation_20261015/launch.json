@@ -1,0 +1,45 @@
+{
+  "started_utc": "2026-10-14T18:38:27.760104+00:00",
+  "dataset": "rgbt234",
+  "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+  "jobs": [
+    {
+      "pid": 4027101,
+      "physical_gpu": 2,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "pid": 4027102,
+      "physical_gpu": 3,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+        "--shard",
+        "1"
+      ]
+    }
+  ]
+}

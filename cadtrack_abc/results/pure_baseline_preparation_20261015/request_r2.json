@@ -1,0 +1,48 @@
+{
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "phase": "REVISED_SOURCE_REVIEW_AFTER_REAL_STRIDE_PARITY_FAILURE",
+  "files_sha256": {
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\pure_baseline_tracker.py": "26d4a94fafad25356017da2ebcfd0a1a99bfaa288df32a5c80f671a7d2553415",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\infer_baseline.py": "7f73227106891f5318a2cb8fef605facb8774bd662ac925a525776628ae5e538",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline_pipeline.py": "48c3b2a293dfd7f29b59173987cde0279c70cfe65a6582cd1fcb4ece03b22933",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\baseline.py": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\data.py": "7a608de3e43827e3ac6cfe5322bcfe3ce5d737deafda9b0d8645598b6e436c6d",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\score.py": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\environment.json": "ba6e4a41e3eb1d93dbe51f9f3abcd9ca0a96bdce6515a877ab7f98c42077719e",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\plan.json": "a44398c36b0610cce021c3af67f74f4f9df7c317abe2d0c8166109702b1a1942",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\lib\\models\\layers\\head.py": "958ee314ae200dd52355050dc1da8b46d5268da032e5fc1d0c6af99bab4c7431",
+    "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\vendor\\CADTrack\\experiments\\cadtrack\\cadtrack.yaml": "eb85514008d97dd7266249dfd5c30c30c173ac939ef7d155a8576a9de3e6d188",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_protocol_remote.stdout.txt": "261d9d4bad95439595b1eecab3d2ab5fa8c85fd9dff67e09a115be9e925204b9",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_remaining_protocol_remote.stdout.txt": "acb5a3b4726621387def90b4ee94a1cc0f2427df594cdbeac179d5c3e8003377",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\sanity_pure_cad_native_protocol_r2_remote.py": "a13eb966f1542ab9e4ca79428b9729110add33409c535794d391ef09f5d99c1d",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\launch_pure_cad_baseline_rgbt234_r2_remote.py": "5f0741753174f425d6e99eff060e0475fe99355752e450273f29d41469bfa3d6",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\read_pure_cad_sanity_failure_remote.stdout.txt": "8a7adc2ef293af6ad65627943b30c73b239caa01297a59f65c9622f8d0a53d7e",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_parity_remote.stdout.txt": "85496efad8db64cdb2c94ae0f08f7728dcd070cf279159f80f36e4557b3e22dc",
+    "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\diagnose_pure_cad_stride_remote.stdout.txt": "e3edc237d0a6a2d222b82b2021244ff08a76325164a7bf9bc37312d455ee5362"
+  },
+  "scope": {
+    "scope": "Fill genuinely missing pure CAD baseline references on RGBT234, then RGBT210 once ready. Never rerun LasHeR baseline.",
+    "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+    "protocol": "Original CAD test crop, centered Hann argmax, Center head mapping and clipping; two templates, update every5 on weighted response>0.65.",
+    "status": "SOURCE_PREPARED_NOT_DEPLOYED",
+    "sanity": "Original tracker methods extracted from current server source; same supplied pure network through a dict-field adapter, two real TRAIN prefixes, exact box/confidence/template parity and actual template updates.",
+    "first_dataset": "rgbt234",
+    "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "sequences": 234,
+    "frames": 116649,
+    "gpu_admission": "User authorized max two independent NN jobs/card after positive matched-work benchmark; require one current collector per card and >=12000MiB free.",
+    "source_review_required": true,
+    "estimated_runtime_minutes": [
+      45,
+      60
+    ],
+    "reference_limits": "Matches actual original test code around module-free checkpoint, not proof of exact historical user LasHeR configuration."
+  },
+  "instructions": "Review revised one-line fix and distinct-output R2 sanity/launcher against actual failure and controlled stride evidence; no SSH/GPU/NN/edits. Write response_r2.md/json with verdict and blocking_issues. Validate all listed source seals remain unchanged; source acceptance is not runtime.",
+  "change": "Only pure tracker crop tensor[0].unsqueeze(0), preserving actual native B1 stride; no shared data/model change or tolerance relaxation. R2 sanity output/log are distinct, old failed originals and source snapshots preserved. Formal baseline never started in R1."
+}
