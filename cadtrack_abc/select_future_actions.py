@@ -1,4 +1,4 @@
-"""Select one checkpoint from complete98-video comparisons, then retain it."""
+"""Select the overall best and a trained checkpoint; defer cleanup until testing."""
 import argparse
 import filecmp
 import json
@@ -40,6 +40,8 @@ def main():
         scores.append(dict(candidate, sequence_mean_iou=score,
                            frame_mean_iou=sum(r['iou_sum'] for r in records) / sum(r['valid_frames'] for r in records)))
     selected = max(scores, key=lambda value: value['sequence_mean_iou'])
+    trained_selected = max((value for value in scores if value['epoch'] > 0),
+                           key=lambda value: value['sequence_mean_iou'])
     selected_path = Path(selected['checkpoint']).resolve()
     best = fit / 'best.pth'
     shutil.copyfile(selected_path, best)
@@ -49,13 +51,24 @@ def main():
     FutureActionHead().load_state_dict(payload['future_action'], strict=True)
     if args.policy == 'search_actions':
         SearchActionHead().load_state_dict(payload['search_action'], strict=True)
+    trained_best = best
+    if trained_selected['checkpoint'] != selected['checkpoint']:
+        trained_best = fit / 'trained_best.pth'
+        trained_path = Path(trained_selected['checkpoint']).resolve()
+        shutil.copyfile(trained_path, trained_best)
+        assert filecmp.cmp(trained_path, trained_best, shallow=False)
+        trained_payload = torch.load(trained_best, map_location='cpu', weights_only=False)
+        assert trained_payload['policy_family'] == args.policy and trained_payload['epoch'] == trained_selected['epoch']
+        FutureActionHead().load_state_dict(trained_payload['future_action'], strict=True)
+        if args.policy == 'search_actions':
+            SearchActionHead().load_state_dict(trained_payload['search_action'], strict=True)
     result = {'selected': selected, 'best_checkpoint': str(best), 'candidates': scores,
+              'trained_selected': trained_selected, 'trained_best_checkpoint': str(trained_best),
               'full98_development_selection_complete': True, 'formal_metrics_complete': False,
               'selection_metric': 'Sequence-equal mean IoU on repeated98 development videos, not official test.',
-              'strict_future_head_reload': True, 'cleanup': 'Only listed own candidate_epoch weights; fixed teacher/pretrain untouched.'}
+              'strict_future_head_reload': True,
+              'cleanup': 'Deferred until selected and trained checkpoints finish all formal datasets; teacher/pretrain untouched.'}
     (fit / 'selection.json').write_text(json.dumps(result, indent=2))
-    for candidate in receipt['candidates']:
-        Path(candidate['checkpoint']).unlink()
     print(json.dumps(result), flush=True)
 
 

@@ -1,0 +1,115 @@
+{
+  "verdict": "SOURCE_PASS_WITH_NONBLOCKING_NOTES",
+  "scope": "SOURCE_ONLY_CURRENT_THREE_BENCHMARK_CLOSURE",
+  "blocking_count": 0,
+  "nonblocking_count": 1,
+  "model_requested": "gpt-6-astra",
+  "reasoning_effort_requested": "max",
+  "actual_routing": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "cross_family_audit_claimed": false,
+  "findings": [
+    {
+      "id": "N1",
+      "severity": "NON-BLOCKING",
+      "category": "DOCUMENTED_COMMAND_SYNCHRONIZATION",
+      "file": "cadtrack_abc/plan.json",
+      "lines": [
+        153,
+        345
+      ],
+      "related_file": "cadtrack_abc/future_pipeline.py",
+      "related_lines": [
+        96,
+        97
+      ],
+      "title": "Stored launch commands omit two newly required dataset-root arguments",
+      "evidence": "Both stored commands lack --rgbt210-root and --rgbt234-root; argparse now marks both required.",
+      "impact": "Copying either stored command exits during argument parsing before any job starts. The source pipeline itself is correct when the arguments are provided.",
+      "minimal_patch": "After real RGBT210 extraction and inventory finish, append --rgbt210-root with that verified root and --rgbt234-root /home/gaob/CADTrack-ABC/dataset/rgbt234 to both stored commands. Do not invent a ready RGBT210 root while current_acceptance_20261015.rgbt210_root is null. Retain command_executed=false until an actual execution occurs.",
+      "required_before_using_stored_commands": true,
+      "source_patch_required": false
+    }
+  ],
+  "requirements": {
+    "epoch0_winner_still_tests_best_positive_epoch_on_all_three_datasets": "PASS_SOURCE",
+    "selected_trained_checkpoint_can_share_same_three_reports": "PASS_SOURCE",
+    "scheduled_candidates_retained_until_all_required_formal_reports": "PASS_SOURCE",
+    "distinct_trained_best_retained_for_result_audit": "PASS_SOURCE",
+    "same_checkpoint_configuration_policy_across_datasets_per_role": "PASS_SOURCE",
+    "full98_development_only_selection": "PASS_SOURCE",
+    "dataset_inventory_checked_before_first_new_job": "PASS_SOURCE_NUMERICAL_INVENTORY_ACTUAL_DATA_PENDING",
+    "lasher_245_sequences_220703_frames": "PASS_SOURCE",
+    "rgbt210_210_sequences_no_rgbt234_substitution": "PASS_SOURCE_ACTUAL_DATA_PENDING",
+    "rgbt234_234_sequences_116649_frames": "PASS_SOURCE",
+    "actual_root_ground_truth_replaces_toolkit_default_ground_truth": "PASS_SOURCE_GIVEN_REQUEST_TOOLKIT_CONTRACT",
+    "lasher_npr_pr_sr_rgbt210_pr_sr_rgbt234_mpr_msr": "PASS_SOURCE_GIVEN_REQUEST_TOOLKIT_CONTRACT",
+    "initial_gt_only_in_inference_no_later_gt_step_input": "PASS_SOURCE",
+    "all_final_completion_flags_follow_every_required_role_and_dataset": "PASS_SOURCE",
+    "pipeline_passes_explicit_lasher_plus6_target": "PASS_SOURCE",
+    "no_lasher_pure_baseline_rerun": "PASS_SOURCE",
+    "parent_teacher_pretrain_boundaries": "PASS_SOURCE",
+    "overall_research_goal_not_automatically_completed": "PASS_SOURCE"
+  },
+  "validation": {
+    "python_ast_parse": {
+      "cadtrack_abc/future_pipeline.py": "PASS",
+      "cadtrack_abc/select_future_actions.py": "PASS",
+      "cadtrack_abc/infer.py": "PASS",
+      "cadtrack_abc/score.py": "PASS",
+      "cadtrack_abc/train_future_actions.py": "PASS"
+    },
+    "plan_json_parse": "PASS",
+    "stored_commands_missing_both_new_root_arguments": true,
+    "interpreter_used": "E:/python.exe",
+    "initial_static_check_failure": "PATH resolved E:/Scripts/python.exe and exited with No pyvenv.cfg file. A direct call to existing E:/python.exe then completed AST/JSON parsing; no environment changes.",
+    "project_modules_imported_or_executed": false,
+    "ssh_calls": 0,
+    "nn_launches": 0,
+    "gpu_calls": 0,
+    "source_files_modified": false,
+    "source_deployed": false
+  },
+  "inputs": {
+    "cadtrack_abc/future_pipeline.py": {
+      "before_sha256": "27e90708905daa9c02e46c40ba1bac8bb48511d35c13ba4746a625052f3a3022",
+      "after_sha256": "27e90708905daa9c02e46c40ba1bac8bb48511d35c13ba4746a625052f3a3022",
+      "request_digest_matched": true
+    },
+    "cadtrack_abc/select_future_actions.py": {
+      "before_sha256": "d5ca1d507d5ed70f56dae7c967942a61e7de37a70c95a6fe3214ebfa9fbcf553",
+      "after_sha256": "d5ca1d507d5ed70f56dae7c967942a61e7de37a70c95a6fe3214ebfa9fbcf553",
+      "request_digest_matched": true
+    },
+    "cadtrack_abc/infer.py": {
+      "before_sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39",
+      "after_sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39",
+      "request_digest_matched": true
+    },
+    "cadtrack_abc/score.py": {
+      "before_sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab",
+      "after_sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab",
+      "request_digest_matched": true
+    },
+    "cadtrack_abc/plan.json": {
+      "before_sha256": "ab202868d6bfed8a2d34f2b3ecdbf6851bf856c80629a800a34a076b39b993a4",
+      "after_sha256": "ab202868d6bfed8a2d34f2b3ecdbf6851bf856c80629a800a34a076b39b993a4"
+    },
+    "cadtrack_abc/train_future_actions.py": {
+      "before_sha256": "0f34c5591a536adb3fef97fb0e0f43a5e34fd7ad9b9cd06b6ab5da5376e1648e",
+      "after_sha256": "0f34c5591a536adb3fef97fb0e0f43a5e34fd7ad9b9cd06b6ab5da5376e1648e"
+    }
+  },
+  "inputs_changed": false,
+  "changed_inputs": [],
+  "limitations": [
+    "Installed toolkit implementation, original images/annotations, actual checkpoints and native receipts were not reloaded. Toolkit interface and annotation formats were reviewed under the request's stated verified contract.",
+    "RGBT210 download, extraction and actual inventory remain pending; source approval does not establish data readiness.",
+    "No runtime reload, training or three-benchmark metric result is established by this review.",
+    "Existing running jobs were neither queried nor changed; this response does not authorize bypassing their agreed prerequisites.",
+    "Queue state can retain RUNNING or COMMANDS_EXITED_SUCCESSFULLY after an artifact-validation assertion, as already documented in plan.json. Final completion still requires the complete receipt chain.",
+    "No additional fallback, compatibility branch, try/except or runtime hash mechanism is proposed. Input hashes only attest review-input preservation."
+  ],
+  "goal_completion_proven": false
+}

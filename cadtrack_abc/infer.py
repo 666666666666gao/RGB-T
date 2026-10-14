@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--config', required=True)
     parser.add_argument('--checkpoint', required=True)
     parser.add_argument('--policy', choices=['native', 'future_actions', 'search_actions'], default='native')
-    parser.add_argument('--dataset', choices=['lasher', 'rgbt234'], required=True)
+    parser.add_argument('--dataset', choices=['lasher', 'rgbt210', 'rgbt234'], required=True)
     parser.add_argument('--root', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--shard', type=int, required=True)
@@ -46,14 +46,14 @@ def main():
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     all_sequences = sorted(p for p in Path(args.root).iterdir() if p.is_dir())
-    expected = 245 if args.dataset == 'lasher' else 234
+    expected = {'lasher': 245, 'rgbt210': 210, 'rgbt234': 234}[args.dataset]
     assert len(all_sequences) == expected
     records = []
     for index, sequence in enumerate(all_sequences[args.shard::args.shards], 1):
         rgb = sorted((sequence / 'visible').iterdir())
         tir = sorted((sequence / 'infrared').iterdir())
         assert len(rgb) == len(tir)
-        annotation = sequence / ('init.txt' if args.dataset == 'lasher' else 'visible.txt')
+        annotation = sequence / ('visible.txt' if args.dataset == 'rgbt234' else 'init.txt')
         with annotation.open() as stream:
             initial = np.fromstring(stream.readline().strip(), sep=',', dtype=np.float32)
         assert initial.shape == (4,) and (initial[2:] > 0).all()

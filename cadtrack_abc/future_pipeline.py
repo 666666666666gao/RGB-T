@@ -1,9 +1,4 @@
-"""One deferred future-C round after the native20ep/fullLas result is closed.
-
-Uses the project's direct subprocess pipeline style. No retry, GPU reassignment,
-new baseline evaluation or additional dataset. Each dependency needs verified
-success, rather than merely a process that has exited.
-"""
+"""Train, select on full98, then fully test selected and trained models on three benchmarks."""
 import argparse
 import filecmp
 import hashlib
@@ -14,6 +9,29 @@ import shutil
 import subprocess
 import sys
 import time
+
+import numpy as np
+
+
+def validate_benchmark_inventory(dataset, root):
+    sequences = sorted(path for path in root.iterdir() if path.is_dir())
+    assert len(sequences) == {'lasher': 245, 'rgbt210': 210, 'rgbt234': 234}[dataset]
+    frames = 0
+    for sequence in sequences:
+        annotation = sequence / ('visible.txt' if dataset == 'rgbt234' else 'init.txt')
+        labels = np.loadtxt(annotation, delimiter=',', ndmin=2)
+        rgb = list((sequence / 'visible').iterdir())
+        tir = list((sequence / 'infrared').iterdir())
+        assert labels.shape == (len(rgb), 4) and len(rgb) == len(tir), sequence.name
+        if dataset == 'rgbt234':
+            infrared = np.loadtxt(sequence / 'infrared.txt', delimiter=',', ndmin=2)
+            assert infrared.shape == labels.shape, sequence.name
+        frames += len(rgb)
+    if dataset == 'lasher':
+        assert frames == 220703
+    if dataset == 'rgbt234':
+        assert frames == 116649
+    return {'sequences': len(sequences), 'frames': frames}
 
 
 def validate_parent(parent):
@@ -75,13 +93,19 @@ def main():
     parser.add_argument('--sampling-root', help='Completed native TRAIN/DEV query root; reuse all four verified shards instead of repeating trajectories.')
     parser.add_argument('--collection-root', help='Completed native TRAIN/DEV action root; requires matching --sampling-root and reuses all four label shards.')
     parser.add_argument('--policy', choices=['future_actions', 'search_actions'], default='future_actions')
+    parser.add_argument('--rgbt210-root', required=True)
+    parser.add_argument('--rgbt234-root', required=True)
+    parser.add_argument('--lasher-target-gain', type=float, default=6.)
     args = parser.parse_args()
     assert not args.collection_root or args.sampling_root
     config_path = Path(args.config).resolve()
     config = json.loads(config_path.read_text())
-    assert config['physical_gpus'] == [2, 3] and config['evaluation_focus'] == 'lasher'
+    assert config['physical_gpus'] == [2, 3]
     parent = Path(config['output']).resolve()
     parent_checkpoint, parent_report = validate_parent(parent)
+    benchmark_roots = {'lasher': Path(config['test_root']).resolve(),
+                       'rgbt210': Path(args.rgbt210_root).resolve(), 'rgbt234': Path(args.rgbt234_root).resolve()}
+    benchmark_inventory = {name: validate_benchmark_inventory(name, root) for name, root in benchmark_roots.items()}
     inventory = json.loads((parent / 'manifest.json').read_text())
     parent_teacher_sha = hashlib.sha256(parent_checkpoint.read_bytes()).hexdigest()
     sampled_existing = {}
@@ -109,7 +133,8 @@ def main():
     state = {'status': 'RUNNING', 'parent_checkpoint': str(parent_checkpoint),
              'parent_metrics_percent': parent_report['overall_metrics_percent'],
              'teacher': str(teacher), 'teacher_sha256': teacher_sha,
-             'physical_gpus': [2, 3], 'baseline_rerun': False, 'evaluation_focus': 'lasher',
+             'physical_gpus': [2, 3], 'baseline_rerun': False, 'evaluation_focus': list(benchmark_roots),
+             'benchmark_inventory': benchmark_inventory, 'lasher_target_gain': args.lasher_target_gain,
              'policy_family': args.policy,
              'started_unix': time.time(), 'phases': {}}
 
@@ -209,30 +234,60 @@ def main():
     assert selected['full98_development_selection_complete'] and selected['strict_future_head_reload']
     best = selected['best_checkpoint']
     verified('select', {'checkpoint': best, 'selected': selected['selected']})
-    predictions = output / 'lasher_predictions'
-    commands = [['cadtrack_abc.infer', '--config', str(config_path), '--checkpoint', best, '--policy', args.policy,
-                 '--dataset', 'lasher', '--root', config['test_root'], '--output', str(predictions), '--shard', str(shard)] for shard in range(2)]
-    run('formal_inference', commands, [2, 3])
-    receipts = [json.loads((predictions / ('complete_shard' + str(shard) + '.json')).read_text()) for shard in range(2)]
-    assert all(receipt['completed'] and receipt['policy_family'] == args.policy and receipt['checkpoint'] == best for receipt in receipts)
-    assert sum(receipt['sequences'] for receipt in receipts) == 245 and sum(receipt['frames'] for receipt in receipts) == 220703
-    verified('formal_inference', {'checkpoint': best, 'sequences': 245, 'frames': 220703})
-    report_directory = output / 'lasher_report'
-    run('score', [['cadtrack_abc.score', '--dataset', 'lasher', '--root', config['test_root'],
-                   '--predictions', str(predictions), '--output', str(report_directory)]], [2])
-    report = json.loads((report_directory / 'full_report.json').read_text())
-    assert report['completed'] and report['sequences'] == 245 and report['frames'] == 220703
-    assert set(report['overall_metrics_percent']) == {'PR', 'NPR', 'SR'} and report['checkpoint'] == best
-    verified('score', {'report': str(report_directory / 'full_report.json'), 'metrics': report['overall_metrics_percent']})
+    checkpoints = {'selected': best}
+    if selected['trained_best_checkpoint'] != best:
+        checkpoints['trained'] = selected['trained_best_checkpoint']
+    formal_reports = {}
+    for role, checkpoint in checkpoints.items():
+        formal_reports[role] = {}
+        for dataset, root in benchmark_roots.items():
+            predictions = output / role / (dataset + '_predictions')
+            phase = 'formal_' + role + '_' + dataset
+            commands = [['cadtrack_abc.infer', '--config', str(config_path), '--checkpoint', checkpoint, '--policy', args.policy,
+                         '--dataset', dataset, '--root', str(root), '--output', str(predictions), '--shard', str(shard)] for shard in range(2)]
+            run(phase, commands, [2, 3])
+            receipts = [json.loads((predictions / ('complete_shard' + str(shard) + '.json')).read_text()) for shard in range(2)]
+            expected = benchmark_inventory[dataset]
+            assert all(receipt['completed'] and receipt['dataset'] == dataset and receipt['policy_family'] == args.policy
+                       and receipt['checkpoint'] == checkpoint for receipt in receipts)
+            assert sum(receipt['sequences'] for receipt in receipts) == expected['sequences']
+            assert sum(receipt['frames'] for receipt in receipts) == expected['frames']
+            verified(phase, {'checkpoint': checkpoint, **expected})
+            report_directory = output / role / (dataset + '_report')
+            phase = 'score_' + role + '_' + dataset
+            run(phase, [['cadtrack_abc.score', '--dataset', dataset, '--root', str(root),
+                         '--predictions', str(predictions), '--output', str(report_directory),
+                         '--lasher-target-gain', str(args.lasher_target_gain)]], [2])
+            report = json.loads((report_directory / 'full_report.json').read_text())
+            assert report['completed'] and report['dataset'] == dataset and report['checkpoint'] == checkpoint
+            assert report['sequences'] == expected['sequences'] and report['frames'] == expected['frames']
+            assert set(report['overall_metrics_percent']) == {'lasher': {'PR', 'NPR', 'SR'},
+                                                             'rgbt210': {'PR', 'SR'}, 'rgbt234': {'MPR', 'MSR'}}[dataset]
+            formal_reports[role][dataset] = {'report': str(report_directory / 'full_report.json'),
+                                             'checkpoint': checkpoint, 'epoch': report['epoch'],
+                                             'metrics': report['overall_metrics_percent']}
+            if dataset == 'lasher':
+                formal_reports[role][dataset]['lasher_stage_goal'] = report['lasher_stage_goal']
+            verified(phase, formal_reports[role][dataset])
+    selected['formal_metrics_complete'] = True
+    selected['formal_reports'] = formal_reports
+    (fit / 'selection.json').write_text(json.dumps(selected, indent=2))
+    for candidate in fitted['candidates']:
+        path = Path(candidate['checkpoint']).resolve()
+        assert path.parent == fit.resolve() and path.name == 'candidate_epoch' + str(candidate['epoch']).zfill(2) + '.pth'
+        path.unlink()
     assert filecmp.cmp(parent_checkpoint, teacher, shallow=False)
     teacher.unlink()
-    state.update(status='FUTURE_ROUND_COMPLETE', best_checkpoint=best, formal_report=str(report_directory / 'full_report.json'),
-                 lasher_stage_goal=report['lasher_stage_goal'], overall_goal_status_not_changed=True,
+    state.update(status='FUTURE_ROUND_COMPLETE', best_checkpoint=best, formal_reports=formal_reports,
+                 full_three_benchmarks_complete=True, trained_checkpoint_formal_metrics_complete=True,
+                 trained_checkpoint_report_role='trained' if 'trained' in formal_reports else 'selected',
+                 trained_best_retained_for_result_audit=selected['trained_best_checkpoint'] != best,
+                 lasher_stage_goal=formal_reports['selected']['lasher']['lasher_stage_goal'], overall_goal_status_not_changed=True,
                  completed_unix=time.time(), temporary_teacher_cleaned=True)
     store()
     (output / 'pipeline_complete.json').write_text(json.dumps(state, indent=2))
-    print(json.dumps({'status': state['status'], 'metrics': report['overall_metrics_percent'],
-                      'lasher_stage_goal': report['lasher_stage_goal']}), flush=True)
+    print(json.dumps({'status': state['status'], 'formal_reports': formal_reports,
+                      'lasher_stage_goal': state['lasher_stage_goal']}), flush=True)
 
 
 if __name__ == '__main__':

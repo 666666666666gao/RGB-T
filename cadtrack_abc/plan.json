@@ -150,11 +150,11 @@
       "completed_native_four_shards_required_before_any_new_job": true,
       "source_review": "same-family/provisional; actual routing UNATTESTED",
       "cpu_fixture_tests_passed": 7,
-      "next_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.future_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/native_future_round_20261014 --sampling-root /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
+      "next_command": null,
       "command_executed": false,
       "repeated_sampling_when_reusing": false,
       "performance_goal_achieved": false,
-      "next_command_role": "Prepared control only; not the repaired full main method."
+      "next_command_role": "Historical command superseded; current pipeline requires both verified benchmark roots."
     }
   },
   "native_round_completion": {
@@ -339,12 +339,57 @@
         10,
         20
       ],
-      "selection": "One best only after full98 continuous DEV; full245 official metrics next."
+      "selection": "Full98 continuous DEV; same selected checkpoint across all three benchmarks; best trained checkpoint also fully tested if epoch0 wins."
     },
     "collection_reuse": "--sampling-root and --collection-root: validate all four existing completed native shards before new fit; never recollect current 5697 queries.",
-    "prepared_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.future_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/native_search_action_round_20261015 --sampling-root /home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014 --collection-root /home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014 --policy search_actions",
+    "prepared_command": null,
     "command_executed": false,
     "persistent_rejected_tracklet_memory_complete": false,
-    "limitations": "Fixed native prefix/H3 native continuation labels; no deployment-distribution or +2 claim. Real visual routing test must pass after current collectors release GPU2/3."
+    "limitations": "Fixed native prefix/H3 native continuation labels; no deployment-distribution or +2 claim. Real visual routing test must pass after current collectors release GPU2/3.",
+    "command_requires_verified_rgbt210_root": true
+  },
+  "current_acceptance_20261015": {
+    "status": "ACTIVE_UNMET",
+    "server": "2028",
+    "physical_gpus": [
+      2,
+      3
+    ],
+    "baseline_lasher_percent_user_provided": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "lasher_gain_target_percentage_points": 6,
+    "lasher_targets_percent": {
+      "PR": 78.74,
+      "NPR": 75.16,
+      "SR": 63.84
+    },
+    "baseline_lasher_rerun": false,
+    "formal_datasets": [
+      "lasher",
+      "rgbt210",
+      "rgbt234"
+    ],
+    "same_checkpoint_and_configuration_for_all_datasets": true,
+    "one_best_training_seed_allowed": true,
+    "three_successful_seeds_required": false,
+    "trained_model_full_scores_required_even_if_epoch0_wins": true,
+    "selection": "Complete98 continuous DEV; cached queries do not select the final model.",
+    "checkpoint_cleanup": "Scheduled candidates only after all required selected/trained full reports; keep trained_best until result audit if distinct.",
+    "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "rgbt210_status": "Official6,857,321,678-byte RAR download via local network to project dataset started; extraction/inventory pending.",
+    "rgbt210_root": null,
+    "baseline_other_datasets": "PureCAD full baseline and protocol required; no GOLA or enhanced-parent substitution.",
+    "R1": "Close frozen-search future-C and search+C after existing H3 labels, then full98 selection and all three full benchmarks.",
+    "R2": "Train fusion/head control, then competitive compressed history prompt before fusion and soft multifuture localization; frozen ViT extraction must be separate from trainable head.",
+    "R3": "Validated full A+B+C, equal-budget controls and full eight combinations; no independent contribution proven yet.",
+    "new_full_fit_started": false,
+    "goal_completion_proven": false,
+    "historical_records": "Earlier+2/LasHeR-only records retained unchanged as historical; this section supersedes their acceptance scope.",
+    "source_status": "SOURCE_PASS_WITH_NONBLOCKING_NOTES",
+    "cpu_source_checks": "CPU_SOURCE_FIXTURES_AND_TWO_REAL_INVENTORIES_PASS",
+    "source_runtime_location": "Prepared server namespace until existing infer/collection jobs finish; current running sources unchanged."
   }
 }

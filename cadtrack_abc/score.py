@@ -10,21 +10,22 @@ import numpy as np
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', choices=['lasher', 'rgbt234'], required=True)
+    parser.add_argument('--dataset', choices=['lasher', 'rgbt210', 'rgbt234'], required=True)
     parser.add_argument('--root', required=True)
     parser.add_argument('--predictions', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--toolkit', default='/data/wangwj/RGBT_toolkit-master/src')
+    parser.add_argument('--lasher-target-gain', type=float, default=2., help='Explicit experiment target; historical reports use +2.')
     args = parser.parse_args()
     sys.path.insert(0, args.toolkit)
-    from rgbt import LasHeR, RGBT234
+    from rgbt import LasHeR, RGBT210, RGBT234
     from rgbt.dataset.basedataset import initial_gt_file
-    evaluator = LasHeR() if args.dataset == 'lasher' else RGBT234()
+    evaluator = {'lasher': LasHeR, 'rgbt210': RGBT210, 'rgbt234': RGBT234}[args.dataset]()
     root, predictions, output = Path(args.root), Path(args.predictions), Path(args.output)
     receipts = [json.loads((predictions / ('complete_shard' + str(i) + '.json')).read_text()) for i in range(2)]
     assert all(r['completed'] for r in receipts)
     assert receipts[0]['checkpoint'] == receipts[1]['checkpoint']
-    expected = 245 if args.dataset == 'lasher' else 234
+    expected = {'lasher': 245, 'rgbt210': 210, 'rgbt234': 234}[args.dataset]
     names = list(evaluator.ALL)
     assert len(names) == expected and {p.name for p in root.iterdir() if p.is_dir()} == set(names)
     assert {p.stem for p in predictions.glob('*.txt')} == set(names)
@@ -34,7 +35,8 @@ def main():
     if args.dataset == 'lasher':
         evaluator.seqs_gt = {name: np.loadtxt(root / name / 'init.txt', delimiter=',', ndmin=2) for name in names}
     else:
-        evaluator.seqs_gt = initial_gt_file(str(root), names, 'visible.txt', 'infrared.txt', evaluator.bbox_transfun)
+        v_name, i_name = ('init.txt', 'init.txt') if args.dataset == 'rgbt210' else ('visible.txt', 'infrared.txt')
+        evaluator.seqs_gt = initial_gt_file(str(root), names, v_name, i_name, evaluator.bbox_transfun)
     evaluator.gt_path = str(root)
     for name in names:
         ground_truth = evaluator.seqs_gt[name] if args.dataset == 'lasher' else evaluator.seqs_gt[name]['visible']
@@ -49,7 +51,7 @@ def main():
         assert frame_count == 220703
     tracker = 'CADTrack_ABC'
     evaluator(tracker, str(predictions))
-    metrics = ['NPR', 'PR', 'SR'] if args.dataset == 'lasher' else ['MPR', 'MSR']
+    metrics = {'lasher': ['NPR', 'PR', 'SR'], 'rgbt210': ['PR', 'SR'], 'rgbt234': ['MPR', 'MSR']}[args.dataset]
     measured = {metric: getattr(evaluator, metric)(tracker) for metric in metrics}
     curves = {metric: np.asarray(value[1]) for metric, value in measured.items()}
     overall = {metric: float(value[0]) * 100 for metric, value in measured.items()}
@@ -73,7 +75,7 @@ def main():
               'mean_curves': {metric: {'thresholds': getattr(evaluator, metric + '_fun').thr.tolist(),
                                        'values': curves[metric].mean(0).tolist()} for metric in metrics},
               'scoring_toolkit': args.toolkit, 'ground_truth_root': str(root),
-              'protocol': 'Native rgbt toolkit including prediction rounding and NPR-before-PR/SR order; actual dataset GT.',
+              'protocol': 'Native dataset-specific rgbt toolkit and prediction rounding; LasHeR calls NPR before PR/SR; actual dataset GT.',
               'timing': {'fps': len(latency) / float(latency.sum()), 'latency_p50_ms': float(np.percentile(latency, 50) * 1000),
                          'latency_p95_ms': float(np.percentile(latency, 95) * 1000),
                          'scope': 'Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing.'},
@@ -83,9 +85,10 @@ def main():
         report['baseline_metrics_percent_user_provided'] = {'PR': 72.74, 'NPR': 69.16, 'SR': 57.84}
         report['delta_percentage_points_vs_user_reference'] = {metric: overall[metric] - report['baseline_metrics_percent_user_provided'][metric] for metric in metrics}
         report['lasher_stage_goal'] = {
-            'targets_percent': {'PR': 74.74, 'NPR': 71.16, 'SR': 59.84},
-            'per_metric_reached': {metric: overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + 2 for metric in metrics},
-            'all_three_reached': all(overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + 2 for metric in metrics),
+            'required_gain_percentage_points': args.lasher_target_gain,
+            'targets_percent': {metric: value + args.lasher_target_gain for metric, value in report['baseline_metrics_percent_user_provided'].items()},
+            'per_metric_reached': {metric: overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + args.lasher_target_gain for metric in metrics},
+            'all_three_reached': all(overall[metric] >= report['baseline_metrics_percent_user_provided'][metric] + args.lasher_target_gain for metric in metrics),
             'scope': 'Fixed model point estimates against user reference; does not prove independent module contributions or paired uncertainty.'}
         from .mechanism_summary import summarize_lasher
         mechanism = summarize_lasher(root, predictions, names)
