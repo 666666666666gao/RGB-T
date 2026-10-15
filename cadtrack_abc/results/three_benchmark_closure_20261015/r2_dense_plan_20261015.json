@@ -107,7 +107,11 @@
         "native_weight_source": "vendor/CADTrack/experiments/cadtrack/cadtrack.yaml:63-64"
       },
       "initialization_policy": "Only clip-first annotation initializes state. Later GT is for loss/labels, not search centers or accepted history.",
-      "inference_precision": "Preserve float32 baseline comparison; any training autocast is measured and disclosed before locking."
+      "inference_precision": "Preserve float32 baseline comparison; any training autocast is measured and disclosed before locking.",
+      "data_generator_seed": 42,
+      "data_rng_separate_from_model_initialization": true,
+      "data_order_witness": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_data_order_1315/data_rng_cpu_witness.json",
+      "data_order_implementation": "Pass an independently seeded torch.Generator to the training DataLoader/sampler. Record actual sequence, clip-start and query-index order hashes for both matched variants, independently of module initialization."
     },
     "variants": [
       {
@@ -138,9 +142,10 @@
       10,
       20
     ],
-    "checkpoint_selection": "Finish prescribed20 epochs; select each run by sequence-equal mean IoU from the six complete98-video evaluations. Cached/short-clip values only monitor.",
-    "official_testing": "One preselected checkpoint and unchanged configuration per run across all three complete datasets, including negative results.",
-    "parameter_count": "Measured from the implemented warm model; not inferred from the old414164 ABC parameters."
+    "checkpoint_selection": "Finish prescribed20 epochs; use complete98-video sequence-equal mean IoU for overall best and separately best positive epoch. Cached/short-clip values only monitor. If overall best is epoch0, retain and label it as initialization, and still formally test the preselected best positive epoch.",
+    "official_testing": "One preselected checkpoint/config per reported trained run across all three complete datasets, including negative results. An unchanged pure epoch0 uses the user-provided LasHeR reference and existing pure RGB reports, without rerunning forbidden pure LasHeR. A positive-epoch result is never replaced by parent scores.",
+    "parameter_count": "Measured from the implemented warm model; not inferred from the old414164 ABC parameters.",
+    "selection_semantics_source": "cadtrack_abc/select_future_actions.py:45-79 separates selected and trained_selected; new dense runner must retain these reporting semantics without loading the future-action model family."
   },
   "M0": {
     "prerequisite": "Current R1 matched formal chain terminal, original controller exit verified; new isolated implementation and source review completed.",
@@ -150,7 +155,8 @@
       "Verify float32 epoch0 outputs/crops/Hann/update decisions against original pure path; zero prompt residual gives identical behavior.",
       "Real finite forward/backward: localization/fusion and enabled A have finite nonzero gradients and parameter changes; frozen ViT tensors remain exact; changed checkpoint strictly reloads.",
       "Use the actual Center head normalized cxcywh convention and separate supervised regression indexing from prediction-driven tracking state.",
-      "Measure batch32/64 training clips/sec, peak allocation and wall time; choose the same feasible batch for both formal runs. No assumption that inference concurrency measurements apply to training."
+      "Measure batch32/64 training clips/sec, peak allocation and wall time; choose the same feasible batch for both formal runs. No assumption that inference concurrency measurements apply to training.",
+      "In the actual new video-data runner, verify the two variants consume the same sequence/clip-start/query order hash using a separate data RNG. The completed CPU DataLoader witness is a precondition demonstration, not integrated R2 qualification."
     ],
     "actual_training_updates_completed": 0,
     "new_source_implemented": false
@@ -256,7 +262,8 @@
     "cache_metrics_are_not_formal_metrics": true,
     "best_weights_cleanup": "Keep necessary candidates/dependencies until selection, formal reports and audits close; then remove unused produced weights and retain required best dependencies.",
     "second_baseline": "SUTrack transfer remains later; do not postpone the current core training by adding datasets or baseline families.",
-    "frontier_primitive": "None required; no diffusion/LLM component introduced."
+    "frontier_primitive": "None required; no diffusion/LLM component introduced.",
+    "epoch0_is_training_gain": false
   },
   "goal_achieved": false
 }
