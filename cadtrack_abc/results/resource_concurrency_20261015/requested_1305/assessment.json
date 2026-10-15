@@ -1,0 +1,45 @@
+{
+  "status": "RESOURCE_ASSESSMENT_COMPLETE",
+  "server": "2028",
+  "physical_gpus": [
+    2,
+    3
+  ],
+  "sample_started_utc": "2026-10-15T05:08:20.065657+00:00",
+  "sample_observed_utc": "2026-10-15T05:08:50.152902+00:00",
+  "active_project_neural_processes": 4,
+  "decision": "Original SSH-interrupted phase was closed; retain completed LasHeR, run two independent remaining datasets concurrently, two inference workers per card. No third worker per card.",
+  "evidence": {
+    "benchmark": "cadtrack_abc/results/resource_concurrency_20261015/full98_0528/benchmark_complete.json",
+    "benchmark_sha256": "67246050cc9f032228d93d2d0977b84138324e1aa454da558ae6d1bff4a12a9e",
+    "serial_seconds": 127.1950659059803,
+    "parallel_seconds": 80.81744404599885,
+    "aggregate_throughput_speedup": 1.573856577715879,
+    "frames_per_condition": 2668,
+    "predictions_byte_equal": true,
+    "scope": "Four complete DEV videos per phase, same checkpoint and work; serial/parallel/parallel/serial order. End-to-end timing includes process/model startup and decoding. Short throughput study, not accuracy result."
+  },
+  "interpretation": "Memory and CPU headroom are measured separately from throughput. The equal-work test supports two workers per card. Three workers and training concurrency have not been measured.",
+  "new_neural_jobs_started": 4,
+  "new_training_started": false,
+  "production_source_modified": false,
+  "temperature_or_power_queried": false,
+  "instrumentation_changes": [
+    {
+      "path": "profile_requested_1305_remote.py",
+      "change": "Standalone30-second read-only resource sampler; no production code changes."
+    },
+    {
+      "path": "resources.json",
+      "change": "Saved resource sample and process identity."
+    },
+    {
+      "path": "assessment.json",
+      "change": "Saved scheduling decision and equal-work evidence."
+    },
+    {
+      "path": "docs/HANDOFF_20261002.md",
+      "change": "Append results to the existing sole human handoff."
+    }
+  ]
+}

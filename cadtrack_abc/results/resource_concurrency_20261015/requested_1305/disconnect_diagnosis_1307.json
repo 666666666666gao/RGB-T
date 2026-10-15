@@ -1,0 +1,741 @@
+{
+  "observed_utc": "2026-10-15T05:05:57.450985+00:00",
+  "controller_pid": 85361,
+  "controller_actual": "",
+  "original_state": {
+    "status": "RUNNING",
+    "controller_pid": 85361,
+    "started_utc": "2026-10-14T23:03:35.416634+00:00",
+    "physical_gpu": 3,
+    "max_workers_per_gpu": 2,
+    "first_parent_observation_bjt": "2026-10-15 07:12:00",
+    "subsequent_wait_seconds": 240,
+    "policy": "future_actions",
+    "phases": {
+      "develop_epoch00": {
+        "status": "REUSED_VERIFIED_COMPLETE",
+        "original_native_sessions": [
+          46511,
+          25976
+        ],
+        "original_child_exit_codes": [
+          0,
+          0
+        ],
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6498416023214861,
+          "extra_forwards": 0,
+          "future_interventions": 0
+        }
+      },
+      "develop_epoch01": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-14T23:24:00.555841+00:00",
+        "jobs": [
+          {
+            "pid": 104046,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 104047,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-14T23:55:32.585404+00:00",
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6576578945909836,
+          "extra_forwards": 0,
+          "future_interventions": 575
+        }
+      },
+      "develop_epoch02": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch02",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch02",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-14T23:55:32.588700+00:00",
+        "jobs": [
+          {
+            "pid": 134760,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch02",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 134761,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch02",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-15T00:36:20.412270+00:00",
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6532990292512945,
+          "extra_forwards": 0,
+          "future_interventions": 1598
+        }
+      },
+      "develop_epoch05": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch05",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch05",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-15T00:36:20.415450+00:00",
+        "jobs": [
+          {
+            "pid": 179680,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch05",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 179681,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch05",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-15T01:02:23.916045+00:00",
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6539118107104179,
+          "extra_forwards": 0,
+          "future_interventions": 472
+        }
+      },
+      "develop_epoch10": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch10",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch10",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-15T01:02:23.919068+00:00",
+        "jobs": [
+          {
+            "pid": 216152,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch10",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 216153,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch10",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-15T01:27:07.081197+00:00",
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6639468980078794,
+          "extra_forwards": 0,
+          "future_interventions": 1041
+        }
+      },
+      "develop_epoch20": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch20",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.validate_future_actions",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch20",
+            "--policy",
+            "future_actions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-15T01:27:07.084130+00:00",
+        "jobs": [
+          {
+            "pid": 239445,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch20",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 239446,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch20",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-15T01:52:06.997111+00:00",
+        "evidence": {
+          "sequences": 98,
+          "frames": 52200,
+          "sequence_equal_mean_iou": 0.6646335295648599,
+          "extra_forwards": 0,
+          "future_interventions": 1198
+        }
+      },
+      "select": {
+        "status": "COMMANDS_EXITED_ZERO",
+        "commands": [
+          [
+            "cadtrack_abc.select_future_actions",
+            "--fit",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions",
+            "--policy",
+            "future_actions",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+            "--development",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015"
+          ]
+        ],
+        "started_utc": "2026-10-15T01:52:07.000121+00:00",
+        "jobs": [
+          {
+            "pid": 260065,
+            "physical_gpu": null,
+            "command": [
+              "cadtrack_abc.select_future_actions",
+              "--fit",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions",
+              "--policy",
+              "future_actions",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--development",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015"
+            ]
+          }
+        ],
+        "return_codes": [
+          0
+        ],
+        "completed_utc": "2026-10-15T01:52:10.741544+00:00"
+      },
+      "infer_selected_lasher": {
+        "status": "VERIFIED_COMPLETE",
+        "commands": [
+          [
+            "cadtrack_abc.infer",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+            "--policy",
+            "future_actions",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+            "--shard",
+            "0",
+            "--shards",
+            "2"
+          ],
+          [
+            "cadtrack_abc.infer",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+            "--policy",
+            "future_actions",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+            "--shard",
+            "1",
+            "--shards",
+            "2"
+          ]
+        ],
+        "started_utc": "2026-10-15T01:52:10.761359+00:00",
+        "jobs": [
+          {
+            "pid": 260113,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.infer",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+              "--policy",
+              "future_actions",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/data/wangwj/dataset/LasHeR/testingset",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ]
+          },
+          {
+            "pid": 260114,
+            "physical_gpu": 3,
+            "command": [
+              "cadtrack_abc.infer",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+              "--policy",
+              "future_actions",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/data/wangwj/dataset/LasHeR/testingset",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          }
+        ],
+        "return_codes": [
+          0,
+          0
+        ],
+        "completed_utc": "2026-10-15T05:03:28.606918+00:00",
+        "inventory": {
+          "sequences": 245,
+          "frames": 220703
+        }
+      },
+      "score_selected_lasher": {
+        "status": "RUNNING",
+        "commands": [
+          [
+            "cadtrack_abc.score",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--predictions",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_report",
+            "--lasher-target-gain",
+            "6"
+          ]
+        ],
+        "started_utc": "2026-10-15T05:03:28.609882+00:00",
+        "jobs": [
+          {
+            "pid": 631540,
+            "physical_gpu": null,
+            "command": [
+              "cadtrack_abc.score",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/data/wangwj/dataset/LasHeR/testingset",
+              "--predictions",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_report",
+              "--lasher-target-gain",
+              "6"
+            ]
+          }
+        ]
+      }
+    },
+    "reports": {
+      "selected": {}
+    },
+    "new_training_started": false,
+    "optimizer_updates": 0,
+    "baseline_lasher_rerun": false,
+    "weights_cleaned": false,
+    "goal_completion_not_claimed": true,
+    "parent_epoch00_observation": {
+      "observed_utc": "2026-10-14T23:24:00.485845+00:00",
+      "jobs": [
+        {
+          "pid": 74342,
+          "shard": 0,
+          "actual_pid_live": false,
+          "exit_receipt_present": true
+        },
+        {
+          "pid": 74449,
+          "shard": 1,
+          "actual_pid_live": false,
+          "exit_receipt_present": true
+        }
+      ]
+    }
+  },
+  "checkpoint_sha256": "cffca0302460b60f505c2a09a5b651b10f1d1e2211178f68307a4d708080bf62",
+  "lasher_receipts": [
+    {
+      "completed": true,
+      "epoch": 20,
+      "policy_family": "future_actions",
+      "sequences": 123,
+      "frames": 107898
+    },
+    {
+      "completed": true,
+      "epoch": 20,
+      "policy_family": "future_actions",
+      "sequences": 122,
+      "frames": 112805
+    }
+  ],
+  "score_log_tail": "{\"dataset\": \"lasher\", \"metrics\": {\"NPR\": 67.91691949295868, \"PR\": 71.49577639689116, \"SR\": 57.13340035435991}, \"report\": \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_report/full_report.json\"}\n",
+  "lasher_report_exists": true,
+  "pending_output_exists": {
+    "rgbt234": false,
+    "rgbt210": false
+  },
+  "current_project_processes": []
+}
