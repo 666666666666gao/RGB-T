@@ -1,0 +1,411 @@
+{
+  "audit_skill": "experiment-audit",
+  "verdict": "WARN",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "reason_code": "arithmetic_pass_runtime_provenance_and_scope_qualifiers",
+  "summary": "All supplied main RGBT210/RGBT234 and pure RGBT234 standard scores, curves, attributes, CSVs and latency summaries reproduce exactly under actual NumPy2.2.6. WARN preserves timing metadata, runtime/source lineage, distribution provenance and research-claim limits.",
+  "generated_at": "2026-10-15T04:13:19.454739+00:00",
+  "date": "2026-10-15",
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "reviewer_model": "UNATTESTED",
+  "reviewer_reasoning": "UNATTESTED",
+  "actual_routing": "UNATTESTED",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "reviewer_family": "openai",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "agent_id": "/root/r1_main_rgbt_result_integrity_audit",
+  "verdict_id": "r1_main_rgbt_result_integrity_audit_20261015",
+  "input_root": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/main_rgbt_audit_inputs_1150",
+  "output_root": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_main_rgbt_formal_audit_20261015",
+  "blocking_issue_count": 0,
+  "blocking_issues": [],
+  "nonblocking_issue_count": 6,
+  "nonblocking_issues": [
+    {
+      "id": "W-TIMING",
+      "blocking": false,
+      "title": "Main timing metadata misstates GPU topology and throughput scope",
+      "evidence": [
+        "results/main/rgbt210/full_report.json:239",
+        "results/main/rgbt234/full_report.json:239",
+        "project/cadtrack_abc/results/r1_selected_and_formal_20261015/0700/run_r1_main_three_benchmarks_remote.py:92",
+        "project/cadtrack_abc/infer.py:63",
+        "project/cadtrack_abc/infer.py:68"
+      ],
+      "action": "Correct a qualified presentation copy to two main inference workers sharing physicalGPU2; retain original report/SHA and numbers; label fps as calls per summed worker frame seconds. Do not use it as matched speedup."
+    },
+    {
+      "id": "W-RUNTIME-PRECISION",
+      "blocking": false,
+      "title": "Strict-success results depend on NumPy scalar promotion",
+      "evidence": [
+        "documentation/HANDOFF_snapshot.md:4945",
+        "toolkit/rgbt/utils.py:185",
+        "toolkit/rgbt/metrics/metrics.py:75",
+        "toolkit/rgbt/metrics/metrics.py:228"
+      ],
+      "action": "Record NumPy2.2.6 with these results. Preserve first1.26.4 mismatch; do not silently replace protocol or inflate tolerances to hide it."
+    },
+    {
+      "id": "W-LINEAGE",
+      "blocking": false,
+      "title": "Weight bytes and subset source hashes do not attest historical neural execution",
+      "evidence": [
+        "main_benchmark_state.json:13",
+        "project/cadtrack_abc/infer.py:36",
+        "project/cadtrack_abc/baseline.py:27"
+      ],
+      "action": "Keep historical runtime imports, external base checkpoint identity, candidate-to-best copy and parent exit status explicitly partial/unattested."
+    },
+    {
+      "id": "W-PROVENANCE",
+      "blocking": false,
+      "title": "Dataset/toolkit origin authentication is limited to supplied source and copies",
+      "evidence": [
+        "project/cadtrack_abc/download_rgbt234.py:16",
+        "project/cadtrack_abc/score.py:39"
+      ],
+      "action": "Describe results as reproduced under the supplied installed toolkit/annotations; do not upgrade hashes or executor manifests to original-publisher semantic certification."
+    },
+    {
+      "id": "W-SCOPE",
+      "blocking": false,
+      "title": "Arithmetic success does not close the research objective",
+      "evidence": [
+        "documentation/plan_snapshot.json:387",
+        "documentation/plan_snapshot.json:389",
+        "main_benchmark_state.json:493"
+      ],
+      "action": "Keep three-module effectiveness, matched efficiency and unmet LasHeR+6 targets unproven; describe absent control/pure210 role evidence as unavailable in this bundle rather than declaring actual current status."
+    },
+    {
+      "id": "W-REFERENCE-LABEL",
+      "blocking": false,
+      "title": "Generic main report baseline_source field is LasHeR-specific",
+      "evidence": [
+        "results/main/rgbt234/full_report.json:241",
+        "results/pure_rgbt234/full_report.json:241"
+      ],
+      "action": "Qualify main report presentation so the supplied pure234 evaluation is identified separately; the old no-baseline/no-paired-CI sentence is only about the user LasHeR reference."
+    }
+  ],
+  "checks": {
+    "A": {
+      "name": "Ground-truth provenance",
+      "status": "WARN",
+      "supported_status": "PASS for supplied dataset annotations and scoring dataflow",
+      "evidence": [
+        "project/cadtrack_abc/score.py:35",
+        "project/cadtrack_abc/score.py:39",
+        "toolkit/rgbt/dataset/basedataset.py:9",
+        "project/cadtrack_abc/infer.py:56",
+        "project/cadtrack_abc/infer.py:65",
+        "project/cadtrack_abc/infer_baseline.py:35",
+        "project/cadtrack_abc/infer_baseline.py:45",
+        "project/cadtrack_abc/download_rgbt234.py:16",
+        "project/cadtrack_abc/download_rgbt234.py:45",
+        "project/cadtrack_abc/results/rgbt210_resume_20261015/completed_transfer_0646/extract_verify_official_rgbt210_remote.py:44"
+      ],
+      "details": [
+        "All678 supplied annotation files were read. RGBT210 uses210 init.txt files/104706 frames. RGBT234 uses234 visible.txt and234 infrared.txt files/116649 paired frames. Supplied GT contains no model-output reference substitution in the scoring path.",
+        "Inference source consumes the first annotation for initialization and subsequent images/state for model.step; after initialization, main infer.py never reads later annotation rows. Pure inference loads labels but uses labels[0] only. Source inspection is not runtime neural attestation.",
+        "RGBT234 was sourced from a mirror archive according to its download source, and RGBT210 from a downloaded archive according to extraction source/plan. Original archive bytes, publisher signatures, source images and an independently authenticated upstream annotation copy are absent. Therefore official-distribution identity and visual annotation correctness are not independently certified. Executor manifests establish byte associations, not semantic truth."
+      ]
+    },
+    "B": {
+      "name": "Normalization and exact installed protocol",
+      "status": "PASS",
+      "evidence": [
+        "toolkit/rgbt/utils.py:31",
+        "toolkit/rgbt/dataset/basedataset.py:22",
+        "toolkit/rgbt/dataset/rgbt210_dataset.py:18",
+        "toolkit/rgbt/dataset/rgbt210_dataset.py:21",
+        "toolkit/rgbt/dataset/rgbt234_dataset.py:18",
+        "toolkit/rgbt/dataset/rgbt234_dataset.py:22",
+        "toolkit/rgbt/metrics/metrics.py:28",
+        "toolkit/rgbt/metrics/metrics.py:62",
+        "toolkit/rgbt/metrics/metrics.py:177",
+        "toolkit/rgbt/metrics/metrics.py:212",
+        "toolkit/rgbt/utils.py:122",
+        "toolkit/rgbt/utils.py:162",
+        "documentation/HANDOFF_snapshot.md:4945"
+      ],
+      "details": [
+        "No prediction-statistic normalization. Per-sequence curves divide counts by that sequence frame count; the benchmark averages sequences equally. Precision uses CLE<=t for51 thresholds0..50 and reports index20. Success uses IoU>t for21 thresholds0..1 and reports the arithmetic mean of all21 values, not trapezoidal AUC. Percentages multiply by100.",
+        "Raw predictions are written at3 decimals, loaded as float32, then rounded to integer via NumPy round(0). Source uses ltwh, center x+(w-1)/2, inclusive endpoint IoU with area w*h. Main210 PR/SR explicitly replace the first predicted box by GT yet retain the frame in the denominator. RGBT234 MPR/MSR do not overwrite it; all supplied first predictions already equal visible GT.",
+        "RGBT210 loads the same init.txt for both modality entries but PR/SR use visible GT only. RGBT234 uses min(CLE_visible,CLE_infrared) and max(IoU_visible,IoU_infrared) independently per frame;87479/116649 paired GT rows differ across modalities. These are distinct dataset definitions, not interchangeable PR/SR and MPR/MSR.",
+        "All raw/rounded predicted widths/heights are positive and all predictions/latencies finite. RGBT210 has3 nonpositive-width/height GT rows, retained unchanged in the native denominator; no LasHeR validity filter was transplanted. Nonpositive x/y alone is not filtered for either RGBT dataset.",
+        "Actual NumPy2.2.6 reproduces every reported curve and scalar exactly. NumPy1.26.4 legacy scalar promotion shifts strict-success boundary counts: +0.01186474091734624pp SR for210,+0.013693544576128147pp MSR for main234,+0.016702509770652796pp MSR for pure234 when moving from1.26.4 to2.2.6. Both original runs and all changed cells are preserved. No thresholds, GT, source metric or denominators were changed. Historical remote package identity remains documented, not independently attested."
+      ]
+    },
+    "C": {
+      "name": "Files, numbers, completion and lineage",
+      "status": "WARN",
+      "supported_status": "PASS for scoped arithmetic, local bytes and internal completion consistency",
+      "evidence": [
+        "results/main/rgbt210/full_report.json:2",
+        "results/main/rgbt234/full_report.json:2",
+        "results/pure_rgbt234/full_report.json:2",
+        "main_benchmark_state.json:8",
+        "main_benchmark_state.json:13",
+        "main_benchmark_state.json:264",
+        "main_benchmark_state.json:407",
+        "main_benchmark_state.json:454",
+        "main_observation_1150.json:4",
+        "selection_after_formal.json:2",
+        "selection_after_formal.json:54",
+        "project/cadtrack_abc/select_future_actions.py:39",
+        "project/cadtrack_abc/infer.py:36",
+        "project/cadtrack_abc/baseline.py:27",
+        "project/cadtrack_abc/results/r1_selected_and_formal_20261015/0700/run_r1_main_three_benchmarks_remote.py:26"
+      ],
+      "details": [
+        "678 prediction text files and678 latency arrays exist: main210/234 and pure234. All678 sequence-run entries,338004 prediction rows,337326 initialization-excluded timings, six shard receipts,1356 per-sequence metric values,48816 per-sequence curve cells,216 mean-curve cells and72 attribute metric values were recomputed. JSON and original CSV values agree exactly. Raw attribute text independently reconstructs all36 reported attribute groups; exported membership was not merely trusted.",
+        "Selected best.pth is2603720 bytes, SHA256 a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8; it matches main controller and final observation. Config and all14 launch-listed source hashes match. Selected epoch10 is the maximum among all six reported DEV sequence-IoU summaries and agrees with all main receipts/reports; trained_best equals best.",
+        "Selection metadata itself has no independent weight digest. Candidate epoch10 bytes and raw98-video DEV predictions/annotations are absent here, so candidate-to-best byte copying and DEV score recomputation are not re-attested. The external pure/base pretrain bytes are absent. No weights were deserialized or network loaded.",
+        "Main controller records six inference children and three scoring children exit0 across three datasets. For the two newly audited RGBT datasets, all four inference and two score child codes are0, exact frames/files exist, and the final observation reports controller PID absent. There is no parent controller OS exit-code receipt in this bundle; absence of a PID alone does not prove successful exit. Pure234 has both complete shard receipts and full outputs but no supplied pipeline OS-exit record.",
+        "Source-at-launch coverage omits actual runtime dependencies search_actions.py,counterfactual.py,ported_modules.py,vendor files and the installed scoring toolkit/runtime. Their collected bytes are hashed but cannot retrospectively prove the historical import graph or the loaded tensor identity."
+      ]
+    },
+    "D": {
+      "name": "Called metrics versus unused paths",
+      "status": "PASS",
+      "evidence": [
+        "project/cadtrack_abc/results/r1_selected_and_formal_20261015/0700/run_r1_main_three_benchmarks_remote.py:102",
+        "project/cadtrack_abc/score.py:53",
+        "project/cadtrack_abc/score.py:54",
+        "project/cadtrack_abc/score.py:55",
+        "project/cadtrack_abc/score.py:63",
+        "project/cadtrack_abc/score.py:70",
+        "project/cadtrack_abc/score.py:75",
+        "project/cadtrack_abc/score.py:84",
+        "project/cadtrack_abc/baseline_pipeline.py:39",
+        "toolkit/rgbt/dataset/rgbt210_dataset.py:86",
+        "toolkit/rgbt/dataset/rgbt234_dataset.py:104"
+      ],
+      "details": [
+        "The current controller invokes cadtrack_abc.score after inference. Its measured mapping calls PR/SR for210 and MPR/MSR for234. Dataset methods dispatch to the exact metric classes; all corresponding outputs occur in real JSON/CSV files and match independent recomputation.",
+        "NPR/LasHeR metrics and GTOT metrics exist in the shared toolkit but are outside these RGBT calls by design; no missing RGBT NPR claim was manufactured. Development IoU and training utility are separate source paths and are not used as formal benchmark metrics.",
+        "score.py only calls mechanism_summary for LasHeR. RGBT per-frame mechanism JSON generated by infer.py is not in these supplied inputs, and there are no RGBT mechanism-report claims supported by this audit. No independent A/B/C contribution can be inferred from live code or a trained-head receipt."
+      ]
+    },
+    "E": {
+      "name": "Scope and claim ceiling",
+      "status": "WARN",
+      "evidence": [
+        "fit_complete.json:2",
+        "fit_complete.json:6",
+        "fit_complete.json:66",
+        "documentation/plan_snapshot.json:351",
+        "documentation/plan_snapshot.json:376",
+        "documentation/plan_snapshot.json:387",
+        "documentation/plan_snapshot.json:389",
+        "documentation/HANDOFF_snapshot.md:5175",
+        "documentation/HANDOFF_snapshot.md:5189",
+        "documentation/HANDOFF_snapshot.md:5195",
+        "main_benchmark_state.json:493",
+        "results/main/rgbt234/full_report.json:239"
+      ],
+      "details": [
+        "Supported scope is the fixed selected main search_actions epoch10/seed42 reported RGBT210 and RGBT234 results, plus the supplied pure CAD epoch14 RGBT234 prediction set. Training receipt says20 epochs/1600 updates on search+future-action heads with native ABC/motion coordinates frozen; no full visual/ABC retraining is established by this bundle. One selected seed is expressly allowed; multiple seeds are not an acceptance requirement.",
+        "A separate completed LasHeR audit exists and the current main controller now records all three formal benchmarks complete. This supersedes earlier snapshots marking main RGBT work in progress. This audit does not re-audit raw LasHeR predictions; it does not infer whether other control roles or pure210 are currently running/completed from old flags or missing files. Those roles are unverified here.",
+        "Main minus pure234 is−0.7217600572997469pp MPR and−0.37641827472065537pp MSR. Both paired-sequence percentile95% bootstrap intervals include0. These are fixed-checkpoint sequence intervals, not training-seed, causal-module or independent-dataset evidence. No LasHeR baseline paired CI was constructed.",
+        "The main timing.scope text says concurrent two-GPU run, but controller launch assigns both main shards to physicalGPU2. Recomputed fps is calls/sum(worker-frame-seconds), not concurrent system throughput. Inference timer includes decode/crop/forwards/update and synchronization; excludes initialization, initial sync wait, subsequent diagnostic conversion/serialization, and output writing. Pure timing used different execution conditions. No matched speedup or lower complete-system cost follows.",
+        "No evidence establishes independent effectiveness of all three modules, full A+B+C/equal-budget/eight-combination results, publisher-certified protocol equivalence, cross-family acceptance or goal completion. The plan and controller explicitly leave the research goal unmet."
+      ]
+    },
+    "F": {
+      "name": "Evaluation type",
+      "status": "PASS",
+      "classification": {
+        "main/rgbt210": "real_gt",
+        "main/rgbt234": "real_gt",
+        "pure_rgbt234": "real_gt"
+      },
+      "evidence": [
+        "project/cadtrack_abc/score.py:39",
+        "project/cadtrack_abc/score.py:55",
+        "toolkit/rgbt/metrics/metrics.py:31",
+        "toolkit/rgbt/metrics/metrics.py:185"
+      ],
+      "details": [
+        "All three audited evaluations compare model predictions to supplied dataset annotation files; the pure model is a prediction reference for paired differences, never the ground truth. None of these three is synthetic_proxy,self_supervised_proxy,simulation_only or human_eval. Classification is conditional on the supplied dataset provenance limits in A."
+      ]
+    }
+  },
+  "deterministic_verification": {
+    "status": "PASS",
+    "named_checks": 1437,
+    "failed_checks": 0,
+    "acceptance_status": "accepted",
+    "scope": "deterministic arithmetic and byte comparisons only; semantic review remains provisional",
+    "file": "deterministic_verification.json",
+    "numpy": "2.2.6",
+    "legacy_attempt_preserved": true,
+    "hash_verification": {
+      "status": "PASS",
+      "input_files": 2234,
+      "bytes": 23198030,
+      "before_equal_after": true,
+      "before_equal_executor_initial_mapping": true,
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "before_mapping_sha256": "a199b3107317fd62d77e6a6bc60bcd5241d0c0506c2354f5d02bdb2beea1a97f",
+      "after_mapping_sha256": "a199b3107317fd62d77e6a6bc60bcd5241d0c0506c2354f5d02bdb2beea1a97f"
+    }
+  },
+  "metrics_percent": {
+    "main/rgbt210": {
+      "PR": 87.41035493046077,
+      "SR": 63.667766126563585
+    },
+    "main/rgbt234": {
+      "MPR": 89.15954701779948,
+      "MSR": 65.93388612904715
+    },
+    "pure_rgbt234": {
+      "MPR": 89.88130707509919,
+      "MSR": 66.31030440376779
+    }
+  },
+  "bootstrap": {
+    "replicates": 5000,
+    "seed": 20261015,
+    "generator": "NumPy2.2.6 default_rng / PCG64",
+    "pairing": "Same named234 sequences, retain paired main and pure scalar metrics; uniformly resample234 sequence indices with replacement per replicate; both metrics use the same index draws. Main minus pure, percentage points.",
+    "interval": "Two-sided percentile95%, numpy.quantile([.025,.975], method=linear)",
+    "scope": "Fixed selected checkpoint/benchmark sequence uncertainty only; not training-seed stability, causal module attribution, latency uncertainty or independent datasets. Sequences treated as exchangeable units; related videos may violate independence.",
+    "draw_index_sha256": "3a1f1262f0bb4f73c8d806df4d636056096ac0ab78f54d3a74d0b0baf080f05b",
+    "metrics": {
+      "MPR": {
+        "point_difference_pp": -0.7217600572997469,
+        "percentile95_interval_pp": [
+          -2.2697288973079597,
+          0.8176238517557154
+        ],
+        "replicate_mean_pp": -0.7240722898465654,
+        "replicate_std_pp": 0.7797331288390978,
+        "fraction_replicates_above_zero": 0.174,
+        "sequence_win_tie_loss": [
+          53,
+          127,
+          54
+        ]
+      },
+      "MSR": {
+        "point_difference_pp": -0.37641827472065537,
+        "percentile95_interval_pp": [
+          -1.4486524612226475,
+          0.7057360967414762
+        ],
+        "replicate_mean_pp": -0.3785863560308371,
+        "replicate_std_pp": 0.5459885449687364,
+        "fraction_replicates_above_zero": 0.2396,
+        "sequence_win_tie_loss": [
+          121,
+          5,
+          108
+        ]
+      }
+    }
+  },
+  "selected_weight": {
+    "weight_bytes": 2603720,
+    "weight_sha256": "a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8",
+    "state_sha_matches": true,
+    "observation_sha_matches": true,
+    "selected_epoch": 10
+  },
+  "claims": [
+    {
+      "claim": "Main epoch10 complete RGBT210 PR/SR and RGBT234 MPR/MSR",
+      "impact": "supported for supplied annotations/toolkit with NumPy2.2.6 and explicit lineage limits"
+    },
+    {
+      "claim": "Pure CAD epoch14 RGBT234 scores and paired main-minus-pure differences",
+      "impact": "arithmetic supported; baseline inference equivalence and base tensor identity not independently reproduced"
+    },
+    {
+      "claim": "All36 attribute groups, all per-sequence and mean curves, CSV scores and raw latency summaries",
+      "impact": "supported; raw attribute membership reconstructed independently"
+    },
+    {
+      "claim": "Main same selected checkpoint across three formal datasets",
+      "impact": "controller/receipt/path metadata consistent; direct new raw audit covers210/234, separate completed audit covers LasHeR; actual tensor loads remain unattested"
+    },
+    {
+      "claim": "RGBT234 superiority",
+      "impact": "not supported: both point differences negative and both95% paired-sequence intervals cross0"
+    },
+    {
+      "claim": "Full research objective or three independently effective modules",
+      "impact": "not established; full goal not certified"
+    },
+    {
+      "claim": "Speedup, lower end-to-end system cost, or concurrent throughput from report fps",
+      "impact": "unsupported"
+    },
+    {
+      "claim": "Independent cross-family accepted review or verified Astra/max routing",
+      "impact": "unsupported; same-family/provisional, actual routing/model/effort UNATTESTED"
+    }
+  ],
+  "claim_ceiling": "Qualified fixed-checkpoint benchmark arithmetic and internally consistent completion evidence. No neural reproduction, complete historical runtime/source attestation, external annotation authenticity, independent causal module effect, matched speed advantage, multi-seed stability or research-goal completion.",
+  "goal_complete": false,
+  "goal_completion_certified": false,
+  "other_role_completion": "UNVERIFIED_IN_SUPPLIED_INPUTS; no conclusion from stale flags or elapsed time",
+  "prior_lasher_audit": {
+    "path": "D:\\Program Files\\UserCache\\gb\\codex_tmp\\cadtrack_abc_20261013\\r1_main_lasher_formal_audit_20261015\\EXPERIMENT_AUDIT.json",
+    "sha256": "76eedb336024e4f2082736d595aa8f817853688a170874f45c8464d2dac7a1e0",
+    "verdict": "WARN",
+    "overall_verdict": "warn",
+    "claims": [
+      {
+        "id": "C-STANDARD",
+        "claim": "Completed epoch10 LasHeR PR/NPR/SR, all245 sequences",
+        "impact": "supported_with_supplied_toolkit_provenance_limit"
+      },
+      {
+        "id": "C-ATTR",
+        "claim": "19 attribute scores and complete mean/per-sequence curves",
+        "impact": "supported_conditional_on_exported_membership"
+      },
+      {
+        "id": "C-REFERENCE",
+        "claim": "Deltas against user reference PR72.74/NPR69.16/SR57.84",
+        "impact": "arithmetic_supported_no_protocol_equivalence_or_significance_attestation"
+      },
+      {
+        "id": "C-GOAL",
+        "claim": "All three +6 pp targets achieved",
+        "impact": "not_achieved_explicitly_reported_false"
+      },
+      {
+        "id": "C-TIMING",
+        "claim": "Two-GPU run / matched speedup / complete-system efficiency",
+        "impact": "two_GPU_label_incorrect_other_cost_claims_unsupported"
+      },
+      {
+        "id": "C-MECHANISM",
+        "claim": "Independent causal efficacy of A/B/C",
+        "impact": "unsupported_by_this_bundle"
+      },
+      {
+        "id": "C-THREE",
+        "claim": "Same-checkpoint all-three-benchmark completion",
+        "impact": "not_completed_in_supplied_observation"
+      }
+    ],
+    "scope": "Separate audit artifact; not used as a substitute for new raw RGBT recomputation."
+  },
+  "trace_path": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_main_rgbt_formal_audit_20261015/trace",
+  "input_hashes_before_path": "input_hashes_before.json",
+  "input_hashes_after_path": "input_hashes_after.json",
+  "privacy": "Only scores, curves, statistics, hashes and source/line references emitted. No raw GT/prediction coordinates or raw latency arrays copied to audit outputs.",
+  "runtime_boundaries": "No SSH, GPU query, neural import/load/forward/inference/training/update, package install, environment edit, new agent, repository edit or external messaging. Only audit outputs written. Parent explicitly authorized existing matching Python3.10/NumPy2.2.6 interpreter after first runtime mismatch."
+}

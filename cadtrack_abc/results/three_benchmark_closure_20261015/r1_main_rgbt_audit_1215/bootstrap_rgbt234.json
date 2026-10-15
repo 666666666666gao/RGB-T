@@ -1,0 +1,41 @@
+{
+  "replicates": 5000,
+  "seed": 20261015,
+  "generator": "NumPy2.2.6 default_rng / PCG64",
+  "pairing": "Same named234 sequences, retain paired main and pure scalar metrics; uniformly resample234 sequence indices with replacement per replicate; both metrics use the same index draws. Main minus pure, percentage points.",
+  "interval": "Two-sided percentile95%, numpy.quantile([.025,.975], method=linear)",
+  "scope": "Fixed selected checkpoint/benchmark sequence uncertainty only; not training-seed stability, causal module attribution, latency uncertainty or independent datasets. Sequences treated as exchangeable units; related videos may violate independence.",
+  "draw_index_sha256": "3a1f1262f0bb4f73c8d806df4d636056096ac0ab78f54d3a74d0b0baf080f05b",
+  "metrics": {
+    "MPR": {
+      "point_difference_pp": -0.7217600572997469,
+      "percentile95_interval_pp": [
+        -2.2697288973079597,
+        0.8176238517557154
+      ],
+      "replicate_mean_pp": -0.7240722898465654,
+      "replicate_std_pp": 0.7797331288390978,
+      "fraction_replicates_above_zero": 0.174,
+      "sequence_win_tie_loss": [
+        53,
+        127,
+        54
+      ]
+    },
+    "MSR": {
+      "point_difference_pp": -0.37641827472065537,
+      "percentile95_interval_pp": [
+        -1.4486524612226475,
+        0.7057360967414762
+      ],
+      "replicate_mean_pp": -0.3785863560308371,
+      "replicate_std_pp": 0.5459885449687364,
+      "fraction_replicates_above_zero": 0.2396,
+      "sequence_win_tie_loss": [
+        121,
+        5,
+        108
+      ]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "numpy_version": "2.2.6",
+  "runtime_comparison": {
+    "main/rgbt210": {
+      "changed_curve_cells": 126,
+      "affected_sequences": 91,
+      "frame_threshold_success_changes": 323,
+      "by_threshold": {
+        "SR@0.8": 177,
+        "SR@0.2": 8,
+        "SR@0.8500000000000001": 26,
+        "SR@0.4": 9,
+        "SR@0.6000000000000001": 83,
+        "SR@0.55": 12,
+        "SR@0.30000000000000004": 3,
+        "SR@0.15000000000000002": 3,
+        "SR@0.1": 2
+      },
+      "metric_difference_new_minus_legacy_pp": {
+        "PR": 0.0,
+        "SR": 0.01186474091734624
+      }
+    },
+    "main/rgbt234": {
+      "changed_curve_cells": 145,
+      "affected_sequences": 101,
+      "frame_threshold_success_changes": 422,
+      "by_threshold": {
+        "MSR@0.8": 237,
+        "MSR@0.8500000000000001": 40,
+        "MSR@0.6000000000000001": 98,
+        "MSR@0.2": 3,
+        "MSR@0.4": 18,
+        "MSR@0.30000000000000004": 10,
+        "MSR@0.55": 15,
+        "MSR@0.1": 1
+      },
+      "metric_difference_new_minus_legacy_pp": {
+        "MPR": 0.0,
+        "MSR": 0.013693544576128147
+      }
+    },
+    "pure_rgbt234": {
+      "changed_curve_cells": 150,
+      "affected_sequences": 101,
+      "frame_threshold_success_changes": 477,
+      "by_threshold": {
+        "MSR@0.8": 220,
+        "MSR@0.8500000000000001": 53,
+        "MSR@0.6000000000000001": 157,
+        "MSR@0.55": 17,
+        "MSR@0.2": 4,
+        "MSR@0.4": 19,
+        "MSR@0.30000000000000004": 7
+      },
+      "metric_difference_new_minus_legacy_pp": {
+        "MPR": 0.0,
+        "MSR": 0.016702509770652796
+      }
+    }
+  },
+  "actual_numpy226_boundary_probe": {
+    "float32_scalar_plus_python_int_dtype": "float32",
+    "float32_one_fifth_as_float64": 0.20000000298023224,
+    "threshold_float64": 0.2,
+    "strict_success_at_threshold": true
+  },
+  "cause": "Original source loads float32. NumPy1.26 legacy promotes many float32 scalar/Python scalar operations to float64, while NumPy2 retains float32 (NEP50); the float64 linspace success threshold then distinguishes rounded float32 IoU from exact threshold. Both full original-toolkit executions plus separately derived equations are preserved. The installed source inequalities and denominator were never changed.",
+  "source_evidence": [
+    "toolkit/rgbt/utils.py:31",
+    "toolkit/rgbt/utils.py:171",
+    "toolkit/rgbt/utils.py:185",
+    "toolkit/rgbt/metrics/metrics.py:57",
+    "toolkit/rgbt/metrics/metrics.py:75",
+    "toolkit/rgbt/metrics/metrics.py:228",
+    "documentation/HANDOFF_snapshot.md:4945"
+  ],
+  "ground_truth_diagnostics": {
+    "rgbt210": {
+      "files": 210,
+      "noninteger_coordinates": 0,
+      "nonfinite_coordinates": 0,
+      "nonpositive_xy_rows": 596,
+      "nonpositive_wh_rows": 3
+    },
+    "rgbt234": {
+      "files": 468,
+      "noninteger_coordinates": 0,
+      "nonfinite_coordinates": 0,
+      "nonpositive_xy_rows": 1229,
+      "nonpositive_wh_rows": 0
+    }
+  },
+  "invalid_gt_locations": [
+    {
+      "input_file": "ground_truth/rgbt210/car10/init.txt",
+      "line": 134,
+      "classification": "nonpositive GT width and/or height; retained in denominator by native PR/SR; no replacement/filter added"
+    },
+    {
+      "input_file": "ground_truth/rgbt210/child4/init.txt",
+      "line": 90,
+      "classification": "nonpositive GT width and/or height; retained in denominator by native PR/SR; no replacement/filter added"
+    },
+    {
+      "input_file": "ground_truth/rgbt210/man24/init.txt",
+      "line": 369,
+      "classification": "nonpositive GT width and/or height; retained in denominator by native PR/SR; no replacement/filter added"
+    }
+  ],
+  "auditor_correction": "Initial verifier classified any invalid GT as an input failure. Corrected only that audit assertion: dataset-supplied invalid GT is an observed native protocol condition; raw predictions and latencies must still be positive/finite. All denominators and original source unchanged.",
+  "unexecuted_diagnostic": "verify_metrics_nep50.py was prepared but never executed; exact NumPy2.2.6 became available first."
+}

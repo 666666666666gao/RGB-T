@@ -238,7 +238,7 @@
     "latency_p95_ms": 50.68411950196605,
     "scope": "Two concurrent inference workers on physical GPU2; shared-host concurrent work. FPS is calls divided by summed worker-frame seconds, not concurrent elapsed-run throughput or matched baseline speed. The original raw report and all numerical values are preserved."
   },
-  "baseline_source": "User-provided LasHeR only. No baseline predictions rerun, no paired CI.",
+  "baseline_source": "Completed pure CAD RGBT210 evaluation,210 sequences/104706 frames, original checkpoint epoch14. Numerical point comparison; this new pure210 role is not covered by the earlier main210/main234/pure234 audit.",
   "per_sequence": [
     {
       "sequence": "afterrain",
@@ -1291,5 +1291,16 @@
       "SR": 77.62143254630735
     }
   ],
-  "result_review_scope": "LasHeR deterministic audit WARN/0 blocking, same-family provisional; additional RGBT210/RGBT234 and pure234 raw-data audit is pending. No overall goal or module-effectiveness certification."
+  "result_review_scope": "LasHeR: separate deterministic audit WARN/0 blocking and 41972 comparisons. RGB main210/main234 plus pure234: fresh deterministic audit WARN/0 blocking and 1437 checks under existing NumPy2.2.6. Same-family/provisional, actual reviewer routing UNATTESTED. Neither audit establishes three-module effectiveness or the research target.",
+  "rgb_result_audit_reference": "cadtrack_abc/results/three_benchmark_closure_20261015/r1_main_rgbt_audit_1215/EXPERIMENT_AUDIT.json",
+  "rgb_scoring_runtime": "Actual existing Python3.10.19 / NumPy2.2.6 used for exact independent arithmetic reproduction. Initial NumPy1.26.4 mismatch and all repair records preserved in audit archive; no production metric change.",
+  "baseline_reference_percent": {
+    "PR": 88.72237534208853,
+    "SR": 64.51517148751734
+  },
+  "baseline_delta_percentage_points": {
+    "PR": -1.3120204116277563,
+    "SR": -0.8474053609537506
+  },
+  "baseline_paired_confidence_interval": "Pending fresh review of pure210 raw predictions; do not infer from aggregate scores."
 }

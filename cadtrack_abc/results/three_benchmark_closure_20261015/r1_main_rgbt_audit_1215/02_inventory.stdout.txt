@@ -1,0 +1,2955 @@
+raw_input_manifest.json {
+  "type": "dict",
+  "keys": [
+    "files",
+    "collected_utc",
+    "new_neural_jobs_started",
+    "gpu_queries",
+    "environment_rebuilt",
+    "cuda_visible_devices",
+    "scope"
+  ]
+}
+files [{'file': 'documentation/HANDOFF_snapshot.md', 'source': '/home/gaob/CADTrack-ABC/HANDOFF_20261002.md', 'bytes': 859230, 'sha256': '57b1a5b9f6cdd83bf55e8810114e6e44e928beb7d6687b4d634d049f19f3b4b2'}, {'file': 'documentation/plan_snapshot.json', 'source': '/home/gaob/CADTrack-ABC/cadtrack_abc/plan.json', 'bytes': 96538, 'sha256': '4c63e45145a09aa85b3a9e2e12a5374c673ae2c36f6b1a083978654a947972e6'}, {'file': 'fit_complete.json', 'source': '/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/fit_complete.json', 'bytes': 2223, 'sha256': '5d990467eab7eef7baa124150109a6b994dc355496c78bb939af4a9603381207'}, {'file': 'ground_truth/rgbt210/afterrain/init.txt', 'source': '/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210/afterrain/init.txt', 'bytes': 1722, 'sha256': '71f1c66220ccefcb853e9004ad268523198febecfd5320dbe99bcbe17c8cb766'}, {'file': 'ground_truth/rgbt210/aftertree/init.txt', 'source': '/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210/aftertree/init.txt', 'bytes': 4430, 'sha256': 'a28bf84e725e03d0757b13d0e4acddaa3c0ef4bdfe2437a55749b9865ee25fdc'}, {'file': 'ground_truth/rgbt210/baby/init.txt', 'source': '/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210/baby/init.txt', 'bytes': 9612, 'sha256': '34669c66ee2fb77170316cd27038f0b7851cc51266d778f10c61ae7fd4377e13'}, {'file': 'ground_truth/rgbt210/baginhand/init.txt', 'source': '/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210/baginhand/init.txt', 'bytes': 4200, 'sha256': '8f8ce6e71f8e54a3aa7a25c445adf92657489ac2964
+collected_utc 2026-10-15T03:54:40.242434+00:00
+new_neural_jobs_started False
+gpu_queries False
+environment_rebuilt False
+cuda_visible_devices 
+scope Private audit inputs. Dataset annotations/predictions/latencies/checkpoint bytes must not be published. Collection-time hashes do not attest all historical runtime imports.
+toolkit_protocols.json {
+  "type": "dict",
+  "keys": [
+    "rgbt210",
+    "rgbt234"
+  ]
+}
+rgbt210 {"sequences": 210, "attributes": 12, "thresholds": 2, "actual_dataset_root": "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210", "installed_toolkit_default_gt_root": "/data/wangwj/RGBT_toolkit-master/src/rgbt/gt_file/RGBT210/groundtruth/"}
+rgbt234 {"sequences": 234, "attributes": 12, "thresholds": 2, "actual_dataset_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234", "installed_toolkit_default_gt_root": "/data/wangwj/RGBT_toolkit-master/src/rgbt/gt_file/RGBT234/rgbt234_gt/"}
+main_observation_1150.json {
+  "type": "dict",
+  "keys": [
+    "observed_utc",
+    "controller_pid",
+    "controller_actual_pid_live",
+    "status",
+    "checkpoint",
+    "checkpoint_sha256",
+    "current_jobs",
+    "reports",
+    "one_time_observation",
+    "new_neural_jobs_started",
+    "temperature_or_power_queried"
+  ]
+}
+{
+  "observed_utc": "2026-10-15T03:50:00.065433+00:00",
+  "controller_pid": 81003,
+  "controller_actual_pid_live": false,
+  "status": "MAIN_R1_THREE_BENCHMARKS_COMPLETE",
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "checkpoint_sha256": "a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8",
+  "current_jobs": {},
+  "reports": {
+    "lasher": {
+      "report": "/home/gaob/CADTrack-ABC/outputs/r1_main_reports_20261015/selected/lasher_report/full_report.json",
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "epoch": 10,
+      "metrics": {
+        "NPR": 68.84299897334117,
+        "PR": 72.48674289849187,
+        "SR": 57.88199150093345
+      }
+    },
+    "rgbt234": {
+      "report": "/home/gaob/CADTrack-ABC/outputs/r1_main_reports_20261015/selected/rgbt234_report/full_report.json",
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "epoch": 10,
+      "metrics": {
+        "MPR": 89.15954701779948,
+        "MSR": 65.93388612904715
+      }
+    },
+    "rgbt210": {
+      "report": "/home/gaob/CADTrack-ABC/outputs/r1_main_reports_20261015/selected/rgbt210_report/full_report.json",
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "epoch": 10,
+      "metrics": {
+        "PR": 87.41035493046077,
+        "SR": 63.667766126563585
+      }
+    }
+  },
+  "one_time_observation": true,
+  "new_neural_jobs_started": false,
+  "temperature_or_power_queried": false
+}
+documentation/plan_snapshot.json {
+  "type": "dict",
+  "keys": [
+    "task",
+    "baseline",
+    "adaptation",
+    "training",
+    "milestones",
+    "status",
+    "trainable",
+    "outputs",
+    "data",
+    "full_metrics",
+    "not_results",
+    "evaluation_focus",
+    "current_targets",
+    "future_action_collection",
+    "future_action_runtime",
+    "future_training_entries",
+    "future_query_sampling",
+    "deferred_future_pipeline",
+    "native_round_completion",
+    "native_formal_round_closure",
+    "continuation_20261014",
+    "search_action_training",
+    "current_acceptance_20261015",
+    "pure_cad_other_benchmark_preparation_20261015",
+    "r1_matched_pair_20261015",
+    "full_native_action_collection_20261014",
+    "rgbt210_short_read_recovery_20261015",
+    "official_rgbt210_completion_20261015"
+  ]
+}
+{
+  "task": "Port existing bounded memory, identity-motion prediction and candidate/risk selection to the supplied module-free CADTrack baseline, then train on server2028 GPU2,3",
+  "baseline": {
+    "LasHeR_PR": 72.74,
+    "LasHeR_NPR": 69.16,
+    "LasHeR_SR": 57.84,
+    "source": "user_provided",
+    "rerun": false
+  },
+  "adaptation": {
+    "A": "Reuse InstanceMemory: protected initial anchor, two target / non-target / unknown slots per sensor; ROI evidence; causal discriminative-margin preservation",
+    "B": "Reuse IdentityMotion: eight causal geometric states, three motion modes, three future-frame horizon; local-only absence / extra-region value prediction, at most one extra visual region online",
+    "C": "CAD-specific newly trained current quality / relative IoU advantage / localization risk / geometry acceptance, with candidate relations and independent RGB/TIR template commits",
+    "scope_note": "Initial native adaptation; C1 weights and GOLA-specific counterfactual action labels are not transplanted. Current-region supervised advantage is not represented as learned long-horizon action utility or exact old-policy equivalence. Memory sensor gates classify identity support, not separately annotated sensor reliability."
+  },
+  "training": "Real raw-video causal clips from all881 training sequences, eight predicted transitions per clip (exercising full motion history and template update), first clip box as initialization, all subsequent crop/state/history updates use model outputs. GT/future annotations used only in losses. 98 disjoint development sequences; official245-sequence test never enters training.",
+  "milestones": [
+    "strict pretrained load",
+    "independent implementation review",
+    "two-GPU actual-data forward/backward/checkpoint sanity",
+    "20epochs x20000clips normal DDP training",
+    "one best development checkpoint",
+    "Full enhanced LasHeR PR/NPR/SR, all245 sequences, no baseline rerun; other datasets deferred"
+  ],
+  "status": "FULL_SAMPLING_COMPLETE_NATIVE_H3_ACTION_COLLECTION_RUNNING_TARGET_UNMET",
+  "trainable": "A/B/C and CAD-specific fused projection/relations; full pretrained base frozen and eval",
+  "outputs": "Machine JSON/log/checkpoints only; user-facing handoff remains the single existing HANDOFF_20261002.md",
+  "data": "LasHeR reused in place. RGBT234 download and image/annotation verification completed at /home/gaob/CADTrack-ABC/dataset/rgbt234, 234 sequences /116649 frames; retained but not evaluated this round. No other datasets.",
+  "full_metrics": [
+    "LasHeR_PR",
+    "LasHeR_NPR",
+    "LasHeR_SR"
+  ],
+  "not_results": "Native20/fullLas PR72.4190140758/NPR68.9276099146/SR57.6668823751 remains below supplied baseline. 881TRAIN/98DEV full514081-frame sampling complete;5697 queries. Native H3 batch64 action labels running on GPU2,3;1196370 labels planned. No new optimizer updates or formal metrics. Full trajectories expose inactive native search (gain gate0); frozen-B future-C fit is a control, not a completed full-method repair. Search/action fitting and persistent rejected-tracklet memory remain incomplete.",
+  "evaluation_focus": "LasHeR only; user reiterated priority. Other datasets deferred.",
+  "current_targets": {
+    "LasHeR_PR": 74.74,
+    "LasHeR_NPR": 71.16,
+    "LasHeR_SR": 59.84
+  },
+  "future_action_collection": {
+    "purpose": "Prepare native same-state future action consequences missing from the current-IoU C adaptation",
+    "source": [
+      "counterfactual.py",
+      "collect_actions.py"
+    ],
+    "status": "FULL_NATIVE_H3_ACTION_COLLECTION_RUNNING",
+    "action_modes": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "prefix": "Full deployed-teacher predicted prefix from sequence frame0; only initial GT initializes the state",
+    "search_budget": "Three independent offline local+one-region probe contexts; each simulated action sees only one and has at most one extra visual forward",
+    "next_step": "Verify all four collection receipts, then fit search and action decisions using these actual labels.",
+    "running_20_epoch_training_unchanged": false,
+    "not_done": "Full label collection, new search/action optimization and new full LasHeR metrics remain pending."
+  },
+  "future_action_runtime": {
+    "source": "future_actions.py",
+    "class": "CADTrackFuturePolicy",
+    "head_parameters": 37426,
+    "input": "275 current/historical evidence dimensions; no future images or GT",
+    "objective": "Relative matched future utility, within-context action ranking and future harm",
+    "actions": [
+      "policy",
+      "pause_identity",
+      "defer_geometry",
+      "accept_geometry",
+      "rgb_only",
+      "tir_only"
+    ],
+    "parent_behavior_preserved_at_zero_initialization": true,
+    "future_visual_search_budget": "Reuse actual native local or local+one observed context; no additional backbone forward",
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_RUNTIME_AND_TWO_UPDATE_HEAD_SANITY_PASS",
+    "not_done": "Full teacher-state data collection, full future-head fit, full98-video selection, formalLas results and persistent rejected-tracklet memory remain pending.",
+    "next": "Frozen-search future-C remains a controlled reference; actual native search gain never exceeds deployment threshold on full TRAIN/DEV."
+  },
+  "future_training_entries": {
+    "sources": [
+      "future_data.py",
+      "merge_action_packets.py",
+      "train_future_actions.py",
+      "validate_future_actions.py",
+      "select_future_actions.py",
+      "collect_actions.py",
+      "infer.py"
+    ],
+    "status": "SOURCE_REVIEW_PASS_ACTUAL_CPU_CLI_SANITY_PASS",
+    "frozen_dependencies": "Strictly loaded supplied pureCAD pretrain and selected teacher nativeABC; future fit trains only37426 head parameters.",
+    "data": "Immutable teacher full predicted prefixes;881TRAIN/98DEV, four independent5/10/10/10 candidate contexts x6actions; same-state future utility recomputed per context.",
+    "selection": "Snapshots0/1/2/5/10/20 all evaluated on full98 continuous development videos; sequence-equal IoU chooses one best including initialization control; cache gain is diagnostic only.",
+    "cleanup": "Selectedbest strictly reloaded; delete only enumerated owncandidate weights, keep originalfixedteacher/pretrain and receipts.",
+    "formal_entry": "cadtrack_abc.infer --policy future_actions then unchanged official cadtrack_abc.score for fullLas245/220703 PR/NPR/SR/attributes/curves/perseq/mechanisms.",
+    "next": "After full labels, implement and validate search/action fitting; do not silently equate head-only optimization with all three modules.",
+    "full_future_training_complete": false,
+    "formal_metrics_complete": false
+  },
+  "future_query_sampling": {
+    "source": "sample_action_queries.py",
+    "purpose": "Address actual historical query-coverage gap (1 among721 observed failure transitions), without claiming the historical rate describes this CAD teacher.",
+    "policy": "Explicit native/future strict checkpoint family, selected immutable teacher, all predictions from frame0 initialGT; no laterGT in state/crop.",
+    "sampling": "Two per-video uniform queries plus first loss_transition, wrong_identity_commit and missed_correct_candidate windows at offsets[-2,-1,0,1,3], valid H3 supervision only; reasons retained in packet query_spec.",
+    "scope": "881TRAIN or98DEV only, sharded on2/3 for later full collection; official245 excluded.",
+    "status": "FULL_881_TRAIN_98_DEV_NATIVE_SAMPLING_COMPLETE",
+    "full_sampling_complete": true,
+    "full_action_collection_complete": false,
+    "actual_input_inventory": {
+      "train": 881,
+      "development": 98,
+      "all_train_root": 979,
+      "official_test": 245,
+      "test_overlap": 0,
+      "all_first_boxes_valid_wh": true,
+      "minimum_eligible_H3_queries_per_video": 23
+    },
+    "not_proven": "Collected failure events are localization proxies. Sampling completion is not training or formal performance.",
+    "next": "Complete current H3 matched action consequences; do not repeat full trajectory sampling.",
+    "output": "/home/gaob/CADTrack-ABC/outputs/native_future_sampling_20261014",
+    "actual_frames": 514081,
+    "train_queries": 5092,
+    "development_queries": 605
+  },
+  "deferred_future_pipeline": {
+    "source": "future_pipeline.py",
+    "status": "NOT_STARTED_FROZEN_SEARCH_HEAD_ONLY_CONTROL",
+    "prerequisite": "Actual native20epochs/3140updates/strict reload/full LasHeR245 sequences220703 frames PR,NPR,SR and one matching selected checkpoint; inspect that result before manually launching.",
+    "stages": [
+      "Frozen selected native teacher copy",
+      "Complete881TRAIN/98DEV trajectory sampling on GPU2,3",
+      "H3 six-action matched label collection on GPU2,3",
+      "Strict packet merge",
+      "Future head20epochs only, batch64, GPU2",
+      "Six snapshots0/1/2/5/10/20 full98 continuous development on GPU2,3",
+      "One best checkpoint selection including neutral epoch0",
+      "Full LasHeR245/220703 explicit future_actions inference on GPU2,3",
+      "Official PR/NPR/SR, attributes, curves, per-sequence and mechanism reports"
+    ],
+    "cleanup": "Listed own candidate weights only after copying/strict reload best; temporary teacher copy only after full score/byte comparison. Preserve parent best and supplied pretrain.",
+    "limits": "LasHeR only; no baseline rerun, GPU0/1, additional datasets, retry, automatic next round, or automatic overall-goal completion.",
+    "state_file_limitation": "An artifact validation exception stops the wrapper and dependencies without VERIFIED_COMPLETE, but queue_state can retain RUNNING/COMMANDS_EXITED_SUCCESSFULLY. A monitor must use process exit and required receipts together; the state file alone does not establish liveness or completion.",
+    "started": false,
+    "formal_metrics_complete": false,
+    "sampling_reuse": {
+      "status": "SOURCE_AND_CPU_PREREQUISITE_FIXTURES_PASS_NOT_EXECUTED",
+      "source_argument": "--sampling-root",
+      "completed_native_four_shards_required_before_any_new_job": true,
+      "source_review": "same-family/provisional; actual routing UNATTESTED",
+      "cpu_fixture_tests_passed": 7,
+      "next_command": null,
+      "command_executed": false,
+      "repeated_sampling_when_reusing": false,
+      "performance_goal_achieved": false,
+      "next_command_role": "Historical command superseded; current pipeline requires both verified benchmark roots."
+    }
+  },
+  "native_round_completion": {
+    "status": "ACTUAL_NATIVE20_TRAINING_HISTORY_AND_SELECTED_CHECKPOINT_VERIFIED",
+    "observed_utc": "2026-10-13T21:19:18.837994+00:00",
+    "epochs": 20,
+    "optimizer_updates": 3140,
+    "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "best_epoch": 2,
+    "best_updates": 314,
+    "best_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "best_validation_clip_iou": 0.8159592297612405,
+    "validation_scope": "196 development clips, not formal LasHeR SR or full98 video selection.",
+    "strict_reload_receipt": true,
+    "train_sequences": 881,
+    "validation_sequences": 98,
+    "pretrained_epoch": 14,
+    "pretrained_strict_tensors": 250,
+    "base_parameters": 103138437,
+    "trainable_parameters": 414164,
+    "physical_gpus_manifest": "2,3",
+    "logged_gradient_records": 160,
+    "logged_nonzero_gradient_records_by_group": {
+      "A": 160,
+      "B_motion": 160,
+      "B_search": 160,
+      "C": 160,
+      "relations": 159
+    },
+    "first_epoch_seconds": 3487.4232950210007,
+    "last_epoch_seconds": 2773.5216701379977,
+    "training_elapsed_seconds": 57333.926296597,
+    "cuda_initialized": false,
+    "full_formal_metrics_complete": false,
+    "scope": "Read-only actual completed training/history/checkpoint evidence; no extra NN training, baseline inference, GPU statistics, or full test scores."
+  },
+  "native_formal_round_closure": {
+    "status": "NATIVE20_AND_FULL_LASHER_COMPLETE_TARGET_UNMET",
+    "observed_utc": "2026-10-14T00:39:28.774952+00:00",
+    "training_epochs": 20,
+    "optimizer_updates": 3140,
+    "selected_epoch": 2,
+    "selected_updates": 314,
+    "checkpoint": "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/best.pth",
+    "checkpoint_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "sequences": 245,
+    "frames": 220703,
+    "metrics_percent": {
+      "NPR": 68.92760991460622,
+      "PR": 72.4190140757939,
+      "SR": 57.666882375069136
+    },
+    "baseline_percent_user_provided": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "delta_percentage_points_vs_user_reference": {
+      "NPR": -0.23239008539377437,
+      "PR": -0.3209859242060986,
+      "SR": -0.17311762493086746
+    },
+    "targets_percent": {
+      "PR": 74.74,
+      "NPR": 71.16,
+      "SR": 59.84
+    },
+    "all_three_plus2": false,
+    "full_lasher_evaluation_complete": true,
+    "other_datasets": "Deferred by user; data remains in place.",
+    "timing": {
+      "fps": 9.748130329313545,
+      "latency_p50_ms": 98.81522999785375,
+      "latency_p95_ms": 174.95305230258964,
+      "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+    },
+    "attribute_count": 19,
+    "extra_visual_forwards": 0,
+    "fresh_audit_verdict": "warn",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "baseline_rerun": false,
+    "paired_baseline_ci": null,
+    "goal_completion_proven": false,
+    "future_action_full_training_complete": false,
+    "persistent_rejected_tracklets_complete": false,
+    "original_pipeline_terminated": true,
+    "next_training_started": false,
+    "last_checkpoint_removed": true,
+    "best_retained": true,
+    "supplied_pretrain_retained": true,
+    "local_old_observer_closed": true,
+    "report_directory": "cadtrack_abc/results/native_lasher_20261014",
+    "scope": "Complete native20 raw-video module-training round and one-model full LasHeR test; future-action training and independent module efficacy remain unproved."
+  },
+  "continuation_20261014": {
+    "evidence": "cadtrack_abc/results/batched_actions_20261014",
+    "actual_teacher_epoch": 2,
+    "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+    "frame_inventory": {
+      "train": 461881,
+      "development": 52200,
+      "total": 514081
+    },
+    "query_sampler_policy_batch": 1,
+    "action_collector_batch": 64,
+    "batch_parity_scope": "Two actual TRAIN states, all420 candidate/mode actions, H3; label rtol=atol1e-4; original mixed1e-5 failure retained.",
+    "first_observation_not_before_utc": "2026-10-14T09:00:14.933943+00:00",
+    "observe_seconds": 240,
+    "performance_goal_achieved": false,
+    "old_frame_forecast_erratum": "Two blank init.txt lines (boyouttrees,girlbikeinlight) counted as frames; no image or valid annotation missing.",
+    "action_collection": {
+      "output": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014",
+      "driver_pids": [
+        3314719,
+        3314720
+      ],
+      "collector_pids": [
+        3314721,
+        3314722
+      ],
+      "admitted_queries": 84,
+      "admitted_action_labels": 17640,
+      "planned_queries": 5697,
+      "planned_action_labels": 1196370,
+      "observer_pid": 33496,
+      "first_remote_observation_not_before_utc": "2026-10-14T19:25:12.915219+00:00",
+      "expected_finish_utc": "2026-10-14T19:30:12.915219+00:00",
+      "optimizer_updates": 0,
+      "full_collection_complete": false
+    },
+    "search_failure_evidence": {
+      "train_gain_gate_frames": 0,
+      "development_gain_gate_frames": 0,
+      "train_gain_max": 0.008494846522808075,
+      "development_gain_max": 0.006406825967133045,
+      "deployment_gain_threshold": 0.04,
+      "inference": "Current B never supplies extra candidates in complete native trajectories; fitting only C cannot fix this candidate-generation bottleneck."
+    }
+  },
+  "search_action_training": {
+    "status": "SOURCE_AND_BOUNDED_CPU_CHECKS_PASS_FULL_COLLECTION_AND_VISUAL_SANITY_PENDING",
+    "family": "search_actions",
+    "sources": [
+      "search_actions.py",
+      "future_data.py",
+      "train_future_actions.py",
+      "future_pipeline.py",
+      "infer.py",
+      "validate_future_actions.py",
+      "select_future_actions.py"
+    ],
+    "new_trainable_parameters": 76678,
+    "frozen": "Native e2 ABC, supplied pureCAD base, motion coordinates and cached instance descriptors.",
+    "search_input": "295 local-only evidence dimensions; predicts gains for stable probability-ordered three motion modes.",
+    "objective": "Current C actual selected action utility in each independent context minus C local selected utility; detached target, not oracle maximum.",
+    "online": "No search or one extra image region; C sees only legal local/that extra evidence; state committed once.",
+    "default_future_actions_control_preserved": true,
+    "full_training_complete": false,
+    "cpu_checks": {
+      "real_queries": 2,
+      "action_labels": 420,
+      "cpu_head_updates": 2,
+      "cli_sanity_updates": 2,
+      "unchanged_control_loss_exact": true,
+      "strict_both_head_reload": true,
+      "native_abc_values_unchanged": true,
+      "cuda_initialized": false,
+      "visual_runtime_mocked": true,
+      "actual_gpu_visual_runtime_verified": false
+    },
+    "fitting": {
+      "epochs": 20,
+      "batch": 64,
+      "train_queries": 5092,
+      "expected_updates": 1600,
+      "checkpoint_epochs": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20
+      ],
+      "selection": "Full98 continuous DEV; same selected checkpoint across all three benchmarks; best trained checkpoint also fully tested if epoch0 wins."
+    },
+    "collection_reuse": "--sampling-root and --collection-root: validate all four existing completed native shards before new fit; never recollect current 5697 queries.",
+    "prepared_command": null,
+    "command_executed": false,
+    "persistent_rejected_tracklet_memory_complete": false,
+    "limitations": "Fixed native prefix/H3 native continuation labels; no deployment-distribution or +2 claim. Real visual routing test must pass after current collectors release GPU2/3.",
+    "command_requires_verified_rgbt210_root": true
+  },
+  "current_acceptance_20261015": {
+    "status": "ACTIVE_UNMET",
+    "server": "2028",
+    "physical_gpus": [
+      2,
+      3
+    ],
+    "baseline_lasher_percent_user_provided": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "lasher_gain_target_percentage_points": 6,
+    "lasher_targets_percent": {
+      "PR": 78.74,
+      "NPR": 75.16,
+      "SR": 63.84
+    },
+    "baseline_lasher_rerun": false,
+    "formal_datasets": [
+      "lasher",
+      "rgbt210",
+      "rgbt234"
+    ],
+    "same_checkpoint_and_configuration_for_all_datasets": true,
+    "one_best_training_seed_allowed": true,
+    "three_successful_seeds_required": false,
+    "trained_model_full_scores_required_even_if_epoch0_wins": true,
+    "selection": "Complete98 continuous DEV; cached queries do not select the final model.",
+    "checkpoint_cleanup": "Scheduled candidates only after all required selected/trained full reports; keep trained_best until result audit if distinct.",
+    "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "rgbt210_status": "Official archive verified and extracted; 210 sequences/104706 pairs match installed toolkit GT. Prior transport failures retained.",
+    "rgbt210_root": "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+    "baseline_other_datasets": "PureCAD full baseline and protocol required; no GOLA or enhanced-parent substitution.",
+    "R1": "Close frozen-search future-C and search+C after existing H3 labels, then full98 selection and all three full benchmarks.",
+    "R2": "Train fusion/head control, then competitive compressed history prompt before fusion and soft multifuture localization; frozen ViT extraction must be separate from trainable head.",
+    "R3": "Validated full A+B+C, equal-budget controls and full eight combinations; no independent contribution proven yet.",
+    "new_full_fit_started": true,
+    "goal_completion_proven": false,
+    "historical_records": "Earlier+2/LasHeR-only records retained unchanged as historical; this section supersedes their acceptance scope.",
+    "source_status": "SOURCE_PASS_WITH_NONBLOCKING_NOTES",
+    "cpu_source_checks": "CPU_SOURCE_FIXTURES_AND_TWO_REAL_INVENTORIES_PASS",
+    "source_runtime_location": "Six qualified runtime files promoted after original NN jobs exited; original8 core files unchanged.",
+    "new_full_fit_completed": true,
+    "main_full98_status": "All six snapshots complete; 12 original shards exited0; actual full98 selector chose epoch10 overall and among positive epochs.",
+    "main_full98_root": "/home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015",
+    "control_full98_status": "All six complete98/52200/52120 and12 originalchild0; actual selector chose epoch20 overall and positive, IoU0.6646335296. Full LasHeR started09:52 GPU3 twoNN260113/4 actuallive09:55; sameweight then234/210. Next13255 at11:10.",
+    "resource_concurrency_status": "Qualified equal-work dual inference remains1.5738566x/noOOM/byteequal. New08:22:38-08:23:08 CPU8.8029%, iowait1.4371%, GPU2 twoNN/1675MiB/39.5333% util; GPU3 one remaining shard/842MiB/17.1667%. OpenCV CPU-only4frames probe aggregate4threads1.2366x but waves inconsistent; no inference speed claim or runtime change.",
+    "main_formal_status": "08:20 actualPID81003 and bothLasNN81006/7 live; 08:21 completed79500/220703 pairs, no formal metrics. Conservative finish about11:00; sole next1709 at10:40.",
+    "result_integrity": "Fresh independent-context same-family provisional audit WARN/0 blockers; 2598 deterministic checks pass. Completed DEV arithmetic verified; formal efficacy not attested."
+  },
+  "pure_cad_other_benchmark_preparation_20261015": {
+    "scope": "Fill genuinely missing pure CAD baseline references on RGBT234, then RGBT210 once ready. Never rerun LasHeR baseline.",
+    "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+    "protocol": "Original CAD test crop, centered Hann argmax, Center head mapping and clipping; two templates, update every5 on weighted response>0.65.",
+    "status": "RGBT234_FULL_COMPLETE",
+    "sanity": "Original tracker methods extracted from current server source; same supplied pure network through a dict-field adapter, two real TRAIN prefixes, exact box/confidence/template parity and actual template updates.",
+    "first_dataset": "rgbt234",
+    "rgbt234_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+    "sequences": 234,
+    "frames": 116649,
+    "gpu_admission": "User authorized max two independent NN jobs/card after positive matched-work benchmark; require one current collector per card and >=12000MiB free.",
+    "source_review_required": true,
+    "estimated_runtime_minutes": [
+      45,
+      60
+    ],
+    "reference_limits": "Matches actual original test code around module-free checkpoint, not proof of exact historical user LasHeR configuration.",
+    "source_review": "R2_SOURCE_PASS_0_BLOCKS",
+    "real_train_parity": "2x40 predicted frames exact, ten actual template updates",
+    "actual_controller_pid": 4027100,
+    "actual_jobs": [
+      {
+        "pid": 4027101,
+        "physical_gpu": 2,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.infer_baseline",
+          "--checkpoint",
+          "/home/gaob/CADTrack_ep0014.pth.tar",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+          "--shard",
+          "0"
+        ]
+      },
+      {
+        "pid": 4027102,
+        "physical_gpu": 3,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.infer_baseline",
+          "--checkpoint",
+          "/home/gaob/CADTrack_ep0014.pth.tar",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/predictions",
+          "--shard",
+          "1"
+        ]
+      }
+    ],
+    "observed_utc": "2026-10-14T18:38:42.783569+00:00",
+    "formal_metrics": {
+      "MPR": 89.88130707509919,
+      "MSR": 66.31030440376779
+    },
+    "next_observation_bjt": null,
+    "early_baseline_progress_poll": false,
+    "preprocessing_correction": "Pure-only singleton batch stride6, after controlled actual-input diagnosis; shared data/model unchanged.",
+    "completion": {
+      "completed": true,
+      "dataset": "rgbt234",
+      "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+      "epoch": 14,
+      "model_role": "pure_cad_baseline",
+      "inference_exit_codes": [
+        0,
+        0
+      ],
+      "score_exit_code": 0,
+      "full_report": "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt234_20261015/reports/full_report.json",
+      "sequences": 234,
+      "frames": 116649,
+      "overall_metrics_percent": {
+        "MPR": 89.88130707509919,
+        "MSR": 66.31030440376779
+      },
+      "observed_utc": "2026-10-14T19:17:49.609061+00:00"
+    },
+    "baseline_lasher_rerun": false
+  },
+  "r1_matched_pair_20261015": {
+    "status": "FITS_COMPLETE_MAIN_SELECTED_FORMAL_RUNNING_CONTROL_DEVELOPMENT_RUNNING",
+    "purpose": "Close frozen-search future-C versus trained search+C with the existing native label set.",
+    "policies": [
+      "future_actions",
+      "search_actions"
+    ],
+    "fit_assignment": {
+      "future_actions": 2,
+      "search_actions": 3
+    },
+    "full_evaluation": "Serialize the two family rounds; each uses one worker per GPU2/3 for every full98 snapshot and all three official datasets.",
+    "initialization": "Same native epoch2 teacher, same future-head init, seed42, isolated DataLoader shuffle generator.",
+    "training": {
+      "epochs": 20,
+      "batch": 64,
+      "lr": 0.0001,
+      "queries": 5092,
+      "train_sequences": 881,
+      "dev_queries": 605,
+      "dev_sequences": 98,
+      "updates_per_policy": 1600
+    },
+    "data": "Reuse all four sampling and action shards; exact original packet references in the completed fit are checked before reuse.",
+    "trainable_parameters": {
+      "future_actions": 37426,
+      "search_actions": 76678
+    },
+    "frozen": "Native A/B coordinates/visual backbone; these two small-head fits are R1, not R2 or full A/B/C retraining.",
+    "formal": "Same selected checkpoint per family across full LasHeR/RGBT210/RGBT234; distinct best trained checkpoint also fully scored if epoch0 wins.",
+    "launch_requires": [
+      "All four H3 labels completed and original drivers exited",
+      "Pure baseline234 full inference/scoring completed",
+      "Fresh source/CPU checks and real GPU visual sanity",
+      "GPU2/3 free at admission"
+    ],
+    "command": [
+      "/data/wangwj/envs/CADTrack/bin/python",
+      "/home/gaob/CADTrack-ABC/prepared/r1_fits_admission_20261015/run_r1_matched_fits_only_remote.py"
+    ],
+    "command_requires_actual_rgbt210_root": false,
+    "new_main_training_started": true,
+    "full_new_results_complete": false,
+    "source_review": "PASS_0_BLOCKS_SAME_FAMILY_PROVISIONAL",
+    "cpu_checks": "R1_PAIR_CPU_HEAD_AND_COMMAND_CHECKS_PASS",
+    "actual_cuda_fit_started": true,
+    "controller_pid": 4089586,
+    "fit_root": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015",
+    "formal_evaluation_requires": "RGBT210 real archive completion/extraction/inventory; two actual fit receipts before --fit-root reuse.",
+    "latest_actual_progress": [
+      {
+        "pid": 4089657,
+        "physical_gpu": 2,
+        "policy": "future_actions",
+        "completed_epochs": 2,
+        "latest_epoch": {
+          "epoch": 2,
+          "updates": 160,
+          "train_loss": 0.1533866995961668,
+          "formal_metrics": null,
+          "cached_validation": {
+            "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+            "queries": 605,
+            "interventions": 53,
+            "extra_region_queries": 0,
+            "formal_metrics": null,
+            "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+          }
+        }
+      },
+      {
+        "pid": 4089658,
+        "physical_gpu": 3,
+        "policy": "search_actions",
+        "completed_epochs": 2,
+        "latest_epoch": {
+          "epoch": 2,
+          "updates": 160,
+          "train_loss": 0.2131542885809177,
+          "formal_metrics": null,
+          "cached_validation": {
+            "cached_mean_utility_gain_vs_teacher": 0.004474127046332871,
+            "queries": 605,
+            "interventions": 52,
+            "extra_region_queries": 0,
+            "formal_metrics": null,
+            "scope": "Frozen prefix/continuation labels only; not continuous-video or final checkpoint selection."
+          }
+        }
+      }
+    ],
+    "observer_pid": null,
+    "next_observation_bjt": "2026-10-15 05:02:00",
+    "observer_interval_after_first_seconds": 240,
+    "estimated_fit_finish_bjt": "2026-10-15 approximately04:30 from first2 epochs; not a deadline guarantee.",
+    "completed_fits": {
+      "future_actions": {
+        "status": "FUTURE_HEAD_FIT_COMPLETE",
+        "policy_family": "future_actions",
+        "trainable_parameters": 37426,
+        "native_abc_frozen": true,
+        "motion_region_coordinates_frozen": true,
+        "epochs": 20,
+        "updates": 1600,
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "train_queries": 5092,
+        "train_sequences": 881,
+        "candidates": [
+          {
+            "epoch": 0,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch00.pth"
+          },
+          {
+            "epoch": 1,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth"
+          },
+          {
+            "epoch": 2,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth"
+          },
+          {
+            "epoch": 5,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth"
+          },
+          {
+            "epoch": 10,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth"
+          },
+          {
+            "epoch": 20,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth"
+          }
+        ],
+        "changed_head_tensors": [
+          "future_action.network.0.weight",
+          "future_action.network.0.bias",
+          "future_action.network.1.weight",
+          "future_action.network.1.bias",
+          "future_action.network.3.weight",
+          "future_action.network.3.bias"
+        ],
+        "strict_head_reload": true,
+        "full_video_selection_complete": true,
+        "formal_metrics_complete": false,
+        "seconds": 2528.5709556269867,
+        "train_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "validation_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "training_hyperparameters": {
+          "batch": 64,
+          "lr": 0.0001,
+          "seed": 42,
+          "teacher_policy": "native"
+        }
+      },
+      "search_actions": {
+        "status": "SEARCH_ACTION_FIT_COMPLETE",
+        "policy_family": "search_actions",
+        "trainable_parameters": 76678,
+        "native_abc_frozen": true,
+        "motion_region_coordinates_frozen": true,
+        "epochs": 20,
+        "updates": 1600,
+        "teacher_sha256": "5c6b6fcbf18b11918ae3495ccfa927cf56a3f5c7f3cecd76aabaaa94d80cc988",
+        "train_queries": 5092,
+        "train_sequences": 881,
+        "candidates": [
+          {
+            "epoch": 0,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth"
+          },
+          {
+            "epoch": 1,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch01.pth"
+          },
+          {
+            "epoch": 2,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch02.pth"
+          },
+          {
+            "epoch": 5,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch05.pth"
+          },
+          {
+            "epoch": 10,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth"
+          },
+          {
+            "epoch": 20,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch20.pth"
+          }
+        ],
+        "changed_head_tensors": [
+          "future_action.network.0.weight",
+          "future_action.network.0.bias",
+          "future_action.network.1.weight",
+          "future_action.network.1.bias",
+          "future_action.network.3.weight",
+          "future_action.network.3.bias",
+          "search_action.network.0.weight",
+          "search_action.network.0.bias",
+          "search_action.network.1.weight",
+          "search_action.network.1.bias",
+          "search_action.network.3.weight",
+          "search_action.network.3.bias"
+        ],
+        "strict_head_reload": true,
+        "full_video_selection_complete": true,
+        "formal_metrics_complete": false,
+        "seconds": 2524.58432188601,
+        "train_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
+        "validation_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/validation_index.json",
+        "training_hyperparameters": {
+          "batch": 64,
+          "lr": 0.0001,
+          "seed": 42,
+          "teacher_policy": "native"
+        }
+      }
+    },
+    "actual_fit_child_exit_codes": [
+      0,
+      0
+    ],
+    "original_fit_observer_native_exit_code": 0,
+    "full98_development": {
+      "status": "MAIN_ALL_SIX_CANDIDATES_COMPLETE_EPOCH10_SELECTED",
+      "complete": true,
+      "full98_selected_model": true,
+      "candidates": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20
+      ],
+      "selected_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "formal_metrics_complete": false
+    },
+    "actual_full_new_formal_metrics_complete": false,
+    "main_complete_full98_selection_20261015": {
+      "selected": {
+        "epoch": 10,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+        "sequence_mean_iou": 0.6664379662549009,
+        "frame_mean_iou": 0.5816733049962124
+      },
+      "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "candidates": [
+        {
+          "epoch": 0,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth",
+          "sequence_mean_iou": 0.6498416023214861,
+          "frame_mean_iou": 0.49732447611032227
+        },
+        {
+          "epoch": 1,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch01.pth",
+          "sequence_mean_iou": 0.6576578945909836,
+          "frame_mean_iou": 0.48793770064780645
+        },
+        {
+          "epoch": 2,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch02.pth",
+          "sequence_mean_iou": 0.6457127683358838,
+          "frame_mean_iou": 0.5294795227343544
+        },
+        {
+          "epoch": 5,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch05.pth",
+          "sequence_mean_iou": 0.6561556810855257,
+          "frame_mean_iou": 0.5630953458484466
+        },
+        {
+          "epoch": 10,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+          "sequence_mean_iou": 0.6664379662549009,
+          "frame_mean_iou": 0.5816733049962124
+        },
+        {
+          "epoch": 20,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch20.pth",
+          "sequence_mean_iou": 0.6638382770577256,
+          "frame_mean_iou": 0.5594530161032746
+        }
+      ],
+      "trained_selected": {
+        "epoch": 10,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+        "sequence_mean_iou": 0.6664379662549009,
+        "frame_mean_iou": 0.5816733049962124
+      },
+      "trained_best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+      "full98_development_selection_complete": true,
+      "formal_metrics_complete": false,
+      "selection_metric": "Sequence-equal mean IoU on repeated98 development videos, not official test.",
+      "strict_future_head_reload": true,
+      "cleanup": "Deferred until selected and trained checkpoints finish all formal datasets; teacher/pretrain untouched."
+    },
+    "current_formal_and_control_admission_20261015": {
+      "observed_utc": "2026-10-14T23:23:40.985658+00:00",
+      "status": "MAIN_SELECTED_AND_FORMAL_RUNNING_CONTROL_DEVELOPMENT_RUNNING",
+      "main_selection": {
+        "selected": {
+          "epoch": 10,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+          "sequence_mean_iou": 0.6664379662549009,
+          "frame_mean_iou": 0.5816733049962124
+        },
+        "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+        "candidates": [
+          {
+            "epoch": 0,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth",
+            "sequence_mean_iou": 0.6498416023214861,
+            "frame_mean_iou": 0.49732447611032227
+          },
+          {
+            "epoch": 1,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch01.pth",
+            "sequence_mean_iou": 0.6576578945909836,
+            "frame_mean_iou": 0.48793770064780645
+          },
+          {
+            "epoch": 2,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch02.pth",
+            "sequence_mean_iou": 0.6457127683358838,
+            "frame_mean_iou": 0.5294795227343544
+          },
+          {
+            "epoch": 5,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch05.pth",
+            "sequence_mean_iou": 0.6561556810855257,
+            "frame_mean_iou": 0.5630953458484466
+          },
+          {
+            "epoch": 10,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+            "sequence_mean_iou": 0.6664379662549009,
+            "frame_mean_iou": 0.5816733049962124
+          },
+          {
+            "epoch": 20,
+            "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch20.pth",
+            "sequence_mean_iou": 0.6638382770577256,
+            "frame_mean_iou": 0.5594530161032746
+          }
+        ],
+        "trained_selected": {
+          "epoch": 10,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch10.pth",
+          "sequence_mean_iou": 0.6664379662549009,
+          "frame_mean_iou": 0.5816733049962124
+        },
+        "trained_best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+        "full98_development_selection_complete": true,
+        "formal_metrics_complete": false,
+        "selection_metric": "Sequence-equal mean IoU on repeated98 development videos, not official test.",
+        "strict_future_head_reload": true,
+        "cleanup": "Deferred until selected and trained checkpoints finish all formal datasets; teacher/pretrain untouched."
+      },
+      "selected_checkpoint_sha256": "a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8",
+      "main_formal_controller_pid": 81003,
+      "main_formal_native_session": 28531,
+      "main_first_necessary_observer_session": 99077,
+      "main_first_necessary_observation_bjt": "2026-10-15 08:20:00",
+      "control_controller_pid": 85361,
+      "control_controller_native_session": 68351,
+      "control_original_epoch00_native_sessions": [
+        46511,
+        25976
+      ],
+      "control_parent_observation_interval_seconds": 240,
+      "control_next_root_observer_session": 45004,
+      "control_next_root_observation_bjt": "2026-10-15 07:24:30",
+      "physical_gpus": [
+        2,
+        3
+      ],
+      "max_inference_workers_per_gpu": 2,
+      "formal_datasets": [
+        "lasher",
+        "rgbt234",
+        "rgbt210"
+      ],
+      "same_checkpoint_and_configuration_for_all_datasets": true,
+      "official_rgbt210_complete": true,
+      "pure_rgbt210_baseline_complete": false,
+      "r1_formal_metrics_complete": false,
+      "R2_started": false,
+      "R3_started": false,
+      "result_audit_verdict": "WARN",
+      "result_audit_blocking_issues": 0,
+      "goal_achieved": false
+    },
+    "initial_full98_development_admission": {
+      "status": "ACTUAL_TWO_GPU_FULL98_INITIALIZATION_CANDIDATE_RUNNING",
+      "observed_utc": "2026-10-14T20:45:42.757467+00:00",
+      "jobs": [
+        {
+          "pid": 4137907,
+          "physical_gpu": 2,
+          "gpu_uuid": "GPU-966900b1-520e-00e3-3be3-ba55d3fd1968",
+          "used_mib": 830,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_future_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00 --policy search_actions --shard 0 "
+        },
+        {
+          "pid": 4137944,
+          "physical_gpu": 3,
+          "gpu_uuid": "GPU-e087b67f-9495-4385-6bde-335c5760d96e",
+          "used_mib": 830,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_future_actions --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00 --policy search_actions --shard 1 "
+        }
+      ],
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/candidate_epoch00.pth",
+      "destination": "/home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015/candidate_epoch00",
+      "policy": "search_actions",
+      "checkpoint_epoch": 0,
+      "local_native_sessions": [
+        29892,
+        38749
+      ],
+      "complete": false,
+      "full98_selected_model": false,
+      "formal_metrics": null,
+      "next_observation_bjt": "2026-10-15 05:02:00",
+      "scope": "First of six complete-development checkpoints; epoch0 is the neutral initialization control."
+    },
+    "control_continuation_observation_20261015": {
+      "observed_utc": "2026-10-14T23:24:30.057861+00:00",
+      "controller_pid": 85361,
+      "controller_actual_pid_live": true,
+      "status": "RUNNING",
+      "parent_observation": {
+        "observed_utc": "2026-10-14T23:24:00.485845+00:00",
+        "jobs": [
+          {
+            "pid": 74342,
+            "shard": 0,
+            "actual_pid_live": false,
+            "exit_receipt_present": true
+          },
+          {
+            "pid": 74449,
+            "shard": 1,
+            "actual_pid_live": false,
+            "exit_receipt_present": true
+          }
+        ]
+      },
+      "phases": {
+        "develop_epoch00": {
+          "status": "REUSED_VERIFIED_COMPLETE",
+          "original_native_sessions": [
+            46511,
+            25976
+          ],
+          "original_child_exit_codes": [
+            0,
+            0
+          ],
+          "evidence": {
+            "sequences": 98,
+            "frames": 52200,
+            "sequence_equal_mean_iou": 0.6498416023214861,
+            "extra_forwards": 0,
+            "future_interventions": 0
+          }
+        },
+        "develop_epoch01": {
+          "status": "RUNNING",
+          "commands": [
+            [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "0",
+              "--shards",
+              "2"
+            ],
+            [
+              "cadtrack_abc.validate_future_actions",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--checkpoint",
+              "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+              "--manifest",
+              "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+              "--policy",
+              "future_actions",
+              "--shard",
+              "1",
+              "--shards",
+              "2"
+            ]
+          ],
+          "started_utc": "2026-10-14T23:24:00.555841+00:00",
+          "jobs": [
+            {
+              "pid": 104046,
+              "physical_gpu": 3,
+              "command": [
+                "cadtrack_abc.validate_future_actions",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--checkpoint",
+                "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+                "--manifest",
+                "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+                "--policy",
+                "future_actions",
+                "--shard",
+                "0",
+                "--shards",
+                "2"
+              ]
+            },
+            {
+              "pid": 104047,
+              "physical_gpu": 3,
+              "command": [
+                "cadtrack_abc.validate_future_actions",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--checkpoint",
+                "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+                "--manifest",
+                "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r1_control_full98_20261015/candidate_epoch01",
+                "--policy",
+                "future_actions",
+                "--shard",
+                "1",
+                "--shards",
+                "2"
+              ]
+            }
+          ]
+        }
+      },
+      "reports": {},
+      "child_queries_owned_by_existing_chain": true,
+      "additional_neural_pid_queries": false,
+      "new_neural_jobs_started": false
+    },
+    "current_live_handle_ownership_20261015": {
+      "observed_control_utc": "2026-10-14T23:24:30.057861+00:00",
+      "original_epoch00_native_sessions": [
+        46511,
+        25976
+      ],
+      "original_epoch00_native_exit_codes": [
+        0,
+        0
+      ],
+      "original_root_observer_session": 45004,
+      "original_root_observer_exit_code": 0,
+      "main_controller_native_session": 28531,
+      "control_controller_native_session": 68351,
+      "main_sole_observer_native_session": 99077,
+      "control_sole_observer_native_session": 51093,
+      "next_necessary_observation_bjt": "2026-10-15 08:20:00",
+      "no_before_deadline_neural_or_log_queries": true,
+      "formal_results_complete": false,
+      "new_training_started": false,
+      "goal_achieved": false
+    },
+    "runtime_node_0823_20261015": {
+      "evidence": "cadtrack_abc/results/r1_wait_and_runtime_20261015/0823",
+      "progress": {
+        "observed_utc": "2026-10-15T00:21:07.586020+00:00",
+        "elapsed_main_lasher_seconds": 4926.002929,
+        "main_lasher": [
+          {
+            "shard": 0,
+            "completed_sequences": 46,
+            "total_sequences": 123,
+            "completed_frames": 40416,
+            "total_frames": 107898,
+            "completed_sequence_extra_forwards": 1714,
+            "last_completed": {
+              "event": "sequence_complete",
+              "shard": 0,
+              "index": 46,
+              "sequence": "boyinsnowfield3",
+              "frames": 1418,
+              "seconds": 180.04489671898773,
+              "extra_forwards": 0
+            },
+            "completion_only_remaining_seconds_estimate": 8224.874546090114
+          },
+          {
+            "shard": 1,
+            "completed_sequences": 52,
+            "total_sequences": 122,
+            "completed_frames": 39084,
+            "total_frames": 112805,
+            "completed_sequence_extra_forwards": 1624,
+            "last_completed": {
+              "event": "sequence_complete",
+              "shard": 1,
+              "index": 52,
+              "sequence": "boywaitgirl",
+              "frames": 965,
+              "seconds": 82.57995616842527,
+              "extra_forwards": 0
+            },
+            "completion_only_remaining_seconds_estimate": 9291.522411442253
+          }
+        ],
+        "control_status": "RUNNING",
+        "control_phases": {
+          "develop_epoch00": {
+            "status": "REUSED_VERIFIED_COMPLETE",
+            "started_utc": null,
+            "completed_utc": null,
+            "evidence": {
+              "sequences": 98,
+              "frames": 52200,
+              "sequence_equal_mean_iou": 0.6498416023214861,
+              "extra_forwards": 0,
+              "future_interventions": 0
+            }
+          },
+          "develop_epoch01": {
+            "status": "VERIFIED_COMPLETE",
+            "started_utc": "2026-10-14T23:24:00.555841+00:00",
+            "completed_utc": "2026-10-14T23:55:32.585404+00:00",
+            "evidence": {
+              "sequences": 98,
+              "frames": 52200,
+              "sequence_equal_mean_iou": 0.6576578945909836,
+              "extra_forwards": 0,
+              "future_interventions": 575
+            }
+          },
+          "develop_epoch02": {
+            "status": "RUNNING",
+            "started_utc": "2026-10-14T23:55:32.588700+00:00",
+            "completed_utc": null,
+            "evidence": null
+          }
+        },
+        "estimate_scope": "Conservative sequence-completion-only wall estimate; in-progress sequence not counted.",
+        "new_neural_jobs_started": false
+      },
+      "ownership": {
+        "observed_actual_live_utc": "2026-10-15T00:23:07.899868+00:00",
+        "main_controller_native_session": 28531,
+        "main_controller_pid": 81003,
+        "control_controller_native_session": 68351,
+        "control_controller_pid": 85361,
+        "actual_neural_pids_at_sample": [
+          81006,
+          81007,
+          134761
+        ],
+        "consumed_original_observer_sessions": [
+          99077,
+          51093
+        ],
+        "original_observer_exit_codes": [
+          0,
+          0
+        ],
+        "consumed_cpu_diagnostic_sessions": [
+          19274,
+          12828
+        ],
+        "cpu_diagnostic_exit_codes": [
+          0,
+          0
+        ],
+        "main_sole_observer_native_session": 1709,
+        "main_first_necessary_observation_bjt": "2026-10-15 10:40:00",
+        "control_sole_observer_native_session": 13592,
+        "control_first_necessary_observation_bjt": "2026-10-15 09:55:00",
+        "no_before_deadline_neural_log_resource_or_handle_queries": true,
+        "actual_formal_metrics_complete": false,
+        "goal_achieved": false
+      },
+      "runtime_preprocessing_changed": false,
+      "current_formal_checkpoint_unchanged": true
+    },
+    "control_complete_full98_selection_20261015": {
+      "selected": {
+        "epoch": 20,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+        "sequence_mean_iou": 0.6646335295648599,
+        "frame_mean_iou": 0.5828204164117095
+      },
+      "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+      "candidates": [
+        {
+          "epoch": 0,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch00.pth",
+          "sequence_mean_iou": 0.6498416023214861,
+          "frame_mean_iou": 0.49732447611032227
+        },
+        {
+          "epoch": 1,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+          "sequence_mean_iou": 0.6576578945909836,
+          "frame_mean_iou": 0.48793770064780645
+        },
+        {
+          "epoch": 2,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+          "sequence_mean_iou": 0.6532990292512945,
+          "frame_mean_iou": 0.5696438664211645
+        },
+        {
+          "epoch": 5,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+          "sequence_mean_iou": 0.6539118107104179,
+          "frame_mean_iou": 0.5599895294135292
+        },
+        {
+          "epoch": 10,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+          "sequence_mean_iou": 0.6639468980078794,
+          "frame_mean_iou": 0.5807000333862129
+        },
+        {
+          "epoch": 20,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+          "sequence_mean_iou": 0.6646335295648599,
+          "frame_mean_iou": 0.5828204164117095
+        }
+      ],
+      "trained_selected": {
+        "epoch": 20,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+        "sequence_mean_iou": 0.6646335295648599,
+        "frame_mean_iou": 0.5828204164117095
+      },
+      "trained_best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+      "full98_development_selection_complete": true,
+      "formal_metrics_complete": false,
+      "selection_metric": "Sequence-equal mean IoU on repeated98 development videos, not official test.",
+      "strict_future_head_reload": true,
+      "cleanup": "Deferred until selected and trained checkpoints finish all formal datasets; teacher/pretrain untouched."
+    },
+    "control_full98_closure_recomputed_20261015": {
+      "status": "ALL_SIX_CONTROL_FULL98_COMPLETE_EPOCH20_SELECTED",
+      "candidates": [
+        {
+          "epoch": 0,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6498416023214861,
+          "frame_mean_iou": 0.49732447611032227,
+          "extra_forwards": 0,
+          "future_interventions": 0
+        },
+        {
+          "epoch": 1,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6576578945909836,
+          "frame_mean_iou": 0.48793770064780645,
+          "extra_forwards": 0,
+          "future_interventions": 575
+        },
+        {
+          "epoch": 2,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6532990292512945,
+          "frame_mean_iou": 0.5696438664211645,
+          "extra_forwards": 0,
+          "future_interventions": 1598
+        },
+        {
+          "epoch": 5,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6539118107104179,
+          "frame_mean_iou": 0.5599895294135292,
+          "extra_forwards": 0,
+          "future_interventions": 472
+        },
+        {
+          "epoch": 10,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6639468980078794,
+          "frame_mean_iou": 0.5807000333862129,
+          "extra_forwards": 0,
+          "future_interventions": 1041
+        },
+        {
+          "epoch": 20,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6646335295648599,
+          "frame_mean_iou": 0.5828204164117095,
+          "extra_forwards": 0,
+          "future_interventions": 1198
+        }
+      ],
+      "selected_epoch": 20,
+      "selected_checkpoint_sha256": "cffca0302460b60f505c2a09a5b651b10f1d1e2211178f68307a4d708080bf62",
+      "selected_and_positive_best_same": true,
+      "raw_588_records_recomputed": true,
+      "original_development_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "control_formal_started_utc": "2026-10-15T01:52:10.761359+00:00",
+      "ownership": {
+        "control_controller_native_session": 68351,
+        "control_controller_pid": 85361,
+        "control_actual_lasher_neural_pids": [
+          260113,
+          260114
+        ],
+        "control_observed_live_utc": "2026-10-15T01:55:00.175259+00:00",
+        "original_control_observer13592_exit_code": 0,
+        "control_sole_observer_native_session": 13255,
+        "control_next_necessary_node_bjt": "2026-10-15 11:10:00",
+        "main_controller_native_session": 28531,
+        "main_sole_observer_native_session": 1709,
+        "main_next_necessary_node_bjt": "2026-10-15 10:40:00",
+        "premature_main_queries": false,
+        "original_neural_jobs_restarted": false
+      },
+      "formal_results_complete": false,
+      "goal_achieved": false,
+      "scope": "Repeated98 continuous development selection, not official benchmark precision/success or module efficacy."
+    }
+  },
+  "full_native_action_collection_20261014": {
+    "status": "FULL_NATIVE_H3_LABELS_COMPLETE",
+    "queries": 5697,
+    "train_queries": 5092,
+    "validation_queries": 605,
+    "action_labels": 1196370,
+    "original_driver_pids": [
+      3314719,
+      3314720
+    ],
+    "original_drivers_exited": true,
+    "collection_root": "/home/gaob/CADTrack-ABC/outputs/native_action_collection_20261014"
+  },
+  "rgbt210_short_read_recovery_20261015": {
+    "original_failures": [
+      6307,
+      61895
+    ],
+    "changed_recovery_native_session": 53052,
+    "missing_bytes": 5579932557,
+    "source_review": "PASS_0_BLOCKS",
+    "completion_observed": false,
+    "main_r1_training_untouched": true,
+    "next_needed_observation_bjt": "2026-10-15 04:35:00"
+  },
+  "official_rgbt210_completion_20261015": {
+    "completed": true,
+    "observed_utc": "2026-10-14T22:49:30.392893+00:00",
+    "root": "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+    "sequences": 210,
+    "frames": 104706,
+    "records": [
+      {
+        "sequence": "afterrain",
+        "frames": 123,
+        "installed_gt_frames": 123,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "aftertree",
+        "frames": 314,
+        "installed_gt_frames": 314,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "baby",
+        "frames": 660,
+        "installed_gt_frames": 660,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "baginhand",
+        "frames": 280,
+        "installed_gt_frames": 280,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "baketballwaliking",
+        "frames": 223,
+        "installed_gt_frames": 223,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "balancebike",
+        "frames": 226,
+        "installed_gt_frames": 226,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "basketball2",
+        "frames": 75,
+        "installed_gt_frames": 75,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bicyclecity",
+        "frames": 284,
+        "installed_gt_frames": 284,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bike",
+        "frames": 334,
+        "installed_gt_frames": 334,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bikeman",
+        "frames": 178,
+        "installed_gt_frames": 178,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bikemove1",
+        "frames": 175,
+        "installed_gt_frames": 175,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "biketwo",
+        "frames": 334,
+        "installed_gt_frames": 334,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "blueCar",
+        "frames": 300,
+        "installed_gt_frames": 300,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bluebike",
+        "frames": 262,
+        "installed_gt_frames": 262,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "boundaryandfast",
+        "frames": 191,
+        "installed_gt_frames": 191,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "bus6",
+        "frames": 90,
+        "installed_gt_frames": 90,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "call",
+        "frames": 221,
+        "installed_gt_frames": 221,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car",
+        "frames": 415,
+        "installed_gt_frames": 415,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car10",
+        "frames": 212,
+        "installed_gt_frames": 212,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car20",
+        "frames": 161,
+        "installed_gt_frames": 161,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car37",
+        "frames": 606,
+        "installed_gt_frames": 606,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car41",
+        "frames": 254,
+        "installed_gt_frames": 254,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "car66",
+        "frames": 211,
+        "installed_gt_frames": 211,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "carLight",
+        "frames": 267,
+        "installed_gt_frames": 267,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "caraftertree",
+        "frames": 231,
+        "installed_gt_frames": 231,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "carnotfar",
+        "frames": 420,
+        "installed_gt_frames": 420,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "carnotmove",
+        "frames": 418,
+        "installed_gt_frames": 418,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "carred",
+        "frames": 182,
+        "installed_gt_frames": 182,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "child",
+        "frames": 140,
+        "installed_gt_frames": 140,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "child3",
+        "frames": 622,
+        "installed_gt_frames": 622,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "child4",
+        "frames": 525,
+        "installed_gt_frames": 525,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "children2",
+        "frames": 240,
+        "installed_gt_frames": 240,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "children3",
+        "frames": 137,
+        "installed_gt_frames": 137,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "children4",
+        "frames": 104,
+        "installed_gt_frames": 104,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "crossroad",
+        "frames": 769,
+        "installed_gt_frames": 769,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "crouch",
+        "frames": 1041,
+        "installed_gt_frames": 1041,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "diamond",
+        "frames": 454,
+        "installed_gt_frames": 454,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "dog",
+        "frames": 45,
+        "installed_gt_frames": 45,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "dog10",
+        "frames": 349,
+        "installed_gt_frames": 349,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "dog11",
+        "frames": 99,
+        "installed_gt_frames": 99,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbike",
+        "frames": 126,
+        "installed_gt_frames": 126,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbike10",
+        "frames": 463,
+        "installed_gt_frames": 463,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbike2",
+        "frames": 584,
+        "installed_gt_frames": 584,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbike3",
+        "frames": 144,
+        "installed_gt_frames": 144,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbikechange2",
+        "frames": 211,
+        "installed_gt_frames": 211,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbikeinfrontcar",
+        "frames": 209,
+        "installed_gt_frames": 209,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbikewithhat",
+        "frames": 95,
+        "installed_gt_frames": 95,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbikewithlight",
+        "frames": 137,
+        "installed_gt_frames": 137,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "elecbikewithlight1",
+        "frames": 187,
+        "installed_gt_frames": 187,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "face1",
+        "frames": 1336,
+        "installed_gt_frames": 1336,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "floor-1",
+        "frames": 130,
+        "installed_gt_frames": 130,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "flower1",
+        "frames": 597,
+        "installed_gt_frames": 597,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "flower2",
+        "frames": 422,
+        "installed_gt_frames": 422,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "fog",
+        "frames": 672,
+        "installed_gt_frames": 672,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "fog6",
+        "frames": 303,
+        "installed_gt_frames": 303,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "glass",
+        "frames": 453,
+        "installed_gt_frames": 453,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "glass2",
+        "frames": 266,
+        "installed_gt_frames": 266,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "graycar2",
+        "frames": 345,
+        "installed_gt_frames": 345,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "green",
+        "frames": 493,
+        "installed_gt_frames": 493,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "greentruck",
+        "frames": 131,
+        "installed_gt_frames": 131,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "greyman",
+        "frames": 283,
+        "installed_gt_frames": 283,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "greywoman",
+        "frames": 155,
+        "installed_gt_frames": 155,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "guidepost",
+        "frames": 444,
+        "installed_gt_frames": 444,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "hotglass",
+        "frames": 418,
+        "installed_gt_frames": 418,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "hotkettle",
+        "frames": 1080,
+        "installed_gt_frames": 1080,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "inglassandmobile",
+        "frames": 630,
+        "installed_gt_frames": 630,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "jump",
+        "frames": 444,
+        "installed_gt_frames": 444,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "kettle",
+        "frames": 1426,
+        "installed_gt_frames": 1426,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "kite2",
+        "frames": 1624,
+        "installed_gt_frames": 1624,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "kite4",
+        "frames": 1400,
+        "installed_gt_frames": 1400,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "luggage",
+        "frames": 736,
+        "installed_gt_frames": 736,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man22",
+        "frames": 331,
+        "installed_gt_frames": 331,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man23",
+        "frames": 405,
+        "installed_gt_frames": 405,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man24",
+        "frames": 560,
+        "installed_gt_frames": 560,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man26",
+        "frames": 451,
+        "installed_gt_frames": 451,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man28",
+        "frames": 480,
+        "installed_gt_frames": 480,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man29",
+        "frames": 270,
+        "installed_gt_frames": 270,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man3",
+        "frames": 3627,
+        "installed_gt_frames": 3627,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man4",
+        "frames": 590,
+        "installed_gt_frames": 590,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man45",
+        "frames": 266,
+        "installed_gt_frames": 266,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man5",
+        "frames": 600,
+        "installed_gt_frames": 600,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man55",
+        "frames": 555,
+        "installed_gt_frames": 555,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man68",
+        "frames": 394,
+        "installed_gt_frames": 394,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man69",
+        "frames": 120,
+        "installed_gt_frames": 120,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man7",
+        "frames": 4140,
+        "installed_gt_frames": 4140,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man8",
+        "frames": 2584,
+        "installed_gt_frames": 2584,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man88",
+        "frames": 214,
+        "installed_gt_frames": 214,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "man9",
+        "frames": 504,
+        "installed_gt_frames": 504,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manafterrain",
+        "frames": 492,
+        "installed_gt_frames": 492,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "mancross",
+        "frames": 118,
+        "installed_gt_frames": 118,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "mancross1",
+        "frames": 222,
+        "installed_gt_frames": 222,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "mancrossandup",
+        "frames": 339,
+        "installed_gt_frames": 339,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "mandrivecar",
+        "frames": 392,
+        "installed_gt_frames": 392,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manfaraway",
+        "frames": 250,
+        "installed_gt_frames": 250,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "maninblack",
+        "frames": 178,
+        "installed_gt_frames": 178,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "maninglass",
+        "frames": 421,
+        "installed_gt_frames": 421,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "maningreen2",
+        "frames": 127,
+        "installed_gt_frames": 127,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "maninred",
+        "frames": 158,
+        "installed_gt_frames": 158,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manlight",
+        "frames": 341,
+        "installed_gt_frames": 341,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manoccpart",
+        "frames": 78,
+        "installed_gt_frames": 78,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manonboundary",
+        "frames": 455,
+        "installed_gt_frames": 455,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manonelecbike",
+        "frames": 250,
+        "installed_gt_frames": 250,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manontricycle",
+        "frames": 100,
+        "installed_gt_frames": 100,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manout2",
+        "frames": 100,
+        "installed_gt_frames": 100,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manup",
+        "frames": 336,
+        "installed_gt_frames": 336,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manwithbag",
+        "frames": 389,
+        "installed_gt_frames": 389,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manwithbag4",
+        "frames": 578,
+        "installed_gt_frames": 578,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manwithbasketball",
+        "frames": 81,
+        "installed_gt_frames": 81,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manwithluggage",
+        "frames": 985,
+        "installed_gt_frames": 985,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manwithumbrella",
+        "frames": 504,
+        "installed_gt_frames": 504,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "manypeople",
+        "frames": 647,
+        "installed_gt_frames": 647,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "mobile",
+        "frames": 900,
+        "installed_gt_frames": 900,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "night2",
+        "frames": 70,
+        "installed_gt_frames": 70,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "nightcar",
+        "frames": 200,
+        "installed_gt_frames": 200,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "nightrun",
+        "frames": 161,
+        "installed_gt_frames": 161,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "nightthreepeople",
+        "frames": 288,
+        "installed_gt_frames": 288,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "notmove",
+        "frames": 624,
+        "installed_gt_frames": 624,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "oldman",
+        "frames": 456,
+        "installed_gt_frames": 456,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "oldman2",
+        "frames": 103,
+        "installed_gt_frames": 103,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "oldwoman",
+        "frames": 236,
+        "installed_gt_frames": 236,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "people",
+        "frames": 377,
+        "installed_gt_frames": 377,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "people1",
+        "frames": 1530,
+        "installed_gt_frames": 1530,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "people3",
+        "frames": 928,
+        "installed_gt_frames": 928,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "playsoccer",
+        "frames": 1456,
+        "installed_gt_frames": 1456,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "push",
+        "frames": 330,
+        "installed_gt_frames": 330,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "rainingwaliking",
+        "frames": 1011,
+        "installed_gt_frames": 1011,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "raningcar",
+        "frames": 111,
+        "installed_gt_frames": 111,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "redbag",
+        "frames": 1390,
+        "installed_gt_frames": 1390,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "redcar",
+        "frames": 218,
+        "installed_gt_frames": 218,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "redcar2",
+        "frames": 245,
+        "installed_gt_frames": 245,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "redmanchange",
+        "frames": 331,
+        "installed_gt_frames": 331,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "rmo",
+        "frames": 660,
+        "installed_gt_frames": 660,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "run",
+        "frames": 300,
+        "installed_gt_frames": 300,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "run1",
+        "frames": 85,
+        "installed_gt_frames": 85,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "run2",
+        "frames": 208,
+        "installed_gt_frames": 208,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "scooter",
+        "frames": 918,
+        "installed_gt_frames": 918,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "shake",
+        "frames": 850,
+        "installed_gt_frames": 850,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "shoeslight",
+        "frames": 234,
+        "installed_gt_frames": 234,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "soccer",
+        "frames": 1327,
+        "installed_gt_frames": 1327,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "soccer2",
+        "frames": 381,
+        "installed_gt_frames": 381,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "soccerinhand",
+        "frames": 1169,
+        "installed_gt_frames": 1169,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "straw",
+        "frames": 347,
+        "installed_gt_frames": 347,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "stroller",
+        "frames": 679,
+        "installed_gt_frames": 679,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "supbus",
+        "frames": 230,
+        "installed_gt_frames": 230,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "supbus2",
+        "frames": 166,
+        "installed_gt_frames": 166,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "takeout",
+        "frames": 578,
+        "installed_gt_frames": 578,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tallman",
+        "frames": 171,
+        "installed_gt_frames": 171,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "threeman",
+        "frames": 256,
+        "installed_gt_frames": 256,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "threeman2",
+        "frames": 431,
+        "installed_gt_frames": 431,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "threewoman2",
+        "frames": 230,
+        "installed_gt_frames": 230,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "together",
+        "frames": 499,
+        "installed_gt_frames": 499,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "toy1",
+        "frames": 1695,
+        "installed_gt_frames": 1695,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "toy3",
+        "frames": 1127,
+        "installed_gt_frames": 1127,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "toy4",
+        "frames": 990,
+        "installed_gt_frames": 990,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tree2",
+        "frames": 1260,
+        "installed_gt_frames": 1260,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tree3",
+        "frames": 1904,
+        "installed_gt_frames": 1904,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tree5",
+        "frames": 2106,
+        "installed_gt_frames": 2106,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "trees",
+        "frames": 221,
+        "installed_gt_frames": 221,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricycle",
+        "frames": 228,
+        "installed_gt_frames": 228,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricycle2",
+        "frames": 235,
+        "installed_gt_frames": 235,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricycle6",
+        "frames": 471,
+        "installed_gt_frames": 471,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricycle9",
+        "frames": 334,
+        "installed_gt_frames": 334,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricyclefaraway",
+        "frames": 297,
+        "installed_gt_frames": 297,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "tricycletwo",
+        "frames": 614,
+        "installed_gt_frames": 614,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twoelecbike",
+        "frames": 84,
+        "installed_gt_frames": 84,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twoelecbike1",
+        "frames": 240,
+        "installed_gt_frames": 240,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twoman",
+        "frames": 1300,
+        "installed_gt_frames": 1300,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twoman1",
+        "frames": 1002,
+        "installed_gt_frames": 1002,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twoperson",
+        "frames": 869,
+        "installed_gt_frames": 869,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "twowoman",
+        "frames": 161,
+        "installed_gt_frames": 161,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walking40",
+        "frames": 380,
+        "installed_gt_frames": 380,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walking41",
+        "frames": 418,
+        "installed_gt_frames": 418,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingman",
+        "frames": 106,
+        "installed_gt_frames": 106,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingman1",
+        "frames": 648,
+        "installed_gt_frames": 648,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingman12",
+        "frames": 510,
+        "installed_gt_frames": 510,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingman20",
+        "frames": 572,
+        "installed_gt_frames": 572,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingman41",
+        "frames": 504,
+        "installed_gt_frames": 504,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingmantiny",
+        "frames": 83,
+        "installed_gt_frames": 83,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingnight",
+        "frames": 426,
+        "installed_gt_frames": 426,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingtogether",
+        "frames": 1436,
+        "installed_gt_frames": 1436,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingtogether1",
+        "frames": 387,
+        "installed_gt_frames": 387,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingtogetherright",
+        "frames": 604,
+        "installed_gt_frames": 604,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingwithbag1",
+        "frames": 645,
+        "installed_gt_frames": 645,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingwithbag2",
+        "frames": 1279,
+        "installed_gt_frames": 1279,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "walkingwoman",
+        "frames": 349,
+        "installed_gt_frames": 349,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitebag",
+        "frames": 393,
+        "installed_gt_frames": 393,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitecar",
+        "frames": 182,
+        "installed_gt_frames": 182,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitecar3",
+        "frames": 448,
+        "installed_gt_frames": 448,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitecar4",
+        "frames": 148,
+        "installed_gt_frames": 148,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitecarafterrain",
+        "frames": 164,
+        "installed_gt_frames": 164,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "whitesuv",
+        "frames": 580,
+        "installed_gt_frames": 580,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woamn46",
+        "frames": 273,
+        "installed_gt_frames": 273,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woamnwithbike",
+        "frames": 147,
+        "installed_gt_frames": 147,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman",
+        "frames": 140,
+        "installed_gt_frames": 140,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman100",
+        "frames": 690,
+        "installed_gt_frames": 690,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman4",
+        "frames": 424,
+        "installed_gt_frames": 424,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman48",
+        "frames": 349,
+        "installed_gt_frames": 349,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman6",
+        "frames": 78,
+        "installed_gt_frames": 78,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman89",
+        "frames": 435,
+        "installed_gt_frames": 435,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman96",
+        "frames": 95,
+        "installed_gt_frames": 95,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "woman99",
+        "frames": 548,
+        "installed_gt_frames": 548,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womancross",
+        "frames": 604,
+        "installed_gt_frames": 604,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanfaraway",
+        "frames": 128,
+        "installed_gt_frames": 128,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womaninblackwithbike",
+        "frames": 741,
+        "installed_gt_frames": 741,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanleft",
+        "frames": 579,
+        "installed_gt_frames": 579,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanpink",
+        "frames": 113,
+        "installed_gt_frames": 113,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanred",
+        "frames": 103,
+        "installed_gt_frames": 103,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanrun",
+        "frames": 658,
+        "installed_gt_frames": 658,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "womanwithbag6",
+        "frames": 170,
+        "installed_gt_frames": 170,
+        "same_as_installed_toolkit_gt": true
+      },
+      {
+        "sequence": "yellowcar",
+        "frames": 599,
+        "installed_gt_frames": 599,
+        "same_as_installed_toolkit_gt": true
+      }
+    ],
+    "installed_toolkit_gt_frames": 104706,
+    "installed_toolkit_gt_differing_sequences": [],
+    "actual_dataset_gt_used_for_future_scoring": true,
+    "archive_bytes": 6857321678,
+    "archive_sha256": "ecd163138623a501c55dff22b2c412f69d361cdfad73fc62da9a6ab87a0047be",
+    "expanded_file_bytes": 6963381056,
+    "source_index": "https://github.com/ahucv/Homepage/blob/master/public/source/dataset.md",
+    "source_url": "https://drive.usercontent.google.com/download?id=0B3i2rdXLNbdUTkhsLVRwcTBTMlU&export=download&confirm=t",
+    "existing_datasets_moved": false,
+    "neural_inference_started": false,
+    "warm_conda_modified": false,
+    "temperature_or_power_queried": false
+  }
+}
+RESULT results/main/rgbt210/full_report.json 26303
+{
+  "completed": true,
+  "dataset": "rgbt210",
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "sequences": 210,
+  "frames": 104706,
+  "overall_metrics_percent": {
+    "PR": 87.41035493046077,
+    "SR": 63.667766126563585
+  },
+  "scoring_toolkit": "/data/wangwj/RGBT_toolkit-master/src",
+  "ground_truth_root": "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+  "protocol": "Native dataset-specific rgbt toolkit and prediction rounding; LasHeR calls NPR before PR/SR; actual dataset GT.",
+  "timing": {
+    "fps": 21.495285474437413,
+    "latency_p50_ms": 46.47441899578553,
+    "latency_p95_ms": 50.68411950196605,
+    "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+  },
+  "baseline_source": "User-provided LasHeR only. No baseline predictions rerun, no paired CI."
+}
+RESULT results/main/rgbt210/per_sequence.csv 8646
+RESULT results/main/rgbt234/full_report.json 28845
+{
+  "completed": true,
+  "dataset": "rgbt234",
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "sequences": 234,
+  "frames": 116649,
+  "overall_metrics_percent": {
+    "MPR": 89.15954701779948,
+    "MSR": 65.93388612904715
+  },
+  "scoring_toolkit": "/data/wangwj/RGBT_toolkit-master/src",
+  "ground_truth_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+  "protocol": "Native dataset-specific rgbt toolkit and prediction rounding; LasHeR calls NPR before PR/SR; actual dataset GT.",
+  "timing": {
+    "fps": 21.654767261962807,
+    "latency_p50_ms": 46.36528299306519,
+    "latency_p95_ms": 51.89198450243566,
+    "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+  },
+  "baseline_source": "User-provided LasHeR only. No baseline predictions rerun, no paired CI."
+}
+RESULT results/main/rgbt234/per_sequence.csv 9311
+RESULT results/pure_rgbt234/full_report.json 28899
+{
+  "completed": true,
+  "dataset": "rgbt234",
+  "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+  "epoch": 14,
+  "sequences": 234,
+  "frames": 116649,
+  "overall_metrics_percent": {
+    "MPR": 89.88130707509919,
+    "MSR": 66.31030440376779
+  },
+  "scoring_toolkit": "/data/wangwj/RGBT_toolkit-master/src",
+  "ground_truth_root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+  "protocol": "Native rgbt toolkit including prediction rounding and NPR-before-PR/SR order; actual dataset GT.",
+  "timing": {
+    "fps": 29.667669729568118,
+    "latency_p50_ms": 25.76188399689272,
+    "latency_p95_ms": 57.84647390828463,
+    "scope": "Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing."
+  },
+  "baseline_source": "Supplied CAD epoch14 module-free checkpoint with the original CAD test policy; actual dataset GT.",
+  "model_role": "pure_cad_baseline"
+}
+RESULT results/pure_rgbt234/per_sequence.csv 9370
+RECEIPT predictions/main/rgbt210/complete_shard0.json {
+  "completed": true,
+  "dataset": "rgbt210",
+  "shard": 0,
+  "shards": 2,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "records": 105,
+  "sequences": 105,
+  "frames": 49860,
+  "peak_memory_gb": 0.481993216,
+  "strict_base_and_abc_load": true,
+  "first_box_only_initialization": true,
+  "policy_family": "search_actions"
+}
+record_keys ['sequence', 'frames', 'seconds', 'extra_forwards']
+RECEIPT predictions/main/rgbt210/complete_shard1.json {
+  "completed": true,
+  "dataset": "rgbt210",
+  "shard": 1,
+  "shards": 2,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "records": 105,
+  "sequences": 105,
+  "frames": 54846,
+  "peak_memory_gb": 0.481993216,
+  "strict_base_and_abc_load": true,
+  "first_box_only_initialization": true,
+  "policy_family": "search_actions"
+}
+record_keys ['sequence', 'frames', 'seconds', 'extra_forwards']
+RECEIPT predictions/main/rgbt234/complete_shard0.json {
+  "completed": true,
+  "dataset": "rgbt234",
+  "shard": 0,
+  "shards": 2,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "records": 117,
+  "sequences": 117,
+  "frames": 53979,
+  "peak_memory_gb": 0.481993216,
+  "strict_base_and_abc_load": true,
+  "first_box_only_initialization": true,
+  "policy_family": "search_actions"
+}
+record_keys ['sequence', 'frames', 'seconds', 'extra_forwards']
+RECEIPT predictions/main/rgbt234/complete_shard1.json {
+  "completed": true,
+  "dataset": "rgbt234",
+  "shard": 1,
+  "shards": 2,
+  "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+  "epoch": 10,
+  "records": 117,
+  "sequences": 117,
+  "frames": 62670,
+  "peak_memory_gb": 0.481993216,
+  "strict_base_and_abc_load": true,
+  "first_box_only_initialization": true,
+  "policy_family": "search_actions"
+}
+record_keys ['sequence', 'frames', 'seconds', 'extra_forwards']
+RECEIPT predictions/pure_rgbt234/complete_shard0.json {
+  "completed": true,
+  "dataset": "rgbt234",
+  "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+  "epoch": 14,
+  "loaded_tensors": 250,
+  "policy_family": "pure_cad",
+  "shard": 0,
+  "shards": 2,
+  "records": 117,
+  "sequences": 117,
+  "frames": 53979,
+  "peak_memory_gb": 0.47944448,
+  "strict_base_load": true,
+  "first_box_only_initialization": true,
+  "protocol": "Original CAD crop/Hann argmax/Center bbox/map/clip; weighted response >0.65 every5 frames; protected first template."
+}
+record_keys ['sequence', 'frames', 'seconds', 'template_updates']
+RECEIPT predictions/pure_rgbt234/complete_shard1.json {
+  "completed": true,
+  "dataset": "rgbt234",
+  "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+  "epoch": 14,
+  "loaded_tensors": 250,
+  "policy_family": "pure_cad",
+  "shard": 1,
+  "shards": 2,
+  "records": 117,
+  "sequences": 117,
+  "frames": 62670,
+  "peak_memory_gb": 0.47944448,
+  "strict_base_load": true,
+  "first_box_only_initialization": true,
+  "protocol": "Original CAD crop/Hann argmax/Center bbox/map/clip; weighted response >0.65 every5 frames; protected first template."
+}
+record_keys ['sequence', 'frames', 'seconds', 'template_updates']
+attributes ['toolkit_attributes\\rgbt210\\BC.txt', 'toolkit_attributes\\rgbt210\\CM.txt', 'toolkit_attributes\\rgbt210\\DEF.txt', 'toolkit_attributes\\rgbt210\\FM.txt', 'toolkit_attributes\\rgbt210\\HO.txt', 'toolkit_attributes\\rgbt210\\LI.txt', 'toolkit_attributes\\rgbt210\\LR.txt', 'toolkit_attributes\\rgbt210\\MB.txt', 'toolkit_attributes\\rgbt210\\NO.txt', 'toolkit_attributes\\rgbt210\\PO.txt', 'toolkit_attributes\\rgbt210\\SC.txt', 'toolkit_attributes\\rgbt210\\SequencesName.txt', 'toolkit_attributes\\rgbt210\\TC.txt', 'toolkit_attributes\\rgbt234\\BC.txt', 'toolkit_attributes\\rgbt234\\CM.txt', 'toolkit_attributes\\rgbt234\\DEF.txt', 'toolkit_attributes\\rgbt234\\FM.txt', 'toolkit_attributes\\rgbt234\\HO.txt', 'toolkit_attributes\\rgbt234\\LI.txt', 'toolkit_attributes\\rgbt234\\LR.txt', 'toolkit_attributes\\rgbt234\\MB.txt', 'toolkit_attributes\\rgbt234\\NO.txt', 'toolkit_attributes\\rgbt234\\PO.txt', 'toolkit_attributes\\rgbt234\\SC.txt', 'toolkit_attributes\\rgbt234\\SequencesName.txt', 'toolkit_attributes\\rgbt234\\TC.txt']
+gt_sample ['ground_truth\\rgbt210\\afterrain\\init.txt', 'ground_truth\\rgbt210\\aftertree\\init.txt', 'ground_truth\\rgbt210\\baby\\init.txt', 'ground_truth\\rgbt210\\baginhand\\init.txt', 'ground_truth\\rgbt210\\baketballwaliking\\init.txt', 'ground_truth\\rgbt210\\balancebike\\init.txt']
+extension_counts {'.json': 17, '.md': 1, '.pth': 1, '.txt': 1382, '.npy': 678, '.py': 151, '.yaml': 1, '.csv': 3}

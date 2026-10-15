@@ -1,0 +1,64 @@
+{
+  "status": "PURE_RGBT210_COMPLETE",
+  "controller_pid": 470102,
+  "started_utc": "2026-10-15T03:50:39.262703+00:00",
+  "dataset": "rgbt210",
+  "checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+  "physical_gpu": 2,
+  "max_workers_per_gpu": 2,
+  "jobs": [
+    {
+      "pid": 470325,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt210_20261015/predictions",
+        "--shard",
+        "0"
+      ],
+      "physical_gpu": 2
+    },
+    {
+      "pid": 470326,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.infer_baseline",
+        "--checkpoint",
+        "/home/gaob/CADTrack_ep0014.pth.tar",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt210_20261015/predictions",
+        "--shard",
+        "1"
+      ],
+      "physical_gpu": 2
+    }
+  ],
+  "baseline_lasher_rerun": false,
+  "model_or_environment_modified": false,
+  "inference_exit_codes": [
+    0,
+    0
+  ],
+  "completed": true,
+  "score_exit_code": 0,
+  "completed_utc": "2026-10-15T04:22:27.533824+00:00",
+  "model_role": "pure_cad_baseline",
+  "full_report": "/home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt210_20261015/reports/full_report.json",
+  "metrics": {
+    "PR": 88.72237534208853,
+    "SR": 64.51517148751734
+  }
+}

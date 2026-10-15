@@ -238,7 +238,7 @@
     "latency_p95_ms": 51.89198450243566,
     "scope": "Two concurrent inference workers on physical GPU2; shared-host concurrent work. FPS is calls divided by summed worker-frame seconds, not concurrent elapsed-run throughput or matched baseline speed. The original raw report and all numerical values are preserved."
   },
-  "baseline_source": "User-provided LasHeR only. No baseline predictions rerun, no paired CI.",
+  "baseline_source": "Separately completed pure CAD RGBT234 evaluation using the user CADTrack_ep0014 checkpoint; not the user-provided LasHeR scalar reference. The paired comparison below uses the actual234 shared sequences.",
   "per_sequence": [
     {
       "sequence": "blackwoman",
@@ -1411,5 +1411,52 @@
       "MSR": 78.51160564728404
     }
   ],
-  "result_review_scope": "LasHeR deterministic audit WARN/0 blocking, same-family provisional; additional RGBT210/RGBT234 and pure234 raw-data audit is pending. No overall goal or module-effectiveness certification."
+  "result_review_scope": "LasHeR: separate deterministic audit WARN/0 blocking and 41972 comparisons. RGB main210/main234 plus pure234: fresh deterministic audit WARN/0 blocking and 1437 checks under existing NumPy2.2.6. Same-family/provisional, actual reviewer routing UNATTESTED. Neither audit establishes three-module effectiveness or the research target.",
+  "rgb_result_audit_reference": "cadtrack_abc/results/three_benchmark_closure_20261015/r1_main_rgbt_audit_1215/EXPERIMENT_AUDIT.json",
+  "rgb_scoring_runtime": "Actual existing Python3.10.19 / NumPy2.2.6 used for exact independent arithmetic reproduction. Initial NumPy1.26.4 mismatch and all repair records preserved in audit archive; no production metric change.",
+  "baseline_reference_percent": {
+    "MPR": 89.88130707509919,
+    "MSR": 66.31030440376779
+  },
+  "fixed_checkpoint_paired_comparison": {
+    "replicates": 5000,
+    "seed": 20261015,
+    "generator": "NumPy2.2.6 default_rng / PCG64",
+    "pairing": "Same named234 sequences, retain paired main and pure scalar metrics; uniformly resample234 sequence indices with replacement per replicate; both metrics use the same index draws. Main minus pure, percentage points.",
+    "interval": "Two-sided percentile95%, numpy.quantile([.025,.975], method=linear)",
+    "scope": "Fixed selected checkpoint/benchmark sequence uncertainty only; not training-seed stability, causal module attribution, latency uncertainty or independent datasets. Sequences treated as exchangeable units; related videos may violate independence.",
+    "draw_index_sha256": "3a1f1262f0bb4f73c8d806df4d636056096ac0ab78f54d3a74d0b0baf080f05b",
+    "metrics": {
+      "MPR": {
+        "point_difference_pp": -0.7217600572997469,
+        "percentile95_interval_pp": [
+          -2.2697288973079597,
+          0.8176238517557154
+        ],
+        "replicate_mean_pp": -0.7240722898465654,
+        "replicate_std_pp": 0.7797331288390978,
+        "fraction_replicates_above_zero": 0.174,
+        "sequence_win_tie_loss": [
+          53,
+          127,
+          54
+        ]
+      },
+      "MSR": {
+        "point_difference_pp": -0.37641827472065537,
+        "percentile95_interval_pp": [
+          -1.4486524612226475,
+          0.7057360967414762
+        ],
+        "replicate_mean_pp": -0.3785863560308371,
+        "replicate_std_pp": 0.5459885449687364,
+        "fraction_replicates_above_zero": 0.2396,
+        "sequence_win_tie_loss": [
+          121,
+          5,
+          108
+        ]
+      }
+    }
+  }
 }
