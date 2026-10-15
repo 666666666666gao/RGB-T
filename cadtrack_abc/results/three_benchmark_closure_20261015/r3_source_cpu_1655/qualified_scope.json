@@ -1,0 +1,65 @@
+{
+  "status": "REVIEWED_SOURCE_AND_ACTUAL_CPU_COMPONENT_CONTRACTS_ONLY",
+  "six_new_sources": {
+    "cadtrack_abc/dense_temporal.py": "5b992ff1b6a05e6207eaab86904f419ffc2468992c366e5648db5800d300c6cc",
+    "cadtrack_abc/dense_submission.py": "869afb855de1fe7d1a3975afc40e5353006e981e7008c0ea5b393709e65b4fba",
+    "cadtrack_abc/dense_main_model.py": "467c87d70d1dd2b5bd9808c724c5341e30a77dcfd15da912ca9fe267c91b923c",
+    "cadtrack_abc/dense_main_tracker.py": "183c96a1a0fecd6eec3992208ec80ece80b0e59c750443a284a400e5f98b03d2",
+    "cadtrack_abc/train_dense_motion.py": "9c025cbf7f83d166163460d9472c21dd5b4f5a4dbc41f65c436489526ede875d",
+    "cadtrack_abc/check_dense_main_contracts.py": "92268f2ea6e8f11e221e7c0519b0ad91ee148bdc05ecaaba8b5e53ff15df989b"
+  },
+  "actual_cpu_execution": {
+    "started_utc": "2026-10-15T08:51:35.512420+00:00",
+    "ended_utc": "2026-10-15T08:53:55.799603+00:00",
+    "seconds": 140.28721133401268,
+    "command": [
+      "/data/wangwj/envs/CADTrack/bin/python",
+      "-m",
+      "cadtrack_abc.check_dense_main_contracts",
+      "--output",
+      "/home/gaob/CADTrack-ABC/profile_output/dense_r3_cpu_contracts_20261015/contracts.json"
+    ],
+    "actual_exit_code": 0,
+    "CUDA_VISIBLE_DEVICES": "",
+    "sources": {
+      "cadtrack_abc/dense_temporal.py": "5b992ff1b6a05e6207eaab86904f419ffc2468992c366e5648db5800d300c6cc",
+      "cadtrack_abc/dense_submission.py": "869afb855de1fe7d1a3975afc40e5353006e981e7008c0ea5b393709e65b4fba",
+      "cadtrack_abc/dense_main_model.py": "467c87d70d1dd2b5bd9808c724c5341e30a77dcfd15da912ca9fe267c91b923c",
+      "cadtrack_abc/dense_main_tracker.py": "183c96a1a0fecd6eec3992208ec80ece80b0e59c750443a284a400e5f98b03d2",
+      "cadtrack_abc/train_dense_motion.py": "9c025cbf7f83d166163460d9472c21dd5b4f5a4dbc41f65c436489526ede875d",
+      "cadtrack_abc/check_dense_main_contracts.py": "92268f2ea6e8f11e221e7c0519b0ad91ee148bdc05ecaaba8b5e53ff15df989b"
+    },
+    "scope": "CPU synthetic component contracts only, no real images/pretrained forward/GPU execution.",
+    "new_GPU_jobs": 0,
+    "training_source_or_configuration_changed": false,
+    "full_ABC_training_complete": false,
+    "formal_metrics": null
+  },
+  "actual_cpu_contracts_count": 19,
+  "current_R2_training_changed": false,
+  "source_review": {
+    "verdict": "NO_CONFIRMED_BLOCKING_SOURCE_DEFECT",
+    "review_independence": "same-family",
+    "actual_route": "UNATTESTED",
+    "acceptance_status": "provisional"
+  },
+  "consequence_source": {
+    "files": [
+      "dense_consequences.py",
+      "collect_dense_consequences.py",
+      "train_dense_consequences.py"
+    ],
+    "status": "IMPLEMENTED_AST_ONLY_AWAITING_SEPARATE_FRESH_SOURCE_REVIEW",
+    "deployed": false,
+    "reviewer": "/root/dense_consequence_source_review_20261015"
+  },
+  "outstanding": [
+    "Local/one-extra candidate-evidence calibration.",
+    "Real parent-video parity and full tracker intervention/replay qualification after R2 closure.",
+    "Actual R3 raw-stage and consequence-stage training.",
+    "Complete98 checkpoint selection and one checkpoint/config on all3 benchmarks.",
+    "Independent component effects and all7 metrics at least baseline+2."
+  ],
+  "new_GPU_jobs": 0,
+  "goal_achieved": false
+}

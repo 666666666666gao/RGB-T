@@ -1,0 +1,50 @@
+{
+  "purpose": "Implement remaining B/C interfaces around the new dense A localizer without changing the running R2 experiment.",
+  "original_goal": "Full trained A/B/C main method, same checkpoint/configuration across3 full datasets, all7 standard metrics at least baseline+2.",
+  "parent_plan": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_plan_20261015.json",
+  "current_training": "R2 H/HA20epochs remains untouched. Next scheduled observer80996 at2026-10-16T07:39:58.342327+08:00; no early queries/newGPU jobs.",
+  "modules": {
+    "A": "Existing competitive memory prompt before fusion, loaded from locked R2-HA full98 best.",
+    "B": "Three-mode/three-step motion on policy-accepted geometry, actual clock gaps, bounded-base uncertainty; zero-initialized soft grid residual before Center head. Search head sees local evidence only; at most one extra visual region.",
+    "C": "Bidirectional local+executed-region candidate evidence. Six future-advantage actions. Keep preserves original R2 geometry/template rule; geometry quarantine blocks both geometry and modal-memory/template commits. Future harm labels are explicitly future degradation rather than total-utility sign."
+  },
+  "action_semantics": {
+    "policy": "Original R2 keep0; alternatives may use learned localization proxy for geometry.",
+    "pause_identity": "No modality memory or template writes; normal geometry.",
+    "defer_geometry": "R3 quarantine: no geometry history acceptance and no identity/template writes; search reference propagates in time.",
+    "accept_geometry": "Force geometric acceptance, normal identity writes.",
+    "rgb_only": "Restrict identity/template commits toRGB.",
+    "tir_only": "Restrict identity/template commits toTIR."
+  },
+  "states": "Geometry history contains policy-accepted observations, not authenticated identity ground truth. Anchor is protected. Output bbox and next geometry reference are separate.",
+  "stages": [
+    {
+      "name": "dense_motion",
+      "entry": "train_dense_motion.py",
+      "prerequisites": "Completed actual R2 matched pair(all20 hashes, full98 and all3). Strictly loaded R2-HA full98 overall best; epoch0 parent allowed but never claimed new training gain.",
+      "train": "A/localizer lowLR; new motion, grid prompt and current-IoU candidate proxies.",
+      "frozen": "ViT and future/search action heads.",
+      "forbidden_claim": "Not complete consequence-policy training or fullABC result."
+    },
+    {
+      "name": "consequence_policy",
+      "status": "NOT_IMPLEMENTED_OR_TRAINED_YET",
+      "required": "Freeze locked visual/motion coordinates, calibrate evidence on local/one-extra contexts, collect actual same-state action consequences under current policy, then fit future/search heads and evaluate full videos.",
+      "caches": "Old R1 caches may guide event timestamps only, not provide new feature/geometry-dependent action labels."
+    }
+  ],
+  "initialization": "Zero motion grid residual and zero future/search value outputs. Initial inference should preserve locked R2 parent; real-video/GPU parity still must be measured.",
+  "precision": "Retain native single-image crop batchstride6, Center cxcywh decode, Python-double mapping and per-modality updated-template layout.",
+  "CPU_contracts": "Simulation-only synthetic component/geometry/commit/density tests. No real images, pretrained forward, formal metrics or GPU qualification.",
+  "deploy_status": "Source only; no GPU/CPU neural execution yet. Source review precedes deployment, current warm environment reused without installs.",
+  "hardware": "Only server2028 physicalGPU2/3, noGPU0/1/no power-temperature operations. Future GPU work waits for current pipeline admission.",
+  "source_files": [
+    "cadtrack_abc/dense_temporal.py",
+    "cadtrack_abc/dense_submission.py",
+    "cadtrack_abc/dense_main_model.py",
+    "cadtrack_abc/dense_main_tracker.py",
+    "cadtrack_abc/train_dense_motion.py",
+    "cadtrack_abc/check_dense_main_contracts.py"
+  ],
+  "goal_achieved": false
+}

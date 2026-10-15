@@ -1,0 +1,642 @@
+{
+  "review_date": "2026-10-15",
+  "scope": "sealed dense R3 source review; 23 supplied inputs; six new implementation files",
+  "verdict": "NO_CONFIRMED_BLOCKING_SOURCE_DEFECT",
+  "acceptance_status": "provisional",
+  "source_deployment_recommendation": "No source patch is required by this review for the six sealed new files. The separately admitted, CUDA-hidden synthetic CPU check can proceed. No GPU deployment/training qualification is inferred.",
+  "reviewer_provenance": {
+    "requested_model": "gpt-6-astra",
+    "requested_effort": "max",
+    "actual_model": "UNATTESTED",
+    "actual_route": "UNATTESTED",
+    "actual_effort": "UNATTESTED",
+    "review_independence": "same-family",
+    "full_host_transcript_available": false,
+    "trace_artifacts": "private/",
+    "host_attestation_claimed": false
+  },
+  "input_manifest": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/dense_r3_source_review_inputs_20261015/input_manifest.json",
+  "all_indexed_inputs_read_directly": true,
+  "scope_exclusions": [
+    "All files absent from the 23-file manifest, including later consequence-source additions",
+    "Live project state and processes",
+    "Network, servers, SSH, training, profiling, observers",
+    "Torch/NumPy/cv2 imports or neural execution",
+    "Empirical accuracy, parent parity or GPU qualification"
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "N1",
+      "category": "DECLARED_LATER_IMPLEMENTATION_OBLIGATION",
+      "title": "Consequence-policy collection, training and complete evaluation wiring remain incomplete",
+      "evidence": [
+        {
+          "file": "dense_R3_implementation_contract_20261015.json",
+          "lines": [
+            30,
+            32,
+            49
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            193,
+            194
+          ]
+        },
+        {
+          "file": "cadtrack_abc/train_dense_motion.py",
+          "lines": [
+            187,
+            188
+          ]
+        }
+      ],
+      "required_fix_before_six_file_cpu_deployment": null,
+      "required_follow_through": "Implement the R3 same-state consequence collector, local/one-extra evidence calibration, future/search training and full-video selection/evaluation before claiming complete trained ABC."
+    },
+    {
+      "id": "N2",
+      "category": "INTERPRETATION_AND_RESEARCH_VALIDATION",
+      "title": "Current-IoU proxies are not identity truth, modality reliability or future outcomes",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            87,
+            88,
+            89
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_model.py",
+          "lines": [
+            225,
+            227
+          ]
+        }
+      ],
+      "required_fix_before_six_file_cpu_deployment": null,
+      "required_follow_through": "Keep proxy terminology and validate identity/modality/future claims using actual data and consequences. No speculative architectural patch is required."
+    },
+    {
+      "id": "N3",
+      "category": "SYNTHETIC_CHECKER_SCOPE",
+      "title": "The CPU checker exercises actual components but does not qualify the full tracker or collector",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/check_dense_main_contracts.py",
+          "lines": [
+            95,
+            117,
+            133,
+            155
+          ]
+        }
+      ],
+      "required_fix_before_six_file_cpu_deployment": null,
+      "required_follow_through": "Run the existing checker with CUDA hidden, retain actual outputs/exit, then qualify real-video parity and full track/advance/restore behavior at the existing later GPU admission boundary. Keep CPU PASS labelled simulation_only."
+    }
+  ],
+  "source_assessments": [
+    {
+      "id": "S1",
+      "topic": "A/B/C shapes and placement",
+      "status": "COHERENT_BY_SOURCE",
+      "details": "A before fusion; B 7-to-768 residual before Center head. Motion input/output 314/75; candidate evidence 399; search 295; future-action 275.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            73,
+            76,
+            77
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_temporal.py",
+          "lines": [
+            19,
+            39,
+            60
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            21,
+            34,
+            59
+          ]
+        },
+        {
+          "file": "cadtrack_abc/search_actions.py",
+          "lines": [
+            27
+          ]
+        },
+        {
+          "file": "cadtrack_abc/future_actions.py",
+          "lines": [
+            34,
+            38,
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "topic": "Geometry conventions and temporal horizon",
+      "status": "COHERENT_BY_SOURCE",
+      "details": "xywh output/reference, xyxy accepted history and candidate geometry; native Center returns normalized cxcywh. Forecast offsets start at current-query gap. VideoClips supplies horizon labels beyond loaded query images, avoiding a tail-slice mismatch.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            56,
+            134,
+            182
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_temporal.py",
+          "lines": [
+            31,
+            44
+          ]
+        },
+        {
+          "file": "cadtrack_abc/data.py",
+          "lines": [
+            36,
+            44,
+            87,
+            91,
+            92,
+            93
+          ]
+        },
+        {
+          "file": "cadtrack_abc/vendor/CADTrack/lib/models/layers/head.py",
+          "lines": [
+            153
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "topic": "Motion density and grid",
+      "status": "COHERENT_BY_SOURCE_WITH_EMPIRICAL_LIMITS",
+      "details": "Normalized mode weights; masked trajectory Gaussian mixture NLL; single-step candidate mixture log density. Soft spatial grid consists of weighted unnormalized Gaussian bumps, expected log sizes, trust and gap. It is not normalized crop-conditional probability mass. Multi-mode benefit and long-gap calibration are unmeasured.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_temporal.py",
+          "lines": [
+            47,
+            49,
+            73,
+            77,
+            79,
+            83,
+            89
+          ]
+        },
+        {
+          "file": "cadtrack_abc/ported_modules.py",
+          "lines": [
+            61
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "topic": "Gradient paths",
+      "status": "CONNECTED_BY_SOURCE_NOT_RUNTIME_VERIFIED",
+      "details": "ViT extract no_grad; A/fusion/Center/grid remain differentiable. Zero grid output initially blocks upstream motion gradient through that path, while motion NLL trains motion directly. Detached decision inputs and frozen future/search heads are intentional for the raw stage.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_model.py",
+          "lines": [
+            132
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            70,
+            183,
+            187
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            61
+          ]
+        },
+        {
+          "file": "cadtrack_abc/future_actions.py",
+          "lines": [
+            39
+          ]
+        },
+        {
+          "file": "cadtrack_abc/train_dense_motion.py",
+          "lines": [
+            84
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S5",
+      "topic": "GT separation and visibility",
+      "status": "CAUSAL_BY_SOURCE",
+      "details": "Only initial GT initializes state. Later labels and teacher masks remain loss inputs. Search reads local evidence before the optional extra observation; contextualization sees local plus exactly one executed extra region.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            172,
+            173,
+            178,
+            180,
+            182,
+            184,
+            191,
+            88,
+            96,
+            101,
+            105
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_tracker.py",
+          "lines": [
+            94,
+            96,
+            98
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S6",
+      "topic": "State submission and action semantics",
+      "status": "COHERENT_BY_SOURCE",
+      "details": "One advance call per track. Selected output separate from next search reference. Accepted-only history remains unchanged on defer while age advances. R3 defer blocks geometry and all modality writes; pause_identity blocks all modality writes; accept_geometry forces geometry; rgb_only/tir_only mask commits. Protected first anchor/template preserved.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_tracker.py",
+          "lines": [
+            115,
+            120,
+            122,
+            125,
+            139
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            126,
+            129,
+            130,
+            131,
+            132,
+            134,
+            136,
+            144
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_temporal.py",
+          "lines": [
+            107
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            73,
+            74,
+            75,
+            79,
+            80
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S7",
+      "topic": "Initial R2 alignment",
+      "status": "INTENDED_BY_SOURCE_REQUIRES_ACTUAL_PARITY",
+      "details": "Strict parent load, zero motion-grid residual, zero future/search values, local candidate-0 policy at default threshold, inherited single-image double-precision crop and batch stride6, native cxcywh mapping and per-modality template layout restoration. Hardcoded frame5/Hann .65 policy needs comparison with the actual locked configuration; no unsealed YAML was read.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            38,
+            127
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_model.py",
+          "lines": [
+            165
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_temporal.py",
+          "lines": [
+            61
+          ]
+        },
+        {
+          "file": "cadtrack_abc/future_actions.py",
+          "lines": [
+            47
+          ]
+        },
+        {
+          "file": "cadtrack_abc/search_actions.py",
+          "lines": [
+            28
+          ]
+        },
+        {
+          "file": "cadtrack_abc/pure_baseline_tracker.py",
+          "lines": [
+            29,
+            32
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_tracker.py",
+          "lines": [
+            25,
+            29,
+            33,
+            117
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_tracker.py",
+          "lines": [
+            69
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S8",
+      "topic": "Snapshot and intervention isolation",
+      "status": "NO_SOURCE_ALIASING_DEFECT_FOUND",
+      "details": "Geometry/history/memory/template tensors are cloned, native template layout is restored, proposals make new memory/history tensors, apply_submission copies the template list, and tracker snapshots retain double crop reference and frame. A later collector must restore the same snapshot for each branch; full replay isolation is unmeasured.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_main_model.py",
+          "lines": [
+            18,
+            129,
+            140
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_main_tracker.py",
+          "lines": [
+            141,
+            144
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S9",
+      "topic": "Parent artifacts and executable staged path",
+      "status": "SUPPLIED_SCHEMA_ALIGNED_ACTUAL_ARTIFACTS_UNVERIFIED",
+      "details": "Requires completed pair/full20-order equality, HA full98/all3 completion, strict selection, selected digest and R2-HA family. Overall best including epoch0 is intentional. Supplied R2 selection and completion producers write the consumed fields. Pair receipt producer and actual completed artifacts are not in the seal.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/train_dense_motion.py",
+          "lines": [
+            52,
+            57,
+            59,
+            60,
+            62,
+            64
+          ]
+        },
+        {
+          "file": "cadtrack_abc/select_dense.py",
+          "lines": [
+            62
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_pipeline.py",
+          "lines": [
+            121,
+            126,
+            133
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "topic": "Optimizer, BN, frozen state and order generator",
+      "status": "COHERENT_BY_SOURCE_NOT_EXECUTED",
+      "details": "Localizer/A lowLR; temporal/evidence highLR; decisions frozen/excluded; ViT eval/no_grad. Fusion/head BN train intentionally, consistent with R2 plan. Independent DataLoader generator and actual per-epoch clip/frame hashes. Before/after backbone/decision state hashes include buffers; strict nested reload and finite norm/change checks exist.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/train_dense_motion.py",
+          "lines": [
+            84,
+            85,
+            89,
+            93,
+            103,
+            104,
+            106,
+            119,
+            128,
+            137,
+            168,
+            173,
+            174
+          ]
+        },
+        {
+          "file": "cadtrack_abc/dense_model.py",
+          "lines": [
+            127
+          ]
+        },
+        {
+          "file": "cadtrack_abc/train_dense.py",
+          "lines": [
+            19
+          ]
+        },
+        {
+          "file": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_plan_20261015.json",
+          "lines": [
+            116
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "topic": "Future utility/harm and R1 incompatibility",
+      "status": "SEMANTICALLY_SEPARATE_BY_SOURCE",
+      "details": "Utility advantage and harm from future IoU/lost fraction have separate targets. R1 defer allowed identity writes and changed history; its old intervention labels are incompatible with R3. Existing realized-utility statistics may inform a new collector, but old trace/intervention plumbing is not R3-compatible.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/dense_submission.py",
+          "lines": [
+            96,
+            100,
+            114
+          ]
+        },
+        {
+          "file": "cadtrack_abc/counterfactual.py",
+          "lines": [
+            108,
+            124,
+            157,
+            165,
+            167
+          ]
+        },
+        {
+          "file": "cadtrack_abc/check_dense_main_contracts.py",
+          "lines": [
+            145,
+            147,
+            150,
+            152
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "topic": "Actual CPU checker",
+      "status": "REVIEWED_NOT_EXECUTED",
+      "details": "Real component/proposal calls test zero grid residual, grid-projection gradient, deferred history, six local-candidate masks, joint quarantine, template-stride cloning, bidirectional attention, zero-head keep, native mapping, and independent future-harm supervision. These are simulation-only checks. They do not execute full tracker state installation/restore or pretrained image parity.",
+      "evidence": [
+        {
+          "file": "cadtrack_abc/check_dense_main_contracts.py",
+          "lines": [
+            48,
+            58,
+            67,
+            69,
+            75,
+            95,
+            103,
+            117,
+            122,
+            132,
+            150,
+            155
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime_obligations": [
+    {
+      "id": "R1",
+      "when": "NOW_IN_ALREADY_ADMITTED_WARM_ENVIRONMENT",
+      "scope": "CPU_SYNTHETIC_ONLY",
+      "requires_r2_pipeline_completion": false,
+      "action": "Run existing check_dense_main_contracts.py with CUDA_VISIBLE_DEVICES='', using the six new files without modifying active R2 sources; retain exact stdout/stderr/exit/result.",
+      "acceptance_limit": "simulation_only; no video or GPU qualification"
+    },
+    {
+      "id": "R2",
+      "when": "AFTER_EXISTING_R2_PIPELINE_CLOSURE_AND_PARENT_LOCK",
+      "scope": "REAL_IMAGE_GPU_PARITY",
+      "requires_r2_pipeline_completion": true,
+      "action": "Measure locked-parent initialization maps/crops/Hann/update policy/native double boxes/reference, per-modality memory/template behavior, including update boundaries."
+    },
+    {
+      "id": "R3",
+      "when": "AFTER_EXISTING_R2_PIPELINE_CLOSURE_AND_PARENT_LOCK",
+      "scope": "FULL_TRACKER_INTERVENTION_BEHAVIOR",
+      "requires_r2_pipeline_completion": true,
+      "action": "Exercise full forced-extra/submit/restore trials, deferral over time and reacceptance, output/reference separation, and all six actions including sensor-specific template commits; compare same-state replays."
+    },
+    {
+      "id": "R4",
+      "when": "AFTER_EXISTING_R2_PIPELINE_CLOSURE_AND_PARENT_LOCK",
+      "scope": "REAL_RAW_STAGE_QUALIFICATION_AND_GPU_TRAINING",
+      "requires_r2_pipeline_completion": true,
+      "action": "Run finite forward/backward, measure intended nonzero group gradients/parameter changes, verify frozen tensors/buffers and strict reload, actual order hashes and feasible resource use. Receipt claims require actual successful runs."
+    },
+    {
+      "id": "R5",
+      "when": "LATER_SEPARATELY_REVIEWED_IMPLEMENTATION",
+      "scope": "COMPLETE_CONSEQUENCE_POLICY_AND_EVALUATION",
+      "requires_r2_pipeline_completion": true,
+      "action": "Implement/calibrate/collect actual R3 same-state current-policy consequences, fit future/search heads with separate future-harm labels, then full-video select/evaluate one locked checkpoint/config across all three datasets. Later consequence source additions are outside this review."
+    }
+  ],
+  "execution_evidence": {
+    "checker": "private/check_sealed_inputs.py",
+    "initial": {
+      "stdout": "private/check_initial.stdout.txt",
+      "stderr": "private/check_initial.stderr.txt",
+      "exit_code_file": "private/check_initial.exit_code.txt",
+      "actual_exit_code": 0,
+      "result": "private/sealed_inputs_initial.json"
+    },
+    "final": {
+      "stdout": "private/check_final.stdout.txt",
+      "stderr": "private/check_final.stderr.txt",
+      "exit_code_file": "private/check_final.exit_code.txt",
+      "result": "private/sealed_inputs_final.json",
+      "actual_exit_code": 0,
+      "status": "PASS_INPUTS_AND_MANIFEST_UNCHANGED"
+    },
+    "verification_type": "STDLIB_AST_COMPILE_AND_SHA256_ONLY",
+    "python_sources": 21,
+    "json_inputs": 2,
+    "indexed_inputs": 23,
+    "project_modules_imported": false,
+    "torch_executed": false,
+    "numpy_executed": false,
+    "cv2_executed": false,
+    "neural_execution": false,
+    "gpu_execution": false,
+    "actual_cpu_synthetic_checker_executed": false,
+    "interpreter_limitation": "Per supplied instructions, local E:/python.exe lacks Torch, NumPy and cv2. No runtime import or neural compatibility claim is made.",
+    "checker_failure": false
+  },
+  "current_r2_training_paused_or_changed": false,
+  "new_gate_for_running_r2": false,
+  "three_successful_seeds_required": false,
+  "best_single_seed_allowed": true,
+  "source_inputs_edited": false,
+  "source_inputs_unchanged": true,
+  "runtime_parity_proven": false,
+  "full_ABC_training_complete": false,
+  "goal_achieved": false,
+  "narrative_report": "SOURCE_REVIEW.md"
+}
