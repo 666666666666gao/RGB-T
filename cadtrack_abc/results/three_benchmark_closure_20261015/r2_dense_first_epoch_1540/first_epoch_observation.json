@@ -1,0 +1,342 @@
+{
+  "observed_utc": "2026-10-15T07:40:02.328762+00:00",
+  "pair_state": {
+    "status": "DENSE_H_HA_FULL_RUNS_RUNNING",
+    "controller_pid": 826024,
+    "started_utc": "2026-10-15T06:27:52.153805+00:00",
+    "jobs": {
+      "H": {
+        "controller_pid": 826037,
+        "physical_gpu": 2,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.dense_pipeline",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H",
+          "--m0-root",
+          "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015",
+          "--variant",
+          "H",
+          "--gpu",
+          "2",
+          "--baseline-234",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+          "--baseline-210",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+        ],
+        "status": "RUNNING"
+      },
+      "HA": {
+        "controller_pid": 826038,
+        "physical_gpu": 3,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.dense_pipeline",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA",
+          "--m0-root",
+          "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015",
+          "--variant",
+          "HA",
+          "--gpu",
+          "3",
+          "--baseline-234",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+          "--baseline-210",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+        ],
+        "status": "RUNNING"
+      }
+    },
+    "common_batch": 128,
+    "planned_epochs": 20,
+    "planned_clips_per_variant": 400000,
+    "planned_updates_per_variant": 3140,
+    "planned_query_observations_per_variant": 3200000,
+    "full_ABC": false,
+    "goal_achieved": false
+  },
+  "jobs": {
+    "H": {
+      "queue_state": {
+        "status": "DENSE_FULL_RUN_RUNNING",
+        "variant": "H",
+        "physical_gpu": 2,
+        "controller_pid": 826037,
+        "started_utc": "2026-10-15T06:27:52.222507+00:00",
+        "batch": 128,
+        "phases": {
+          "full_training": {
+            "status": "RUNNING",
+            "commands": [
+              [
+                "cadtrack_abc.train_dense",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit",
+                "--batch",
+                "128",
+                "--epochs",
+                "20",
+                "--samples",
+                "20000",
+                "--steps",
+                "8",
+                "--workers",
+                "4",
+                "--head-lr",
+                "0.00001",
+                "--prompt-lr",
+                "0.0001"
+              ]
+            ],
+            "physical_gpu": 2,
+            "started_utc": "2026-10-15T06:27:52.222771+00:00",
+            "pids": [
+              826053
+            ]
+          }
+        },
+        "reports": {},
+        "full_ABC": false,
+        "goal_achieved": false,
+        "M0_state_sha256": "4874410b970103d0d314241f1fa9278871a5fc7f43253ded32dd685fd582e5af"
+      },
+      "progress": {
+        "event": "dense_update",
+        "epoch": 2,
+        "epochs": 20,
+        "batch": 50,
+        "batches": 157,
+        "updates": 207,
+        "clips_seen": 26400,
+        "loss": 0.5479548573493958,
+        "parts": {
+          "focal": 0.1854797601699829,
+          "l1": 0.0105572659522295,
+          "giou": 0.15484438836574554
+        },
+        "gradients": {
+          "fusion": 0.21894091367721558,
+          "head": 0.3682929277420044
+        },
+        "clips_per_second": 6.420153129124558,
+        "seconds_per_update": 19.937219163720147,
+        "peak_allocated_gib": 9.07718276977539,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "progress_mtime_utc": "2026-10-15T07:35:06.583893+00:00",
+      "actual_training_log_tail": [
+        "{\"event\": \"dense_update\", \"epoch\": 1, \"epochs\": 20, \"batch\": 150, \"batches\": 157, \"updates\": 150, \"clips_seen\": 19200, \"loss\": 0.5986781120300293, \"parts\": {\"focal\": 0.2178482711315155, \"l1\": 0.011213510297238827, \"giou\": 0.1623811423778534}, \"gradients\": {\"fusion\": 0.20501893758773804, \"head\": 0.253847599029541}, \"clips_per_second\": 6.619270450673979, \"seconds_per_update\": 19.337478496133507, \"peak_allocated_gib\": 9.07718276977539, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_epoch_complete\", \"epoch\": 1, \"updates\": 157, \"clips\": 20000, \"mean_loss\": 0.6360541132926941, \"clip_order_sha256\": \"8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff\", \"epoch_seconds\": 3017.916064664023, \"elapsed_seconds\": 3017.9960854050005}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 1, \"batches\": 157, \"updates\": 158, \"clips_seen\": 20128, \"loss\": 0.5221587419509888, \"parts\": {\"focal\": 0.18276694416999817, \"l1\": 0.01000125426799059, \"giou\": 0.14469276368618011}, \"gradients\": {\"fusion\": 0.19223761558532715, \"head\": 0.2661743462085724}, \"clips_per_second\": 1.5611019744498353, \"seconds_per_update\": 81.99336244200822, \"peak_allocated_gib\": 9.07718276977539, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 2, \"batches\": 157, \"updates\": 159, \"clips_seen\": 20256, \"loss\": 0.6446382403373718, \"parts\": {\"focal\": 0.24366119503974915, \"l1\": 0.011897219344973564, \"giou\": 0.17074547708034515}, \"gradients\": {\"fusion\": 0.21147969365119934, \"head\": 0.29508739709854126}, \"clips_per_second\": 2.3865740770289854, \"seconds_per_update\": 53.63336559799791, \"peak_allocated_gib\": 9.07718276977539, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 25, \"batches\": 157, \"updates\": 182, \"clips_seen\": 23200, \"loss\": 0.5013223886489868, \"parts\": {\"focal\": 0.15372079610824585, \"l1\": 0.010111155919730663, \"giou\": 0.14852291345596313}, \"gradients\": {\"fusion\": 0.18006783723831177, \"head\": 0.4082874059677124}, \"clips_per_second\": 6.046295084472812, \"seconds_per_update\": 21.169988929040265, \"peak_allocated_gib\": 9.07718276977539, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 50, \"batches\": 157, \"updates\": 207, \"clips_seen\": 26400, \"loss\": 0.5479548573493958, \"parts\": {\"focal\": 0.1854797601699829, \"l1\": 0.0105572659522295, \"giou\": 0.15484438836574554}, \"gradients\": {\"fusion\": 0.21894091367721558, \"head\": 0.3682929277420044}, \"clips_per_second\": 6.420153129124558, \"seconds_per_update\": 19.937219163720147, \"peak_allocated_gib\": 9.07718276977539, \"formal_test_metrics\": null, \"probe\": false}"
+      ],
+      "startup_manifest_evidence": {
+        "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/manifest.json",
+        "sha256": "eff8018f0c33fb6aca49134b6408038686d3690966160e58434528f8b2722b34",
+        "pretrained_strict_tensors": 250,
+        "pretrained_epoch": 14,
+        "config": {
+          "pretrained": "/home/gaob/CADTrack_ep0014.pth.tar",
+          "pretrained_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+          "train_root": "/data/wangwj/dataset/LasHeR/trainingset",
+          "seed": 42,
+          "data_generator_seed": 42,
+          "use_memory": false,
+          "batch": 128,
+          "workers": 4,
+          "epochs": 20,
+          "samples_per_epoch": 20000,
+          "clip_steps": 8,
+          "head_lr": 1e-05,
+          "prompt_lr": 0.0001,
+          "lr_drop_epoch": 10,
+          "lr_drop_gamma": 0.1,
+          "probe": false,
+          "localization_weights": {
+            "focal": 1.0,
+            "l1": 5.0,
+            "giou": 2.0
+          },
+          "backbone_mode": "Frozen/eval",
+          "fusion_and_head_mode": "Train including BatchNorm; both variants identical.",
+          "selection": "Complete scheduled full98 evaluations after all prescribed training. No clip-best selection."
+        },
+        "train_sequences": 881,
+        "validation_sequences": 98,
+        "trainable_parameters": 17093253,
+        "frozen_backbone_initial_sha256": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "scope": "Actual startup manifest; frozen-after and terminal strict dense reload remain pending."
+      },
+      "actual_processes": [
+        {
+          "pid": 826053,
+          "ps": "826053  826037 Rl    106  3.7    01:12:10 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001"
+        }
+      ],
+      "completed_epochs": [
+        {
+          "epoch": 1,
+          "updates": 157,
+          "clips": 20000,
+          "mean_loss": 0.6360541132926941,
+          "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+          "epoch_seconds": 3017.916064664023,
+          "elapsed_seconds": 3017.9960854050005
+        }
+      ]
+    },
+    "HA": {
+      "queue_state": {
+        "status": "DENSE_FULL_RUN_RUNNING",
+        "variant": "HA",
+        "physical_gpu": 3,
+        "controller_pid": 826038,
+        "started_utc": "2026-10-15T06:27:52.223564+00:00",
+        "batch": 128,
+        "phases": {
+          "full_training": {
+            "status": "RUNNING",
+            "commands": [
+              [
+                "cadtrack_abc.train_dense",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit",
+                "--batch",
+                "128",
+                "--epochs",
+                "20",
+                "--samples",
+                "20000",
+                "--steps",
+                "8",
+                "--workers",
+                "4",
+                "--head-lr",
+                "0.00001",
+                "--prompt-lr",
+                "0.0001",
+                "--memory"
+              ]
+            ],
+            "physical_gpu": 3,
+            "started_utc": "2026-10-15T06:27:52.223818+00:00",
+            "pids": [
+              826055
+            ]
+          }
+        },
+        "reports": {},
+        "full_ABC": false,
+        "goal_achieved": false,
+        "M0_state_sha256": "4874410b970103d0d314241f1fa9278871a5fc7f43253ded32dd685fd582e5af"
+      },
+      "progress": {
+        "event": "dense_update",
+        "epoch": 2,
+        "epochs": 20,
+        "batch": 25,
+        "batches": 157,
+        "updates": 182,
+        "clips_seen": 23200,
+        "loss": 0.6827095150947571,
+        "parts": {
+          "focal": 0.15604761242866516,
+          "l1": 0.009780272841453552,
+          "giou": 0.1451299488544464,
+          "gate": 0.9156728386878967,
+          "identity": 0.036561861634254456,
+          "preservation": 0.007098464295268059
+        },
+        "gradients": {
+          "fusion": 0.2033790647983551,
+          "head": 0.6251727342605591,
+          "A": 0.09182582050561905
+        },
+        "clips_per_second": 5.4103474815730035,
+        "seconds_per_update": 23.658369529120392,
+        "peak_allocated_gib": 13.193645477294922,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "progress_mtime_utc": "2026-10-15T07:35:37.836897+00:00",
+      "actual_training_log_tail": [
+        "{\"event\": \"dense_update\", \"epoch\": 1, \"epochs\": 20, \"batch\": 125, \"batches\": 157, \"updates\": 125, \"clips_seen\": 16000, \"loss\": 0.7555288076400757, \"parts\": {\"focal\": 0.19313479959964752, \"l1\": 0.01094817090779543, \"giou\": 0.15737414360046387, \"gate\": 0.9370840191841125, \"identity\": 0.04540355131030083, \"preservation\": 0.009477559477090836}, \"gradients\": {\"fusion\": 0.1898946464061737, \"head\": 0.49017763137817383, \"A\": 0.06300649791955948}, \"clips_per_second\": 5.712404328515784, \"seconds_per_update\": 22.407377461191967, \"peak_allocated_gib\": 13.193645477294922, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 1, \"epochs\": 20, \"batch\": 150, \"batches\": 157, \"updates\": 150, \"clips_seen\": 19200, \"loss\": 0.7855178713798523, \"parts\": {\"focal\": 0.22003909945487976, \"l1\": 0.010915100574493408, \"giou\": 0.15922437608242035, \"gate\": 0.9348111748695374, \"identity\": 0.04638674110174179, \"preservation\": 0.00853606779128313}, \"gradients\": {\"fusion\": 0.20588324964046478, \"head\": 0.2324380725622177, \"A\": 0.07259082049131393}, \"clips_per_second\": 5.776420616500943, \"seconds_per_update\": 22.15905116645328, \"peak_allocated_gib\": 13.193645477294922, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_epoch_complete\", \"epoch\": 1, \"updates\": 157, \"clips\": 20000, \"mean_loss\": 0.8196574622154236, \"clip_order_sha256\": \"8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff\", \"epoch_seconds\": 3454.813791535009, \"elapsed_seconds\": 3454.9152088669944}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 1, \"batches\": 157, \"updates\": 158, \"clips_seen\": 20128, \"loss\": 0.7025578022003174, \"parts\": {\"focal\": 0.1776663213968277, \"l1\": 0.010002076625823975, \"giou\": 0.14265060424804688, \"gate\": 0.9221891164779663, \"identity\": 0.04401826858520508, \"preservation\": 0.007401907350867987}, \"gradients\": {\"fusion\": 0.21085472404956818, \"head\": 0.38915568590164185, \"A\": 0.08604402840137482}, \"clips_per_second\": 1.8489380452504147, \"seconds_per_update\": 69.22892864301684, \"peak_allocated_gib\": 13.193645477294922, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 2, \"batches\": 157, \"updates\": 159, \"clips_seen\": 20256, \"loss\": 0.8416745662689209, \"parts\": {\"focal\": 0.2488766312599182, \"l1\": 0.011648757383227348, \"giou\": 0.16838161647319794, \"gate\": 0.9618006944656372, \"identity\": 0.046402785927057266, \"preservation\": 0.00790452677756548}, \"gradients\": {\"fusion\": 0.20955239236354828, \"head\": 0.23600290715694427, \"A\": 0.08323923498392105}, \"clips_per_second\": 2.3975581916722826, \"seconds_per_update\": 53.38765100450837, \"peak_allocated_gib\": 13.193645477294922, \"formal_test_metrics\": null, \"probe\": false}",
+        "{\"event\": \"dense_update\", \"epoch\": 2, \"epochs\": 20, \"batch\": 25, \"batches\": 157, \"updates\": 182, \"clips_seen\": 23200, \"loss\": 0.6827095150947571, \"parts\": {\"focal\": 0.15604761242866516, \"l1\": 0.009780272841453552, \"giou\": 0.1451299488544464, \"gate\": 0.9156728386878967, \"identity\": 0.036561861634254456, \"preservation\": 0.007098464295268059}, \"gradients\": {\"fusion\": 0.2033790647983551, \"head\": 0.6251727342605591, \"A\": 0.09182582050561905}, \"clips_per_second\": 5.4103474815730035, \"seconds_per_update\": 23.658369529120392, \"peak_allocated_gib\": 13.193645477294922, \"formal_test_metrics\": null, \"probe\": false}"
+      ],
+      "startup_manifest_evidence": {
+        "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+        "sha256": "df289349dd82a35a6042e79a8356589fb694431b869e2160b4f8870bfd16da79",
+        "pretrained_strict_tensors": 250,
+        "pretrained_epoch": 14,
+        "config": {
+          "pretrained": "/home/gaob/CADTrack_ep0014.pth.tar",
+          "pretrained_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+          "train_root": "/data/wangwj/dataset/LasHeR/trainingset",
+          "seed": 42,
+          "data_generator_seed": 42,
+          "use_memory": true,
+          "batch": 128,
+          "workers": 4,
+          "epochs": 20,
+          "samples_per_epoch": 20000,
+          "clip_steps": 8,
+          "head_lr": 1e-05,
+          "prompt_lr": 0.0001,
+          "lr_drop_epoch": 10,
+          "lr_drop_gamma": 0.1,
+          "probe": false,
+          "localization_weights": {
+            "focal": 1.0,
+            "l1": 5.0,
+            "giou": 2.0
+          },
+          "backbone_mode": "Frozen/eval",
+          "fusion_and_head_mode": "Train including BatchNorm; both variants identical.",
+          "selection": "Complete scheduled full98 evaluations after all prescribed training. No clip-best selection."
+        },
+        "train_sequences": 881,
+        "validation_sequences": 98,
+        "trainable_parameters": 17500424,
+        "frozen_backbone_initial_sha256": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "scope": "Actual startup manifest; frozen-after and terminal strict dense reload remain pending."
+      },
+      "actual_processes": [
+        {
+          "pid": 826055,
+          "ps": "826055  826038 Rl    106  3.7    01:12:10 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory"
+        }
+      ],
+      "completed_epochs": [
+        {
+          "epoch": 1,
+          "updates": 157,
+          "clips": 20000,
+          "mean_loss": 0.8196574622154236,
+          "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+          "epoch_seconds": 3454.813791535009,
+          "elapsed_seconds": 3454.9152088669944
+        }
+      ]
+    }
+  },
+  "new_neural_jobs_started": false,
+  "pair_exit": null
+}

@@ -1,0 +1,118 @@
+{
+  "observed_utc": "2026-10-15T07:40:02.328762+00:00",
+  "jobs": {
+    "H": {
+      "progress": {
+        "event": "dense_update",
+        "epoch": 2,
+        "epochs": 20,
+        "batch": 50,
+        "batches": 157,
+        "updates": 207,
+        "clips_seen": 26400,
+        "loss": 0.5479548573493958,
+        "parts": {
+          "focal": 0.1854797601699829,
+          "l1": 0.0105572659522295,
+          "giou": 0.15484438836574554
+        },
+        "gradients": {
+          "fusion": 0.21894091367721558,
+          "head": 0.3682929277420044
+        },
+        "clips_per_second": 6.420153129124558,
+        "seconds_per_update": 19.937219163720147,
+        "peak_allocated_gib": 9.07718276977539,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "manifest": {
+        "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/manifest.json",
+        "sha256": "eff8018f0c33fb6aca49134b6408038686d3690966160e58434528f8b2722b34",
+        "pretrained_strict_tensors": 250,
+        "pretrained_epoch": 14,
+        "train_sequences": 881,
+        "validation_sequences": 98,
+        "trainable_parameters": 17093253,
+        "frozen_backbone_initial_sha256": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "scope": "Actual startup manifest; frozen-after and terminal strict dense reload remain pending."
+      },
+      "completed_epochs": [
+        {
+          "epoch": 1,
+          "updates": 157,
+          "clips": 20000,
+          "mean_loss": 0.6360541132926941,
+          "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+          "epoch_seconds": 3017.916064664023,
+          "elapsed_seconds": 3017.9960854050005
+        }
+      ],
+      "actual_processes": [
+        {
+          "pid": 826053,
+          "ps": "826053  826037 Rl    106  3.7    01:12:10 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001"
+        }
+      ]
+    },
+    "HA": {
+      "progress": {
+        "event": "dense_update",
+        "epoch": 2,
+        "epochs": 20,
+        "batch": 25,
+        "batches": 157,
+        "updates": 182,
+        "clips_seen": 23200,
+        "loss": 0.6827095150947571,
+        "parts": {
+          "focal": 0.15604761242866516,
+          "l1": 0.009780272841453552,
+          "giou": 0.1451299488544464,
+          "gate": 0.9156728386878967,
+          "identity": 0.036561861634254456,
+          "preservation": 0.007098464295268059
+        },
+        "gradients": {
+          "fusion": 0.2033790647983551,
+          "head": 0.6251727342605591,
+          "A": 0.09182582050561905
+        },
+        "clips_per_second": 5.4103474815730035,
+        "seconds_per_update": 23.658369529120392,
+        "peak_allocated_gib": 13.193645477294922,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "manifest": {
+        "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+        "sha256": "df289349dd82a35a6042e79a8356589fb694431b869e2160b4f8870bfd16da79",
+        "pretrained_strict_tensors": 250,
+        "pretrained_epoch": 14,
+        "train_sequences": 881,
+        "validation_sequences": 98,
+        "trainable_parameters": 17500424,
+        "frozen_backbone_initial_sha256": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "scope": "Actual startup manifest; frozen-after and terminal strict dense reload remain pending."
+      },
+      "completed_epochs": [
+        {
+          "epoch": 1,
+          "updates": 157,
+          "clips": 20000,
+          "mean_loss": 0.8196574622154236,
+          "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+          "epoch_seconds": 3454.813791535009,
+          "elapsed_seconds": 3454.9152088669944
+        }
+      ],
+      "actual_processes": [
+        {
+          "pid": 826055,
+          "ps": "826055  826038 Rl    106  3.7    01:12:10 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory"
+        }
+      ]
+    }
+  },
+  "pair_exit": null
+}
