@@ -1,0 +1,25 @@
+{
+  "status": "PURE_RGBT210_LAUNCH_VERIFIED",
+  "observed_utc": "2026-10-15T03:51:39.679322+00:00",
+  "controller_pid": 470102,
+  "started_utc": "2026-10-15T03:50:39.262703+00:00",
+  "jobs": [
+    {
+      "pid": 470325,
+      "actual_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer_baseline --checkpoint /home/gaob/CADTrack_ep0014.pth.tar --dataset rgbt210 --root /home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210 --output /home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt210_20261015/predictions --shard 0",
+      "physical_gpu": 2,
+      "live": true
+    },
+    {
+      "pid": 470326,
+      "actual_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer_baseline --checkpoint /home/gaob/CADTrack_ep0014.pth.tar --dataset rgbt210 --root /home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210 --output /home/gaob/CADTrack-ABC/outputs/pure_cad_rgbt210_20261015/predictions --shard 1",
+      "physical_gpu": 2,
+      "live": true
+    }
+  ],
+  "gpu2_memory_csv": "2, 1667, 24576",
+  "baseline_lasher_rerun": false,
+  "environment_rebuilt": false,
+  "temperature_or_power_queried": false,
+  "model_role": "Pure CAD baseline, not a new enhanced-model training"
+}
