@@ -1,0 +1,44 @@
+{
+  "status": "RESOURCE_ASSESSMENT_COMPLETE",
+  "sample_started_utc": "2026-10-15T04:18:40.843004+00:00",
+  "sample_observed_utc": "2026-10-15T04:19:10.933534+00:00",
+  "server": "2028",
+  "physical_gpus": [
+    2,
+    3
+  ],
+  "active_project_neural_processes": 4,
+  "decision": "Keep the existing two inference workers per physical GPU; do not add a third worker.",
+  "evidence": {
+    "benchmark": "cadtrack_abc/results/resource_concurrency_20261015/full98_0528/benchmark_complete.json",
+    "benchmark_sha256": "67246050cc9f032228d93d2d0977b84138324e1aa454da558ae6d1bff4a12a9e",
+    "serial_seconds": 127.1950659059803,
+    "parallel_seconds": 80.81744404599885,
+    "aggregate_throughput_speedup": 1.573856577715879,
+    "frames_per_condition": 2668,
+    "predictions_byte_equal": true,
+    "benchmark_scope": "Four complete DEV videos per phase, same checkpoint and work; serial/parallel/parallel/serial order. End-to-end timing includes process/model startup and decoding. Short throughput study, not accuracy result."
+  },
+  "interpretation": "GPU memory and aggregate CPU remain available. GPU2 is busy at 95.73% mean utilization. GPU3 has idle intervals, whose cause is not established by this resource sample. The existing equal-work benchmark supports two inference workers per card; three-worker throughput has not been measured.",
+  "scope": "Current formal inference, not training concurrency. No additional neural work was launched for this reassessment.",
+  "production_source_modified": false,
+  "temperature_or_power_queried": false,
+  "instrumentation_changes": [
+    {
+      "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\profile_r1_resources_requested_1220_remote.py",
+      "change": "Created standalone read-only 30-second resource sampler; production code unchanged."
+    },
+    {
+      "path": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\results\\resource_concurrency_20261015\\requested_1219\\resources.json",
+      "change": "Saved actual resource samples and current project process identities."
+    },
+    {
+      "path": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\results\\resource_concurrency_20261015\\requested_1219\\assessment.json",
+      "change": "Saved decision and reference to existing equal-work measurement."
+    },
+    {
+      "path": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\docs\\HANDOFF_20261002.md",
+      "change": "Appended measured resource assessment to the sole human handoff."
+    }
+  ]
+}
