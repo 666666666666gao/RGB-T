@@ -1,0 +1,30 @@
+{
+  "blocking_count": 1,
+  "verdict": "FAIL_SOURCE_METADATA",
+  "requested_reviewer": {"model": "gpt-6-astra", "reasoning_effort": "max"},
+  "actual_reviewer": {"model": "UNATTESTED", "route": "UNATTESTED", "reasoning_effort": "UNATTESTED"},
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "findings": [
+    {
+      "id": "B1",
+      "severity": "P2",
+      "blocking": true,
+      "title": "Zero-update candidate incorrectly claims future/search heads are trained",
+      "source": "project/cadtrack_abc/train_dense_consequences.py",
+      "lines": [114, 115, 131, 133, 139, 142],
+      "evidence": "config unconditionally sets both trained flags True before save(0). With an untrained dense-motion parent, candidate_epoch00 has epoch=0 and updates=0 but both flags True. The initial manifest also contains the premature True flags.",
+      "impact": "The normal training path creates an actual initialization candidate with false training provenance. Fix before deploying this new trainer; this does not block or alter the running R2 job.",
+      "minimal_patch": "Initialize config by retaining parent config flags. In save(epoch), build checkpoint_config whose respective future/search trained flag is parent['config'][flag] or updates > 0, and serialize it. Retain terminal True flags after actual updates and both parameter-group changes are verified.",
+      "verification": "private/check_epoch0_metadata.py extracted only metadata AST statements with stdlib stand-ins; actual exit 0 reproduced parent False flags becoming True at epoch=0, updates=0. No real Torch or project import occurred.",
+      "reviewed_version": "Original 17-file sealed input only; later executor worktree patch is not reviewed by this report."
+    }
+  ],
+  "runtime_obligations": [
+    "After the existing R2/R3 admission schedule permits, qualify actual native replay, snapshot/restore, independent forced extra contexts, R3 geometry quarantine and modality writes on real images, including template update boundaries. No early R2 queries or new R2 gates are required.",
+    "Run actual collected-tensor training qualification with disjoint train/validation sequences: finite losses and gradients, changes in only future/search heads, retained parent components, truthful zero-update/probe flags, strict decision and full-tracker reload. This static review did not execute Torch, NumPy, cv2, project imports or training.",
+    "Complete the already-declared local/one-extra candidate evidence calibration and full-video selection/evaluation wiring. Their declared absence is not an additional source bug in these entries. Frozen-teacher finite rollout utility remains a cache diagnostic.",
+    "Complete full98 continuous-video selection and all seven official metrics on LasHeR, RGBT234 and RGBT210 with one selected checkpoint/config. Full trained A/B/C and baseline+2 are not achieved or accepted by this report.",
+    "Apply the B1 minimal fix and perform one bounded source re-review. Existing input-manifest integrity comparison is retained; no new hash gate, compatibility fallback, installation or three-seed condition is proposed."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "status": "SOURCE_FIXED_AND_CPU_SYNTHETIC_TENSOR_INTEGRATION_PASS",
+  "sources": {
+    "cadtrack_abc/dense_consequences.py": "9ac90d5ee67299ad4748d402e2fb50ecca11f560dfbce42a229a33575a0577b3",
+    "cadtrack_abc/collect_dense_consequences.py": "38361e92212258c429763bec85e7a87a16b7167a73b4802d8c69aa4e2770997d",
+    "cadtrack_abc/train_dense_consequences.py": "a1e08c964de874a3bbb0ef78368acaf5ad7f44b6d9a6dc00c7a32079a86cc7d1"
+  },
+  "original_source_verdict": "FAIL_SOURCE_METADATA",
+  "fixed_source_verdict": "PASS_B1_FIXED_SOURCE_ONLY",
+  "review_independence": "same-family",
+  "actual_route": "UNATTESTED",
+  "acceptance_status": "provisional",
+  "CPU_execution": {
+    "started_utc": "2026-10-15T09:09:57.702566+00:00",
+    "ended_utc": "2026-10-15T09:13:15.832340+00:00",
+    "seconds": 198.12981130799744,
+    "actual_exit_code": 0,
+    "CUDA_VISIBLE_DEVICES": "",
+    "new_GPU_jobs": 0,
+    "sources": {
+      "cadtrack_abc/dense_consequences.py": "9ac90d5ee67299ad4748d402e2fb50ecca11f560dfbce42a229a33575a0577b3",
+      "cadtrack_abc/collect_dense_consequences.py": "38361e92212258c429763bec85e7a87a16b7167a73b4802d8c69aa4e2770997d",
+      "cadtrack_abc/train_dense_consequences.py": "a1e08c964de874a3bbb0ef78368acaf5ad7f44b6d9a6dc00c7a32079a86cc7d1"
+    }
+  },
+  "CPU_fixture_result": {
+    "status": "CPU_SYNTHETIC_CONSEQUENCE_TENSOR_CHECK_PASS",
+    "updates": 2,
+    "initial_keep_and_no_search_equal": true,
+    "actual_group_gradients": [
+      {
+        "future_action.": 0.574685275554657,
+        "search_action.": 0.36058393120765686
+      },
+      {
+        "future_action.": 0.571621298789978,
+        "search_action.": 0.3571079671382904
+      }
+    ],
+    "changed_parameter_tensors": {
+      "future_action.": 6,
+      "search_action.": 6
+    },
+    "strict_in_memory_reload": true,
+    "native_trace_label_adapter_and_invalid_GT_mask": true,
+    "CUDA_initialized": false,
+    "scope": "Synthetic CPU decisions and native-trace adapter only; no images/pretrained tracker/GPU/actual collected states.",
+    "actual_training_complete": false,
+    "formal_metrics": null,
+    "goal_achieved": false
+  },
+  "eight_evidence_and_evaluation_sources": "IMPLEMENTED_AST_ONLY_UNDEPLOYED_FRESH_REVIEW_RUNNING",
+  "eight_file_reviewer": "/root/dense_r3_evidence_eval_review_20261015",
+  "current_R2_training_unchanged": true,
+  "source22_unchanged": true,
+  "outstanding": [
+    "Real R3 parent-video parity/full tracker quarantine and replay qualification.",
+    "Evidence calibration and video evaluation source review/runtime checks.",
+    "Whole-stage automation and actual full raw/consequence training after R2 closes.",
+    "Matched continued-training controls, component effects, and one checkpoint/config all7 baseline+2."
+  ],
+  "formal_metrics": null,
+  "full_ABC_training_complete": false,
+  "goal_achieved": false
+}
