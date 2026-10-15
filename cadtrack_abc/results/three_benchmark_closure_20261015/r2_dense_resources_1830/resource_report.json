@@ -1,0 +1,342 @@
+{
+  "started_utc": "2026-10-15T10:26:06.135507+00:00",
+  "ended_utc": "2026-10-15T10:27:06.244293+00:00",
+  "duration_seconds": 60.09988838501158,
+  "cpu_logical_count": 112,
+  "cpu_total": {
+    "busy_percent": 9.235023782647156,
+    "iowait_percent": 6.428016166838918
+  },
+  "busiest_cores": [
+    [
+      "cpu35",
+      {
+        "busy_percent": 49.35064935064935,
+        "iowait_percent": 0.26640026640026643
+      }
+    ],
+    [
+      "cpu15",
+      {
+        "busy_percent": 45.05329780146569,
+        "iowait_percent": 0.016655562958027982
+      }
+    ],
+    [
+      "cpu59",
+      {
+        "busy_percent": 31.60699417152373,
+        "iowait_percent": 0.0
+      }
+    ],
+    [
+      "cpu25",
+      {
+        "busy_percent": 28.147901399067287,
+        "iowait_percent": 6.112591605596269
+      }
+    ],
+    [
+      "cpu7",
+      {
+        "busy_percent": 27.381745502998,
+        "iowait_percent": 2.4483677548301133
+      }
+    ],
+    [
+      "cpu5",
+      {
+        "busy_percent": 26.18611619776927,
+        "iowait_percent": 6.825370401198602
+      }
+    ],
+    [
+      "cpu20",
+      {
+        "busy_percent": 22.938230383973288,
+        "iowait_percent": 42.92153589315526
+      }
+    ],
+    [
+      "cpu11",
+      {
+        "busy_percent": 19.502836169502835,
+        "iowait_percent": 19.502836169502835
+      }
+    ]
+  ],
+  "load_average": [
+    15.88232421875,
+    17.4453125,
+    17.67626953125
+  ],
+  "available_ram_gib": 140.3768539428711,
+  "gpu": {
+    "2": {
+      "samples": 60,
+      "total_gib": 24.0,
+      "used_min_gib": 11.509765625,
+      "used_max_gib": 11.509765625,
+      "free_min_gib": 12.490234375,
+      "utilization_mean_percent": 58.03333333333333,
+      "utilization_min_percent": 0,
+      "utilization_max_percent": 100,
+      "zero_utilization_samples": 21,
+      "at_least_90_utilization_samples": 31,
+      "memory_utilization_mean_percent": 24.333333333333332
+    },
+    "3": {
+      "samples": 60,
+      "total_gib": 24.0,
+      "used_min_gib": 14.97265625,
+      "used_max_gib": 14.97265625,
+      "free_min_gib": 9.02734375,
+      "utilization_mean_percent": 75.45,
+      "utilization_min_percent": 0,
+      "utilization_max_percent": 100,
+      "zero_utilization_samples": 11,
+      "at_least_90_utilization_samples": 44,
+      "memory_utilization_mean_percent": 32.65
+    }
+  },
+  "dataset_disk": {
+    "device": "8:0",
+    "name": "sda",
+    "read_mib_per_second": 11.141152658396422,
+    "write_mib_per_second": 0.37450672713084876,
+    "read_await_ms": 25.621991584852736,
+    "busy_percent": 100.00184961240078,
+    "average_queue_depth": 8.031628892681628,
+    "scope": "Whole backing device, includes other users and processes; not training-only I/O."
+  },
+  "processes": {
+    "826053": {
+      "cpu_percent_one_core": 87.30465465071578,
+      "rss_gib": 9.27859878540039,
+      "state": "R",
+      "threads": 15,
+      "read_bytes": 24576,
+      "read_chars": 5932466369,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 "
+    },
+    "826055": {
+      "cpu_percent_one_core": 110.49937326765836,
+      "rss_gib": 9.099910736083984,
+      "state": "R",
+      "threads": 15,
+      "read_bytes": 16384,
+      "read_chars": 5962206634,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory "
+    },
+    "1197697": {
+      "cpu_percent_one_core": 49.617396639686376,
+      "rss_gib": 12.307373046875,
+      "state": "D",
+      "threads": 116,
+      "read_bytes": 62099456,
+      "read_chars": 205255050,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 "
+    },
+    "1197703": {
+      "cpu_percent_one_core": 53.5608315838868,
+      "rss_gib": 12.559516906738281,
+      "state": "D",
+      "threads": 116,
+      "read_bytes": 65884160,
+      "read_chars": 194583182,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 "
+    },
+    "1197708": {
+      "cpu_percent_one_core": 54.65900334049958,
+      "rss_gib": 11.215217590332031,
+      "state": "R",
+      "threads": 116,
+      "read_bytes": 94466048,
+      "read_chars": 199835172,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 "
+    },
+    "1197748": {
+      "cpu_percent_one_core": 52.84535604548757,
+      "rss_gib": 11.896347045898438,
+      "state": "D",
+      "threads": 116,
+      "read_bytes": 86126592,
+      "read_chars": 177487364,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 "
+    },
+    "1210482": {
+      "cpu_percent_one_core": 63.16151497124396,
+      "rss_gib": 12.05606460571289,
+      "state": "D",
+      "threads": 116,
+      "read_bytes": 49242112,
+      "read_chars": 279614305,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory "
+    },
+    "1210486": {
+      "cpu_percent_one_core": 61.79711975848263,
+      "rss_gib": 12.011726379394531,
+      "state": "S",
+      "threads": 116,
+      "read_bytes": 26439680,
+      "read_chars": 304323017,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory "
+    },
+    "1210490": {
+      "cpu_percent_one_core": 56.87198581973442,
+      "rss_gib": 12.115779876708984,
+      "state": "S",
+      "threads": 116,
+      "read_bytes": 954368,
+      "read_chars": 298220319,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory "
+    },
+    "1210494": {
+      "cpu_percent_one_core": 20.499206123438505,
+      "rss_gib": 11.976764678955078,
+      "state": "D",
+      "threads": 116,
+      "read_bytes": 827392,
+      "read_chars": 67940962,
+      "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory "
+    }
+  },
+  "direct_children": {
+    "H": [
+      1197697,
+      1197703,
+      1197708,
+      1197748
+    ],
+    "HA": [
+      1210482,
+      1210486,
+      1210490,
+      1210494
+    ]
+  },
+  "progress_start": {
+    "H": {
+      "value": {
+        "event": "dense_update",
+        "epoch": 4,
+        "epochs": 20,
+        "batch": 100,
+        "batches": 157,
+        "updates": 571,
+        "clips_seen": 72800,
+        "loss": 0.5579519867897034,
+        "parts": {
+          "focal": 0.20642881095409393,
+          "l1": 0.010450762696564198,
+          "giou": 0.1496346890926361
+        },
+        "gradients": {
+          "fusion": 0.18231996893882751,
+          "head": 0.1694944202899933
+        },
+        "clips_per_second": 3.683503146467243,
+        "seconds_per_update": 34.7495291602402,
+        "peak_allocated_gib": 9.07718276977539,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "mtime_utc": "2026-10-15T10:17:20.518039+00:00"
+    },
+    "HA": {
+      "value": {
+        "event": "dense_update",
+        "epoch": 4,
+        "epochs": 20,
+        "batch": 100,
+        "batches": 157,
+        "updates": 571,
+        "clips_seen": 72800,
+        "loss": 0.6315990090370178,
+        "parts": {
+          "focal": 0.19574327766895294,
+          "l1": 0.009982462972402573,
+          "giou": 0.14401143789291382,
+          "gate": 0.4723070561885834,
+          "identity": 0.026705916970968246,
+          "preservation": 0.007885660976171494
+        },
+        "gradients": {
+          "fusion": 0.16593123972415924,
+          "head": 0.18784673511981964,
+          "A": 0.11915281414985657
+        },
+        "clips_per_second": 4.045756575270162,
+        "seconds_per_update": 31.638087368480047,
+        "peak_allocated_gib": 13.193645477294922,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "mtime_utc": "2026-10-15T10:20:24.176866+00:00"
+    }
+  },
+  "progress_end": {
+    "H": {
+      "value": {
+        "event": "dense_update",
+        "epoch": 4,
+        "epochs": 20,
+        "batch": 100,
+        "batches": 157,
+        "updates": 571,
+        "clips_seen": 72800,
+        "loss": 0.5579519867897034,
+        "parts": {
+          "focal": 0.20642881095409393,
+          "l1": 0.010450762696564198,
+          "giou": 0.1496346890926361
+        },
+        "gradients": {
+          "fusion": 0.18231996893882751,
+          "head": 0.1694944202899933
+        },
+        "clips_per_second": 3.683503146467243,
+        "seconds_per_update": 34.7495291602402,
+        "peak_allocated_gib": 9.07718276977539,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "mtime_utc": "2026-10-15T10:17:20.518039+00:00"
+    },
+    "HA": {
+      "value": {
+        "event": "dense_update",
+        "epoch": 4,
+        "epochs": 20,
+        "batch": 100,
+        "batches": 157,
+        "updates": 571,
+        "clips_seen": 72800,
+        "loss": 0.6315990090370178,
+        "parts": {
+          "focal": 0.19574327766895294,
+          "l1": 0.009982462972402573,
+          "giou": 0.14401143789291382,
+          "gate": 0.4723070561885834,
+          "identity": 0.026705916970968246,
+          "preservation": 0.007885660976171494
+        },
+        "gradients": {
+          "fusion": 0.16593123972415924,
+          "head": 0.18784673511981964,
+          "A": 0.11915281414985657
+        },
+        "clips_per_second": 4.045756575270162,
+        "seconds_per_update": 31.638087368480047,
+        "peak_allocated_gib": 13.193645477294922,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "mtime_utc": "2026-10-15T10:20:24.176866+00:00"
+    }
+  },
+  "new_neural_jobs_started": 0,
+  "training_sources_or_configuration_changed": false,
+  "temperature_or_power_queried": false,
+  "scope": "User-requested read-only60second resource and training-throughput assessment; no concurrency benchmark."
+}

@@ -1,0 +1,35 @@
+{
+  "decision": "KEEP_ONE_CURRENT_FULL_TRAINING_JOB_PER_GPU_TWO_TOTAL",
+  "observed_start_utc": "2026-10-15T10:26:06.135507+00:00",
+  "observed_end_utc": "2026-10-15T10:27:06.244293+00:00",
+  "measurement_seconds": 60.09988838501158,
+  "duplicate_same_batch_estimated_used_gib": {
+    "2": 23.01953125,
+    "3": 29.9453125
+  },
+  "duplicate_same_batch_estimated_remaining_gib": {
+    "2": 0.98046875,
+    "3": -5.9453125
+  },
+  "memory_estimate_scope": "Rough duplication of the observed footprint; no second allocator or task was run.",
+  "cpu_saturated": false,
+  "io_evidence": {
+    "device": "8:0",
+    "name": "sda",
+    "read_mib_per_second": 11.141152658396422,
+    "write_mib_per_second": 0.37450672713084876,
+    "read_await_ms": 25.621991584852736,
+    "busy_percent": 100.00184961240078,
+    "average_queue_depth": 8.031628892681628,
+    "scope": "Whole backing device, includes other users and processes; not training-only I/O."
+  },
+  "interpretation": "This sample supports retaining existing concurrency: CPU has headroom, but the shared dataset device is continuously busy with queued reads. A second same-batch HA task exceeds physical memory; H leaves under1GiB by a rough footprint estimate. More training risks I/O contention and OOM.",
+  "concurrency_speedup_or_slowdown_measured": false,
+  "small_batch_concurrency_tested": false,
+  "progress_scope": "Progress JSON is refreshed every25 updates; unchanged within60s is not proof of a stall. Reported clips_per_second is the current epoch average at each saved record, not this sample throughput.",
+  "training_restarted": false,
+  "new_neural_jobs_started": 0,
+  "existing_training_observer_unchanged": true,
+  "next_scheduled_training_observation_bjt": "2026-10-16T07:39:58.342327+08:00",
+  "new_accuracy_claim": false
+}
