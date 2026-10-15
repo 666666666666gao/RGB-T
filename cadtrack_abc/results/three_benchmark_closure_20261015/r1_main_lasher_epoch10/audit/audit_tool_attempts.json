@@ -1,0 +1,41 @@
+[
+  {
+    "attempt": 1,
+    "tool": "exec_command",
+    "chunk_id": "afe987",
+    "exit_code": 1,
+    "action": "E:/python.exe -X utf8 -B inspect_inputs.py without additional PYTHONPATH",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\r1_main_lasher_formal_audit_20261015\\inspect_inputs.py\", line 8, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n",
+    "scope": "Reviewer environment-resolution failure; not an experiment failure; no package installation"
+  },
+  {
+    "attempt": 2,
+    "tool": "exec_command",
+    "chunk_id": "292b0a",
+    "exit_code": 0,
+    "action": "Same interpreter/script with process-only PYTHONPATH pointing to existing NumPy1.26.4 cache",
+    "numpy_path": "D:/Program Files/UserCache/gb/uv/archive-v0/4TmToZ9eHxHD81sohMJS9",
+    "result": "Inventory and before-hash verification passed"
+  },
+  {
+    "attempt": 3,
+    "tool": "exec_command/write_stdin",
+    "start_chunk_id": "5dd8cf",
+    "completion_chunk_id": "3eb474",
+    "native_session_id": 63640,
+    "exit_code": 0,
+    "action": "verify_results.py",
+    "result": "41963 comparisons,0 failures",
+    "stdout_file": "verification.stdout.txt",
+    "stderr_file": "verification.stderr.txt",
+    "receipt_file": "verification_execution_receipt.json"
+  },
+  {
+    "attempt": 4,
+    "tool": "exec_command",
+    "chunk_id": "38ea6e",
+    "exit_code": 0,
+    "action": "verify_static.py",
+    "result": "9 static comparisons,0 failures"
+  }
+]

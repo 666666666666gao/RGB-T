@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "label": "LasHeR attribute order matches exported protocol",
+      "pass": true
+    },
+    {
+      "label": "LasHeR exact metric class bindings",
+      "pass": true
+    },
+    {
+      "label": "LasHeR scorer invokes NPR then PR then SR",
+      "pass": true
+    },
+    {
+      "label": "Formal relay has a single inference GPU routing value 2",
+      "pass": true
+    },
+    {
+      "label": "Observed checkpoint digest appears in prior plan selection record",
+      "pass": true
+    },
+    {
+      "label": "Formal observation has only completed LasHeR report",
+      "pass": true
+    },
+    {
+      "label": "Formal observation records continuing RGBT234 rather than all-dataset completion",
+      "pass": true
+    },
+    {
+      "label": "Report stage target agrees with current plan",
+      "pass": true
+    },
+    {
+      "label": "Plan explicitly denies overall completion",
+      "pass": true
+    }
+  ],
+  "comparisons": 9,
+  "failed": 0,
+  "sealed_source_names_in_relay": [
+    "baseline.py",
+    "data.py",
+    "model.py",
+    "collect_actions.py",
+    "future_actions.py",
+    "pure_baseline_tracker.py",
+    "infer_baseline.py",
+    "baseline_pipeline.py",
+    "future_pipeline.py",
+    "train_future_actions.py",
+    "r1_pair_pipeline.py",
+    "select_future_actions.py",
+    "infer.py",
+    "score.py"
+  ],
+  "present_runtime_sources_outside_relay_seal": [
+    "search_actions.py",
+    "ported_modules.py",
+    "mechanism_summary.py"
+  ],
+  "missing_relative_dependencies": [
+    {
+      "importer": "project/cadtrack_abc/future_actions.py",
+      "line": 10,
+      "module": "counterfactual",
+      "supplied": false
+    },
+    {
+      "importer": "project/cadtrack_abc/search_actions.py",
+      "line": 10,
+      "module": "counterfactual",
+      "supplied": false
+    },
+    {
+      "importer": "project/cadtrack_abc/train_future_actions.py",
+      "line": 13,
+      "module": "counterfactual",
+      "supplied": false
+    },
+    {
+      "importer": "project/cadtrack_abc/train_future_actions.py",
+      "line": 15,
+      "module": "future_data",
+      "supplied": false
+    }
+  ],
+  "upstream_vendor_sources_present": false,
+  "checkpoint_bytes_present": false,
+  "raw_mechanism_trace_count": 0,
+  "raw_attribute_text_directory_present": false,
+  "source_file_sha256": "dd19f69daddb3dc10757abb01a561d3f17f81bb46ea89beb89aa20fad508558c"
+}
