@@ -1,0 +1,73 @@
+{
+  "wrapper_pid": 804449,
+  "started_utc": "2026-10-15T06:18:24.361978+00:00",
+  "output": "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015",
+  "formal_training_started": false,
+  "phase": "One final batch128 pair, two updates each; inherited validated24-frame parity",
+  "new_finite_qualification_launched": true,
+  "new_full_training_launched": false,
+  "expected_physical_gpus": [
+    2,
+    3
+  ],
+  "preflight": {
+    "observed_utc": "2026-10-15T06:18:21.502370+00:00",
+    "gpu_memory_and_utilization_csv": "2, 1, 24576, 0\n3, 1, 24576, 0\n",
+    "home_free_bytes": 711985680384,
+    "output_budget_bytes": 24739153280,
+    "data_free_bytes": 1159553024,
+    "expected_sources": {
+      "cadtrack_abc/dense_model.py": "079afa56818a997001b3766b3c0ee5826a8d4c644c8dc09c4a6840de02649364",
+      "cadtrack_abc/dense_tracker.py": "03f5f5b76dea623e4cfdff7b7eb6b6e01b2afb4ce35ca693724a7907e9e1d318",
+      "cadtrack_abc/train_dense.py": "4e3064dd8efa8d5752242c755c03be09d2faa7fe05358406eb1c6d27065decd6",
+      "cadtrack_abc/dense_evaluation.py": "9b264f38664675d401760abc6341fbd8bd32112ef5088b49a571ec0cdc9859f3",
+      "cadtrack_abc/infer_dense.py": "52fa8325efccea691470da2358a0bf2c9afa2d4cf85bea7fd8a4d7a73f2673cd",
+      "cadtrack_abc/validate_dense.py": "4efb7644ae6be3b02d1d539589a387d53d79e783fbb6075ce6855e36450f9ccc",
+      "cadtrack_abc/select_dense.py": "1938a7fff1c22aa54990cbda5ef5619c8347cb3f290670e1fa88a23e1c2b44b0",
+      "cadtrack_abc/score_dense.py": "0d88208f2e2708e9fdd8bb4f99785108067521ffa6ef42ec93f008560fcb9e21",
+      "cadtrack_abc/qualify_dense.py": "89001a6c785e479759a87bda12b5c95d9f2f0d4da265acbca6b23435f722c13c",
+      "cadtrack_abc/vendor/CADTrack/lib/utils/focal_loss.py": "11ccd7a16af34a3f54bd36191f086f7b0d85e95669e07bc072deb6226b40a965",
+      "cadtrack_abc/vendor/CADTrack/lib/utils/heapmap_utils.py": "cc5ddbc0d65cad55f1a727f43e1d9966caa17a10c043a10586d0a13c1d4f3d4d",
+      "cadtrack_abc/baseline.py": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f",
+      "cadtrack_abc/data.py": "7a608de3e43827e3ac6cfe5322bcfe3ce5d737deafda9b0d8645598b6e436c6d",
+      "cadtrack_abc/model.py": "4dab198957f758e963e275f72c1a5df67c508b80bdf384d31cc211cfbf5114b2",
+      "cadtrack_abc/ported_modules.py": "5c038fcd2b346541a109fb79597f42122082a7d4def49c745957cb8515ce87bb",
+      "cadtrack_abc/pure_baseline_tracker.py": "26d4a94fafad25356017da2ebcfd0a1a99bfaa288df32a5c80f671a7d2553415",
+      "cadtrack_abc/vendor/CADTrack/lib/models/layers/head.py": "958ee314ae200dd52355050dc1da8b46d5268da032e5fc1d0c6af99bab4c7431",
+      "cadtrack_abc/vendor/CADTrack/lib/models/cadtrack/vit_care.py": "b9bd0a9b46c1a0694b26391df70c55fdc44ca5502ecd92427615b1ced7e2db5b",
+      "cadtrack_abc/vendor/CADTrack/lib/utils/box_ops.py": "cee9d309a9c4a6c5f00fab575719bc7bf8d865127c91b10d4fb233996a111fbc",
+      "cadtrack_abc/vendor/CADTrack/lib/utils/tensor.py": "526729efede32e08be41db1827b0c15f32d5edaa590dcdf26eb4159bffbad135",
+      "cadtrack_abc/vendor/CADTrack/experiments/cadtrack/cadtrack.yaml": "eb85514008d97dd7266249dfd5c30c30c173ac939ef7d155a8576a9de3e6d188"
+    },
+    "environment": {
+      "provider": "ssh2028",
+      "reuse_mode": "warm_existing_conda_no_package_changes",
+      "python": "/data/wangwj/envs/CADTrack/bin/python",
+      "python_version": "3.10",
+      "torch": "2.11.0+cu130",
+      "torchvision": "0.26.0",
+      "timm": "0.5.4",
+      "opencv_python": "4.13.0.92",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "easydict": "1.13",
+      "cuda_kernel_witness": "Actual two-GPU DDP finite forward/backward, all A/B/C groups changed, strict checkpoint reload passed; outputs/sanity_20261013/sanity.json",
+      "training_visible_physical_gpus": [
+        2,
+        3
+      ],
+      "scorer_source": "/data/wangwj/RGBT_toolkit-master/src",
+      "scorer_import_witness": "Native LasHeR/RGBT234 constructors imported with245/234 sequences",
+      "power_temperature_control": "cancelled_by_user_not_read_or_changed"
+    },
+    "environment_rebuilt": false,
+    "pretrained_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+    "actual_R1_recovery_exit": {
+      "controller_exit_code": 0,
+      "exited_utc": "2026-10-15T05:54:01.355922+00:00"
+    },
+    "source_publication_commit": "97035cc8fb238fc7568621413eb035a9f602c84a",
+    "dataset_moved": false,
+    "temperature_power_queried": false
+  }
+}

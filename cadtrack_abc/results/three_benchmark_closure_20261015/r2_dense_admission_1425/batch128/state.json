@@ -1,0 +1,267 @@
+{
+  "status": "DENSE_M0_COMPLETE",
+  "controller_pid": 804450,
+  "started_utc": "2026-10-15T06:18:24.463115+00:00",
+  "phases": {
+    "H": {
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015/H_batch128",
+        "--batch",
+        "128",
+        "--probe"
+      ],
+      "pid": 804452,
+      "physical_gpu": 2,
+      "status": "EXITED",
+      "actual_exit_code": 0
+    },
+    "HA": {
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015/HA_batch128",
+        "--batch",
+        "128",
+        "--probe",
+        "--memory"
+      ],
+      "pid": 804453,
+      "physical_gpu": 3,
+      "status": "EXITED",
+      "actual_exit_code": 0
+    }
+  },
+  "formal_training_started": false,
+  "baseline_lasher_rerun": false,
+  "measured_batches": {
+    "32": {
+      "H": {
+        "clips_per_second": 2.6273026992619024,
+        "peak_allocated_gib": 2.669245719909668,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.46036508679389954,
+          "head": 0.8877293467521667
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "c4efd7fdba3a62abb35e0202a6515c9a5e8e71b0b4090689bcbe918cb816edfe",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 2.6093418892322253,
+        "peak_allocated_gib": 3.70640230178833,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.5069735646247864,
+          "head": 0.8596604466438293,
+          "A": 0.06293751299381256
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "c4efd7fdba3a62abb35e0202a6515c9a5e8e71b0b4090689bcbe918cb816edfe",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 2.6183068935625133
+    },
+    "64": {
+      "H": {
+        "clips_per_second": 3.2930638281451325,
+        "peak_allocated_gib": 4.804049968719482,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.4517201781272888,
+          "head": 0.8921592235565186
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "a540699e6ef5888bd6167a52deea272a7c763a3966584f61952f1314dc3ed92d",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 3.1404083136433836,
+        "peak_allocated_gib": 6.871165752410889,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.45159628987312317,
+          "head": 0.890127420425415,
+          "A": 0.06110185757279396
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "a540699e6ef5888bd6167a52deea272a7c763a3966584f61952f1314dc3ed92d",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 3.2158303784971745
+    },
+    "128": {
+      "H": {
+        "clips_per_second": 3.8267103732347576,
+        "peak_allocated_gib": 9.077098846435547,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.4035346508026123,
+          "head": 0.914963960647583
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "2081b003f8a9637ac53f16eb660c31121dc52845638d65ebf9e397db9ab2ff5b",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 3.5928178228898933,
+        "peak_allocated_gib": 13.193561553955078,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.3944071829319,
+          "head": 0.9169715046882629,
+          "A": 0.060045305639505386
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "2081b003f8a9637ac53f16eb660c31121dc52845638d65ebf9e397db9ab2ff5b",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 3.7079203378707413
+    }
+  },
+  "completed_utc": "2026-10-15T06:19:56.410884+00:00",
+  "chosen_common_batch": 128,
+  "source_manifest_sha256": "3e106f81ddffae5dbaa4137f5c34e84c3ab995c8ba73b2956a266a1fbe58c183",
+  "parity_scope": "24 causal predictions on two TRAIN clips, not a benchmark",
+  "training_throughput_scope": "Two real updates per batch per variant; includes first data loading and optimizer initialization, not an isolated long-run efficiency result.",
+  "all_three_modules_integrated": false,
+  "goal_achieved": false,
+  "base_qualification": "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2",
+  "base_state_sha256": "d6a7d338c41356fbdc18e082e3d954f49710694881a501157543f3d7e1731836",
+  "original_phases": {
+    "epoch0_parity": {
+      "pid": 784998,
+      "physical_gpu": 2,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.qualify_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2/epoch0_parity.json"
+      ],
+      "status": "EXITED",
+      "started_utc": "2026-10-15T06:08:53.043594+00:00",
+      "actual_exit_code": 0,
+      "completed_utc": "2026-10-15T06:09:18.636699+00:00"
+    },
+    "H_batch32": {
+      "pid": 786171,
+      "physical_gpu": 2,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2/H_batch32",
+        "--batch",
+        "32",
+        "--probe"
+      ],
+      "status": "EXITED",
+      "started_utc": "2026-10-15T06:09:18.639251+00:00",
+      "actual_exit_code": 0,
+      "completed_utc": "2026-10-15T06:10:02.317289+00:00"
+    },
+    "HA_batch32": {
+      "pid": 786172,
+      "physical_gpu": 3,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2/HA_batch32",
+        "--batch",
+        "32",
+        "--probe",
+        "--memory"
+      ],
+      "status": "EXITED",
+      "started_utc": "2026-10-15T06:09:18.640813+00:00",
+      "actual_exit_code": 0,
+      "completed_utc": "2026-10-15T06:10:02.584910+00:00"
+    },
+    "H_batch64": {
+      "pid": 787641,
+      "physical_gpu": 2,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2/H_batch64",
+        "--batch",
+        "64",
+        "--probe"
+      ],
+      "status": "EXITED",
+      "started_utc": "2026-10-15T06:10:02.589175+00:00",
+      "actual_exit_code": 0,
+      "completed_utc": "2026-10-15T06:11:02.920181+00:00"
+    },
+    "HA_batch64": {
+      "pid": 787642,
+      "physical_gpu": 3,
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.train_dense",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015_attempt2/HA_batch64",
+        "--batch",
+        "64",
+        "--probe",
+        "--memory"
+      ],
+      "status": "EXITED",
+      "started_utc": "2026-10-15T06:10:02.590649+00:00",
+      "actual_exit_code": 0,
+      "completed_utc": "2026-10-15T06:11:05.995592+00:00"
+    }
+  },
+  "original_chosen_common_batch": 64,
+  "rationale": "Measured HA batch64 peak6.8712GiB on24GiB; one final128 test before formal training.",
+  "inherited_parity": "Exact24 TRAIN frames from immutable successful base qualification; not re-run for128.",
+  "real_qualification_updates_total": 12
+}

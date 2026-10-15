@@ -1,0 +1,140 @@
+{
+  "status": "DENSE_M0_ADMITTED_FULL_TRAINING_NOT_YET_LAUNCHED",
+  "chosen_common_batch": 128,
+  "actual_qualification_optimizer_updates": 12,
+  "source_model_files": 12,
+  "orchestration_source": "cadtrack_abc/dense_pipeline.py",
+  "orchestration_sha256": "a849900cbe3c5ebdcdb59567a934cbd04b065b4d0b5f83dee74f8ebbe2ebebfb",
+  "actual_parity_frames": 24,
+  "train_clips_per_parity_run": 2,
+  "gradient_groups": [
+    "fusion",
+    "head",
+    "A_when_enabled"
+  ],
+  "frozen_backbone_parameters": 86045184,
+  "frozen_backbone_sha256": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+  "same_clip_order_per_batch_across_variants": true,
+  "strict_dense_reload": true,
+  "pretrained_strict_tensor_count": 250,
+  "new_backbone_training": false,
+  "formal_initialization": "Original supplied epoch14, not any qualification checkpoint.",
+  "trained_parameters": {
+    "H": 17093253,
+    "HA": 17500424
+  },
+  "measured_batches": {
+    "32": {
+      "H": {
+        "clips_per_second": 2.6273026992619024,
+        "peak_allocated_gib": 2.669245719909668,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.46036508679389954,
+          "head": 0.8877293467521667
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "c4efd7fdba3a62abb35e0202a6515c9a5e8e71b0b4090689bcbe918cb816edfe",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 2.6093418892322253,
+        "peak_allocated_gib": 3.70640230178833,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.5069735646247864,
+          "head": 0.8596604466438293,
+          "A": 0.06293751299381256
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "c4efd7fdba3a62abb35e0202a6515c9a5e8e71b0b4090689bcbe918cb816edfe",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 2.6183068935625133
+    },
+    "64": {
+      "H": {
+        "clips_per_second": 3.2930638281451325,
+        "peak_allocated_gib": 4.804049968719482,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.4517201781272888,
+          "head": 0.8921592235565186
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "a540699e6ef5888bd6167a52deea272a7c763a3966584f61952f1314dc3ed92d",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 3.1404083136433836,
+        "peak_allocated_gib": 6.871165752410889,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.45159628987312317,
+          "head": 0.890127420425415,
+          "A": 0.06110185757279396
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "a540699e6ef5888bd6167a52deea272a7c763a3966584f61952f1314dc3ed92d",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 3.2158303784971745
+    },
+    "128": {
+      "H": {
+        "clips_per_second": 3.8267103732347576,
+        "peak_allocated_gib": 9.077098846435547,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.4035346508026123,
+          "head": 0.914963960647583
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54
+        },
+        "clip_order_sha256": "2081b003f8a9637ac53f16eb660c31121dc52845638d65ebf9e397db9ab2ff5b",
+        "strict_reload": true
+      },
+      "HA": {
+        "clips_per_second": 3.5928178228898933,
+        "peak_allocated_gib": 13.193561553955078,
+        "actual_updates": 2,
+        "gradients": {
+          "fusion": 0.3944071829319,
+          "head": 0.9169715046882629,
+          "A": 0.060045305639505386
+        },
+        "changed_tensors": {
+          "fusion": 4,
+          "head": 54,
+          "A": 11
+        },
+        "clip_order_sha256": "2081b003f8a9637ac53f16eb660c31121dc52845638d65ebf9e397db9ab2ff5b",
+        "strict_reload": true
+      },
+      "geometric_mean_clips_per_second": 3.7079203378707413
+    }
+  },
+  "measurement_scope": "Two real updates per batch per variant; includes first data loading and optimizer initialization, not an isolated long-run efficiency result.",
+  "no_actual_formal_tracking_metrics": true,
+  "all_three_modules_integrated": false,
+  "matched_A_control": "Same head/fusion training; H has no A/B/C, HA enables pre-fusion A only.",
+  "full_training_and_evaluation": "Two independent one-card pipelines:20x20k clips, sixfull98, positive-epoch best same config all3, then actual20 order-hash pair check.",
+  "actual_full_training_launched": false,
+  "goal_achieved": false
+}

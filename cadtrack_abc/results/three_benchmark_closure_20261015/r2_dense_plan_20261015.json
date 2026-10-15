@@ -1,7 +1,7 @@
 {
-  "status": "H_HA_ISOLATED_SOURCE_IMPLEMENTED_NOT_GPU_QUALIFIED",
+  "status": "H_HA_GPU_QUALIFIED_COMPLETE_PIPELINE_READY_NOT_LAUNCHED",
   "workflow": "experiment-plan",
-  "purpose": "R2/R3 protocol with isolated H/HA localization-training source implemented; no GPU qualification or formal R2 training yet.",
+  "purpose": "Actual12 qualification updates and24 TRAIN parity frames passed; full20+sixfull98+all3 pipeline implemented, not yet launched.",
   "research_goal": "Integrate A/B/C and achieve at least+2 percentage points in all seven standard metrics using one selected checkpoint/configuration across the three benchmarks.",
   "stretch_lasher_plus_six": {
     "PR": 78.74,
@@ -85,10 +85,11 @@
       "initialization_frames_per_clip": 1,
       "total_query_frame_observations": 3200000,
       "same_clip_ids_and_start_times_between_variants": true,
-      "batch_size": "Locked after one finite32/64 feasibility/throughput probe, before formal fitting; same chosen batch in both variants.",
+      "batch_size": 128,
       "candidate_batch_sizes": [
         32,
-        64
+        64,
+        128
       ],
       "data_loader_workers": 4,
       "optimizer": "AdamW",
@@ -112,7 +113,8 @@
       "data_rng_separate_from_model_initialization": true,
       "data_order_witness": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_data_order_1315/data_rng_cpu_witness.json",
       "data_order_implementation": "Pass an independently seeded torch.Generator to the training DataLoader/sampler. Record actual sequence, clip-start and query-index order hashes for both matched variants, independently of module initialization.",
-      "fusion_head_BN_mode": "Train including original BatchNorm, identical H/HA; not asserted equal to original paper trainer."
+      "fusion_head_BN_mode": "Train including original BatchNorm, identical H/HA; not asserted equal to original paper trainer.",
+      "batch_locked_from_actual_qualification": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_admission_1425/admission.json"
     },
     "variants": [
       {
@@ -159,15 +161,18 @@
       "Measure batch32/64 training clips/sec, peak allocation and wall time; choose the same feasible batch for both formal runs. No assumption that inference concurrency measurements apply to training.",
       "In the actual new video-data runner, verify the two variants consume the same sequence/clip-start/query order hash using a separate data RNG. The completed CPU DataLoader witness is a precondition demonstration, not integrated R2 qualification."
     ],
-    "actual_training_updates_completed": 0,
+    "actual_training_updates_completed": 12,
     "new_source_implemented": true,
     "source_scope": "Frozen ViT extraction; differentiable original fusion/Center head; optional pre-fusion competitive memory A; H/HA only, B/C still pending.",
     "source_ast_proof": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_source_1355/source_ast_and_hashes.json",
-    "gpu_qualified": false,
+    "gpu_qualified": true,
     "first_attempt_actual_exit_code": 1,
     "first_attempt_import_failure": "Native lib.utils package __init__ imports tensor.py, omitted from the previous vendor subset; exact native copy added.",
     "cpu_import_shape_check": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_dependency_fix_1405/dependency_cpu_check.json",
-    "runtime_source_manifest": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_dependency_fix_1405/source_manifest.json"
+    "runtime_source_manifest": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_dependency_fix_1405/source_manifest.json",
+    "actual_training_updates_scope": "Finite qualification only; zero formal training updates at this publication.",
+    "actual_parity_frames": 24,
+    "evidence": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_admission_1425/admission.json"
   },
   "experiment_blocks": [
     {
@@ -229,7 +234,7 @@
       2,
       3
     ],
-    "training_concurrency": "One formal fit per card, two matched variants in parallel after M0.",
+    "training_concurrency": "One fit per card; after its fit, each card independently completes its sixfull98 and all3; no wait for the other fit.",
     "inference_concurrency": "At most two per card; old1.573856578 throughput is prior inference evidence, not a promised scaling result for the new method.",
     "next_stage_formal_training_runs": 2,
     "planned_total_raw_clips": 800000,
@@ -251,12 +256,12 @@
     },
     {
       "id": "M0",
-      "status": "SOURCE_IMPLEMENTED_GPU_QUALIFICATION_PENDING",
+      "status": "COMPLETE_ACTUAL_GPU_QUALIFICATION",
       "gate": "Actual source/gradient/parity/reload/capacity qualification."
     },
     {
       "id": "R2-pair",
-      "status": "NOT_STARTED",
+      "status": "PIPELINE_READY_NOT_STARTED",
       "gate": "Both complete20 epochs plus sixfull98 selection and three benchmarks."
     },
     {
