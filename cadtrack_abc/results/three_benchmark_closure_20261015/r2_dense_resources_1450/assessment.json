@@ -1,0 +1,55 @@
+{
+  "scope": "Current full H/HA batch128 training, not earlier lightweight inference.",
+  "sample_start_utc": "2026-10-15T06:45:50.796549+00:00",
+  "sample_end_utc": "2026-10-15T06:46:50.906148+00:00",
+  "cpu_total_busy_percent": 9.988770638048177,
+  "cpu_total_iowait_percent": 1.5259422089971912,
+  "ram_available_gib": 176.20740509033203,
+  "gpu": {
+    "2": {
+      "samples": 60,
+      "total_gib": 24.0,
+      "used_min_gib": 11.474609375,
+      "used_max_gib": 11.474609375,
+      "free_min_gib": 12.525390625,
+      "utilization_mean_percent": 54.8,
+      "utilization_min_percent": 0,
+      "utilization_max_percent": 100,
+      "memory_utilization_mean_percent": 23.166666666666668
+    },
+    "3": {
+      "samples": 60,
+      "total_gib": 24.0,
+      "used_min_gib": 14.97265625,
+      "used_max_gib": 14.97265625,
+      "free_min_gib": 9.02734375,
+      "utilization_mean_percent": 57.75,
+      "utilization_min_percent": 0,
+      "utilization_max_percent": 100,
+      "memory_utilization_mean_percent": 24.783333333333335
+    }
+  },
+  "same_batch128_duplicate_memory_estimate_gib": {
+    "2": 22.94921875,
+    "3": 29.9453125
+  },
+  "decision": "KEEP_ONE_FULL_TRAINING_JOB_PER_GPU",
+  "reasons": [
+    "A duplicate HA batch128 estimates29.9453GiB on a24GiB GPU; it does not fit.",
+    "Two H batch128 copies estimate22.9492GiB, leaving only1.0508GiB on GPU2.",
+    "CPU capacity is available, but both training main processes consume about1.09 core equivalents. Source crop_batch loops over images on CPU and synchronizes boxes to CPU; this is a plausible source of gaps, not a proven function-level bottleneck.",
+    "Smaller-batch concurrency may fit. No matched current-training concurrency benchmark was run, so neither an aggregate speedup nor slowdown is claimed.",
+    "Do not restart, duplicate, shrink, pause, or change either active full fit to fill GPU utilization. Earlier measured inference concurrency speedup does not establish current training speedup."
+  ],
+  "new_neural_jobs_started": 0,
+  "training_source_or_configuration_changes": 0,
+  "next_only_training_observer": {
+    "due_bjt": "2026-10-15T15:40:00+08:00",
+    "native_session_id": 62423,
+    "wait_script": "wait_dense_first_epoch_1540_local.py",
+    "purpose": "First complete epoch and clip-order/throughput check; no earlier duplicate observer."
+  },
+  "formal_metrics_complete": false,
+  "full_ABC": false,
+  "goal_achieved": false
+}

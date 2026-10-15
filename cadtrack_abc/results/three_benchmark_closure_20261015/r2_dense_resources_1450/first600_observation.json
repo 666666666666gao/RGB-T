@@ -1,0 +1,663 @@
+{
+  "observed_utc": "2026-10-15T06:38:26.789272+00:00",
+  "pair_state": {
+    "status": "DENSE_H_HA_FULL_RUNS_RUNNING",
+    "controller_pid": 826024,
+    "started_utc": "2026-10-15T06:27:52.153805+00:00",
+    "jobs": {
+      "H": {
+        "controller_pid": 826037,
+        "physical_gpu": 2,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.dense_pipeline",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H",
+          "--m0-root",
+          "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015",
+          "--variant",
+          "H",
+          "--gpu",
+          "2",
+          "--baseline-234",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+          "--baseline-210",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+        ],
+        "status": "RUNNING"
+      },
+      "HA": {
+        "controller_pid": 826038,
+        "physical_gpu": 3,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.dense_pipeline",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA",
+          "--m0-root",
+          "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015",
+          "--variant",
+          "HA",
+          "--gpu",
+          "3",
+          "--baseline-234",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+          "--baseline-210",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+        ],
+        "status": "RUNNING"
+      }
+    },
+    "common_batch": 128,
+    "planned_epochs": 20,
+    "planned_clips_per_variant": 400000,
+    "planned_updates_per_variant": 3140,
+    "planned_query_observations_per_variant": 3200000,
+    "full_ABC": false,
+    "goal_achieved": false
+  },
+  "resource_scope": "30second first-necessary-diagnostic sample during formal training; only physical GPU2/3.",
+  "cpu_busy_percent": 10.214250124564026,
+  "cpu_iowait_percent": 2.020859951065127,
+  "logical_cpu_cores": 112,
+  "load_average": [
+    15.08154296875,
+    13.4404296875,
+    10.6650390625
+  ],
+  "meminfo": "MemTotal:       259229884 kB\nMemFree:        24786796 kB\nMemAvailable:   186622228 kB\nBuffers:         1108864 kB\nCached:         152463152 kB\nSwapCached:       230900 kB\nActive:         60492592 kB\nInactive:       157916228 kB\nActive(anon):   52994888 kB\nInactive(anon): 12439416 kB\nActive(file):    7497704 kB\nInactive(file): 145476812 kB\nUnevictable:       12304 kB\nMlocked:              16 kB\nSwapTotal:       8388604 kB\nSwapFree:        1629588 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:             11496 kB\nWriteback:             0 kB\nAnonPages:      64647968 kB\nMapped:          1543264 kB\nShmem:            597880 kB\nKReclaimable:   10701204 kB\nSlab:           12728504 kB\nSReclaimable:   10701204 kB\nSUnreclaim:      2027300 kB\nKernelStack:       76032 kB\nPageTables:       317788 kB\nSecPageTables:     32848 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    138003544 kB\nCommitted_AS:   150937168 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:      548796 kB\nVmallocChunk:          0 kB\nPercpu:           574784 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:    741376 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:      4096 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nGPUActive:             0 kB\nGPUReclaim:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:     8726940 kB\nDirectMap2M:    83154944 kB\nDirectMap1G:    176160768 kB\n",
+  "gpu_samples": [
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        83
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        100
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        63
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        0
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        100
+      ]
+    ],
+    [
+      [
+        2,
+        11750,
+        24576,
+        0
+      ],
+      [
+        3,
+        15332,
+        24576,
+        96
+      ]
+    ]
+  ],
+  "jobs": {
+    "H": {
+      "queue_state": {
+        "status": "DENSE_FULL_RUN_RUNNING",
+        "variant": "H",
+        "physical_gpu": 2,
+        "controller_pid": 826037,
+        "started_utc": "2026-10-15T06:27:52.222507+00:00",
+        "batch": 128,
+        "phases": {
+          "full_training": {
+            "status": "RUNNING",
+            "commands": [
+              [
+                "cadtrack_abc.train_dense",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit",
+                "--batch",
+                "128",
+                "--epochs",
+                "20",
+                "--samples",
+                "20000",
+                "--steps",
+                "8",
+                "--workers",
+                "4",
+                "--head-lr",
+                "0.00001",
+                "--prompt-lr",
+                "0.0001"
+              ]
+            ],
+            "physical_gpu": 2,
+            "started_utc": "2026-10-15T06:27:52.222771+00:00",
+            "pids": [
+              826053
+            ]
+          }
+        },
+        "reports": {},
+        "full_ABC": false,
+        "goal_achieved": false,
+        "M0_state_sha256": "4874410b970103d0d314241f1fa9278871a5fc7f43253ded32dd685fd582e5af"
+      },
+      "progress": {
+        "event": "dense_update",
+        "epoch": 1,
+        "epochs": 20,
+        "batch": 25,
+        "batches": 157,
+        "updates": 25,
+        "clips_seen": 3200,
+        "loss": 0.6945154666900635,
+        "parts": {
+          "focal": 0.20691774785518646,
+          "l1": 0.015068170614540577,
+          "giou": 0.20612844824790955
+        },
+        "gradients": {
+          "fusion": 0.4148784577846527,
+          "head": 0.7573059797286987
+        },
+        "clips_per_second": 5.779513994711238,
+        "seconds_per_update": 22.14719094324042,
+        "peak_allocated_gib": 9.07718276977539,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "pipeline_log_tail": [],
+      "actual_processes": [
+        {
+          "pid": 826053,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001"
+        }
+      ]
+    },
+    "HA": {
+      "queue_state": {
+        "status": "DENSE_FULL_RUN_RUNNING",
+        "variant": "HA",
+        "physical_gpu": 3,
+        "controller_pid": 826038,
+        "started_utc": "2026-10-15T06:27:52.223564+00:00",
+        "batch": 128,
+        "phases": {
+          "full_training": {
+            "status": "RUNNING",
+            "commands": [
+              [
+                "cadtrack_abc.train_dense",
+                "--config",
+                "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+                "--output",
+                "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit",
+                "--batch",
+                "128",
+                "--epochs",
+                "20",
+                "--samples",
+                "20000",
+                "--steps",
+                "8",
+                "--workers",
+                "4",
+                "--head-lr",
+                "0.00001",
+                "--prompt-lr",
+                "0.0001",
+                "--memory"
+              ]
+            ],
+            "physical_gpu": 3,
+            "started_utc": "2026-10-15T06:27:52.223818+00:00",
+            "pids": [
+              826055
+            ]
+          }
+        },
+        "reports": {},
+        "full_ABC": false,
+        "goal_achieved": false,
+        "M0_state_sha256": "4874410b970103d0d314241f1fa9278871a5fc7f43253ded32dd685fd582e5af"
+      },
+      "progress": {
+        "event": "dense_update",
+        "epoch": 1,
+        "epochs": 20,
+        "batch": 2,
+        "batches": 157,
+        "updates": 2,
+        "clips_seen": 256,
+        "loss": 1.2643115520477295,
+        "parts": {
+          "focal": 0.30020222067832947,
+          "l1": 0.02628912404179573,
+          "giou": 0.30609437823295593,
+          "gate": 1.0244576930999756,
+          "identity": 0.1530020833015442,
+          "preservation": 0.0028311742935329676
+        },
+        "gradients": {
+          "fusion": 0.45600491762161255,
+          "head": 0.8871849179267883,
+          "A": 0.07044092565774918
+        },
+        "clips_per_second": 2.6239896761390975,
+        "seconds_per_update": 48.780679727497045,
+        "peak_allocated_gib": 13.19359302520752,
+        "formal_test_metrics": null,
+        "probe": false
+      },
+      "pipeline_log_tail": [],
+      "actual_processes": [
+        {
+          "pid": 826055,
+          "command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory"
+        }
+      ]
+    }
+  },
+  "new_neural_jobs_started": false,
+  "temperature_power_queried": false,
+  "pair_exit": null
+}
