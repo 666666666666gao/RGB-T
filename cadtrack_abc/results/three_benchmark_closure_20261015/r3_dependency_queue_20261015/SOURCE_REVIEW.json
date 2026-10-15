@@ -1,0 +1,276 @@
+{
+  "review_timestamp_utc": "2026-10-15T10:39:13.943881+00:00",
+  "verdict": "PASS_SOURCE_ONLY",
+  "summary": "Correct for the specified source-level dependency-queue contract; no concrete blocking or nonblocking defect found in the two new artifacts.",
+  "scope": [
+    "project/cadtrack_abc/continue_dense_main.py",
+    "launch_dense_dependency_queue_remote.py"
+  ],
+  "review_type": "source-only",
+  "requested_reviewer": {
+    "model": "Astra",
+    "reasoning_effort": "max"
+  },
+  "review_independence": "same-family",
+  "actual_route": "UNATTESTED",
+  "acceptance_status": "provisional",
+  "blocking_count": 0,
+  "nonblocking_count": 0,
+  "findings": [],
+  "checks": [
+    {
+      "id": "C01",
+      "status": "PASS",
+      "name": "Manifest and source syntax",
+      "evidence": [
+        "input_manifest.json",
+        "all 12 listed frozen files"
+      ],
+      "result": "All 12 byte counts and SHA-256 values match the sealed manifest; all seven Python inputs parse with stdlib AST. Manifest digest matches the initial observation."
+    },
+    {
+      "id": "C02",
+      "status": "PASS",
+      "name": "Exact first-check gate and terminal-only polling",
+      "evidence": [
+        "project/cadtrack_abc/continue_dense_main.py:27-31,35-60,67-79",
+        "launch_dense_dependency_queue_remote.py:28-31",
+        "existing_observer_schedule.json:7-8"
+      ],
+      "result": "The launcher passes 2026-10-15T23:39:58.342327+00:00, exactly the same instant as 2026-10-16T07:39:58.342327+08:00. The queue saves only its own initial state and sleeps until this deadline before inspecting pair_exit.json. Missing exits and occupied authorized cards cause a 300-second sleep. No parent progress/log reads occur; parent completion and GPU memory are inspected only after an actual successful parent exit."
+    },
+    {
+      "id": "C03",
+      "status": "PASS",
+      "name": "Parent terminal receipt producer/consumer contract",
+      "evidence": [
+        "parent_executed_launch.py:24 (embedded wrapper.py and driver.py)",
+        "parent_driver.py:43-65",
+        "project/cadtrack_abc/continue_dense_main.py:55-69"
+      ],
+      "result": "The executed parent wrapper uses subprocess.run and writes actual_controller_exit_code from its returned process status. Its embedded driver AST equals the separate parent_driver.py. The driver waits for both children, requires actual exit codes [0,0], validates all 20 matched clip orders, and checks both full-training/three-benchmark receipts, full98_selection_complete, and exact lasher/rgbt234/rgbt210 report keys before writing pair_complete.json. The queue consumes these exact names/status values. A nonzero parent exit returns failure before any GPU query or controller launch."
+    },
+    {
+      "id": "C04",
+      "status": "PASS",
+      "name": "Authorized-card release and one controller launch",
+      "evidence": [
+        "project/cadtrack_abc/continue_dense_main.py:70-98",
+        "project/cadtrack_abc/dense_main_pipeline.py:48-51,64-76"
+      ],
+      "result": "The only queue GPU query is nvidia-smi -i 2,3 for index,memory.used,memory.total; both indexes must match and both memory values must be below 500 MiB. Occupied cards wait. The single Popen site is after the dependency/capacity loop and has no retry path. It starts the CPU orchestration process with CUDA_VISIBLE_DEVICES empty. The downstream controller rechecks cards and restricts its run helper devices to 2,3 or CPU. No GPU0/1/27 use, preemption, temperature/power operation, package operation, or deletion is introduced."
+    },
+    {
+      "id": "C05",
+      "status": "PASS",
+      "name": "Frozen command, source scope, paths and interpreter",
+      "evidence": [
+        "launch_dense_dependency_queue_remote.py:14-31",
+        "project/cadtrack_abc/continue_dense_main.py:29-38,83-98",
+        "qualified_scope.json:3-6,403-423",
+        "project/cadtrack_abc/dense_main_pipeline.py:18-29",
+        "project/cadtrack_abc/environment.json:2-5",
+        "project/cadtrack_abc/config.json:3,19-21"
+      ],
+      "result": "The launcher requires the existing /data/wangwj/envs/CADTrack/bin/python and ssh2028 warm-existing-environment declaration. The queue requires its current interpreter and cadtrack_abc.dense_main_pipeline, verifies the same parent root, and launches the scope command unchanged. Every required controller flag is supplied, no unknown/duplicate flag occurs, and batch128 is accepted. Config, query, baseline and output paths are absolute and consistent. Queue output and main output are distinct. Existing queue/controller digests match the sealed bytes. Existing scope source checks are reused at startup and before controller launch; no new hash scheme is proposed."
+    },
+    {
+      "id": "C06",
+      "status": "PASS",
+      "name": "Generated wrapper and actual subprocess exit semantics",
+      "evidence": [
+        "launch_dense_dependency_queue_remote.py:32-43",
+        "project/cadtrack_abc/continue_dense_main.py:95-119"
+      ],
+      "result": "Only the wrapper-text expression was evaluated in memory using fixed PurePosixPath values and the explicit command; generated Python parses and contains real newline characters. It runs the dependency queue synchronously and writes queue_exit.json actual_queue_exit_code from result.returncode. The queue records child.wait() as actual_main_controller_exit_code and reports a failed main controller for a nonzero code. The wrapper itself can exit normally after recording a failed queue; success must be read from the actual_queue_exit_code receipt, not inferred from the wrapper OS exit. No reviewed consumer confuses these meanings."
+    },
+    {
+      "id": "C07",
+      "status": "PASS",
+      "name": "Startup verification is restricted to the new CPU queue and wrapper",
+      "evidence": [
+        "launch_dense_dependency_queue_remote.py:44-64",
+        "project/cadtrack_abc/continue_dense_main.py:40-52",
+        "project/cadtrack_abc/__init__.py:1"
+      ],
+      "result": "The verification block reads only the new queue_state.json and /proc cmdlines for its queue_pid and the newly created wrapper PID. Both byte replacements use an actual NUL separator. It requires WAITING_UNTIL_NOT_BEFORE, null last_dependency_check_utc, launch_count0 and main_controller_started false. The launcher has no GPU-query subprocess, parent log/progress read, or existing observer/handle probe. Source/config reads and disk_usage are startup preparation, not current parent/GPU observations. The package initializer is docstring-only and the two new artifacts import stdlib only."
+    },
+    {
+      "id": "C08",
+      "status": "PASS",
+      "name": "Downstream orchestration ownership and completion fields",
+      "evidence": [
+        "project/cadtrack_abc/dense_main_pipeline.py:104-144,146-185,217-250",
+        "project/cadtrack_abc/continue_dense_main.py:111-117"
+      ],
+      "result": "The frozen main controller owns native qualification, raw/control probes, matched full20 continuations, full98 selection and all three formal reports, fresh evidence/calibration, fresh consequences/policy fitting, and main full98/formal reports. Its completion receipt produces DENSE_R3_COMPLETE_TRAINING_AND_EVALUATION, full_ABC_training_complete and seven_metric_plus_two exactly as the queue consumes them. Source flow and field compatibility are checked here; the underlying scientific modules are not re-reviewed or executed."
+    },
+    {
+      "id": "C09",
+      "status": "PASS",
+      "name": "No training or effectiveness claims from a waiting queue",
+      "evidence": [
+        "launch_dense_dependency_queue_remote.py:44-49,52-55",
+        "project/cadtrack_abc/continue_dense_main.py:40-45,99-102,114-116",
+        "project/cadtrack_abc/dense_main_pipeline.py:242-248",
+        "qualified_scope.json:388-401"
+      ],
+      "result": "Initial records explicitly say CPU_DEPENDENCY_QUEUE_LAUNCHED, neural_jobs_started0 and new_main_pipeline_started false. Later state distinguishes a main-controller Popen from NN training/evaluation evidence. Even successful pipeline completion leaves goal_achieved false, preserves seven_metric_plus_two, and retains the requirement for matched ablations and result audit before claiming component effectiveness. The frozen scope explicitly says R3 GPU qualification and full ABC training have not occurred."
+    },
+    {
+      "id": "C10",
+      "status": "PASS_WITH_LIMITS",
+      "name": "Five supplied host tests are honestly described",
+      "evidence": [
+        "check_dense_dependency_queue.py:1,25-104,106-130",
+        "dense_dependency_queue_control_flow_checks.json"
+      ],
+      "result": "The five test methods and recorded PASS cases match: before_deadline, parent_failed, busy_then_free, child_failed and success. They patch sleep/time and subprocess.run/Popen; fixtures are explicitly synthetic and metrics null. Their assertions cover zero pre-deadline launch/capacity calls, parent-failure stop, busy-to-free 300-second wait, one CPU-controller launch, child-failure propagation, and completion without goal success. Reviewer did not re-run this script because it is hardcoded to production source locations; this review instead inspected its AST/source and supplied result. These tests do not prove real subprocess/GPU/remote operation or experimental results."
+    }
+  ],
+  "limitations": [
+    "Source-only review of the two new artifacts, bounded to the manifest and its 12 sealed inputs. Original paths, SSH/server state, current GPU/training state, other processes/agents, and existing observer handles were not inspected.",
+    "No real launcher/controller/wrapper was run. No Torch/project neural module was imported, no actual GPU query was performed, and no NN process was started by this review. Stdlib AST and expression inspection only.",
+    "The requested reviewer route is Astra/max, but independent routing attestation is absent. Review independence is same-family, actual_route is UNATTESTED, and acceptance is provisional.",
+    "Only the dense_main_pipeline source among the three existing qualified_scope source hashes is present in this bundle. Its hash and the launcher queue hash were independently matched; other remote source/file availability and environment assertions were not tested here.",
+    "The supplied five PASS results are executor-recorded mocked host control-flow evidence, not freshly executed reviewer tests or proof of GPU qualification, training, full video evaluation, metrics, or module effectiveness.",
+    "The original R2 H/HA training and resource/concurrency decision are context supplied by the parent. This review makes no new claim about their current state and does not create or modify routine observers.",
+    "Successful end-to-end execution would still require seven-metric result audit and matched module-effect evidence. Pipeline completion alone is not goal achievement."
+  ],
+  "execution": {
+    "python_inputs_AST_parsed": 7,
+    "generated_wrapper_AST_parsed": true,
+    "existing_host_tests_inspected": 5,
+    "existing_host_tests_rerun": false,
+    "real_launcher_or_controller_run": false,
+    "project_neural_modules_imported": false,
+    "torch_imported": false,
+    "actual_GPU_queries": 0,
+    "actual_NN_jobs": 0,
+    "SSH_or_server_accessed": false,
+    "other_agents_or_processes_queried": false
+  },
+  "manifest_preservation": {
+    "manifest_path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_dependency_queue_review_inputs_20261015\\input_manifest.json",
+    "before_sha256": "5f052672da050ddc4464ed3af1ab78c291f1dda5d3a1d8e580f17f65cf6439c0",
+    "after_sha256": "5f052672da050ddc4464ed3af1ab78c291f1dda5d3a1d8e580f17f65cf6439c0",
+    "unchanged": true,
+    "all_12_entries_match": true,
+    "inputs_modified": false,
+    "production_modified": false,
+    "files": [
+      {
+        "file": "project/cadtrack_abc/continue_dense_main.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\continue_dense_main.py",
+        "bytes": 5836,
+        "sha256": "919e59cdf8e0a1b1f0ea2ed941f733f5da1dcbd3c79c738d81946321b6525d1e",
+        "current_sha256": "919e59cdf8e0a1b1f0ea2ed941f733f5da1dcbd3c79c738d81946321b6525d1e",
+        "current_bytes": 5836,
+        "preserved": true
+      },
+      {
+        "file": "project/cadtrack_abc/dense_main_pipeline.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\dense_main_pipeline.py",
+        "bytes": 16937,
+        "sha256": "518f4b1ac2828f482b97da755d6e7f25d43b74f61272141b6e979f7ba8e4a42a",
+        "current_sha256": "518f4b1ac2828f482b97da755d6e7f25d43b74f61272141b6e979f7ba8e4a42a",
+        "current_bytes": 16937,
+        "preserved": true
+      },
+      {
+        "file": "project/cadtrack_abc/__init__.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\__init__.py",
+        "bytes": 70,
+        "sha256": "10813468847b0162754be4d26e550273a4e1cfbdec147f338f581df5c5c8573e",
+        "current_sha256": "10813468847b0162754be4d26e550273a4e1cfbdec147f338f581df5c5c8573e",
+        "current_bytes": 70,
+        "preserved": true
+      },
+      {
+        "file": "project/cadtrack_abc/environment.json",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\environment.json",
+        "bytes": 772,
+        "sha256": "ba6e4a41e3eb1d93dbe51f9f3abcd9ca0a96bdce6515a877ab7f98c42077719e",
+        "current_sha256": "ba6e4a41e3eb1d93dbe51f9f3abcd9ca0a96bdce6515a877ab7f98c42077719e",
+        "current_bytes": 772,
+        "preserved": true
+      },
+      {
+        "file": "project/cadtrack_abc/config.json",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\config.json",
+        "bytes": 780,
+        "sha256": "92c673aa715afa69c0ea02220e2db9c6335c6dfd8ed60c775ffabe61e8807de9",
+        "current_sha256": "92c673aa715afa69c0ea02220e2db9c6335c6dfd8ed60c775ffabe61e8807de9",
+        "current_bytes": 780,
+        "preserved": true
+      },
+      {
+        "file": "qualified_scope.json",
+        "original": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc\\results\\three_benchmark_closure_20261015\\r3_complete_chain_source_1805\\qualified_scope.json",
+        "bytes": 12324,
+        "sha256": "e05753fc3ed83fb72fbcb3c68258dbaa15f6cb3a1f36891060409019240db544",
+        "current_sha256": "e05753fc3ed83fb72fbcb3c68258dbaa15f6cb3a1f36891060409019240db544",
+        "current_bytes": 12324,
+        "preserved": true
+      },
+      {
+        "file": "launch_dense_dependency_queue_remote.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\launch_dense_dependency_queue_remote.py",
+        "bytes": 3791,
+        "sha256": "b2e6cd036541d401409fca52e8e113272a71c1b7611e005154202bd978e6357c",
+        "current_sha256": "b2e6cd036541d401409fca52e8e113272a71c1b7611e005154202bd978e6357c",
+        "current_bytes": 3791,
+        "preserved": true
+      },
+      {
+        "file": "check_dense_dependency_queue.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\check_dense_dependency_queue.py",
+        "bytes": 7171,
+        "sha256": "ab9e3a4dff141f1fed7ee0547f3cd9e2a6628fc61cfbfa75b5ec80b1bc778dbe",
+        "current_sha256": "ab9e3a4dff141f1fed7ee0547f3cd9e2a6628fc61cfbfa75b5ec80b1bc778dbe",
+        "current_bytes": 7171,
+        "preserved": true
+      },
+      {
+        "file": "dense_dependency_queue_control_flow_checks.json",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_dependency_queue_control_flow_checks.json",
+        "bytes": 1435,
+        "sha256": "0d6a080b63bda69c9fa67586776b17dd9904bc5d1328a7d5b6e64b5bf8ccd918",
+        "current_sha256": "0d6a080b63bda69c9fa67586776b17dd9904bc5d1328a7d5b6e64b5bf8ccd918",
+        "current_bytes": 1435,
+        "preserved": true
+      },
+      {
+        "file": "parent_driver.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_full_pair_driver_remote.py",
+        "bytes": 3457,
+        "sha256": "ad6c87926e64bdcddcdf5375ac276a7ad54aaae7a58c4cd248dfe25de971fe45",
+        "current_sha256": "ad6c87926e64bdcddcdf5375ac276a7ad54aaae7a58c4cd248dfe25de971fe45",
+        "current_bytes": 3457,
+        "preserved": true
+      },
+      {
+        "file": "parent_executed_launch.py",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\launch_dense_full_pair_20261015.executed_source.py",
+        "bytes": 10551,
+        "sha256": "1037b548bfb6943ae39adfd2ee7dfdf30a1fb993a8ce1e731a462806868f3671",
+        "current_sha256": "1037b548bfb6943ae39adfd2ee7dfdf30a1fb993a8ce1e731a462806868f3671",
+        "current_bytes": 10551,
+        "preserved": true
+      },
+      {
+        "file": "existing_observer_schedule.json",
+        "original": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_next_only_observation_after1540.json",
+        "bytes": 1068,
+        "sha256": "c486188d54b20c8863cd569777d14198e2e5be664e99cd300e595ce13c12ff9c",
+        "current_sha256": "c486188d54b20c8863cd569777d14198e2e5be664e99cd300e595ce13c12ff9c",
+        "current_bytes": 1068,
+        "preserved": true
+      }
+    ]
+  },
+  "formal_metrics": null,
+  "GPU_qualification_complete": false,
+  "full_ABC_training_complete": false,
+  "goal_achieved": false
+}
