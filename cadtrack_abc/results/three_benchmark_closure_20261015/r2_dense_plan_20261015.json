@@ -1,5 +1,5 @@
 {
-  "status": "H_HA_GPU_QUALIFIED_COMPLETE_PIPELINE_READY_NOT_LAUNCHED",
+  "status": "H_HA_FULL20_TRAINING_RUNNING",
   "workflow": "experiment-plan",
   "purpose": "Actual12 qualification updates and24 TRAIN parity frames passed; full20+sixfull98+all3 pipeline implemented, not yet launched.",
   "research_goal": "Integrate A/B/C and achieve at least+2 percentage points in all seven standard metrics using one selected checkpoint/configuration across the three benchmarks.",
@@ -261,8 +261,9 @@
     },
     {
       "id": "R2-pair",
-      "status": "PIPELINE_READY_NOT_STARTED",
-      "gate": "Both complete20 epochs plus sixfull98 selection and three benchmarks."
+      "status": "RUNNING_REAL_FULL20_FITS",
+      "gate": "Both complete20 epochs plus sixfull98 selection and three benchmarks.",
+      "evidence": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_full_launch_1430/launch_verified.json"
     },
     {
       "id": "R3-full",
@@ -279,5 +280,7 @@
     "frontier_primitive": "None required; no diffusion/LLM component introduced.",
     "epoch0_is_training_gain": false
   },
-  "goal_achieved": false
+  "goal_achieved": false,
+  "actual_full_training_launch_utc": "2026-10-15T06:27:52.024151+00:00",
+  "actual_training_launch_evidence": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_full_launch_1430/launch_verified.json"
 }
