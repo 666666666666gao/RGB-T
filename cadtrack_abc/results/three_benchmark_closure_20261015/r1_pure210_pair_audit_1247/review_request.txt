@@ -1,0 +1,60 @@
+Perform the installed experiment-audit workflow as a fresh-context integrity auditor. Start adversarially; do not trust executor labels or aggregate scores. This is a local CPU-only audit of completed artifacts, not neural execution or model development.
+
+INPUT ROOT (read-only): C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/pure210_pair_audit_inputs_1230
+OUTPUT ROOT (your writes only): C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_pure210_pair_formal_audit_20261015
+Initial sealing: OUTPUT ROOT/initial_input_hashes.json
+Read the entire raw_input_manifest.json and toolkit_protocols.json in INPUT ROOT.
+
+Source paths to inspect directly:
+- INPUT ROOT/project/cadtrack_abc/score.py
+- INPUT ROOT/project/cadtrack_abc/infer.py
+- INPUT ROOT/project/cadtrack_abc/infer_baseline.py
+- INPUT ROOT/project/cadtrack_abc/pure_baseline_tracker.py
+- INPUT ROOT/project/cadtrack_abc/baseline.py
+- INPUT ROOT/project/cadtrack_abc/future_pipeline.py
+- INPUT ROOT/project/cadtrack_abc/r1_pair_pipeline.py
+- INPUT ROOT/project/cadtrack_abc/select_future_actions.py
+- INPUT ROOT/project/cadtrack_abc/config.json
+- All relevant supplied toolkit/rgbt scoring, annotation loading and attribute files.
+- Supplied vendor/config dependencies relevant to the above paths.
+
+Raw result/GT paths:
+- INPUT ROOT/ground_truth/rgbt210/*/init.txt
+- INPUT ROOT/predictions/main/rgbt210/*
+- INPUT ROOT/predictions/pure_rgbt210/*
+- INPUT ROOT/results/main/rgbt210/full_report.json and per_sequence.csv
+- INPUT ROOT/results/pure_rgbt210/full_report.json and per_sequence.csv
+- INPUT ROOT/pure210_state.json
+- INPUT ROOT/pure210_observation_1225.json
+- INPUT ROOT/pure_checkpoint_identity.json
+- INPUT ROOT/main_state.json
+- INPUT ROOT/main_selection.json
+- INPUT ROOT/main_fit_complete.json
+- INPUT ROOT/selected_checkpoint/best.pth
+- INPUT ROOT/documentation/HANDOFF_snapshot.md
+- INPUT ROOT/documentation/plan_snapshot.json
+- INPUT ROOT/documentation/run_pure_rgbt210_gpu2_remote.py and its original stdout/stderr
+- INPUT ROOT/toolkit_attributes/rgbt210/*
+
+Checklist A-F:
+A. Verify GT comes from supplied dataset annotation files rather than predictions; distinguish supplied-byte provenance from authentication of the original publisher distribution. Inspect the exact GT files and source loading.
+B. Reject self-normalized scores. Recompute PR/SR under the supplied RGBT210 protocol, including threshold inequalities, coordinate/rounding/initialization conventions, invalid annotations and original sequence/frame denominators. Do not silently improve the protocol.
+C. Check actual file existence, complete210-sequence coverage, per-sequence frame counts, overall/per-sequence JSON/CSV/curves and attributes, selected checkpoint/epoch identity, receipts and controller outputs. Distinguish recorded declarations from historically attested loaded parameters/imports. Verify selected main checkpoint bytes where supplied; the external pure checkpoint has a supplied collection-time SHA receipt, not supplied bytes.
+D. Inspect scoring call paths and distinguish invoked outputs from unused metric helpers or synthetic tests.
+E. Judge scope and reject claims of three-module effectiveness, matched speedup, seed stability or achieving the research goal that the supplied experiments do not establish. Do not determine current external control-job status from this static bundle.
+F. Classify each evaluation as real_gt, synthetic_proxy, self_supervised_proxy, simulation_only or human_eval with evidence.
+
+Independently reproduce both runs, every per-sequence score, full curves and any supplied attribute/latency aggregates. Compute a paired5000 sequence bootstrap of main-minus-pure PR/SR with seed20261015, same resampled named-sequence indices for both metrics, NumPy default_rng/PCG64, percentile95% with linear quantiles. State fixed-checkpoint scope and event/sequence dependence caveats. Do not turn sequence intervals into training-seed stability.
+
+Use the ALREADY EXISTING interpreter:
+C:/Users/gb/AppData/Local/uv/cache/archive-v0/bLLGl6xIw1FEAazQsIVjR/Scripts/python.exe
+This exact interpreter has actual Python3.10.19 / NumPy2.2.6. Verify and record the actual versions and numpy file path. Do not install or change environments. The default E:/python.exe lacks NumPy unless an existing pure Python path is set and is not the numerical runtime requested here. If the stated interpreter cannot execute, report the actual error; do not choose a silent numerical fallback.
+
+Method reference ONLY, not a trusted verdict:
+C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_main_rgbt_formal_audit_20261015/verify_metrics_numpy226.py
+C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_main_rgbt_formal_audit_20261015/diagnose_runtime_boundaries.py
+You may inspect these CPU methods, but independently verify their applicability to this new pure210 role and supplied source. Do not import project neural models, run infer/train, use SSH/network, query GPUs, install packages, modify input files, change the metric protocol or normalize by model output. Use -B and keep all new code and traces under OUTPUT ROOT only.
+
+Deliver EXPERIMENT_AUDIT.md and EXPERIMENT_AUDIT.json with A-F statuses, exact file:line evidence, blocking/nonblocking issues, qualified claim impact, actual routing attribution and all limitations. Record requested gpt-6-astra/max/fork-none but actual model/routing/effort UNATTESTED unless the host gives real attestation; same-family/provisional, never cross-family accepted.
+
+Include deterministic_verification.json with named checks, recomputed per-sequence/mean/attribute curve CSVs, aggregate latency statistics, paired bootstrap JSON/replicates, input before/after hashes, final artifact validation, output hash manifest and complete request/response/execution trace. Preserve failed attempts with true return codes and original outputs. Do not erase an earlier mismatch or alter tolerances to manufacture agreement. No raw GT/prediction coordinates, checkpoint bytes or per-frame latency arrays in output reports or stdout; aggregate counts and per-sequence metric summaries only. Inputs remain private and unchanged.

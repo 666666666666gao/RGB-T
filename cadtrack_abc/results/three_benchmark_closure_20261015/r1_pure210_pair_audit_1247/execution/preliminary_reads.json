@@ -1,0 +1,60 @@
+{
+  "audit_agent": "/root/r1_pure210_pair_result_integrity_audit",
+  "initial_reads": {
+    "kind": "workspace_instruction_bootstrap_and_skill_read",
+    "sources": [
+      "SOUL.md",
+      "USER.md",
+      "memory/2026-10-15.md",
+      "memory/2026-10-14.md",
+      "C:/Users/gb/.codex/skills/experiment-audit/SKILL.md",
+      "C:/Users/gb/.codex/skills/shared-references/local-codex-policy.md",
+      "C:/Users/gb/.codex/skills/shared-references/reviewer-independence.md",
+      "C:/Users/gb/.codex/skills/shared-references/experiment-integrity.md",
+      "C:/Users/gb/.codex/skills/shared-references/review-tracing.md"
+    ],
+    "note": "Workspace memory is not audit evidence. Contents are intentionally not copied into this task's private evidence outputs."
+  },
+  "preliminary_read_results": [
+    {
+      "chunk_id": "056f4d",
+      "session_id": 92166,
+      "status": "initial request read yielded"
+    },
+    {
+      "chunk_id": "dfdf14",
+      "exit_code": 0,
+      "status": "complete review_request.txt read"
+    },
+    {
+      "chunk_id": "9975c2",
+      "exit_code": 0,
+      "status": "local execution policy read"
+    },
+    {
+      "chunk_id": "522b9a",
+      "exit_code": 0,
+      "status": "reviewer independence, experiment integrity and tracing policies read"
+    },
+    {
+      "chunk_id": "b0220b",
+      "exit_code": 0,
+      "status": "large raw manifest/protocol console read display-truncated; subsequently both fully parsed and validated by verify_pair.py"
+    },
+    {
+      "chunk_id": "a79344",
+      "exit_code": 0,
+      "status": "actual interpreter, full manifest parse and source inventory; protocol console output display-truncated"
+    },
+    {
+      "chunk_id": "b7d331",
+      "exit_code": 0,
+      "status": "full score.py, baseline.py and config.json source read"
+    }
+  ],
+  "limitations": [
+    "A full host transcript export is unavailable. Actual retained source-read outputs are saved in source_read_tool_trace*.json; complete numerical stdout/stderr and true child return codes are saved in execution/*.",
+    "Initial large display truncations and historical handoff output truncation are not hidden. They did not truncate the verifier's full input reads."
+  ],
+  "delegation_message": "Apply experiment-audit as a fresh local CPU-only reviewer. Read and execute the complete request at C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/r1_pure210_pair_formal_audit_20261015/review_request.txt. Inputs are sealed read-only at C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/pure210_pair_audit_inputs_1230; write only under the named audit output root. Read installed skill and local execution policy. No neural work, SSH/network, package installs, GPU queries, input modification, raw coordinate output or changes outside your audit output root. Independently inspect source/GT/raw predictions, deterministically recompute both completed RGBT210 roles and paired5000 sequence intervals, with complete evidence/true attempts and all limits. Return exact file paths and verdict, actual routing remains UNATTESTED unless genuinely attested."
+}

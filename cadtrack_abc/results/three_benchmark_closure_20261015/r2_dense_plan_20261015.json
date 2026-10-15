@@ -1,0 +1,262 @@
+{
+  "status": "PLANNED_NOT_IMPLEMENTED_OR_LAUNCHED",
+  "workflow": "experiment-plan",
+  "purpose": "Implement the accepted R2/R3 route after the current matched R1 chain closes; this is a protocol, not executable existing code or a result.",
+  "research_goal": "Integrate A/B/C and achieve at least+2 percentage points in all seven standard metrics using one selected checkpoint/configuration across the three benchmarks.",
+  "stretch_lasher_plus_six": {
+    "PR": 78.74,
+    "NPR": 75.16,
+    "SR": 63.84
+  },
+  "seed": 42,
+  "requires_three_stable_seeds": false,
+  "best_single_checkpoint_allowed": true,
+  "main_claims": [
+    {
+      "id": "C1",
+      "claim": "Compressed competitive history and soft multifuture information improve dense candidate generation and localization.",
+      "minimum_evidence": "Compare against equally trained fusion/head control, equal-capacity prompt memories and equal visual/candidate budgets; full tracking metrics plus actual dense/TopK recall and selected localization quality."
+    },
+    {
+      "id": "C2",
+      "claim": "Actual-consequence search and graded state submission retain useful recovery while reducing harmful interventions.",
+      "minimum_evidence": "Matched current-state action consequences, full-video harm/recovery/write diagnostics and comparisons to keep/box-only/fixed-pause/geometry-copy controls."
+    }
+  ],
+  "anti_claims": [
+    "Gain only comes from retraining fusion/head.",
+    "Gain only comes from more memory or extra visual forwards.",
+    "Cache quality improves while continuous tracking degrades."
+  ],
+  "data": {
+    "train_root": "/data/wangwj/dataset/LasHeR/trainingset",
+    "total_train_directory_sequences": 979,
+    "development_training_sequences": 881,
+    "development_sequences": 98,
+    "split_seed": 20261013,
+    "full979_retraining": "Only after architecture/hyperparameters lock and explicit disclosure of baseline original training scope; not silently substituted for881.",
+    "baseline_original_pretraining_dev_exposure": "Unattested; do not call DEV untouched.",
+    "official": {
+      "lasher": {
+        "root": "/data/wangwj/dataset/LasHeR/testingset",
+        "sequences": 245,
+        "frame_pairs": 220703,
+        "metrics": [
+          "PR",
+          "NPR",
+          "SR"
+        ]
+      },
+      "rgbt234": {
+        "root": "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "sequences": 234,
+        "frame_pairs": 116649,
+        "metrics": [
+          "MPR",
+          "MSR"
+        ]
+      },
+      "rgbt210": {
+        "root": "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "sequences": 210,
+        "frame_pairs": 104706,
+        "metrics": [
+          "PR",
+          "SR"
+        ]
+      }
+    },
+    "datasets_moved_or_new_downloads_required": false,
+    "excluded": [
+      "VTUAV",
+      "GTOT"
+    ],
+    "existing_r1_cache": "Reuse as provenance/event-time guides only. Once feature/head/policy changes, old candidate/action labels do not become deployment-consistent automatically."
+  },
+  "r2_first_pair": {
+    "initialization_checkpoint": "/home/gaob/CADTrack_ep0014.pth.tar",
+    "initialization_sha256": "cbcc96ba3a0cf1bfb997ee164174c2264cabf17ad013f8249b7f31a43815d731",
+    "shared_training": {
+      "epochs": 20,
+      "raw_clips_per_epoch": 20000,
+      "total_raw_clips": 400000,
+      "query_frames_per_clip": 8,
+      "frame_stride": 1,
+      "initialization_frames_per_clip": 1,
+      "total_query_frame_observations": 3200000,
+      "same_clip_ids_and_start_times_between_variants": true,
+      "batch_size": "Locked after one finite32/64 feasibility/throughput probe, before formal fitting; same chosen batch in both variants.",
+      "candidate_batch_sizes": [
+        32,
+        64
+      ],
+      "data_loader_workers": 4,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "fusion_head_lr": 1e-05,
+      "new_prompt_lr": 0.0001,
+      "lr_drop_epoch": 10,
+      "lr_drop_gamma": 0.1,
+      "gradient_clip_norm": 1.0,
+      "visual_backbone": "ViT frozen/eval; extraction no_grad separated from differentiable fusion/head.",
+      "trainable": "Original fusion convolution and Center head in both variants; A projection/readout additionally in A variant.",
+      "localization_losses": {
+        "focal": 1.0,
+        "l1": 5.0,
+        "giou": 2.0,
+        "native_weight_source": "vendor/CADTrack/experiments/cadtrack/cadtrack.yaml:63-64"
+      },
+      "initialization_policy": "Only clip-first annotation initializes state. Later GT is for loss/labels, not search centers or accepted history.",
+      "inference_precision": "Preserve float32 baseline comparison; any training autocast is measured and disclosed before locking."
+    },
+    "variants": [
+      {
+        "id": "R2-H",
+        "system": "Pure CAD+trained fusion/head, no A/B/C new mechanism",
+        "gpu": 2
+      },
+      {
+        "id": "R2-HA",
+        "system": "Same trainable fusion/head+pre-fusion competitive memory prompt A",
+        "gpu": 3
+      }
+    ],
+    "A": {
+      "insertion": "Separate RGB/TIR ViT output maps before the existing fusion convolution.",
+      "budget": "Preserve four slots per sensor: two target, one non-target, one uncertain; immutable first-frame anchors.",
+      "current_source": "cadtrack_abc/ported_modules.py:70-75",
+      "read": "Target support, competing evidence and unknown context remain separate; unknown or merely unselected candidates are not automatically negatives.",
+      "initialization": "Zero residual output projection for baseline-aligned epoch0.",
+      "compression_supervision": "Preserve target/hard-candidate score differences from causal past evidence, with actual training-GT quality/ranking supervision.",
+      "first_pair_scope": "Tests prompt insertion against identical head training; does not itself prove persistent rejected tracklets or complete A/B/C effectiveness."
+    },
+    "full98_snapshots": [
+      0,
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "checkpoint_selection": "Finish prescribed20 epochs; select each run by sequence-equal mean IoU from the six complete98-video evaluations. Cached/short-clip values only monitor.",
+    "official_testing": "One preselected checkpoint and unchanged configuration per run across all three complete datasets, including negative results.",
+    "parameter_count": "Measured from the implemented warm model; not inferred from the old414164 ABC parameters."
+  },
+  "M0": {
+    "prerequisite": "Current R1 matched formal chain terminal, original controller exit verified; new isolated implementation and source review completed.",
+    "checks": [
+      "Read actual /home output free disk space and compare measured checkpoint/log budget; datasets stay read-only under/data.",
+      "Verify original pretrained SHA/strict loading, split identities and sampled file/clip order.",
+      "Verify float32 epoch0 outputs/crops/Hann/update decisions against original pure path; zero prompt residual gives identical behavior.",
+      "Real finite forward/backward: localization/fusion and enabled A have finite nonzero gradients and parameter changes; frozen ViT tensors remain exact; changed checkpoint strictly reloads.",
+      "Use the actual Center head normalized cxcywh convention and separate supervised regression indexing from prediction-driven tracking state.",
+      "Measure batch32/64 training clips/sec, peak allocation and wall time; choose the same feasible batch for both formal runs. No assumption that inference concurrency measurements apply to training."
+    ],
+    "actual_training_updates_completed": 0,
+    "new_source_implemented": false
+  },
+  "experiment_blocks": [
+    {
+      "id": "B1",
+      "priority": "MUST",
+      "systems": [
+        "R2-H",
+        "R2-HA"
+      ],
+      "target": "Dense localization improvement beyond ordinary head training.",
+      "success": "A improves full98 continuous tracking and candidate/localization diagnostics under matched training; final seven-metric target remains explicit.",
+      "negative_interpretation": "If ordinary head training explains the gain, do not attribute it to A."
+    },
+    {
+      "id": "B2",
+      "priority": "MUST_AFTER_B1",
+      "systems": [
+        "A+single trajectory",
+        "A+three-mode soft prior",
+        "matched-budget fixed enlarged search"
+      ],
+      "target": "B improves actual candidate coverage and localization rather than only motion NLL.",
+      "constraints": "Retain visual path,3 modes/3 steps initially, at most one extra visual region; no unseen-region information."
+    },
+    {
+      "id": "B3",
+      "priority": "MUST_AFTER_LOCALIZER_LOCK",
+      "systems": [
+        "keep",
+        "box-only",
+        "fixed-pause",
+        "parent-geometry-copy",
+        "learned graded submission"
+      ],
+      "target": "C improves realized action consequences and limits future harm.",
+      "constraints": "Collect current trained policy states/actions; do not reuse old geometry/feature-dependent labels as if unchanged. RGB-only/TIR-only denote submission actions, not deleting a sensor observation."
+    },
+    {
+      "id": "B4",
+      "priority": "MUST_FOR_FINAL_METHOD",
+      "systems": [
+        "Baseline",
+        "A",
+        "B",
+        "C",
+        "A+B",
+        "A+C",
+        "B+C",
+        "A+B+C",
+        "ordinary fusion/head training control"
+      ],
+      "target": "Full method+2 in seven metrics and actual component effects.",
+      "constraints": "Equal training, memory, candidates and visual budget where relevant; same checkpoint per row; full attrs/curves/per-sequence results, inference cost and paired intervals where raw baseline exists."
+    }
+  ],
+  "compute": {
+    "server": "2028",
+    "physical_gpus": [
+      2,
+      3
+    ],
+    "training_concurrency": "One formal fit per card, two matched variants in parallel after M0.",
+    "inference_concurrency": "At most two per card; old1.573856578 throughput is prior inference evidence, not a promised scaling result for the new method.",
+    "next_stage_formal_training_runs": 2,
+    "planned_total_raw_clips": 800000,
+    "estimated_gpu_hours": "After M0: sum over variants[400000/measured_clips_per_second/3600]+full98 selection+three-benchmark inference. No unmeasured fixed-hour promise.",
+    "frame_pair_budgets": {
+      "full98_frames_per_snapshot_per_variant": 52200,
+      "six_snapshot_frames_per_variant": 313200,
+      "official_frames_per_variant": 442058
+    },
+    "no_temperature_or_power_queries": true,
+    "no_environment_rebuild": true
+  },
+  "milestones": [
+    {
+      "id": "R1-close",
+      "status": "RUNNING_EXISTING_CONTROL",
+      "gate": "Same-control-checkpoint all3 full reports/real exits; do not infer completion from elapsed time."
+    },
+    {
+      "id": "M0",
+      "status": "NOT_IMPLEMENTED",
+      "gate": "Actual source/gradient/parity/reload/capacity qualification."
+    },
+    {
+      "id": "R2-pair",
+      "status": "NOT_STARTED",
+      "gate": "Both complete20 epochs plus sixfull98 selection and three benchmarks."
+    },
+    {
+      "id": "R3-full",
+      "status": "NOT_STARTED",
+      "gate": "Full A/B/C integration, realized action data and matched component evidence, seven metrics+2."
+    }
+  ],
+  "reporting": {
+    "human_document": "docs/HANDOFF_20261002.md only, mirrored byte-identically to Desktop/server.",
+    "baseline_lasher_rerun": false,
+    "cache_metrics_are_not_formal_metrics": true,
+    "best_weights_cleanup": "Keep necessary candidates/dependencies until selection, formal reports and audits close; then remove unused produced weights and retain required best dependencies.",
+    "second_baseline": "SUTrack transfer remains later; do not postpone the current core training by adding datasets or baseline families.",
+    "frontier_primitive": "None required; no diffusion/LLM component introduced."
+  },
+  "goal_achieved": false
+}
