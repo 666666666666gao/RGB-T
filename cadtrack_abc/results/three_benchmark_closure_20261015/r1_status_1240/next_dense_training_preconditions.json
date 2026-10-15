@@ -1,0 +1,33 @@
+{
+  "status": "SOURCE_INSPECTION_ONLY_NOT_IMPLEMENTED",
+  "current_r2_or_r3_training_started": false,
+  "new_neural_work": false,
+  "findings": [
+    {
+      "file": "cadtrack_abc/baseline.py",
+      "finding": "CleanCADTrack.forward is entirely no_grad and all parameters are frozen; reopening optimizer parameters alone cannot train fusion/head."
+    },
+    {
+      "file": "cadtrack_abc/train.py",
+      "finding": "Existing native optimizer only includes model.abc, not fusion/head."
+    },
+    {
+      "file": "cadtrack_abc/vendor/CADTrack/lib/models/layers/head.py",
+      "finding": "CenterPredictor.cal_bbox returns normalized cxcywh; forward supports target heatmap selection for regression supervision. Labels must not become tracking-state inputs."
+    },
+    {
+      "file": "cadtrack_abc/data.py",
+      "finding": "VideoClips uses actual contiguous stride1; no stride/horizon mismatch found."
+    },
+    {
+      "file": "cadtrack_abc/pure_baseline_tracker.py",
+      "finding": "Preserve protected initial template, weighted Hann selection, original crop and single-image batch strides when checking zero-epoch parity."
+    }
+  ],
+  "next_accepted_sequence": "Close matched R1 formal chain, then ordinary fusion/head training control, then pre-fusion competitive memory prompting and multifuture soft dense localization; keep full method objective.",
+  "user_allows_best_single_checkpoint": true,
+  "requires_three_stable_seeds": false,
+  "frozen_backbone_extraction_must_be_separate_from_trainable_fusion_head": true,
+  "ordinary_head_finetuning_control_required": true,
+  "full98_selection_and_same_checkpoint_three_benchmarks_required": true
+}
