@@ -1,0 +1,1022 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "new_GPU_jobs": 0,
+  "active_H_HA_R3_sources_or_queue_modified": false,
+  "weight": "R1 search_actions epoch10 best.pth (a14130fa)",
+  "current_goal": "all7 baseline+2; LasHeR+6 stretch",
+  "selection": "Each dataset row from one complete run/checkpoint/config. Unified Ours-U separate from any disclosed dataset-specific Ours-D; never mix metrics in a row.",
+  "phase_rule": "Lock achieved dataset versions; about1point remaining tune existing module settings; about0.3point remaining freeze method and try limited training recipe/seed settings; no all-seed pass gate.",
+  "launch_rule": "No launch during existing H/HA or R3 workload. At an actual existing completion milestone decide admission on physical GPU2/3; no new frequent watcher or queue hot-edit.",
+  "timing": "Native parent template crops may be computed then discarded in non-current controls. Timing is full wrapper cost, not an optimized static-template speed comparison.",
+  "formal_results": null,
+  "cases": [
+    {
+      "variant": "current",
+      "dataset": "development",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/development",
+            "--shard",
+            "0",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/development",
+            "--shard",
+            "1",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        }
+      ],
+      "score_command": null
+    },
+    {
+      "variant": "current",
+      "dataset": "lasher",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/lasher",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/lasher",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/lasher",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/lasher_report"
+      ]
+    },
+    {
+      "variant": "current",
+      "dataset": "rgbt234",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt234",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt234",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt234_report"
+      ]
+    },
+    {
+      "variant": "current",
+      "dataset": "rgbt210",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt210",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "current",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt210",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/current/rgbt210_report"
+      ]
+    },
+    {
+      "variant": "static",
+      "dataset": "development",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/development",
+            "--shard",
+            "0",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/development",
+            "--shard",
+            "1",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        }
+      ],
+      "score_command": null
+    },
+    {
+      "variant": "static",
+      "dataset": "lasher",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/lasher",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/lasher",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/lasher",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/lasher_report"
+      ]
+    },
+    {
+      "variant": "static",
+      "dataset": "rgbt234",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt234",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt234",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt234_report"
+      ]
+    },
+    {
+      "variant": "static",
+      "dataset": "rgbt210",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt210",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "static",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt210",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/static/rgbt210_report"
+      ]
+    },
+    {
+      "variant": "cad_selected",
+      "dataset": "development",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/development",
+            "--shard",
+            "0",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/development",
+            "--shard",
+            "1",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        }
+      ],
+      "score_command": null
+    },
+    {
+      "variant": "cad_selected",
+      "dataset": "lasher",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/lasher",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/lasher",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/lasher",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/lasher_report"
+      ]
+    },
+    {
+      "variant": "cad_selected",
+      "dataset": "rgbt234",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt234",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt234",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt234_report"
+      ]
+    },
+    {
+      "variant": "cad_selected",
+      "dataset": "rgbt210",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt210",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_selected",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt210",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_selected/rgbt210_report"
+      ]
+    },
+    {
+      "variant": "cad_local",
+      "dataset": "development",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/development",
+            "--shard",
+            "0",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "development",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/trainingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/development",
+            "--shard",
+            "1",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/cad_abc_20261013/manifest.json"
+          ]
+        }
+      ],
+      "score_command": null
+    },
+    {
+      "variant": "cad_local",
+      "dataset": "lasher",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/lasher",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/lasher",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "lasher",
+        "--root",
+        "/data/wangwj/dataset/LasHeR/testingset",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/lasher",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/lasher_report"
+      ]
+    },
+    {
+      "variant": "cad_local",
+      "dataset": "rgbt234",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt234",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "rgbt234",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt234",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt234",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt234",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt234_report"
+      ]
+    },
+    {
+      "variant": "cad_local",
+      "dataset": "rgbt210",
+      "inference": [
+        {
+          "physical_gpu": 2,
+          "CUDA_VISIBLE_DEVICES": "2",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt210",
+            "--shard",
+            "0"
+          ]
+        },
+        {
+          "physical_gpu": 3,
+          "CUDA_VISIBLE_DEVICES": "3",
+          "command": [
+            "/data/wangwj/envs/CADTrack/bin/python",
+            "-m",
+            "cadtrack_abc.infer_template_update_control",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_search_actions/best.pth",
+            "--template-policy",
+            "cad_local",
+            "--dataset",
+            "rgbt210",
+            "--root",
+            "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt210",
+            "--shard",
+            "1"
+          ]
+        }
+      ],
+      "score_command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.score_template_update_control",
+        "--dataset",
+        "rgbt210",
+        "--root",
+        "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+        "--predictions",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt210",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r1_template_controls_20261015/cad_local/rgbt210_report"
+      ]
+    }
+  ]
+}

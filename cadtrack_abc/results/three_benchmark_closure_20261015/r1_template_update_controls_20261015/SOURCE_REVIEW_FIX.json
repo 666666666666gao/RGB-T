@@ -1,0 +1,87 @@
+{
+  "verdict": "SOURCE_FIX_PASS",
+  "blocking_count": 0,
+  "nonblocking_count": 0,
+  "findings": [],
+  "scope": "source-only",
+  "bounded_scope": "Only the revised ParentFixture candidate boxes/Hann scores and the existing assertions in check_template_update_control.py; resolution of initial N1.",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_route": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "created_utc": "2026-10-15T16:53:35.611275+00:00",
+  "initial_report": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\template_control_source_review_20261015\\SOURCE_REVIEW.json",
+  "resolution": {
+    "id": "N1",
+    "status": "RESOLVED",
+    "file": "check_template_update_control.py",
+    "lines": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      73,
+      74,
+      75,
+      76,
+      77,
+      85,
+      86,
+      87,
+      88,
+      89
+    ],
+    "evidence": [
+      "All10 candidate boxes are distinct. Index0 and index7 retain the exact expected local and selected source boxes.",
+      "Hann scores are distinct within each five-candidate group. Only local0 and selected7 take the independently configurable local/selected values; the other candidates have0.1/0.2/0.3/0.4 scores.",
+      "The existing positive-write and expected-crop/source-box assertions now distinguish every wrong fixed box index within a context. An incorrect score index among the previously interchangeable extra5/6/8/9 or local1/2/3/4 candidates fails the positive-write check.",
+      "The existing0.64/0.9 and0.9/0.64 score-swap cases continue to distinguish local0 from selected7; for CAD-selected the legally observed pair includes an above-threshold local0 while selected7 is below threshold."
+    ],
+    "conclusion": "The duplicated-candidate masking identified in the initial report is resolved. No production-code change is required for that finding."
+  },
+  "validation": {
+    "syntax": "PASS",
+    "fixture_box_count": 10,
+    "unique_fixture_boxes": 10,
+    "score_cases_inspected_with_stdlib": [
+      {
+        "local0": 0.9,
+        "selected7": 0.7,
+        "local_default_gate": true,
+        "selected_default_gate": true
+      },
+      {
+        "local0": 0.9,
+        "selected7": 0.65,
+        "local_default_gate": true,
+        "selected_default_gate": false
+      },
+      {
+        "local0": 0.9,
+        "selected7": 0.64,
+        "local_default_gate": true,
+        "selected_default_gate": false
+      },
+      {
+        "local0": 0.64,
+        "selected7": 0.9,
+        "local_default_gate": false,
+        "selected_default_gate": true
+      }
+    ],
+    "project_imported": false,
+    "torch_imported": false,
+    "numpy_imported": false,
+    "project_or_check_script_executed": false,
+    "server_or_gpu_accessed": false,
+    "production_source_rereviewed": false,
+    "runtime_validation": "NOT_PERFORMED"
+  },
+  "production_source_status": "Executor reports the three production control/inference/scoring sources unchanged; this bounded review did not independently compare their bytes or re-review them.",
+  "formal_metrics": null,
+  "initial_reports_preserved": true,
+  "source_files_modified_by_reviewer": []
+}

@@ -1,0 +1,104 @@
+{
+  "verdict": "SOURCE_PASS_WITH_NONBLOCKING_FINDING",
+  "blocking_count": 0,
+  "nonblocking_count": 1,
+  "scope": "source-only",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_route": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "created_utc": "2026-10-15T16:51:37.044908+00:00",
+  "reviewed_root": "C:\\Users\\gb\\.codex_tmp\\gola_setup_20261002\\GOLA-source\\cadtrack_abc",
+  "reviewed_files": [
+    {
+      "path": "template_update_control.py",
+      "lines": 64,
+      "syntax": "PASS"
+    },
+    {
+      "path": "infer_template_update_control.py",
+      "lines": 120,
+      "syntax": "PASS"
+    },
+    {
+      "path": "score_template_update_control.py",
+      "lines": 68,
+      "syntax": "PASS"
+    },
+    {
+      "path": "check_template_update_control.py",
+      "lines": 111,
+      "syntax": "PASS"
+    }
+  ],
+  "reference_files": [
+    "search_actions.py",
+    "counterfactual.py",
+    "infer.py",
+    "score.py",
+    "mechanism_summary.py",
+    "data.py",
+    "model.py",
+    "future_actions.py",
+    "baseline.py",
+    "validate_future_actions.py",
+    "select_future_actions.py"
+  ],
+  "findings": [
+    {
+      "id": "N1",
+      "severity": "NONBLOCKING",
+      "file": "check_template_update_control.py",
+      "lines": [
+        27,
+        28,
+        29,
+        71,
+        74,
+        82,
+        86
+      ],
+      "title": "The fixture cannot detect a wrong candidate index within a context",
+      "evidence": "The five local candidates all have the same box and Hann score, and the five extra candidates all have another identical box and score. The fixture selects index7. Selecting index5/6/8/9 instead would produce the same expected crop and pass the threshold assertions; likewise a local index other than0 is indistinguishable. The score-swap cases only distinguish the local context from the selected extra context.",
+      "impact": "The current implementation uses the correct indices and this is not an observed runtime defect. The synthetic check, however, does not fully substantiate its claim that one candidate cannot certify another candidate.",
+      "suggested_fix": "Make the fixture boxes and Hann scores distinct within each context, retain a unique selected index7 and unique local index0, and include a case where the chosen source is below threshold while another candidate in the same context is above it. Keep the production control code unchanged."
+    }
+  ],
+  "correctness_assessment": [
+    "Current calls the parent once and leaves the returned native state, output box, write request and per-sensor commit masks intact. Only diagnostic metadata is added.",
+    "The parent advance_candidate clones prior state. Static restores only templates[1] and clears dynamic-template write diagnostics. Output, geometry, anchor, feature memory, history, frame/valid/quality state and age remain the parent result for the same input state.",
+    "CAD-selected uses pair boxes and Hann at the actual selected candidate index; CAD-local uses local boxes and Hann at index0. Both use clipped xywh from that same candidate, age modulo5 and strict Hann>0.65 by default, crop factor2/size128, and an all-sensor commit. Neither branch changes templates[0].",
+    "The wrapper changes the next-frame dynamic image template after the native current decision. Later trajectories can consequently differ; the source does not claim all future geometry or memory values are held equal across independently rolled-out controls.",
+    "Inference strictly loads search_actions family abc, future_action and search_action weights with matching pretrained/threshold configuration, performs full continuous trajectories, uses only the first GT row for initialization, and computes DEV GT diagnostics after the sequence ends.",
+    "The inference source requires98 disjoint DEV names,245 LasHeR,234 RGBT234 or210 RGBT210 names and two shards, and writes formal prediction files to3 decimal places.",
+    "The score wrapper delegates official metrics to existing score.main. It checks both shard receipts agree on checkpoint, epoch, family, control and resolved gate settings. Existing official scoring checks the complete benchmark name/frame inventory.",
+    "Template pollution reads template_control.source_box_xywh, excludes initialization and invalid-size GT, and counts actual modal commits. LasHeR mechanism-report template error counts are replaced with those source-based counts; memory diagnostics retain their original selected-output interpretation.",
+    "The four new files contain no training loop, optimizer, remote launcher or active H/HA or R3 queue integration. This review performed no source edits or server queries."
+  ],
+  "validation": {
+    "performed": [
+      "Read-only comparison with the existing R1 state transition, initialization, inference, validation, geometry/crop and official-scoring paths",
+      "Python stdlib ast.parse of all4 reviewed files",
+      "AST inspection: exactly one parent step call and only templates[1] assignments in the advanced-state intervention at lines38/50"
+    ],
+    "not_performed": [
+      "Execution of check_template_update_control.py",
+      "Torch, NumPy or project import",
+      "Visual-model forward, NN/GPU execution or optimizer update",
+      "Server/process/queue observation",
+      "Full98 DEV or any benchmark run",
+      "Formal score measurement"
+    ],
+    "reviewer_only_diagnostic": "The first AST helper attempted ast.unparse, which is unavailable in the local Python standard library; it exited before project import/execution. The corrected parse-only helper completed successfully. This was not a project-source failure."
+  },
+  "run_receipt_boundaries": [
+    "No runtime receipt, fixed-checkpoint file content, native current-vs-original trace equality or full-suite completion was validated by this source review.",
+    "These files execute one policy per invocation. The eventual run/collection must use the same fixed checkpoint for all four policies and all splits, retain separate output directories, and confirm resolved interval5/threshold0.65. The emitted receipts expose these fields; no cross-control suite collector is within the reviewed four-file scope.",
+    "Stored latency includes the wrapper and diagnostics; non-current branches execute the parent update before replacing or restoring its dynamic template. The source supports an accuracy/state intervention, not an isolated measurement of the crop work avoided by suppressing a write.",
+    "The synthetic checks exercise state/source behavior using a fixture. They are not real-video validation or evidence of improved tracking scores."
+  ],
+  "formal_metrics": null,
+  "source_files_modified_by_reviewer": [],
+  "runtime_validation": "NOT_PERFORMED"
+}
