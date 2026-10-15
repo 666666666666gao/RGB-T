@@ -1,0 +1,48 @@
+{
+  "reviewed_at_utc": "2026-10-15T09:23:49.556639+00:00",
+  "scope": "One bounded review of the explicitly supplied metadata-only score_dense_main.py delta; not a rerun of the original review.",
+  "verdict": "PASS",
+  "qualification": "SOURCE_ONLY",
+  "blocking_count": 0,
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "R3-EVAL-N1",
+      "status": "RESOLVED_IN_DELTA_SOURCE",
+      "basis": "LasHeR qualified report now explicitly distinguishes un-clipped float32 pair-proposal recall from native-clipped R3 evidence labels and corrects the inherited raw training-label wording."
+    }
+  ],
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "actual_routing": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "delta_directory": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/dense_r3_evidence_eval_qualifier_delta_20261015",
+  "source_sha256": "7ff4a78453f8b3af1f458fa33a65c8931da2bd3f23774a4b0dcc20962c80ed52",
+  "confirmed": [
+    "The only AST difference is a LasHeR-only constant string assignment to report[mechanism_geometry_scope].",
+    "The statement precedes writing qualified_full_report.json; official scorer invocation, baseline/metric calculations, raw file handling and other datasets are unchanged.",
+    "The original score source still matches its sealed manifest; original manifest and both delta inputs were unchanged during this limited check."
+  ],
+  "check": {
+    "stdout": "qualifier.stdout.txt",
+    "stderr": "qualifier.stderr.txt",
+    "exit": "qualifier.exit.txt",
+    "actual_exit_code": 0,
+    "diff": "qualifier.diff",
+    "details": "qualifier_check.json",
+    "project_code_executed": false
+  },
+  "original_review": {
+    "markdown": "SOURCE_REVIEW.md",
+    "json": "SOURCE_REVIEW.json",
+    "preserved": true,
+    "verdict_for_original_snapshot": "WARN"
+  },
+  "runtime_obligations": "All predeclared obligations in SOURCE_REVIEW.json remain unchanged. No deployment, project imports, runtime, real-video/GPU qualification, new consequence review, or current R2 observation was performed.",
+  "full_ABC_training_complete": false,
+  "formal_metrics": null,
+  "goal_achieved": false
+}

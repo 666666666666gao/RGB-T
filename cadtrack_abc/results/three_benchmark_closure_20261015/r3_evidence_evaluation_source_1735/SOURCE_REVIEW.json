@@ -1,0 +1,131 @@
+{
+  "reviewed_at_utc": "2026-10-15T09:20:50.771519+00:00",
+  "review_type": "experiment-bridge CODE_REVIEW=true fresh source review",
+  "review_agent": "/root/dense_r3_evidence_eval_review_20261015",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "actual_routing": "UNATTESTED",
+  "routing_basis": "No host routing attestation supplied; requested values are not asserted as actual.",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "verdict": "WARN",
+  "source_verdict": "NO_CONFIRMED_BLOCKING_SOURCE_DEFECT",
+  "blocking_count": 0,
+  "non_blocking_count": 1,
+  "findings": [
+    {
+      "id": "R3-EVAL-N1",
+      "severity": "LOW",
+      "blocking": false,
+      "title": "The linked raw mechanism report retains the old training-label coordinate definition",
+      "locations": [
+        "score_dense_main.py:25-56",
+        "score.py:93-96",
+        "mechanism_summary.py:79-87",
+        "mechanism_summary.py:114",
+        "dense_main_tracker.py:131",
+        "dense_model.py:37-39",
+        "collect_dense_evidence.py:70-71",
+        "dense_main_tracker.py:38-40"
+      ],
+      "evidence": "R3 scoring calls the unchanged score.py, which always writes summarize_lasher for LasHeR. The summary reads candidate_boxes_xyxy from query pair boxes and describes un-clipped candidate boxes as used by training labels. New evidence calibration instead labels query native_boxes after native clipping. The qualified report inherits the mechanism_report link without correcting that definition.",
+      "impact": "The candidate-recall interpretation is misleading for R3. Required diagnostic keys exist, and this mismatch does not change official PR/NPR/SR/MPR/MSR, checkpoint selection, or calibration labels. No numerical recall discrepancy is claimed without runtime data.",
+      "minimal_fix": "Add one scope statement to the R3 qualified report: linked raw mechanism recall describes un-clipped pair proposals, while R3 evidence quality labels use native clipped boxes. Keep the official scorer, raw report, active R2 files, and metric values unchanged.",
+      "status": "OPEN_IN_REVIEWED_SNAPSHOT"
+    }
+  ],
+  "scope": {
+    "sealed_input_directory": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/dense_r3_evidence_eval_review_inputs_20261015",
+    "new_sources": [
+      "collect_dense_evidence.py",
+      "train_dense_evidence.py",
+      "dense_main_evaluation.py",
+      "infer_dense_main.py",
+      "validate_dense_main.py",
+      "select_dense_main.py",
+      "score_dense_main.py",
+      "evaluate_dense_main.py"
+    ],
+    "dependency_review": "Relevant exact producer/consumer interfaces only; no reopening of separate consequence review or prior six-source review.",
+    "mode": "SOURCE_ONLY",
+    "project_code_executed": false,
+    "torch_numpy_cv2_or_project_imported": false,
+    "network_ssh_gpu_nn_or_live_process_queries": false,
+    "source_modified": false,
+    "subagents_spawned": false
+  },
+  "correct_source_behavior": [
+    "Collection advances every preceding predicted frame, initializes only from frame0 GT, uses query GT only for native-box overlap labels, and observes one local plus three independent local+one-extra contexts.",
+    "Calibration reconstructs source0/source1 encodings separately before contextualizing 5/10 candidates; batch labels align with candidate order; only DenseCandidateEvidence is optimized and other parent components are serialized unchanged.",
+    "Calibration saves epoch0/all epochs, selects auxiliary validation quality MSE, strictly reloads the selected candidate state, and explicitly disclaims full-video metrics and training-gain attribution to initialization.",
+    "New loader preserves threshold/pretrained checks and strict nested model-state loading; continuous video tracking is reused unchanged with first-GT-only initialization.",
+    "Full98 selection checks the split, actual 98 unique sequence records/52200 frames, six snapshots [0,1,2,5,10,20], and distinct overall versus positive-epoch selection.",
+    "The controller sends one selected positive checkpoint to all three benchmark inference phases, invokes the existing official scorer, preserves stage/training flags and baseline+2 comparisons, and records actual child exits. GPU workers are restricted to physical2/3; CPU selection/scoring hide CUDA.",
+    "All mechanism-summary input fields exist in tracker output; prediction delimiters are actual tabs and formal/development rounding is %.3f/%.17g respectively."
+  ],
+  "checks": {
+    "before": {
+      "stdout": "before.stdout.txt",
+      "stderr": "before.stderr.txt",
+      "exit_file": "before.exit.txt",
+      "actual_exit_code": 0
+    },
+    "interface_attempt1": {
+      "stdout": "interface_attempt1.stdout.txt",
+      "stderr": "interface_attempt1.stderr.txt",
+      "exit_file": "interface_attempt1.exit.txt",
+      "actual_exit_code": 1,
+      "cause": "Reviewer AST helper incorrectly included mean_iou from a different per_sequence comprehension. Original helper and output retained. This is not a project defect."
+    },
+    "interface": {
+      "stdout": "interface.stdout.txt",
+      "stderr": "interface.stderr.txt",
+      "exit_file": "interface.exit.txt",
+      "actual_exit_code": 0,
+      "correction": "Scope record-field extraction to the records comprehension."
+    },
+    "after": {
+      "stdout": "after.stdout.txt",
+      "stderr": "after.stderr.txt",
+      "exit_file": "after.exit.txt",
+      "actual_exit_code": 0
+    },
+    "input_manifest_sha256": "ee0d2bfeef35864c5fb706b98f04302cf139b1f471fb3de7bc8a16d1162c971d",
+    "all_manifest_inputs_match": true,
+    "manifest_and_all_inputs_unchanged": true,
+    "snapshots": [
+      "snapshot_before.json",
+      "snapshot_after.json",
+      "input_manifest.before.json",
+      "input_manifest.after.json"
+    ]
+  },
+  "runtime_obligations": [
+    {
+      "id": "RUNTIME-1",
+      "status": "PENDING_PREDECLARED",
+      "obligation": "Implement and run the already declared real R3 qualification after the existing R2 work releases the authorized GPUs. Exercise actual native videos/crops, intervention/replay, evidence collection/calibration, finite gradients and candidate-only updates, frozen-parent preservation, and strict reload. Prior synthetic CPU contracts and this AST review do not establish these properties on real videos/GPU.",
+      "new_gate_on_running_R2": false
+    },
+    {
+      "id": "RUNTIME-2",
+      "status": "PENDING_PREDECLARED",
+      "obligation": "Complete the whole raw/calibration/fresh-consequence/training/evaluation launcher and collect actual training/controller process exits. The missing launcher and qualification program were declared future work and are not defects attributed to these eight entries."
+    },
+    {
+      "id": "RUNTIME-3",
+      "status": "PENDING_PREDECLARED",
+      "obligation": "Execute prescribed training and all six full98/52200-frame development snapshots, then evaluate the same selected positive checkpoint/config on LasHeR245/220703, RGBT234/116649, and RGBT210/104706 with actual dataset GT and existing pure baseline references. Preserve epoch0/negative outcomes. Cache MSE is auxiliary calibration evidence only."
+    },
+    {
+      "id": "RUNTIME-4",
+      "status": "PENDING_PREDECLARED",
+      "obligation": "Establish independent A/B/C effects, matched-control/cost evidence, and all seven metrics at least baseline+2. This review establishes neither completed ABC training nor achieved tracking gains; it adds no seed requirement."
+    }
+  ],
+  "full_ABC_training_complete": false,
+  "formal_metrics": null,
+  "goal_achieved": false
+}
