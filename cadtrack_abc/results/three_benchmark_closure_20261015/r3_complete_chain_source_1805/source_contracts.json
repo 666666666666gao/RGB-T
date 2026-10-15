@@ -1,0 +1,367 @@
+{
+  "status": "PASS",
+  "project_imported": false,
+  "torch_imported": false,
+  "model_or_training_run": false,
+  "method": "stdlib AST parse and structural comparisons only; original args.memory normalized to literal True for the HA control comparison",
+  "continuation_original_R2_AST_comparisons": [
+    {
+      "component": "module_hash",
+      "equal": true
+    },
+    {
+      "component": "save_candidate",
+      "equal": true
+    },
+    {
+      "component": "model",
+      "equal": true
+    },
+    {
+      "component": "groups",
+      "equal": true
+    },
+    {
+      "component": "optimizer",
+      "equal": true
+    },
+    {
+      "component": "scheduler",
+      "equal": true
+    },
+    {
+      "component": "parameters",
+      "equal": true
+    },
+    {
+      "component": "dataset",
+      "equal": true
+    },
+    {
+      "component": "data_generator",
+      "equal": true
+    },
+    {
+      "component": "loader",
+      "equal": true
+    },
+    {
+      "component": "entire_epoch_loop_including_forward_loss_updates_order_and_checkpoints",
+      "equal": true
+    }
+  ],
+  "command_interfaces": [
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 173,
+      "module": "cadtrack_abc.score_dense",
+      "flags": [
+        "--baseline-report",
+        "--dataset",
+        "--output",
+        "--predictions",
+        "--root"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 90,
+      "module": "cadtrack_abc.train_dense_motion",
+      "flags": [
+        "--batch",
+        "--config",
+        "--epochs",
+        "--localizer-lr",
+        "--output",
+        "--probe",
+        "--r2-pair-root",
+        "--samples",
+        "--steps",
+        "--temporal-lr",
+        "--workers"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 91,
+      "module": "cadtrack_abc.train_dense_continuation",
+      "flags": [
+        "--batch",
+        "--config",
+        "--epochs",
+        "--head-lr",
+        "--output",
+        "--parent",
+        "--probe",
+        "--prompt-lr",
+        "--samples",
+        "--steps",
+        "--workers"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 103,
+      "module": "cadtrack_abc.qualify_dense_main",
+      "flags": [
+        "--config",
+        "--output",
+        "--r2-pair-root"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 137,
+      "module": "cadtrack_abc.evaluate_dense_main",
+      "flags": [
+        "--baseline-210",
+        "--baseline-234",
+        "--config",
+        "--fit",
+        "--output",
+        "--split-manifest"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 148,
+      "module": "cadtrack_abc.validate_dense",
+      "flags": [
+        "--checkpoint",
+        "--manifest",
+        "--output",
+        "--shard"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 152,
+      "module": "cadtrack_abc.select_dense",
+      "flags": [
+        "--development",
+        "--fit"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 217,
+      "module": "cadtrack_abc.train_dense_evidence",
+      "flags": [
+        "--batch",
+        "--epochs",
+        "--lr",
+        "--output",
+        "--parent",
+        "--train",
+        "--validation"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 227,
+      "module": "cadtrack_abc.train_dense_consequences",
+      "flags": [
+        "--batch",
+        "--epochs",
+        "--lr",
+        "--output",
+        "--parent",
+        "--train",
+        "--validation"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 233,
+      "module": "cadtrack_abc.evaluate_dense_main",
+      "flags": [
+        "--baseline-210",
+        "--baseline-234",
+        "--config",
+        "--fit",
+        "--output",
+        "--split-manifest"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 165,
+      "module": "cadtrack_abc.infer_dense",
+      "flags": [
+        "--checkpoint",
+        "--dataset",
+        "--output",
+        "--root",
+        "--shard"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 200,
+      "module": "cadtrack_abc.collect_dense_evidence",
+      "flags": [
+        "--checkpoint",
+        "--manifest",
+        "--output",
+        "--queries",
+        "--split"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "dense_main_pipeline.py",
+      "line": 200,
+      "module": "cadtrack_abc.collect_dense_consequences",
+      "flags": [
+        "--checkpoint",
+        "--manifest",
+        "--output",
+        "--queries",
+        "--split"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "evaluate_dense_main.py",
+      "line": 99,
+      "module": "cadtrack_abc.score_dense_main",
+      "flags": [
+        "--baseline-report",
+        "--dataset",
+        "--output",
+        "--predictions",
+        "--root"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "evaluate_dense_main.py",
+      "line": 71,
+      "module": "cadtrack_abc.validate_dense_main",
+      "flags": [
+        "--checkpoint",
+        "--manifest",
+        "--output",
+        "--shard"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "evaluate_dense_main.py",
+      "line": 75,
+      "module": "cadtrack_abc.select_dense_main",
+      "flags": [
+        "--development",
+        "--fit",
+        "--split-manifest"
+      ],
+      "missing_required": [],
+      "unknown": []
+    },
+    {
+      "controller": "evaluate_dense_main.py",
+      "line": 91,
+      "module": "cadtrack_abc.infer_dense_main",
+      "flags": [
+        "--checkpoint",
+        "--dataset",
+        "--output",
+        "--root",
+        "--shard"
+      ],
+      "missing_required": [],
+      "unknown": []
+    }
+  ],
+  "unsealed_relative_dependencies": [
+    {
+      "source": "counterfactual.py",
+      "line": 9,
+      "dependency": "model",
+      "symbols": [
+        "candidates"
+      ]
+    },
+    {
+      "source": "dense_model.py",
+      "line": 14,
+      "dependency": "model",
+      "symbols": [
+        "pool_rois"
+      ]
+    },
+    {
+      "source": "future_actions.py",
+      "line": 11,
+      "dependency": "model",
+      "symbols": [
+        "CADTrackABC"
+      ]
+    },
+    {
+      "source": "infer_dense_main.py",
+      "line": 11,
+      "dependency": "dense_main_evaluation",
+      "symbols": [
+        "load_dense_tracker",
+        "track_video"
+      ]
+    },
+    {
+      "source": "search_actions.py",
+      "line": 13,
+      "dependency": "model",
+      "symbols": [
+        "candidates"
+      ]
+    },
+    {
+      "source": "validate_dense_main.py",
+      "line": 13,
+      "dependency": "dense_main_evaluation",
+      "symbols": [
+        "load_dense_tracker",
+        "track_video"
+      ]
+    }
+  ],
+  "unsealed_entrypoints": [
+    {
+      "source": "score_dense.py",
+      "line": 25,
+      "dependency": "cadtrack_abc.score"
+    },
+    {
+      "source": "score_dense_main.py",
+      "line": 25,
+      "dependency": "cadtrack_abc.score"
+    }
+  ],
+  "scope_note": "Missing from the review snapshot does not mean missing in deployment. No production imports attempted."
+}

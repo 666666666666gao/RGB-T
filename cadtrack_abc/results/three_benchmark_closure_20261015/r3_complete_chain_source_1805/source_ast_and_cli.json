@@ -1,0 +1,1280 @@
+{
+  "python": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "source_file_count": 33,
+  "project_imported": false,
+  "torch_imported": false,
+  "ast_parse": "PASS",
+  "files": [
+    {
+      "file": "baseline.py",
+      "ast_parse": "PASS",
+      "lines": 42,
+      "cli": []
+    },
+    {
+      "file": "collect_dense_consequences.py",
+      "ast_parse": "PASS",
+      "lines": 100,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 24
+        },
+        {
+          "flags": [
+            "--manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 25
+        },
+        {
+          "flags": [
+            "--queries"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 26
+        },
+        {
+          "flags": [
+            "--split"
+          ],
+          "keywords": {
+            "choices": "['train', 'validation']",
+            "required": "True"
+          },
+          "line": 27
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 28
+        },
+        {
+          "flags": [
+            "--horizon"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "3"
+          },
+          "line": 29
+        }
+      ]
+    },
+    {
+      "file": "collect_dense_evidence.py",
+      "ast_parse": "PASS",
+      "lines": 98,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 23
+        },
+        {
+          "flags": [
+            "--manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 24
+        },
+        {
+          "flags": [
+            "--queries"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 25
+        },
+        {
+          "flags": [
+            "--split"
+          ],
+          "keywords": {
+            "choices": "['train', 'validation']",
+            "required": "True"
+          },
+          "line": 26
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 27
+        }
+      ]
+    },
+    {
+      "file": "counterfactual.py",
+      "ast_parse": "PASS",
+      "lines": 184,
+      "cli": []
+    },
+    {
+      "file": "data.py",
+      "ast_parse": "PASS",
+      "lines": 97,
+      "cli": []
+    },
+    {
+      "file": "dense_consequences.py",
+      "ast_parse": "PASS",
+      "lines": 104,
+      "cli": []
+    },
+    {
+      "file": "dense_evaluation.py",
+      "ast_parse": "PASS",
+      "lines": 31,
+      "cli": []
+    },
+    {
+      "file": "dense_main_model.py",
+      "ast_parse": "PASS",
+      "lines": 194,
+      "cli": []
+    },
+    {
+      "file": "dense_main_pipeline.py",
+      "ast_parse": "PASS",
+      "lines": 253,
+      "cli": [
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--r2-pair-root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 20
+        },
+        {
+          "flags": [
+            "--train-queries"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 21
+        },
+        {
+          "flags": [
+            "--validation-queries"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 22
+        },
+        {
+          "flags": [
+            "--baseline-234"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 23
+        },
+        {
+          "flags": [
+            "--baseline-210"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 24
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 25
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "choices": "[32, 64, 128]",
+            "default": "128"
+          },
+          "line": 26
+        }
+      ]
+    },
+    {
+      "file": "dense_main_tracker.py",
+      "ast_parse": "PASS",
+      "lines": 148,
+      "cli": []
+    },
+    {
+      "file": "dense_model.py",
+      "ast_parse": "PASS",
+      "lines": 270,
+      "cli": []
+    },
+    {
+      "file": "dense_submission.py",
+      "ast_parse": "PASS",
+      "lines": 123,
+      "cli": []
+    },
+    {
+      "file": "dense_temporal.py",
+      "ast_parse": "PASS",
+      "lines": 108,
+      "cli": []
+    },
+    {
+      "file": "dense_tracker.py",
+      "ast_parse": "PASS",
+      "lines": 79,
+      "cli": []
+    },
+    {
+      "file": "evaluate_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 125,
+      "cli": [
+        {
+          "flags": [
+            "--fit"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--split-manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 20
+        },
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 21
+        },
+        {
+          "flags": [
+            "--baseline-234"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 22
+        },
+        {
+          "flags": [
+            "--baseline-210"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 23
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 24
+        }
+      ]
+    },
+    {
+      "file": "future_actions.py",
+      "ast_parse": "PASS",
+      "lines": 131,
+      "cli": []
+    },
+    {
+      "file": "infer_dense.py",
+      "ast_parse": "PASS",
+      "lines": 57,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 16
+        },
+        {
+          "flags": [
+            "--dataset"
+          ],
+          "keywords": {
+            "choices": "['lasher', 'rgbt234', 'rgbt210']",
+            "required": "True"
+          },
+          "line": 17
+        },
+        {
+          "flags": [
+            "--root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--shard"
+          ],
+          "keywords": {
+            "type": "int",
+            "choices": "[0, 1]",
+            "required": "True"
+          },
+          "line": 20
+        }
+      ]
+    },
+    {
+      "file": "infer_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 59,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 16
+        },
+        {
+          "flags": [
+            "--dataset"
+          ],
+          "keywords": {
+            "choices": "['lasher', 'rgbt234', 'rgbt210']",
+            "required": "True"
+          },
+          "line": 17
+        },
+        {
+          "flags": [
+            "--root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--shard"
+          ],
+          "keywords": {
+            "type": "int",
+            "choices": "[0, 1]",
+            "required": "True"
+          },
+          "line": 20
+        }
+      ]
+    },
+    {
+      "file": "ported_modules.py",
+      "ast_parse": "PASS",
+      "lines": 134,
+      "cli": []
+    },
+    {
+      "file": "pure_baseline_tracker.py",
+      "ast_parse": "PASS",
+      "lines": 65,
+      "cli": []
+    },
+    {
+      "file": "qualify_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 211,
+      "cli": [
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 40
+        },
+        {
+          "flags": [
+            "--r2-pair-root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 41
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 42
+        }
+      ]
+    },
+    {
+      "file": "score_dense.py",
+      "ast_parse": "PASS",
+      "lines": 59,
+      "cli": [
+        {
+          "flags": [
+            "--dataset"
+          ],
+          "keywords": {
+            "choices": "['lasher', 'rgbt234', 'rgbt210']",
+            "required": "True"
+          },
+          "line": 12
+        },
+        {
+          "flags": [
+            "--root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 13
+        },
+        {
+          "flags": [
+            "--predictions"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 14
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 15
+        },
+        {
+          "flags": [
+            "--baseline-report"
+          ],
+          "keywords": {
+            "help": "'Existing pure RGB report. LasHeR uses the supplied scalar reference.'"
+          },
+          "line": 16
+        },
+        {
+          "flags": [
+            "--toolkit"
+          ],
+          "keywords": {
+            "default": "'/data/wangwj/RGBT_toolkit-master/src'"
+          },
+          "line": 17
+        }
+      ]
+    },
+    {
+      "file": "score_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 69,
+      "cli": [
+        {
+          "flags": [
+            "--dataset"
+          ],
+          "keywords": {
+            "choices": "['lasher', 'rgbt234', 'rgbt210']",
+            "required": "True"
+          },
+          "line": 12
+        },
+        {
+          "flags": [
+            "--root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 13
+        },
+        {
+          "flags": [
+            "--predictions"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 14
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 15
+        },
+        {
+          "flags": [
+            "--baseline-report"
+          ],
+          "keywords": {
+            "help": "'Existing pure RGB report. LasHeR uses the supplied scalar reference.'"
+          },
+          "line": 16
+        },
+        {
+          "flags": [
+            "--toolkit"
+          ],
+          "keywords": {
+            "default": "'/data/wangwj/RGBT_toolkit-master/src'"
+          },
+          "line": 17
+        }
+      ]
+    },
+    {
+      "file": "search_actions.py",
+      "ast_parse": "PASS",
+      "lines": 111,
+      "cli": []
+    },
+    {
+      "file": "select_dense.py",
+      "ast_parse": "PASS",
+      "lines": 74,
+      "cli": [
+        {
+          "flags": [
+            "--fit"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 17
+        },
+        {
+          "flags": [
+            "--development"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        }
+      ]
+    },
+    {
+      "file": "select_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 75,
+      "cli": [
+        {
+          "flags": [
+            "--fit"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 17
+        },
+        {
+          "flags": [
+            "--development"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        },
+        {
+          "flags": [
+            "--split-manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        }
+      ]
+    },
+    {
+      "file": "train_dense.py",
+      "ast_parse": "PASS",
+      "lines": 184,
+      "cli": [
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 29
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 30
+        },
+        {
+          "flags": [
+            "--memory"
+          ],
+          "keywords": {
+            "action": "'store_true'"
+          },
+          "line": 31
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "required": "True"
+          },
+          "line": 32
+        },
+        {
+          "flags": [
+            "--workers"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "4"
+          },
+          "line": 33
+        },
+        {
+          "flags": [
+            "--epochs"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20"
+          },
+          "line": 34
+        },
+        {
+          "flags": [
+            "--samples"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20000"
+          },
+          "line": 35
+        },
+        {
+          "flags": [
+            "--steps"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "8"
+          },
+          "line": 36
+        },
+        {
+          "flags": [
+            "--head-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "1e-05"
+          },
+          "line": 37
+        },
+        {
+          "flags": [
+            "--prompt-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.0001"
+          },
+          "line": 38
+        },
+        {
+          "flags": [
+            "--probe"
+          ],
+          "keywords": {
+            "action": "'store_true'",
+            "help": "'Two actual updates only; never a formal training result.'"
+          },
+          "line": 39
+        }
+      ]
+    },
+    {
+      "file": "train_dense_consequences.py",
+      "ast_parse": "PASS",
+      "lines": 202,
+      "cli": [
+        {
+          "flags": [
+            "--parent"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 83
+        },
+        {
+          "flags": [
+            "--train"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 84
+        },
+        {
+          "flags": [
+            "--validation"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 85
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 86
+        },
+        {
+          "flags": [
+            "--epochs"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20"
+          },
+          "line": 87
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "256"
+          },
+          "line": 88
+        },
+        {
+          "flags": [
+            "--lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.0001"
+          },
+          "line": 89
+        },
+        {
+          "flags": [
+            "--probe"
+          ],
+          "keywords": {
+            "action": "'store_true'"
+          },
+          "line": 90
+        }
+      ]
+    },
+    {
+      "file": "train_dense_continuation.py",
+      "ast_parse": "PASS",
+      "lines": 197,
+      "cli": [
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 33
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 34
+        },
+        {
+          "flags": [
+            "--parent"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 35
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "required": "True"
+          },
+          "line": 36
+        },
+        {
+          "flags": [
+            "--workers"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "4"
+          },
+          "line": 37
+        },
+        {
+          "flags": [
+            "--epochs"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20"
+          },
+          "line": 38
+        },
+        {
+          "flags": [
+            "--samples"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20000"
+          },
+          "line": 39
+        },
+        {
+          "flags": [
+            "--steps"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "8"
+          },
+          "line": 40
+        },
+        {
+          "flags": [
+            "--head-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "1e-05"
+          },
+          "line": 41
+        },
+        {
+          "flags": [
+            "--prompt-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.0001"
+          },
+          "line": 42
+        },
+        {
+          "flags": [
+            "--probe"
+          ],
+          "keywords": {
+            "action": "'store_true'",
+            "help": "'Two actual updates only; never a formal training result.'"
+          },
+          "line": 43
+        }
+      ]
+    },
+    {
+      "file": "train_dense_evidence.py",
+      "ast_parse": "PASS",
+      "lines": 166,
+      "cli": [
+        {
+          "flags": [
+            "--parent"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 75
+        },
+        {
+          "flags": [
+            "--train"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 76
+        },
+        {
+          "flags": [
+            "--validation"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 77
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 78
+        },
+        {
+          "flags": [
+            "--epochs"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20"
+          },
+          "line": 79
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "256"
+          },
+          "line": 80
+        },
+        {
+          "flags": [
+            "--lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.0001"
+          },
+          "line": 81
+        }
+      ]
+    },
+    {
+      "file": "train_dense_motion.py",
+      "ast_parse": "PASS",
+      "lines": 194,
+      "cli": [
+        {
+          "flags": [
+            "--config"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 26
+        },
+        {
+          "flags": [
+            "--r2-pair-root"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 27
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 28
+        },
+        {
+          "flags": [
+            "--batch"
+          ],
+          "keywords": {
+            "type": "int",
+            "required": "True"
+          },
+          "line": 29
+        },
+        {
+          "flags": [
+            "--epochs"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20"
+          },
+          "line": 30
+        },
+        {
+          "flags": [
+            "--samples"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "20000"
+          },
+          "line": 31
+        },
+        {
+          "flags": [
+            "--steps"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "8"
+          },
+          "line": 32
+        },
+        {
+          "flags": [
+            "--workers"
+          ],
+          "keywords": {
+            "type": "int",
+            "default": "4"
+          },
+          "line": 33
+        },
+        {
+          "flags": [
+            "--localizer-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "1e-05"
+          },
+          "line": 34
+        },
+        {
+          "flags": [
+            "--temporal-lr"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.0001"
+          },
+          "line": 35
+        },
+        {
+          "flags": [
+            "--threshold"
+          ],
+          "keywords": {
+            "type": "float",
+            "default": "0.03"
+          },
+          "line": 36
+        },
+        {
+          "flags": [
+            "--probe"
+          ],
+          "keywords": {
+            "action": "'store_true'"
+          },
+          "line": 37
+        }
+      ]
+    },
+    {
+      "file": "validate_dense.py",
+      "ast_parse": "PASS",
+      "lines": 63,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        },
+        {
+          "flags": [
+            "--manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 20
+        },
+        {
+          "flags": [
+            "--shard"
+          ],
+          "keywords": {
+            "type": "int",
+            "choices": "[0, 1]",
+            "required": "True"
+          },
+          "line": 21
+        }
+      ]
+    },
+    {
+      "file": "validate_dense_main.py",
+      "ast_parse": "PASS",
+      "lines": 65,
+      "cli": [
+        {
+          "flags": [
+            "--checkpoint"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 18
+        },
+        {
+          "flags": [
+            "--manifest"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 19
+        },
+        {
+          "flags": [
+            "--output"
+          ],
+          "keywords": {
+            "required": "True"
+          },
+          "line": 20
+        },
+        {
+          "flags": [
+            "--shard"
+          ],
+          "keywords": {
+            "type": "int",
+            "choices": "[0, 1]",
+            "required": "True"
+          },
+          "line": 21
+        }
+      ]
+    }
+  ]
+}

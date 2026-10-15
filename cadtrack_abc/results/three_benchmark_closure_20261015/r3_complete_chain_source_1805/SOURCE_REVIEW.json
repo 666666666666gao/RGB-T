@@ -1,0 +1,315 @@
+{
+  "title": "R3 qualification, matched continuation and complete-chain source review",
+  "created_utc": "2026-10-15T10:04:46.680892+00:00",
+  "verdict": "PASS_SOURCE_ONLY_WITH_NONBLOCKING_NOTE",
+  "conclusion": "No confirmed blocking source defect in the three new files and reviewed call interfaces. One nonblocking top-level failure-status display issue. This is not runtime acceptance.",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_route": "UNATTESTED",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "review_mode": "independent fresh source-only reviewer; no prior implementation narrative used as proof",
+  "skill": "C:/Users/gb/.codex/skills/experiment-bridge/SKILL.md",
+  "skill_phase": "CODE_REVIEW=true / Phase2.5 only",
+  "source_only": true,
+  "runtime_acceptance": false,
+  "torch_imported": false,
+  "project_imported": false,
+  "server_queried": false,
+  "logs_or_GPU_queried": false,
+  "images_read": false,
+  "NN_jobs_started": 0,
+  "source_mutations": 0,
+  "prior_CPU_evidence_recomputed": false,
+  "formal_metrics": null,
+  "goal_achieved": false,
+  "scope": {
+    "input_root": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_r3_chain_review_inputs_20261015",
+    "new_files": [
+      "project/cadtrack_abc/qualify_dense_main.py",
+      "project/cadtrack_abc/train_dense_continuation.py",
+      "project/cadtrack_abc/dense_main_pipeline.py"
+    ],
+    "dependency_python_files": 30,
+    "total_python_files": 33,
+    "original_manifest_inputs": 35,
+    "first_scope_files": [
+      "REVIEW_SCOPE.json",
+      "input_manifest.json"
+    ],
+    "boundary": "Old sources were read as dependency/interface evidence for the three new entries, not requalified as an entire project. The existing plan supplies requirements; its past PASS/runtime statements are not independent evidence here.",
+    "unsealed_dependencies": [
+      "dense_main_evaluation.py",
+      "model.py",
+      "score.py",
+      "vendor/CADTrack",
+      "original R2 pair/pipeline writers",
+      "pretrained/parent checkpoints",
+      "dataset images/labels",
+      "real terminal reports"
+    ],
+    "missing_dependency_interpretation": "Not included in the review snapshot; no claim that these files are absent in production. No additional scope expansion requested."
+  },
+  "input_preservation": {
+    "before": "input_audit_before.json",
+    "after": "input_audit_after.json",
+    "original35_match_manifest": true,
+    "original35_unchanged": true,
+    "input_manifest_unchanged": true,
+    "input_manifest_sha256": "253c9f9c747d9f5a8488ade02b69e26d5ea63511d5ca769d4f553533dcb7eb09",
+    "input_manifest_bytes": 6552
+  },
+  "actual_checks": [
+    {
+      "label": "manifest_before",
+      "command": [
+        "E:/python.exe",
+        "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_r3_chain_review_20261015\\reviewer_checks.py",
+        "before"
+      ],
+      "started_utc": "2026-10-15T09:51:01.243134+00:00",
+      "ended_utc": "2026-10-15T09:51:01.644740+00:00",
+      "exit_code": 0,
+      "stdout": "manifest_before.stdout.txt",
+      "stderr": "manifest_before.stderr.txt",
+      "scope": "local stdlib reviewer check only; no project or Torch import; no GPU, image, server, or NN execution"
+    },
+    {
+      "label": "source_ast",
+      "command": [
+        "E:/python.exe",
+        "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_r3_chain_review_20261015\\reviewer_checks.py",
+        "source"
+      ],
+      "started_utc": "2026-10-15T09:51:04.122981+00:00",
+      "ended_utc": "2026-10-15T09:51:05.127761+00:00",
+      "exit_code": 0,
+      "stdout": "source_ast.stdout.txt",
+      "stderr": "source_ast.stderr.txt",
+      "scope": "local stdlib reviewer check only; no project or Torch import; no GPU, image, server, or NN execution"
+    },
+    {
+      "label": "source_contracts",
+      "command": [
+        "E:/python.exe",
+        "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_r3_chain_review_20261015\\source_contract_checks.py"
+      ],
+      "started_utc": "2026-10-15T09:57:38.108231+00:00",
+      "ended_utc": "2026-10-15T09:57:38.518619+00:00",
+      "exit_code": 0,
+      "stdout": "source_contracts.stdout.txt",
+      "stderr": "source_contracts.stderr.txt",
+      "scope": "local stdlib reviewer check only; no project or Torch import; no GPU, image, server, or NN execution"
+    },
+    {
+      "label": "manifest_after",
+      "command": [
+        "E:/python.exe",
+        "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\dense_r3_chain_review_20261015\\reviewer_checks.py",
+        "after"
+      ],
+      "started_utc": "2026-10-15T09:59:57.966763+00:00",
+      "ended_utc": "2026-10-15T09:59:58.281279+00:00",
+      "exit_code": 0,
+      "stdout": "manifest_after.stdout.txt",
+      "stderr": "manifest_after.stderr.txt",
+      "scope": "local stdlib reviewer check only; no project or Torch import; no GPU, image, server, or NN execution"
+    }
+  ],
+  "actual_check_summary": {
+    "local_interpreter": "E:/python.exe",
+    "python": "3.12.6",
+    "ast_files": 33,
+    "AST": "PASS",
+    "R2_structural_comparisons": 11,
+    "R2_structural_comparisons_passed": 11,
+    "command_interface_sites": 17,
+    "missing_required_flags": 0,
+    "unknown_flags": 0,
+    "reviewer_check_failures": 0,
+    "stderr_files_preserved": true,
+    "limitations": "AST/structural checks only; no imports, --help, PyTorch tensor execution or actual production command execution in this reviewer."
+  },
+  "blocking": [],
+  "blocking_count": 0,
+  "nonblocking": [
+    {
+      "id": "N1",
+      "severity": "LOW",
+      "classification": "NONBLOCKING",
+      "file": "project/cadtrack_abc/dense_main_pipeline.py",
+      "line_start": 80,
+      "line_end": 84,
+      "title": "A failed child leaves the queue top-level status RUNNING",
+      "evidence": "run() records phase.status=FAILED and actual_exit_codes, saves state, and then asserts. state.status was initialized at line54 and is updated only on successful completion at line240. Therefore the existing nonzero-child path leaves queue_state.json.status as DENSE_R3_MAIN_PIPELINE_RUNNING after the controller exits.",
+      "consequence": "An observer reading only the top-level field can display a stopped chain as still running. The failed phase, real child log and exit codes remain available; this does not bypass the gate or produce pipeline_complete.json.",
+      "smallest_suggestion": "If correcting the display, set the top-level failed status in the existing failed-child handling before save(). No retry, catch-all exception, fallback or scheduling framework is needed.",
+      "execution_status": "Source-derived path only. No child, GPU task or failure was executed during this review."
+    }
+  ],
+  "nonblocking_count": 1,
+  "source_contract_coverage": [
+    {
+      "id": "C01",
+      "topic": "R2 terminal gate and HA overall parent",
+      "status": "SOURCE_PATH_CORRECT",
+      "evidence": [
+        "dense_main_pipeline.py:31-42",
+        "qualify_dense_main.py:49-59",
+        "train_dense_motion.py:51-65",
+        "select_dense.py:49-64"
+      ],
+      "conclusion": "The new controller and qualifier consume the completed-pair status and all20-order witness, require full98 selection and strict reload, and use HA best_checkpoint/selected (overall winner, including epoch0), not trained_best. Raw training also checks the HA complete report set. The original pair controller and actual terminal artifacts are outside this snapshot; their real completion is not established by this review."
+    },
+    {
+      "id": "C02",
+      "topic": "24 real TRAIN-clip parent parity checks",
+      "status": "SOURCE_PATH_CORRECT_RUNTIME_PENDING",
+      "evidence": [
+        "qualify_dense_main.py:63-105",
+        "dense_main_tracker.py:18-40",
+        "dense_main_tracker.py:60-76",
+        "dense_main_tracker.py:102-132",
+        "dense_tracker.py:35-79",
+        "pure_baseline_tracker.py:27-39"
+      ],
+      "conclusion": "Two seeded TRAIN clips each advance 12 real image queries through both native parent and zero-residual R3. Assertions compare native boxes, confidence, geometry/keep choice, template write decisions, template values/strides and memory. Both trackers retain the shared native Python-double crop path. The qualifier requires an actual requested template-write event; whether the fixed real clips satisfy it awaits execution. These are sampled clips, not full videos."
+    },
+    {
+      "id": "C03",
+      "topic": "Six native actions, quarantine, clock and restore",
+      "status": "SOURCE_PATH_CORRECT_RUNTIME_PENDING",
+      "evidence": [
+        "qualify_dense_main.py:129-162",
+        "dense_submission.py:70-81",
+        "dense_main_model.py:117-146",
+        "dense_main_tracker.py:141-148",
+        "dense_consequences.py:14-22"
+      ],
+      "conclusion": "Each of the six action modes starts from the saved frame4 state. Defer advances age while preserving accepted history, frames, validity, quality, memory and templates; the second deferred step checks an increasing observation gap/deviation. Native restore checks state equality and separate history storage. The later 210-action collector additionally exercises all candidate/action combinations."
+    },
+    {
+      "id": "C04",
+      "topic": "Legal independent extra contexts and native counterfactual replay",
+      "status": "SOURCE_PATH_CORRECT_RUNTIME_PENDING",
+      "evidence": [
+        "qualify_dense_main.py:109-128",
+        "qualify_dense_main.py:159-162",
+        "dense_main_model.py:94-106",
+        "dense_main_tracker.py:92-99",
+        "dense_consequences.py:45-104"
+      ],
+      "conclusion": "The four contexts are local5 and three separate local5+one-extra5 alternatives. Every extra is generated from the original local query. Deployment observes at most one extra. Counterfactuals restore one prior snapshot for each of (5+10+10+10)*6=210 actions, then continue with tracker.track and the same frozen actual policy. The chosen replay is compared with native track(), and the real native successor is restored after collection. Future GT enters the label adapter, not the observation features."
+    },
+    {
+      "id": "C05",
+      "topic": "Inference-cache boundary, real-label head updates and strict reload",
+      "status": "SOURCE_PATH_CORRECT_RUNTIME_PENDING",
+      "evidence": [
+        "qualify_dense_main.py:30-35",
+        "qualify_dense_main.py:163-196",
+        "train_dense_evidence.py:40-70",
+        "train_dense_consequences.py:48-78"
+      ],
+      "conclusion": "ordinary_copy save/load is called after leaving the outer inference_mode block. Two separate newly constructed head groups load the frozen source state, consume the real evidence/consequence labels, take two AdamW steps each, require finite positive aggregate gradient norms and changed tensors, and strictly reload. Parent/tracker parameter hashes are checked afterwards. Actual tensor/autograd behavior has not been executed here."
+    },
+    {
+      "id": "C06",
+      "topic": "Probe isolation from formal initialization",
+      "status": "SOURCE_PATH_CORRECT",
+      "evidence": [
+        "qualify_dense_main.py:168-205",
+        "dense_main_pipeline.py:86-117",
+        "train_dense_motion.py:60-83",
+        "train_dense_continuation.py:72-87"
+      ],
+      "conclusion": "Qualification heads are temporary; its stored artifact is a query cache. Probe and formal raw/control outputs use separate directories, and both formal entries construct a new model and reload the locked parent with a fresh optimizer/scheduler. No probe checkpoint is supplied to formal training."
+    },
+    {
+      "id": "C07",
+      "topic": "Matched R2 A/localizer continuation objective and training budget",
+      "status": "SOURCE_PATH_CORRECT",
+      "evidence": [
+        "train_dense_continuation.py:62-101",
+        "train_dense_continuation.py:116-193",
+        "train_dense.py:58-180",
+        "dense_main_pipeline.py:86-99",
+        "dense_main_pipeline.py:117-133",
+        "train_dense_motion.py:85-106"
+      ],
+      "conclusion": "The control uses DenseCADTrack(..., True), the original R2 forward/loss and optimizer loop, not the B/C raw objective. Eleven AST comparisons pass after substituting the old args.memory=True, including the entire epoch loop. Production commands explicitly give both existing localizer/prompt groups lr1e-5; new R3 temporal groups use 1e-4. Both runs use seed42, independent DataLoader generator42, the same batch, workers4, 20*20000 clips and 8 queries/clip, fresh AdamW/StepLR. The controller checks all20 actual order witnesses and parent identities after training. Actual order equality remains pending."
+    },
+    {
+      "id": "C08",
+      "topic": "Raw/control full20 then full98 positive-epoch selection and all3 tests",
+      "status": "SOURCE_PATH_CORRECT_WITH_DEPENDENCY_BOUNDARY",
+      "evidence": [
+        "dense_main_pipeline.py:117-183",
+        "evaluate_dense_main.py:27-118",
+        "select_dense_main.py:24-69",
+        "select_dense.py:23-68"
+      ],
+      "conclusion": "The controller waits for both full20 fits and prescribed counts. Raw evaluation uses the six scheduled checkpoints [0,1,2,5,10,20], full98 selection, and trained_best for all3. The R2-family control separately evaluates the same six epochs with its existing validator/selector, and tests the same selected positive checkpoint on all3. No metric-gain condition skips or replaces negative reports. The underlying R3 video helper and official score implementation are outside this seal."
+    },
+    {
+      "id": "C09",
+      "topic": "Two-card fresh evidence/consequence collection and merged paths",
+      "status": "SOURCE_PATH_CORRECT",
+      "evidence": [
+        "dense_main_pipeline.py:185-225",
+        "collect_dense_evidence.py:32-94",
+        "collect_dense_consequences.py:35-95",
+        "train_dense_evidence.py:18-33",
+        "train_dense_consequences.py:22-41"
+      ],
+      "conclusion": "Each split is partitioned by sorted complete sequence names [shard::2]. Two children run on physical device indices2/3, each writing its own shard directory; their records are merged as shardN/<file>. Both dataset readers use root / record[file], so the rewritten paths reach actual shard files. Receipt split/checkpoint/coverage/uniqueness are checked before merging. The evidence teacher is raw trained_best; consequences are newly collected from selected calibrated weights. The inputs reused by this controller are query JSON timestamps/specs, not old feature or action-label caches."
+    },
+    {
+      "id": "C10",
+      "topic": "Calibration20 then current-teacher consequence policy20",
+      "status": "SOURCE_PATH_CORRECT_RUNTIME_PENDING",
+      "evidence": [
+        "dense_main_pipeline.py:215-232",
+        "train_dense_evidence.py:127-162",
+        "train_dense_consequences.py:135-197"
+      ],
+      "conclusion": "Calibration completes20 epochs, selects by declared cache-quality MSE, and strictly reloads before fresh consequence collection. Policy training runs20 epochs using future-action and selector-realized search losses and checks both decision subgroups changed; cache validation remains diagnostic. The production chain does not substitute those cache scores for final full-video selection."
+    },
+    {
+      "id": "C11",
+      "topic": "Final selected positive checkpoint, three datasets and seven metrics",
+      "status": "SOURCE_PATH_CORRECT_WITH_DEPENDENCY_BOUNDARY",
+      "evidence": [
+        "dense_main_pipeline.py:233-246",
+        "evaluate_dense_main.py:68-118",
+        "infer_dense_main.py:25-55",
+        "score_dense_main.py:20-65"
+      ],
+      "conclusion": "The final fit again routes through all six full98 checkpoint evaluations and the trained positive-epoch selector. The same selected checkpoint/hash is used for LasHeR245/220703, RGBT234234/116649 and RGBT210210/104706. Reports expose each benchmark delta and +2 flag. The +2 aggregate is reported without being asserted as a completion gate; goal_achieved remains false and component effectiveness is explicitly unestablished. Actual metric formulas in cadtrack_abc.score are outside this seal."
+    },
+    {
+      "id": "C12",
+      "topic": "Command flags, fields, serialization and child lifetimes",
+      "status": "SOURCE_PATH_CORRECT_WITH_NONBLOCKING_STATUS_NOTE",
+      "evidence": [
+        "dense_main_pipeline.py:64-84",
+        "qualify_dense_main.py:100-103",
+        "qualify_dense_main.py:186-207",
+        "dense_main_pipeline.py:203-212",
+        "evaluate_dense_main.py:108-120"
+      ],
+      "conclusion": "Seventeen assembled controller command sites match their sealed argparse interfaces (no missing required or unknown flags). The produced/consumed stage strings and selected-checkpoint/report field names agree. New JSON receipts use Python scalars/lists/dicts; tensor/NumPy query data is saved in .pt, not placed in qualification JSON. The parent waits for all children in each phase before the next phase, and the nested evaluator assigns its NN children to2/3. A nonzero child exit records phase failure/codes then stops the chain; N1 describes the stale top-level status."
+    }
+  ],
+  "runtime_obligations": [
+    "Wait for and inspect the genuine original R2 pair terminal/all20-order/full98/all3 artifacts before the new launch. Verify the authorized physical2028 host and available GPUs2/3 through the execution owner; this review made no server/resource request.",
+    "Execute the finite native qualifier on the real locked parent and TRAIN images. Require all24 parity checks, actual requested template-write coverage, six-action state/clock/restore checks, four legal contexts, 210 native consequences/replay, two head-group real-label AdamW checks and strict reload. Pending is not a FAIL.",
+    "Execute the two raw/control probes, then separate full20 raw/control fits with fresh parent initialization. Inspect actual updates, all20 data-order witnesses, gradients/changes, frozen backbone, strict reload and real terminal counts.",
+    "Complete six full98 evaluations and one selected positive-epoch checkpoint across all3 datasets for raw and control. Preserve negative results and the distinction between overall epoch0 and trained best.",
+    "Collect all requested TRAIN/DEV evidence and consequences freshly in disjoint sequence shards. Verify actual per-query files, valid labels and merged receipt/path coverage; then complete calibration20 and both future/search heads for policy20 using the selected calibrated teacher.",
+    "Complete final six full98 runs and all3/seven metrics with one positive checkpoint/config, then perform result/runtime audit. Pipeline completion or a +2 flag alone does not establish the three component effects or complete the research goal. The all8 component ablations are not implemented by this scope."
+  ],
+  "no_unrequested_hardening": "No new hash/pin scheme, fallback, compatibility layer, hypothetical edge-case machinery or unrelated refactor proposed."
+}

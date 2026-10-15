@@ -436,10 +436,10 @@
       "goal_achieved": false
     },
     "outstanding": [
-      "Whole raw/calibration/consequence automation and actual GPU qualification.",
-      "After R2 closes: actual raw full training, own-policy evidence/consequence collection and complete decision training.",
-      "Full98 selection and one checkpoint/config all three benchmarks, seven metrics baseline+2.",
-      "Matched additional-training controls and independent A/B/C contribution evidence."
+      "Current R2 complete training/video evaluation/actual terminal.",
+      "Run actual R3 qualification, raw/control probes and matched full training after authorized-card admission.",
+      "Complete fresh collection/calibration/decision training and full three-benchmark reports.",
+      "All7 baseline+2, independent module evidence and final audit/weight cleanup."
     ],
     "new_GPU_jobs": 0,
     "goal_achieved": false,
@@ -475,7 +475,442 @@
         "Full98 selection and one checkpoint/config all three benchmarks, seven metrics baseline+2.",
         "Matched additional-training controls and independent A/B/C contribution evidence."
       ]
+    },
+    "complete_execution_chain": {
+      "status": "COMPLETE_CHAIN_SOURCES_REVIEWED_DEPLOYED_NOT_EXECUTED",
+      "sources": {
+        "cadtrack_abc/qualify_dense_main.py": "829de0852ecbb1163bbd51552c9a618f5b8ea8b5140197d981cc51c6ec6aba51",
+        "cadtrack_abc/train_dense_continuation.py": "f05a04dd810e9ab1e11a674346ed31286ec43cf6d6a3c15525e321fd742c16dd",
+        "cadtrack_abc/dense_main_pipeline.py": "518f4b1ac2828f482b97da755d6e7f25d43b74f61272141b6e979f7ba8e4a42a"
+      },
+      "source_verdict": "PASS_SOURCE_ONLY_WITH_NONBLOCKING_NOTE",
+      "bounded_failure_status_fix_verdict": "PASS_SOURCE_ONLY_N1_FIXED",
+      "source_blocking_count": 0,
+      "review_independence": "same-family",
+      "actual_route": "UNATTESTED",
+      "acceptance_status": "provisional",
+      "source_checks": {
+        "status": "PASS",
+        "project_imported": false,
+        "torch_imported": false,
+        "model_or_training_run": false,
+        "method": "stdlib AST parse and structural comparisons only; original args.memory normalized to literal True for the HA control comparison",
+        "continuation_original_R2_AST_comparisons": [
+          {
+            "component": "module_hash",
+            "equal": true
+          },
+          {
+            "component": "save_candidate",
+            "equal": true
+          },
+          {
+            "component": "model",
+            "equal": true
+          },
+          {
+            "component": "groups",
+            "equal": true
+          },
+          {
+            "component": "optimizer",
+            "equal": true
+          },
+          {
+            "component": "scheduler",
+            "equal": true
+          },
+          {
+            "component": "parameters",
+            "equal": true
+          },
+          {
+            "component": "dataset",
+            "equal": true
+          },
+          {
+            "component": "data_generator",
+            "equal": true
+          },
+          {
+            "component": "loader",
+            "equal": true
+          },
+          {
+            "component": "entire_epoch_loop_including_forward_loss_updates_order_and_checkpoints",
+            "equal": true
+          }
+        ],
+        "command_interfaces": [
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 173,
+            "module": "cadtrack_abc.score_dense",
+            "flags": [
+              "--baseline-report",
+              "--dataset",
+              "--output",
+              "--predictions",
+              "--root"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 90,
+            "module": "cadtrack_abc.train_dense_motion",
+            "flags": [
+              "--batch",
+              "--config",
+              "--epochs",
+              "--localizer-lr",
+              "--output",
+              "--probe",
+              "--r2-pair-root",
+              "--samples",
+              "--steps",
+              "--temporal-lr",
+              "--workers"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 91,
+            "module": "cadtrack_abc.train_dense_continuation",
+            "flags": [
+              "--batch",
+              "--config",
+              "--epochs",
+              "--head-lr",
+              "--output",
+              "--parent",
+              "--probe",
+              "--prompt-lr",
+              "--samples",
+              "--steps",
+              "--workers"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 103,
+            "module": "cadtrack_abc.qualify_dense_main",
+            "flags": [
+              "--config",
+              "--output",
+              "--r2-pair-root"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 137,
+            "module": "cadtrack_abc.evaluate_dense_main",
+            "flags": [
+              "--baseline-210",
+              "--baseline-234",
+              "--config",
+              "--fit",
+              "--output",
+              "--split-manifest"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 148,
+            "module": "cadtrack_abc.validate_dense",
+            "flags": [
+              "--checkpoint",
+              "--manifest",
+              "--output",
+              "--shard"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 152,
+            "module": "cadtrack_abc.select_dense",
+            "flags": [
+              "--development",
+              "--fit"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 217,
+            "module": "cadtrack_abc.train_dense_evidence",
+            "flags": [
+              "--batch",
+              "--epochs",
+              "--lr",
+              "--output",
+              "--parent",
+              "--train",
+              "--validation"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 227,
+            "module": "cadtrack_abc.train_dense_consequences",
+            "flags": [
+              "--batch",
+              "--epochs",
+              "--lr",
+              "--output",
+              "--parent",
+              "--train",
+              "--validation"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 233,
+            "module": "cadtrack_abc.evaluate_dense_main",
+            "flags": [
+              "--baseline-210",
+              "--baseline-234",
+              "--config",
+              "--fit",
+              "--output",
+              "--split-manifest"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 165,
+            "module": "cadtrack_abc.infer_dense",
+            "flags": [
+              "--checkpoint",
+              "--dataset",
+              "--output",
+              "--root",
+              "--shard"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 200,
+            "module": "cadtrack_abc.collect_dense_evidence",
+            "flags": [
+              "--checkpoint",
+              "--manifest",
+              "--output",
+              "--queries",
+              "--split"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "dense_main_pipeline.py",
+            "line": 200,
+            "module": "cadtrack_abc.collect_dense_consequences",
+            "flags": [
+              "--checkpoint",
+              "--manifest",
+              "--output",
+              "--queries",
+              "--split"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "evaluate_dense_main.py",
+            "line": 99,
+            "module": "cadtrack_abc.score_dense_main",
+            "flags": [
+              "--baseline-report",
+              "--dataset",
+              "--output",
+              "--predictions",
+              "--root"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "evaluate_dense_main.py",
+            "line": 71,
+            "module": "cadtrack_abc.validate_dense_main",
+            "flags": [
+              "--checkpoint",
+              "--manifest",
+              "--output",
+              "--shard"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "evaluate_dense_main.py",
+            "line": 75,
+            "module": "cadtrack_abc.select_dense_main",
+            "flags": [
+              "--development",
+              "--fit",
+              "--split-manifest"
+            ],
+            "missing_required": [],
+            "unknown": []
+          },
+          {
+            "controller": "evaluate_dense_main.py",
+            "line": 91,
+            "module": "cadtrack_abc.infer_dense_main",
+            "flags": [
+              "--checkpoint",
+              "--dataset",
+              "--output",
+              "--root",
+              "--shard"
+            ],
+            "missing_required": [],
+            "unknown": []
+          }
+        ],
+        "unsealed_relative_dependencies": [
+          {
+            "source": "counterfactual.py",
+            "line": 9,
+            "dependency": "model",
+            "symbols": [
+              "candidates"
+            ]
+          },
+          {
+            "source": "dense_model.py",
+            "line": 14,
+            "dependency": "model",
+            "symbols": [
+              "pool_rois"
+            ]
+          },
+          {
+            "source": "future_actions.py",
+            "line": 11,
+            "dependency": "model",
+            "symbols": [
+              "CADTrackABC"
+            ]
+          },
+          {
+            "source": "infer_dense_main.py",
+            "line": 11,
+            "dependency": "dense_main_evaluation",
+            "symbols": [
+              "load_dense_tracker",
+              "track_video"
+            ]
+          },
+          {
+            "source": "search_actions.py",
+            "line": 13,
+            "dependency": "model",
+            "symbols": [
+              "candidates"
+            ]
+          },
+          {
+            "source": "validate_dense_main.py",
+            "line": 13,
+            "dependency": "dense_main_evaluation",
+            "symbols": [
+              "load_dense_tracker",
+              "track_video"
+            ]
+          }
+        ],
+        "unsealed_entrypoints": [
+          {
+            "source": "score_dense.py",
+            "line": 25,
+            "dependency": "cadtrack_abc.score"
+          },
+          {
+            "source": "score_dense_main.py",
+            "line": 25,
+            "dependency": "cadtrack_abc.score"
+          }
+        ],
+        "scope_note": "Missing from the review snapshot does not mean missing in deployment. No production imports attempted."
+      },
+      "timestamp_input_counts": {
+        "train_queries": 5092,
+        "train_sequences": 881,
+        "validation_queries": 605,
+        "validation_sequences": 98
+      },
+      "planned_fresh_action_labels": 1196370,
+      "qualification": "Real TRAIN parent parity24 frames, six graded submissions/quarantine/clock/restore, independent contexts210 matched actions, real-label two-step heads and strict reload. Not executed yet.",
+      "raw_training": "Same parent, main raw and original A/localizer control each20 epochs/400000clips/3200000 query observations. Main/control actual20 data orders must match.",
+      "later_stages": "Complete raw/control full98 and all3 reports; fresh evidence and calibration20; fresh consequences and decision20; full98 and same positive main checkpoint all3.",
+      "GPU_qualification_complete": false,
+      "full_ABC_training_complete": false,
+      "new_GPU_jobs": 0,
+      "active_R2_unchanged": true,
+      "formal_metrics": null,
+      "goal_achieved": false,
+      "outstanding": [
+        "Current R2 complete training/video evaluation/actual terminal.",
+        "Run actual R3 qualification, raw/control probes and matched full training after authorized-card admission.",
+        "Complete fresh collection/calibration/decision training and full three-benchmark reports.",
+        "All7 baseline+2, independent module evidence and final audit/weight cleanup."
+      ],
+      "prepared_command_not_executed": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.dense_main_pipeline",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--r2-pair-root",
+        "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+        "--train-queries",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_train.json",
+        "--validation-queries",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_validation.json",
+        "--baseline-234",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+        "--baseline-210",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_20261015",
+        "--batch",
+        "128"
+      ],
+      "line_ending_qualification": {
+        "scope": "Line endings only after actual Git staged-byte mismatch; executor stdlib AST check, not a new independent review.",
+        "file": "cadtrack_abc/train_dense_continuation.py",
+        "original_reviewed_sha256": "9fbaa77e5496a873e03a4cb8d5301736601caa9a746b67423c280f741bdbe4a7",
+        "qualified_current_sha256": "f05a04dd810e9ab1e11a674346ed31286ec43cf6d6a3c15525e321fd742c16dd",
+        "CRLF_lines_normalized": 197,
+        "AST_equal": true,
+        "original_sealed_review_input_preserved": true,
+        "training_sources22_unchanged": true,
+        "new_GPU_jobs": 0
+      }
     }
   },
-  "R3_fair_continuation_control": "R3 raw stage continues R2-HA for another20 epochs. Final module comparisons must include the same parent and matched additional training budget without B; R2-H20 alone does not isolate the benefit of another20 epochs. No current accuracy gain attributed to extra training."
+  "R3_fair_continuation_control": "Implemented separate train_dense_continuation.py, exact original R2 A/localizer epoch loop and same locked parent as R3. Controller matches20 additional epochs, loader order, head/prompt LR1e-5 and raw observations. Source-reviewed only; no actual continued-fit or all20 order comparison yet. This is not the full eight-combination ablation."
 }
