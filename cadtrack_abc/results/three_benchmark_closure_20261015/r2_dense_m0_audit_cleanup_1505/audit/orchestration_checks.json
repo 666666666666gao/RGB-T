@@ -1,0 +1,1526 @@
+{
+  "status": "PASS",
+  "checks_count": 38,
+  "checks": [
+    {
+      "id": 1,
+      "name": "H complete control flow with negative synthetic metrics",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 2,
+      "name": "H goal remains false",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 3,
+      "name": "H14 serial phase calls",
+      "passed": true,
+      "details": 14
+    },
+    {
+      "id": 4,
+      "name": "H23 child module command specifications",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 5,
+      "name": "H prescribed full training flags",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 6,
+      "name": "H A only when enabled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 7,
+      "name": "H all six scheduled snapshot phases",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 8,
+      "name": "H each dev snapshot two shards",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 9,
+      "name": "H same selected checkpoint all six inference commands",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 10,
+      "name": "H all three datasets in order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 11,
+      "name": "H maximum two child command specs per GPU phase",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 12,
+      "name": "H all GPU phases use assigned card",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 13,
+      "name": "H scalar LasHeR no baseline rerun spec",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 14,
+      "name": "H RGB references passed to qualified scorer",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 15,
+      "name": "H no overall epoch0 replacement",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 16,
+      "name": "HA complete control flow with negative synthetic metrics",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 17,
+      "name": "HA goal remains false",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 18,
+      "name": "HA14 serial phase calls",
+      "passed": true,
+      "details": 14
+    },
+    {
+      "id": 19,
+      "name": "HA23 child module command specifications",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 20,
+      "name": "HA prescribed full training flags",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 21,
+      "name": "HA A only when enabled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 22,
+      "name": "HA all six scheduled snapshot phases",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 23,
+      "name": "HA each dev snapshot two shards",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 24,
+      "name": "HA same selected checkpoint all six inference commands",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 25,
+      "name": "HA all three datasets in order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 26,
+      "name": "HA maximum two child command specs per GPU phase",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 27,
+      "name": "HA all GPU phases use assigned card",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 28,
+      "name": "HA scalar LasHeR no baseline rerun spec",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 29,
+      "name": "HA RGB references passed to qualified scorer",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 30,
+      "name": "HA no overall epoch0 replacement",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 31,
+      "name": "source rejects undertrained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 32,
+      "name": "source does not complete undertrained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 33,
+      "name": "source rejects selected_epoch0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 34,
+      "name": "source does not complete selected_epoch0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 35,
+      "name": "source rejects changed_checkpoint",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 36,
+      "name": "source does not complete changed_checkpoint",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 37,
+      "name": "pair actual20 order loop mismatch=False",
+      "passed": true,
+      "details": null
+    },
+    {
+      "id": 38,
+      "name": "pair actual20 order loop mismatch=True",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "traces": [
+    {
+      "variant": "H",
+      "fault": null,
+      "phase_trace": [
+        {
+          "phase": "full_training",
+          "commands": [
+            [
+              "cadtrack_abc.train_dense",
+              "--config",
+              "/config.json",
+              "--output",
+              "/synthetic/H/fit",
+              "--batch",
+              "128",
+              "--epochs",
+              "20",
+              "--samples",
+              "20000",
+              "--steps",
+              "8",
+              "--workers",
+              "4",
+              "--head-lr",
+              "0.00001",
+              "--prompt-lr",
+              "0.0001"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch00",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch01",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch02",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch05",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch10",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch20",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "select_trained_checkpoint",
+          "commands": [
+            [
+              "cadtrack_abc.select_dense",
+              "--fit",
+              "/synthetic/H/fit",
+              "--development",
+              "/synthetic/H/development"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/H/formal/lasher_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/H/formal/lasher_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "score_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--predictions",
+              "/synthetic/H/formal/lasher_predictions",
+              "--output",
+              "/synthetic/H/formal/lasher_report"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_rgbt234",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/H/formal/rgbt234_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/H/formal/rgbt234_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "score_rgbt234",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--predictions",
+              "/synthetic/H/formal/rgbt234_predictions",
+              "--output",
+              "/synthetic/H/formal/rgbt234_report",
+              "--baseline-report",
+              "/baseline234.json"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_rgbt210",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--output",
+              "/synthetic/H/formal/rgbt210_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--output",
+              "/synthetic/H/formal/rgbt210_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "score_rgbt210",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--predictions",
+              "/synthetic/H/formal/rgbt210_predictions",
+              "--output",
+              "/synthetic/H/formal/rgbt210_report",
+              "--baseline-report",
+              "/baseline210.json"
+            ]
+          ],
+          "device": ""
+        }
+      ],
+      "assertion_rejection": null,
+      "synthetic_only": true,
+      "no_neural_execution": true
+    },
+    {
+      "variant": "HA",
+      "fault": null,
+      "phase_trace": [
+        {
+          "phase": "full_training",
+          "commands": [
+            [
+              "cadtrack_abc.train_dense",
+              "--config",
+              "/config.json",
+              "--output",
+              "/synthetic/HA/fit",
+              "--batch",
+              "128",
+              "--epochs",
+              "20",
+              "--samples",
+              "20000",
+              "--steps",
+              "8",
+              "--workers",
+              "4",
+              "--head-lr",
+              "0.00001",
+              "--prompt-lr",
+              "0.0001",
+              "--memory"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch00",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch00",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch00",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch01",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch01",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch01",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch02",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch02",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch02",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch05",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch05",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch05",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch10",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch10",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch10",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "full98_candidate_epoch20",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch20",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/HA/fit/manifest.json",
+              "--output",
+              "/synthetic/HA/development/candidate_epoch20",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "select_trained_checkpoint",
+          "commands": [
+            [
+              "cadtrack_abc.select_dense",
+              "--fit",
+              "/synthetic/HA/fit",
+              "--development",
+              "/synthetic/HA/development"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/HA/formal/lasher_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/HA/formal/lasher_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "score_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--predictions",
+              "/synthetic/HA/formal/lasher_predictions",
+              "--output",
+              "/synthetic/HA/formal/lasher_report"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_rgbt234",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/HA/formal/rgbt234_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/HA/formal/rgbt234_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "score_rgbt234",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--predictions",
+              "/synthetic/HA/formal/rgbt234_predictions",
+              "--output",
+              "/synthetic/HA/formal/rgbt234_report",
+              "--baseline-report",
+              "/baseline234.json"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_rgbt210",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--output",
+              "/synthetic/HA/formal/rgbt210_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/HA/fit/trained_best.pth",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--output",
+              "/synthetic/HA/formal/rgbt210_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 3
+        },
+        {
+          "phase": "score_rgbt210",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "rgbt210",
+              "--root",
+              "/project/dataset/rgbt210/RGBT210",
+              "--predictions",
+              "/synthetic/HA/formal/rgbt210_predictions",
+              "--output",
+              "/synthetic/HA/formal/rgbt210_report",
+              "--baseline-report",
+              "/baseline210.json"
+            ]
+          ],
+          "device": ""
+        }
+      ],
+      "assertion_rejection": null,
+      "synthetic_only": true,
+      "no_neural_execution": true
+    },
+    {
+      "variant": "H",
+      "fault": "undertrained",
+      "phase_trace": [
+        {
+          "phase": "full_training",
+          "commands": [
+            [
+              "cadtrack_abc.train_dense",
+              "--config",
+              "/config.json",
+              "--output",
+              "/synthetic/H/fit",
+              "--batch",
+              "128",
+              "--epochs",
+              "20",
+              "--samples",
+              "20000",
+              "--steps",
+              "8",
+              "--workers",
+              "4",
+              "--head-lr",
+              "0.00001",
+              "--prompt-lr",
+              "0.0001"
+            ]
+          ],
+          "device": 2
+        }
+      ],
+      "assertion_rejection": "AssertionError: ",
+      "synthetic_only": true,
+      "no_neural_execution": true
+    },
+    {
+      "variant": "H",
+      "fault": "selected_epoch0",
+      "phase_trace": [
+        {
+          "phase": "full_training",
+          "commands": [
+            [
+              "cadtrack_abc.train_dense",
+              "--config",
+              "/config.json",
+              "--output",
+              "/synthetic/H/fit",
+              "--batch",
+              "128",
+              "--epochs",
+              "20",
+              "--samples",
+              "20000",
+              "--steps",
+              "8",
+              "--workers",
+              "4",
+              "--head-lr",
+              "0.00001",
+              "--prompt-lr",
+              "0.0001"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch00",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch01",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch02",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch05",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch10",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch20",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "select_trained_checkpoint",
+          "commands": [
+            [
+              "cadtrack_abc.select_dense",
+              "--fit",
+              "/synthetic/H/fit",
+              "--development",
+              "/synthetic/H/development"
+            ]
+          ],
+          "device": ""
+        }
+      ],
+      "assertion_rejection": "AssertionError: ",
+      "synthetic_only": true,
+      "no_neural_execution": true
+    },
+    {
+      "variant": "H",
+      "fault": "changed_checkpoint",
+      "phase_trace": [
+        {
+          "phase": "full_training",
+          "commands": [
+            [
+              "cadtrack_abc.train_dense",
+              "--config",
+              "/config.json",
+              "--output",
+              "/synthetic/H/fit",
+              "--batch",
+              "128",
+              "--epochs",
+              "20",
+              "--samples",
+              "20000",
+              "--steps",
+              "8",
+              "--workers",
+              "4",
+              "--head-lr",
+              "0.00001",
+              "--prompt-lr",
+              "0.0001"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch00",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch00.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch00",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch01",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch01.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch01",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch02",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch02.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch02",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch05",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch05.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch05",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch10",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch10.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch10",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "full98_candidate_epoch20",
+          "commands": [
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.validate_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/candidate_epoch20.pth",
+              "--manifest",
+              "/synthetic/H/fit/manifest.json",
+              "--output",
+              "/synthetic/H/development/candidate_epoch20",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "select_trained_checkpoint",
+          "commands": [
+            [
+              "cadtrack_abc.select_dense",
+              "--fit",
+              "/synthetic/H/fit",
+              "--development",
+              "/synthetic/H/development"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/H/formal/lasher_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--output",
+              "/synthetic/H/formal/lasher_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        },
+        {
+          "phase": "score_lasher",
+          "commands": [
+            [
+              "cadtrack_abc.score_dense",
+              "--dataset",
+              "lasher",
+              "--root",
+              "/datasets/lasher",
+              "--predictions",
+              "/synthetic/H/formal/lasher_predictions",
+              "--output",
+              "/synthetic/H/formal/lasher_report"
+            ]
+          ],
+          "device": ""
+        },
+        {
+          "phase": "infer_rgbt234",
+          "commands": [
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/H/formal/rgbt234_predictions",
+              "--shard",
+              "0"
+            ],
+            [
+              "cadtrack_abc.infer_dense",
+              "--checkpoint",
+              "/synthetic/H/fit/trained_best.pth",
+              "--dataset",
+              "rgbt234",
+              "--root",
+              "/project/dataset/rgbt234",
+              "--output",
+              "/synthetic/H/formal/rgbt234_predictions",
+              "--shard",
+              "1"
+            ]
+          ],
+          "device": 2
+        }
+      ],
+      "assertion_rejection": "AssertionError: ",
+      "synthetic_only": true,
+      "no_neural_execution": true
+    }
+  ],
+  "scope": "Synthetic in-memory control-flow only. External neural/training/scoring phases mocked. Not a real full pipeline receipt.",
+  "modified_node": "dense_pipeline.main nested run function only; imports omitted; Path/argparse/os/print injected."
+}

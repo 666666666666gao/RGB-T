@@ -1,0 +1,5364 @@
+{
+  "status": "PASS",
+  "checks_count": 40,
+  "checks": [
+    {
+      "id": 1,
+      "name": "only frozen extraction decorated no_grad",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 2,
+      "name": "predict calls extraction and differentiable fusion head",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 3,
+      "name": "step signature contains images state only",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 4,
+      "name": "step does not mention truth labels teacher",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 5,
+      "name": "GT indexed regression only in loss",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 6,
+      "name": "forward prediction step precedes loss",
+      "passed": true,
+      "observed": [
+        251,
+        254
+      ]
+    },
+    {
+      "id": 7,
+      "name": "GT teacher only feeds memory losses",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 8,
+      "name": "online tracker accepts image only",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 9,
+      "name": "online tracker no GT or teacher names",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 10,
+      "name": "training does real backward optimizer steps in source",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 11,
+      "name": "independent data generator passed to loader",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 12,
+      "name": "training initializer uses pretrained not qualification path",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 13,
+      "name": "no inherited R1 ABC construction in dense class",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 14,
+      "name": "video accepts only initial GT",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 15,
+      "name": "video does not load later labels",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 16,
+      "name": "formal inference reads only readline initialization",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 17,
+      "name": "formal inference explicitly positive epoch",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 18,
+      "name": "validation passes labels0 only to video",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 19,
+      "name": "validation truth comes from dataset init",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 20,
+      "name": "official native metrics actually invoked",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 21,
+      "name": "official GT loaded dataset not baseline",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 22,
+      "name": "official metric unit percent only multiplication100",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 23,
+      "name": "LasHeR mechanism summary actually called",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 24,
+      "name": "legacy R1 sequence_iou not claimed train monitor",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 25,
+      "name": "exact sampler RNG statements independent of global draws",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 26,
+      "name": "sampler reads initial plus query images not future labels",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 27,
+      "name": "sampler explicit continuous stride1",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 28,
+      "name": "actual recovery excludes invalid end and counts frame delay",
+      "passed": true,
+      "observed": [
+        {
+          "start_frame": 1,
+          "recovery_frame": 3,
+          "delay_frames": 2,
+          "right_censored": false
+        },
+        {
+          "start_frame": 4,
+          "recovery_frame": null,
+          "delay_frames": null,
+          "observed_until_frame": 5,
+          "right_censored": true
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "actual ratio uses explicit event denominator",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 30,
+      "name": "zero denominator represented null",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 31,
+      "name": "selection initialization_wins",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 32,
+      "name": "selection positive_wins",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 33,
+      "name": "selection all_tie",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 34,
+      "name": "Center scalar convention case0",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 35,
+      "name": "Center scalar convention case1",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 36,
+      "name": "Center scalar convention case2",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 37,
+      "name": "Center scalar convention case3",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 38,
+      "name": "Center scalar convention case4",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 39,
+      "name": "Center scalar convention case5",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": 40,
+      "name": "Center scalar convention case6",
+      "passed": true,
+      "observed": null
+    }
+  ],
+  "call_inventory": {
+    "data.py": {
+      "definitions": [
+        {
+          "name": "read_pair",
+          "line": 14,
+          "end_line": 16
+        },
+        {
+          "name": "crop_batch",
+          "line": 19,
+          "end_line": 33
+        },
+        {
+          "name": "xyxy",
+          "line": 36,
+          "end_line": 37
+        },
+        {
+          "name": "xywh",
+          "line": 40,
+          "end_line": 41
+        },
+        {
+          "name": "clip_boxes",
+          "line": 44,
+          "end_line": 48
+        },
+        {
+          "name": "iou",
+          "line": 51,
+          "end_line": 57
+        },
+        {
+          "name": "collate_clips",
+          "line": 96,
+          "end_line": 97
+        },
+        {
+          "name": "__init__",
+          "line": 66,
+          "end_line": 77
+        },
+        {
+          "name": "__len__",
+          "line": 79,
+          "end_line": 80
+        },
+        {
+          "name": "__getitem__",
+          "line": 82,
+          "end_line": 93
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 10,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 11,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 15,
+          "call": "np.concatenate"
+        },
+        {
+          "line": 22,
+          "call": "zip"
+        },
+        {
+          "line": 37,
+          "call": "torch.cat"
+        },
+        {
+          "line": 41,
+          "call": "torch.cat"
+        },
+        {
+          "line": 45,
+          "call": "boxes.new_tensor"
+        },
+        {
+          "line": 46,
+          "call": "boxes[..., :2].maximum(torch.zeros_like(boxes[..., :2])).minimum"
+        },
+        {
+          "line": 47,
+          "call": "boxes[..., 2:].maximum(torch.full_like(boxes[..., 2:], 10)).minimum"
+        },
+        {
+          "line": 48,
+          "call": "torch.cat"
+        },
+        {
+          "line": 52,
+          "call": "torch.minimum"
+        },
+        {
+          "line": 53,
+          "call": "torch.maximum"
+        },
+        {
+          "line": 54,
+          "call": "(end - start).clamp(min=0).prod"
+        },
+        {
+          "line": 55,
+          "call": "(boxes[..., 2:] - boxes[..., :2]).clamp(min=0).prod"
+        },
+        {
+          "line": 56,
+          "call": "(target[..., 2:] - target[..., :2]).clamp(min=0).prod"
+        },
+        {
+          "line": 22,
+          "call": "boxes.detach().cpu().numpy"
+        },
+        {
+          "line": 24,
+          "call": "math.ceil"
+        },
+        {
+          "line": 29,
+          "call": "cv2.copyMakeBorder"
+        },
+        {
+          "line": 30,
+          "call": "patches.append"
+        },
+        {
+          "line": 31,
+          "call": "transforms.append"
+        },
+        {
+          "line": 32,
+          "call": "torch.from_numpy(np.stack(patches)).permute(0, 3, 1, 2).to"
+        },
+        {
+          "line": 33,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 57,
+          "call": "(area + target_area - inter).clamp"
+        },
+        {
+          "line": 83,
+          "call": "random.Random"
+        },
+        {
+          "line": 86,
+          "call": "len"
+        },
+        {
+          "line": 89,
+          "call": "len"
+        },
+        {
+          "line": 90,
+          "call": "int"
+        },
+        {
+          "line": 15,
+          "call": "cv2.cvtColor"
+        },
+        {
+          "line": 16,
+          "call": "cv2.cvtColor"
+        },
+        {
+          "line": 25,
+          "call": "round"
+        },
+        {
+          "line": 25,
+          "call": "round"
+        },
+        {
+          "line": 26,
+          "call": "max"
+        },
+        {
+          "line": 26,
+          "call": "max"
+        },
+        {
+          "line": 27,
+          "call": "max"
+        },
+        {
+          "line": 27,
+          "call": "max"
+        },
+        {
+          "line": 30,
+          "call": "cv2.resize"
+        },
+        {
+          "line": 33,
+          "call": "STD.to"
+        },
+        {
+          "line": 46,
+          "call": "boxes[..., :2].maximum"
+        },
+        {
+          "line": 47,
+          "call": "boxes[..., 2:].maximum"
+        },
+        {
+          "line": 48,
+          "call": "(end - start).clamp"
+        },
+        {
+          "line": 54,
+          "call": "(end - start).clamp"
+        },
+        {
+          "line": 55,
+          "call": "(boxes[..., 2:] - boxes[..., :2]).clamp"
+        },
+        {
+          "line": 56,
+          "call": "(target[..., 2:] - target[..., :2]).clamp"
+        },
+        {
+          "line": 67,
+          "call": "Path"
+        },
+        {
+          "line": 73,
+          "call": "np.loadtxt(directory / 'init.txt', delimiter=',', dtype=np.float32).reshape"
+        },
+        {
+          "line": 76,
+          "call": "np.flatnonzero"
+        },
+        {
+          "line": 77,
+          "call": "self.sequences.append"
+        },
+        {
+          "line": 84,
+          "call": "len"
+        },
+        {
+          "line": 92,
+          "call": "read_pair"
+        },
+        {
+          "line": 93,
+          "call": "labels[ids].copy"
+        },
+        {
+          "line": 93,
+          "call": "ids.copy"
+        },
+        {
+          "line": 15,
+          "call": "cv2.imread"
+        },
+        {
+          "line": 16,
+          "call": "cv2.imread"
+        },
+        {
+          "line": 22,
+          "call": "boxes.detach().cpu"
+        },
+        {
+          "line": 24,
+          "call": "math.sqrt"
+        },
+        {
+          "line": 25,
+          "call": "float"
+        },
+        {
+          "line": 25,
+          "call": "float"
+        },
+        {
+          "line": 32,
+          "call": "torch.from_numpy(np.stack(patches)).permute"
+        },
+        {
+          "line": 33,
+          "call": "MEAN.to"
+        },
+        {
+          "line": 46,
+          "call": "torch.zeros_like"
+        },
+        {
+          "line": 47,
+          "call": "torch.full_like"
+        },
+        {
+          "line": 74,
+          "call": "sorted"
+        },
+        {
+          "line": 74,
+          "call": "sorted"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 75,
+          "call": "len"
+        },
+        {
+          "line": 76,
+          "call": "(labels[:, 2:] > 0).all"
+        },
+        {
+          "line": 90,
+          "call": "rng.randrange"
+        },
+        {
+          "line": 91,
+          "call": "np.arange"
+        },
+        {
+          "line": 15,
+          "call": "str"
+        },
+        {
+          "line": 16,
+          "call": "str"
+        },
+        {
+          "line": 24,
+          "call": "float"
+        },
+        {
+          "line": 73,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 74,
+          "call": "(directory / 'visible').iterdir"
+        },
+        {
+          "line": 74,
+          "call": "(directory / 'infrared').iterdir"
+        },
+        {
+          "line": 90,
+          "call": "len"
+        },
+        {
+          "line": 22,
+          "call": "boxes.detach"
+        },
+        {
+          "line": 32,
+          "call": "torch.from_numpy"
+        },
+        {
+          "line": 32,
+          "call": "np.stack"
+        }
+      ]
+    },
+    "dense_model.py": {
+      "definitions": [
+        {
+          "name": "dense_candidates",
+          "line": 21,
+          "end_line": 43
+        },
+        {
+          "name": "__init__",
+          "line": 48,
+          "end_line": 54
+        },
+        {
+          "name": "initialize",
+          "line": 56,
+          "end_line": 58
+        },
+        {
+          "name": "forward",
+          "line": 60,
+          "end_line": 74
+        },
+        {
+          "name": "encode_candidates",
+          "line": 76,
+          "end_line": 84
+        },
+        {
+          "name": "advance",
+          "line": 86,
+          "end_line": 108
+        },
+        {
+          "name": "__init__",
+          "line": 112,
+          "end_line": 121
+        },
+        {
+          "name": "device",
+          "line": 124,
+          "end_line": 125
+        },
+        {
+          "name": "train",
+          "line": 127,
+          "end_line": 130
+        },
+        {
+          "name": "extract",
+          "line": 133,
+          "end_line": 139
+        },
+        {
+          "name": "predict",
+          "line": 141,
+          "end_line": 150
+        },
+        {
+          "name": "initialize_memory",
+          "line": 152,
+          "end_line": 157
+        },
+        {
+          "name": "trainable_state",
+          "line": 159,
+          "end_line": 163
+        },
+        {
+          "name": "load_trainable_state",
+          "line": 165,
+          "end_line": 170
+        },
+        {
+          "name": "initialize_batch",
+          "line": 172,
+          "end_line": 178
+        },
+        {
+          "name": "step_batch",
+          "line": 180,
+          "end_line": 200
+        },
+        {
+          "name": "localization_losses",
+          "line": 202,
+          "end_line": 221
+        },
+        {
+          "name": "memory_losses",
+          "line": 223,
+          "end_line": 239
+        },
+        {
+          "name": "forward",
+          "line": 241,
+          "end_line": 270
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 23,
+          "call": "response.clone"
+        },
+        {
+          "line": 24,
+          "call": "torch.arange"
+        },
+        {
+          "line": 25,
+          "call": "torch.meshgrid"
+        },
+        {
+          "line": 27,
+          "call": "range"
+        },
+        {
+          "line": 32,
+          "call": "torch.stack"
+        },
+        {
+          "line": 33,
+          "call": "indices[:, None].expand"
+        },
+        {
+          "line": 34,
+          "call": "features['size'].flatten(2).gather(2, gather).transpose"
+        },
+        {
+          "line": 35,
+          "call": "features['offset'].flatten(2).gather(2, gather).transpose"
+        },
+        {
+          "line": 37,
+          "call": "torch.cat"
+        },
+        {
+          "line": 39,
+          "call": "dict"
+        },
+        {
+          "line": 132,
+          "call": "torch.no_grad"
+        },
+        {
+          "line": 28,
+          "call": "suppressed.flatten(1).argmax"
+        },
+        {
+          "line": 29,
+          "call": "indices.append"
+        },
+        {
+          "line": 31,
+          "call": "suppressed.masked_fill"
+        },
+        {
+          "line": 49,
+          "call": "super().__init__"
+        },
+        {
+          "line": 50,
+          "call": "nn.Sequential"
+        },
+        {
+          "line": 51,
+          "call": "InstanceMemory"
+        },
+        {
+          "line": 52,
+          "call": "nn.Linear"
+        },
+        {
+          "line": 53,
+          "call": "nn.init.zeros_"
+        },
+        {
+          "line": 54,
+          "call": "nn.init.zeros_"
+        },
+        {
+          "line": 57,
+          "call": "self.memory.encode"
+        },
+        {
+          "line": 58,
+          "call": "dict"
+        },
+        {
+          "line": 62,
+          "call": "features.flatten(-2).permute"
+        },
+        {
+          "line": 63,
+          "call": "self.memory.encode"
+        },
+        {
+          "line": 64,
+          "call": "F.normalize"
+        },
+        {
+          "line": 65,
+          "call": "torch.einsum"
+        },
+        {
+          "line": 66,
+          "call": "torch.einsum"
+        },
+        {
+          "line": 67,
+          "call": "F.normalize"
+        },
+        {
+          "line": 68,
+          "call": "context[:, 0, None].expand"
+        },
+        {
+          "line": 69,
+          "call": "context[:, 1, None].expand_as"
+        },
+        {
+          "line": 70,
+          "call": "torch.stack"
+        },
+        {
+          "line": 72,
+          "call": "self.output"
+        },
+        {
+          "line": 73,
+          "call": "prompt.permute(0, 2, 3, 1).reshape"
+        },
+        {
+          "line": 77,
+          "call": "self.memory.encode"
+        },
+        {
+          "line": 78,
+          "call": "descriptor.new_zeros"
+        },
+        {
+          "line": 80,
+          "call": "(descriptor * state['anchor'][:, None]).sum"
+        },
+        {
+          "line": 81,
+          "call": "anchor_similarity.unbind"
+        },
+        {
+          "line": 82,
+          "call": "self.memory.gate_logits"
+        },
+        {
+          "line": 83,
+          "call": "self.memory.support"
+        },
+        {
+          "line": 84,
+          "call": "dict"
+        },
+        {
+          "line": 87,
+          "call": "encoded['gate'].softmax"
+        },
+        {
+          "line": 91,
+          "call": "torch.ones_like"
+        },
+        {
+          "line": 95,
+          "call": "probability.argmax"
+        },
+        {
+          "line": 107,
+          "call": "torch.cat"
+        },
+        {
+          "line": 113,
+          "call": "super().__init__"
+        },
+        {
+          "line": 115,
+          "call": "self.base.requires_grad_"
+        },
+        {
+          "line": 116,
+          "call": "self.base.decode_fuse_search.requires_grad_"
+        },
+        {
+          "line": 117,
+          "call": "self.base.box_head.requires_grad_"
+        },
+        {
+          "line": 119,
+          "call": "FocalLoss"
+        },
+        {
+          "line": 121,
+          "call": "self.register_buffer"
+        },
+        {
+          "line": 128,
+          "call": "super().train"
+        },
+        {
+          "line": 129,
+          "call": "self.base.backbone.eval"
+        },
+        {
+          "line": 134,
+          "call": "self.base.backbone"
+        },
+        {
+          "line": 135,
+          "call": "tokens.chunk"
+        },
+        {
+          "line": 137,
+          "call": "dict"
+        },
+        {
+          "line": 142,
+          "call": "self.extract"
+        },
+        {
+          "line": 148,
+          "call": "self.base.decode_fuse_search"
+        },
+        {
+          "line": 149,
+          "call": "self.base.box_head"
+        },
+        {
+          "line": 150,
+          "call": "dict"
+        },
+        {
+          "line": 153,
+          "call": "self.extract"
+        },
+        {
+          "line": 154,
+          "call": "torch.ceil"
+        },
+        {
+          "line": 157,
+          "call": "self.prompt.initialize"
+        },
+        {
+          "line": 160,
+          "call": "dict"
+        },
+        {
+          "line": 167,
+          "call": "self.base.decode_fuse_search.load_state_dict"
+        },
+        {
+          "line": 168,
+          "call": "self.base.box_head.load_state_dict"
+        },
+        {
+          "line": 173,
+          "call": "crop_batch"
+        },
+        {
+          "line": 178,
+          "call": "dict"
+        },
+        {
+          "line": 181,
+          "call": "crop_batch"
+        },
+        {
+          "line": 182,
+          "call": "self.predict"
+        },
+        {
+          "line": 183,
+          "call": "dense_candidates"
+        },
+        {
+          "line": 184,
+          "call": "clip_boxes(candidate['boxes'][:, 0], images).detach"
+        },
+        {
+          "line": 193,
+          "call": "list"
+        },
+        {
+          "line": 194,
+          "call": "write.any"
+        },
+        {
+          "line": 198,
+          "call": "dict"
+        },
+        {
+          "line": 203,
+          "call": "(truth[:, 2:] > 0).all"
+        },
+        {
+          "line": 206,
+          "call": "torch.cat"
+        },
+        {
+          "line": 207,
+          "call": "torch.where"
+        },
+        {
+          "line": 208,
+          "call": "generate_heatmap(normalized.detach().cpu()[None], 256, 16)[0].to"
+        },
+        {
+          "line": 210,
+          "call": "self.focal"
+        },
+        {
+          "line": 212,
+          "call": "self.base.box_head.cal_bbox"
+        },
+        {
+          "line": 213,
+          "call": "box_cxcywh_to_xyxy"
+        },
+        {
+          "line": 214,
+          "call": "xyxy(normalized).clamp"
+        },
+        {
+          "line": 216,
+          "call": "(target_xyxy[:, 2:] > target_xyxy[:, :2]).all"
+        },
+        {
+          "line": 217,
+          "call": "regression.float"
+        },
+        {
+          "line": 218,
+          "call": "generalized_box_iou"
+        },
+        {
+          "line": 225,
+          "call": "iou"
+        },
+        {
+          "line": 226,
+          "call": "torch.where(quality >= 0.5, 0, torch.where(quality == 0, 1, 2)).long"
+        },
+        {
+          "line": 227,
+          "call": "F.cross_entropy"
+        },
+        {
+          "line": 230,
+          "call": "encoded['support'][..., 0].mean"
+        },
+        {
+          "line": 233,
+          "call": "torch.cat(teacher_features, 1).detach"
+        },
+        {
+          "line": 234,
+          "call": "torch.cat"
+        },
+        {
+          "line": 235,
+          "call": "torch.einsum"
+        },
+        {
+          "line": 236,
+          "call": "teacher.masked_fill(~past_valid[:, None, :, None], -torch.inf).max(2).values.mean"
+        },
+        {
+          "line": 242,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 243,
+          "call": "self.initialize_batch"
+        },
+        {
+          "line": 250,
+          "call": "range"
+        },
+        {
+          "line": 265,
+          "call": "torch.stack"
+        },
+        {
+          "line": 266,
+          "call": "(labels[:, 1:steps + 1, 2:] > 0).all"
+        },
+        {
+          "line": 267,
+          "call": "iou"
+        },
+        {
+          "line": 269,
+          "call": "dict"
+        },
+        {
+          "line": 30,
+          "call": "(ys[None] - index[:, None, None] // 16).abs().maximum"
+        },
+        {
+          "line": 34,
+          "call": "features['size'].flatten(2).gather"
+        },
+        {
+          "line": 35,
+          "call": "features['offset'].flatten(2).gather"
+        },
+        {
+          "line": 36,
+          "call": "torch.stack((indices % 16, indices // 16), -1).float"
+        },
+        {
+          "line": 40,
+          "call": "features['score'][:, 0].flatten(1).gather"
+        },
+        {
+          "line": 41,
+          "call": "response.flatten(1).gather"
+        },
+        {
+          "line": 42,
+          "call": "pool_rois"
+        },
+        {
+          "line": 43,
+          "call": "pool_rois(features['fused'][:, None], normalized).squeeze"
+        },
+        {
+          "line": 50,
+          "call": "nn.LayerNorm"
+        },
+        {
+          "line": 50,
+          "call": "nn.Linear"
+        },
+        {
+          "line": 50,
+          "call": "nn.GELU"
+        },
+        {
+          "line": 64,
+          "call": "torch.cat"
+        },
+        {
+          "line": 66,
+          "call": "(similarity * 10).softmax"
+        },
+        {
+          "line": 72,
+          "call": "torch.cat"
+        },
+        {
+          "line": 92,
+          "call": "self.memory.write_rates"
+        },
+        {
+          "line": 96,
+          "call": "torch.arange"
+        },
+        {
+          "line": 97,
+          "call": "torch.arange"
+        },
+        {
+          "line": 103,
+          "call": "confidence.max"
+        },
+        {
+          "line": 106,
+          "call": "context.append"
+        },
+        {
+          "line": 108,
+          "call": "dict"
+        },
+        {
+          "line": 118,
+          "call": "CompetitiveMemoryPrompt"
+        },
+        {
+          "line": 125,
+          "call": "next"
+        },
+        {
+          "line": 146,
+          "call": "self.prompt"
+        },
+        {
+          "line": 148,
+          "call": "torch.cat((rgb_x, tir_x), -1).transpose(1, 2).reshape"
+        },
+        {
+          "line": 156,
+          "call": "torch.cat"
+        },
+        {
+          "line": 157,
+          "call": "pool_rois(features['anchor_tokens'], region).squeeze"
+        },
+        {
+          "line": 162,
+          "call": "self.prompt.state_dict"
+        },
+        {
+          "line": 166,
+          "call": "set"
+        },
+        {
+          "line": 170,
+          "call": "self.prompt.load_state_dict"
+        },
+        {
+          "line": 176,
+          "call": "crop_batch"
+        },
+        {
+          "line": 177,
+          "call": "self.initialize_memory"
+        },
+        {
+          "line": 189,
+          "call": "self.prompt.encode_candidates"
+        },
+        {
+          "line": 190,
+          "call": "self.prompt.advance"
+        },
+        {
+          "line": 192,
+          "call": "write[:, None].expand"
+        },
+        {
+          "line": 195,
+          "call": "crop_batch"
+        },
+        {
+          "line": 197,
+          "call": "torch.where"
+        },
+        {
+          "line": 200,
+          "call": "dict"
+        },
+        {
+          "line": 207,
+          "call": "torch.zeros_like"
+        },
+        {
+          "line": 219,
+          "call": "((1 - giou) * weights).sum"
+        },
+        {
+          "line": 219,
+          "call": "weights.sum().clamp"
+        },
+        {
+          "line": 220,
+          "call": "(F.l1_loss(predicted_xyxy, target_xyxy, reduction='none').mean(-1) * weights).sum"
+        },
+        {
+          "line": 220,
+          "call": "weights.sum().clamp"
+        },
+        {
+          "line": 221,
+          "call": "dict"
+        },
+        {
+          "line": 225,
+          "call": "observation['candidate']['boxes'].detach"
+        },
+        {
+          "line": 227,
+          "call": "encoded['gate'].flatten"
+        },
+        {
+          "line": 227,
+          "call": "category[..., None].expand(-1, -1, 2).flatten"
+        },
+        {
+          "line": 228,
+          "call": "(gate.reshape(len(truth), -1, 2) * valid[:, None, None]).sum"
+        },
+        {
+          "line": 228,
+          "call": "(valid.sum() * 10).clamp"
+        },
+        {
+          "line": 232,
+          "call": "(F.relu(0.2 - gap) * pairs).sum"
+        },
+        {
+          "line": 232,
+          "call": "pairs.sum().clamp"
+        },
+        {
+          "line": 235,
+          "call": "encoded['descriptor'].detach"
+        },
+        {
+          "line": 238,
+          "call": "((gap - teacher_gap).square() * pairs).sum"
+        },
+        {
+          "line": 238,
+          "call": "pairs.sum().clamp"
+        },
+        {
+          "line": 239,
+          "call": "dict"
+        },
+        {
+          "line": 244,
+          "call": "len"
+        },
+        {
+          "line": 251,
+          "call": "self.step_batch"
+        },
+        {
+          "line": 252,
+          "call": "predictions.append"
+        },
+        {
+          "line": 267,
+          "call": "xyxy"
+        },
+        {
+          "line": 267,
+          "call": "xyxy"
+        },
+        {
+          "line": 268,
+          "call": "(quality * valid).sum"
+        },
+        {
+          "line": 268,
+          "call": "valid.sum(1).clamp"
+        },
+        {
+          "line": 28,
+          "call": "suppressed.flatten"
+        },
+        {
+          "line": 30,
+          "call": "(xs[None] - index[:, None, None] % 16).abs"
+        },
+        {
+          "line": 49,
+          "call": "super"
+        },
+        {
+          "line": 58,
+          "call": "self.memory.initialize"
+        },
+        {
+          "line": 62,
+          "call": "features.flatten"
+        },
+        {
+          "line": 70,
+          "call": "(query * other).sum"
+        },
+        {
+          "line": 71,
+          "call": "(query * unknown).sum"
+        },
+        {
+          "line": 73,
+          "call": "prompt.permute"
+        },
+        {
+          "line": 96,
+          "call": "len"
+        },
+        {
+          "line": 107,
+          "call": "torch.stack"
+        },
+        {
+          "line": 113,
+          "call": "super"
+        },
+        {
+          "line": 120,
+          "call": "torch.cos"
+        },
+        {
+          "line": 121,
+          "call": "axis.reshape"
+        },
+        {
+          "line": 121,
+          "call": "axis.reshape"
+        },
+        {
+          "line": 125,
+          "call": "self.base.box_head.parameters"
+        },
+        {
+          "line": 128,
+          "call": "super"
+        },
+        {
+          "line": 138,
+          "call": "torch.stack((rgb_x, tir_x), 1).transpose(-1, -2).reshape"
+        },
+        {
+          "line": 139,
+          "call": "torch.stack((rgb[:, 1:65], tir[:, 1:65]), 1).transpose(-1, -2).reshape"
+        },
+        {
+          "line": 147,
+          "call": "prompted[:, 0].flatten(2).transpose"
+        },
+        {
+          "line": 147,
+          "call": "prompted[:, 1].flatten(2).transpose"
+        },
+        {
+          "line": 154,
+          "call": "torch.sqrt"
+        },
+        {
+          "line": 160,
+          "call": "self.base.decode_fuse_search.state_dict"
+        },
+        {
+          "line": 160,
+          "call": "self.base.box_head.state_dict"
+        },
+        {
+          "line": 184,
+          "call": "clip_boxes"
+        },
+        {
+          "line": 196,
+          "call": "commit.repeat_interleave"
+        },
+        {
+          "line": 214,
+          "call": "xyxy"
+        },
+        {
+          "line": 225,
+          "call": "xyxy"
+        },
+        {
+          "line": 226,
+          "call": "torch.where"
+        },
+        {
+          "line": 233,
+          "call": "torch.cat"
+        },
+        {
+          "line": 242,
+          "call": "clip['boxes'].tolist"
+        },
+        {
+          "line": 247,
+          "call": "state['memory']['anchor'][:, None].detach"
+        },
+        {
+          "line": 248,
+          "call": "torch.ones"
+        },
+        {
+          "line": 254,
+          "call": "self.localization_losses"
+        },
+        {
+          "line": 262,
+          "call": "losses.append"
+        },
+        {
+          "line": 263,
+          "call": "parts.items"
+        },
+        {
+          "line": 30,
+          "call": "(ys[None] - index[:, None, None] // 16).abs"
+        },
+        {
+          "line": 34,
+          "call": "features['size'].flatten"
+        },
+        {
+          "line": 35,
+          "call": "features['offset'].flatten"
+        },
+        {
+          "line": 36,
+          "call": "torch.stack"
+        },
+        {
+          "line": 39,
+          "call": "torch.cat"
+        },
+        {
+          "line": 40,
+          "call": "features['score'][:, 0].flatten"
+        },
+        {
+          "line": 41,
+          "call": "response.flatten"
+        },
+        {
+          "line": 43,
+          "call": "pool_rois"
+        },
+        {
+          "line": 70,
+          "call": "similarity.max"
+        },
+        {
+          "line": 148,
+          "call": "torch.cat((rgb_x, tir_x), -1).transpose"
+        },
+        {
+          "line": 154,
+          "call": "boxes[:, 2:].prod"
+        },
+        {
+          "line": 157,
+          "call": "pool_rois"
+        },
+        {
+          "line": 208,
+          "call": "generate_heatmap"
+        },
+        {
+          "line": 215,
+          "call": "heatmap.flatten(1).max"
+        },
+        {
+          "line": 219,
+          "call": "weights.sum"
+        },
+        {
+          "line": 220,
+          "call": "weights.sum"
+        },
+        {
+          "line": 226,
+          "call": "torch.where"
+        },
+        {
+          "line": 227,
+          "call": "category[..., None].expand"
+        },
+        {
+          "line": 232,
+          "call": "pairs.sum"
+        },
+        {
+          "line": 236,
+          "call": "teacher.masked_fill(~past_valid[:, None, :, None], -torch.inf).max"
+        },
+        {
+          "line": 238,
+          "call": "pairs.sum"
+        },
+        {
+          "line": 248,
+          "call": "len"
+        },
+        {
+          "line": 257,
+          "call": "self.memory_losses"
+        },
+        {
+          "line": 258,
+          "call": "parts.update"
+        },
+        {
+          "line": 260,
+          "call": "teacher_features.append"
+        },
+        {
+          "line": 261,
+          "call": "teacher_valid.append"
+        },
+        {
+          "line": 268,
+          "call": "valid.sum"
+        },
+        {
+          "line": 269,
+          "call": "torch.stack(losses).mean"
+        },
+        {
+          "line": 269,
+          "call": "prediction.new_zeros"
+        },
+        {
+          "line": 120,
+          "call": "torch.arange(1, 17).float"
+        },
+        {
+          "line": 138,
+          "call": "torch.stack((rgb_x, tir_x), 1).transpose"
+        },
+        {
+          "line": 139,
+          "call": "torch.stack((rgb[:, 1:65], tir[:, 1:65]), 1).transpose"
+        },
+        {
+          "line": 147,
+          "call": "prompted[:, 0].flatten"
+        },
+        {
+          "line": 147,
+          "call": "prompted[:, 1].flatten"
+        },
+        {
+          "line": 220,
+          "call": "F.l1_loss(predicted_xyxy, target_xyxy, reduction='none').mean"
+        },
+        {
+          "line": 228,
+          "call": "gate.reshape"
+        },
+        {
+          "line": 228,
+          "call": "valid.sum"
+        },
+        {
+          "line": 232,
+          "call": "F.relu"
+        },
+        {
+          "line": 238,
+          "call": "(gap - teacher_gap).square"
+        },
+        {
+          "line": 260,
+          "call": "observation['encoded']['descriptor'][:, :1].detach"
+        },
+        {
+          "line": 264,
+          "call": "totals.get"
+        },
+        {
+          "line": 148,
+          "call": "torch.cat"
+        },
+        {
+          "line": 208,
+          "call": "normalized.detach().cpu"
+        },
+        {
+          "line": 215,
+          "call": "heatmap.flatten"
+        },
+        {
+          "line": 228,
+          "call": "len"
+        },
+        {
+          "line": 236,
+          "call": "teacher.masked_fill"
+        },
+        {
+          "line": 264,
+          "call": "value.detach"
+        },
+        {
+          "line": 269,
+          "call": "torch.stack"
+        },
+        {
+          "line": 120,
+          "call": "torch.arange"
+        },
+        {
+          "line": 138,
+          "call": "torch.stack"
+        },
+        {
+          "line": 139,
+          "call": "torch.stack"
+        },
+        {
+          "line": 220,
+          "call": "F.l1_loss"
+        },
+        {
+          "line": 208,
+          "call": "normalized.detach"
+        }
+      ]
+    },
+    "dense_tracker.py": {
+      "definitions": [
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 16
+        },
+        {
+          "name": "load_payload",
+          "line": 18,
+          "end_line": 25
+        },
+        {
+          "name": "initialize",
+          "line": 28,
+          "end_line": 33
+        },
+        {
+          "name": "track",
+          "line": 36,
+          "end_line": 79
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 27,
+          "call": "torch.inference_mode"
+        },
+        {
+          "line": 35,
+          "call": "torch.inference_mode"
+        },
+        {
+          "line": 13,
+          "call": "super().__init__"
+        },
+        {
+          "line": 14,
+          "call": "Path(pretrained).resolve"
+        },
+        {
+          "line": 15,
+          "call": "DenseCADTrack(self.network, use_memory).cuda().eval"
+        },
+        {
+          "line": 23,
+          "call": "self.network.load_trainable_state"
+        },
+        {
+          "line": 24,
+          "call": "self.network.eval"
+        },
+        {
+          "line": 29,
+          "call": "super().initialize"
+        },
+        {
+          "line": 38,
+          "call": "list"
+        },
+        {
+          "line": 39,
+          "call": "self.crop"
+        },
+        {
+          "line": 40,
+          "call": "self.network.predict"
+        },
+        {
+          "line": 42,
+          "call": "self.network.base.box_head.cal_bbox(response, output['size'], output['offset']).view"
+        },
+        {
+          "line": 43,
+          "call": "(boxes.mean(0) * self.search_size / resize_factor).tolist"
+        },
+        {
+          "line": 55,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 56,
+          "call": "dense_candidates"
+        },
+        {
+          "line": 71,
+          "call": "commit[0].cpu().tolist"
+        },
+        {
+          "line": 72,
+          "call": "dict"
+        },
+        {
+          "line": 21,
+          "call": "Path(payload['config']['pretrained']).resolve"
+        },
+        {
+          "line": 22,
+          "call": "hashlib.sha256(self.pretrained.read_bytes()).hexdigest"
+        },
+        {
+          "line": 31,
+          "call": "self.crop"
+        },
+        {
+          "line": 32,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 33,
+          "call": "self.network.initialize_memory"
+        },
+        {
+          "line": 50,
+          "call": "min"
+        },
+        {
+          "line": 50,
+          "call": "min"
+        },
+        {
+          "line": 51,
+          "call": "min"
+        },
+        {
+          "line": 51,
+          "call": "min"
+        },
+        {
+          "line": 52,
+          "call": "max"
+        },
+        {
+          "line": 52,
+          "call": "max"
+        },
+        {
+          "line": 53,
+          "call": "response.flatten(1).max"
+        },
+        {
+          "line": 54,
+          "call": "bool"
+        },
+        {
+          "line": 56,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 58,
+          "call": "self.network.prompt.encode_candidates"
+        },
+        {
+          "line": 59,
+          "call": "self.network.prompt.advance"
+        },
+        {
+          "line": 61,
+          "call": "torch.full"
+        },
+        {
+          "line": 63,
+          "call": "self.crop"
+        },
+        {
+          "line": 13,
+          "call": "super"
+        },
+        {
+          "line": 14,
+          "call": "Path"
+        },
+        {
+          "line": 15,
+          "call": "DenseCADTrack(self.network, use_memory).cuda"
+        },
+        {
+          "line": 29,
+          "call": "super"
+        },
+        {
+          "line": 42,
+          "call": "self.network.base.box_head.cal_bbox"
+        },
+        {
+          "line": 50,
+          "call": "max"
+        },
+        {
+          "line": 50,
+          "call": "max"
+        },
+        {
+          "line": 51,
+          "call": "max"
+        },
+        {
+          "line": 51,
+          "call": "max"
+        },
+        {
+          "line": 59,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 68,
+          "call": "torch.where"
+        },
+        {
+          "line": 69,
+          "call": "merged.permute(0, 2, 3, 1).contiguous().permute"
+        },
+        {
+          "line": 70,
+          "call": "merged[0].unsqueeze"
+        },
+        {
+          "line": 71,
+          "call": "commit[0].cpu"
+        },
+        {
+          "line": 72,
+          "call": "np.asarray"
+        },
+        {
+          "line": 72,
+          "call": "float"
+        },
+        {
+          "line": 73,
+          "call": "any"
+        },
+        {
+          "line": 77,
+          "call": "list"
+        },
+        {
+          "line": 77,
+          "call": "list"
+        },
+        {
+          "line": 78,
+          "call": "candidate['boxes'][0].cpu().tolist"
+        },
+        {
+          "line": 79,
+          "call": "float"
+        },
+        {
+          "line": 21,
+          "call": "Path"
+        },
+        {
+          "line": 22,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 53,
+          "call": "response.flatten"
+        },
+        {
+          "line": 67,
+          "call": "commit.repeat_interleave"
+        },
+        {
+          "line": 15,
+          "call": "DenseCADTrack"
+        },
+        {
+          "line": 22,
+          "call": "self.pretrained.read_bytes"
+        },
+        {
+          "line": 43,
+          "call": "boxes.mean"
+        },
+        {
+          "line": 69,
+          "call": "merged.permute(0, 2, 3, 1).contiguous"
+        },
+        {
+          "line": 78,
+          "call": "candidate['boxes'][0].cpu"
+        },
+        {
+          "line": 69,
+          "call": "merged.permute"
+        }
+      ]
+    },
+    "dense_evaluation.py": {
+      "definitions": [
+        {
+          "name": "load_dense_tracker",
+          "line": 10,
+          "end_line": 14
+        },
+        {
+          "name": "track_video",
+          "line": 18,
+          "end_line": 31
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 17,
+          "call": "torch.inference_mode"
+        },
+        {
+          "line": 11,
+          "call": "torch.load"
+        },
+        {
+          "line": 12,
+          "call": "DenseCADTracker"
+        },
+        {
+          "line": 13,
+          "call": "tracker.load_payload"
+        },
+        {
+          "line": 21,
+          "call": "tracker.initialize"
+        },
+        {
+          "line": 23,
+          "call": "range"
+        },
+        {
+          "line": 19,
+          "call": "len"
+        },
+        {
+          "line": 19,
+          "call": "len"
+        },
+        {
+          "line": 20,
+          "call": "(initial[2:] > 0).all"
+        },
+        {
+          "line": 21,
+          "call": "read_pair"
+        },
+        {
+          "line": 23,
+          "call": "len"
+        },
+        {
+          "line": 24,
+          "call": "torch.cuda.synchronize"
+        },
+        {
+          "line": 25,
+          "call": "time.perf_counter"
+        },
+        {
+          "line": 26,
+          "call": "tracker.track"
+        },
+        {
+          "line": 27,
+          "call": "torch.cuda.synchronize"
+        },
+        {
+          "line": 28,
+          "call": "latencies.append"
+        },
+        {
+          "line": 29,
+          "call": "boxes.append"
+        },
+        {
+          "line": 30,
+          "call": "diagnostics.append"
+        },
+        {
+          "line": 31,
+          "call": "np.stack"
+        },
+        {
+          "line": 31,
+          "call": "np.asarray"
+        },
+        {
+          "line": 26,
+          "call": "read_pair"
+        },
+        {
+          "line": 28,
+          "call": "time.perf_counter"
+        },
+        {
+          "line": 30,
+          "call": "observation.items"
+        }
+      ]
+    },
+    "qualify_dense.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 18,
+          "end_line": 75
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 19,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 20,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 21,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 22,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 24,
+          "call": "torch.cuda.set_device"
+        },
+        {
+          "line": 25,
+          "call": "torch.set_num_threads"
+        },
+        {
+          "line": 26,
+          "call": "torch.manual_seed"
+        },
+        {
+          "line": 27,
+          "call": "json.loads"
+        },
+        {
+          "line": 28,
+          "call": "Path"
+        },
+        {
+          "line": 29,
+          "call": "hashlib.sha256(pretrained.read_bytes()).hexdigest"
+        },
+        {
+          "line": 31,
+          "call": "sorted"
+        },
+        {
+          "line": 32,
+          "call": "set"
+        },
+        {
+          "line": 33,
+          "call": "sorted"
+        },
+        {
+          "line": 35,
+          "call": "VideoClips"
+        },
+        {
+          "line": 36,
+          "call": "PureCADTracker"
+        },
+        {
+          "line": 37,
+          "call": "DenseCADTracker"
+        },
+        {
+          "line": 38,
+          "call": "DenseCADTracker"
+        },
+        {
+          "line": 42,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 43,
+          "call": "range"
+        },
+        {
+          "line": 65,
+          "call": "Path"
+        },
+        {
+          "line": 66,
+          "call": "output.parent.mkdir"
+        },
+        {
+          "line": 67,
+          "call": "dict"
+        },
+        {
+          "line": 74,
+          "call": "output.write_text"
+        },
+        {
+          "line": 75,
+          "call": "print"
+        },
+        {
+          "line": 79,
+          "call": "main"
+        },
+        {
+          "line": 27,
+          "call": "Path(args.config).read_text"
+        },
+        {
+          "line": 32,
+          "call": "random.Random(20261013).sample"
+        },
+        {
+          "line": 34,
+          "call": "len"
+        },
+        {
+          "line": 39,
+          "call": "torch.count_nonzero"
+        },
+        {
+          "line": 40,
+          "call": "torch.count_nonzero"
+        },
+        {
+          "line": 45,
+          "call": "clip['boxes'][0].astype"
+        },
+        {
+          "line": 48,
+          "call": "range"
+        },
+        {
+          "line": 74,
+          "call": "json.dumps"
+        },
+        {
+          "line": 75,
+          "call": "json.dumps"
+        },
+        {
+          "line": 29,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 33,
+          "call": "set"
+        },
+        {
+          "line": 47,
+          "call": "tracker.initialize"
+        },
+        {
+          "line": 50,
+          "call": "reference.track"
+        },
+        {
+          "line": 58,
+          "call": "dict"
+        },
+        {
+          "line": 62,
+          "call": "records.append"
+        },
+        {
+          "line": 63,
+          "call": "print"
+        },
+        {
+          "line": 68,
+          "call": "len"
+        },
+        {
+          "line": 70,
+          "call": "int"
+        },
+        {
+          "line": 27,
+          "call": "Path"
+        },
+        {
+          "line": 29,
+          "call": "pretrained.read_bytes"
+        },
+        {
+          "line": 31,
+          "call": "Path(config['train_root']).iterdir"
+        },
+        {
+          "line": 31,
+          "call": "p.is_dir"
+        },
+        {
+          "line": 32,
+          "call": "random.Random"
+        },
+        {
+          "line": 51,
+          "call": "control.track"
+        },
+        {
+          "line": 51,
+          "call": "prompt.track"
+        },
+        {
+          "line": 52,
+          "call": "float"
+        },
+        {
+          "line": 56,
+          "call": "all"
+        },
+        {
+          "line": 63,
+          "call": "json.dumps"
+        },
+        {
+          "line": 64,
+          "call": "all"
+        },
+        {
+          "line": 64,
+          "call": "all"
+        },
+        {
+          "line": 70,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 52,
+          "call": "np.max"
+        },
+        {
+          "line": 53,
+          "call": "np.array_equal"
+        },
+        {
+          "line": 58,
+          "call": "int"
+        },
+        {
+          "line": 31,
+          "call": "Path"
+        },
+        {
+          "line": 52,
+          "call": "np.abs"
+        },
+        {
+          "line": 56,
+          "call": "torch.equal"
+        },
+        {
+          "line": 57,
+          "call": "zip"
+        },
+        {
+          "line": 56,
+          "call": "a.stride"
+        },
+        {
+          "line": 56,
+          "call": "b.stride"
+        }
+      ]
+    },
+    "validate_dense.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 16,
+          "end_line": 59
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 17,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 18,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 19,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 20,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 21,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 22,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 24,
+          "call": "torch.cuda.set_device"
+        },
+        {
+          "line": 25,
+          "call": "torch.set_num_threads"
+        },
+        {
+          "line": 26,
+          "call": "json.loads"
+        },
+        {
+          "line": 27,
+          "call": "sorted"
+        },
+        {
+          "line": 30,
+          "call": "load_dense_tracker"
+        },
+        {
+          "line": 32,
+          "call": "Path"
+        },
+        {
+          "line": 33,
+          "call": "output.mkdir"
+        },
+        {
+          "line": 35,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 52,
+          "call": "dict"
+        },
+        {
+          "line": 59,
+          "call": "(output / f'development_shard{args.shard}.json').write_text"
+        },
+        {
+          "line": 63,
+          "call": "main"
+        },
+        {
+          "line": 26,
+          "call": "Path(args.manifest).read_text"
+        },
+        {
+          "line": 28,
+          "call": "len"
+        },
+        {
+          "line": 28,
+          "call": "len"
+        },
+        {
+          "line": 39,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 41,
+          "call": "track_video"
+        },
+        {
+          "line": 42,
+          "call": "(labels[:, 2:] > 0).all"
+        },
+        {
+          "line": 44,
+          "call": "np.savetxt"
+        },
+        {
+          "line": 45,
+          "call": "np.save"
+        },
+        {
+          "line": 46,
+          "call": "(output / f'{name}_mechanisms.json').write_text"
+        },
+        {
+          "line": 47,
+          "call": "dict"
+        },
+        {
+          "line": 50,
+          "call": "records.append"
+        },
+        {
+          "line": 51,
+          "call": "print"
+        },
+        {
+          "line": 59,
+          "call": "json.dumps"
+        },
+        {
+          "line": 28,
+          "call": "set"
+        },
+        {
+          "line": 29,
+          "call": "set"
+        },
+        {
+          "line": 29,
+          "call": "set"
+        },
+        {
+          "line": 37,
+          "call": "Path"
+        },
+        {
+          "line": 38,
+          "call": "sorted"
+        },
+        {
+          "line": 38,
+          "call": "sorted"
+        },
+        {
+          "line": 40,
+          "call": "len"
+        },
+        {
+          "line": 40,
+          "call": "len"
+        },
+        {
+          "line": 40,
+          "call": "len"
+        },
+        {
+          "line": 43,
+          "call": "iou(xyxy(torch.tensor(prediction)), xyxy(torch.tensor(labels))).numpy"
+        },
+        {
+          "line": 46,
+          "call": "json.dumps"
+        },
+        {
+          "line": 51,
+          "call": "json.dumps"
+        },
+        {
+          "line": 52,
+          "call": "len"
+        },
+        {
+          "line": 53,
+          "call": "str"
+        },
+        {
+          "line": 53,
+          "call": "hashlib.sha256(Path(args.checkpoint).read_bytes()).hexdigest"
+        },
+        {
+          "line": 55,
+          "call": "int"
+        },
+        {
+          "line": 26,
+          "call": "Path"
+        },
+        {
+          "line": 38,
+          "call": "(sequence / 'visible').iterdir"
+        },
+        {
+          "line": 38,
+          "call": "(sequence / 'infrared').iterdir"
+        },
+        {
+          "line": 47,
+          "call": "len"
+        },
+        {
+          "line": 47,
+          "call": "int"
+        },
+        {
+          "line": 48,
+          "call": "float"
+        },
+        {
+          "line": 48,
+          "call": "float"
+        },
+        {
+          "line": 49,
+          "call": "sum"
+        },
+        {
+          "line": 53,
+          "call": "Path(args.checkpoint).resolve"
+        },
+        {
+          "line": 56,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 43,
+          "call": "iou"
+        },
+        {
+          "line": 47,
+          "call": "valid.sum"
+        },
+        {
+          "line": 48,
+          "call": "overlaps.sum"
+        },
+        {
+          "line": 48,
+          "call": "overlaps.mean"
+        },
+        {
+          "line": 53,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 43,
+          "call": "xyxy"
+        },
+        {
+          "line": 43,
+          "call": "xyxy"
+        },
+        {
+          "line": 53,
+          "call": "Path"
+        },
+        {
+          "line": 53,
+          "call": "Path(args.checkpoint).read_bytes"
+        },
+        {
+          "line": 43,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 43,
+          "call": "torch.tensor"
+        },
+        {
+          "line": 53,
+          "call": "Path"
+        }
+      ]
+    },
+    "select_dense.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 15,
+          "end_line": 70
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 16,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 17,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 18,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 19,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 20,
+          "call": "Path(args.fit).resolve"
+        },
+        {
+          "line": 21,
+          "call": "json.loads"
+        },
+        {
+          "line": 22,
+          "call": "json.loads"
+        },
+        {
+          "line": 26,
+          "call": "set"
+        },
+        {
+          "line": 49,
+          "call": "max"
+        },
+        {
+          "line": 50,
+          "call": "max"
+        },
+        {
+          "line": 51,
+          "call": "DenseCADTrack"
+        },
+        {
+          "line": 62,
+          "call": "dict"
+        },
+        {
+          "line": 69,
+          "call": "(fit / 'selection.json').write_text"
+        },
+        {
+          "line": 70,
+          "call": "print"
+        },
+        {
+          "line": 74,
+          "call": "main"
+        },
+        {
+          "line": 21,
+          "call": "(fit / 'fit_complete.json').read_text"
+        },
+        {
+          "line": 22,
+          "call": "(fit / 'manifest.json').read_text"
+        },
+        {
+          "line": 30,
+          "call": "Path(candidate['checkpoint']).resolve"
+        },
+        {
+          "line": 32,
+          "call": "hashlib.sha256(checkpoint.read_bytes()).hexdigest"
+        },
+        {
+          "line": 34,
+          "call": "range"
+        },
+        {
+          "line": 46,
+          "call": "scores.append"
+        },
+        {
+          "line": 51,
+          "call": "CleanCADTrack"
+        },
+        {
+          "line": 55,
+          "call": "Path"
+        },
+        {
+          "line": 56,
+          "call": "shutil.copyfile"
+        },
+        {
+          "line": 57,
+          "call": "filecmp.cmp"
+        },
+        {
+          "line": 58,
+          "call": "torch.load"
+        },
+        {
+          "line": 60,
+          "call": "model.load_trainable_state"
+        },
+        {
+          "line": 61,
+          "call": "selected_paths.append"
+        },
+        {
+          "line": 69,
+          "call": "json.dumps"
+        },
+        {
+          "line": 70,
+          "call": "json.dumps"
+        },
+        {
+          "line": 20,
+          "call": "Path"
+        },
+        {
+          "line": 27,
+          "call": "len"
+        },
+        {
+          "line": 36,
+          "call": "json.loads"
+        },
+        {
+          "line": 43,
+          "call": "records.extend"
+        },
+        {
+          "line": 45,
+          "call": "sum"
+        },
+        {
+          "line": 46,
+          "call": "dict"
+        },
+        {
+          "line": 61,
+          "call": "str"
+        },
+        {
+          "line": 27,
+          "call": "set"
+        },
+        {
+          "line": 30,
+          "call": "Path"
+        },
+        {
+          "line": 32,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 36,
+          "call": "path.read_text"
+        },
+        {
+          "line": 44,
+          "call": "len"
+        },
+        {
+          "line": 32,
+          "call": "checkpoint.read_bytes"
+        },
+        {
+          "line": 35,
+          "call": "Path"
+        },
+        {
+          "line": 47,
+          "call": "sum"
+        },
+        {
+          "line": 48,
+          "call": "sum"
+        },
+        {
+          "line": 48,
+          "call": "sum"
+        }
+      ]
+    },
+    "infer_dense.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 14,
+          "end_line": 53
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 15,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 16,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 17,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 18,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 19,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 20,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 21,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 23,
+          "call": "torch.cuda.set_device"
+        },
+        {
+          "line": 24,
+          "call": "torch.set_num_threads"
+        },
+        {
+          "line": 25,
+          "call": "load_dense_tracker"
+        },
+        {
+          "line": 27,
+          "call": "Path"
+        },
+        {
+          "line": 28,
+          "call": "output.mkdir"
+        },
+        {
+          "line": 29,
+          "call": "sorted"
+        },
+        {
+          "line": 32,
+          "call": "enumerate"
+        },
+        {
+          "line": 45,
+          "call": "dict"
+        },
+        {
+          "line": 53,
+          "call": "(output / f'complete_shard{args.shard}.json').write_text"
+        },
+        {
+          "line": 57,
+          "call": "main"
+        },
+        {
+          "line": 30,
+          "call": "len"
+        },
+        {
+          "line": 37,
+          "call": "track_video"
+        },
+        {
+          "line": 38,
+          "call": "np.savetxt"
+        },
+        {
+          "line": 39,
+          "call": "np.save"
+        },
+        {
+          "line": 40,
+          "call": "(output / f'{sequence.name}_mechanisms.json').write_text"
+        },
+        {
+          "line": 41,
+          "call": "dict"
+        },
+        {
+          "line": 43,
+          "call": "records.append"
+        },
+        {
+          "line": 44,
+          "call": "print"
+        },
+        {
+          "line": 53,
+          "call": "json.dumps"
+        },
+        {
+          "line": 33,
+          "call": "sorted"
+        },
+        {
+          "line": 33,
+          "call": "sorted"
+        },
+        {
+          "line": 35,
+          "call": "annotation.open"
+        },
+        {
+          "line": 36,
+          "call": "np.fromstring"
+        },
+        {
+          "line": 40,
+          "call": "json.dumps"
+        },
+        {
+          "line": 44,
+          "call": "json.dumps"
+        },
+        {
+          "line": 46,
+          "call": "str"
+        },
+        {
+          "line": 46,
+          "call": "hashlib.sha256(Path(args.checkpoint).read_bytes()).hexdigest"
+        },
+        {
+          "line": 48,
+          "call": "len"
+        },
+        {
+          "line": 48,
+          "call": "sum"
+        },
+        {
+          "line": 49,
+          "call": "int"
+        },
+        {
+          "line": 51,
+          "call": "dict"
+        },
+        {
+          "line": 29,
+          "call": "Path(args.root).iterdir"
+        },
+        {
+          "line": 29,
+          "call": "path.is_dir"
+        },
+        {
+          "line": 33,
+          "call": "(sequence / 'visible').iterdir"
+        },
+        {
+          "line": 33,
+          "call": "(sequence / 'infrared').iterdir"
+        },
+        {
+          "line": 36,
+          "call": "stream.readline().strip"
+        },
+        {
+          "line": 41,
+          "call": "len"
+        },
+        {
+          "line": 41,
+          "call": "float"
+        },
+        {
+          "line": 42,
+          "call": "sum"
+        },
+        {
+          "line": 44,
+          "call": "dict"
+        },
+        {
+          "line": 46,
+          "call": "Path(args.checkpoint).resolve"
+        },
+        {
+          "line": 50,
+          "call": "torch.cuda.max_memory_allocated"
+        },
+        {
+          "line": 41,
+          "call": "latency.sum"
+        },
+        {
+          "line": 46,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 29,
+          "call": "Path"
+        },
+        {
+          "line": 36,
+          "call": "stream.readline"
+        },
+        {
+          "line": 46,
+          "call": "Path"
+        },
+        {
+          "line": 46,
+          "call": "Path(args.checkpoint).read_bytes"
+        },
+        {
+          "line": 46,
+          "call": "Path"
+        }
+      ]
+    },
+    "score.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 11,
+          "end_line": 101
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 12,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 13,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 14,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 15,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 16,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 17,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 18,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 19,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 20,
+          "call": "sys.path.insert"
+        },
+        {
+          "line": 23,
+          "call": "{'lasher': LasHeR, 'rgbt210': RGBT210, 'rgbt234': RGBT234}[args.dataset]"
+        },
+        {
+          "line": 26,
+          "call": "all"
+        },
+        {
+          "line": 29,
+          "call": "list"
+        },
+        {
+          "line": 40,
+          "call": "str"
+        },
+        {
+          "line": 53,
+          "call": "evaluator"
+        },
+        {
+          "line": 58,
+          "call": "output.mkdir"
+        },
+        {
+          "line": 60,
+          "call": "enumerate"
+        },
+        {
+          "line": 65,
+          "call": "evaluator.get_attr_list"
+        },
+        {
+          "line": 71,
+          "call": "np.concatenate"
+        },
+        {
+          "line": 97,
+          "call": "(output / 'full_report.json').write_text"
+        },
+        {
+          "line": 101,
+          "call": "print"
+        },
+        {
+          "line": 105,
+          "call": "main"
+        },
+        {
+          "line": 24,
+          "call": "Path"
+        },
+        {
+          "line": 24,
+          "call": "Path"
+        },
+        {
+          "line": 24,
+          "call": "Path"
+        },
+        {
+          "line": 25,
+          "call": "json.loads"
+        },
+        {
+          "line": 31,
+          "call": "set"
+        },
+        {
+          "line": 39,
+          "call": "initial_gt_file"
+        },
+        {
+          "line": 43,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 45,
+          "call": "len"
+        },
+        {
+          "line": 46,
+          "call": "sum"
+        },
+        {
+          "line": 53,
+          "call": "str"
+        },
+        {
+          "line": 55,
+          "call": "getattr(evaluator, metric)"
+        },
+        {
+          "line": 56,
+          "call": "np.asarray"
+        },
+        {
+          "line": 64,
+          "call": "per_sequence.append"
+        },
+        {
+          "line": 77,
+          "call": "str"
+        },
+        {
+          "line": 94,
+          "call": "summarize_lasher"
+        },
+        {
+          "line": 95,
+          "call": "(output / 'mechanism_report.json').write_text"
+        },
+        {
+          "line": 96,
+          "call": "str"
+        },
+        {
+          "line": 97,
+          "call": "json.dumps"
+        },
+        {
+          "line": 98,
+          "call": "(output / 'per_sequence.csv').open"
+        },
+        {
+          "line": 99,
+          "call": "csv.DictWriter"
+        },
+        {
+          "line": 100,
+          "call": "writer.writeheader"
+        },
+        {
+          "line": 100,
+          "call": "writer.writerows"
+        },
+        {
+          "line": 101,
+          "call": "json.dumps"
+        },
+        {
+          "line": 25,
+          "call": "(predictions / ('complete_shard' + str(i) + '.json')).read_text"
+        },
+        {
+          "line": 25,
+          "call": "range"
+        },
+        {
+          "line": 30,
+          "call": "len"
+        },
+        {
+          "line": 30,
+          "call": "set"
+        },
+        {
+          "line": 33,
+          "call": "len"
+        },
+        {
+          "line": 33,
+          "call": "len"
+        },
+        {
+          "line": 36,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 39,
+          "call": "str"
+        },
+        {
+          "line": 44,
+          "call": "np.isfinite(boxes).all"
+        },
+        {
+          "line": 55,
+          "call": "getattr"
+        },
+        {
+          "line": 56,
+          "call": "measured.items"
+        },
+        {
+          "line": 57,
+          "call": "float"
+        },
+        {
+          "line": 57,
+          "call": "measured.items"
+        },
+        {
+          "line": 66,
+          "call": "names.index"
+        },
+        {
+          "line": 67,
+          "call": "len"
+        },
+        {
+          "line": 71,
+          "call": "np.load"
+        },
+        {
+          "line": 79,
+          "call": "float"
+        },
+        {
+          "line": 80,
+          "call": "float"
+        },
+        {
+          "line": 91,
+          "call": "all"
+        },
+        {
+          "line": 95,
+          "call": "json.dumps"
+        },
+        {
+          "line": 31,
+          "call": "predictions.glob"
+        },
+        {
+          "line": 33,
+          "call": "set"
+        },
+        {
+          "line": 63,
+          "call": "float"
+        },
+        {
+          "line": 66,
+          "call": "getattr"
+        },
+        {
+          "line": 70,
+          "call": "float"
+        },
+        {
+          "line": 75,
+          "call": "getattr(evaluator, metric + '_fun').thr.tolist"
+        },
+        {
+          "line": 76,
+          "call": "curves[metric].mean(0).tolist"
+        },
+        {
+          "line": 79,
+          "call": "len"
+        },
+        {
+          "line": 79,
+          "call": "float"
+        },
+        {
+          "line": 101,
+          "call": "str"
+        },
+        {
+          "line": 30,
+          "call": "root.iterdir"
+        },
+        {
+          "line": 30,
+          "call": "p.is_dir"
+        },
+        {
+          "line": 44,
+          "call": "len"
+        },
+        {
+          "line": 44,
+          "call": "np.isfinite"
+        },
+        {
+          "line": 79,
+          "call": "latency.sum"
+        },
+        {
+          "line": 79,
+          "call": "np.percentile"
+        },
+        {
+          "line": 80,
+          "call": "np.percentile"
+        },
+        {
+          "line": 89,
+          "call": "report['baseline_metrics_percent_user_provided'].items"
+        },
+        {
+          "line": 63,
+          "call": "curves[metric][index].mean"
+        },
+        {
+          "line": 70,
+          "call": "curve.mean"
+        },
+        {
+          "line": 76,
+          "call": "curves[metric].mean"
+        },
+        {
+          "line": 70,
+          "call": "curve.mean"
+        },
+        {
+          "line": 75,
+          "call": "getattr"
+        },
+        {
+          "line": 25,
+          "call": "str"
+        }
+      ]
+    },
+    "score_dense.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 10,
+          "end_line": 55
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 11,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 12,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 13,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 14,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 15,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 16,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 17,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 18,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 21,
+          "call": "all"
+        },
+        {
+          "line": 27,
+          "call": "subprocess.run"
+        },
+        {
+          "line": 29,
+          "call": "json.loads"
+        },
+        {
+          "line": 42,
+          "call": "report.update"
+        },
+        {
+          "line": 49,
+          "call": "sorted"
+        },
+        {
+          "line": 53,
+          "call": "(output / 'qualified_full_report.json').write_text"
+        },
+        {
+          "line": 54,
+          "call": "print"
+        },
+        {
+          "line": 59,
+          "call": "main"
+        },
+        {
+          "line": 19,
+          "call": "Path"
+        },
+        {
+          "line": 19,
+          "call": "Path"
+        },
+        {
+          "line": 20,
+          "call": "json.loads"
+        },
+        {
+          "line": 22,
+          "call": "len"
+        },
+        {
+          "line": 24,
+          "call": "sum"
+        },
+        {
+          "line": 26,
+          "call": "str"
+        },
+        {
+          "line": 29,
+          "call": "raw.read_text"
+        },
+        {
+          "line": 31,
+          "call": "dict"
+        },
+        {
+          "line": 32,
+          "call": "dict"
+        },
+        {
+          "line": 34,
+          "call": "Path"
+        },
+        {
+          "line": 35,
+          "call": "json.loads"
+        },
+        {
+          "line": 38,
+          "call": "dict"
+        },
+        {
+          "line": 53,
+          "call": "json.dumps"
+        },
+        {
+          "line": 54,
+          "call": "json.dumps"
+        },
+        {
+          "line": 20,
+          "call": "(predictions / f'complete_shard{i}.json').read_text"
+        },
+        {
+          "line": 20,
+          "call": "range"
+        },
+        {
+          "line": 35,
+          "call": "baseline_path.read_text"
+        },
+        {
+          "line": 44,
+          "call": "hashlib.sha256(raw.read_bytes()).hexdigest"
+        },
+        {
+          "line": 47,
+          "call": "all"
+        },
+        {
+          "line": 54,
+          "call": "dict"
+        },
+        {
+          "line": 38,
+          "call": "str"
+        },
+        {
+          "line": 38,
+          "call": "hashlib.sha256(baseline_path.read_bytes()).hexdigest"
+        },
+        {
+          "line": 47,
+          "call": "reached.values"
+        },
+        {
+          "line": 44,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 55,
+          "call": "str"
+        },
+        {
+          "line": 38,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 44,
+          "call": "raw.read_bytes"
+        },
+        {
+          "line": 38,
+          "call": "baseline_path.read_bytes"
+        }
+      ]
+    },
+    "mechanism_summary.py": {
+      "definitions": [
+        {
+          "name": "box_iou_xywh",
+          "line": 8,
+          "end_line": 15
+        },
+        {
+          "name": "recovery_events",
+          "line": 18,
+          "end_line": 33
+        },
+        {
+          "name": "ratio",
+          "line": 36,
+          "end_line": 37
+        },
+        {
+          "name": "summarize_lasher",
+          "line": 40,
+          "end_line": 120
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 10,
+          "call": "np.maximum"
+        },
+        {
+          "line": 11,
+          "call": "np.minimum"
+        },
+        {
+          "line": 12,
+          "call": "np.maximum(end - start, 0).prod"
+        },
+        {
+          "line": 13,
+          "call": "np.maximum(prediction[..., 2:], 0).prod"
+        },
+        {
+          "line": 14,
+          "call": "np.maximum(truth[..., 2:], 0).prod"
+        },
+        {
+          "line": 21,
+          "call": "enumerate"
+        },
+        {
+          "line": 9,
+          "call": "np.asarray"
+        },
+        {
+          "line": 9,
+          "call": "np.asarray"
+        },
+        {
+          "line": 15,
+          "call": "np.maximum"
+        },
+        {
+          "line": 21,
+          "call": "zip"
+        },
+        {
+          "line": 31,
+          "call": "events.append"
+        },
+        {
+          "line": 41,
+          "call": "Path"
+        },
+        {
+          "line": 41,
+          "call": "Path"
+        },
+        {
+          "line": 54,
+          "call": "json.loads"
+        },
+        {
+          "line": 56,
+          "call": "(labels[:, 2:] > 0).all"
+        },
+        {
+          "line": 57,
+          "call": "valid.any"
+        },
+        {
+          "line": 58,
+          "call": "box_iou_xywh"
+        },
+        {
+          "line": 59,
+          "call": "box_iou_xywh"
+        },
+        {
+          "line": 62,
+          "call": "len"
+        },
+        {
+          "line": 63,
+          "call": "int"
+        },
+        {
+          "line": 64,
+          "call": "int"
+        },
+        {
+          "line": 65,
+          "call": "int"
+        },
+        {
+          "line": 66,
+          "call": "int"
+        },
+        {
+          "line": 67,
+          "call": "float"
+        },
+        {
+          "line": 68,
+          "call": "enumerate"
+        },
+        {
+          "line": 95,
+          "call": "recovery_events"
+        },
+        {
+          "line": 96,
+          "call": "events.extend"
+        },
+        {
+          "line": 97,
+          "call": "per_sequence.append"
+        },
+        {
+          "line": 102,
+          "call": "ratio"
+        },
+        {
+          "line": 103,
+          "call": "ratio"
+        },
+        {
+          "line": 104,
+          "call": "ratio"
+        },
+        {
+          "line": 105,
+          "call": "ratio"
+        },
+        {
+          "line": 106,
+          "call": "ratio"
+        },
+        {
+          "line": 107,
+          "call": "ratio"
+        },
+        {
+          "line": 108,
+          "call": "float"
+        },
+        {
+          "line": 110,
+          "call": "len"
+        },
+        {
+          "line": 110,
+          "call": "len"
+        },
+        {
+          "line": 12,
+          "call": "np.maximum"
+        },
+        {
+          "line": 13,
+          "call": "np.maximum"
+        },
+        {
+          "line": 14,
+          "call": "np.maximum"
+        },
+        {
+          "line": 52,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 53,
+          "call": "np.loadtxt"
+        },
+        {
+          "line": 54,
+          "call": "(predictions / (name + '_mechanisms.json')).read_text"
+        },
+        {
+          "line": 55,
+          "call": "len"
+        },
+        {
+          "line": 55,
+          "call": "len"
+        },
+        {
+          "line": 55,
+          "call": "len"
+        },
+        {
+          "line": 59,
+          "call": "np.round"
+        },
+        {
+          "line": 63,
+          "call": "valid.sum"
+        },
+        {
+          "line": 64,
+          "call": "(valid & failed).sum"
+        },
+        {
+          "line": 65,
+          "call": "(valid & (keep < 0.2) & successful).sum"
+        },
+        {
+          "line": 66,
+          "call": "(valid & (keep >= 0.5) & failed).sum"
+        },
+        {
+          "line": 67,
+          "call": "overlap[valid].sum"
+        },
+        {
+          "line": 70,
+          "call": "int"
+        },
+        {
+          "line": 71,
+          "call": "int"
+        },
+        {
+          "line": 72,
+          "call": "np.asarray"
+        },
+        {
+          "line": 73,
+          "call": "np.asarray"
+        },
+        {
+          "line": 79,
+          "call": "np.asarray"
+        },
+        {
+          "line": 80,
+          "call": "np.concatenate"
+        },
+        {
+          "line": 81,
+          "call": "box_iou_xywh"
+        },
+        {
+          "line": 85,
+          "call": "int"
+        },
+        {
+          "line": 86,
+          "call": "int"
+        },
+        {
+          "line": 87,
+          "call": "int"
+        },
+        {
+          "line": 88,
+          "call": "int"
+        },
+        {
+          "line": 89,
+          "call": "int"
+        },
+        {
+          "line": 90,
+          "call": "int"
+        },
+        {
+          "line": 91,
+          "call": "int"
+        },
+        {
+          "line": 92,
+          "call": "int"
+        },
+        {
+          "line": 93,
+          "call": "int"
+        },
+        {
+          "line": 94,
+          "call": "int"
+        },
+        {
+          "line": 108,
+          "call": "np.mean"
+        },
+        {
+          "line": 111,
+          "call": "len"
+        },
+        {
+          "line": 111,
+          "call": "len"
+        },
+        {
+          "line": 112,
+          "call": "float"
+        },
+        {
+          "line": 27,
+          "call": "events.append"
+        },
+        {
+          "line": 32,
+          "call": "len"
+        },
+        {
+          "line": 59,
+          "call": "np.asarray"
+        },
+        {
+          "line": 82,
+          "call": "quality[:5].max"
+        },
+        {
+          "line": 83,
+          "call": "quality.max"
+        },
+        {
+          "line": 91,
+          "call": "template.any"
+        },
+        {
+          "line": 93,
+          "call": "memory.any"
+        },
+        {
+          "line": 96,
+          "call": "dict"
+        },
+        {
+          "line": 97,
+          "call": "int"
+        },
+        {
+          "line": 98,
+          "call": "float"
+        },
+        {
+          "line": 98,
+          "call": "len"
+        },
+        {
+          "line": 112,
+          "call": "np.median"
+        },
+        {
+          "line": 75,
+          "call": "int"
+        },
+        {
+          "line": 75,
+          "call": "zip"
+        },
+        {
+          "line": 76,
+          "call": "int"
+        },
+        {
+          "line": 76,
+          "call": "zip"
+        },
+        {
+          "line": 92,
+          "call": "template.any"
+        },
+        {
+          "line": 94,
+          "call": "memory.any"
+        },
+        {
+          "line": 97,
+          "call": "valid.sum"
+        },
+        {
+          "line": 98,
+          "call": "overlap[valid].mean"
+        }
+      ]
+    },
+    "dense_pipeline.py": {
+      "definitions": [
+        {
+          "name": "main",
+          "line": 16,
+          "end_line": 134
+        },
+        {
+          "name": "save",
+          "line": 44,
+          "end_line": 45
+        },
+        {
+          "name": "run",
+          "line": 47,
+          "end_line": 65
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 17,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 18,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 19,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 20,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 21,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 22,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 23,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 24,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 25,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 27,
+          "call": "Path(args.m0_root).resolve"
+        },
+        {
+          "line": 28,
+          "call": "json.loads"
+        },
+        {
+          "line": 34,
+          "call": "Path(args.config).resolve"
+        },
+        {
+          "line": 35,
+          "call": "json.loads"
+        },
+        {
+          "line": 36,
+          "call": "Path(args.output).resolve"
+        },
+        {
+          "line": 37,
+          "call": "output.mkdir"
+        },
+        {
+          "line": 39,
+          "call": "dict"
+        },
+        {
+          "line": 67,
+          "call": "save"
+        },
+        {
+          "line": 73,
+          "call": "run"
+        },
+        {
+          "line": 74,
+          "call": "json.loads"
+        },
+        {
+          "line": 89,
+          "call": "run"
+        },
+        {
+          "line": 91,
+          "call": "json.loads"
+        },
+        {
+          "line": 93,
+          "call": "Path"
+        },
+        {
+          "line": 95,
+          "call": "hashlib.sha256(selected.read_bytes()).hexdigest"
+        },
+        {
+          "line": 97,
+          "call": "str"
+        },
+        {
+          "line": 100,
+          "call": "save"
+        },
+        {
+          "line": 126,
+          "call": "state.update"
+        },
+        {
+          "line": 132,
+          "call": "save"
+        },
+        {
+          "line": 133,
+          "call": "(output / 'pipeline_complete.json').write_text"
+        },
+        {
+          "line": 134,
+          "call": "print"
+        },
+        {
+          "line": 138,
+          "call": "main"
+        },
+        {
+          "line": 28,
+          "call": "(m0_root / 'state.json').read_text"
+        },
+        {
+          "line": 35,
+          "call": "config_path.read_text"
+        },
+        {
+          "line": 45,
+          "call": "(output / 'queue_state.json').write_text"
+        },
+        {
+          "line": 48,
+          "call": "dict"
+        },
+        {
+          "line": 52,
+          "call": "enumerate"
+        },
+        {
+          "line": 60,
+          "call": "save"
+        },
+        {
+          "line": 62,
+          "call": "phase.update"
+        },
+        {
+          "line": 64,
+          "call": "save"
+        },
+        {
+          "line": 65,
+          "call": "all"
+        },
+        {
+          "line": 68,
+          "call": "str"
+        },
+        {
+          "line": 68,
+          "call": "str"
+        },
+        {
+          "line": 69,
+          "call": "str"
+        },
+        {
+          "line": 72,
+          "call": "train.append"
+        },
+        {
+          "line": 74,
+          "call": "(fit / 'fit_complete.json').read_text"
+        },
+        {
+          "line": 79,
+          "call": "all"
+        },
+        {
+          "line": 83,
+          "call": "Path"
+        },
+        {
+          "line": 88,
+          "call": "run"
+        },
+        {
+          "line": 91,
+          "call": "(fit / 'selection.json').read_text"
+        },
+        {
+          "line": 101,
+          "call": "Path"
+        },
+        {
+          "line": 103,
+          "call": "Path(args.baseline_234).resolve"
+        },
+        {
+          "line": 103,
+          "call": "Path(args.baseline_210).resolve"
+        },
+        {
+          "line": 108,
+          "call": "run"
+        },
+        {
+          "line": 110,
+          "call": "all"
+        },
+        {
+          "line": 116,
+          "call": "run"
+        },
+        {
+          "line": 118,
+          "call": "json.loads"
+        },
+        {
+          "line": 121,
+          "call": "dict"
+        },
+        {
+          "line": 124,
+          "call": "save"
+        },
+        {
+          "line": 125,
+          "call": "hashlib.sha256(selected.read_bytes()).hexdigest"
+        },
+        {
+          "line": 133,
+          "call": "json.dumps"
+        },
+        {
+          "line": 134,
+          "call": "json.dumps"
+        },
+        {
+          "line": 27,
+          "call": "Path"
+        },
+        {
+          "line": 30,
+          "call": "json.loads"
+        },
+        {
+          "line": 33,
+          "call": "Path(__file__).resolve"
+        },
+        {
+          "line": 34,
+          "call": "Path"
+        },
+        {
+          "line": 36,
+          "call": "Path"
+        },
+        {
+          "line": 40,
+          "call": "os.getpid"
+        },
+        {
+          "line": 40,
+          "call": "datetime.now(timezone.utc).isoformat"
+        },
+        {
+          "line": 42,
+          "call": "hashlib.sha256((m0_root / 'state.json').read_bytes()).hexdigest"
+        },
+        {
+          "line": 45,
+          "call": "json.dumps"
+        },
+        {
+          "line": 58,
+          "call": "children.append"
+        },
+        {
+          "line": 61,
+          "call": "child.wait"
+        },
+        {
+          "line": 79,
+          "call": "terminal['changed_parameter_tensors'].values"
+        },
+        {
+          "line": 95,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 109,
+          "call": "json.loads"
+        },
+        {
+          "line": 112,
+          "call": "str"
+        },
+        {
+          "line": 113,
+          "call": "str"
+        },
+        {
+          "line": 113,
+          "call": "str"
+        },
+        {
+          "line": 118,
+          "call": "report_path.read_text"
+        },
+        {
+          "line": 127,
+          "call": "datetime.now(timezone.utc).isoformat"
+        },
+        {
+          "line": 128,
+          "call": "all"
+        },
+        {
+          "line": 30,
+          "call": "(m0_root / 'exit.json').read_text"
+        },
+        {
+          "line": 49,
+          "call": "datetime.now(timezone.utc).isoformat"
+        },
+        {
+          "line": 53,
+          "call": "(output / f'{name}_{index}.log').open"
+        },
+        {
+          "line": 54,
+          "call": "subprocess.Popen"
+        },
+        {
+          "line": 63,
+          "call": "datetime.now(timezone.utc).isoformat"
+        },
+        {
+          "line": 85,
+          "call": "str"
+        },
+        {
+          "line": 86,
+          "call": "str"
+        },
+        {
+          "line": 86,
+          "call": "str"
+        },
+        {
+          "line": 86,
+          "call": "str"
+        },
+        {
+          "line": 89,
+          "call": "str"
+        },
+        {
+          "line": 90,
+          "call": "str"
+        },
+        {
+          "line": 95,
+          "call": "selected.read_bytes"
+        },
+        {
+          "line": 103,
+          "call": "Path"
+        },
+        {
+          "line": 103,
+          "call": "Path"
+        },
+        {
+          "line": 106,
+          "call": "str"
+        },
+        {
+          "line": 107,
+          "call": "str"
+        },
+        {
+          "line": 107,
+          "call": "str"
+        },
+        {
+          "line": 107,
+          "call": "str"
+        },
+        {
+          "line": 109,
+          "call": "(predictions / f'complete_shard{shard}.json').read_text"
+        },
+        {
+          "line": 111,
+          "call": "sum"
+        },
+        {
+          "line": 111,
+          "call": "sum"
+        },
+        {
+          "line": 115,
+          "call": "str"
+        },
+        {
+          "line": 121,
+          "call": "str"
+        },
+        {
+          "line": 125,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 33,
+          "call": "Path"
+        },
+        {
+          "line": 40,
+          "call": "datetime.now"
+        },
+        {
+          "line": 42,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 62,
+          "call": "all"
+        },
+        {
+          "line": 125,
+          "call": "selected.read_bytes"
+        },
+        {
+          "line": 127,
+          "call": "datetime.now"
+        },
+        {
+          "line": 128,
+          "call": "all"
+        },
+        {
+          "line": 42,
+          "call": "(m0_root / 'state.json').read_bytes"
+        },
+        {
+          "line": 49,
+          "call": "datetime.now"
+        },
+        {
+          "line": 55,
+          "call": "dict"
+        },
+        {
+          "line": 63,
+          "call": "datetime.now"
+        },
+        {
+          "line": 128,
+          "call": "r['plus_two_reached'].values"
+        },
+        {
+          "line": 128,
+          "call": "state['reports'].values"
+        },
+        {
+          "line": 55,
+          "call": "str"
+        }
+      ]
+    },
+    "train_dense.py": {
+      "definitions": [
+        {
+          "name": "module_hash",
+          "line": 19,
+          "end_line": 24
+        },
+        {
+          "name": "main",
+          "line": 27,
+          "end_line": 180
+        },
+        {
+          "name": "save_candidate",
+          "line": 96,
+          "end_line": 101
+        }
+      ],
+      "call_sites": [
+        {
+          "line": 20,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 21,
+          "call": "module.state_dict().items"
+        },
+        {
+          "line": 24,
+          "call": "digest.hexdigest"
+        },
+        {
+          "line": 28,
+          "call": "argparse.ArgumentParser"
+        },
+        {
+          "line": 29,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 30,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 31,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 32,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 33,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 34,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 35,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 36,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 37,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 38,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 39,
+          "call": "parser.add_argument"
+        },
+        {
+          "line": 40,
+          "call": "parser.parse_args"
+        },
+        {
+          "line": 41,
+          "call": "json.loads"
+        },
+        {
+          "line": 43,
+          "call": "torch.cuda.set_device"
+        },
+        {
+          "line": 44,
+          "call": "torch.set_num_threads"
+        },
+        {
+          "line": 45,
+          "call": "random.seed"
+        },
+        {
+          "line": 46,
+          "call": "np.random.seed"
+        },
+        {
+          "line": 47,
+          "call": "torch.manual_seed"
+        },
+        {
+          "line": 48,
+          "call": "Path(args.output).resolve"
+        },
+        {
+          "line": 49,
+          "call": "output.mkdir"
+        },
+        {
+          "line": 50,
+          "call": "Path(source['pretrained']).resolve"
+        },
+        {
+          "line": 51,
+          "call": "hashlib.sha256(pretrained.read_bytes()).hexdigest"
+        },
+        {
+          "line": 53,
+          "call": "sorted"
+        },
+        {
+          "line": 55,
+          "call": "sorted"
+        },
+        {
+          "line": 56,
+          "call": "sorted"
+        },
+        {
+          "line": 58,
+          "call": "dict"
+        },
+        {
+          "line": 68,
+          "call": "DenseCADTrack(CleanCADTrack(pretrained), args.memory).cuda"
+        },
+        {
+          "line": 69,
+          "call": "module_hash"
+        },
+        {
+          "line": 74,
+          "call": "torch.optim.AdamW"
+        },
+        {
+          "line": 75,
+          "call": "torch.optim.lr_scheduler.StepLR"
+        },
+        {
+          "line": 77,
+          "call": "VideoClips"
+        },
+        {
+          "line": 78,
+          "call": "torch.Generator().manual_seed"
+        },
+        {
+          "line": 79,
+          "call": "DataLoader"
+        },
+        {
+          "line": 81,
+          "call": "dict"
+        },
+        {
+          "line": 88,
+          "call": "(output / 'manifest.json').write_text"
+        },
+        {
+          "line": 89,
+          "call": "print"
+        },
+        {
+          "line": 94,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 103,
+          "call": "save_candidate"
+        },
+        {
+          "line": 104,
+          "call": "range"
+        },
+        {
+          "line": 159,
+          "call": "module_hash"
+        },
+        {
+          "line": 166,
+          "call": "all"
+        },
+        {
+          "line": 167,
+          "call": "torch.load"
+        },
+        {
+          "line": 168,
+          "call": "DenseCADTrack"
+        },
+        {
+          "line": 169,
+          "call": "clone.load_trainable_state"
+        },
+        {
+          "line": 170,
+          "call": "clone.trainable_state().items"
+        },
+        {
+          "line": 172,
+          "call": "dict"
+        },
+        {
+          "line": 179,
+          "call": "(output / 'fit_complete.json').write_text"
+        },
+        {
+          "line": 180,
+          "call": "print"
+        },
+        {
+          "line": 184,
+          "call": "main"
+        },
+        {
+          "line": 22,
+          "call": "digest.update"
+        },
+        {
+          "line": 23,
+          "call": "digest.update"
+        },
+        {
+          "line": 41,
+          "call": "Path(args.config).read_text"
+        },
+        {
+          "line": 54,
+          "call": "len"
+        },
+        {
+          "line": 55,
+          "call": "random.Random(20261013).sample"
+        },
+        {
+          "line": 57,
+          "call": "len"
+        },
+        {
+          "line": 70,
+          "call": "value.detach().cpu().clone"
+        },
+        {
+          "line": 71,
+          "call": "dict"
+        },
+        {
+          "line": 73,
+          "call": "groups.append"
+        },
+        {
+          "line": 88,
+          "call": "json.dumps"
+        },
+        {
+          "line": 89,
+          "call": "json.dumps"
+        },
+        {
+          "line": 98,
+          "call": "dict"
+        },
+        {
+          "line": 100,
+          "call": "torch.save"
+        },
+        {
+          "line": 101,
+          "call": "candidates.append"
+        },
+        {
+          "line": 106,
+          "call": "model.train"
+        },
+        {
+          "line": 107,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 108,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 111,
+          "call": "enumerate"
+        },
+        {
+          "line": 146,
+          "call": "scheduler.step"
+        },
+        {
+          "line": 147,
+          "call": "dict"
+        },
+        {
+          "line": 150,
+          "call": "history.append"
+        },
+        {
+          "line": 151,
+          "call": "(output / 'history.json').write_text"
+        },
+        {
+          "line": 152,
+          "call": "dict"
+        },
+        {
+          "line": 154,
+          "call": "torch.save"
+        },
+        {
+          "line": 157,
+          "call": "print"
+        },
+        {
+          "line": 165,
+          "call": "sum"
+        },
+        {
+          "line": 166,
+          "call": "changed.values"
+        },
+        {
+          "line": 168,
+          "call": "CleanCADTrack"
+        },
+        {
+          "line": 171,
+          "call": "all"
+        },
+        {
+          "line": 179,
+          "call": "json.dumps"
+        },
+        {
+          "line": 180,
+          "call": "json.dumps"
+        },
+        {
+          "line": 21,
+          "call": "module.state_dict"
+        },
+        {
+          "line": 22,
+          "call": "name.encode"
+        },
+        {
+          "line": 23,
+          "call": "value.detach().cpu().contiguous().numpy().tobytes"
+        },
+        {
+          "line": 48,
+          "call": "Path"
+        },
+        {
+          "line": 50,
+          "call": "Path"
+        },
+        {
+          "line": 51,
+          "call": "hashlib.sha256"
+        },
+        {
+          "line": 56,
+          "call": "set"
+        },
+        {
+          "line": 56,
+          "call": "set"
+        },
+        {
+          "line": 58,
+          "call": "str"
+        },
+        {
+          "line": 65,
+          "call": "dict"
+        },
+        {
+          "line": 68,
+          "call": "DenseCADTrack"
+        },
+        {
+          "line": 70,
+          "call": "model.named_parameters"
+        },
+        {
+          "line": 73,
+          "call": "dict"
+        },
+        {
+          "line": 76,
+          "call": "model.parameters"
+        },
+        {
+          "line": 78,
+          "call": "torch.Generator"
+        },
+        {
+          "line": 89,
+          "call": "dict"
+        },
+        {
+          "line": 101,
+          "call": "dict"
+        },
+        {
+          "line": 115,
+          "call": "optimizer.zero_grad"
+        },
+        {
+          "line": 116,
+          "call": "model"
+        },
+        {
+          "line": 118,
+          "call": "bool"
+        },
+        {
+          "line": 119,
+          "call": "loss.backward"
+        },
+        {
+          "line": 120,
+          "call": "all"
+        },
+        {
+          "line": 121,
+          "call": "torch.nn.utils.clip_grad_norm_"
+        },
+        {
+          "line": 122,
+          "call": "bool"
+        },
+        {
+          "line": 130,
+          "call": "optimizer.step"
+        },
+        {
+          "line": 132,
+          "call": "len"
+        },
+        {
+          "line": 133,
+          "call": "len"
+        },
+        {
+          "line": 145,
+          "call": "len"
+        },
+        {
+          "line": 151,
+          "call": "json.dumps"
+        },
+        {
+          "line": 156,
+          "call": "save_candidate"
+        },
+        {
+          "line": 157,
+          "call": "json.dumps"
+        },
+        {
+          "line": 158,
+          "call": "len"
+        },
+        {
+          "line": 170,
+          "call": "clone.trainable_state"
+        },
+        {
+          "line": 41,
+          "call": "Path"
+        },
+        {
+          "line": 51,
+          "call": "pretrained.read_bytes"
+        },
+        {
+          "line": 53,
+          "call": "Path(source['train_root']).iterdir"
+        },
+        {
+          "line": 53,
+          "call": "p.is_dir"
+        },
+        {
+          "line": 55,
+          "call": "random.Random"
+        },
+        {
+          "line": 68,
+          "call": "CleanCADTrack"
+        },
+        {
+          "line": 70,
+          "call": "value.detach().cpu"
+        },
+        {
+          "line": 84,
+          "call": "value.numel"
+        },
+        {
+          "line": 99,
+          "call": "model.trainable_state"
+        },
+        {
+          "line": 114,
+          "call": "order.update"
+        },
+        {
+          "line": 118,
+          "call": "torch.isfinite"
+        },
+        {
+          "line": 118,
+          "call": "float"
+        },
+        {
+          "line": 122,
+          "call": "torch.isfinite"
+        },
+        {
+          "line": 122,
+          "call": "float"
+        },
+        {
+          "line": 134,
+          "call": "float"
+        },
+        {
+          "line": 134,
+          "call": "len"
+        },
+        {
+          "line": 137,
+          "call": "dict"
+        },
+        {
+          "line": 143,
+          "call": "(output / 'progress.json').write_text"
+        },
+        {
+          "line": 144,
+          "call": "print"
+        },
+        {
+          "line": 148,
+          "call": "order.hexdigest"
+        },
+        {
+          "line": 152,
+          "call": "model.trainable_state"
+        },
+        {
+          "line": 153,
+          "call": "optimizer.state_dict"
+        },
+        {
+          "line": 153,
+          "call": "scheduler.state_dict"
+        },
+        {
+          "line": 157,
+          "call": "dict"
+        },
+        {
+          "line": 171,
+          "call": "torch.equal"
+        },
+        {
+          "line": 178,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 23,
+          "call": "value.detach().cpu().contiguous().numpy"
+        },
+        {
+          "line": 71,
+          "call": "list"
+        },
+        {
+          "line": 71,
+          "call": "list"
+        },
+        {
+          "line": 73,
+          "call": "model.prompt.parameters"
+        },
+        {
+          "line": 84,
+          "call": "model.named_parameters"
+        },
+        {
+          "line": 90,
+          "call": "sum"
+        },
+        {
+          "line": 90,
+          "call": "sum"
+        },
+        {
+          "line": 91,
+          "call": "len"
+        },
+        {
+          "line": 101,
+          "call": "str"
+        },
+        {
+          "line": 113,
+          "call": "clip['frames'][:args.steps + 1].tolist"
+        },
+        {
+          "line": 114,
+          "call": "(json.dumps(key, separators=(',', ':')) + '\\n').encode"
+        },
+        {
+          "line": 128,
+          "call": "sum"
+        },
+        {
+          "line": 129,
+          "call": "float"
+        },
+        {
+          "line": 134,
+          "call": "loss.detach"
+        },
+        {
+          "line": 136,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 143,
+          "call": "json.dumps"
+        },
+        {
+          "line": 144,
+          "call": "json.dumps"
+        },
+        {
+          "line": 149,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 149,
+          "call": "time.monotonic"
+        },
+        {
+          "line": 165,
+          "call": "torch.equal"
+        },
+        {
+          "line": 165,
+          "call": "model.named_parameters"
+        },
+        {
+          "line": 165,
+          "call": "n.startswith"
+        },
+        {
+          "line": 171,
+          "call": "state.items"
+        },
+        {
+          "line": 53,
+          "call": "Path"
+        },
+        {
+          "line": 70,
+          "call": "value.detach"
+        },
+        {
+          "line": 71,
+          "call": "model.base.decode_fuse_search.parameters"
+        },
+        {
+          "line": 71,
+          "call": "model.base.box_head.parameters"
+        },
+        {
+          "line": 90,
+          "call": "manifest['trainable_parameters'].values"
+        },
+        {
+          "line": 120,
+          "call": "model.base.backbone.parameters"
+        },
+        {
+          "line": 128,
+          "call": "loss.new_zeros"
+        },
+        {
+          "line": 129,
+          "call": "squared.sqrt"
+        },
+        {
+          "line": 138,
+          "call": "len"
+        },
+        {
+          "line": 138,
+          "call": "float"
+        },
+        {
+          "line": 165,
+          "call": "p.detach().cpu"
+        },
+        {
+          "line": 23,
+          "call": "value.detach().cpu().contiguous"
+        },
+        {
+          "line": 90,
+          "call": "p.numel"
+        },
+        {
+          "line": 128,
+          "call": "p.grad.square().sum"
+        },
+        {
+          "line": 138,
+          "call": "loss.detach"
+        },
+        {
+          "line": 139,
+          "call": "float"
+        },
+        {
+          "line": 141,
+          "call": "torch.cuda.max_memory_allocated"
+        },
+        {
+          "line": 90,
+          "call": "model.base.backbone.parameters"
+        },
+        {
+          "line": 114,
+          "call": "json.dumps"
+        },
+        {
+          "line": 128,
+          "call": "model.named_parameters"
+        },
+        {
+          "line": 139,
+          "call": "result['parts'].items"
+        },
+        {
+          "line": 165,
+          "call": "p.detach"
+        },
+        {
+          "line": 23,
+          "call": "value.detach().cpu"
+        },
+        {
+          "line": 128,
+          "call": "p.grad.square"
+        },
+        {
+          "line": 128,
+          "call": "n.startswith"
+        },
+        {
+          "line": 23,
+          "call": "value.detach"
+        }
+      ]
+    }
+  },
+  "execution_scope": "Stdlib only; extracted non-neural expressions/functions and AST. Synthetic witnesses are not dataset/neural validation.",
+  "unsupported": "No Torch/CUDA/weights, no proof of later formal pipeline completion, no reconstruction of actual GPU training order from raw stream."
+}
