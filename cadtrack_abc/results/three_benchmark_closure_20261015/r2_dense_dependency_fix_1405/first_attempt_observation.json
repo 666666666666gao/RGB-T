@@ -1,0 +1,57 @@
+{
+  "observed_utc": "2026-10-15T06:04:32.026751+00:00",
+  "state": {
+    "status": "DENSE_M0_RUNNING",
+    "controller_pid": 764416,
+    "started_utc": "2026-10-15T06:00:28.401883+00:00",
+    "phases": {
+      "epoch0_parity": {
+        "pid": 764417,
+        "physical_gpu": 2,
+        "command": [
+          "/data/wangwj/envs/CADTrack/bin/python",
+          "-m",
+          "cadtrack_abc.qualify_dense",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015/epoch0_parity.json"
+        ],
+        "status": "EXITED",
+        "started_utc": "2026-10-15T06:00:28.402924+00:00",
+        "actual_exit_code": 1,
+        "completed_utc": "2026-10-15T06:00:37.775891+00:00"
+      }
+    },
+    "formal_training_started": false,
+    "baseline_lasher_rerun": false
+  },
+  "actual_controller_command": "",
+  "controller_computing": false,
+  "wrapper_exit": {
+    "wrapper_pid": 764415,
+    "actual_controller_exit_code": 1,
+    "completed_utc": "2026-10-15T06:00:37.791856+00:00"
+  },
+  "controller_log_tail": [
+    "Traceback (most recent call last):",
+    "  File \"/home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_20261015/driver.py\", line 43, in <module>",
+    "    assert finish(parity)==0",
+    "AssertionError"
+  ],
+  "new_neural_jobs_started": false,
+  "phase_log_tails": {
+    "epoch0_parity": [
+      "    exec(code, run_globals)",
+      "  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/qualify_dense.py\", line 14, in <module>",
+      "    from .dense_tracker import DenseCADTracker",
+      "  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/dense_tracker.py\", line 7, in <module>",
+      "    from .dense_model import DenseCADTrack, dense_candidates",
+      "  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/dense_model.py\", line 16, in <module>",
+      "    from lib.utils.box_ops import box_cxcywh_to_xyxy, generalized_box_iou",
+      "  File \"/home/gaob/CADTrack-ABC/cadtrack_abc/vendor/CADTrack/lib/utils/__init__.py\", line 1, in <module>",
+      "    from .tensor import TensorDict, TensorList",
+      "ModuleNotFoundError: No module named 'lib.utils.tensor'"
+    ]
+  }
+}
