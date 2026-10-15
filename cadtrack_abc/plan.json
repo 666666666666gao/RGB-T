@@ -394,7 +394,7 @@
     "new_full_fit_completed": true,
     "main_full98_status": "All six snapshots complete; 12 original shards exited0; actual full98 selector chose epoch10 overall and among positive epochs.",
     "main_full98_root": "/home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015",
-    "control_full98_status": "Epoch0 and1 complete98/52200 each; epoch1 nativechild0/0, IoU0.6576578945909836. At08:23 epoch2 shard1 actualNN134761 live; sole next13592 at09:55. Existing controller continues2/5/10/20 then formal3.",
+    "control_full98_status": "All six complete98/52200/52120 and12 originalchild0; actual selector chose epoch20 overall and positive, IoU0.6646335296. Full LasHeR started09:52 GPU3 twoNN260113/4 actuallive09:55; sameweight then234/210. Next13255 at11:10.",
     "resource_concurrency_status": "Qualified equal-work dual inference remains1.5738566x/noOOM/byteequal. New08:22:38-08:23:08 CPU8.8029%, iowait1.4371%, GPU2 twoNN/1675MiB/39.5333% util; GPU3 one remaining shard/842MiB/17.1667%. OpenCV CPU-only4frames probe aggregate4threads1.2366x but waves inconsistent; no inference speed claim or runtime change.",
     "main_formal_status": "08:20 actualPID81003 and bothLasNN81006/7 live; 08:21 completed79500/220703 pairs, no formal metrics. Conservative finish about11:00; sole next1709 at10:40.",
     "result_integrity": "Fresh independent-context same-family provisional audit WARN/0 blockers; 2598 deterministic checks pass. Completed DEV arithmetic verified; formal efficacy not attested."
@@ -631,7 +631,7 @@
           "future_action.network.3.bias"
         ],
         "strict_head_reload": true,
-        "full_video_selection_complete": false,
+        "full_video_selection_complete": true,
         "formal_metrics_complete": false,
         "seconds": 2528.5709556269867,
         "train_index": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/train_index.json",
@@ -1186,6 +1186,169 @@
       },
       "runtime_preprocessing_changed": false,
       "current_formal_checkpoint_unchanged": true
+    },
+    "control_complete_full98_selection_20261015": {
+      "selected": {
+        "epoch": 20,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+        "sequence_mean_iou": 0.6646335295648599,
+        "frame_mean_iou": 0.5828204164117095
+      },
+      "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+      "candidates": [
+        {
+          "epoch": 0,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch00.pth",
+          "sequence_mean_iou": 0.6498416023214861,
+          "frame_mean_iou": 0.49732447611032227
+        },
+        {
+          "epoch": 1,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch01.pth",
+          "sequence_mean_iou": 0.6576578945909836,
+          "frame_mean_iou": 0.48793770064780645
+        },
+        {
+          "epoch": 2,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch02.pth",
+          "sequence_mean_iou": 0.6532990292512945,
+          "frame_mean_iou": 0.5696438664211645
+        },
+        {
+          "epoch": 5,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch05.pth",
+          "sequence_mean_iou": 0.6539118107104179,
+          "frame_mean_iou": 0.5599895294135292
+        },
+        {
+          "epoch": 10,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch10.pth",
+          "sequence_mean_iou": 0.6639468980078794,
+          "frame_mean_iou": 0.5807000333862129
+        },
+        {
+          "epoch": 20,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+          "sequence_mean_iou": 0.6646335295648599,
+          "frame_mean_iou": 0.5828204164117095
+        }
+      ],
+      "trained_selected": {
+        "epoch": 20,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/candidate_epoch20.pth",
+        "sequence_mean_iou": 0.6646335295648599,
+        "frame_mean_iou": 0.5828204164117095
+      },
+      "trained_best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+      "full98_development_selection_complete": true,
+      "formal_metrics_complete": false,
+      "selection_metric": "Sequence-equal mean IoU on repeated98 development videos, not official test.",
+      "strict_future_head_reload": true,
+      "cleanup": "Deferred until selected and trained checkpoints finish all formal datasets; teacher/pretrain untouched."
+    },
+    "control_full98_closure_recomputed_20261015": {
+      "status": "ALL_SIX_CONTROL_FULL98_COMPLETE_EPOCH20_SELECTED",
+      "candidates": [
+        {
+          "epoch": 0,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6498416023214861,
+          "frame_mean_iou": 0.49732447611032227,
+          "extra_forwards": 0,
+          "future_interventions": 0
+        },
+        {
+          "epoch": 1,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6576578945909836,
+          "frame_mean_iou": 0.48793770064780645,
+          "extra_forwards": 0,
+          "future_interventions": 575
+        },
+        {
+          "epoch": 2,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6532990292512945,
+          "frame_mean_iou": 0.5696438664211645,
+          "extra_forwards": 0,
+          "future_interventions": 1598
+        },
+        {
+          "epoch": 5,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6539118107104179,
+          "frame_mean_iou": 0.5599895294135292,
+          "extra_forwards": 0,
+          "future_interventions": 472
+        },
+        {
+          "epoch": 10,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6639468980078794,
+          "frame_mean_iou": 0.5807000333862129,
+          "extra_forwards": 0,
+          "future_interventions": 1041
+        },
+        {
+          "epoch": 20,
+          "sequences": 98,
+          "frames": 52200,
+          "valid_frames": 52120,
+          "sequence_mean_iou": 0.6646335295648599,
+          "frame_mean_iou": 0.5828204164117095,
+          "extra_forwards": 0,
+          "future_interventions": 1198
+        }
+      ],
+      "selected_epoch": 20,
+      "selected_checkpoint_sha256": "cffca0302460b60f505c2a09a5b651b10f1d1e2211178f68307a4d708080bf62",
+      "selected_and_positive_best_same": true,
+      "raw_588_records_recomputed": true,
+      "original_development_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "control_formal_started_utc": "2026-10-15T01:52:10.761359+00:00",
+      "ownership": {
+        "control_controller_native_session": 68351,
+        "control_controller_pid": 85361,
+        "control_actual_lasher_neural_pids": [
+          260113,
+          260114
+        ],
+        "control_observed_live_utc": "2026-10-15T01:55:00.175259+00:00",
+        "original_control_observer13592_exit_code": 0,
+        "control_sole_observer_native_session": 13255,
+        "control_next_necessary_node_bjt": "2026-10-15 11:10:00",
+        "main_controller_native_session": 28531,
+        "main_sole_observer_native_session": 1709,
+        "main_next_necessary_node_bjt": "2026-10-15 10:40:00",
+        "premature_main_queries": false,
+        "original_neural_jobs_restarted": false
+      },
+      "formal_results_complete": false,
+      "goal_achieved": false,
+      "scope": "Repeated98 continuous development selection, not official benchmark precision/success or module efficacy."
     }
   },
   "full_native_action_collection_20261014": {
