@@ -1,0 +1,63 @@
+{
+  "status": "R2_ORIGINAL_TRAINING_VERIFIED_LIVE_AT_SCHEDULED_NODE",
+  "observed_utc": "2026-10-15T23:40:31.503086+00:00",
+  "jobs": {
+    "H": {
+      "epoch": 20,
+      "epochs": 20,
+      "updates": 3108,
+      "planned_updates": 3140,
+      "raw_clips_seen": 396000,
+      "planned_raw_clips": 400000,
+      "progress_mtime_utc": "2026-10-15T23:33:47.538688+00:00",
+      "recorded_epoch_average_seconds_per_update": 18.32415101644001,
+      "actual_process": {
+        "phase": "full_training",
+        "pid": 826053,
+        "ps_returncode": 0,
+        "ps": "826053  826037 Rl    101  3.7    17:12:39 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001"
+      },
+      "finite_nonzero_recorded_gradients": true,
+      "completed_epochs": 19,
+      "estimated_training_end_utc": "2026-10-15T23:43:33.911521+00:00",
+      "training_complete": false,
+      "full98_complete": false,
+      "formal_reports_complete": false
+    },
+    "HA": {
+      "epoch": 19,
+      "epochs": 20,
+      "updates": 2876,
+      "planned_updates": 3140,
+      "raw_clips_seen": 366400,
+      "planned_raw_clips": 400000,
+      "progress_mtime_utc": "2026-10-15T23:37:55.803962+00:00",
+      "recorded_epoch_average_seconds_per_update": 20.542904913339882,
+      "actual_process": {
+        "phase": "full_training",
+        "pid": 826055,
+        "ps_returncode": 0,
+        "ps": "826055  826038 Rl    104  3.6    17:12:39 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --head-lr 0.00001 --prompt-lr 0.0001 --memory"
+      },
+      "finite_nonzero_recorded_gradients": true,
+      "completed_epochs": 18,
+      "estimated_training_end_utc": "2026-10-16T01:08:19.130859+00:00",
+      "training_complete": false,
+      "full98_complete": false,
+      "formal_reports_complete": false
+    }
+  },
+  "original_observer_handle": 80996,
+  "original_observer_handle_result": "Unknown process id; no matching local waiting/observer process and no saved output before manual due read.",
+  "manual_due_read_exit_code": 0,
+  "training_or_queue_restarted": false,
+  "new_GPU_jobs": 0,
+  "formal_metrics": null,
+  "goal_achieved": false,
+  "actual_complete_paired_clip_orders_equal_epochs": 18,
+  "dependency_queue_status": "WAITING_FOR_ACTUAL_R2_EXIT",
+  "next_only_observation_utc": "2026-10-16T01:03:19.130859+00:00",
+  "next_only_observation_BJT": "2026-10-16T09:03:19.130859+08:00",
+  "estimate_scope": "Training only, extrapolated from last committed progress mtime and that epoch average update rate. Full98 six checkpoints and all3 formal tests remain additional work.",
+  "metadata_note": "Initial due metadata helper checked the queue wrapper root, which has no queue_state.json. Correct existing --output state/queue_state.json then read separately; null was not a queue failure. CPU queue and its wrapper were actually live."
+}

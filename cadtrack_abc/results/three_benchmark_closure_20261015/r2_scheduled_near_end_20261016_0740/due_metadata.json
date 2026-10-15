@@ -1,0 +1,37 @@
+{
+  "observed_utc": "2026-10-15T23:41:03.697846+00:00",
+  "progress_mtimes_utc": {
+    "H": "2026-10-15T23:33:47.538688+00:00",
+    "HA": "2026-10-15T23:37:55.803962+00:00"
+  },
+  "queue_state": null,
+  "queue_processes": [
+    {
+      "pid": 1309176,
+      "ps_returncode": 0,
+      "ps": "1309176 1309174 S       13:00:42 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.continue_dense_main --scope /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/qualified_scope.json --r2-pair-root /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015 --not-before 2026-10-15T23:39:58.342327+00:00 --output /home/gaob/CADTrack-ABC/outputs/r3_dense_dependency_20261015/state"
+    },
+    {
+      "pid": 1309174,
+      "ps_returncode": 0,
+      "ps": "1309174       1 Ss      13:00:42 /data/wangwj/envs/CADTrack/bin/python /home/gaob/CADTrack-ABC/outputs/r3_dense_dependency_20261015/wrapper.py"
+    },
+    {
+      "pid": 826024,
+      "ps_returncode": 0,
+      "ps": "826024  826018 S       17:13:11 /data/wangwj/envs/CADTrack/bin/python /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/driver.py"
+    },
+    {
+      "pid": 826037,
+      "ps_returncode": 0,
+      "ps": "826037  826024 S       17:13:11 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.dense_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H --m0-root /home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015 --variant H --gpu 2 --baseline-234 /home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json --baseline-210 /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+    },
+    {
+      "pid": 826038,
+      "ps_returncode": 0,
+      "ps": "826038  826024 S       17:13:11 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.dense_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA --m0-root /home/gaob/CADTrack-ABC/profile_output/r2_dense_m0_capacity128_20261015 --variant HA --gpu 3 --baseline-234 /home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json --baseline-210 /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+    }
+  ],
+  "source_or_training_changed": false,
+  "GPU_queried": false
+}
