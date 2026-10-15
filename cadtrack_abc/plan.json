@@ -394,9 +394,9 @@
     "new_full_fit_completed": true,
     "main_full98_status": "All six snapshots complete; 12 original shards exited0; actual full98 selector chose epoch10 overall and among positive epochs.",
     "main_full98_root": "/home/gaob/CADTrack-ABC/outputs/r1_main_full98_20261015",
-    "control_full98_status": "Original epoch00 two shards complete98/52200 and native exits0; existing controller85361 started epoch01 at07:24, then remaining2/5/10/20 and formal all3.",
-    "resource_concurrency_status": "Equal-work inference serial127.1951s vs dual80.8174s,1.5738566x; predictions byteequal/noOOM. Adopt two inference workers/card only. Current30s CPU12.2059%, GPU2/3 means69.1333/39.3333%, peak1675MiB each/free22901MiB. Training concurrency not benchmarked.",
-    "main_formal_status": "Epoch10 same checkpoint: full LasHeR started GPU2 two workers06:59; then full RGBT234 and RGBT210. No completed formal metrics yet.",
+    "control_full98_status": "Epoch0 and1 complete98/52200 each; epoch1 nativechild0/0, IoU0.6576578945909836. At08:23 epoch2 shard1 actualNN134761 live; sole next13592 at09:55. Existing controller continues2/5/10/20 then formal3.",
+    "resource_concurrency_status": "Qualified equal-work dual inference remains1.5738566x/noOOM/byteequal. New08:22:38-08:23:08 CPU8.8029%, iowait1.4371%, GPU2 twoNN/1675MiB/39.5333% util; GPU3 one remaining shard/842MiB/17.1667%. OpenCV CPU-only4frames probe aggregate4threads1.2366x but waves inconsistent; no inference speed claim or runtime change.",
+    "main_formal_status": "08:20 actualPID81003 and bothLasNN81006/7 live; 08:21 completed79500/220703 pairs, no formal metrics. Conservative finish about11:00; sole next1709 at10:40.",
     "result_integrity": "Fresh independent-context same-family provisional audit WARN/0 blockers; 2598 deterministic checks pass. Completed DEV arithmetic verified; formal efficacy not attested."
   },
   "pure_cad_other_benchmark_preparation_20261015": {
@@ -1069,6 +1069,123 @@
       "formal_results_complete": false,
       "new_training_started": false,
       "goal_achieved": false
+    },
+    "runtime_node_0823_20261015": {
+      "evidence": "cadtrack_abc/results/r1_wait_and_runtime_20261015/0823",
+      "progress": {
+        "observed_utc": "2026-10-15T00:21:07.586020+00:00",
+        "elapsed_main_lasher_seconds": 4926.002929,
+        "main_lasher": [
+          {
+            "shard": 0,
+            "completed_sequences": 46,
+            "total_sequences": 123,
+            "completed_frames": 40416,
+            "total_frames": 107898,
+            "completed_sequence_extra_forwards": 1714,
+            "last_completed": {
+              "event": "sequence_complete",
+              "shard": 0,
+              "index": 46,
+              "sequence": "boyinsnowfield3",
+              "frames": 1418,
+              "seconds": 180.04489671898773,
+              "extra_forwards": 0
+            },
+            "completion_only_remaining_seconds_estimate": 8224.874546090114
+          },
+          {
+            "shard": 1,
+            "completed_sequences": 52,
+            "total_sequences": 122,
+            "completed_frames": 39084,
+            "total_frames": 112805,
+            "completed_sequence_extra_forwards": 1624,
+            "last_completed": {
+              "event": "sequence_complete",
+              "shard": 1,
+              "index": 52,
+              "sequence": "boywaitgirl",
+              "frames": 965,
+              "seconds": 82.57995616842527,
+              "extra_forwards": 0
+            },
+            "completion_only_remaining_seconds_estimate": 9291.522411442253
+          }
+        ],
+        "control_status": "RUNNING",
+        "control_phases": {
+          "develop_epoch00": {
+            "status": "REUSED_VERIFIED_COMPLETE",
+            "started_utc": null,
+            "completed_utc": null,
+            "evidence": {
+              "sequences": 98,
+              "frames": 52200,
+              "sequence_equal_mean_iou": 0.6498416023214861,
+              "extra_forwards": 0,
+              "future_interventions": 0
+            }
+          },
+          "develop_epoch01": {
+            "status": "VERIFIED_COMPLETE",
+            "started_utc": "2026-10-14T23:24:00.555841+00:00",
+            "completed_utc": "2026-10-14T23:55:32.585404+00:00",
+            "evidence": {
+              "sequences": 98,
+              "frames": 52200,
+              "sequence_equal_mean_iou": 0.6576578945909836,
+              "extra_forwards": 0,
+              "future_interventions": 575
+            }
+          },
+          "develop_epoch02": {
+            "status": "RUNNING",
+            "started_utc": "2026-10-14T23:55:32.588700+00:00",
+            "completed_utc": null,
+            "evidence": null
+          }
+        },
+        "estimate_scope": "Conservative sequence-completion-only wall estimate; in-progress sequence not counted.",
+        "new_neural_jobs_started": false
+      },
+      "ownership": {
+        "observed_actual_live_utc": "2026-10-15T00:23:07.899868+00:00",
+        "main_controller_native_session": 28531,
+        "main_controller_pid": 81003,
+        "control_controller_native_session": 68351,
+        "control_controller_pid": 85361,
+        "actual_neural_pids_at_sample": [
+          81006,
+          81007,
+          134761
+        ],
+        "consumed_original_observer_sessions": [
+          99077,
+          51093
+        ],
+        "original_observer_exit_codes": [
+          0,
+          0
+        ],
+        "consumed_cpu_diagnostic_sessions": [
+          19274,
+          12828
+        ],
+        "cpu_diagnostic_exit_codes": [
+          0,
+          0
+        ],
+        "main_sole_observer_native_session": 1709,
+        "main_first_necessary_observation_bjt": "2026-10-15 10:40:00",
+        "control_sole_observer_native_session": 13592,
+        "control_first_necessary_observation_bjt": "2026-10-15 09:55:00",
+        "no_before_deadline_neural_log_resource_or_handle_queries": true,
+        "actual_formal_metrics_complete": false,
+        "goal_achieved": false
+      },
+      "runtime_preprocessing_changed": false,
+      "current_formal_checkpoint_unchanged": true
     }
   },
   "full_native_action_collection_20261014": {
