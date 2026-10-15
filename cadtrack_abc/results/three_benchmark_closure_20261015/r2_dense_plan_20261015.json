@@ -1,7 +1,7 @@
 {
-  "status": "PLANNED_NOT_IMPLEMENTED_OR_LAUNCHED",
+  "status": "H_HA_ISOLATED_SOURCE_IMPLEMENTED_NOT_GPU_QUALIFIED",
   "workflow": "experiment-plan",
-  "purpose": "Implement the accepted R2/R3 route after the current matched R1 chain closes; this is a protocol, not executable existing code or a result.",
+  "purpose": "R2/R3 protocol with isolated H/HA localization-training source implemented; no GPU qualification or formal R2 training yet.",
   "research_goal": "Integrate A/B/C and achieve at least+2 percentage points in all seven standard metrics using one selected checkpoint/configuration across the three benchmarks.",
   "stretch_lasher_plus_six": {
     "PR": 78.74,
@@ -111,7 +111,8 @@
       "data_generator_seed": 42,
       "data_rng_separate_from_model_initialization": true,
       "data_order_witness": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_data_order_1315/data_rng_cpu_witness.json",
-      "data_order_implementation": "Pass an independently seeded torch.Generator to the training DataLoader/sampler. Record actual sequence, clip-start and query-index order hashes for both matched variants, independently of module initialization."
+      "data_order_implementation": "Pass an independently seeded torch.Generator to the training DataLoader/sampler. Record actual sequence, clip-start and query-index order hashes for both matched variants, independently of module initialization.",
+      "fusion_head_BN_mode": "Train including original BatchNorm, identical H/HA; not asserted equal to original paper trainer."
     },
     "variants": [
       {
@@ -159,7 +160,10 @@
       "In the actual new video-data runner, verify the two variants consume the same sequence/clip-start/query order hash using a separate data RNG. The completed CPU DataLoader witness is a precondition demonstration, not integrated R2 qualification."
     ],
     "actual_training_updates_completed": 0,
-    "new_source_implemented": false
+    "new_source_implemented": true,
+    "source_scope": "Frozen ViT extraction; differentiable original fusion/Center head; optional pre-fusion competitive memory A; H/HA only, B/C still pending.",
+    "source_ast_proof": "cadtrack_abc/results/three_benchmark_closure_20261015/r2_dense_source_1355/source_ast_and_hashes.json",
+    "gpu_qualified": false
   },
   "experiment_blocks": [
     {
@@ -237,12 +241,13 @@
   "milestones": [
     {
       "id": "R1-close",
-      "status": "RUNNING_EXISTING_CONTROL",
-      "gate": "Same-control-checkpoint all3 full reports/real exits; do not infer completion from elapsed time."
+      "status": "COMPLETE_RECOVERY_CONTROLLER_EXIT0",
+      "gate": "Same-control-checkpoint all3 full reports/real exits; do not infer completion from elapsed time.",
+      "evidence": "cadtrack_abc/results/three_benchmark_closure_20261015/r1_control_terminal_1355/qualified_closure.json"
     },
     {
       "id": "M0",
-      "status": "NOT_IMPLEMENTED",
+      "status": "SOURCE_IMPLEMENTED_GPU_QUALIFICATION_PENDING",
       "gate": "Actual source/gradient/parity/reload/capacity qualification."
     },
     {

@@ -1,0 +1,29 @@
+{
+  "derived_metadata_only": true,
+  "original_reports_edited": false,
+  "control": {
+    "policy_family": "future_actions",
+    "epoch": 20,
+    "completed_scope": "LasHeR 245 sequences / 220703 annotation and prediction rows only",
+    "timing_scope": "Two concurrent inference workers sharing physical GPU 3. Synchronized per-frame timer includes image decode, crop, visual forwards, decisions and state/template update. Excludes initialization, post-timer output CPU transfer, diagnostic packing and output file writes. FPS is 220458 divided by summed worker frame durations, not total parallel wall-clock throughput.",
+    "historical_score_child_exit_code": null,
+    "historical_controller_exit_code": null,
+    "completion_evidence": "Both inference child exit codes 0 in historical state; two completion receipts; complete predictions/latencies; score stdout; exact report reconstruction."
+  },
+  "main": {
+    "policy_family": "search_actions",
+    "epoch": 10,
+    "timing_scope": "Main relay source assigns both workers to physical GPU 2; main runtime observations and receipts support that role but a full original LasHeR child/controller exit trace is not in this bundle. The same synchronized timer and summed-duration FPS definition apply."
+  },
+  "baseline_source_qualified": {
+    "user_reference": {
+      "PR": 72.74,
+      "NPR": 69.16,
+      "SR": 57.84
+    },
+    "source": "User-provided scalars only; no per-sequence user-reference bundle, no paired interval against these scalars, no pure LasHeR baseline run.",
+    "paired_comparison": "paired_comparison.json compares actual fixed main/search_actions and control/future_actions predictions; it is separate from the user reference."
+  },
+  "comparison_limits": "Different selected epochs and head counts, one recorded training seed, reused development selection. Sequence bootstrap excludes retraining and model-selection uncertainty. No multiple-seed stability or independent causal attribution to a component.",
+  "toolkit_invalid_GT_quirk": "1260 frames with any nonpositive x/y/w/h receive error=-1: PR and NPR count them as successful, SR as failed. All frames remain in each sequence denominator. The 533 nonpositive-width/height frames form a smaller set."
+}

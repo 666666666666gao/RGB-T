@@ -1,0 +1,79 @@
+{
+  "observed_utc": "2026-10-15T05:50:01.905338+00:00",
+  "status": "RUNNING",
+  "controller_pid": 640858,
+  "controller_actual_pid_live": true,
+  "actual_jobs": [
+    {
+      "dataset": "rgbt234",
+      "pid": 640895,
+      "physical_gpu": 2,
+      "actual_pid_live": false,
+      "actual_command": ""
+    },
+    {
+      "dataset": "rgbt234",
+      "pid": 640896,
+      "physical_gpu": 2,
+      "actual_pid_live": true,
+      "actual_command": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.infer --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --checkpoint /home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth --policy future_actions --dataset rgbt234 --root /home/gaob/CADTrack-ABC/dataset/rgbt234 --output /home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/rgbt234_predictions --shard 1 --shards 2"
+    },
+    {
+      "dataset": "rgbt210",
+      "pid": 640897,
+      "physical_gpu": 3,
+      "actual_pid_live": true,
+      "actual_command": "[python] <defunct>"
+    },
+    {
+      "dataset": "rgbt210",
+      "pid": 640898,
+      "physical_gpu": 3,
+      "actual_pid_live": true,
+      "actual_command": "[python] <defunct>"
+    }
+  ],
+  "completed_sequence_progress": [
+    {
+      "dataset": "rgbt234",
+      "shard": 0,
+      "completed_sequences": 117,
+      "completed_frame_lower_bound": 53979
+    },
+    {
+      "dataset": "rgbt234",
+      "shard": 1,
+      "completed_sequences": 101,
+      "completed_frame_lower_bound": 55069
+    },
+    {
+      "dataset": "rgbt210",
+      "shard": 0,
+      "completed_sequences": 105,
+      "completed_frame_lower_bound": 49860
+    },
+    {
+      "dataset": "rgbt210",
+      "shard": 1,
+      "completed_sequences": 105,
+      "completed_frame_lower_bound": 54846
+    }
+  ],
+  "reports": {
+    "selected": {
+      "lasher": {
+        "report": "/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_report/full_report.json",
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth",
+        "epoch": 20,
+        "metrics": {
+          "NPR": 67.91691949295868,
+          "PR": 71.49577639689116,
+          "SR": 57.13340035435991
+        }
+      }
+    }
+  },
+  "exit_receipt": null,
+  "new_neural_jobs_started": false,
+  "production_source_changed": false
+}

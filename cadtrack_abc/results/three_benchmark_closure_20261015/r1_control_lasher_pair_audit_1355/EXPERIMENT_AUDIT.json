@@ -1,0 +1,555 @@
+{
+  "audit_skill": "experiment-audit",
+  "verdict": "WARN",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "blocking_findings_count": 0,
+  "reason_code": "qualified_result_reproducible_provenance_and_scope_limits",
+  "summary": "All sealed LasHeR numbers reproduce exactly. Main/control point gains have sequence-bootstrap intervals spanning zero. Raw timing metadata and historical provenance require explicit qualifiers.",
+  "date": "2026-10-15",
+  "generated_at": "2026-10-15T05:30:27.375970+00:00",
+  "agent_id": "/root/r1_control_lasher_pair_integrity_audit",
+  "verdict_id": "/root/r1_control_lasher_pair_integrity_audit/WARN/2026-10-15",
+  "requested_reviewer_model": "gpt-6-astra",
+  "requested_reviewer_reasoning": "max",
+  "actual_reviewer_model": "UNATTESTED",
+  "actual_reviewer_reasoning": "UNATTESTED",
+  "actual_routing": "UNATTESTED",
+  "reviewer_model": "UNATTESTED",
+  "reviewer_family": "openai",
+  "executor_model": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "checks": {
+    "A": {
+      "name": "Ground-truth provenance and native evaluation",
+      "status": "PASS",
+      "evidence": [
+        {
+          "id": "E001",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 36,
+          "quote": "        evaluator.seqs_gt = {name: np.loadtxt(root / name / 'init.txt', delimiter=',', ndmin=2) for name in names}",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        },
+        {
+          "id": "E002",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\raw_input_manifest.json",
+          "line": 35,
+          "quote": "      \"source\": \"/data/wangwj/dataset/LasHeR/testingset/10runone/init.txt\",",
+          "sha256": "e5102c00d58b6117c567e22e0115205a869c8b67a30351e4e84b0106f2e52970"
+        },
+        {
+          "id": "E003",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\dataset\\lasher_dataset.py",
+          "line": 19,
+          "quote": "        self.PR_fun = PR_LasHeR()",
+          "sha256": "2dddcbdc71e9d7562efe9677fe8fa724b6cbb720cacd6f6289b25b4205daf08a"
+        },
+        {
+          "id": "E004",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\export_toolkit_protocol.py",
+          "line": 8,
+          "quote": "evaluator = LasHeR()",
+          "sha256": "d72b9daad167d9b3045bc47010f7c0cdea00cbfc0f87fae8b992e14fc58f07cd"
+        },
+        {
+          "id": "E005",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\infer.py",
+          "line": 58,
+          "quote": "            initial = np.fromstring(stream.readline().strip(), sep=',', dtype=np.float32)",
+          "sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39"
+        }
+      ],
+      "details": "The score loads dataset init.txt files, not model outputs. All 245 GT files match across arms and collection hashes. The supplied native LasHeR toolkit functions are executed in the audit. Upstream distribution signatures and original attribute files are absent; provenance is local collection evidence, not upstream authentication."
+    },
+    "B": {
+      "name": "No prediction-based normalization",
+      "status": "PASS",
+      "evidence": [
+        {
+          "id": "E006",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\utils.py",
+          "line": 119,
+          "quote": "    return cx/(gt_w+eps), cy/(gt_h+eps)",
+          "sha256": "5a95cbafef8371222e35179da58abf461ed03482695efdaad5ff904a077ba994"
+        },
+        {
+          "id": "E007",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\utils.py",
+          "line": 156,
+          "quote": "    cp1 = normalize(cp1[0], cp1[1], rect2[2], rect2[3])",
+          "sha256": "5a95cbafef8371222e35179da58abf461ed03482695efdaad5ff904a077ba994"
+        },
+        {
+          "id": "E008",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 360,
+          "quote": "        pr_val = pr.mean(axis=0)[20]",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        },
+        {
+          "id": "E009",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 276,
+          "quote": "        sr_val = sr.mean()",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        },
+        {
+          "id": "E010",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\dataset\\basedataset.py",
+          "line": 22,
+          "quote": "        serial = load_text(os.path.join(path, prefix+seq_name+'.txt')).round(0)",
+          "sha256": "96449e8090c4f1892fd9c8ea6ce34b12bf2b081e9400208870b1eee1d577b9d8"
+        },
+        {
+          "id": "E011",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\utils.py",
+          "line": 31,
+          "quote": "def load_text(path:str, dtype:Any=np.float32):",
+          "sha256": "5a95cbafef8371222e35179da58abf461ed03482695efdaad5ff904a077ba994"
+        },
+        {
+          "id": "E054",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 338,
+          "quote": "                serial[0] = gt[0]       # ignore the first frame",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        },
+        {
+          "id": "E055",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 310,
+          "quote": "                if sum(gt[i]<=0):",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        },
+        {
+          "id": "E056",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 315,
+          "quote": "                pr_cell.append(np.sum(res<=i)/len(res))",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        },
+        {
+          "id": "E057",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\metrics\\metrics.py",
+          "line": 272,
+          "quote": "                sr_cell.append(np.sum(res>i)/len(res))",
+          "sha256": "9ae628c82201a00002cbef8a62c78746eb26acbd8c226304a4cd78e9223d2382"
+        }
+      ],
+      "details": "NPR divides both centers by GT width/height plus 1e-8. PR/NPR use <= at index20 (20 px/0.2); SR uses > over 21 thresholds and arithmetic curve mean. Sequence/frame counts supply denominators; no prediction maximum/minimum/mean rescales metrics. The toolkit invalid-GT quirk is preserved explicitly."
+    },
+    "C": {
+      "name": "Actual results, inventory and metadata consistency",
+      "status": "WARN",
+      "evidence": [
+        {
+          "id": "E012",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\report\\full_report.json",
+          "line": 8,
+          "quote": "  \"overall_metrics_percent\": {",
+          "sha256": "f051dffd15d3c4c400ebb1559f88b187ce0a3f73f408bb43e36efc6118d11576"
+        },
+        {
+          "id": "E013",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\report\\full_report.json",
+          "line": 8,
+          "quote": "  \"overall_metrics_percent\": {",
+          "sha256": "0df7f0f792ef15695d507bce403a44c3f4f84f3181aaccaa21e5d2e5bdc67110"
+        },
+        {
+          "id": "E014",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\predictions\\complete_shard0.json",
+          "line": 2,
+          "quote": "  \"completed\": true,",
+          "sha256": "26e0b4474aa6eb2185599b7e7ad065a43493a389a77e49b0f2fb5b08ab859d19"
+        },
+        {
+          "id": "E015",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\predictions\\complete_shard1.json",
+          "line": 2,
+          "quote": "  \"completed\": true,",
+          "sha256": "a064fab32137e679c47e6105e53818692d2df224e5a6c130f61f44c33029135d"
+        },
+        {
+          "id": "E016",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\benchmark_state.json",
+          "line": 547,
+          "quote": "    \"infer_selected_lasher\": {",
+          "sha256": "a56fa945b8c43b830fdaa8df9c33106a073124124453c32c6f798f91eaabfd40"
+        },
+        {
+          "id": "E017",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\benchmark_state.json",
+          "line": 648,
+          "quote": "    \"score_selected_lasher\": {",
+          "sha256": "a56fa945b8c43b830fdaa8df9c33106a073124124453c32c6f798f91eaabfd40"
+        },
+        {
+          "id": "E018",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\original_controller_stderr.txt",
+          "line": 1,
+          "quote": "client_loop: send disconnect: Connection reset",
+          "sha256": "122fe5b07412700f17cc10f788d008f45925ff06641c2bb79e4b02ef9c48a49e"
+        },
+        {
+          "id": "E019",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\score_selected_lasher_shard0.log",
+          "line": 1,
+          "quote": "{\"dataset\": \"lasher\", \"metrics\": {\"NPR\": 67.91691949295868, \"PR\": 71.49577639689116, \"SR\": 57.13340035435991}, \"report\": \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_report/full_report.json\"}",
+          "sha256": "2828bc41e46f136206572eb8766e53848076373b5b5d0f9242407e1925570038"
+        },
+        {
+          "id": "E020",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\resume_control_two_cards_1308_driver.py",
+          "line": 43,
+          "quote": "    completed_lasher_score_reused=True, original_lasher_score_exit_code='Unavailable after transport interruption; full report and score stdout present.',",
+          "sha256": "4c6fc9555bce1589e5e4e1c7755b34f54ba80f2a7440b5d294c0efcc0328c297"
+        },
+        {
+          "id": "E021",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\recovery_1309_verified.json",
+          "line": 138,
+          "quote": "  \"original_ssh_terminal_code\": 255,",
+          "sha256": "6663346eda74e037989897a56dd115d2125d13621e2819bd0e019fdf2243cbb1"
+        },
+        {
+          "id": "E043",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\original_controller_stdout.txt",
+          "line": 7,
+          "quote": "{\"event\": \"PHASE_STARTED\", \"phase\": \"infer_selected_lasher\", \"jobs\": [{\"pid\": 260113, \"physical_gpu\": 3, \"command\": [\"cadtrack_abc.infer\", \"--config\", \"/home/gaob/CADTrack-ABC/cadtrack_abc/config.json\", \"--checkpoint\", \"/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth\", \"--policy\", \"future_actions\", \"--dataset\", \"lasher\", \"--root\", \"/data/wangwj/dataset/LasHeR/testingset\", \"--output\", \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions\", \"--shard\", \"0\", \"--shards\", \"2\"]}, {\"pid\": 260114, \"physical_gpu\": 3, \"command\": [\"cadtrack_abc.infer\", \"--config\", \"/home/gaob/CADTrack-ABC/cadtrack_abc/config.json\", \"--checkpoint\", \"/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth\", \"--policy\", \"future_actions\", \"--dataset\", \"lasher\", \"--root\", \"/data/wangwj/dataset/LasHeR/testingset\", \"--output\", \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions\", \"--shard\", \"1\", \"--shards\", \"2\"]}]}",
+          "sha256": "ec931a967938fb868d59e263d35bb1706eb76326d38221fc929c6877333cca5b"
+        },
+        {
+          "id": "E044",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\main_formal_relay.py",
+          "line": 92,
+          "quote": "    run(phase, commands, gpu=2)",
+          "sha256": "a46ca1773dc638bd9b6186949c9e53508d196e7dd013d3da8f5be83a6ebcfc2b"
+        },
+        {
+          "id": "E045",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\infer.py",
+          "line": 67,
+          "quote": "            latencies.append(time.perf_counter() - started)",
+          "sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39"
+        },
+        {
+          "id": "E046",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\report\\full_report.json",
+          "line": 402,
+          "quote": "    \"scope\": \"Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing.\"",
+          "sha256": "f051dffd15d3c4c400ebb1559f88b187ce0a3f73f408bb43e36efc6118d11576"
+        },
+        {
+          "id": "E047",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 82,
+          "quote": "              'baseline_source': 'User-provided LasHeR only. No baseline predictions rerun, no paired CI.',",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        }
+      ],
+      "details": "All reported overall, per-sequence, CSV, mean-curve, attribute and latency values reproduce exactly. 245 identities, 220703 GT/prediction rows and 220458 latency entries per arm are consistent. Raw timing prose incorrectly says two-GPU for the control run. Original control score/controller exit is unavailable; SSH255 and native wrapper1 do not attest remote child exits. Derived qualifiers preserve original reports."
+    },
+    "D": {
+      "name": "Metric call paths",
+      "status": "PASS",
+      "evidence": [
+        {
+          "id": "E022",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 54,
+          "quote": "    metrics = {'lasher': ['NPR', 'PR', 'SR'], 'rgbt210': ['PR', 'SR'], 'rgbt234': ['MPR', 'MSR']}[args.dataset]",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        },
+        {
+          "id": "E023",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 55,
+          "quote": "    measured = {metric: getattr(evaluator, metric)(tracker) for metric in metrics}",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        },
+        {
+          "id": "E024",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\dataset\\lasher_dataset.py",
+          "line": 116,
+          "quote": "            return self.NPR_fun(self, self.trackers[tracker_name], seqs)",
+          "sha256": "2dddcbdc71e9d7562efe9677fe8fa724b6cbb720cacd6f6289b25b4205daf08a"
+        },
+        {
+          "id": "E025",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\dataset\\lasher_dataset.py",
+          "line": 102,
+          "quote": "            return self.PR_fun(self, self.trackers[tracker_name], seqs)",
+          "sha256": "2dddcbdc71e9d7562efe9677fe8fa724b6cbb720cacd6f6289b25b4205daf08a"
+        },
+        {
+          "id": "E026",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\toolkit\\rgbt\\dataset\\lasher_dataset.py",
+          "line": 137,
+          "quote": "            return self.SR_fun(self, self.trackers[tracker_name], seqs)",
+          "sha256": "2dddcbdc71e9d7562efe9677fe8fa724b6cbb720cacd6f6289b25b4205daf08a"
+        },
+        {
+          "id": "E027",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 97,
+          "quote": "    (output / 'full_report.json').write_text(json.dumps(report, indent=2))",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        }
+      ],
+      "details": "score.py selects NPR then PR then SR and writes their outputs. Unchanged toolkit methods and original score aggregation statements were actually executed in this CPU replay, with function call counts saved. The source path, existing score stdout and full matching output support the historical scoring result; this does not supply missing historical process-exit or loaded-module attestation."
+    },
+    "E": {
+      "name": "Model, selection, training, claims and honest scope",
+      "status": "WARN",
+      "evidence": [
+        {
+          "id": "E028",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\fit\\fit_complete.json",
+          "line": 4,
+          "quote": "  \"trainable_parameters\": 37426,",
+          "sha256": "12d6f14d0d4b33592572c0f7afcca6cb1251b212f51ce86009e4fa897624ffcd"
+        },
+        {
+          "id": "E029",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\fit_complete.json",
+          "line": 4,
+          "quote": "  \"trainable_parameters\": 76678,",
+          "sha256": "5d990467eab7eef7baa124150109a6b994dc355496c78bb939af4a9603381207"
+        },
+        {
+          "id": "E030",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\train_future_actions.py",
+          "line": 115,
+          "quote": "    optimizer = torch.optim.AdamW(modules.parameters(), lr=args.lr, weight_decay=.0001)",
+          "sha256": "9b884f7053e3b2dacfaccbbee3a81ce07593c8b048419d94dc537c9e0eaad527"
+        },
+        {
+          "id": "E031",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\train_future_actions.py",
+          "line": 126,
+          "quote": "        payload = {'policy_family': args.policy, 'abc': teacher['abc'], 'future_action': head.state_dict(),",
+          "sha256": "9b884f7053e3b2dacfaccbbee3a81ce07593c8b048419d94dc537c9e0eaad527"
+        },
+        {
+          "id": "E032",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\baseline.py",
+          "line": 31,
+          "quote": "        self.requires_grad_(False).eval()",
+          "sha256": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f"
+        },
+        {
+          "id": "E033",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\select_future_actions.py",
+          "line": 42,
+          "quote": "    selected = max(scores, key=lambda value: value['sequence_mean_iou'])",
+          "sha256": "d5ca1d507d5ed70f56dae7c967942a61e7de37a70c95a6fe3214ebfa9fbcf553"
+        },
+        {
+          "id": "E034",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\fit\\selection.json",
+          "line": 2,
+          "quote": "  \"selected\": {",
+          "sha256": "900077504533ce0ca13e955a1d2701650505ca0238249a7b1771b9676fb549ef"
+        },
+        {
+          "id": "E035",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\selection_snapshot.json",
+          "line": 2,
+          "quote": "  \"selected\": {",
+          "sha256": "aac5c40dbf5a7d1f98c81f33ef26de9da77b0c5685989da5bba7af986f8ad631"
+        },
+        {
+          "id": "E036",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\fit\\selection.json",
+          "line": 56,
+          "quote": "  \"selection_metric\": \"Sequence-equal mean IoU on repeated98 development videos, not official test.\",",
+          "sha256": "900077504533ce0ca13e955a1d2701650505ca0238249a7b1771b9676fb549ef"
+        },
+        {
+          "id": "E037",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\infer.py",
+          "line": 37,
+          "quote": "    model.abc.load_state_dict(payload['abc'], strict=True)",
+          "sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39"
+        },
+        {
+          "id": "E038",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\infer.py",
+          "line": 39,
+          "quote": "        assert payload['policy_family'] == args.policy",
+          "sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39"
+        },
+        {
+          "id": "E039",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\recovery_1309_verified.json",
+          "line": 129,
+          "quote": "  \"checkpoint_sha256\": \"cffca0302460b60f505c2a09a5b651b10f1d1e2211178f68307a4d708080bf62\",",
+          "sha256": "6663346eda74e037989897a56dd115d2125d13621e2819bd0e019fdf2243cbb1"
+        },
+        {
+          "id": "E040",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\main_observation_1040.json",
+          "line": 7,
+          "quote": "  \"checkpoint_sha256\": \"a14130fafbc7eb49a17a3834fe8a43855f3ed0833ba576e737e74d1579965ad8\",",
+          "sha256": "bb22a0cdc72e908504d8866f25b546d5c169176655db745ba599029f6f01ba61"
+        },
+        {
+          "id": "E041",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\search_actions.py",
+          "line": 10,
+          "quote": "from .counterfactual import ACTION_MODES, advance_candidate",
+          "sha256": "3358cf2b76a6a831f96c0745bdae27dc0e40093955fbcf509f5d61a02e262ec8"
+        },
+        {
+          "id": "E042",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\baseline.py",
+          "line": 7,
+          "quote": "NATIVE = Path(__file__).parent / 'vendor' / 'CADTrack'",
+          "sha256": "c638fbef2ddf89ce1b2956023ae0e8c09a59bea81c057a40f062b2aff050555f"
+        },
+        {
+          "id": "E043",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\original_controller_stdout.txt",
+          "line": 7,
+          "quote": "{\"event\": \"PHASE_STARTED\", \"phase\": \"infer_selected_lasher\", \"jobs\": [{\"pid\": 260113, \"physical_gpu\": 3, \"command\": [\"cadtrack_abc.infer\", \"--config\", \"/home/gaob/CADTrack-ABC/cadtrack_abc/config.json\", \"--checkpoint\", \"/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth\", \"--policy\", \"future_actions\", \"--dataset\", \"lasher\", \"--root\", \"/data/wangwj/dataset/LasHeR/testingset\", \"--output\", \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions\", \"--shard\", \"0\", \"--shards\", \"2\"]}, {\"pid\": 260114, \"physical_gpu\": 3, \"command\": [\"cadtrack_abc.infer\", \"--config\", \"/home/gaob/CADTrack-ABC/cadtrack_abc/config.json\", \"--checkpoint\", \"/home/gaob/CADTrack-ABC/outputs/r1_matched_fits_20261015/fit_future_actions/best.pth\", \"--policy\", \"future_actions\", \"--dataset\", \"lasher\", \"--root\", \"/data/wangwj/dataset/LasHeR/testingset\", \"--output\", \"/home/gaob/CADTrack-ABC/outputs/r1_control_reports_20261015/selected/lasher_predictions\", \"--shard\", \"1\", \"--shards\", \"2\"]}]}",
+          "sha256": "ec931a967938fb868d59e263d35bb1706eb76326d38221fc929c6877333cca5b"
+        },
+        {
+          "id": "E044",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\main_lasher_audit_inputs_1040\\main_formal_relay.py",
+          "line": 92,
+          "quote": "    run(phase, commands, gpu=2)",
+          "sha256": "a46ca1773dc638bd9b6186949c9e53508d196e7dd013d3da8f5be83a6ebcfc2b"
+        },
+        {
+          "id": "E045",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\infer.py",
+          "line": 67,
+          "quote": "            latencies.append(time.perf_counter() - started)",
+          "sha256": "3453b62d752ad50353fc27ce650dc766daa806798c4792d07e73d79a75a01f39"
+        },
+        {
+          "id": "E046",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\report\\full_report.json",
+          "line": 402,
+          "quote": "    \"scope\": \"Decode,crop,all visual forwards,decision,state/template update; excludes initial frame. Concurrent two-GPU run, not matched baseline timing.\"",
+          "sha256": "f051dffd15d3c4c400ebb1559f88b187ce0a3f73f408bb43e36efc6118d11576"
+        },
+        {
+          "id": "E047",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 82,
+          "quote": "              'baseline_source': 'User-provided LasHeR only. No baseline predictions rerun, no paired CI.',",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        },
+        {
+          "id": "E048",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\disconnect_diagnosis_1307.json",
+          "line": 736,
+          "quote": "  \"pending_output_exists\": {",
+          "sha256": "3473bbbb501eb234164345319b38483854873d7bbd4dd7ee8aa3530a56006af3"
+        },
+        {
+          "id": "E049",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\runtime\\recovery_1309_verified.json",
+          "line": 2,
+          "quote": "  \"status\": \"PARALLEL_RESUME_VERIFIED\",",
+          "sha256": "6663346eda74e037989897a56dd115d2125d13621e2819bd0e019fdf2243cbb1"
+        }
+      ],
+      "details": "One recorded seed42; shared recorded teacher; 20-epoch/1600-update frozen-native small-head fits; control37426/main76678 trainable parameters. Controlepoch20 and mainepoch10 maximize the supplied repeated98 DEV summaries. Raw DEV trajectories, checkpoint bytes, vendor dependencies and loaded-module attestation are absent, so selected-weight hashes are recorded metadata, not locally rehashed proofs. This audit covers LasHeR, not a completed control three-dataset round. All paired intervals include zero and do not measure retraining/selection uncertainty or independent component causality."
+    },
+    "F": {
+      "name": "Evaluation classification",
+      "status": "PASS",
+      "classification": "real_gt",
+      "evidence": [
+        {
+          "id": "E050",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\score.py",
+          "line": 36,
+          "quote": "        evaluator.seqs_gt = {name: np.loadtxt(root / name / 'init.txt', delimiter=',', ndmin=2) for name in names}",
+          "sha256": "2b6925e828f9c8c33104affcb6c780f22d223b4a68d0cc5c5879a2e9695300ab"
+        },
+        {
+          "id": "E051",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\mechanism_summary.py",
+          "line": 117,
+          "quote": "                            'ground_truth': 'Initialization excluded; diagnostic decisions use finite GT with positive width/height. GT with x/y=0 remains a box; this diagnostic mask differs from native official PR/NPR/SR.',",
+          "sha256": "be0bb2e838c6216ed4c94c0bd4ce2cbff349e49a8d63b45c9a51eaee74893fd9"
+        },
+        {
+          "id": "E052",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\mechanism_summary.py",
+          "line": 118,
+          "quote": "                            'commits': 'Actual per-sensor template and target-memory gates; erroneous writes use selected IoU<0.2 as a localization proxy, not semantic identity labels.',",
+          "sha256": "be0bb2e838c6216ed4c94c0bd4ce2cbff349e49a8d63b45c9a51eaee74893fd9"
+        },
+        {
+          "id": "E053",
+          "path": "C:\\Users\\gb\\.codex_tmp\\cadtrack_abc_20261013\\control_lasher_audit_inputs_1315\\project\\cadtrack_abc\\mechanism_summary.py",
+          "line": 119,
+          "quote": "                            'harm_scope': 'Immediate same-state rescue/harm does not capture later recovery-opportunity losses or provide a causal future comparison.',",
+          "sha256": "be0bb2e838c6216ed4c94c0bd4ce2cbff349e49a8d63b45c9a51eaee74893fd9"
+        }
+      ],
+      "details": "Official-style LasHeR PR/NPR/SR compare predictions with dataset annotations. Mechanism diagnostics also use actual GT, but localization thresholds are proxies for semantic identity/incorrect writes. Reproduced mean-IoU/failure/recovery diagnostics use their separately declared mask and do not replace official metrics; missing candidate/commit records limit the remaining diagnostics."
+    }
+  },
+  "claims": [
+    {
+      "claim": "Control and main fixed-checkpoint LasHeR scores on the supplied GT/native protocol",
+      "impact": "supported"
+    },
+    {
+      "claim": "Main exceeds control in point estimates by PR0.990966502/NPR0.926079480/SR0.748591147 percentage points",
+      "impact": "supported"
+    },
+    {
+      "claim": "A positive main/control difference established by 95% paired sequence intervals",
+      "impact": "unsupported; all three intervals include zero"
+    },
+    {
+      "claim": "Three independent component gains, stable gains across training seeds, or full backbone/A-B-C joint training in these fits",
+      "impact": "unsupported"
+    },
+    {
+      "claim": "Paired uncertainty versus the user-provided baseline",
+      "impact": "unavailable; only three user scalar references supplied"
+    },
+    {
+      "claim": "Control three-dataset completion",
+      "impact": "not established by this sealed LasHeR subset"
+    },
+    {
+      "claim": "Raw report timing as matched baseline speed or aggregate parallel throughput",
+      "impact": "needs qualifier; see derived_report_qualifiers.json"
+    },
+    {
+      "claim": "Native toolkit arithmetic and supplied attributes reproduce exactly",
+      "impact": "supported; original upstream signatures and attribute text not authenticated"
+    }
+  ],
+  "primary_deterministic_checks": {
+    "checks": 14197,
+    "passed": 14197,
+    "failed": 0
+  },
+  "paired_comparison": "paired_comparison.json",
+  "derived_qualifiers": "derived_report_qualifiers.json",
+  "input_hash_verification": "input_hash_verification.json",
+  "source_read_trace": "source_read_trace.json",
+  "execution_trace": "metric_execution_trace.json",
+  "artifact_validation": "artifact_validation.json",
+  "output_hash_manifest": "output_hash_manifest.json",
+  "trace_path": ".aris/traces/experiment-audit/2026-10-15_run01/",
+  "host_transcript_export": "UNAVAILABLE: the complete host conversation/tool transcript cannot be exported through this agent interface. The received task is saved verbatim; the final response is saved verbatim; checker requests, executed source, stdout/stderr and true exits are saved. Early read-only tool displays were sometimes truncated and are not falsely represented as a complete host export.",
+  "actions": [
+    "No NN execution, remote/GPU queries, environment installations, external reviewer calls, or input edits.",
+    "Use corrected metadata when reporting this result; retain raw reports unchanged.",
+    "If stronger provenance claims are later needed, supply original checkpoint bytes, DEV raw records, original attribute files and historical runtime attestation; none are fabricated here."
+  ]
+}

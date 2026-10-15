@@ -1,0 +1,1533 @@
+{
+  "direction": "main_minus_control",
+  "units": "percentage_points",
+  "sequence_count": 245,
+  "control_epoch": 20,
+  "main_epoch": 10,
+  "bootstrap": {
+    "resamples": 5000,
+    "seed": 20261015,
+    "generator": "numpy.random.default_rng/PCG64",
+    "numpy_version": "2.2.6",
+    "sampling": "245 sequences with replacement, same indices for each arm and metric",
+    "interval": "two-sided 95% percentile",
+    "quantile_method": "linear"
+  },
+  "scope": "Fixed selected checkpoints; sequence sampling uncertainty only. No retraining, seed variation, independent component-causal identification, or paired inference against user scalar baseline.",
+  "metrics": {
+    "PR": {
+      "control_percent": 71.49577639689116,
+      "main_percent": 72.48674289849187,
+      "difference_of_overall_pp": 0.9909665016007096,
+      "mean_paired_sequence_difference_pp": 0.9909665016007273,
+      "ci95_pp": [
+        -0.48225050377599393,
+        2.652667332337152
+      ],
+      "wins": 47,
+      "ties": 146,
+      "losses": 52,
+      "tie_definition": "exact equality of the reproduced sequence metric"
+    },
+    "NPR": {
+      "control_percent": 67.91691949295868,
+      "main_percent": 68.84299897334117,
+      "difference_of_overall_pp": 0.9260794803824837,
+      "mean_paired_sequence_difference_pp": 0.9260794803825295,
+      "ci95_pp": [
+        -0.4383040718580077,
+        2.46757749486275
+      ],
+      "wins": 55,
+      "ties": 141,
+      "losses": 49,
+      "tie_definition": "exact equality of the reproduced sequence metric"
+    },
+    "SR": {
+      "control_percent": 57.13340035435991,
+      "main_percent": 57.88199150093345,
+      "difference_of_overall_pp": 0.7485911465735455,
+      "mean_paired_sequence_difference_pp": 0.7485911465735448,
+      "ci95_pp": [
+        -0.35226712806893135,
+        1.9855618194348075
+      ],
+      "wins": 64,
+      "ties": 125,
+      "losses": 56,
+      "tie_definition": "exact equality of the reproduced sequence metric"
+    }
+  },
+  "per_sequence": [
+    {
+      "sequence": "10runone",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "11leftboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "11runtwo",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "1blackteacher",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "1boycoming",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "1stcol4thboy",
+      "PR": -12.614746816701217,
+      "NPR": -4.293751850755108,
+      "SR": -7.183044968061254
+    },
+    {
+      "sequence": "1strowleftboyturning",
+      "PR": -0.8196721311475406,
+      "NPR": 0.0,
+      "SR": -0.6765547749154308
+    },
+    {
+      "sequence": "1strowrightdrillmaster",
+      "PR": -0.0785957558291841,
+      "NPR": -0.6025674613570828,
+      "SR": -0.16218171837768125
+    },
+    {
+      "sequence": "1strowrightgirl3540",
+      "PR": 4.830508474576263,
+      "NPR": 3.898305084745772,
+      "SR": 3.4221146085552903
+    },
+    {
+      "sequence": "2girl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "2girlup",
+      "PR": 17.64705882352941,
+      "NPR": 8.403361344537814,
+      "SR": 11.364545818327333
+    },
+    {
+      "sequence": "2runseven",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3bike1",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3men",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3pinkleft",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3rdfatboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3rdgrouplastboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "3thmoto",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "4men",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "4thboywithwhite",
+      "PR": 1.9047619047619122,
+      "NPR": 2.2222222222222285,
+      "SR": 0.8465608465608483
+    },
+    {
+      "sequence": "7rightorangegirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "ab_bikeoccluded",
+      "PR": 0.28328611898015765,
+      "NPR": 0.8498583569405156,
+      "SR": 0.4181842708754857
+    },
+    {
+      "sequence": "ab_blkskirtgirl",
+      "PR": 20.286885245901644,
+      "NPR": 20.286885245901644,
+      "SR": 16.022638563622166
+    },
+    {
+      "sequence": "ab_bolstershaking",
+      "PR": -0.3079765937788821,
+      "NPR": 0.3079765937788679,
+      "SR": 0.6511505125610526
+    },
+    {
+      "sequence": "ab_girlchoosesbike",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0684181718664405
+    },
+    {
+      "sequence": "ab_girlcrossroad",
+      "PR": -50.257731958762875,
+      "NPR": -47.68041237113401,
+      "SR": -37.21158566519392
+    },
+    {
+      "sequence": "ab_pingpongball2",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "ab_rightlowerredcup_quezhen",
+      "PR": -2.3809523809523796,
+      "NPR": -0.3322259136212615,
+      "SR": -1.294626377682853
+    },
+    {
+      "sequence": "ab_whiteboywithbluebag",
+      "PR": -2.8957528957528993,
+      "NPR": -2.316602316602321,
+      "SR": -4.182754182754181
+    },
+    {
+      "sequence": "advancedredcup",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "AQgirlwalkinrain",
+      "PR": -0.26881720430107237,
+      "NPR": -0.26881720430107237,
+      "SR": -0.2944188428059462
+    },
+    {
+      "sequence": "AQtruck2north",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "baggirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "ballshootatthebasket3times",
+      "PR": -4.053156146179401,
+      "NPR": -1.6611295681063112,
+      "SR": -2.7653852238569865
+    },
+    {
+      "sequence": "basketball849",
+      "PR": -0.1177856301531186,
+      "NPR": 0.0,
+      "SR": 0.033653037186606394
+    },
+    {
+      "sequence": "basketballathand",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.14880952380952372
+    },
+    {
+      "sequence": "basketboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bawgirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "belowdarkgirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "besom3",
+      "PR": -3.35241210139003,
+      "NPR": -3.434178250204411,
+      "SR": 0.5295331542265487
+    },
+    {
+      "sequence": "bike",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bike2left",
+      "PR": 0.0,
+      "NPR": 0.3891050583657574,
+      "SR": 0.12970168612191912
+    },
+    {
+      "sequence": "bike2trees",
+      "PR": 0.684931506849324,
+      "NPR": -1.3698630136986338,
+      "SR": 0.9458577951728699
+    },
+    {
+      "sequence": "bikeboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikeboyintodark",
+      "PR": 4.479418886198545,
+      "NPR": 3.7530266343825787,
+      "SR": 1.2337138245128614
+    },
+    {
+      "sequence": "bikeboyright",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikeboyturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikeboyturntimes",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikeboywithumbrella",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikefromlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bikegoindark",
+      "PR": -3.5211267605633765,
+      "NPR": -1.408450704225352,
+      "SR": -2.246814218645202
+    },
+    {
+      "sequence": "bikeinrain",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "biketurnright",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blackboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blackboyoncall",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blackcarturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blackdown",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blackgirl",
+      "PR": -0.4608294930875445,
+      "NPR": 0.0,
+      "SR": -0.15360983102918624
+    },
+    {
+      "sequence": "blkboyback",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkboybetweenredandwhite",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkboydown",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkboyhead",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkboylefttheNo_21",
+      "PR": 27.939281111270226,
+      "NPR": 28.182729485894313,
+      "SR": 23.021896715151755
+    },
+    {
+      "sequence": "blkboystand",
+      "PR": 0.5571030640668582,
+      "NPR": 0.6267409470752128,
+      "SR": 0.2089136490250567
+    },
+    {
+      "sequence": "blkboytakesumbrella",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkboy`shead",
+      "PR": -20.797698647177725,
+      "NPR": -20.67330119732545,
+      "SR": -16.88065989885302
+    },
+    {
+      "sequence": "blkcaratfrontbluebus",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkgirlumbrella",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkhairgirltakingblkbag",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkmoto2north",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blkstandboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blktribikecome",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blueboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "blueboy421",
+      "PR": 0.0,
+      "NPR": 1.187648456057012,
+      "SR": 0.23752969121142797
+    },
+    {
+      "sequence": "bluebuscoming",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "bluegirlbiketurn",
+      "PR": 21.621621621621628,
+      "NPR": 18.918918918918905,
+      "SR": 14.671814671814687
+    },
+    {
+      "sequence": "bottlebetweenboy`sfeet",
+      "PR": 6.719367588932805,
+      "NPR": 2.17391304347826,
+      "SR": 4.027856201769245
+    },
+    {
+      "sequence": "boy2basketballground",
+      "PR": -0.9708737864077648,
+      "NPR": 1.9417475728155296,
+      "SR": 0.43920480813684293
+    },
+    {
+      "sequence": "boy2buildings",
+      "PR": -0.16778523489931274,
+      "NPR": -0.2237136465324312,
+      "SR": -0.2183871311388188
+    },
+    {
+      "sequence": "boy2trees",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boy2treesfindbike",
+      "PR": 8.494921514312097,
+      "NPR": 7.109879963065552,
+      "SR": 6.929604713538211
+    },
+    {
+      "sequence": "boyaftertree",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyaroundtrees",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyatdoorturnright",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boydownplatform",
+      "PR": 1.1984021304926813,
+      "NPR": 0.3994673768308985,
+      "SR": 1.2681504026377581
+    },
+    {
+      "sequence": "boyfromdark",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyinlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyinplatform",
+      "PR": 89.84615384615384,
+      "NPR": 78.15384615384616,
+      "SR": 65.34310134310135
+    },
+    {
+      "sequence": "boyinsnowfield3",
+      "PR": -1.3399153737658622,
+      "NPR": -1.5514809590973329,
+      "SR": -0.6179058365235903
+    },
+    {
+      "sequence": "boyleftblkrunning2crowd",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boylefttheNo_9boy",
+      "PR": -10.363747205852462,
+      "NPR": -10.54663686242634,
+      "SR": -8.785477206529833
+    },
+    {
+      "sequence": "boyoncall",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyplayphone",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyride2path",
+      "PR": -3.423913043478258,
+      "NPR": -2.500000000000007,
+      "SR": -2.070393374741208
+    },
+    {
+      "sequence": "boyruninsnow",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boyscomeleft",
+      "PR": 15.086206896551722,
+      "NPR": 15.086206896551726,
+      "SR": 13.033661740558301
+    },
+    {
+      "sequence": "boyshead9684",
+      "PR": 2.1168938455183763,
+      "NPR": 2.1478727798430413,
+      "SR": 1.435357290375883
+    },
+    {
+      "sequence": "boyss",
+      "PR": -2.3999999999999915,
+      "NPR": 0.2666666666666657,
+      "SR": -0.7492063492063537
+    },
+    {
+      "sequence": "boytakingbasketballfollowing",
+      "PR": 7.61173184357542,
+      "NPR": 5.307262569832396,
+      "SR": 6.424581005586589
+    },
+    {
+      "sequence": "boytakingplate2left",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.1272264631043356
+    },
+    {
+      "sequence": "boyunder2baskets",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boywaitgirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "boywalkinginsnow2",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.007236937328130466
+    },
+    {
+      "sequence": "boy`headwithouthat",
+      "PR": 0.0,
+      "NPR": -0.7050528789659296,
+      "SR": -0.4812265681831107
+    },
+    {
+      "sequence": "boy`sheadingreycol",
+      "PR": -14.498141263940525,
+      "NPR": -14.869888475836433,
+      "SR": -9.275978049212245
+    },
+    {
+      "sequence": "broom",
+      "PR": 0.4613126441601949,
+      "NPR": -0.18871880897462745,
+      "SR": 0.40489670391117016
+    },
+    {
+      "sequence": "carbehindtrees",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "carcomeonlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "carcomingfromlight",
+      "PR": -8.43989769820972,
+      "NPR": -7.416879795396422,
+      "SR": -6.357325538911212
+    },
+    {
+      "sequence": "carcominginlight",
+      "PR": -61.93548387096775,
+      "NPR": -60.0,
+      "SR": -48.07987711213518
+    },
+    {
+      "sequence": "carlight2",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "carlightcome2",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "caronlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "carturn117",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "carwillturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": -0.019800019800021218
+    },
+    {
+      "sequence": "catbrown2",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "catbrownback2bush",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "couple",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "darkcarturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "darkgirl",
+      "PR": 0.3262642740619981,
+      "NPR": 0.48939641109298293,
+      "SR": 0.2485823040472468
+    },
+    {
+      "sequence": "darkouterwhiteboy",
+      "PR": -0.13351134846462287,
+      "NPR": -0.6675567423231001,
+      "SR": -0.08264988238283877
+    },
+    {
+      "sequence": "darktreesboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "drillmaster1117",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "drillmasterfollowingatright",
+      "PR": -3.156822810590633,
+      "NPR": -1.8329938900203686,
+      "SR": -2.410047522063813
+    },
+    {
+      "sequence": "farfatboy",
+      "PR": 20.86614173228348,
+      "NPR": 19.685039370078734,
+      "SR": 14.154480689913768
+    },
+    {
+      "sequence": "firstexercisebook",
+      "PR": -1.37931034482758,
+      "NPR": -1.5517241379310391,
+      "SR": 0.13546798029555873
+    },
+    {
+      "sequence": "foamatgirl`srighthand",
+      "PR": 0.5181347150259086,
+      "NPR": 0.5181347150259086,
+      "SR": -7.105427357601002e-15
+    },
+    {
+      "sequence": "foldedfolderatlefthand",
+      "PR": -6.457242582897031,
+      "NPR": -6.544502617801051,
+      "SR": -5.622039391672892
+    },
+    {
+      "sequence": "girl2left3man1",
+      "PR": 27.814569536423832,
+      "NPR": 21.85430463576158,
+      "SR": 16.587827183853676
+    },
+    {
+      "sequence": "girlafterglassdoor",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "girldownstairfromlight",
+      "PR": 5.258833196384543,
+      "NPR": 3.122432210353338,
+      "SR": 4.362796885393436
+    },
+    {
+      "sequence": "girlfromlight_quezhen",
+      "PR": -0.2904162633107461,
+      "NPR": 0.38722168441432814,
+      "SR": -0.08758585718895517
+    },
+    {
+      "sequence": "girlinrain",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "girllongskirt",
+      "PR": 0.0,
+      "NPR": -1.3157894736842195,
+      "SR": -0.23496240601503615
+    },
+    {
+      "sequence": "girlof2leaders",
+      "PR": -0.9127789046653163,
+      "NPR": -1.419878296146038,
+      "SR": -0.44914517531152853
+    },
+    {
+      "sequence": "girlrightthewautress",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.10822510822509912
+    },
+    {
+      "sequence": "girlunderthestreetlamp",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "girl`sblkbag",
+      "PR": -0.8756567425569184,
+      "NPR": 0.17513134851138368,
+      "SR": -0.2501876407305481
+    },
+    {
+      "sequence": "guardunderthecolumn",
+      "PR": 0.0,
+      "NPR": -0.35460992907801625,
+      "SR": -0.033772374197909016
+    },
+    {
+      "sequence": "hugboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "hyalinepaperfrontface",
+      "PR": -0.1389854065323144,
+      "NPR": -0.16214964095436635,
+      "SR": 0.06177129179213825
+    },
+    {
+      "sequence": "large",
+      "PR": -4.2033898305084705,
+      "NPR": -4.135593220338976,
+      "SR": -3.099273607748188
+    },
+    {
+      "sequence": "lastleftgirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "leftblkTboy",
+      "PR": -24.54794520547945,
+      "NPR": -24.958904109589035,
+      "SR": -21.093281148075665
+    },
+    {
+      "sequence": "leftbottle2hang",
+      "PR": -8.519168128288648,
+      "NPR": -5.963417689802052,
+      "SR": -11.70968011358891
+    },
+    {
+      "sequence": "leftboy2jointhe4",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "leftboyoutofthetroop",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "leftchair",
+      "PR": 0.0,
+      "NPR": 0.0714285714285765,
+      "SR": -0.1258503401360329
+    },
+    {
+      "sequence": "lefterbike",
+      "PR": 1.7667844522968181,
+      "NPR": 1.0600706713780994,
+      "SR": 0.8413259296651603
+    },
+    {
+      "sequence": "leftexcersicebookyellow",
+      "PR": -0.8166969147005432,
+      "NPR": -1.0889292196007219,
+      "SR": -0.19877279405409354
+    },
+    {
+      "sequence": "leftfarboycomingpicktheball",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.010546854400674599
+    },
+    {
+      "sequence": "leftgirl'swhitebag",
+      "PR": -2.7888446215139417,
+      "NPR": 0.7968127490039869,
+      "SR": -2.2766078542970973
+    },
+    {
+      "sequence": "lefthyalinepaper2rgb",
+      "PR": -15.170603674540686,
+      "NPR": -15.590551181102363,
+      "SR": -11.771028621422328
+    },
+    {
+      "sequence": "lefthyalinepaperfrontpants",
+      "PR": 1.6093229744727964,
+      "NPR": 1.9977802441731427,
+      "SR": 1.596110142170069
+    },
+    {
+      "sequence": "leftmirror",
+      "PR": -15.061202767429485,
+      "NPR": -15.220862160723797,
+      "SR": -11.845206416787043
+    },
+    {
+      "sequence": "leftmirrorlikesky",
+      "PR": -11.169977924944824,
+      "NPR": -10.905077262693155,
+      "SR": -8.111005991800688
+    },
+    {
+      "sequence": "leftmirrorside",
+      "PR": 3.3487297921478074,
+      "NPR": 3.1755196304849918,
+      "SR": 2.287473881007365
+    },
+    {
+      "sequence": "leftopenexersicebook",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "leftpingpongball",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": -0.0721500721500723
+    },
+    {
+      "sequence": "leftrushingboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "leftunderbasket",
+      "PR": 2.231237322515213,
+      "NPR": 2.332657200811358,
+      "SR": 2.0477156379793318
+    },
+    {
+      "sequence": "leftuphand",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "littelbabycryingforahug",
+      "PR": 0.5966587112171808,
+      "NPR": 0.41766109785202943,
+      "SR": 1.0484145925673367
+    },
+    {
+      "sequence": "lowerfoamboard",
+      "PR": 66.66666666666666,
+      "NPR": 69.6969696969697,
+      "SR": 49.20634920634922
+    },
+    {
+      "sequence": "mandownstair",
+      "PR": 0.4562043795620383,
+      "NPR": 0.8211678832116718,
+      "SR": 0.21289537712893036
+    },
+    {
+      "sequence": "manfromtoilet",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "mangetsoff",
+      "PR": 1.5748031496062964,
+      "NPR": 0.0,
+      "SR": 1.668541432320957
+    },
+    {
+      "sequence": "manoncall",
+      "PR": -1.3435700575815872,
+      "NPR": -1.9193857965451144,
+      "SR": -1.2704505986655619
+    },
+    {
+      "sequence": "mansimiliar",
+      "PR": 0.0,
+      "NPR": 0.366300366300365,
+      "SR": -0.0872143729286563
+    },
+    {
+      "sequence": "mantostartcar",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "midblkgirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "midboyNo_9",
+      "PR": -5.26315789473685,
+      "NPR": -5.028933590520808,
+      "SR": -4.129433531472664
+    },
+    {
+      "sequence": "middrillmaster",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "midgreyboyrunningcoming",
+      "PR": 6.571605703657781,
+      "NPR": 6.199628022318656,
+      "SR": 4.469636583709736
+    },
+    {
+      "sequence": "midof3girls",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "midredboy",
+      "PR": -0.42413462854015904,
+      "NPR": -0.205226433164583,
+      "SR": -0.1719992963665078
+    },
+    {
+      "sequence": "midrunboywithwhite",
+      "PR": 16.063348416289593,
+      "NPR": 13.12217194570136,
+      "SR": 9.857789269553969
+    },
+    {
+      "sequence": "minibus",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "minibusgoes2left",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "moto",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "motocomeonlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "motogoesaloongS",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "mototaking2boys306",
+      "PR": 1.6339869281045623,
+      "NPR": 0.9803921568627487,
+      "SR": 0.0466853408029948
+    },
+    {
+      "sequence": "mototurneast",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "motowithbluetop",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "pingpingpad3",
+      "PR": -8.663366336633672,
+      "NPR": -7.920792079207928,
+      "SR": -6.064356435643575
+    },
+    {
+      "sequence": "pinkwithblktopcup",
+      "PR": -9.133858267716533,
+      "NPR": -7.401574803149607,
+      "SR": -5.481814773153353
+    },
+    {
+      "sequence": "raincarturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rainycarcome_ab",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "redboygoright",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "redcarcominginlight",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0908760450745234
+    },
+    {
+      "sequence": "redetricycle",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "redmidboy",
+      "PR": 0.9063444108761445,
+      "NPR": 2.8700906344410697,
+      "SR": 0.6617752841317923
+    },
+    {
+      "sequence": "redroadlatboy",
+      "PR": 5.205479452054789,
+      "NPR": 4.794520547945211,
+      "SR": 3.9791258969341214
+    },
+    {
+      "sequence": "redtricycle",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "right2ndflagformath",
+      "PR": -37.94285714285714,
+      "NPR": -31.6,
+      "SR": -25.537414965986393
+    },
+    {
+      "sequence": "right5thflag",
+      "PR": -0.31315240083507234,
+      "NPR": -0.052192066805844206,
+      "SR": -0.15160552738841204
+    },
+    {
+      "sequence": "rightbike-gai",
+      "PR": -0.4807692307692264,
+      "NPR": 0.0,
+      "SR": -0.8699633699633722
+    },
+    {
+      "sequence": "rightbike",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightblkboy4386",
+      "PR": 1.3451892384860855,
+      "NPR": 0.6155950752393977,
+      "SR": 0.319197446420425
+    },
+    {
+      "sequence": "rightblkboystand",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightblkfatboyleftwhite",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightbluewhite",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightbottlecomes",
+      "PR": -2.9538904899135403,
+      "NPR": -1.8731988472622483,
+      "SR": -2.703444490188005
+    },
+    {
+      "sequence": "rightboy504",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightcameraman",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightcar-chongT",
+      "PR": 6.59536541889483,
+      "NPR": 2.4955436720142607,
+      "SR": 9.023003140650205
+    },
+    {
+      "sequence": "rightcomingstrongboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "rightdarksingleman",
+      "PR": 0.176522506619591,
+      "NPR": -0.0882612533097955,
+      "SR": 0.3404362627663744
+    },
+    {
+      "sequence": "rightgirltakingcup",
+      "PR": -5.089820359281438,
+      "NPR": -0.8982035928143715,
+      "SR": -2.530652979754776
+    },
+    {
+      "sequence": "rightwaiter1_quezhen",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": -0.2319109461966633
+    },
+    {
+      "sequence": "runningcameragirl",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "shinybikeboy2left",
+      "PR": 40.26442307692308,
+      "NPR": 33.29326923076924,
+      "SR": 22.842261904761905
+    },
+    {
+      "sequence": "shinycarcoming",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "shinycarcoming2",
+      "PR": 7.9734219269103015,
+      "NPR": 12.790697674418606,
+      "SR": 12.600854295206453
+    },
+    {
+      "sequence": "silvercarturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "small-gai",
+      "PR": 0.0,
+      "NPR": -0.15105740181269312,
+      "SR": -0.6617752841317781
+    },
+    {
+      "sequence": "standblkboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "swan_0109",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "truckgonorth",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "turning1strowleft2ndboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "umbreboyoncall",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "umbrella",
+      "PR": 4.702194357366764,
+      "NPR": 2.8213166144200663,
+      "SR": 3.1049410359755214
+    },
+    {
+      "sequence": "umbrellabyboy",
+      "PR": 76.0,
+      "NPR": 70.94736842105263,
+      "SR": 59.88972431077694
+    },
+    {
+      "sequence": "umbrellawillbefold",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "umbrellawillopen",
+      "PR": -0.4081632653061291,
+      "NPR": -0.6122448979591866,
+      "SR": 0.08746355685129004
+    },
+    {
+      "sequence": "waitresscoming",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitebikebelow",
+      "PR": 0.0,
+      "NPR": 0.35335689045936647,
+      "SR": 0.06730607437320657
+    },
+    {
+      "sequence": "whiteboyrightcoccergoal",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitecarcomeinrain",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitecarturn683",
+      "PR": 31.185944363103957,
+      "NPR": 30.30746705710103,
+      "SR": 25.545562295196262
+    },
+    {
+      "sequence": "whitecarturnleft",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitecarturnright",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitefardown",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whitefargirl",
+      "PR": -0.6451612903225907,
+      "NPR": 0.6451612903225907,
+      "SR": 0.12288786482332625
+    },
+    {
+      "sequence": "whitegirlinlight",
+      "PR": 0.0,
+      "NPR": -0.16977928692699606,
+      "SR": -0.016169455897809826
+    },
+    {
+      "sequence": "whitegirltakingchopsticks",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whiteofboys",
+      "PR": -4.433497536945808,
+      "NPR": -3.4482758620689538,
+      "SR": -3.072953319258744
+    },
+    {
+      "sequence": "whiteridingbike",
+      "PR": 1.176470588235297,
+      "NPR": 0.23529411764706154,
+      "SR": 0.5490196078431353
+    },
+    {
+      "sequence": "whiterunningboy",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "whiteskirtgirlcomingfromgoal",
+      "PR": 7.946210268948647,
+      "NPR": 4.645476772616135,
+      "SR": 4.5057631854697675
+    },
+    {
+      "sequence": "whitesuvturn",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    },
+    {
+      "sequence": "womanback2car",
+      "PR": 48.421052631578945,
+      "NPR": 46.31578947368422,
+      "SR": 39.64912280701754
+    },
+    {
+      "sequence": "yellowgirl118",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": -0.16142050040355826
+    },
+    {
+      "sequence": "yellowskirt",
+      "PR": 0.0,
+      "NPR": 0.0,
+      "SR": 0.0
+    }
+  ]
+}
