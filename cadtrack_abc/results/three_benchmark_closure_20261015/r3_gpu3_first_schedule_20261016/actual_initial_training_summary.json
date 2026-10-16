@@ -1,0 +1,74 @@
+{
+  "status": "ACTUAL_RAW_FULL20_RUNNING_NATIVE_AND_PROBE_PASS",
+  "observed_utc": "2026-10-16T09:40:46.424332+00:00",
+  "raw_training_pid": 2449058,
+  "raw_training_started_utc": "2026-10-16T09:32:39.937482+00:00",
+  "native_parent_parity_frames": 24,
+  "matched_actions": 210,
+  "probe_actual_exit_code": 0,
+  "probe_changed_tensor_groups": {
+    "base.decode_fuse_search.": 4,
+    "base.box_head.": 54,
+    "prompt.": 11,
+    "motion.": 4,
+    "motion_prompt.": 2,
+    "candidate_evidence.": 14
+  },
+  "frozen_ViT_and_decisions_unchanged": true,
+  "selected_parent_sha256": "075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9",
+  "last_saved_progress": {
+    "stage": "dense_motion",
+    "probe": false,
+    "epoch": 1,
+    "epochs": 20,
+    "batch": 2,
+    "batches": 157,
+    "updates": 2,
+    "clips_seen": 256,
+    "loss": 2.1278347969055176,
+    "parts": {
+      "focal": 0.15342894196510315,
+      "l1": 0.008541435934603214,
+      "giou": 0.1287594586610794,
+      "gate": 0.21261677145957947,
+      "identity": 0.019591066986322403,
+      "preservation": 0.004536055959761143,
+      "motion": 13.031882286071777,
+      "proxy": 1.6302775144577026
+    },
+    "gradients": {
+      "localizer": 0.057713985443115234,
+      "motion": 0.9955803155899048,
+      "motion_prompt": 0.00095670873997733,
+      "candidate_evidence": 0.07407877594232559
+    },
+    "clips_per_second": 3.370425201871784,
+    "peak_allocated_gib": 13.934231758117676,
+    "future_actions_trained": false,
+    "search_actions_trained": false,
+    "formal_metrics": null
+  },
+  "control_worker": {
+    "status": "WAITING_FOR_CARD",
+    "worker_pid": 2448418,
+    "variant": "control",
+    "physical_gpu": 2,
+    "created_utc": "2026-10-16T09:31:14.547834+00:00",
+    "phases": {},
+    "goal_achieved": false,
+    "updated_utc": "2026-10-16T09:36:14.784405+00:00",
+    "capacity_csv": "2, 2090, 24576\n"
+  },
+  "authorized_cards_csv": "2, 17938, 24576, 100\n3, 16272, 24576, 35\n",
+  "cpu_3s_percent": {
+    "busy": 8.056307847980715,
+    "iowait": 0.6130769917561978
+  },
+  "estimated_first_epoch_end_utc": "2026-10-16T11:11:33.906878+00:00",
+  "next_due_utc": "2026-10-16T11:06:33.906878+00:00",
+  "rough_full20_training_only_hours": 32.96649664540988,
+  "forecast_limit": "Only initial two-update rate, not sustained throughput; excludes control-card wait, validation and formal tests. Current update count may exceed last periodic saved receipt.",
+  "full_ABC_training_complete": false,
+  "formal_metrics": null,
+  "goal_achieved": false
+}
