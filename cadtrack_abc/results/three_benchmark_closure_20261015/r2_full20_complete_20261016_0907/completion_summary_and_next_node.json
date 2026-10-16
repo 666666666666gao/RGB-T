@@ -1,0 +1,107 @@
+{
+  "status": "BOTH_R2_FULL20_TRAININGS_COMPLETE_FULL_VIDEO_SELECTION_RUNNING",
+  "observed_utc": "2026-10-16T01:07:06.646449+00:00",
+  "jobs": {
+    "H": {
+      "training_complete": true,
+      "actual_training_exit_code": 0,
+      "completed_utc": "2026-10-15T23:43:32.447276+00:00",
+      "epochs": 20,
+      "updates": 3140,
+      "raw_clips": 400000,
+      "query_frame_observations": 3200000,
+      "changed_parameter_tensors": {
+        "fusion": 4,
+        "head": 54
+      },
+      "frozen_backbone_equal": true,
+      "strict_reload_passed": true,
+      "actual_live_evaluation_processes": [
+        {
+          "phase": "full98_candidate_epoch05",
+          "pid": 1936087,
+          "ps_returncode": 0,
+          "ps": "1936087  826037 Rl    254  0.5       01:54 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_dense --checkpoint /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/candidate_epoch05.pth --manifest /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/development/candidate_epoch05 --shard 0"
+        },
+        {
+          "phase": "full98_candidate_epoch05",
+          "pid": 1936088,
+          "ps_returncode": 0,
+          "ps": "1936088  826037 Rl    248  0.5       01:54 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_dense --checkpoint /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/candidate_epoch05.pth --manifest /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/fit/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/H/development/candidate_epoch05 --shard 1"
+        }
+      ],
+      "full98_completed_groups": {
+        "0": {
+          "shards": 2,
+          "sequences": 98,
+          "frames": 52200
+        },
+        "1": {
+          "shards": 2,
+          "sequences": 98,
+          "frames": 52200
+        },
+        "2": {
+          "shards": 2,
+          "sequences": 98,
+          "frames": 52200
+        }
+      },
+      "selection_complete": false,
+      "formal_reports_complete": false
+    },
+    "HA": {
+      "training_complete": true,
+      "actual_training_exit_code": 0,
+      "completed_utc": "2026-10-16T01:05:08.282849+00:00",
+      "epochs": 20,
+      "updates": 3140,
+      "raw_clips": 400000,
+      "query_frame_observations": 3200000,
+      "changed_parameter_tensors": {
+        "fusion": 4,
+        "head": 54,
+        "A": 11
+      },
+      "frozen_backbone_equal": true,
+      "strict_reload_passed": true,
+      "actual_live_evaluation_processes": [
+        {
+          "phase": "full98_candidate_epoch00",
+          "pid": 1936064,
+          "ps_returncode": 0,
+          "ps": "1936064  826038 Rl    244  0.6       01:58 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_dense --checkpoint /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch00 --shard 0"
+        },
+        {
+          "phase": "full98_candidate_epoch00",
+          "pid": 1936065,
+          "ps_returncode": 0,
+          "ps": "1936065  826038 Rl    245  0.6       01:58 /data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.validate_dense --checkpoint /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch00.pth --manifest /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json --output /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch00 --shard 1"
+        }
+      ],
+      "full98_completed_groups": {},
+      "selection_complete": false,
+      "formal_reports_complete": false
+    }
+  },
+  "all20_actual_clip_orders_equal": true,
+  "new_GPU_jobs": 0,
+  "source_or_queue_modified": false,
+  "formal_metrics": null,
+  "full_ABC_training_complete": false,
+  "goal_achieved": false,
+  "evaluation_projection": {
+    "H_completed_full98_durations_seconds": [
+      2296.4849,
+      1304.898017,
+      1298.701939
+    ],
+    "mean_seconds_per_full98": 1633.3616186666666,
+    "HA_first_full98_started_utc": "2026-10-16T01:05:08.293652+00:00",
+    "rough_HA_all6_full98_end_utc": "2026-10-16T03:48:28.463364+00:00",
+    "scope": "Only a rough transfer estimate from3 actual H full98 durations; HA inference throughput is not yet measured. Excludes formal3 benchmarks, not a guaranteed finish time."
+  },
+  "dependency_queue_status": "WAITING_FOR_ACTUAL_R2_EXIT",
+  "next_only_observation_utc": "2026-10-16T03:43:28.463364+00:00",
+  "next_only_observation_BJT": "2026-10-16T11:43:28.463364+08:00"
+}
