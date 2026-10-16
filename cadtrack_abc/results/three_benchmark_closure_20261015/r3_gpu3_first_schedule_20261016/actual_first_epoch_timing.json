@@ -1,0 +1,73 @@
+{
+  "status": "FIRST_FULL_EPOCH_COMPLETE_AND_ORIGINAL_TRAINING_CONTINUES",
+  "observed_utc": "2026-10-16T11:06:44.005986+00:00",
+  "raw_training_pid": 2449058,
+  "raw_training_start_utc": "2026-10-16T09:32:39.937482+00:00",
+  "completed_epochs": 1,
+  "history": [
+    {
+      "epoch": 1,
+      "updates": 157,
+      "clips": 20000,
+      "mean_loss": 0.8846041821479798,
+      "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+      "epoch_seconds": 3199.9116042329697
+    }
+  ],
+  "last_periodic_progress": {
+    "stage": "dense_motion",
+    "probe": false,
+    "epoch": 2,
+    "epochs": 20,
+    "batch": 100,
+    "batches": 157,
+    "updates": 257,
+    "clips_seen": 32800,
+    "loss": 0.3810671269893646,
+    "parts": {
+      "focal": 0.19542761147022247,
+      "l1": 0.009142651222646236,
+      "giou": 0.13761837780475616,
+      "gate": 0.22594904899597168,
+      "identity": 0.02752450294792652,
+      "preservation": 0.007671531289815903,
+      "motion": -3.4149656295776367,
+      "proxy": 0.7873833179473877
+    },
+    "gradients": {
+      "localizer": 0.6560574173927307,
+      "motion": 0.3898964822292328,
+      "motion_prompt": 0.008227013982832432,
+      "candidate_evidence": 0.15445756912231445
+    },
+    "clips_per_second": 6.236072047488976,
+    "peak_allocated_gib": 13.934284210205078,
+    "future_actions_trained": false,
+    "search_actions_trained": false,
+    "formal_metrics": null
+  },
+  "control_worker": {
+    "status": "WAITING_FOR_CARD",
+    "worker_pid": 2448418,
+    "variant": "control",
+    "physical_gpu": 2,
+    "created_utc": "2026-10-16T09:31:14.547834+00:00",
+    "phases": {},
+    "goal_achieved": false,
+    "updated_utc": "2026-10-16T11:06:17.625486+00:00",
+    "capacity_csv": "2, 17938, 24576\n"
+  },
+  "authorized_cards_csv": "2, 17938, 24576, 70\n3, 16272, 24576, 100\n",
+  "cpu_3s_percent": {
+    "busy": 12.78591851322373,
+    "iowait": 0.7862759113652609
+  },
+  "mean_complete_epoch_seconds": 3199.9116042329697,
+  "estimated_raw20_end_utc": "2026-10-17T03:19:18.169567+00:00",
+  "next_due_utc": "2026-10-17T03:14:18.169567+00:00",
+  "forecast_scope": "Raw20 only from one actual full epoch; excludes control capacity wait, validation and formal evaluation. Not completion evidence.",
+  "training_or_queue_changed": false,
+  "full_ABC_training_complete": false,
+  "formal_metrics": null,
+  "goal_achieved": false
+}

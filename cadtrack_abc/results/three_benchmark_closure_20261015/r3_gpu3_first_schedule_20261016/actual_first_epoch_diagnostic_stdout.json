@@ -1,0 +1,663 @@
+{
+  "observed_utc": "2026-10-16T11:06:44.005986+00:00",
+  "not_before_utc": "2026-10-16T11:06:33.906878+00:00",
+  "files": {
+    "outputs/r3_dense_dependency_gpu3first_20261016/state/queue_state.json": {
+      "status": "R3_MAIN_CONTROLLER_RUNNING",
+      "queue_pid": 2443876,
+      "created_utc": "2026-10-16T09:27:37.484886+00:00",
+      "parent_root": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+      "first_check_utc": "2026-10-16T09:30:37.370801+00:00",
+      "poll_seconds": 300,
+      "scope": "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_gpu3_first_schedule_20261016/qualified_scope.json",
+      "command": [
+        "/data/wangwj/envs/CADTrack/bin/python",
+        "-m",
+        "cadtrack_abc.dense_main_pipeline",
+        "--config",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+        "--r2-pair-root",
+        "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+        "--train-queries",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_train.json",
+        "--validation-queries",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_validation.json",
+        "--baseline-234",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json",
+        "--baseline-210",
+        "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json",
+        "--output",
+        "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016",
+        "--batch",
+        "128"
+      ],
+      "launch_count": 1,
+      "launch_attempts": 1,
+      "last_dependency_check_utc": "2026-10-16T09:30:37.470941+00:00",
+      "main_controller_started": true,
+      "GPU_jobs_started_directly": 0,
+      "goal_achieved": false,
+      "updated_utc": "2026-10-16T09:30:37.554647+00:00",
+      "parent_exit": {
+        "actual_controller_exit_code": 0,
+        "completed_utc": "2026-10-16T07:57:49.117720+00:00"
+      },
+      "capacity_csv": "2, 17994, 24576\n3, 1, 24576\n",
+      "home_free_bytes": 698672492544,
+      "required_output_budget_bytes": 24739153280,
+      "main_controller_pid": 2448287,
+      "main_controller_started_utc": "2026-10-16T09:30:37.554611+00:00",
+      "NN_training_and_evaluation_evidence": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/queue_state.json"
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/queue_state.json": {
+      "status": "DENSE_R3_MAIN_PIPELINE_RUNNING",
+      "controller_pid": 2448287,
+      "started_utc": "2026-10-16T09:30:37.840701+00:00",
+      "phases": {
+        "native_qualification": {
+          "status": "COMPLETE",
+          "commands": [
+            [
+              "cadtrack_abc.qualify_dense_main",
+              "--config",
+              "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+              "--r2-pair-root",
+              "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+              "--output",
+              "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/native_qualification"
+            ]
+          ],
+          "physical_devices": [
+            3
+          ],
+          "started_utc": "2026-10-16T09:30:37.841234+00:00",
+          "pids": [
+            2448290
+          ],
+          "actual_exit_codes": [
+            0
+          ],
+          "ended_utc": "2026-10-16T09:31:14.479749+00:00"
+        },
+        "matched_probe_and_full20_branches": {
+          "status": "RUNNING",
+          "commands": [
+            [
+              "cadtrack_abc.dense_training_worker",
+              "--spec",
+              "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_worker_spec.json"
+            ],
+            [
+              "cadtrack_abc.dense_training_worker",
+              "--spec",
+              "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/control_worker_spec.json"
+            ]
+          ],
+          "physical_devices": [
+            "",
+            ""
+          ],
+          "started_utc": "2026-10-16T09:31:14.481910+00:00",
+          "pids": [
+            2448417,
+            2448418
+          ]
+        }
+      },
+      "parent_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/best.pth",
+      "parent_checkpoint_sha256": "075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9",
+      "physical_gpus": [
+        2,
+        3
+      ],
+      "initial_capacity_csv": "2, 17994, 24576\n3, 1, 24576\n",
+      "training_assignment": {
+        "raw": 3,
+        "control": 2
+      },
+      "control_waits_for_card_release": true,
+      "query_timestamps_only_reused": true,
+      "old_feature_or_action_labels_reused": false,
+      "full_ABC_training_complete": false,
+      "goal_achieved": false
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/native_qualification/qualification_complete.json": {
+      "status": "DENSE_R3_NATIVE_QUALIFICATION_PASS",
+      "parent_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/best.pth",
+      "parent_checkpoint_sha256": "075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9",
+      "parity": [
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 1,
+          "original_frame": 164,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 2,
+          "original_frame": 165,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 3,
+          "original_frame": 166,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 4,
+          "original_frame": 167,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 5,
+          "original_frame": 168,
+          "exact_box_confidence_state": true,
+          "template_write_requested": true,
+          "template_commit_rgb_tir": [
+            true,
+            true
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 6,
+          "original_frame": 169,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 7,
+          "original_frame": 170,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 8,
+          "original_frame": 171,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 9,
+          "original_frame": 172,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 10,
+          "original_frame": 173,
+          "exact_box_confidence_state": true,
+          "template_write_requested": true,
+          "template_commit_rgb_tir": [
+            true,
+            true
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 11,
+          "original_frame": 174,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10crosswhite",
+          "clip_frame": 12,
+          "original_frame": 175,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 1,
+          "original_frame": 20,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 2,
+          "original_frame": 21,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 3,
+          "original_frame": 22,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 4,
+          "original_frame": 23,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 5,
+          "original_frame": 24,
+          "exact_box_confidence_state": true,
+          "template_write_requested": true,
+          "template_commit_rgb_tir": [
+            true,
+            true
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 6,
+          "original_frame": 25,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 7,
+          "original_frame": 26,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 8,
+          "original_frame": 27,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 9,
+          "original_frame": 28,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 10,
+          "original_frame": 29,
+          "exact_box_confidence_state": true,
+          "template_write_requested": true,
+          "template_commit_rgb_tir": [
+            true,
+            true
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 11,
+          "original_frame": 30,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        },
+        {
+          "sequence": "10phone_boy",
+          "clip_frame": 12,
+          "original_frame": 31,
+          "exact_box_confidence_state": true,
+          "template_write_requested": false,
+          "template_commit_rgb_tir": [
+            false,
+            false
+          ]
+        }
+      ],
+      "actual_causal_query_frames": 24,
+      "train_clips": 2,
+      "action_checks": [
+        {
+          "mode": "policy",
+          "real_native_submission_and_restore": true
+        },
+        {
+          "mode": "pause_identity",
+          "real_native_submission_and_restore": true
+        },
+        {
+          "mode": "defer_geometry",
+          "real_native_submission_and_restore": true
+        },
+        {
+          "mode": "accept_geometry",
+          "real_native_submission_and_restore": true
+        },
+        {
+          "mode": "rgb_only",
+          "real_native_submission_and_restore": true
+        },
+        {
+          "mode": "tir_only",
+          "real_native_submission_and_restore": true
+        }
+      ],
+      "actual_matched_actions": 210,
+      "actual_native_replay_equal": true,
+      "reconstructed_calibration_contexts_equal": true,
+      "head_checks": {
+        "candidate_evidence": {
+          "real_label_updates": [
+            {
+              "step": 1,
+              "loss": 1.4721221923828125,
+              "gradient_norm": 2.088291883468628
+            },
+            {
+              "step": 2,
+              "loss": 1.4689136743545532,
+              "gradient_norm": 2.0859484672546387
+            }
+          ],
+          "changed_parameter_tensors": 14,
+          "strict_reload": true
+        },
+        "decisions": {
+          "real_label_updates": [
+            {
+              "step": 1,
+              "loss": 0.27234771847724915,
+              "gradient_norm": 1.4814798831939697
+            },
+            {
+              "step": 2,
+              "loss": 0.26991361379623413,
+              "gradient_norm": 1.4671128988265991
+            }
+          ],
+          "changed_parameter_tensors": 12,
+          "strict_reload": true
+        }
+      },
+      "parent_tracker_parameters_unchanged": true,
+      "physical_gpu": 3,
+      "elapsed_seconds": 32.17302305903286,
+      "peak_allocated_gib": 0.8719725608825684,
+      "scope": "Finite sampled TRAIN clips and one matched query; not full-video validation or formal training.",
+      "probe_heads_used_as_formal_initialization": false,
+      "formal_metrics": null,
+      "goal_achieved": false
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_worker/worker_state.json": {
+      "status": "FULL20_RUNNING",
+      "worker_pid": 2448417,
+      "variant": "raw",
+      "physical_gpu": 3,
+      "created_utc": "2026-10-16T09:31:14.547210+00:00",
+      "phases": {
+        "probe": {
+          "status": "COMPLETE",
+          "command": [
+            "cadtrack_abc.train_dense_motion",
+            "--r2-pair-root",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_probe",
+            "--batch",
+            "128",
+            "--epochs",
+            "20",
+            "--samples",
+            "20000",
+            "--steps",
+            "8",
+            "--workers",
+            "4",
+            "--probe",
+            "--localizer-lr",
+            "0.00001",
+            "--temporal-lr",
+            "0.0001"
+          ],
+          "started_utc": "2026-10-16T09:31:14.619101+00:00",
+          "pid": 2448423,
+          "actual_exit_code": 0,
+          "completed_utc": "2026-10-16T09:32:39.934256+00:00"
+        },
+        "full20": {
+          "status": "RUNNING",
+          "command": [
+            "cadtrack_abc.train_dense_motion",
+            "--r2-pair-root",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015",
+            "--config",
+            "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit",
+            "--batch",
+            "128",
+            "--epochs",
+            "20",
+            "--samples",
+            "20000",
+            "--steps",
+            "8",
+            "--workers",
+            "4",
+            "--localizer-lr",
+            "0.00001",
+            "--temporal-lr",
+            "0.0001"
+          ],
+          "started_utc": "2026-10-16T09:32:39.937482+00:00",
+          "pid": 2449058
+        }
+      },
+      "goal_achieved": false,
+      "updated_utc": "2026-10-16T09:32:39.939141+00:00",
+      "capacity_csv": "3, 1, 24576\n",
+      "own_probe_qualified_before_full_fit": true
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/control_worker/worker_state.json": {
+      "status": "WAITING_FOR_CARD",
+      "worker_pid": 2448418,
+      "variant": "control",
+      "physical_gpu": 2,
+      "created_utc": "2026-10-16T09:31:14.547834+00:00",
+      "phases": {},
+      "goal_achieved": false,
+      "updated_utc": "2026-10-16T11:06:17.625486+00:00",
+      "capacity_csv": "2, 17938, 24576\n"
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_probe/fit_complete.json": {
+      "status": "DENSE_MOTION_QUALIFICATION_COMPLETE",
+      "epochs": 1,
+      "updates": 2,
+      "raw_clips": 256,
+      "query_frame_observations": 2048,
+      "changed_parameter_tensors": {
+        "base.decode_fuse_search.": 4,
+        "base.box_head.": 54,
+        "prompt.": 11,
+        "motion.": 4,
+        "motion_prompt.": 2,
+        "candidate_evidence.": 14
+      },
+      "frozen_before": {
+        "backbone": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "decisions": "f7c597609d1f265fb287eaf7eb83e984acd190528052a9186f04a6a7172c838a"
+      },
+      "frozen_after": {
+        "backbone": "dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6",
+        "decisions": "f7c597609d1f265fb287eaf7eb83e984acd190528052a9186f04a6a7172c838a"
+      },
+      "strict_dense_abc_reload": true,
+      "parent_checkpoint_sha256": "075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9",
+      "candidates": [
+        {
+          "epoch": 0,
+          "updates": 0,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_probe/candidate_epoch00.pth"
+        },
+        {
+          "epoch": 1,
+          "updates": 2,
+          "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_probe/candidate_epoch01.pth"
+        }
+      ],
+      "elapsed_seconds": 68.9828231750289,
+      "probe": true,
+      "stage": "dense_motion",
+      "future_actions_trained": false,
+      "search_actions_trained": false,
+      "full_ABC_training_complete": false,
+      "full98_selection_complete": false,
+      "formal_metrics": null,
+      "goal_achieved": false
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_fit/progress.json": {
+      "stage": "dense_motion",
+      "probe": false,
+      "epoch": 2,
+      "epochs": 20,
+      "batch": 100,
+      "batches": 157,
+      "updates": 257,
+      "clips_seen": 32800,
+      "loss": 0.3810671269893646,
+      "parts": {
+        "focal": 0.19542761147022247,
+        "l1": 0.009142651222646236,
+        "giou": 0.13761837780475616,
+        "gate": 0.22594904899597168,
+        "identity": 0.02752450294792652,
+        "preservation": 0.007671531289815903,
+        "motion": -3.4149656295776367,
+        "proxy": 0.7873833179473877
+      },
+      "gradients": {
+        "localizer": 0.6560574173927307,
+        "motion": 0.3898964822292328,
+        "motion_prompt": 0.008227013982832432,
+        "candidate_evidence": 0.15445756912231445
+      },
+      "clips_per_second": 6.236072047488976,
+      "peak_allocated_gib": 13.934284210205078,
+      "future_actions_trained": false,
+      "search_actions_trained": false,
+      "formal_metrics": null
+    },
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_fit/history.json": [
+      {
+        "epoch": 1,
+        "updates": 157,
+        "clips": 20000,
+        "mean_loss": 0.8846041821479798,
+        "clip_order_sha256": "8cb8b5ebcf92cd2747800f7f943c0286b2fe1ea0ab67f5d3d796754051ae0dff",
+        "epoch_seconds": 3199.9116042329697
+      }
+    ]
+  },
+  "own_processes": {
+    "2443860": "/data/wangwj/envs/CADTrack/bin/python /home/gaob/CADTrack-ABC/outputs/r3_dense_dependency_gpu3first_20261016/wrapper.py ",
+    "2443876": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.continue_dense_main --scope /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_gpu3_first_schedule_20261016/qualified_scope.json --r2-pair-root /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015 --not-before 2026-10-16T09:30:37.370801+00:00 --output /home/gaob/CADTrack-ABC/outputs/r3_dense_dependency_gpu3first_20261016/state ",
+    "2448287": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.dense_main_pipeline --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --r2-pair-root /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015 --train-queries /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_train.json --validation-queries /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/r3_complete_chain_source_1805/queries_validation.json --baseline-234 /home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json --baseline-210 /home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json --output /home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016 --batch 128 ",
+    "2448290": null,
+    "2448417": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.dense_training_worker --spec /home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_worker_spec.json ",
+    "2448418": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.dense_training_worker --spec /home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/control_worker_spec.json ",
+    "2448423": null,
+    "2449058": "/data/wangwj/envs/CADTrack/bin/python -m cadtrack_abc.train_dense_motion --r2-pair-root /home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015 --config /home/gaob/CADTrack-ABC/cadtrack_abc/config.json --output /home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit --batch 128 --epochs 20 --samples 20000 --steps 8 --workers 4 --localizer-lr 0.00001 --temporal-lr 0.0001 "
+  },
+  "actual_new_jobs": 0,
+  "goal_achieved": false,
+  "log_tails": {
+    "outputs/r3_dense_dependency_gpu3first_20261016/dependency_queue.log": "",
+    "outputs/r3_dense_complete_gpu3first_20261016/native_qualification_0.log": "{\"status\": \"DENSE_R3_NATIVE_QUALIFICATION_PASS\", \"parent_checkpoint\": \"/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/best.pth\", \"parent_checkpoint_sha256\": \"075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9\", \"parity\": [{\"sequence\": \"10crosswhite\", \"clip_frame\": 1, \"original_frame\": 164, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 2, \"original_frame\": 165, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 3, \"original_frame\": 166, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 4, \"original_frame\": 167, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 5, \"original_frame\": 168, \"exact_box_confidence_state\": true, \"template_write_requested\": true, \"template_commit_rgb_tir\": [true, true]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 6, \"original_frame\": 169, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 7, \"original_frame\": 170, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 8, \"original_frame\": 171, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 9, \"original_frame\": 172, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 10, \"original_frame\": 173, \"exact_box_confidence_state\": true, \"template_write_requested\": true, \"template_commit_rgb_tir\": [true, true]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 11, \"original_frame\": 174, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10crosswhite\", \"clip_frame\": 12, \"original_frame\": 175, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 1, \"original_frame\": 20, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 2, \"original_frame\": 21, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 3, \"original_frame\": 22, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 4, \"original_frame\": 23, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 5, \"original_frame\": 24, \"exact_box_confidence_state\": true, \"template_write_requested\": true, \"template_commit_rgb_tir\": [true, true]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 6, \"original_frame\": 25, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 7, \"original_frame\": 26, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 8, \"original_frame\": 27, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 9, \"original_frame\": 28, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 10, \"original_frame\": 29, \"exact_box_confidence_state\": true, \"template_write_requested\": true, \"template_commit_rgb_tir\": [true, true]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 11, \"original_frame\": 30, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}, {\"sequence\": \"10phone_boy\", \"clip_frame\": 12, \"original_frame\": 31, \"exact_box_confidence_state\": true, \"template_write_requested\": false, \"template_commit_rgb_tir\": [false, false]}], \"actual_causal_query_frames\": 24, \"train_clips\": 2, \"action_checks\": [{\"mode\": \"policy\", \"real_native_submission_and_restore\": true}, {\"mode\": \"pause_identity\", \"real_native_submission_and_restore\": true}, {\"mode\": \"defer_geometry\", \"real_native_submission_and_restore\": true}, {\"mode\": \"accept_geometry\", \"real_native_submission_and_restore\": true}, {\"mode\": \"rgb_only\", \"real_native_submission_and_restore\": true}, {\"mode\": \"tir_only\", \"real_native_submission_and_restore\": true}], \"actual_matched_actions\": 210, \"actual_native_replay_equal\": true, \"reconstructed_calibration_contexts_equal\": true, \"head_checks\": {\"candidate_evidence\": {\"real_label_updates\": [{\"step\": 1, \"loss\": 1.4721221923828125, \"gradient_norm\": 2.088291883468628}, {\"step\": 2, \"loss\": 1.4689136743545532, \"gradient_norm\": 2.0859484672546387}], \"changed_parameter_tensors\": 14, \"strict_reload\": true}, \"decisions\": {\"real_label_updates\": [{\"step\": 1, \"loss\": 0.27234771847724915, \"gradient_norm\": 1.4814798831939697}, {\"step\": 2, \"loss\": 0.26991361379623413, \"gradient_norm\": 1.4671128988265991}], \"changed_parameter_tensors\": 12, \"strict_reload\": true}}, \"parent_tracker_parameters_unchanged\": true, \"physical_gpu\": 3, \"elapsed_seconds\": 32.17302305903286, \"peak_allocated_gib\": 0.8719725608825684, \"scope\": \"Finite sampled TRAIN clips and one matched query; not full-video validation or formal training.\", \"probe_heads_used_as_formal_initialization\": false, \"formal_metrics\": null, \"goal_achieved\": false}\n",
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_worker/probe.log": "{\"stage\": \"dense_motion\", \"probe\": true, \"epoch\": 1, \"epochs\": 1, \"batch\": 1, \"batches\": 2, \"updates\": 1, \"clips_seen\": 128, \"loss\": 1.0491853952407837, \"parts\": {\"focal\": 0.1398036777973175, \"l1\": 0.008341637440025806, \"giou\": 0.12732911109924316, \"gate\": 0.2262561023235321, \"identity\": 0.018460126593708992, \"preservation\": 0.005909672938287258, \"motion\": 2.401378631591797, \"proxy\": 1.625946283340454}, \"gradients\": {\"localizer\": 0.3289964199066162, \"motion\": 0.24286191165447235, \"motion_prompt\": 0.004863316193223, \"candidate_evidence\": 0.4183438718318939}, \"clips_per_second\": 2.749170710161846, \"peak_allocated_gib\": 13.784366607666016, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": true, \"epoch\": 1, \"epochs\": 1, \"batch\": 2, \"batches\": 2, \"updates\": 2, \"clips_seen\": 256, \"loss\": 1.1500568389892578, \"parts\": {\"focal\": 0.17076563835144043, \"l1\": 0.009370068088173866, \"giou\": 0.14514754712581635, \"gate\": 0.2182929813861847, \"identity\": 0.01902814209461212, \"preservation\": 0.005718328524380922, \"motion\": 2.776634931564331, \"proxy\": 1.5917448997497559}, \"gradients\": {\"localizer\": 0.8160688877105713, \"motion\": 0.2553263008594513, \"motion_prompt\": 0.010525861755013466, \"candidate_evidence\": 0.4153328835964203}, \"clips_per_second\": 3.848167358443772, \"peak_allocated_gib\": 13.934200286865234, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"status\": \"DENSE_MOTION_QUALIFICATION_COMPLETE\", \"epochs\": 1, \"updates\": 2, \"raw_clips\": 256, \"query_frame_observations\": 2048, \"changed_parameter_tensors\": {\"base.decode_fuse_search.\": 4, \"base.box_head.\": 54, \"prompt.\": 11, \"motion.\": 4, \"motion_prompt.\": 2, \"candidate_evidence.\": 14}, \"frozen_before\": {\"backbone\": \"dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6\", \"decisions\": \"f7c597609d1f265fb287eaf7eb83e984acd190528052a9186f04a6a7172c838a\"}, \"frozen_after\": {\"backbone\": \"dec01f1b7844b3f5089c7c6e70491782afe280c96ad94715f97631ef26fe5cd6\", \"decisions\": \"f7c597609d1f265fb287eaf7eb83e984acd190528052a9186f04a6a7172c838a\"}, \"strict_dense_abc_reload\": true, \"parent_checkpoint_sha256\": \"075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9\", \"candidates\": [{\"epoch\": 0, \"updates\": 0, \"checkpoint\": \"/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_probe/candidate_epoch00.pth\"}, {\"epoch\": 1, \"updates\": 2, \"checkpoint\": \"/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_probe/candidate_epoch01.pth\"}], \"elapsed_seconds\": 68.9828231750289, \"probe\": true, \"stage\": \"dense_motion\", \"future_actions_trained\": false, \"search_actions_trained\": false, \"full_ABC_training_complete\": false, \"full98_selection_complete\": false, \"formal_metrics\": null, \"goal_achieved\": false}\n",
+    "outputs/r3_dense_complete_gpu3first_20261016/raw_worker/full20.log": "65, \"motion_prompt\": 0.0064408136531710625, \"candidate_evidence\": 0.42138129472732544}, \"clips_per_second\": 2.68434012358146, \"peak_allocated_gib\": 13.784377098083496, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 2, \"batches\": 157, \"updates\": 2, \"clips_seen\": 256, \"loss\": 2.1278347969055176, \"parts\": {\"focal\": 0.15342894196510315, \"l1\": 0.008541435934603214, \"giou\": 0.1287594586610794, \"gate\": 0.21261677145957947, \"identity\": 0.019591066986322403, \"preservation\": 0.004536055959761143, \"motion\": 13.031882286071777, \"proxy\": 1.6302775144577026}, \"gradients\": {\"localizer\": 0.057713985443115234, \"motion\": 0.9955803155899048, \"motion_prompt\": 0.00095670873997733, \"candidate_evidence\": 0.07407877594232559}, \"clips_per_second\": 3.370425201871784, \"peak_allocated_gib\": 13.934231758117676, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 25, \"batches\": 157, \"updates\": 25, \"clips_seen\": 3200, \"loss\": 1.5697953701019287, \"parts\": {\"focal\": 0.16930118203163147, \"l1\": 0.009330100379884243, \"giou\": 0.13785125315189362, \"gate\": 0.20651762187480927, \"identity\": 0.02066957578063011, \"preservation\": 0.006003070157021284, \"motion\": 7.530198097229004, \"proxy\": 1.4057526588439941}, \"gradients\": {\"localizer\": 0.3753731846809387, \"motion\": 0.7574622631072998, \"motion_prompt\": 0.004372853320091963, \"candidate_evidence\": 0.5341579914093018}, \"clips_per_second\": 5.610743167312501, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 50, \"batches\": 157, \"updates\": 50, \"clips_seen\": 6400, \"loss\": 0.831012487411499, \"parts\": {\"focal\": 0.21266508102416992, \"l1\": 0.009209859184920788, \"giou\": 0.1359018087387085, \"gate\": 0.2526049017906189, \"identity\": 0.02759443037211895, \"preservation\": 0.005661475472152233, \"motion\": 0.04255214333534241, \"proxy\": 1.211963415145874}, \"gradients\": {\"localizer\": 0.48576870560646057, \"motion\": 0.08695630729198456, \"motion_prompt\": 0.003821171820163727, \"candidate_evidence\": 0.46637725830078125}, \"clips_per_second\": 5.868269278587866, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 75, \"batches\": 157, \"updates\": 75, \"clips_seen\": 9600, \"loss\": 0.7396249771118164, \"parts\": {\"focal\": 0.19984494149684906, \"l1\": 0.010032751597464085, \"giou\": 0.14038926362991333, \"gate\": 0.2150973677635193, \"identity\": 0.02494014985859394, \"preservation\": 0.005248258356004953, \"motion\": -0.5333156585693359, \"proxy\": 1.0806548595428467}, \"gradients\": {\"localizer\": 0.6189102530479431, \"motion\": 0.10918806493282318, \"motion_prompt\": 0.004750980995595455, \"candidate_evidence\": 0.37698161602020264}, \"clips_per_second\": 6.044662433803253, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 100, \"batches\": 157, \"updates\": 100, \"clips_seen\": 12800, \"loss\": 0.8937113881111145, \"parts\": {\"focal\": 0.16938883066177368, \"l1\": 0.0092347152531147, \"giou\": 0.13781873881816864, \"gate\": 0.18569204211235046, \"identity\": 0.02145729586482048, \"preservation\": 0.004735186230391264, \"motion\": 1.6090478897094727, \"proxy\": 1.0092451572418213}, \"gradients\": {\"localizer\": 0.464099645614624, \"motion\": 0.36205539107322693, \"motion_prompt\": 0.005027368664741516, \"candidate_evidence\": 0.32889115810394287}, \"clips_per_second\": 6.141600578107437, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 125, \"batches\": 157, \"updates\": 125, \"clips_seen\": 16000, \"loss\": 0.5985627174377441, \"parts\": {\"focal\": 0.1815543919801712, \"l1\": 0.008965807966887951, \"giou\": 0.13375486433506012, \"gate\": 0.2122952938079834, \"identity\": 0.017951399087905884, \"preservation\": 0.005808256100863218, \"motion\": -1.293477177619934, \"proxy\": 0.9459115862846375}, \"gradients\": {\"localizer\": 0.5142695903778076, \"motion\": 0.225675567984581, \"motion_prompt\": 0.0041178204119205475, \"candidate_evidence\": 0.2719733715057373}, \"clips_per_second\": 6.204321810270431, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 1, \"epochs\": 20, \"batch\": 150, \"batches\": 157, \"updates\": 150, \"clips_seen\": 19200, \"loss\": 0.5398797988891602, \"parts\": {\"focal\": 0.18740655481815338, \"l1\": 0.00905061699450016, \"giou\": 0.13833114504814148, \"gate\": 0.20732031762599945, \"identity\": 0.02257588505744934, \"preservation\": 0.006323281209915876, \"motion\": -1.9566717147827148, \"proxy\": 0.9093549251556396}, \"gradients\": {\"localizer\": 0.33860039710998535, \"motion\": 0.25389760732650757, \"motion_prompt\": 0.002764760283753276, \"candidate_evidence\": 0.2295456975698471}, \"clips_per_second\": 6.232821906590766, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 1, \"batches\": 157, \"updates\": 158, \"clips_seen\": 20128, \"loss\": 0.6348071098327637, \"parts\": {\"focal\": 0.16720016300678253, \"l1\": 0.008578261360526085, \"giou\": 0.12664759159088135, \"gate\": 0.20053894817829132, \"identity\": 0.021035145968198776, \"preservation\": 0.005328659433871508, \"motion\": -0.5164121985435486, \"proxy\": 0.901587724685669}, \"gradients\": {\"localizer\": 0.5893037915229797, \"motion\": 0.5125696063041687, \"motion_prompt\": 0.007427805569022894, \"candidate_evidence\": 0.24844616651535034}, \"clips_per_second\": 2.037416382388651, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 2, \"batches\": 157, \"updates\": 159, \"clips_seen\": 20256, \"loss\": 0.5886203050613403, \"parts\": {\"focal\": 0.23307053744792938, \"l1\": 0.009467564523220062, \"giou\": 0.14295825362205505, \"gate\": 0.22958070039749146, \"identity\": 0.025727689266204834, \"preservation\": 0.005579110234975815, \"motion\": -2.0786900520324707, \"proxy\": 0.9055879712104797}, \"gradients\": {\"localizer\": 0.3749532401561737, \"motion\": 0.2928863763809204, \"motion_prompt\": 0.005106649361550808, \"candidate_evidence\": 0.23302115499973297}, \"clips_per_second\": 3.0735541023689117, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 25, \"batches\": 157, \"updates\": 182, \"clips_seen\": 23200, \"loss\": 0.3748539984226227, \"parts\": {\"focal\": 0.1445612609386444, \"l1\": 0.00851792935281992, \"giou\": 0.12865394353866577, \"gate\": 0.1896739900112152, \"identity\": 0.021224698051810265, \"preservation\": 0.005979331210255623, \"motion\": -2.8035097122192383, \"proxy\": 0.8504550457000732}, \"gradients\": {\"localizer\": 0.9060798287391663, \"motion\": 0.37455809116363525, \"motion_prompt\": 0.010140186175704002, \"candidate_evidence\": 0.19652226567268372}, \"clips_per_second\": 5.846424115334339, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 50, \"batches\": 157, \"updates\": 207, \"clips_seen\": 26400, \"loss\": 1.4094898700714111, \"parts\": {\"focal\": 0.15799805521965027, \"l1\": 0.00889594852924347, \"giou\": 0.13422830402851105, \"gate\": 0.21997565031051636, \"identity\": 0.024823125451803207, \"preservation\": 0.005685159936547279, \"motion\": 7.269094467163086, \"proxy\": 0.8230010271072388}, \"gradients\": {\"localizer\": 0.6348760724067688, \"motion\": 0.7715392112731934, \"motion_prompt\": 0.0009117688168771565, \"candidate_evidence\": 0.040723465383052826}, \"clips_per_second\": 6.057925949894242, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 75, \"batches\": 157, \"updates\": 232, \"clips_seen\": 29600, \"loss\": 0.6093456745147705, \"parts\": {\"focal\": 0.18134060502052307, \"l1\": 0.009146913886070251, \"giou\": 0.1389377862215042, \"gate\": 0.2377116084098816, \"identity\": 0.027692195028066635, \"preservation\": 0.006231987848877907, \"motion\": -1.086150884628296, \"proxy\": 0.8103761076927185}, \"gradients\": {\"localizer\": 0.544916570186615, \"motion\": 0.8241413831710815, \"motion_prompt\": 0.003490063827484846, \"candidate_evidence\": 0.15441158413887024}, \"clips_per_second\": 6.1591357781712555, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n{\"stage\": \"dense_motion\", \"probe\": false, \"epoch\": 2, \"epochs\": 20, \"batch\": 100, \"batches\": 157, \"updates\": 257, \"clips_seen\": 32800, \"loss\": 0.3810671269893646, \"parts\": {\"focal\": 0.19542761147022247, \"l1\": 0.009142651222646236, \"giou\": 0.13761837780475616, \"gate\": 0.22594904899597168, \"identity\": 0.02752450294792652, \"preservation\": 0.007671531289815903, \"motion\": -3.4149656295776367, \"proxy\": 0.7873833179473877}, \"gradients\": {\"localizer\": 0.6560574173927307, \"motion\": 0.3898964822292328, \"motion_prompt\": 0.008227013982832432, \"candidate_evidence\": 0.15445756912231445}, \"clips_per_second\": 6.236072047488976, \"peak_allocated_gib\": 13.934284210205078, \"future_actions_trained\": false, \"search_actions_trained\": false, \"formal_metrics\": null}\n"
+  },
+  "authorized_cards_csv": "2, 17938, 24576, 70\n3, 16272, 24576, 100\n",
+  "cpu_3s_percent": {
+    "busy": 12.78591851322373,
+    "iowait": 0.7862759113652609
+  }
+}
