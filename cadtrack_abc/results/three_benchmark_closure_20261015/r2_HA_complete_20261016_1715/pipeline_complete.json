@@ -1,0 +1,575 @@
+{
+  "status": "DENSE_FULL_TRAINING_AND_THREE_BENCHMARKS_COMPLETE",
+  "variant": "HA",
+  "physical_gpu": 3,
+  "controller_pid": 826038,
+  "started_utc": "2026-10-15T06:27:52.223564+00:00",
+  "batch": 128,
+  "phases": {
+    "full_training": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.train_dense",
+          "--config",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/config.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit",
+          "--batch",
+          "128",
+          "--epochs",
+          "20",
+          "--samples",
+          "20000",
+          "--steps",
+          "8",
+          "--workers",
+          "4",
+          "--head-lr",
+          "0.00001",
+          "--prompt-lr",
+          "0.0001",
+          "--memory"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-15T06:27:52.223818+00:00",
+      "pids": [
+        826055
+      ],
+      "actual_exit_codes": [
+        0
+      ],
+      "completed_utc": "2026-10-16T01:05:08.282849+00:00"
+    },
+    "full98_candidate_epoch00": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch00.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch00",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch00.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch00",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T01:05:08.293652+00:00",
+      "pids": [
+        1936064,
+        1936065
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T01:27:44.621041+00:00"
+    },
+    "full98_candidate_epoch01": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch01.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch01",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch01.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch01",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T01:27:44.624037+00:00",
+      "pids": [
+        1939802,
+        1939803
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T01:50:28.034339+00:00"
+    },
+    "full98_candidate_epoch02": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch02.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch02",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch02.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch02",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T01:50:28.037457+00:00",
+      "pids": [
+        1941937,
+        1941938
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T02:13:13.918128+00:00"
+    },
+    "full98_candidate_epoch05": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch05.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch05",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch05.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch05",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T02:13:13.919252+00:00",
+      "pids": [
+        1943710,
+        1943711
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T02:35:59.942811+00:00"
+    },
+    "full98_candidate_epoch10": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch10.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch10",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch10.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch10",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T02:35:59.945950+00:00",
+      "pids": [
+        1953669,
+        1953670
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T02:58:47.051683+00:00"
+    },
+    "full98_candidate_epoch20": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch20.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch20",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.validate_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/candidate_epoch20.pth",
+          "--manifest",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development/candidate_epoch20",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T02:58:47.052937+00:00",
+      "pids": [
+        1978587,
+        1978588
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T03:21:28.287910+00:00"
+    },
+    "select_trained_checkpoint": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.select_dense",
+          "--fit",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit",
+          "--development",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/development"
+        ]
+      ],
+      "physical_gpu": "",
+      "started_utc": "2026-10-16T03:21:28.289138+00:00",
+      "pids": [
+        2003699
+      ],
+      "actual_exit_codes": [
+        0
+      ],
+      "completed_utc": "2026-10-16T03:21:33.888921+00:00"
+    },
+    "infer_lasher": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/testingset",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/lasher_predictions",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/testingset",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/lasher_predictions",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T03:21:34.011981+00:00",
+      "pids": [
+        2003837,
+        2003838
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T06:35:09.876146+00:00"
+    },
+    "score_lasher": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.score_dense",
+          "--dataset",
+          "lasher",
+          "--root",
+          "/data/wangwj/dataset/LasHeR/testingset",
+          "--predictions",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/lasher_predictions",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/lasher_report"
+        ]
+      ],
+      "physical_gpu": "",
+      "started_utc": "2026-10-16T06:35:09.881647+00:00",
+      "pids": [
+        2191391
+      ],
+      "actual_exit_codes": [
+        0
+      ],
+      "completed_utc": "2026-10-16T06:35:30.059696+00:00"
+    },
+    "infer_rgbt234": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt234_predictions",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt234_predictions",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T06:35:30.064573+00:00",
+      "pids": [
+        2191755,
+        2191756
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T07:18:40.954606+00:00"
+    },
+    "score_rgbt234": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.score_dense",
+          "--dataset",
+          "rgbt234",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt234",
+          "--predictions",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt234_predictions",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt234_report",
+          "--baseline-report",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/pure_cad_rgbt234_20261015/full_report.json"
+        ]
+      ],
+      "physical_gpu": "",
+      "started_utc": "2026-10-16T07:18:40.958066+00:00",
+      "pids": [
+        2246927
+      ],
+      "actual_exit_codes": [
+        0
+      ],
+      "completed_utc": "2026-10-16T07:18:45.146068+00:00"
+    },
+    "infer_rgbt210": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "rgbt210",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt210_predictions",
+          "--shard",
+          "0"
+        ],
+        [
+          "cadtrack_abc.infer_dense",
+          "--checkpoint",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+          "--dataset",
+          "rgbt210",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt210_predictions",
+          "--shard",
+          "1"
+        ]
+      ],
+      "physical_gpu": 3,
+      "started_utc": "2026-10-16T07:18:45.151059+00:00",
+      "pids": [
+        2247091,
+        2247092
+      ],
+      "actual_exit_codes": [
+        0,
+        0
+      ],
+      "completed_utc": "2026-10-16T07:57:45.676256+00:00"
+    },
+    "score_rgbt210": {
+      "status": "COMPLETE",
+      "commands": [
+        [
+          "cadtrack_abc.score_dense",
+          "--dataset",
+          "rgbt210",
+          "--root",
+          "/home/gaob/CADTrack-ABC/dataset/rgbt210/RGBT210",
+          "--predictions",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt210_predictions",
+          "--output",
+          "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt210_report",
+          "--baseline-report",
+          "/home/gaob/CADTrack-ABC/cadtrack_abc/results/three_benchmark_closure_20261015/pure_cad_rgbt210_1225/full_report.json"
+        ]
+      ],
+      "physical_gpu": "",
+      "started_utc": "2026-10-16T07:57:45.680028+00:00",
+      "pids": [
+        2313919
+      ],
+      "actual_exit_codes": [
+        0
+      ],
+      "completed_utc": "2026-10-16T07:57:48.883237+00:00"
+    }
+  },
+  "reports": {
+    "lasher": {
+      "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/lasher_report/qualified_full_report.json",
+      "metrics": {
+        "NPR": 70.56633458058896,
+        "PR": 73.84597817020872,
+        "SR": 59.00563660397149
+      },
+      "baseline": {
+        "PR": 72.74,
+        "NPR": 69.16,
+        "SR": 57.84
+      },
+      "delta": {
+        "NPR": 1.406334580588961,
+        "PR": 1.1059781702087292,
+        "SR": 1.1656366039714854
+      },
+      "plus_two_reached": {
+        "NPR": false,
+        "PR": false,
+        "SR": false
+      }
+    },
+    "rgbt234": {
+      "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt234_report/qualified_full_report.json",
+      "metrics": {
+        "MPR": 89.17291178475418,
+        "MSR": 66.12804526856776
+      },
+      "baseline": {
+        "MPR": 89.88130707509919,
+        "MSR": 66.31030440376779
+      },
+      "delta": {
+        "MPR": -0.7083952903450097,
+        "MSR": -0.18225913520002734
+      },
+      "plus_two_reached": {
+        "MPR": false,
+        "MSR": false
+      }
+    },
+    "rgbt210": {
+      "path": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/formal/rgbt210_report/qualified_full_report.json",
+      "metrics": {
+        "PR": 86.99603701854332,
+        "SR": 63.46590340379411
+      },
+      "baseline": {
+        "PR": 88.72237534208853,
+        "SR": 64.51517148751734
+      },
+      "delta": {
+        "PR": -1.7263383235452068,
+        "SR": -1.049268083723227
+      },
+      "plus_two_reached": {
+        "PR": false,
+        "SR": false
+      }
+    }
+  },
+  "full_ABC": false,
+  "goal_achieved": false,
+  "M0_state_sha256": "4874410b970103d0d314241f1fa9278871a5fc7f43253ded32dd685fd582e5af",
+  "selected_trained_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/trained_best.pth",
+  "selected_trained_checkpoint_sha256": "075d0bb8852f942c08c5f5ab6a9d2f7771dc3ffda1ca9f328eb7da5f108aadf9",
+  "selected_trained_epoch": 20,
+  "completed_utc": "2026-10-16T07:57:49.045255+00:00",
+  "full98_selection_complete": true,
+  "seven_metric_plus_two": false,
+  "not_full_ABC": true,
+  "matched_clip_order": "Final H-versus-HA acceptance also requires matching all20 actual history clip-order hashes.",
+  "checkpoint_cleanup": "Deferred until both runs, full results and required audit close; no unique best/pretrain removed."
+}

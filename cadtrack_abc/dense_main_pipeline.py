@@ -1,6 +1,6 @@
 """R3 qualification, matched raw continuation, calibration, policy and full tests.
 
-Start only after the existing R2 pair is terminal and GPUs2/3 are available.
+Start after R2 completes and GPU3 is available; the control waits for GPU2.
 This controller has no retry, background polling, environment install or weight
 deletion. A failed child leaves its real logs/exit code and stops the chain.
 """
@@ -48,13 +48,14 @@ def main():
     capacity = subprocess.run(['nvidia-smi', '-i', '2,3', '--query-gpu=index,memory.used,memory.total',
         '--format=csv,noheader,nounits'], capture_output=True, text=True, check=True).stdout
     cards = [[int(value.strip()) for value in line.split(',')] for line in capacity.splitlines()]
-    assert {row[0] for row in cards} == {2, 3} and all(row[1] < 1024 for row in cards), cards
+    assert {row[0] for row in cards} == {2, 3} and next(row[1] for row in cards if row[0] == 3) < 1024, cards
     output = Path(args.output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     state = dict(status='DENSE_R3_MAIN_PIPELINE_RUNNING', controller_pid=os.getpid(),
         started_utc=datetime.now(timezone.utc).isoformat(), phases={},
         parent_checkpoint=str(parent), parent_checkpoint_sha256=parent_digest,
         physical_gpus=[2, 3], initial_capacity_csv=capacity,
+        training_assignment=dict(raw=3, control=2), control_waits_for_card_release=True,
         query_timestamps_only_reused=True, old_feature_or_action_labels_reused=False,
         full_ABC_training_complete=False, goal_achieved=False)
 
@@ -103,20 +104,31 @@ def main():
 
     save()
     run('native_qualification', [['cadtrack_abc.qualify_dense_main', '--config', str(config_path),
-        '--r2-pair-root', str(pair_root), '--output', str(output / 'native_qualification')]], [2])
+        '--r2-pair-root', str(pair_root), '--output', str(output / 'native_qualification')]], [3])
     native = json.loads((output / 'native_qualification/qualification_complete.json').read_text())
     assert native['status'] == 'DENSE_R3_NATIVE_QUALIFICATION_PASS'
     assert native['parent_checkpoint_sha256'] == parent_digest
     assert native['actual_causal_query_frames'] == 24 and native['actual_matched_actions'] == 210
     assert native['actual_native_replay_equal'] and native['parent_tracker_parameters_unchanged']
-    run('raw_and_control_probes', training_commands(True), [2, 3])
+    # Independent per-card branches let the main use freeGPU3 immediately.
+    # Existing command builders preserve both exact probe/full training recipes.
+    probes, full = training_commands(True), training_commands(False)
+    workers = []
+    for index, (variant, device) in enumerate([('raw', 3), ('control', 2)]):
+        spec_path = output / (variant + '_worker_spec.json')
+        spec = dict(variant=variant, physical_gpu=device, batch=args.batch,
+            output=str(output / (variant + '_worker')),
+            probe_output=str(output / (variant + '_probe')),
+            probe_command=probes[index], full_command=full[index])
+        spec_path.write_text(json.dumps(spec, indent=2))
+        workers.append(['cadtrack_abc.dense_training_worker', '--spec', str(spec_path)])
+    run('matched_probe_and_full20_branches', workers, ['', ''])
     for variant, status in [('raw', 'DENSE_MOTION_QUALIFICATION_COMPLETE'), ('control', 'DENSE_QUALIFICATION_COMPLETE')]:
         result = json.loads((output / (variant + '_probe') / 'fit_complete.json').read_text())
         assert result['status'] == status and result['probe'] and result['updates'] == 2
         assert result['raw_clips'] == args.batch * 2 and all(result['changed_parameter_tensors'].values())
     state['GPU_qualification_complete'] = True
     save()
-    run('matched_full20_continuations', training_commands(False), [2, 3])
     raw_fit, control_fit = output / 'raw_fit', output / 'control_fit'
     raw = json.loads((raw_fit / 'fit_complete.json').read_text())
     control = json.loads((control_fit / 'fit_complete.json').read_text())

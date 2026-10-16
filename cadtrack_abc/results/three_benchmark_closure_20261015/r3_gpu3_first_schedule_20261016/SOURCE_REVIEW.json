@@ -1,0 +1,95 @@
+{
+  "review_id": "gpu3_first_schedule_review_20261016_initial",
+  "date": "2026-10-16",
+  "verdict": "PASS_SOURCE_ONLY_WITH_NONBLOCKING_NOTE",
+  "blocking_count": 0,
+  "nonblocking_count": 1,
+  "scope": "SOURCE_ONLY",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_route": "UNATTESTED",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "initial_report_preserve_for_followup": true,
+  "repository": "C:/Users/gb/.codex_tmp/gola_setup_20261002/GOLA-source",
+  "reviewed_sources": {
+    "cadtrack_abc/dense_main_pipeline.py": "987afad1c045cebc00ed9342320237a191a619415f3bdd59bff77c910a8cbf73",
+    "cadtrack_abc/continue_dense_main.py": "5906917b7ab2e577fa2e39e5b1da01ba80eea2b19c3d36e9bc7b1f270e953a0a",
+    "cadtrack_abc/dense_training_worker.py": "adf38b1cc55dbf0005be38b5fff57bd40bbdf26e133edcbb0c4fc55629398568",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_gpu3_first_gate_20261016_remote.py": "ecb33ba335cf1797112088c7515dc48260b80c1aea266f14d30cfddb13096f5d"
+  },
+  "findings": [
+    {
+      "id": "N1",
+      "severity": "NONBLOCKING",
+      "file": "cadtrack_abc/dense_training_worker.py",
+      "line_start": 75,
+      "line_end": 78,
+      "title": "Invalid successful-child probe receipt leaves stopped worker labelled PROBE_RUNNING",
+      "trigger": "The probe process exits 0, but one of the two existing qualification predicates is false.",
+      "observed_evidence": "Existing invalid_probe host fixture saves status PROBE_RUNNING, probe phase COMPLETE with actual_exit_code 0, and no full20 phase. The existing test expects AssertionError and verifies that full20 is absent.",
+      "fixture": "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/gpu3_first_worker_cpu_cases_20261016/invalid_probe/worker/worker_state.json",
+      "impact": "The stopped branch has stale status. Full training remains blocked, and the main records the worker nonzero exit after branch joins finish.",
+      "minimal_fix": "Replace only the two validation assertions with the identical predicates and an explicit failure branch that saves FAILED_PROBE_QUALIFICATION and returns 1. Preserve the actual probe-child exit code 0.",
+      "requested_check": "Extend the existing invalid-probe host case to require return 1, FAILED_PROBE_QUALIFICATION, probe actual_exit_code 0, and no full20 launch."
+    }
+  ],
+  "source_checks": {
+    "device_mapping": "PASS: native/raw on physical3; control on physical2; CPU controllers masked; unchanged NN entries accept2/3 and use local0",
+    "own_probe_before_full": "PASS: each branch requires actual child exit0 and existing two-update qualification predicates before its own full20",
+    "nonzero_child_exit_preservation": "PASS: probe/full actual child codes saved; main joins record worker codes; outer gate records main code",
+    "invalid_probe_terminal_status": "NONBLOCKING_N1",
+    "training_commands_text_unchanged": true,
+    "run_text_unchanged": true,
+    "all_downstream_main_text_unchanged": true,
+    "text_comparison_method": "PowerShell read-only comparison with CRLF normalized; source was not executed",
+    "scope_source_identities_match": true,
+    "fresh_formal_parent_initialization": true,
+    "probe_weights_used_for_full_initialization": false,
+    "full_budget_each": {
+      "epochs": 20,
+      "samples_per_epoch": 20000,
+      "raw_clips": 400000,
+      "batch_prepared": 128,
+      "updates_at_prepared_batch": 3140,
+      "query_frame_observations": 3200000
+    },
+    "all20_actual_order_comparison_preserved": true,
+    "full98_and_all3_stages_preserved": true,
+    "fresh_evidence_calibration_consequence_decision_stages_preserved": true,
+    "launcher": "No blocking finding. Old-gate/R2/source/environment/budget predicates precede one CPU wrapper launch.180s not-before; actual queue exit retained;5s verification checks expected module/path substrings, not whole argv equality."
+  },
+  "existing_tests_read_not_rerun": {
+    "worker_host_cases_pass": 5,
+    "admission_host_cases_pass": 5,
+    "GPU_subprocess_sleep_mocked": true,
+    "provided_source_budget_AST_report": "PASS: run and training_commands unchanged; active R2 22 sources unchanged",
+    "runtime_experiment_evidence": false
+  },
+  "reviewer_tooling_note": {
+    "optional_AST_parse_attempt": "NOT_EXECUTED: host python shim returned No pyvenv.cfg file before Python code ran",
+    "not_counted_as_passing_check": true
+  },
+  "reviewer_actions": {
+    "project_imported": false,
+    "torch_imported": false,
+    "project_executed": false,
+    "source_edited": false,
+    "remote_queries": 0,
+    "GPU_queries": 0,
+    "new_NN_jobs": 0,
+    "deployment_performed": false,
+    "only_review_reports_written": true
+  },
+  "scientific_status": {
+    "actual_R3_native_qualification_established_by_this_review": false,
+    "actual_R3_probe_or_full_training_established_by_this_review": false,
+    "formal_metrics": null,
+    "all7_plus2": "UNMET",
+    "all3_module_effectiveness": "UNMET",
+    "goal_achieved": false,
+    "H_HA_negative_outcomes_are_scheduling_failures": false
+  }
+}

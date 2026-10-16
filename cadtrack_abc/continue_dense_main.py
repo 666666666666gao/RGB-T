@@ -2,7 +2,8 @@
 
 The existing local observer still owns training-progress inspection. This
 stdlib-only queue reads no parent files before the prescribed first check,
-then checks terminal receipts every300s. It never retries, preempts a GPU,
+    then checks terminal receipts every300s. The main starts on freeGPU3 and
+    its matched control independently waits for GPU2. It never preempts a GPU,
 starts a second fit on a card or treats failed parents as successful inputs.
 """
 import argparse
@@ -73,7 +74,7 @@ def main():
         cards = [[int(value.strip()) for value in line.split(',')] for line in capacity.splitlines()]
         assert {row[0] for row in cards} == {2, 3}
         state['capacity_csv'] = capacity
-        if any(row[1] >= 500 for row in cards):
+        if next(row[1] for row in cards if row[0] == 3) >= 500:
             state['status'] = 'WAITING_FOR_AUTHORIZED_GPU_RELEASE'
             save()
             time.sleep(300)

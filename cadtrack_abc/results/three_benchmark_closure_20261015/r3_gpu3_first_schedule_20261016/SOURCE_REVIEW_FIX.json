@@ -1,0 +1,71 @@
+{
+  "review_id": "gpu3_first_schedule_review_20261016_fix1",
+  "date": "2026-10-16",
+  "verdict": "PASS_SOURCE_ONLY_N1_FIXED",
+  "blocking_count": 0,
+  "nonblocking_count": 0,
+  "scope": "SOURCE_ONLY",
+  "scope_detail": "Bounded N1 status correction, existing host-test update, and preservation of previously reviewed source identities only",
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "max",
+  "actual_route": "UNATTESTED",
+  "actual_model": "UNATTESTED",
+  "actual_reasoning_effort": "UNATTESTED",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "initial_reports_preserved": true,
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "N1",
+      "status": "FIXED",
+      "file": "cadtrack_abc/dense_training_worker.py",
+      "line_start": 77,
+      "line_end": 82,
+      "qualification_predicates_unchanged": true,
+      "invalid_probe_saves_terminal_status": "FAILED_PROBE_QUALIFICATION",
+      "invalid_probe_worker_return_code": 1,
+      "successful_probe_child_actual_exit_code_preserved": 0,
+      "invalid_probe_cannot_enter_full20": true,
+      "exact_diff_limited_to_finding": true
+    }
+  ],
+  "worker_identities": {
+    "preserved_original_sha256": "adf38b1cc55dbf0005be38b5fff57bd40bbdf26e133edcbb0c4fc55629398568",
+    "preserved_original_matches_initial_review": true,
+    "fixed_sha256": "fbf04ac9dd712cf7648fbadd6ed2c9b805e32323b5b19836426a913ce770f2a9"
+  },
+  "unchanged_reviewed_sources": {
+    "cadtrack_abc/dense_main_pipeline.py": "987afad1c045cebc00ed9342320237a191a619415f3bdd59bff77c910a8cbf73",
+    "cadtrack_abc/continue_dense_main.py": "5906917b7ab2e577fa2e39e5b1da01ba80eea2b19c3d36e9bc7b1f270e953a0a",
+    "C:/Users/gb/.codex_tmp/cadtrack_abc_20261013/launch_gpu3_first_gate_20261016_remote.py": "ecb33ba335cf1797112088c7515dc48260b80c1aea266f14d30cfddb13096f5d"
+  },
+  "unchanged_source_identities_verified": true,
+  "existing_host_checks_read_not_rerun": {
+    "report": "gpu3_first_worker_cpu_checks_20261016_fix1.json",
+    "status": "PASS",
+    "actual_tests": 5,
+    "invalid_probe_test_checks_return1_status_exit0_no_full20": true,
+    "invalid_probe_saved_fixture_matches": true,
+    "GPU_subprocess_sleep_mocked": true,
+    "runtime_NN_evidence": false
+  },
+  "reviewer_actions": {
+    "source_edited": false,
+    "tests_executed": false,
+    "project_imported_or_executed": false,
+    "torch_imported": false,
+    "remote_queries": 0,
+    "GPU_queries": 0,
+    "new_NN_jobs": 0,
+    "only_separate_fix_review_reports_written": true
+  },
+  "scientific_status": {
+    "actual_R3_native_qualification_established_by_this_review": false,
+    "actual_R3_training_established_by_this_review": false,
+    "formal_metrics": null,
+    "all7_plus2": "UNMET",
+    "all3_module_effectiveness": "UNMET",
+    "goal_achieved": false
+  }
+}
