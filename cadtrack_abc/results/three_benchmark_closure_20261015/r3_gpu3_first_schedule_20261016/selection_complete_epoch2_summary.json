@@ -1,0 +1,415 @@
+{
+  "status": "FULL98_SELECTION_COMPLETE_EPOCH2_SELECTED_LASHER_INFERENCE_RUNNING",
+  "observed_utc": "2026-10-17T09:39:27.901087+00:00",
+  "selection": {
+    "selected": {
+      "epoch": 2,
+      "updates": 314,
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch02.pth",
+      "checkpoint_sha256": "cfd41264a309fc9446c86950a80d43f7af54fe25ec5f5f86ebd73dd675b77138",
+      "sequence_mean_iou": 0.6919498990650709,
+      "frame_mean_iou": 0.6227072737100658
+    },
+    "trained_selected": {
+      "epoch": 2,
+      "updates": 314,
+      "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch02.pth",
+      "checkpoint_sha256": "cfd41264a309fc9446c86950a80d43f7af54fe25ec5f5f86ebd73dd675b77138",
+      "sequence_mean_iou": 0.6919498990650709,
+      "frame_mean_iou": 0.6227072737100658
+    },
+    "candidates": [
+      {
+        "epoch": 0,
+        "updates": 0,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch00.pth",
+        "checkpoint_sha256": "a29ee59f455ddd188513b7770505923b6e7cf9e9491deeda48dfd538df0797ba",
+        "sequence_mean_iou": 0.6840977455574659,
+        "frame_mean_iou": 0.6153066479676907
+      },
+      {
+        "epoch": 1,
+        "updates": 157,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch01.pth",
+        "checkpoint_sha256": "66be8878ed5197d998638ebf3dffaaccd897e2a35cc6bfcbd8e190c4600f6b50",
+        "sequence_mean_iou": 0.6849348580526238,
+        "frame_mean_iou": 0.6047672828421607
+      },
+      {
+        "epoch": 2,
+        "updates": 314,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch02.pth",
+        "checkpoint_sha256": "cfd41264a309fc9446c86950a80d43f7af54fe25ec5f5f86ebd73dd675b77138",
+        "sequence_mean_iou": 0.6919498990650709,
+        "frame_mean_iou": 0.6227072737100658
+      },
+      {
+        "epoch": 5,
+        "updates": 785,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch05.pth",
+        "checkpoint_sha256": "53f747c455e54ec7413e78913b96009206aa77aaa350e6ad74b2ec9b8aa66425",
+        "sequence_mean_iou": 0.6786863848931206,
+        "frame_mean_iou": 0.6022211873722618
+      },
+      {
+        "epoch": 10,
+        "updates": 1570,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch10.pth",
+        "checkpoint_sha256": "6cec41c5504d0e46b40df839850666a04152136d5bc28182a29efba2ce484abb",
+        "sequence_mean_iou": 0.6827253214148148,
+        "frame_mean_iou": 0.6029467636163038
+      },
+      {
+        "epoch": 20,
+        "updates": 3140,
+        "checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch20.pth",
+        "checkpoint_sha256": "b25222742429b1ae17d8ee9065e791fb8271111388a6009a4c2cbe7fc75cce09",
+        "sequence_mean_iou": 0.683034217312851,
+        "frame_mean_iou": 0.5862951530057022
+      }
+    ],
+    "best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/best.pth",
+    "trained_best_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/trained_best.pth",
+    "full98_development_selection_complete": true,
+    "strict_dense_abc_reload": true,
+    "formal_metrics_complete": false,
+    "initialization_is_training_gain": false,
+    "selection_metric": "Sequence-equal valid-box IoU on repeated98 full videos; first frame included; not official SR.",
+    "official_policy": "Same preselected positive-epoch checkpoint/config on all three benchmarks, including negative results. Pure epoch0 uses existing references; no baseline LasHeR rerun.",
+    "cleanup": "Deferred until complete formal evaluation and audit; preserve pretrain and required best dependencies."
+  },
+  "raw_evaluation": {
+    "status": "DENSE_R3_FULL_VIDEO_EVALUATION_RUNNING",
+    "controller_pid": 3578633,
+    "fit": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit",
+    "started_utc": "2026-10-17T07:22:48.904064+00:00",
+    "phases": {
+      "full98_candidate_epoch00": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T07:22:48.904367+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch00.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch00",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch00.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch00",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3578634,
+          3578635
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T07:49:31.554344+00:00"
+      },
+      "full98_candidate_epoch01": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T07:49:31.555563+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch01",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch01.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch01",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3619509,
+          3619510
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T08:09:22.714209+00:00"
+      },
+      "full98_candidate_epoch02": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T08:09:22.715506+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch02.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch02",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch02.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch02",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3663311,
+          3663312
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T08:28:49.060996+00:00"
+      },
+      "full98_candidate_epoch05": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T08:28:49.062425+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch05.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch05",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch05.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch05",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3694128,
+          3694129
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T08:48:06.946358+00:00"
+      },
+      "full98_candidate_epoch10": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T08:48:06.947818+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch10.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch10",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch10.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch10",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3735505,
+          3735506
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T09:07:49.588858+00:00"
+      },
+      "full98_candidate_epoch20": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T09:07:49.590436+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch20.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch20",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.validate_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/candidate_epoch20.pth",
+            "--manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development/candidate_epoch20",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3776969,
+          3776970
+        ],
+        "actual_exit_codes": [
+          0,
+          0
+        ],
+        "ended_utc": "2026-10-17T09:27:08.765220+00:00"
+      },
+      "select_trained": {
+        "status": "COMPLETE",
+        "started_utc": "2026-10-17T09:27:08.766580+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.select_dense_main",
+            "--fit",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit",
+            "--split-manifest",
+            "/home/gaob/CADTrack-ABC/outputs/r2_dense_pair_20261015/HA/fit/manifest.json",
+            "--development",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/development"
+          ]
+        ],
+        "physical_devices": [
+          ""
+        ],
+        "pids": [
+          3808234
+        ],
+        "actual_exit_codes": [
+          0
+        ],
+        "ended_utc": "2026-10-17T09:27:14.250589+00:00"
+      },
+      "infer_lasher": {
+        "status": "RUNNING",
+        "started_utc": "2026-10-17T09:27:14.410857+00:00",
+        "commands": [
+          [
+            "cadtrack_abc.infer_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/trained_best.pth",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/formal/lasher_predictions",
+            "--shard",
+            "0"
+          ],
+          [
+            "cadtrack_abc.infer_dense_main",
+            "--checkpoint",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/trained_best.pth",
+            "--dataset",
+            "lasher",
+            "--root",
+            "/data/wangwj/dataset/LasHeR/testingset",
+            "--output",
+            "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_evaluation/formal/lasher_predictions",
+            "--shard",
+            "1"
+          ]
+        ],
+        "physical_devices": [
+          2,
+          3
+        ],
+        "pids": [
+          3808426,
+          3808427
+        ]
+      }
+    },
+    "reports": {},
+    "formal_checkpoint_selection": "full98 trained positive epoch, same checkpoint on all3",
+    "goal_achieved": false,
+    "selected_checkpoint": "/home/gaob/CADTrack-ABC/outputs/r3_dense_complete_gpu3first_20261016/raw_fit/trained_best.pth",
+    "selected_checkpoint_sha256": "cfd41264a309fc9446c86950a80d43f7af54fe25ec5f5f86ebd73dd675b77138",
+    "selected_epoch": 2
+  },
+  "selected_checkpoint_sha256": "cfd41264a309fc9446c86950a80d43f7af54fe25ec5f5f86ebd73dd675b77138",
+  "next_due_utc": "2026-10-17T10:09:27.901087+00:00",
+  "authorized_cards_csv": "2, 840, 24576, 17\n3, 840, 24576, 27\n",
+  "cpu_3s_percent": {
+    "busy": 3.692665335439454,
+    "iowait": 0.3338002563109111
+  },
+  "formal_metrics": null,
+  "goal_achieved": false
+}
